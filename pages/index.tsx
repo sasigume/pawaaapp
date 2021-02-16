@@ -2,11 +2,11 @@ import Link from 'next/link'
 import Layout from '../components/Layout'
 
 const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
+  <Layout title="Pawaa.app">
+    <h1 className="font-bold text-4xl">Pawaa.app</h1>
     <p>
-      <Link href="/about">
-        <a>About</a>
+      <Link href="https://blog.pawaa.app">
+        <a className="block text-3xl font-bold p-4 shadow-xl rounded-xl m-4 bg-yellow-100">Blog</a>
       </Link>
     </p>
   </Layout>
