@@ -1,6 +1,6 @@
-# PAWAA.APP LANDING PAGE
+# PAWAA.APP
 
-![screenshot](https://github.com/sasigume/pawaaapp-lp/blob/main/screenshot/demo.png?raw=true)
+![screenshot](https://github.com/sasigume/pawaaapp/blob/main/screenshot/demo.png?raw=true)
 
 ## Thanks
 

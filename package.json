@@ -1,6 +1,6 @@
 {
-  "name": "pawaaapp-lp",
-  "version": "1.2.2",
+  "name": "pawaaapp",
+  "version": "1.2.3",
   "scripts": {
     "dev": "next",
     "build": "next build",
