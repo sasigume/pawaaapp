@@ -49,7 +49,7 @@ const IndexPage = () => {
         </div>
 
         <Link href="https://blog.pawaa.app">
-          <a className="text-center block text-3xl font-bold p-4 shadow-xl rounded-xl m-4 ">VISIT PAWAAAPP MAGAZINE</a>
+          <a className="text-center block text-3xl font-bold p-4 shadow-xl rounded-xl m-4 ">PAWAAAPP MAGAZINE</a>
         </Link>
       </Container>
     </Layout>
