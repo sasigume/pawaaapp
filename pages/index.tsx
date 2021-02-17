@@ -15,32 +15,43 @@ const IndexPage = () => {
     "/mockup/3.png"
   ]
 
-  const texArray:string[][] = [
+  const texArray: string[][] = [
     ['次の定積分を求めよ', '$\\int_{1}^{2} (x-1)^{2}dx$'],
     ['日本語に訳せ', 'My Engrish is bad!!!!!!!!!']
   ]
 
   return (
     <Layout title="Pawaa.app">
-
-      <Container>
-        <div className="max-w-3xl flex flex-col">
-          <div className="mb-16 md:mr-10">
-            <div className="font-bold text-4xl md:text-6xl">
-              <p>広告のように</p>
-              <p>問題を</p>
-              <p>レコメンド</p>
-              <p>してくる</p>
-              <p>参考書アプリ</p>
+      <div className="w-screen bg-red-400 text-white">
+        <Container>
+          <div className="max-w-3xl flex flex-col">
+            <div className="flex flex-col align-middle items-center md:flex-row justify-between">
+              <div className="mt-10 md:mt-0 mr-10 font-bold text-3xl md:text-5xl mb-20 md:mb-0">
+                <p>問題が</p>
+                <p>「流れる」</p>
+                <p>学習アプリ</p>
+              </div>
+              <div className="flex flex-col text-black py-8">
+                <div className="bg-gray-200 -mt-16 ml-16 inline-block m-4 p-4 border-2 border-gray-200 rounded-xl shadow-xl">
+                  あああああ!!<br />今日もラーメンが美味しいなあ
+                </div>
+                {texArray.map(
+                  (question: string[], n: number) => <Question key={n} q={question[0]} tex={question[1]} n={n} />
+                )}
+                <div className="bg-gray-200 mr-16 inline-block m-4 p-4 border-2 border-gray-200 rounded-xl shadow-xl">
+                  あああああ!!<br />今日もラーメンが美味しいなあ
+                </div>
+              </div>
             </div>
-            <div className="my-10 flex flex-col">
-              {texArray.map(
-                (question:string[], n:number)=> <Question q={question[0]} tex={question[1]} n={n} />
-              )}
-            </div>
+          </div>
+        </Container>
+      </div>
+      <div className="bg-white -mt-16 z-10 w-screen">
+        <Container>
+          <div className="mt-10 mb-16">
             <Logo />
           </div>
-          <div className="flex flex-col md:flex-row justify-between">
+          <div className="grid gap-x-10 md:grid-flow-col md:auto-cols-max">
 
             {mockupList.map(
               (src: string) => (
@@ -49,13 +60,13 @@ const IndexPage = () => {
             )}
 
           </div>
-        </div>
 
-        <Link href="https://blog.pawaa.app">
-          <a className="text-center block text-3xl font-bold p-4 shadow-xl rounded-xl m-4 ">PAWAAAPP MAGAZINE</a>
-        </Link>
-      </Container>
-    </Layout>
+          <Link href="https://blog.pawaa.app">
+            <a className="text-center block text-3xl font-bold p-4 shadow-xl rounded-xl mb-16">開発日記はこちら</a>
+          </Link>
+        </Container>
+      </div>
+    </Layout >
   )
 }
 
