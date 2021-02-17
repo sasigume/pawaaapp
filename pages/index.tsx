@@ -15,8 +15,9 @@ const IndexPage = () => {
     "/mockup/3.png"
   ]
 
-  const texArray:string[] = [
-    `$\\int_{1}^{2} (x-1)^{2}dx$`
+  const texArray:string[][] = [
+    ['次の定積分を求めよ', '$\\int_{1}^{2} (x-1)^{2}dx$'],
+    ['日本語に訳せ', 'My Engrish is bad!!!!!!!!!']
   ]
 
   return (
@@ -32,8 +33,10 @@ const IndexPage = () => {
               <p>してくる</p>
               <p>参考書アプリ</p>
             </div>
-            <div className="my-10">
-              <Question tex={texArray[0]} />
+            <div className="my-10 flex flex-col">
+              {texArray.map(
+                (question:string[], n:number)=> <Question q={question[0]} tex={question[1]} n={n} />
+              )}
             </div>
             <Logo />
           </div>
