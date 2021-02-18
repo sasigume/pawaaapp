@@ -2,8 +2,8 @@
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Container from '@/components/containercomponent'
-import PostBody from '@/components/post-body'
 import PostHeader from '@/components/post-header'
+import PostBody from '@/components/post-body'
 import MoreStories from '@/components/more-stories'
 import SectionSeparator from '@/components/section-separator'
 import Layout from '@/components/layout'
@@ -34,20 +34,17 @@ export default function PostPage({ post, morePosts, preview }: PostProps) {
               <article>
                 <Head>
                   <title>
-                    {post ? post.content.title : '記事タイトルが設定されていません'} | {CMS_NAME}
+                    {post ? post.slug : '記事タイトルが設定されていません'} | {CMS_NAME}
                   </title>
                   <meta property="og:image" content={''} />
                 </Head>
-                {/*<PostHeader
-                  title={post.name}
-                  image={post.image}
-                  long_text={post.long_text}
-                  created_at={post.created_at}
-                  author={post.author}
-                  intro={post.intro}
+                <PostHeader
                   slug={post.slug}
+                  published_at={post.published_at}
+                  first_published_at={post.first_published_at}
+                  content={post.content}
                 />
-                <PostBody md={post.long_text} /> */}
+                <PostBody md={post.content.long_text} />
               </article>
               <SectionSeparator />
               {morePosts.length > 0 && <MoreStories posts={morePosts} />}
@@ -63,21 +60,17 @@ interface GSProps {
   preview: any;
 }
 
-export async function getStaticProps({ params, preview = null }: GSProps) {
+export async function getStaticProps({ params }: GSProps) {
 
-  const postData = await getPostAndMorePosts(params.slug, preview)
-
-  console.log(postData)
+  
+  let environment:boolean
+  process.env.NODE_ENV == "development" ? environment = true : environment = false
+  const postData = await getPostAndMorePosts(params.slug, environment)
 
   return {
     props: {
-      preview: preview || false,
-      post: {
-        ...postData.post,
-        md: postData.post?.content?.long_text
-          ? postData.post.content.long_text
-          : null,
-      },
+      preview: environment,
+      post: postData.post,
       morePosts: postData.morePosts,
     },
     revalidate: 10, 
