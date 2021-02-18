@@ -36,5 +36,5 @@
   "include": [
     "**/*.ts",
     "**/*.tsx"
-  ]
+, "src/pages/api/exit-preview.ts", "src/pages/api/preview.ts"  ]
 }

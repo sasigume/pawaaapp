@@ -1,3 +1,14 @@
+import StoryblokClient from 'storyblok-js-client'
+
+export const Storyblok = new StoryblokClient({
+    accessToken: process.env.STORYBLOK_PREVIEW_TOKEN,
+    cache: {
+      clear: 'auto',
+      type: 'memory'
+    }
+})
+
+
 async function fetchAPI(query: any, { variables, preview }: any = {}) {
   let token
   preview ? token = process.env.STORYBLOK_PREVIEW_TOKEN : token = process.env.STORYBLOK_PUBLIC_TOKEN
