@@ -12,3 +12,8 @@ https://medium.com/@MatDrinksTea/rendering-markdown-and-latex-in-react-dec355e74
 ### GraphQL + Storyblok
 
 https://github.com/vercel/next.js/tree/canary/examples/cms-storyblok
+
+
+### Sitemap Generator
+
+https://github.com/IlusionDev/nextjs-sitemap-generator

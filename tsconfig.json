@@ -39,5 +39,5 @@
   "include": [
     "**/*.ts",
     "**/*.tsx"
-  ]
+, "src/lib/sitemapgen.js"  ]
 }
