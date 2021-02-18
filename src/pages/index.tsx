@@ -35,10 +35,6 @@ export default function Index({ allPosts, preview }: IndexProps) {
 
   return (
     <Layout preview={preview}>
-      <Head>
-        <title>Next.js Blog Example with {CMS_NAME}</title>
-      </Head>
-
       <div className="w-screen bg-red-400 text-white flex">
         <Container>
           <div className="max-w-3xl flex flex-col items-center justify-center">

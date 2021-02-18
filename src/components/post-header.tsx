@@ -3,10 +3,10 @@ import Date from '../components/date'
 import CoverImageComponent from './cover-image-component'
 import { Post } from '@/lib/types'
 
-export default function PostHeader({slug,published_at,first_published_at,content}: Post) {
+export default function PostHeader({ slug, published_at, first_published_at, content }: Post) {
   return (
     <>
-      <h1>{slug}</h1>
+      <h1 className="text-3xl font-bold my-10">{content.title}</h1>
       <div className="hidden md:block md:mb-12">
         <Avatar name={content.author.name} src={content.author.content.picture.filename} />
       </div>
@@ -20,7 +20,7 @@ export default function PostHeader({slug,published_at,first_published_at,content
         <div className="mb-6 text-lg">
           <Date dateString={first_published_at} /> / <Date dateString={published_at} />
         </div>
-  </div>
+      </div>
     </>
   )
 }
