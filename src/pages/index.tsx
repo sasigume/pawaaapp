@@ -32,7 +32,7 @@ export default function Index({ allPosts, preview }: IndexProps) {
   const morePosts = allPosts.slice(1)
 
   return (
-    <Layout preview={preview}>
+    <Layout preview={preview} desc={"Pawaa.app"}>
       <div className="w-screen bg-red-400 text-white flex">
         <Container>
           <div className="max-w-3xl flex flex-col items-center justify-center">
