@@ -9,7 +9,7 @@ interface LayoutProps {
 
 export default function Layout({ preview, children }: LayoutProps) {
   return (
-    <>
+    <div>
       <Meta />
       <div className="w-screen flex flex-col items-center justify-center overflow-hidden min-h-screen">
         <Alert preview={preview} />
@@ -17,6 +17,6 @@ export default function Layout({ preview, children }: LayoutProps) {
           {children}
         </main>
       </div>
-    </>
+    </div>
   )
 }
