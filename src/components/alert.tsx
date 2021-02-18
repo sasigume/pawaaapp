@@ -1,4 +1,4 @@
-import Container from './container'
+import Container from './containerComponent'
 import cn from 'classnames'
 
 export default function Alert({ preview }:any) {
