@@ -2,15 +2,16 @@ export interface Post {
   slug: string;
   first_published_at: string;
   published_at: string;
-  md: string;
-  content: {
-    title: string;
-    image: string;
-    author: Author;
-    intro: string;
-  }
+  content: Content;
 }
 
+interface Content {
+  title: string;
+  image: string;
+  author: Author;
+  intro: string;
+  long_text: string;
+}
 export interface HeroPostType {
   title: string;
   date: string;

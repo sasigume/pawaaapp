@@ -1,5 +1,3 @@
-import { Author} from '@/lib/types'
-
 interface Props {
   name: string;
   src: string;
