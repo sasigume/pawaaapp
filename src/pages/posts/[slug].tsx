@@ -27,14 +27,15 @@ export default function PostPage({ post, morePosts, preview }: PostProps) {
   return (
     <Layout preview={preview}>
       <Container>
+      <article className="max-w-xl mx-auto flex flex-col justify-center">
         {router.isFallback ? (
           <h1>Loading…</h1>
         ) : (
             <>
-              <article>
+              
                 <Head>
                   <title>
-                    {post ? post.slug : '記事タイトルが設定されていません'} | {CMS_NAME}
+                    {post ? post.content.title : '記事タイトルが設定されていません'} | {CMS_NAME}
                   </title>
                   <meta property="og:image" content={''} />
                 </Head>
@@ -45,11 +46,12 @@ export default function PostPage({ post, morePosts, preview }: PostProps) {
                   content={post.content}
                 />
                 <PostBody md={post.content.long_text} />
-              </article>
+              
               <SectionSeparator />
               {morePosts.length > 0 && <MoreStories posts={morePosts} />}
             </>
           )}
+          </article>
       </Container>
     </Layout>
   )

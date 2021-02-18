@@ -13,6 +13,7 @@ export default function Meta() {
       <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#f05d30" />
       <meta name="msapplication-TileColor" content="#ffffff" />
       <meta name="theme-color" content="#ffffff"></meta>
+      <title>{CMS_NAME}</title>
       <meta
         name="description"
         content={`これが${CMS_NAME}。`}
