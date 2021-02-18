@@ -1,3 +1,4 @@
+import { GetStaticProps } from 'next'
 import Link from 'next/link'
 
 import Logo from '../components/Logo'
@@ -6,8 +7,10 @@ import Container from '../components/Container'
 import Mockup from '../components/Mockup'
 import Question from '../components/Question'
 
+import Storyblok from "../lib/storyblok"
 
-const IndexPage = () => {
+
+const IndexPage = (props:any) => {
 
   const mockupList = [
     "/mockup/1.png",
@@ -51,6 +54,7 @@ const IndexPage = () => {
           <div className="mt-10 mb-16">
             <Logo />
           </div>
+          <h1>{ props.story ? props.story.name : 'My Site' }</h1>
           <div className="grid gap-x-10 md:grid-flow-col md:auto-cols-max">
 
             {mockupList.map(
@@ -71,3 +75,33 @@ const IndexPage = () => {
 }
 
 export default IndexPage
+
+export const getStaticProps:GetStaticProps = async (context:any) => {
+  // the slug of the story
+  let slug = "home"
+  // the storyblok params
+  let params = {
+    version: "draft", // or 'published'
+    cv: 0
+  }
+
+  // checks if Next.js is in preview mode
+  if (context.preview) {
+    // loads the draft version
+    params.version = "draft"
+    // appends the cache version to get the latest content
+    params.cv = Date.now()
+  }
+
+  // loads the story from the Storyblok API
+  let { data } = await Storyblok.get(`cdn/stories/${slug}`, params)
+
+  // return the story from Storyblok and whether preview mode is active
+  return {
+    props: {
+      story: data ? data.story : false,
+      preview: context.preview || false
+    },
+    revalidate: 10, 
+  }
+}
