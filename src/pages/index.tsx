@@ -9,8 +9,6 @@ import HeroPost from '@/components/hero-post'
 import Layout from '@/components/Layout'
 import { getAllPostsForHome } from '@/lib/api'
 import { Post } from '@/lib/types'
-import Head from 'next/head'
-import { CMS_NAME } from '@/lib/constants'
 
 interface IndexProps {
   allPosts: Post[];
