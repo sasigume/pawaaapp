@@ -6,19 +6,21 @@ import { Post } from '@/lib/types'
 export default function PostHeader({ slug, published_at, first_published_at, content }: Post) {
   return (
     <>
-      <h1 className="text-3xl font-bold my-10">{content.title}</h1>
+    <div className="sm:mx-0">
+        <CoverImageComponent title={content.title} slug={slug} url={content.image} />
+      </div>
+      <h1 className="text-3xl md:text-5xl font-bold my-10">{content.title}</h1>
       <div className="hidden md:block md:mb-12">
         <Avatar name={content.author.name} src={content.author.content.picture.filename} />
       </div>
-      <div className="mb-8 md:mb-16 sm:mx-0">
-        <CoverImageComponent title={content.title} slug={slug} url={content.image} />
-      </div>
-      <div className="max-w-2xl mx-auto">
-        <div className="block md:hidden mb-6">
+      
+      <div className="text-center">
+        <div className="block md:hidden mb-3">
           <Avatar name={content.author.name} src={content.author.content.picture.filename} />
         </div>
-        <div className="mb-6 text-lg">
-          <Date dateString={first_published_at} /> / <Date dateString={published_at} />
+        <div className="flex flex-col md:flex-row justify-around mb-3 text-lg">
+          <div>投稿 <Date dateString={first_published_at} /></div>
+          <div>最終更新 <Date dateString={published_at} /></div>
         </div>
       </div>
     </>

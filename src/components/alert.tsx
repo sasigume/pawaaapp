@@ -17,7 +17,7 @@ export default function Alert({ preview }:any) {
             </>
           ) : (
             <>
-              開発中
+              <a href="https://twitter.com/sasigume">不具合の報告</a>
             </>
           )}
         </div>

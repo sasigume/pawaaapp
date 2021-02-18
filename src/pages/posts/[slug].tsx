@@ -11,6 +11,7 @@ import { getAllPostsWithSlug, getPostAndMorePosts } from '@/lib/api'
 import Head from 'next/head'
 import { CMS_NAME } from '@/lib/constants'
 import { Post } from '@/lib/types'
+import Logo from '@/components/Logo'
 
 interface PostProps {
   post: Post;
@@ -25,7 +26,8 @@ export default function PostPage({ post, morePosts, preview }: PostProps) {
     return <ErrorPage statusCode={404} />
   }
   return (
-    <Layout preview={preview}>
+    <Layout preview={preview} >
+      <Logo />
       <Container>
       <article className="max-w-xl mx-auto flex flex-col justify-center">
         {router.isFallback ? (
