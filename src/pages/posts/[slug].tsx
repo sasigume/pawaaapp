@@ -1,7 +1,7 @@
   
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
-import Container from '@/components/container'
+import Container from '@/components/containercomponent'
 import PostBody from '@/components/post-body'
 import PostHeader from '@/components/post-header'
 import MoreStories from '@/components/more-stories'
