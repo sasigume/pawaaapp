@@ -1,4 +1,4 @@
-  
+
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Container from '@/components/Container'
@@ -26,37 +26,40 @@ export default function PostPage({ post, morePosts, preview }: PostProps) {
     return <ErrorPage statusCode={404} />
   }
   return (
-    <Layout preview={preview} >
-      <Logo />
-      <Container>
-      <article className="max-w-xl mx-auto flex flex-col justify-center">
-        {router.isFallback ? (
-          <h1>Loading…</h1>
-        ) : (
-            <>
-              
-                <Head>
-                  <title>
-                    {post ? post.content.title : '記事タイトルが設定されていません'} | {CMS_NAME}
-                  </title>
-                  <meta property="og:image" content={''} />
-                </Head>
-                <PostHeader
-                  slug={post.slug}
-                  published_at={post.published_at}
-                  first_published_at={post.first_published_at}
-                  content={post.content}
-                />
-                <PostBody md={post.content.long_text} />
-              
-              <SectionSeparator />
-              {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-            </>
-          )}
-          </article>
-      </Container>
-    </Layout>
-  )
+    <>
+      {router.isFallback ? (
+        <Layout preview={preview} desc={''}><div>Loading…</div></Layout>
+      ) : (
+          <Layout preview={preview} desc={post.content.intro ?? ''}>
+            <Logo />
+            <Container>
+              <article className="max-w-xl mx-auto flex flex-col justify-center">
+
+                <>
+
+                  <Head>
+                    <title>
+                      {post ? post.content.title : '記事タイトルが設定されていません'} | {CMS_NAME}
+                    </title>
+                    <meta property="og:image" content={''} />
+                  </Head>
+                  <PostHeader
+                    slug={post.slug}
+                    published_at={post.published_at}
+                    first_published_at={post.first_published_at}
+                    content={post.content}
+                  />
+                  <PostBody md={post.content.long_text ?? ''} />
+
+                  <SectionSeparator />
+                  {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+                </>
+
+              </article>
+            </Container>
+          </Layout>
+        )}
+    </>)
 }
 
 interface GSProps {
@@ -66,8 +69,8 @@ interface GSProps {
 
 export async function getStaticProps({ params }: GSProps) {
 
-  
-  let environment:boolean
+
+  let environment: boolean
   process.env.NODE_ENV == "development" ? environment = true : environment = false
   const postData = await getPostAndMorePosts(params.slug, environment)
 
@@ -77,7 +80,7 @@ export async function getStaticProps({ params }: GSProps) {
       post: postData.post,
       morePosts: postData.morePosts,
     },
-    revalidate: 10, 
+    revalidate: 10,
   }
 }
 
