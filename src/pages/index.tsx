@@ -1,13 +1,21 @@
 import Link from 'next/link'
 
-import Logo from '../components/Logo'
-import Layout from '../components/Layout'
-import Container from '../components/Container'
-import Mockup from '../components/Mockup'
-import Question from '../components/Question'
+import Logo from '@/components/Logo'
+import Mockup from '@/components/Mockup'
+import Question from '@/components/Question'
+import Container from '@/components/Container'
+import MoreStories from '@/components/more-stories'
+import HeroPost from '@/components/hero-post'
+import Layout from '@/components/Layout'
+import { getAllPostsForHome } from '@/lib/api'
+import { Post } from '@/lib/types'
 
+interface IndexProps {
+  allPosts: Post[];
+  preview: boolean;
+}
 
-const IndexPage = () => {
+export default function Index({ allPosts, preview }: IndexProps) {
 
   const mockupList = [
     "/mockup/1.png",
@@ -20,16 +28,20 @@ const IndexPage = () => {
     ['日本語に訳せ', 'My Engrish is bad!!!!!!!!!']
   ]
 
+  const heroPost = allPosts[0]
+  const morePosts = allPosts.slice(1)
+
   return (
-    <Layout title="Pawaa.app">
-      <div className="w-screen bg-red-400 text-white">
+    <Layout preview={preview}>
+      <div className="w-screen bg-red-400 text-white flex">
         <Container>
-          <div className="max-w-3xl flex flex-col">
+          <div className="max-w-3xl flex flex-col items-center justify-center">
             <div className="flex flex-col align-middle items-center md:flex-row justify-between">
               <div className="mt-10 md:mt-0 mr-10 font-bold text-3xl md:text-5xl mb-20 md:mb-0">
                 <p>問題が</p>
                 <p>「流れる」</p>
                 <p>学習アプリ</p>
+                <p>パワーアップ</p>
               </div>
               <div className="flex flex-col text-black py-8">
                 <div className="bg-gray-200 -mt-16 ml-16 inline-block m-4 p-4 border-2 border-gray-200 rounded-xl shadow-xl">
@@ -46,11 +58,12 @@ const IndexPage = () => {
           </div>
         </Container>
       </div>
-      <div className="bg-white -mt-16 z-10 w-screen">
+      <div className="bg-white -mt-16 z-10 w-screen flex items-center justify-center">
         <Container>
-          <div className="mt-10 mb-16">
+          <div className="mt-20 mb-16">
             <Logo />
           </div>
+
           <div className="grid gap-x-10 md:grid-flow-col md:auto-cols-max">
 
             {mockupList.map(
@@ -66,8 +79,28 @@ const IndexPage = () => {
           </Link>
         </Container>
       </div>
-    </Layout >
+      <div>
+        <Container>
+          {heroPost && (
+            <HeroPost
+              title={heroPost.content.title}
+              coverImage={heroPost.content.image}
+              date={heroPost.first_published_at || heroPost.published_at}
+              author={heroPost.content.author}
+              slug={heroPost.slug}
+              excerpt={heroPost.content.intro}
+            />
+          )}
+          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+        </Container>
+      </div>
+    </Layout>
   )
 }
 
-export default IndexPage
+export async function getStaticProps({ preview = null }) {
+  const allPosts = (await getAllPostsForHome(preview)) || []
+  return {
+    props: { allPosts, preview },
+  }
+}

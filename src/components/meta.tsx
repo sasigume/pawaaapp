@@ -1,15 +1,9 @@
-import React, { ReactNode } from 'react'
 import Head from 'next/head'
+import { CMS_NAME, HOME_OG_IMAGE_URL } from '@/lib/constants'
 
-type Props = {
-  children?: ReactNode
-  title?: string
-}
-
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
-  <div className="w-screen overflow-hidden flex flex-col justify-center items-center">
+export default function Meta() {
+  return (
     <Head>
-      <title>{title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -19,9 +13,12 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#f05d30" />
       <meta name="msapplication-TileColor" content="#ffffff" />
       <meta name="theme-color" content="#ffffff"></meta>
+      <title>{CMS_NAME}</title>
+      <meta
+        name="description"
+        content={`これが${CMS_NAME}。`}
+      />
+      <meta property="og:image" content={HOME_OG_IMAGE_URL} />
     </Head>
-    {children}
-  </div>
-)
-
-export default Layout
+  )
+}
