@@ -1,14 +1,23 @@
 import Link from 'next/link'
 
-import Logo from '../components/Logo'
-import Layout from '../components/Layout'
-import Container from '../components/Container'
-import Mockup from '../components/Mockup'
-import Question from '../components/Question'
+import Logo from '@/components/Logo'
+import Mockup from '@/components/Mockup'
+import Question from '@/components/Question'
+import Container from '@/components/container'
+import MoreStories from '@/components/more-stories'
+import HeroPost from '@/components/hero-post'
+import Layout from '@/components/layout'
+import { getAllPostsForHome } from '@/lib/api'
+import { Post } from '@/lib/types'
+import Head from 'next/head'
+import { CMS_NAME } from '@/lib/constants'
 
-const Home = (props: any) => {
+interface IndexProps {
+  allPosts: Post[];
+  preview: boolean;
+}
 
-  const story = props.story
+export default function Index({ allPosts, preview }:IndexProps) {
 
   const mockupList = [
     "/mockup/1.png",
@@ -21,8 +30,27 @@ const Home = (props: any) => {
     ['日本語に訳せ', 'My Engrish is bad!!!!!!!!!']
   ]
 
+  const heroPost = allPosts[0]
+  const morePosts = allPosts.slice(1)
+
   return (
-    <Layout title="Pawaa.app">
+    <Layout preview={preview}>
+      <Head>
+          <title>Next.js Blog Example with {CMS_NAME}</title>
+        </Head>
+        <Container>
+          {heroPost && (
+            <HeroPost
+              title={heroPost.content.title}
+              coverImage={heroPost.content.image}
+              date={heroPost.first_published_at || heroPost.published_at}
+              author={heroPost.content.author}
+              slug={heroPost.slug}
+              excerpt={heroPost.content.intro}
+            />
+          )}
+          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+        </Container>
       <div className="w-screen bg-red-400 text-white">
         <Container>
           <div className="max-w-3xl flex flex-col">
@@ -72,4 +100,9 @@ const Home = (props: any) => {
   )
 }
 
-export default Home
+export async function getStaticProps({ preview = null }) {
+  const allPosts = (await getAllPostsForHome(preview)) || []
+  return {
+    props: { allPosts, preview },
+  }
+}

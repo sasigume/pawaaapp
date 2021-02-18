@@ -1,13 +1,8 @@
-import React, { ReactNode } from 'react'
-
-type Props = {
-  children?: ReactNode
+import { ReactNode } from 'react'
+interface Props {
+  children: ReactNode;
 }
 
-const Container = ({ children }: Props) => (
-  <div className="mx-4 flex flex-col justify-center items-center">
-    {children}
-  </div>
-)
-
-export default Container
+export default function Container({ children }: Props) {
+  return <div className="container mx-auto px-5"> {children}</div>
+}
