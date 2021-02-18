@@ -26,7 +26,7 @@ export default function PostPage({ post, morePosts, preview }: PostProps) {
     return <ErrorPage statusCode={404} />
   }
   return (
-    <Layout preview={preview} >
+    <Layout preview={preview} desc={post.content.intro}>
       <Logo />
       <Container>
       <article className="max-w-xl mx-auto flex flex-col justify-center">

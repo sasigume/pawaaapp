@@ -1,7 +1,11 @@
 import Head from 'next/head'
 import { CMS_NAME, HOME_OG_IMAGE_URL } from '@/lib/constants'
 
-export default function Meta() {
+interface Props {
+  desc: string;
+}
+
+export default function Meta({desc}:Props) {
   return (
     <Head>
       <meta charSet="utf-8" />
@@ -16,7 +20,7 @@ export default function Meta() {
       <title>{CMS_NAME}</title>
       <meta
         name="description"
-        content={`これが${CMS_NAME}。`}
+        content={desc ? desc : `これが${CMS_NAME}。`}
       />
       <meta property="og:image" content={HOME_OG_IMAGE_URL} />
     </Head>
