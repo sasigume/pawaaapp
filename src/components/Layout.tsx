@@ -6,7 +6,7 @@ type Props = {
   title?: string
 }
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
+const Layout = ({ children, title = 'ページタイトル' }: Props) => (
   <div className="w-screen overflow-hidden flex flex-col justify-center items-center">
     <Head>
       <title>{title}</title>
