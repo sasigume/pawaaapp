@@ -1,14 +1,19 @@
 import { Author} from '@/lib/types'
 
-export default function Avatar(author:Author) {
+interface Props {
+  name: string;
+  src: string;
+}
+
+export default function Avatar({name,src}:Props) {
   return (
     <div className="flex items-center">
       <img
-        src={author.picture}
+        src={src}
         className="w-12 h-12 rounded-full mr-4 grayscale"
-        alt={author.name}
+        alt={name}
       />
-      <div className="text-xl font-bold">{author.name}</div>
+      <div className="text-xl font-bold">{name}</div>
     </div>
   )
 }

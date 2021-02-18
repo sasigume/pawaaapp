@@ -4,7 +4,7 @@ import cn from 'classnames'
 export default function Alert({ preview }:any) {
   return (
     <div
-      className={cn('border-b', {
+      className={cn('w-screen z-20 bg-white border-b', {
         'bg-accent-7 border-accent-7 text-white': preview,
         'bg-accent-1 border-accent-2': !preview,
       })}
@@ -24,14 +24,7 @@ export default function Alert({ preview }:any) {
             </>
           ) : (
             <>
-              The source code for this webpage is{' '}
-              <a
-                href={`https://github.com/sasigume/pawaaapp`}
-                className="underline hover:text-success duration-200 transition-colors"
-              >
-                available on GitHub
-              </a>
-              .
+              開発中
             </>
           )}
         </div>

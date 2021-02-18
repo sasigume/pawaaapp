@@ -22,7 +22,11 @@ export interface HeroPostType {
 
 export interface Author {
   name: string;
-  picture: string;
+  content:{
+    picture: {
+      filename: string;
+    }
+  }
 }
 
 export interface PostHeaderType {

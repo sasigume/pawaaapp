@@ -17,7 +17,7 @@ interface IndexProps {
   preview: boolean;
 }
 
-export default function Index({ allPosts, preview }:IndexProps) {
+export default function Index({ allPosts, preview }: IndexProps) {
 
   const mockupList = [
     "/mockup/1.png",
@@ -36,29 +36,18 @@ export default function Index({ allPosts, preview }:IndexProps) {
   return (
     <Layout preview={preview}>
       <Head>
-          <title>Next.js Blog Example with {CMS_NAME}</title>
-        </Head>
+        <title>Next.js Blog Example with {CMS_NAME}</title>
+      </Head>
+
+      <div className="w-screen bg-red-400 text-white flex">
         <Container>
-          {heroPost && (
-            <HeroPost
-              title={heroPost.content.title}
-              coverImage={heroPost.content.image}
-              date={heroPost.first_published_at || heroPost.published_at}
-              author={heroPost.content.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.content.intro}
-            />
-          )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-        </Container>
-      <div className="w-screen bg-red-400 text-white">
-        <Container>
-          <div className="max-w-3xl flex flex-col">
+          <div className="max-w-3xl flex flex-col items-center justify-center">
             <div className="flex flex-col align-middle items-center md:flex-row justify-between">
               <div className="mt-10 md:mt-0 mr-10 font-bold text-3xl md:text-5xl mb-20 md:mb-0">
                 <p>問題が</p>
                 <p>「流れる」</p>
                 <p>学習アプリ</p>
+                <p>パワーアップ</p>
               </div>
               <div className="flex flex-col text-black py-8">
                 <div className="bg-gray-200 -mt-16 ml-16 inline-block m-4 p-4 border-2 border-gray-200 rounded-xl shadow-xl">
@@ -75,7 +64,7 @@ export default function Index({ allPosts, preview }:IndexProps) {
           </div>
         </Container>
       </div>
-      <div className="bg-white -mt-16 z-10 w-screen">
+      <div className="bg-white -mt-16 z-10 w-screen flex items-center justify-center">
         <Container>
           <div className="mt-10 mb-16">
             <Logo />
@@ -94,6 +83,21 @@ export default function Index({ allPosts, preview }:IndexProps) {
           <Link href="https://blog.pawaa.app">
             <a className="text-center block text-3xl font-bold p-4 shadow-xl rounded-xl mb-16">開発日記はこちら</a>
           </Link>
+        </Container>
+      </div>
+      <div>
+        <Container>
+          {heroPost && (
+            <HeroPost
+              title={heroPost.content.title}
+              coverImage={heroPost.content.image}
+              date={heroPost.first_published_at || heroPost.published_at}
+              author={heroPost.content.author}
+              slug={heroPost.slug}
+              excerpt={heroPost.content.intro}
+            />
+          )}
+          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </Container>
       </div>
     </Layout >
