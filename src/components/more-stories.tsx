@@ -4,7 +4,7 @@ interface Props { posts: Post[] }
 export default function MoreStories({ posts }: Props) {
   return (
     <section>
-      <h2 className="mb-8 text-3xl md:text-4xl font-bold tracking-tighter leading-tight">
+      <h2 className="mb-8 text-3xl md:text-4xl font-bold tracking-tighter">
         他の記事
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 md:col-gap-16 lg:col-gap-16 row-gap-16 md:row-gap-24 mb-16">

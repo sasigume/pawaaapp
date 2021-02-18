@@ -12,11 +12,11 @@ export default function CoverImageComponent({ title, url, slug }: Props) {
       {slug ? (
         <Link as={`/posts/${slug}`} href="/posts/[slug]">
           <a aria-label={title}>
-            <img src={url} alt={title} />
+            <img className="mx-auto w-auto" src={url} alt={title} />
           </a>
         </Link>
       ) : (
-          <img src={url} alt={title} />
+          <img className="mx-auto w-auto" src={url} alt={title} />
         )}
     </div>
   )

@@ -60,7 +60,7 @@ export default function Index({ allPosts, preview }: IndexProps) {
       </div>
       <div className="bg-white -mt-16 z-10 w-screen flex items-center justify-center">
         <Container>
-          <div className="mt-10 mb-16">
+          <div className="mt-20 mb-16">
             <Logo />
           </div>
 
@@ -94,7 +94,7 @@ export default function Index({ allPosts, preview }: IndexProps) {
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </Container>
       </div>
-    </Layout >
+    </Layout>
   )
 }
 

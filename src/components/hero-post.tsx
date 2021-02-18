@@ -13,13 +13,13 @@ export default function HeroPost({
   slug,
 }:HeroPostType) {
   return (
-    <section>
+    <div className="flex flex-col justify-center items-center mx-auto">
       <div className="mb-8 md:mb-16">
         <CoverImageComponent title={title} url={coverImage} slug={slug} />
       </div>
-      <div className="md:grid md:grid-cols-2 md:col-gap-16 lg:col-gap-8 mb-20 md:mb-28">
+      <div className="flex flex-col">
         <div>
-          <h3 className="mb-4 text-4xl lg:text-6xl leading-tight">
+          <h3 className="mb-4 text-4xl lg:text-6xl">
             <Link as={`/posts/${slug}`} href="/posts/[slug]">
               <a className="hover:underline">{title}</a>
             </Link>
@@ -33,6 +33,6 @@ export default function HeroPost({
           <Avatar name={author.name} src={author.content.picture.filename} />
         </div>
       </div>
-    </section>
+    </div>
   )
 }
