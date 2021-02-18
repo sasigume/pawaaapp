@@ -26,7 +26,7 @@ export default function PostPage({ post, morePosts, preview }: PostProps) {
     return <ErrorPage statusCode={404} />
   }
   return (
-    <Layout preview={preview} desc={post.content.intro}>
+    <Layout preview={preview} desc={post.content.intro ?? ''}>
       <Logo />
       <Container>
       <article className="max-w-xl mx-auto flex flex-col justify-center">
@@ -47,7 +47,7 @@ export default function PostPage({ post, morePosts, preview }: PostProps) {
                   first_published_at={post.first_published_at}
                   content={post.content}
                 />
-                <PostBody md={post.content.long_text} />
+                <PostBody md={post.content.long_text ?? ''} />
               
               <SectionSeparator />
               {morePosts.length > 0 && <MoreStories posts={morePosts} />}
