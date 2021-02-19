@@ -1,7 +1,7 @@
 import Avatar from '../components/avatar'
 import Date from '../components/date'
 import CoverImageComponent from './cover-image-component'
-import { Post } from '@/lib/types'
+import { Post } from '../lib/types'
 
 export default function PostHeader({ slug, published_at, first_published_at, content }: Post) {
   return (

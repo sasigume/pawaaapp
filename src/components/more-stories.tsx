@@ -1,5 +1,5 @@
 import PostPreview from './post-preview'
-import { Post } from '@/lib/types'
+import { Post } from '../lib/types'
 interface Props { posts: Post[] }
 export default function MoreStories({ posts }: Props) {
   return (

@@ -20,7 +20,7 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext",
-    "baseUrl": "src",
+    "baseUrl": "src/",
     "paths": {
       "@/components/*": [
         "components/*"
@@ -34,10 +34,10 @@
     },
   },
   "exclude": [
-    "node_modules"
+    "./node_modules"
   ],
   "include": [
     "**/*.ts",
     "**/*.tsx"
-, "src/lib/sitemapgen.js"  ]
+, "./src/lib/sitemapgen.js"  ]
 }
