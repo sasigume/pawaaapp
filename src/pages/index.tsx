@@ -7,6 +7,7 @@ import HeroPost from '../components/hero-post'
 import Layout from '../components/Layout'
 import { getAllPostsForHome } from '../lib/api'
 import { Post } from '../lib/types'
+import { CMS_NAME } from '@/lib/constants'
 interface IndexProps {
   allPosts: Post[];
   preview: boolean;
@@ -29,7 +30,7 @@ const Index = ({ allPosts, preview }: IndexProps) => {
   const morePosts = allPosts.slice(1)
 
   return (
-    <Layout preview={preview} title={"Pawaa.app"} desc={"Pawaa.app"}>
+    <Layout preview={preview} title={CMS_NAME} desc={"Pawaa.app"}>
       <div className="w-screen bg-red-400 text-white flex">
         <Container>
           <div className="max-w-3xl flex flex-col items-center justify-center">
@@ -82,6 +83,7 @@ const Index = ({ allPosts, preview }: IndexProps) => {
               author={heroPost.content.author}
               slug={heroPost.slug}
               excerpt={heroPost.content.intro}
+              tag_list={heroPost.tag_list}
             />
           )}
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}

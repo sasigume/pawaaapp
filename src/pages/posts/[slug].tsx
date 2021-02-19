@@ -47,6 +47,7 @@ export default function PostPage({ post, morePosts, preview }: PostProps) {
                     published_at={post.published_at}
                     first_published_at={post.first_published_at}
                     content={post.content}
+                    tag_list={post.tag_list}
                   />
                   <PostBody md={post.content.long_text ?? ''} />
 

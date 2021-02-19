@@ -25,7 +25,7 @@ export async function fetchAPI(query: any, { variables, preview }: any = {}) {
   return json.data
 }
 
-export async function getPreviewPostBySlug(slug:string) {
+export async function getPreviewPostBySlug(slug: string) {
   const post = await fetchAPI(
     `
   query PostBySlug($slug: ID!) {
@@ -57,7 +57,20 @@ export async function getAllPostsWithSlug() {
   return data?.PostItems.items
 }
 
-export async function getAllPostsForHome(preview:any) {
+export async function getTagPostsWithSlug() {
+  const data = await fetchAPI(`
+    {
+      Tags {
+        items {
+          name
+        }
+      }
+    }
+  `)
+  return data?.Tags.items
+}
+
+export async function getAllPostsForHome(preview: any) {
   const data = await fetchAPI(
     `
     {
@@ -66,6 +79,7 @@ export async function getAllPostsForHome(preview:any) {
           slug
           published_at
           first_published_at
+          tag_list
           content {
             long_text
             intro
@@ -85,7 +99,42 @@ export async function getAllPostsForHome(preview:any) {
   return data?.PostItems.items
 }
 
-export async function getPostAndMorePosts(slug:string, preview:any) {
+export async function getAllPostsForTag(tag: string, preview: any) {
+  console.log(tag)
+  const data = await fetchAPI(
+    `
+    query PostWithTag($tag: String) {
+      PostItems(sort_by: "first_published_at:desc",with_tag: $tag) {
+        items {
+          slug
+          published_at
+          first_published_at
+          tag_list
+          content {
+            long_text
+            intro
+            title
+            image
+            author {
+              name
+              content
+            }
+          }
+        }
+      }
+    }
+  `,
+    {
+      preview,
+      variables: {
+        tag: `${tag}`,
+      },
+    }
+  )
+  return data?.PostItems.items
+}
+
+export async function getPostAndMorePosts(slug: string, preview: any) {
   const data = await fetchAPI(`
   query PostBySlug($slug: ID!) {
     PostItem(id: $slug) {
@@ -93,6 +142,7 @@ export async function getPostAndMorePosts(slug:string, preview:any) {
       published_at
       first_published_at
       id
+      tag_list
       content {
         long_text
         intro
@@ -109,6 +159,7 @@ export async function getPostAndMorePosts(slug:string, preview:any) {
         slug
         published_at
         first_published_at
+        tag_list
         content {
           long_text
           intro
@@ -134,7 +185,7 @@ export async function getPostAndMorePosts(slug:string, preview:any) {
   return {
     post: data?.PostItem,
     morePosts: (data?.PostItems?.items || [])
-      .filter((item:any) => item.slug !== slug)
-      .slice(0, 2),
+      .filter((item: any) => item.slug !== slug)
+      .slice(0, 2)
   }
 }
