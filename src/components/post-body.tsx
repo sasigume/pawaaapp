@@ -1,6 +1,5 @@
 import markdownStyles from './markdown-styles.module.css'
 import ReactMarkdown from 'react-markdown'
-import { render } from 'react-dom'
 interface Props {
   md: string;
 }
