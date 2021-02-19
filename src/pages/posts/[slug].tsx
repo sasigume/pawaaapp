@@ -28,9 +28,9 @@ export default function PostPage({ post, morePosts, preview }: PostProps) {
   return (
     <>
       {router.isFallback ? (
-        <Layout preview={preview} desc={''}><div>Loading…</div></Layout>
+        <Layout preview={preview} title={'Loading... | ' +CMS_NAME} desc={''}><div>Loading…</div></Layout>
       ) : (
-          <Layout preview={preview} desc={post.content.intro ?? ''}>
+          <Layout preview={preview} title={post.content.title + ' | ' + CMS_NAME} desc={post.content.intro ?? ''}>
             <Logo />
             <Container>
               <article className="max-w-xl mx-auto flex flex-col justify-center">
@@ -41,7 +41,6 @@ export default function PostPage({ post, morePosts, preview }: PostProps) {
                     <title>
                       {post ? post.content.title : '記事タイトルが設定されていません'} | {CMS_NAME}
                     </title>
-                    <meta property="og:image" content={''} />
                   </Head>
                   <PostHeader
                     slug={post.slug}

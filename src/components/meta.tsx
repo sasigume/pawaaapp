@@ -1,11 +1,13 @@
 import Head from 'next/head'
-import { CMS_NAME, HOME_OG_IMAGE_URL } from '../lib/constants'
+import { CMS_NAME } from '../lib/constants'
+import GetOGPImage from '../lib/ogp-image'
 
 interface Props {
   desc: string;
+  title: string;
 }
 
-export default function Meta({desc}:Props) {
+export default function Meta({desc,title}:Props) {
   return (
     <Head>
       <meta charSet="utf-8" />
@@ -22,7 +24,7 @@ export default function Meta({desc}:Props) {
         name="description"
         content={desc ? desc : `これが${CMS_NAME}。`}
       />
-      <meta property="og:image" content={HOME_OG_IMAGE_URL} />
+      <meta property="og:image" content={GetOGPImage(title)} />
     </Head>
   )
 }
