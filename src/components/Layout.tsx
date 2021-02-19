@@ -19,6 +19,10 @@ export default function Layout({ preview, children, title, desc }: LayoutProps) 
         <main>
           {children}
         </main>
+        <div>管理人はメアドを見れます。ご注意ください。
+          <br />
+          &copy; 2021 Ryo Ando (@sasigume) / Built with <a href="https://www.storyblok.com">Storyblok</a>
+        </div>
       </div>
     </div>
   )
