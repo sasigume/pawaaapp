@@ -12,7 +12,6 @@ import Head from 'next/head'
 import { CMS_NAME } from '../../lib/constants'
 import { Post } from '../../lib/types'
 import Logo from '../../components/Logo'
-import GetOGPImage from '../../lib/ogp-image'
 
 interface PostProps {
   post: Post;
