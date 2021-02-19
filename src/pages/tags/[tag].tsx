@@ -9,25 +9,26 @@ import { getTagPostsWithSlug, getAllPostsForTag } from '../../lib/api'
 import { Post } from '../../lib/types'
 import { CMS_NAME } from '../../lib/constants'
 interface IndexProps {
-  tag: string;
+  tag?: string;
   allPosts: Post[];
   preview: boolean;
 }
 
 const TagIndex = ({ tag, allPosts, preview }: IndexProps) => {
-
-  console.log(tag)
-  const heroPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
+  let heroPost,morePosts
+  if(allPosts){
+    heroPost = allPosts[0]
+    morePosts = allPosts.slice(1)
+  }
 
   const router = useRouter()
-  if (!router.isFallback && !tag) {
+  if (!router.isFallback && !allPosts) {
     return <ErrorPage statusCode={404} />
   }
   return (
     <>
       {router.isFallback ? (
-        <Layout preview={preview} title={'Loading... | ' + CMS_NAME} desc={''}><div>Loading…</div></Layout>
+        <Layout preview={preview} title={'Loading... | ' + CMS_NAME} desc={''}><div>Tag not found</div></Layout>
       ) : (
           <Layout preview={preview} title={(`${tag}タグの記事一覧 | ${CMS_NAME}`)} desc={"Pawaa.app"}>
             <Head>
@@ -36,7 +37,7 @@ const TagIndex = ({ tag, allPosts, preview }: IndexProps) => {
             <div>
               <Container>
                 <div>
-                  <h1 className="text-2xl font-bold my-10">{tag}タグの記事一覧</h1>
+                  <h1 className="text-2xl font-bold my-10">{allPosts[0] ? `${tag}タグの記事一覧` : `${tag}タグがついた記事はありません`}</h1>
                 </div>
                 {heroPost && (
                   <HeroPost
@@ -46,10 +47,10 @@ const TagIndex = ({ tag, allPosts, preview }: IndexProps) => {
                     author={heroPost.content.author}
                     slug={heroPost.slug}
                     excerpt={heroPost.content.intro}
-                    tag_list={heroPost.tag_list}
+                    tag_list={heroPost.tag_list ?? []}
                   />
                 )}
-                {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+                {morePosts && morePosts.length > 0 && <MoreStories posts={morePosts} />}
               </Container>
             </div>
           </Layout>
@@ -67,7 +68,7 @@ interface GSProps {
 }
 
 export async function getStaticProps({ params }: GSProps) {
-  const tag = params.tag
+  const tag = params.tag ?? ''
   let environment
   process.env.NODE_ENV == "development" ? environment = true : environment = false
 

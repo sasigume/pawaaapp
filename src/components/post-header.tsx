@@ -19,7 +19,7 @@ export default function PostHeader({ slug, published_at, first_published_at, con
           <div>投稿 <Date dateString={first_published_at} /></div>
           <div>最終更新 <Date dateString={published_at} /></div>
         </div>
-        <TagList tags={tag_list} />
+        <TagList tags={tag_list ?? []} />
       </div>
     </>
   )

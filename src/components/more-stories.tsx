@@ -17,7 +17,7 @@ export default function MoreStories({ posts }: Props) {
             author={post.content.author}
             slug={post.slug}
             excerpt={post.content.intro}
-            tag_list={post.tag_list}
+            tag_list={post.tag_list ?? []}
           />
         ))}
       </div>

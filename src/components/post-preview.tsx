@@ -26,7 +26,7 @@ export default function PostPreview({
         </Link>
       </h3>
       <div className="text-sm mb-4">
-        <TagList tags={tag_list} />
+        <TagList tags={tag_list ?? []} />
       </div>
       <div className="text-lg mb-4">
         <Date dateString={date} />

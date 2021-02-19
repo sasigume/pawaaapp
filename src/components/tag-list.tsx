@@ -1,9 +1,9 @@
 interface TagProps {
-  tag: string;
+  tag?: string;
 }
 
 interface TagsProps {
-  tags: string[];
+  tags?: string[];
 }
 
 const Tag = ({tag}: TagProps) => (

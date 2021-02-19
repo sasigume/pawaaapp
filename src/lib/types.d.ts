@@ -3,7 +3,7 @@ export interface Post {
   first_published_at: string;
   published_at: string;
   content: Content;
-  tag_list: string[]
+  tag_list?: string[]
 }
 
 interface Content {

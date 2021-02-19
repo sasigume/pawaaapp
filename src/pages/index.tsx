@@ -83,7 +83,7 @@ const Index = ({ allPosts, preview }: IndexProps) => {
               author={heroPost.content.author}
               slug={heroPost.slug}
               excerpt={heroPost.content.intro}
-              tag_list={heroPost.tag_list}
+              tag_list={heroPost.tag_list ?? []}
             />
           )}
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
