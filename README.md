@@ -17,3 +17,8 @@ https://github.com/vercel/next.js/tree/canary/examples/cms-storyblok
 ### Sitemap Generator
 
 https://github.com/IlusionDev/nextjs-sitemap-generator
+
+
+### Firebase auth
+
+https://qiita.com/y-shida1997/items/f5e52c7288813a8184ff
