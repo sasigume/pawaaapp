@@ -5,7 +5,7 @@ import SignIn from './signin'
 export default function Nav({ preview }: any) {
   return (
     <div
-      className={cn('w-screen z-20 bg-white border-b flex justify-between items-center align-middle py-2 px-3', {
+      className={cn('w-screen z-20 bg-white border-b flex flex-col md:flex-row justify-between items-center align-middle py-2 px-3', {
         'bg-accent-7 border-accent-7': preview,
         'bg-accent-1 border-accent-2': !preview,
       })}
@@ -17,7 +17,7 @@ export default function Nav({ preview }: any) {
             </>
         ) : (
             <>
-              <a href="https://twitter.com/sasigume">不具合の報告</a>
+              <a className="underline" href="https://twitter.com/sasigume">不具合の報告</a>
             </>
           )}
       </div>
