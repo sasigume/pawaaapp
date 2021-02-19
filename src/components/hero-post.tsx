@@ -15,7 +15,7 @@ export default function HeroPost({
   tag_list
 }:HeroPostType) {
   return (
-    <div className="flex flex-col justify-center items-center mx-auto">
+    <div className="flex flex-col justify-center items-center mx-auto mb-16">
       <div className="mb-8 md:mb-16">
         <CoverImageComponent title={title} url={coverImage} slug={slug} />
       </div>
