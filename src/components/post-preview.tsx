@@ -2,8 +2,9 @@ import Avatar from './avatar'
 import Date from './date'
 import CoverImageComponent from './cover-image-component'
 import Link from 'next/link'
+import TagList from '../components/tag-list'
 
-import {HeroPostType} from '../lib/types'
+import { HeroPostType } from '../lib/types'
 
 export default function PostPreview({
   title,
@@ -12,7 +13,8 @@ export default function PostPreview({
   excerpt,
   author,
   slug,
-}:HeroPostType) {
+  tag_list
+}: HeroPostType) {
   return (
     <div>
       <div className="mb-5">
@@ -23,6 +25,9 @@ export default function PostPreview({
           <a className="hover:underline">{title}</a>
         </Link>
       </h3>
+      <div className="text-sm mb-4">
+        <TagList tags={tag_list ?? []} />
+      </div>
       <div className="text-lg mb-4">
         <Date dateString={date} />
       </div>

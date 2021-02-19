@@ -3,6 +3,7 @@ import Date from './date'
 import CoverImageComponent from './cover-image-component'
 import Link from 'next/link'
 import { HeroPostType } from '../lib/types'
+import TagList from '../components/tag-list'
 
 export default function HeroPost({
   title,
@@ -11,6 +12,7 @@ export default function HeroPost({
   excerpt,
   author,
   slug,
+  tag_list
 }:HeroPostType) {
   return (
     <div className="flex flex-col justify-center items-center mx-auto">
@@ -24,6 +26,9 @@ export default function HeroPost({
               <a className="hover:underline">{title}</a>
             </Link>
           </h3>
+          <div className="mb-6 text-lg">
+          <TagList tags={tag_list} />
+          </div>
           <div className="mb-4 md:mb-0 text-lg">
             <Date dateString={date} />
           </div>
