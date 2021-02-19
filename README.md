@@ -2,6 +2,7 @@
 
 ![screenshot](https://github.com/sasigume/pawaaapp/blob/main/screenshot/demo.png?raw=true)
 
+&copy; 2021 Ryo Ando (@sasigume) / Built with **[Storyblok](https://www.storyblok.com)**
 ## Thanks
 
 ### MathJax + LaTeX
