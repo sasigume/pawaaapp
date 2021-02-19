@@ -1,9 +1,9 @@
 {
   "name": "pawaaapp",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "node src/lib/sitemapgen.js && next build",
     "start": "next start",
     "type-check": "tsc"
   },

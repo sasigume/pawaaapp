@@ -85,7 +85,7 @@ export async function getStaticProps({ params }: GSProps) {
 
 export async function getStaticPaths() {
   const allTags = await getTagPostsWithSlug()
-  console.log(allTags)
+  console.log('Found tags: ', allTags)
   return {
     paths: allTags?.map((t: any) => `/tags/${t.name}`) || [],
     fallback: true,
