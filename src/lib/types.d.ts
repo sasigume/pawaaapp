@@ -3,6 +3,7 @@ export interface Post {
   first_published_at: string;
   published_at: string;
   content: Content;
+  tag_list?: string[]
 }
 
 interface Content {
@@ -19,6 +20,7 @@ export interface HeroPostType {
   author: Author;
   coverImage: string;
   slug: string;
+  tag_list: string[];
 }
 
 export interface Author {
