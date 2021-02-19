@@ -1,21 +1,18 @@
-import Link from 'next/link'
-
-import Logo from '@/components/Logo'
-import Mockup from '@/components/Mockup'
-import Question from '@/components/Question'
-import Container from '@/components/Container'
-import MoreStories from '@/components/more-stories'
-import HeroPost from '@/components/hero-post'
-import Layout from '@/components/Layout'
-import { getAllPostsForHome } from '@/lib/api'
-import { Post } from '@/lib/types'
-
+import Logo from '../components/Logo'
+import Mockup from '../components/Mockup'
+import Question from '../components/Question'
+import Container from '../components/Container'
+import MoreStories from '../components/more-stories'
+import HeroPost from '../components/hero-post'
+import Layout from '../components/Layout'
+import { getAllPostsForHome } from '../lib/api'
+import { Post } from '../lib/types'
 interface IndexProps {
   allPosts: Post[];
   preview: boolean;
 }
 
-export default function Index({ allPosts, preview }: IndexProps) {
+const Index = ({ allPosts, preview }: IndexProps) => {
 
   const mockupList = [
     "/mockup/1.png",
@@ -73,10 +70,6 @@ export default function Index({ allPosts, preview }: IndexProps) {
             )}
 
           </div>
-
-          <Link href="https://blog.pawaa.app">
-            <a className="text-center block text-3xl font-bold p-4 shadow-xl rounded-xl mb-16">開発日記はこちら</a>
-          </Link>
         </Container>
       </div>
       <div>
@@ -97,6 +90,8 @@ export default function Index({ allPosts, preview }: IndexProps) {
     </Layout>
   )
 }
+
+export default Index
 
 export async function getStaticProps({ preview = null }) {
   const allPosts = (await getAllPostsForHome(preview)) || []

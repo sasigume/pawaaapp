@@ -3,7 +3,7 @@ import Date from './date'
 import CoverImageComponent from './cover-image-component'
 import Link from 'next/link'
 
-import {HeroPostType} from '@/lib/types'
+import {HeroPostType} from '../lib/types'
 
 export default function PostPreview({
   title,
