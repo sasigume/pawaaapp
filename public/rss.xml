@@ -6,10 +6,19 @@
         <atom:link href="https://pawaa.app/rss.xml" rel="self" type="application/rss+xml"/>
         
 <item>
-    <guid>https://pawaa.app/author/sasigume</guid>
+    <guid>https://pawaa.app/authors/yakisoba_panaki</guid>
+    <title>YakisobaPanaki</title>
+    <link>https://pawaa.app/authors/yakisoba_panaki</link>
+    <pubDate>Sat, 20 Feb 2021 03:39:11 GMT</pubDate>
+    <summary>やややきい〜〜〜そ〜〜〜ば〜〜</summary>
+</item>
+    
+<item>
+    <guid>https://pawaa.app/authors/sasigume</guid>
     <title>Sasigume</title>
-    <link>https://pawaa.app/author/sasigume</link>
-    <pubDate>2021-02-18T04:57:26.901Z</pubDate>
+    <link>https://pawaa.app/authors/sasigume</link>
+    <pubDate>Sat, 20 Feb 2021 01:51:53 GMT</pubDate>
+    <summary>実装担当です。</summary>
 </item>
     
         
@@ -17,7 +26,7 @@
     <guid>https://pawaa.app/posts/mc-console-history</guid>
     <title>マインクラフトのゲーム機版が消えるまで</title>
     <link>https://pawaa.app/posts/mc-console-history</link>
-    <pubDate>2021-02-18T12:16:36.254Z</pubDate>
+    <pubDate>Thu, 18 Feb 2021 12:16:36 GMT</pubDate>
     <summary>マインクラフトはかつて、パソコンでしか遊べないゲームでした。しかし2011年にスマホ向けに「ポケットエディション」が配信。トイレの中で遊んでいるPVを覚えている人はいますか? まだ開発が始まったばかりですし、スマホの性能も今とは大違いですので、当時のPEの内容はPC版には遠く及びませんでした。</summary>
 </item>
     
@@ -25,7 +34,7 @@
     <guid>https://pawaa.app/posts/test-article-3</guid>
     <title>テスト記事3！！！！！！！</title>
     <link>https://pawaa.app/posts/test-article-3</link>
-    <pubDate>2021-02-19T15:25:48.517Z</pubDate>
+    <pubDate>Sat, 20 Feb 2021 03:43:01 GMT</pubDate>
     <summary>抜粋です！！！！！！！</summary>
 </item>
     
@@ -33,7 +42,7 @@
     <guid>https://pawaa.app/posts/test-article-2</guid>
     <title>テスト記事2！！！！！！！</title>
     <link>https://pawaa.app/posts/test-article-2</link>
-    <pubDate>2021-02-19T14:50:38.706Z</pubDate>
+    <pubDate>Fri, 19 Feb 2021 14:50:38 GMT</pubDate>
     <summary>抜粋です！！！！！！！</summary>
 </item>
     
@@ -41,7 +50,7 @@
     <guid>https://pawaa.app/posts/test-article-1</guid>
     <title>テスト記事！！！！！！！</title>
     <link>https://pawaa.app/posts/test-article-1</link>
-    <pubDate>2021-02-19T12:54:08.707Z</pubDate>
+    <pubDate>Fri, 19 Feb 2021 12:54:08 GMT</pubDate>
     <summary>抜粋です！！！！！！！</summary>
 </item>
     

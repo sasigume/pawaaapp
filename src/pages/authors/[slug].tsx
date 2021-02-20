@@ -5,18 +5,18 @@ import MoreStories from '../../components/more-stories'
 import HeroPost from '../../components/hero-post'
 import Layout from '../../components/Layout'
 import Head from 'next/head'
-import { getTagsWithSlug, getAllPostsForTag } from '../../lib/api'
+import { getAuthorsWithSlug, getAllPostsForAuthor, getAuthor } from '../../lib/api'
 import { Post } from '../../lib/types'
 import { SITE_NAME } from '../../lib/constants'
 interface IndexProps {
-  tag?: string;
+  authorName?: string;
   allPosts: Post[];
   preview: boolean;
 }
 
-const TagIndex = ({ tag, allPosts, preview }: IndexProps) => {
-  let heroPost,morePosts
-  if(allPosts){
+const AuthorIndex = ({ authorName, allPosts, preview }: IndexProps) => {
+  let heroPost, morePosts
+  if (allPosts) {
     heroPost = allPosts[0]
     morePosts = allPosts.slice(1)
   }
@@ -28,16 +28,16 @@ const TagIndex = ({ tag, allPosts, preview }: IndexProps) => {
   return (
     <>
       {router.isFallback ? (
-        <Layout preview={preview} title={'Loading... | ' + SITE_NAME} desc={''}><div>Tag not found</div></Layout>
+        <Layout preview={preview} title={'Loading... | ' + SITE_NAME} desc={''}><div>Article not found</div></Layout>
       ) : (
-          <Layout preview={preview} title={(`${tag}タグの記事一覧 | ${SITE_NAME}`)} desc={"Pawaa.app"}>
+          <Layout preview={preview} title={(`${authorName}が書いた記事一覧 | ${SITE_NAME}`)} desc={"Pawaa.app"}>
             <Head>
-              <title>{tag}タグの記事一覧 | {SITE_NAME}</title>
+              <title>{authorName}が書いた記事一覧 | {SITE_NAME}</title>
             </Head>
             <div>
               <Container>
                 <div>
-                  <h1 className="text-2xl font-bold my-10">{allPosts[0] ? `${tag}タグの記事一覧` : `${tag}タグがついた記事はありません`}</h1>
+                  <h1 className="text-2xl font-bold my-10">{allPosts[0] ? `${authorName}が書いた記事一覧` : `${authorName}が書いた記事はありません`}</h1>
                 </div>
                 {heroPost && (
                   <HeroPost
@@ -60,7 +60,7 @@ const TagIndex = ({ tag, allPosts, preview }: IndexProps) => {
   )
 }
 
-export default TagIndex
+export default AuthorIndex
 
 interface GSProps {
   params: any;
@@ -68,14 +68,16 @@ interface GSProps {
 }
 
 export async function getStaticProps({ params }: GSProps) {
-  const tag = params.tag ?? ''
+  const slug = params.slug ?? ''
   let environment
   process.env.NODE_ENV == "development" ? environment = true : environment = false
 
-  const allPosts = (await getAllPostsForTag(tag, environment)) || []
+  const authorData = (await getAuthor(slug,environment)) || ''
+  const allPosts = (await getAllPostsForAuthor(authorData.uuid, environment)) || []
+
   return {
     props: {
-      tag: tag,
+      authorName: authorData.name,
       preview: environment,
       allPosts: allPosts
     },
@@ -84,10 +86,10 @@ export async function getStaticProps({ params }: GSProps) {
 }
 
 export async function getStaticPaths() {
-  const allTags = await getTagsWithSlug()
-  console.log('Found tags: ', allTags)
+  const allAuthors = await getAuthorsWithSlug()
+  console.log('Found auhtos: ', allAuthors)
   return {
-    paths: allTags?.map((t: any) => `/tags/${t.name}`) || [],
+    paths: allAuthors?.map((a: any) => `/authors/${a.slug}`) || [],
     fallback: true,
   }
 }

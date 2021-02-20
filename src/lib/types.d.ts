@@ -31,6 +31,7 @@ export interface Author {
     picture: {
       filename: string;
     }
+    description :string;
   }
 }
 
