@@ -1,7 +1,7 @@
 import { FC, useContext } from 'react';
 import cn from 'classnames'
-import firebaseApi from '../lib/firebase';
-import { AuthContext } from '../context/auth';
+import firebaseApi from '@/lib/firebase';
+import { AuthContext } from '@/context/auth';
 
 const SignIn: FC = () => {
   const googleUser = useContext(AuthContext).currentUser

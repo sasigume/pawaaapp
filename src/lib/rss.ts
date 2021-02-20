@@ -18,7 +18,7 @@ const generateProfileItem = (author: Author): string => {
     <guid>${SITE_URL}/authors/${author.slug}</guid>
     <title>${escapeString(author.name)}</title>
     <link>${SITE_URL}/authors/${author.slug}</link>
-    <pubDate>${new Date(author.published_at).toUTCString()}</pubDate>
+    <pubDate>${new Date(author.published_at ?? '').toUTCString()}</pubDate>
     <summary>${author.content.description}</summary>
 </item>
     `)

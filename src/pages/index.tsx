@@ -1,20 +1,19 @@
-import Logo from '../components/Logo'
-import Mockup from '../components/Mockup'
-import Question from '../components/Question'
-import Container from '../components/Container'
-import MoreStories from '../components/more-stories'
-import HeroPost from '../components/hero-post'
-import Layout from '../components/Layout'
+import Logo from '@/components/common/Logo'
+import Mockup from '@/components/common/Mockup'
+import Question from '@/components/common/Question'
+import Container from '@/components/common/container'
+import PostList from '@/components/partials/post-list'
+import Layout from '@/components/partials/layout'
 import { getAllPostsForHome, getAllAuthorsForHome } from '../lib/api'
 import { Post } from '../lib/types'
 import { SITE_NAME,SITE_DESC } from '@/lib/constants'
 import publishRss from '@/lib/rss'
 interface IndexProps {
-  allPosts: Post[];
+  posts: Post[];
   preview: boolean;
 }
 
-const Index = ({ allPosts, preview }: IndexProps) => {
+const Index = ({ posts, preview }: IndexProps) => {
 
   const mockupList = [
     "/mockup/1.png",
@@ -27,16 +26,13 @@ const Index = ({ allPosts, preview }: IndexProps) => {
     ['日本語に訳せ', 'My Engrish is bad!!!!!!!!!']
   ]
 
-  const heroPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
-
   return (
     <Layout preview={preview} title={SITE_NAME} desc={SITE_DESC}>
       <div className="w-screen bg-red-400 text-white flex">
         <Container>
           <div className="max-w-3xl flex flex-col items-center justify-center">
             <div className="flex flex-col align-middle items-center md:flex-row justify-between">
-              <div className="mt-10 md:mt-0 mr-10 font-bold text-3xl md:text-5xl mb-20 md:mb-0">
+              <div className="mt-6 md:mt-0 mr-10 font-bold text-3xl md:text-5xl mb-12 md:mb-0 leading-tight">
                 <p>問題が</p>
                 <p>「流れる」</p>
                 <p>学習アプリ</p>
@@ -60,7 +56,7 @@ const Index = ({ allPosts, preview }: IndexProps) => {
       <div className="bg-white -mt-16 z-10 w-screen flex items-center justify-center">
         <Container>
           <div className="mt-20 mb-16">
-            <Logo />
+            <h1><Logo /></h1>
           </div>
 
           <div className="grid gap-x-10 md:grid-flow-col md:auto-cols-max">
@@ -76,18 +72,8 @@ const Index = ({ allPosts, preview }: IndexProps) => {
       </div>
       <div>
         <Container>
-          {heroPost && (
-            <HeroPost
-              title={heroPost.content.title}
-              coverImage={heroPost.content.image}
-              date={heroPost.first_published_at || heroPost.published_at}
-              author={heroPost.content.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.content.intro}
-              tag_list={heroPost.tag_list ?? []}
-            />
-          )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          <h2 className="mt-16 text-4xl mb-8 font-bold">最新の記事</h2>
+          {posts.length > 0 && <PostList posts={posts} />}
         </Container>
       </div>
     </Layout>
@@ -97,12 +83,12 @@ const Index = ({ allPosts, preview }: IndexProps) => {
 export default Index
 
 export async function getStaticProps({ preview = null }) {
-  const allPosts = (await getAllPostsForHome(preview)) || []
+  const posts = (await getAllPostsForHome(preview)) || []
   const allAuthors = (await getAllAuthorsForHome(preview)) || []
-  
-  publishRss(allAuthors,allPosts)
+
+  publishRss(allAuthors,posts)
 
   return {
-    props: { allPosts, preview },
+    props: { posts, preview },
   }
 }
