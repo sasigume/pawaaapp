@@ -1,11 +1,10 @@
-import { FC, useContext } from 'react';
 import { useAuthentication } from '@/hooks/authentication'
 
-const UserInfo: FC = () => {
-  const googleUser = useAuthentication()
-  if(googleUser) {
+const UserInfo = () => {
+  const {user} = useAuthentication()
+  if(user) {
     return (
-     <div>ログイン中</div>
+     <div>{user.name}</div>
     )
   } else {
     return (
