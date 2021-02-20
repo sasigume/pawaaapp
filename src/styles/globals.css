@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* purgecss start ignore */
+@import '~react-toastify/dist/ReactToastify.css';
+/* purgecss end ignore */
+
 @layer base {
 
   p {

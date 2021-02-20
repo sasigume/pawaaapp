@@ -1,7 +1,10 @@
 import Nav from './nav'
 import Meta from './meta'
+import Link from 'next/link'
 import { ReactNode } from 'react'
+import { ToastContainer } from 'react-toastify'
 import { CREATOR_ID } from '@/lib/constants'
+import { useAuthentication } from '@/hooks/authentication'
 
 interface LayoutProps {
   preview: boolean;
@@ -11,12 +14,15 @@ interface LayoutProps {
 }
 
 export default function Layout({ preview, children, title, desc }: LayoutProps) {
+  const { user } = useAuthentication()
   return (
     <div>
       <Meta title={title} desc={desc} />
       <div className="w-screen flex flex-col items-center justify-center overflow-hidden min-h-screen pb-12">
         <Nav preview={preview} />
         <main>
+          <Link href={(`users/${user?.uid}`)}>送信ページへ</Link>
+          
           {children}
         </main>
         <div className="px-3">
@@ -33,6 +39,7 @@ export default function Layout({ preview, children, title, desc }: LayoutProps) 
           <div>&copy; 2021 Ryo Ando (@{CREATOR_ID}) / Built with <a href="https://www.storyblok.com">Storyblok</a></div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }

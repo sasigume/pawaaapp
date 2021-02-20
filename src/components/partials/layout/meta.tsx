@@ -25,6 +25,7 @@ export default function Meta({desc,title}:Props) {
         content={desc}
       />
       <meta property="og:image" content={GetOGPImage(title)} />
+      <title>{title == SITE_NAME ? SITE_NAME :(title + ' | ' + SITE_NAME)}</title>
     </Head>
   )
 }

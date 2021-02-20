@@ -2,6 +2,7 @@ import { FC, useContext } from 'react';
 import cn from 'classnames'
 import firebaseApi from '@/lib/firebase';
 import { useAuthentication } from '@/hooks/authentication'
+import { toast } from 'react-toastify';
   
 
 const SignIn: FC = () => {
@@ -10,6 +11,16 @@ const SignIn: FC = () => {
   const login = () => {
     const provider = new firebaseApi.auth.GoogleAuthProvider();
     firebaseApi.auth().signInWithRedirect(provider);
+
+    toast.success('😙 ログインできました!', {
+      position: "bottom-center",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
   }
   const logout = () => {
     firebaseApi.auth().signOut();
