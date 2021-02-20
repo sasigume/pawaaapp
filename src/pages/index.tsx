@@ -6,14 +6,18 @@ import PostList from '@/components/partials/post-list'
 import Layout from '@/components/partials/layout'
 import { getAllPostsForHome, getAllAuthorsForHome } from '../lib/api'
 import { Post } from '../lib/types'
-import { SITE_NAME,SITE_DESC } from '@/lib/constants'
+import { SITE_NAME, SITE_DESC } from '@/lib/constants'
 import publishRss from '@/lib/rss'
+
+import { useAuthentication } from '../hooks/authentication'
 interface IndexProps {
   posts: Post[];
   preview: boolean;
 }
 
 const Index = ({ posts, preview }: IndexProps) => {
+
+  const { user } = useAuthentication()
 
   const mockupList = [
     "/mockup/1.png",
@@ -33,6 +37,7 @@ const Index = ({ posts, preview }: IndexProps) => {
           <div className="max-w-3xl flex flex-col items-center justify-center">
             <div className="flex flex-col align-middle items-center md:flex-row justify-between">
               <div className="mt-6 md:mt-0 mr-10 font-bold text-3xl md:text-5xl mb-12 md:mb-0 leading-tight">
+                <p>{user?.uid || '未ログイン'}</p>
                 <p>問題が</p>
                 <p>「流れる」</p>
                 <p>学習アプリ</p>
@@ -86,7 +91,7 @@ export async function getStaticProps({ preview = null }) {
   const posts = (await getAllPostsForHome(preview)) || []
   const allAuthors = (await getAllAuthorsForHome(preview)) || []
 
-  publishRss(allAuthors,posts)
+  publishRss(allAuthors, posts)
 
   return {
     props: { posts, preview },

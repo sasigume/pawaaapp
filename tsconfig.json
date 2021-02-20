@@ -14,8 +14,8 @@
     "moduleResolution": "node",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
@@ -28,8 +28,8 @@
       "@/lib/*": [
         "lib/*"
       ],
-      "@/context/*": [
-        "context/*"
+      "@/hooks/*": [
+        "hooks/*"
       ],
       "@/styles/*": [
         "styles/*"
