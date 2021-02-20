@@ -1,10 +1,11 @@
 import { FC, useContext } from 'react';
 import cn from 'classnames'
 import firebaseApi from '@/lib/firebase';
-import { AuthContext } from '@/context/auth';
+import { useAuthentication } from '@/hooks/authentication'
+  
 
 const SignIn: FC = () => {
-  const googleUser = useContext(AuthContext).currentUser
+  const googleUser = useAuthentication()
 
   const login = () => {
     const provider = new firebaseApi.auth.GoogleAuthProvider();
