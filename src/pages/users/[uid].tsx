@@ -77,7 +77,7 @@ export default function UserShow() {
 
   return (
     <Layout preview={false} title={user ? (user.name + 'さんのページ') : 'LOADING'} desc={"ユーザー詳細ページです"}>
-      {user &&
+      {(user && currentUser)  &&
         <div>
           {user.uid != currentUser.uid ? (
             <Container>
