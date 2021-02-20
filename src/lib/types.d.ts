@@ -13,20 +13,14 @@ interface Content {
   intro: string;
   long_text: string;
 }
-export interface HeroPostType {
-  title: string;
-  date: string;
-  excerpt: string;
-  author: Author;
-  coverImage: string;
-  slug: string;
-  tag_list: string[];
+export interface PostComponentType extends Post {
+  mode?: string;
 }
 
 export interface Author {
   name: string;
   slug: string;
-  published_at: string;
+  published_at?: string;
   content:{
     picture: {
       filename: string;
