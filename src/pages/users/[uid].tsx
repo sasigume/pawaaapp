@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { User } from '../../models/User'
 import firebase from 'firebase/app'
 import Layout from '@/components/partials/layout'
+import Container from '@/components/common/container'
 import { toast } from 'react-toastify';
 
 interface Query {
@@ -68,43 +69,42 @@ export default function UserShow() {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      });
+    });
   }
 
   return (
     <Layout preview={false} title={user ? (user.name + 'さんのページ') : 'LOADING'} desc={"ユーザー詳細ページです"}>
       <div>
         {user && (
-          <div className="text-center">
-            <h1 className="h4">{user.name}さんのページ</h1>
-            <div className="m-5">{user.name}({user.uid})さんに質問しよう！</div>
+          <Container>
+            <h1 className="text-3xl font-bold my-4">{user.name}さんのページ</h1>
+            <div className="my-5">{user.name}さんに要望を送れます。</div>
 
-            <div className="flex flex-col justify-center mb-3">
-              <div className="">
-                <form onSubmit={onSubmit}>
+            <div className="flex flex-col items-center">
+              <div className="bg-red-500 text-white text-3xl font-bold p-16 m-12">公序良俗に反した投稿は即刻削除します。Googleアカウントと投稿が紐づけられていることを忘れないでください。</div>
+              <form onSubmit={onSubmit}>
+
+                <div className="flex flex-col jusify-center mb-12">
                   <textarea
-                    className=""
+                    className="w-64 border-2 p-4 mb-4 rounded-xl border-gray-600"
                     placeholder="おげんきですか？"
                     rows={6}
                     onChange={(e) => setBody(e.target.value)}
                     required
                   ></textarea>
-                  <div className="m-3">
-                    {isSending ? (
-                      <div className="" role="status">
-                        (送信中)
-                        <span className="invisible">Loading...</span>
-                      </div>
-                    ) : (
-                        <button type="submit" className="">
-                          質問を送信する
-                        </button>
-                      )}
-                  </div>
-                </form>
-              </div>
+                  {isSending ? (
+                    <span className="" role="status">
+                      (送信中)
+                    </span>
+                  ) : (
+                      <button type="submit" className="p-4 bg-blue-400 text-white font-bold shadow-lg rounded-xl">
+                        質問を送信する
+                      </button>
+                    )}
+                </div>
+              </form>
             </div>
-          </div>
+          </Container>
         )}
       </div>
     </Layout>
