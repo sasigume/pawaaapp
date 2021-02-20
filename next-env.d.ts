@@ -3,3 +3,4 @@
 
 declare module 'react-mathjax';
 declare module 'classnames';
+declare module 'remark-math'

@@ -1,5 +1,5 @@
 import { FC, useContext } from 'react';
-import { AuthContext } from '../context/auth';
+import { AuthContext } from '@/context/auth';
 
 const UserInfo: FC = () => {
   const googleUser = useContext(AuthContext).currentUser

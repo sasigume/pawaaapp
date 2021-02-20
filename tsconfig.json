@@ -28,6 +28,9 @@
       "@/lib/*": [
         "lib/*"
       ],
+      "@/context/*": [
+        "context/*"
+      ],
       "@/styles/*": [
         "styles/*"
       ],

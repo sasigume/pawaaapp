@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import UserInfo from './user-info'
 import SignIn from './signin'
-import {CREATOR_ID} from '@/lib/constants'
+import Logo from '@/components/common/Logo'
 
 export default function Nav({ preview }: any) {
   return (
@@ -11,16 +11,8 @@ export default function Nav({ preview }: any) {
         'bg-accent-1 border-accent-2': !preview,
       })}
     >
-      <div className="py-2 text-center text-sm">
-        {preview ? (
-          <>
-            プレビューモード: 下書きが表示されています
-            </>
-        ) : (
-            <>
-              <a className="underline" href={(`https://twitter.com/${CREATOR_ID}`)}>不具合の報告</a>
-            </>
-          )}
+      <div className="w-64 py-4 md:py-2">
+        <Logo />
       </div>
       <div className="flex items-center">
         <UserInfo />
