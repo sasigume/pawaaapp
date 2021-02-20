@@ -78,7 +78,7 @@ export default function UserShow() {
         {user && (
           <Container>
             <h1 className="text-3xl font-bold my-4">{user.name}さんのページ</h1>
-            <div className="my-5">{user.name}さんに要望を送れます。</div>
+            <div className="my-5">{user.name}さんに質問を送れます。</div>
 
             <div className="flex flex-col items-center">
               <div className="bg-red-500 text-white text-3xl font-bold p-16 m-12">公序良俗に反した投稿は即刻削除します。Googleアカウントと投稿が紐づけられていることを忘れないでください。</div>
@@ -87,7 +87,7 @@ export default function UserShow() {
                 <div className="flex flex-col jusify-center mb-12">
                   <textarea
                     className="w-64 border-2 p-4 mb-4 rounded-xl border-gray-600"
-                    placeholder="おげんきですか？"
+                    placeholder="どうやって解くの？"
                     rows={6}
                     onChange={(e) => setBody(e.target.value)}
                     required
