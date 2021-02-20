@@ -4,6 +4,7 @@ import { User } from '../../models/User'
 import firebase from 'firebase/app'
 import Layout from '@/components/partials/layout'
 import Container from '@/components/common/container'
+import { useAuthentication } from '@/hooks/authentication'
 import { toast } from 'react-toastify';
 
 interface Query {
@@ -19,6 +20,10 @@ export default function UserShow() {
   const query = router.query as Query
 
   useEffect(() => {
+    if (user === null) {
+      return
+    }
+
     if (query.uid === undefined) {
       return
     }
@@ -40,7 +45,7 @@ export default function UserShow() {
     }
 
     loadUser()
-  }, [query.uid])
+  }, [query.uid,user])
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -72,17 +77,21 @@ export default function UserShow() {
     });
   }
 
+  const currentUser = useAuthentication().user
+
   return (
     <Layout preview={false} title={user ? (user.name + 'さんのページ') : 'LOADING'} desc={"ユーザー詳細ページです"}>
       <div>
-        {user && (
+        {user && currentUser && (
           <Container>
             <h1 className="text-3xl font-bold my-4">{user.name}さんのページ</h1>
             <div className="my-5">{user.name}さんに質問を送れます。</div>
 
             <div className="flex flex-col items-center">
               <div className="bg-red-500 text-white text-3xl font-bold p-16 m-12">公序良俗に反した投稿は即刻削除します。Googleアカウントと投稿が紐づけられていることを忘れないでください。</div>
-              <form onSubmit={onSubmit}>
+              {user.uid === currentUser.uid ? (
+                <div>自分には質問できません。</div>
+              ) : (<form onSubmit={onSubmit}>
 
                 <div className="flex flex-col jusify-center mb-12">
                   <textarea
@@ -103,6 +112,7 @@ export default function UserShow() {
                     )}
                 </div>
               </form>
+                )}
             </div>
           </Container>
         )}
