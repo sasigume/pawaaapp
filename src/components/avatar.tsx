@@ -1,10 +1,15 @@
+import Link from 'next/link'
+
 interface Props {
   name: string;
+  slug: string;
   src: string;
 }
 
-export default function Avatar({name,src}:Props) {
+export default function Avatar({name,slug,src}:Props) {
   return (
+    <Link href={(`authors/${slug}`)}>
+    <a className="block">
     <div className="flex items-center">
       <img
         src={src}
@@ -13,5 +18,7 @@ export default function Avatar({name,src}:Props) {
       />
       <div className="text-xl font-bold">{name}</div>
     </div>
+    </a>
+    </Link>
   )
 }

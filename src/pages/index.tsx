@@ -5,9 +5,10 @@ import Container from '../components/Container'
 import MoreStories from '../components/more-stories'
 import HeroPost from '../components/hero-post'
 import Layout from '../components/Layout'
-import { getAllPostsForHome } from '../lib/api'
+import { getAllPostsForHome, getAllAuthorsForHome } from '../lib/api'
 import { Post } from '../lib/types'
-import { CMS_NAME } from '@/lib/constants'
+import { SITE_NAME,SITE_DESC } from '@/lib/constants'
+import publishRss from '@/lib/rss'
 interface IndexProps {
   allPosts: Post[];
   preview: boolean;
@@ -30,7 +31,7 @@ const Index = ({ allPosts, preview }: IndexProps) => {
   const morePosts = allPosts.slice(1)
 
   return (
-    <Layout preview={preview} title={CMS_NAME} desc={"Pawaa.app"}>
+    <Layout preview={preview} title={SITE_NAME} desc={SITE_DESC}>
       <div className="w-screen bg-red-400 text-white flex">
         <Container>
           <div className="max-w-3xl flex flex-col items-center justify-center">
@@ -97,6 +98,10 @@ export default Index
 
 export async function getStaticProps({ preview = null }) {
   const allPosts = (await getAllPostsForHome(preview)) || []
+  const allAuthors = (await getAllAuthorsForHome(preview)) || []
+  
+  publishRss(allAuthors,allPosts)
+
   return {
     props: { allPosts, preview },
   }

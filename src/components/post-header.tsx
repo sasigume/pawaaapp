@@ -13,7 +13,7 @@ export default function PostHeader({ slug, published_at, first_published_at, con
       <h1 className="text-3xl md:text-5xl font-bold my-10">{content.title}</h1>      
       <div className="">
         <div className="block mb-4">
-          <Avatar name={content.author.name} src={content.author.content.picture.filename} />
+          <Avatar slug={content.author.slug} name={content.author.name} src={content.author.content.picture.filename} />
         </div>
         <div className="mb-6">
           <div>投稿 <Date dateString={first_published_at} /></div>

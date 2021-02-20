@@ -25,10 +25,13 @@ export interface HeroPostType {
 
 export interface Author {
   name: string;
+  slug: string;
+  published_at: string;
   content:{
     picture: {
       filename: string;
     }
+    description :string;
   }
 }
 

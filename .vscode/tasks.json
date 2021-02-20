@@ -10,7 +10,7 @@
 			},
 			"problemMatcher": [],
 			"label": "npm: run dev",
-			"detail": "npm run dev"
+			"detail": "launch next"
 		}
 	]
 }

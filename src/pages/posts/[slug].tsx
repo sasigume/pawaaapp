@@ -9,7 +9,7 @@ import SectionSeparator from '../../components/section-separator'
 import Layout from '../../components/Layout'
 import { getAllPostsWithSlug, getPostAndMorePosts } from '../../lib/api'
 import Head from 'next/head'
-import { CMS_NAME } from '../../lib/constants'
+import { SITE_NAME } from '../../lib/constants'
 import { Post } from '../../lib/types'
 import Logo from '../../components/Logo'
 
@@ -28,9 +28,9 @@ export default function PostPage({ post, morePosts, preview }: PostProps) {
   return (
     <>
       {router.isFallback ? (
-        <Layout preview={preview} title={'Loading... | ' +CMS_NAME} desc={''}><div>Loading…</div></Layout>
+        <Layout preview={preview} title={'Loading... | ' +SITE_NAME} desc={''}><div>Loading…</div></Layout>
       ) : (
-          <Layout preview={preview} title={post.content.title + ' | ' + CMS_NAME} desc={post.content.intro ?? ''}>
+          <Layout preview={preview} title={post.content.title + ' | ' + SITE_NAME} desc={post.content.intro ?? ''}>
             <Logo />
             <Container>
               <article className="max-w-xl mx-auto flex flex-col justify-center">
@@ -39,7 +39,7 @@ export default function PostPage({ post, morePosts, preview }: PostProps) {
 
                   <Head>
                     <title>
-                      {post ? post.content.title : '記事タイトルが設定されていません'} | {CMS_NAME}
+                      {post ? post.content.title : '記事タイトルが設定されていません'} | {SITE_NAME}
                     </title>
                   </Head>
                   <PostHeader
