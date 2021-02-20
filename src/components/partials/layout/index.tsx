@@ -21,7 +21,8 @@ export default function Layout({ preview, children, title, desc }: LayoutProps) 
       <div className="w-screen flex flex-col items-center justify-center overflow-hidden min-h-screen pb-12">
         <Nav preview={preview} />
         <main>
-          <Link href={(`users/${user?.uid}`)}>送信ページへ</Link>
+          <Link href={(`/users/${user?.uid}`)}><a className="block p-3 bg-gray-200">送信ページへ</a></Link>
+          <Link href="/comments/received"><a className="block p-3 bg-gray-200">一覧ページへ</a></Link>
           
           {children}
         </main>
