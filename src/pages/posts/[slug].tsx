@@ -7,7 +7,6 @@ import { getAllPostsWithSlug, getPostsForSinglePage } from '@/lib/api'
 import Head from 'next/head'
 import { SITE_NAME } from '@/lib/constants'
 import { Post } from '@/lib/types'
-import Logo from '@/components/common/Logo'
 import PostList from '@/components/partials/post-list'
 
 interface PostPageProps {
@@ -22,10 +21,9 @@ export default function PostPage({ firstPost, morePosts, preview }: PostPageProp
   if (!router.isFallback && !firstPost) {
     return <ErrorPage statusCode={404} />
   }
-  console.log(firstPost)
   return (
     <>
-      {(router.isFallback && firstPost) ? (
+      {(router.isFallback) ? (
         <Layout preview={preview} title={'Loading... | ' +SITE_NAME} desc={''}><div>Loading…</div></Layout>
       ) : (
           <Layout preview={preview} title={firstPost.content.title + ' | ' + SITE_NAME} desc={firstPost.content.intro ?? ''}>
