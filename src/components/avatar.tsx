@@ -8,7 +8,7 @@ interface Props {
 
 export default function Avatar({name,slug,src}:Props) {
   return (
-    <Link href={(`authors/${slug}`)}>
+    <Link as={`/authors/${slug}`} href="/authors/[slug]">
     <a className="block">
     <div className="flex items-center">
       <img
