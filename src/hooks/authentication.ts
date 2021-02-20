@@ -26,6 +26,7 @@ export function useAuthentication() {
   useEffect(() => {
     if (user !== null) {
       // Oh, there's already user
+      console.log(`There's already user:` + user.uid)
       return
     }
 

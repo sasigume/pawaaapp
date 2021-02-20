@@ -31,6 +31,9 @@
       "@/hooks/*": [
         "hooks/*"
       ],
+      "@/models/*": [
+        "models/*"
+      ],
       "@/styles/*": [
         "styles/*"
       ],
