@@ -7,7 +7,7 @@ import Layout from '../../components/Layout'
 import Head from 'next/head'
 import { getTagPostsWithSlug, getAllPostsForTag } from '../../lib/api'
 import { Post } from '../../lib/types'
-import { CMS_NAME } from '../../lib/constants'
+import { SITE_NAME } from '../../lib/constants'
 interface IndexProps {
   tag?: string;
   allPosts: Post[];
@@ -28,11 +28,11 @@ const TagIndex = ({ tag, allPosts, preview }: IndexProps) => {
   return (
     <>
       {router.isFallback ? (
-        <Layout preview={preview} title={'Loading... | ' + CMS_NAME} desc={''}><div>Tag not found</div></Layout>
+        <Layout preview={preview} title={'Loading... | ' + SITE_NAME} desc={''}><div>Tag not found</div></Layout>
       ) : (
-          <Layout preview={preview} title={(`${tag}タグの記事一覧 | ${CMS_NAME}`)} desc={"Pawaa.app"}>
+          <Layout preview={preview} title={(`${tag}タグの記事一覧 | ${SITE_NAME}`)} desc={"Pawaa.app"}>
             <Head>
-              <title>{tag}タグの記事一覧 | {CMS_NAME}</title>
+              <title>{tag}タグの記事一覧 | {SITE_NAME}</title>
             </Head>
             <div>
               <Container>
