@@ -18,7 +18,8 @@ const generateProfileItem = (author: Author): string => {
     <guid>${SITE_URL}/authors/${author.slug}</guid>
     <title>${escapeString(author.name)}</title>
     <link>${SITE_URL}/authors/${author.slug}</link>
-    <pubDate>${author.published_at}</pubDate>
+    <pubDate>${new Date(author.published_at).toUTCString()}</pubDate>
+    <summary>${author.content.description}</summary>
 </item>
     `)
 }
@@ -29,7 +30,7 @@ const generatePostItem = (post: Post): string => {
     <guid>${SITE_URL}/posts/${post.slug}</guid>
     <title>${escapeString(post.content.title)}</title>
     <link>${SITE_URL}/posts/${post.slug}</link>
-    <pubDate>${post.published_at}</pubDate>
+    <pubDate>${new Date(post.published_at).toUTCString()}</pubDate>
     <summary>${post.content.intro}</summary>
 </item>
     `)
