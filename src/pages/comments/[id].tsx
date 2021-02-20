@@ -59,12 +59,8 @@ export default function CommentsShow() {
   }
 
   useEffect(() => {
-    if (user === null) {
-      return
-    }
-
     loadData()
-  }, [query.id, user])
+  }, [query.id])
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -102,6 +98,8 @@ export default function CommentsShow() {
     });
   }
 
+  const currentUser = useAuthentication().user
+
   return (
     <Layout preview={false} title={comment ? comment.body : 'LOADING'} desc={"コメントです"}>
       <Container>
@@ -113,37 +111,49 @@ export default function CommentsShow() {
               </div>
 
               <section className="text-center mt-4">
-                <h2 className="my-8 text-3xl">あなたの回答</h2>
 
-                {answer === null ? (
-                  <div className="flex flex-col items-center">
-                    <div className="bg-red-500 text-white text-3xl font-bold p-16 m-12">公序良俗に反した投稿は即刻削除します。Googleアカウントと投稿が紐づけられていることを忘れないでください。</div>
 
-                    <form onSubmit={onSubmit}>
-                      <div className="flex flex-col jusify-center mb-12">
-                        <textarea
-                          className="w-64 border-2 p-4 mb-4 rounded-xl border-gray-600"
-                          placeholder="こうやって解きます。"
-                          rows={6}
-                          value={body}
-                          onChange={(e) => setBody(e.target.value)}
-                          required
-                        ></textarea>
-                        {isSending ? (
-                          <div
-                            className="spinner-border text-secondary"
-                            role="status"
-                          ></div>
-                        ) : (
-                            <button type="submit" className="p-4 bg-blue-400 text-white font-bold shadow-lg rounded-xl">
-                              回答する
-                            </button>
-                          )}
-                      </div>
-                    </form>
-                  </div>) : (
-                    <div className="p-4 border-2 border-green-400 rounded-xl shadow-xl m-4">
-                      <div className="card-body text-left">{answer.body}</div>
+                {(user.uid != comment.senderUid && !answer) ? (
+                  <>
+                    <h2 className="my-8 text-3xl">回答する</h2>
+                    <div className="flex flex-col items-center">
+                      <div className="bg-red-500 text-white text-3xl font-bold p-16 m-12">公序良俗に反した投稿は即刻削除します。Googleアカウントと投稿が紐づけられていることを忘れないでください。</div>
+
+                      <form onSubmit={onSubmit}>
+                        <div className="flex flex-col jusify-center mb-12">
+                          <textarea
+                            className="w-64 border-2 p-4 mb-4 rounded-xl border-gray-600"
+                            placeholder="こうやって解きます。"
+                            rows={6}
+                            value={body}
+                            onChange={(e) => setBody(e.target.value)}
+                            required
+                          ></textarea>
+                          {isSending ? (
+                            <div
+                              className="spinner-border text-secondary"
+                              role="status"
+                            ></div>
+                          ) : (
+                              <button type="submit" className="p-4 bg-blue-400 text-white font-bold shadow-lg rounded-xl">
+                                回答する
+                              </button>
+                            )}
+                        </div>
+                      </form>
+                    </div>
+                  </>) : (
+                    <div>
+                      {user.uid == comment.senderUid ?
+                        <div>自分の質問には回答できません。</div> :
+                        (
+                          <section>
+                            <h2 className="my-8 text-3xl">回答</h2>
+                            <div className="p-4 border-2 border-green-400 rounded-xl shadow-xl m-4">
+                              <div className="card-body text-left">{answer && answer.body}</div>
+                            </div>
+                          </section>)
+                      }
                     </div>
                   )}
               </section>
