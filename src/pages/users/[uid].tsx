@@ -10,7 +10,7 @@ interface Query {
 }
 
 export default function UserShow() {
-  const [user, setUser] = useState<User>()
+  const [user, setUser] = useState<User>(null!)
   const [body, setBody] = useState('')
   const [isSending, setIsSending] = useState(false)
 
@@ -47,7 +47,9 @@ export default function UserShow() {
     // prevent duplicated post
     setIsSending(true)
 
-    await firebase.firestore().collection('questions').add({
+    console.log('Sending to ' + user.uid)
+
+    await firebase.firestore().collection('comments').add({
       senderUid: firebase.auth().currentUser?.uid,
       receiverUid: user?.uid,
       body,
@@ -75,7 +77,7 @@ export default function UserShow() {
         {user && (
           <div className="text-center">
             <h1 className="h4">{user.name}さんのページ</h1>
-            <div className="m-5">{user.name}さんに質問しよう！</div>
+            <div className="m-5">{user.name}({user.uid})さんに質問しよう！</div>
 
             <div className="flex flex-col justify-center mb-3">
               <div className="">

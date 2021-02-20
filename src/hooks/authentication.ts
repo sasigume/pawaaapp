@@ -16,7 +16,7 @@ async function createUserIfNotFound(user: User) {
   }
 
   await userRef.set({
-    name: 'taro' + new Date().getTime(),
+    name: user.name
   })
 }
 
@@ -26,7 +26,7 @@ export function useAuthentication() {
   useEffect(() => {
     if (user !== null) {
       // Oh, there's already user
-      console.log(`There's already user:` + user.uid)
+      console.log(`There's already user:` + user.name)
       return
     }
 
@@ -42,7 +42,7 @@ export function useAuthentication() {
         const loginUser: User = {
           uid: firebaseUser.uid,
           isAnonymous: firebaseUser.isAnonymous,
-          name: ''
+          name: 'taro' + new Date().getTime()
         }
         setUser(loginUser)
         createUserIfNotFound(loginUser)
