@@ -1,3 +1,4 @@
+
 export async function fetchAPI(query: any, { variables, preview }: any = {}) {
   let token
   preview ? token = process.env.STORYBLOK_PREVIEW_TOKEN : token = process.env.STORYBLOK_PUBLIC_TOKEN
@@ -26,8 +27,7 @@ export async function fetchAPI(query: any, { variables, preview }: any = {}) {
 }
 
 export async function getPreviewPostBySlug(slug: string) {
-  const post = await fetchAPI(
-    `
+  const post = await fetchAPI(`
   query PostBySlug($slug: ID!) {
     PostItem(id: $slug) {
       slug
@@ -57,7 +57,7 @@ export async function getAllPostsWithSlug() {
   return data?.PostItems.items
 }
 
-export async function getTagPostsWithSlug() {
+export async function getTagsWithSlug() {
   const data = await fetchAPI(`
     {
       Tags {
@@ -87,6 +87,7 @@ export async function getAllPostsForHome(preview: any) {
             image
             author {
               name
+              slug
               content
             }
           }
@@ -97,6 +98,97 @@ export async function getAllPostsForHome(preview: any) {
     { preview }
   )
   return data?.PostItems.items
+}
+
+export async function getAllAuthorsForHome(preview: any) {
+  const data = await fetchAPI(
+    `
+    {
+      AuthorItems(sort_by: "first_published_at:desc") {
+        items {
+          name
+          slug
+          published_at
+          content {
+            picture {
+              filename
+            }
+            description
+          }
+        }
+      }
+    }
+  `,
+    { preview }
+  )
+  return data?.AuthorItems.items
+}
+
+export async function getAuthor(slug:string, preview: any) {
+  const uuids = await fetchAPI(`
+  {
+    AuthorItems(by_slugs: "authors/${slug}") {
+      items {
+        name
+        slug
+        uuid
+      }
+    }
+  }  
+  `,
+    { preview }
+  )
+
+  return uuids.AuthorItems.items[0]
+}
+
+export async function getAllPostsForAuthor(uuid: string, preview: any) {
+  console.log(uuid)
+  const data = await fetchAPI(
+`
+  query PostWithAuthor($uuid: String) {
+    PostItems(sort_by: "first_published_at:desc", filter_query_v2: {author: {in: $uuid}}) {
+      items {
+        slug
+        published_at
+        first_published_at
+        tag_list
+        content {
+          long_text
+          intro
+          title
+          image
+          author {
+            name
+            slug
+            content
+          }
+        }
+      }
+    }
+  }
+  `,
+    {
+      preview,
+      variables: {
+        uuid: `${uuid}`,
+      },
+    }
+  )
+  return data?.PostItems.items
+}
+
+export async function getAuthorsWithSlug() {
+  const data = await fetchAPI(`
+    {
+      AuthorItems {
+        items {
+          slug
+        }
+      }
+    }
+  `)
+  return data?.AuthorItems.items
 }
 
 export async function getAllPostsForTag(tag: string, preview: any) {
@@ -117,6 +209,7 @@ export async function getAllPostsForTag(tag: string, preview: any) {
             image
             author {
               name
+              slug
               content
             }
           }
@@ -150,6 +243,7 @@ export async function getPostAndMorePosts(slug: string, preview: any) {
         image
         author {
           name
+          slug
           content
         }
       }
@@ -167,6 +261,7 @@ export async function getPostAndMorePosts(slug: string, preview: any) {
           image
           author {
             name
+            slug
             content
           }
         }

@@ -1,6 +1,7 @@
 import cn from 'classnames'
 import UserInfo from './user-info'
 import SignIn from './signin'
+import {CREATOR_ID} from '@/lib/constants'
 
 export default function Nav({ preview }: any) {
   return (
@@ -17,7 +18,7 @@ export default function Nav({ preview }: any) {
             </>
         ) : (
             <>
-              <a className="underline" href="https://twitter.com/sasigume">不具合の報告</a>
+              <a className="underline" href={(`https://twitter.com/${CREATOR_ID}`)}>不具合の報告</a>
             </>
           )}
       </div>

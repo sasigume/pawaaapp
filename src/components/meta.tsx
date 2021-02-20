@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { CMS_NAME } from '../lib/constants'
+import { SITE_NAME } from '../lib/constants'
 import GetOGPImage from '../lib/ogp-image'
 
 interface Props {
@@ -19,10 +19,10 @@ export default function Meta({desc,title}:Props) {
       <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#f05d30" />
       <meta name="msapplication-TileColor" content="#ffffff" />
       <meta name="theme-color" content="#ffffff"></meta>
-      <title>{CMS_NAME}</title>
+      <title>{SITE_NAME}</title>
       <meta
         name="description"
-        content={desc ? desc : `これが${CMS_NAME}。`}
+        content={desc}
       />
       <meta property="og:image" content={GetOGPImage(title)} />
     </Head>
