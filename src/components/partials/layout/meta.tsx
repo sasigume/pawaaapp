@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import { SITE_NAME } from '../lib/constants'
-import GetOGPImage from '../lib/ogp-image'
+import { SITE_NAME } from '@/lib/constants'
+import GetOGPImage from '@/lib/ogp-image'
 
 interface Props {
   desc: string;

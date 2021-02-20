@@ -26,24 +26,6 @@ export async function fetchAPI(query: any, { variables, preview }: any = {}) {
   return json.data
 }
 
-export async function getPreviewPostBySlug(slug: string) {
-  const post = await fetchAPI(`
-  query PostBySlug($slug: ID!) {
-    PostItem(id: $slug) {
-      slug
-    }
-  }
-  `,
-    {
-      preview: true,
-      variables: {
-        slug: `posts/${slug}`,
-      },
-    }
-  )
-  return post
-}
-
 export async function getAllPostsWithSlug() {
   const data = await fetchAPI(`
     {
@@ -143,7 +125,6 @@ export async function getAuthor(slug:string, preview: any) {
 }
 
 export async function getAllPostsForAuthor(uuid: string, preview: any) {
-  console.log(uuid)
   const data = await fetchAPI(
 `
   query PostWithAuthor($uuid: String) {
@@ -227,7 +208,7 @@ export async function getAllPostsForTag(tag: string, preview: any) {
   return data?.PostItems.items
 }
 
-export async function getPostAndMorePosts(slug: string, preview: any) {
+export async function getPostsForSinglePage(slug: string, preview: any) {
   const data = await fetchAPI(`
   query PostBySlug($slug: ID!) {
     PostItem(id: $slug) {
@@ -277,10 +258,12 @@ export async function getPostAndMorePosts(slug: string, preview: any) {
     }
   )
 
+  const morePosts = (data?.PostItems?.items || [])
+  .filter((item: any) => item.slug !== slug)
+  .slice(0, 2) || []
+
   return {
-    post: data?.PostItem,
-    morePosts: (data?.PostItems?.items || [])
-      .filter((item: any) => item.slug !== slug)
-      .slice(0, 2)
+    firstPost: data?.PostItem,
+    morePosts: morePosts
   }
 }
