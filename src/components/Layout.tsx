@@ -1,7 +1,7 @@
 import Nav from './nav'
 import Meta from './meta'
 import { ReactNode } from 'react'
-
+import {CREATOR_ID} from '@/lib/constants'
 
 interface LayoutProps {
   preview: boolean;
@@ -21,7 +21,7 @@ export default function Layout({ preview, children, title, desc }: LayoutProps) 
         </main>
         <div>管理人はメアドを見れます。ご注意ください。
           <br />
-          &copy; 2021 Ryo Ando (@sasigume) / Built with <a href="https://www.storyblok.com">Storyblok</a>
+          &copy; 2021 Ryo Ando (@{CREATOR_ID}) / Built with <a href="https://www.storyblok.com">Storyblok</a>
         </div>
       </div>
     </div>

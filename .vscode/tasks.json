@@ -11,17 +11,6 @@
 			"problemMatcher": [],
 			"label": "npm: run dev",
 			"detail": "launch next"
-		},
-		{
-			"type": "npm",
-			"script": "sitemap",
-			"group": {
-				"kind": "test",
-				"isDefault": true
-			},
-			"problemMatcher": [],
-			"label": "npm: run sitemap",
-			"detail": "sitemap generator"
 		}
 	]
 }

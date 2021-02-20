@@ -99,6 +99,29 @@ export async function getAllPostsForHome(preview: any) {
   return data?.PostItems.items
 }
 
+export async function getAllAuthorsForHome(preview: any) {
+  const data = await fetchAPI(
+    `
+    {
+      AuthorItems(sort_by: "first_published_at:desc") {
+        items {
+          name
+          slug
+          published_at
+          content {
+            picture {
+              filename
+            }
+          }
+        }
+      }
+    }
+  `,
+    { preview }
+  )
+  return data?.AuthorItems.items
+}
+
 export async function getAllPostsForTag(tag: string, preview: any) {
   console.log(tag)
   const data = await fetchAPI(
