@@ -82,7 +82,7 @@ export default function CommentsShow() {
     setAnswer({
       id: '',
       uid: user.uid,
-      questionId: comment.id,
+      commentId: comment.id,
       body,
       createdAt: new firebase.firestore.Timestamp(now / 1000, now % 1000),
     })
