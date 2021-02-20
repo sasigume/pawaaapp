@@ -59,8 +59,12 @@ export default function CommentsShow() {
   }
 
   useEffect(() => {
+    if (user === null) {
+      return
+    }
+
     loadData()
-  }, [query.id])
+  }, [query.id, user])
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -101,7 +105,7 @@ export default function CommentsShow() {
   return (
     <Layout preview={false} title={comment ? comment.body : 'LOADING'} desc={"コメントです"}>
       <Container>
-        <div className="mb-12">
+        <div className="mt-16 mb-12">
           {comment && (
             <>
               <div className="mb-16">
@@ -112,29 +116,32 @@ export default function CommentsShow() {
                 <h2 className="my-8 text-3xl">あなたの回答</h2>
 
                 {answer === null ? (
-                  <form onSubmit={onSubmit}>
-                    <textarea
-                      className="form-control"
-                      placeholder="こうやって解きます。"
-                      rows={6}
-                      value={body}
-                      onChange={(e) => setBody(e.target.value)}
-                      required
-                    ></textarea>
-                    <div className="m-3">
-                      {isSending ? (
-                        <div
-                          className="spinner-border text-secondary"
-                          role="status"
-                        ></div>
-                      ) : (
-                          <button type="submit" className="btn btn-primary">
-                            回答する
-                          </button>
-                        )}
-                    </div>
-                  </form>
-                ) : (
+                  <div className="flex flex-col items-center">
+                    <div className="bg-red-500 text-white text-3xl font-bold p-16 m-12">公序良俗に反した投稿は即刻削除します。Googleアカウントと投稿が紐づけられていることを忘れないでください。</div>
+
+                    <form onSubmit={onSubmit}>
+                      <div className="flex flex-col jusify-center mb-12">
+                        <textarea
+                          className="w-64 border-2 p-4 mb-4 rounded-xl border-gray-600"
+                          placeholder="こうやって解きます。"
+                          rows={6}
+                          value={body}
+                          onChange={(e) => setBody(e.target.value)}
+                          required
+                        ></textarea>
+                        {isSending ? (
+                          <div
+                            className="spinner-border text-secondary"
+                            role="status"
+                          ></div>
+                        ) : (
+                            <button type="submit" className="p-4 bg-blue-400 text-white font-bold shadow-lg rounded-xl">
+                              回答する
+                            </button>
+                          )}
+                      </div>
+                    </form>
+                  </div>) : (
                     <div className="p-4 border-2 border-green-400 rounded-xl shadow-xl m-4">
                       <div className="card-body text-left">{answer.body}</div>
                     </div>

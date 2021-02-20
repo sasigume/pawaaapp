@@ -1,6 +1,5 @@
 import Nav from './nav'
 import Meta from './meta'
-import Link from 'next/link'
 import { ReactNode } from 'react'
 import { ToastContainer } from 'react-toastify'
 import { CREATOR_ID } from '@/lib/constants'
@@ -18,12 +17,9 @@ export default function Layout({ preview, children, title, desc }: LayoutProps) 
   return (
     <div>
       <Meta title={title} desc={desc} />
-      <div className="w-screen flex flex-col items-center justify-center overflow-hidden min-h-screen pb-12">
+      <div className="w-screen flex flex-col items-center justify-start overflow-hidden min-h-screen pb-12">
         <Nav preview={preview} />
-        <main>
-          <Link href={(`/users/${user?.uid}`)}><a className="block p-3 bg-gray-200">送信ページへ</a></Link>
-          <Link href="/comments/received"><a className="block p-3 bg-gray-200">一覧ページへ</a></Link>
-          
+        <main>          
           {children}
         </main>
         <div className="px-3">
