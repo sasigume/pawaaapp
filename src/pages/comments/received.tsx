@@ -5,6 +5,7 @@ import { Comment } from '@/models/Comment'
 import Layout from '@/components/partials/layout'
 import dayjs from 'dayjs'
 import Container from '@/components/common/container'
+import Link from 'next/link'
 
 export default function CommentsReceived() {
   const { user } = useAuthentication()
@@ -109,16 +110,20 @@ export default function CommentsReceived() {
         <div className="min-h-screen">
           <div className="" ref={scrollContainerRef}>
             {comments.map((c: Comment) => (
-              <div className="my-3" key={c.id}>
-                <div className="w-full">
-                  <div className="m-3 border-2 p-2 overflow-ellipsis truncate">
-                    {c.body}
-                    <div className="text-sm text-right">
-                      <small>{dayjs(c.createdAt.toDate()).format('YYYY/MM/DD HH:mm')}</small>
+              <Link href={(`/comments/${c.id}`)} key={c.id}>
+                <a>
+                  <div className="my-3">
+                    <div className="w-full">
+                      <div className="m-3 border-2 p-2 overflow-ellipsis truncate">
+                        {c.body}
+                        <div className="text-sm text-right">
+                          <small>{dayjs(c.createdAt.toDate()).format('YYYY/MM/DD HH:mm')}</small>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                </a>
+              </Link>
             ))}
           </div>
         </div>
