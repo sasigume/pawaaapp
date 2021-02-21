@@ -98,10 +98,8 @@ export default function CommentsShow() {
     });
   }
 
-  const currentUser = useAuthentication().user
-
   return (
-    <Layout preview={false} title={comment ? comment.body : 'LOADING'} desc={"コメントです"}>
+    <Layout preview={false} title={comment ? comment.body : 'LOADING'} desc={comment ? comment.body : ''}>
       <Container>
         <div className="mt-16 mb-12">
           {comment && (
