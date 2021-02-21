@@ -2,5 +2,6 @@ export interface User {
   uid: string
   isAnonymous: boolean
   name: string
-  email?: string
+  email: string
+  photoUrl: string
 }

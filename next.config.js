@@ -24,5 +24,8 @@ module.exports = {
     CLOUDINARY_OGP_PATH: process.env.CLOUDINARY_OGP_PATH,
     PART_OF_GCP_CREDENTIAL: process.env.PART_OF_GCP_CREDENTIAL,
     HTTPS_URL: process.env.HTTPS_URL
+  },
+  images: {
+    domains: ['pbs.twimg.com']
   }
 }

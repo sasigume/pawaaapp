@@ -109,7 +109,7 @@ export default function CommentsReceived() {
 
         <div className="min-h-screen">
           <div className="" ref={scrollContainerRef}>
-            {comments ? comments.map((c: Comment) => (
+            {comments.length > 0 ? comments.map((c: Comment) => (
               <Link href={(`/comments/${c.id}`)} key={c.id}>
                 <a>
                   <div className="my-3">
@@ -125,8 +125,12 @@ export default function CommentsReceived() {
                 </a>
               </Link>
             )) : (
-              <div>質問が届いていません。</div>
-            )}
+                <div>{user ? (
+                  <p>質問が届いていません。</p>
+                ) : (
+                    <p>ログインしていません。</p>
+                  )}</div>
+              )}
           </div>
         </div>
       </Container>
