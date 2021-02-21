@@ -23,7 +23,7 @@ export default function PostPage({ firstPost, morePosts, preview }: PostPageProp
   return (
     <>
       {(router.isFallback) ? (
-        <Layout preview={preview} title={'Loading... | ' +SITE_NAME} desc={''}><div>Loading…</div></Layout>
+        <div></div>
       ) : (
           <Layout preview={preview} title={firstPost.content.title} desc={firstPost.content.intro ?? ''}>
             <div>
@@ -54,7 +54,7 @@ export async function getStaticProps({ params }: GSProps) {
       firstPost: posts.firstPost,
       morePosts: posts.morePosts
     },
-    revalidate: 10,
+    revalidate: 300,
   }
 }
 

@@ -60,7 +60,7 @@ export async function getStaticProps({ params }: GSProps) {
       preview: environment,
       posts: posts
     },
-    revalidate: 10,
+    revalidate: 300,
   }
 }
 
