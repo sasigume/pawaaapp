@@ -3,6 +3,7 @@ import Layout from '@/components/partials/layout'
 import { Answer } from '@/models/Answer'
 import { Comment } from '@/models/Comment'
 import TweetButton from '@/components/common/tweet-button'
+import { useAuthentication } from '@/hooks/authentication'
 
 interface Props {
   answer: Answer
@@ -10,9 +11,18 @@ interface Props {
 }
 
 export default function AnswersShow(props: Props) {
-  return (
+  const {user}=useAuthentication()
+
+  if(user == null){
+    return (
+      <Layout preview={false} title={props.comment ? props.comment.body : 'LOADING'} desc={'回答の詳細ページ'}>
+        <Container>ログインしてください。</Container>
+      </Layout>
+    )
+  } else return (
     <Layout preview={false} title={props.comment ? props.comment.body : 'LOADING'} desc={'回答の詳細ページ'}>
       <Container>
+        
         <div className="flex flex-col items-center my-16">
           <div className="">
             <h2 className="">質問</h2>
