@@ -3,8 +3,8 @@ import ErrorPage from 'next/error'
 import Container from '../../components/common/container'
 import PostList from '@/components/partials/post-list'
 import Layout from '@/components/partials/layout'
-import { getTagsWithSlug, getAllPostsForTag } from '@/lib/api'
-import { Post } from '@/lib/types'
+import { getTagsWithSlug, getAllPostsForTag } from '@/lib/storyblok/api'
+import { Post } from '@/models/Post'
 import { SITE_NAME } from '@/lib/constants'
 interface IndexProps {
   tag?: string;

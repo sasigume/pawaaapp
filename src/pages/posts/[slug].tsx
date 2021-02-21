@@ -3,9 +3,9 @@ import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Container from '../../components/common/container'
 import Layout from '@/components/partials/layout'
-import { getAllPostsWithSlug, getPostsForSinglePage } from '@/lib/api'
+import { getAllPostsWithSlug, getPostsForSinglePage } from '@/lib/storyblok/api'
 import { SITE_NAME } from '@/lib/constants'
-import { Post } from '@/lib/types'
+import { Post } from '@/models/Post'
 import PostList from '@/components/partials/post-list'
 
 interface PostPageProps {

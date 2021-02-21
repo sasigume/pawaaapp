@@ -4,8 +4,8 @@ import Question from '@/components/common/Question'
 import Container from '@/components/common/container'
 import PostList from '@/components/partials/post-list'
 import Layout from '@/components/partials/layout'
-import { getAllPostsForHome, getAllAuthorsForHome } from '../lib/api'
-import { Post } from '../lib/types'
+import { getAllPostsForHome, getAllCreatorsForHome } from '../lib/storyblok/api'
+import { Post } from '@/models/Post'
 import { SITE_NAME, SITE_DESC } from '@/lib/constants'
 import publishRss from '@/lib/rss'
 import publishSitemap from '@/lib/sitemap'
@@ -85,10 +85,10 @@ export default Index
 
 export async function getStaticProps({ preview = null }) {
   const posts = (await getAllPostsForHome(preview)) || []
-  const allAuthors = (await getAllAuthorsForHome(preview)) || []
+  const allCreators = (await getAllCreatorsForHome(preview)) || []
 
-  publishRss(allAuthors, posts)
-  publishSitemap(allAuthors, posts)
+  publishRss(allCreators, posts)
+  publishSitemap(allCreators, posts)
 
   return {
     props: { posts, preview },
