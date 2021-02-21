@@ -2,7 +2,7 @@ import Avatar from './avatar'
 import Date from '../../../common/date'
 import CoverImageComponent from './cover-image-component'
 import Link from 'next/link'
-import TagList from './tag-list'
+import SubjectList from './subject-list'
 import PostBody from './post-body'
 import { PostComponentType } from '@/models/Post'
 
@@ -11,7 +11,6 @@ export default function PostComponent({
   slug,
   first_published_at,
   published_at,
-  tag_list,
   content
 }: PostComponentType) {
   return (
@@ -32,7 +31,7 @@ export default function PostComponent({
       </h3>
       )}
       <div className="text-sm mb-4">
-        <TagList tags={tag_list ?? []} />
+        <SubjectList subjects={content.subjects ?? []} />
       </div>
       <div className="text-lg mb-4">
         公開: <Date dateString={first_published_at} /> /最終更新: <Date dateString={published_at} />
