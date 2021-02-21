@@ -1,58 +1,43 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Pawaa.app</title>
+        <title>PAWAA.APP</title>
         <link>http://localhost:3000</link>
         <description>問題が「流れる」学習アプリ。パワーアップ。</description>
         <atom:link href="http://localhost:3000/rss.xml" rel="self" type="application/rss+xml"/>
         
 <item>
     <guid>http://localhost:3000/creators/yakisoba_panaki</guid>
-    <title>YakisobaPanaki</title>
+    <title>やきぱな</title>
     <link>http://localhost:3000/creators/yakisoba_panaki</link>
-    <pubDate>Sat, 20 Feb 2021 03:39:11 GMT</pubDate>
-    <summary>やややきい〜〜〜そ〜〜〜ば〜〜</summary>
+    <pubDate>Sun, 21 Feb 2021 09:37:50 GMT</pubDate>
+    <summary>動画とか電車とかゲームとか</summary>
 </item>
     
 <item>
     <guid>http://localhost:3000/creators/sasigume</guid>
-    <title>Sasigume</title>
+    <title>さしぐめ</title>
     <link>http://localhost:3000/creators/sasigume</link>
-    <pubDate>Sat, 20 Feb 2021 01:51:53 GMT</pubDate>
+    <pubDate>Sun, 21 Feb 2021 10:02:59 GMT</pubDate>
     <summary>実装担当です。</summary>
 </item>
     
         
 <item>
+    <guid>http://localhost:3000/posts/about-panaki</guid>
+    <title>やきぱなです</title>
+    <link>http://localhost:3000/posts/about-panaki</link>
+    <pubDate>Sun, 21 Feb 2021 09:41:06 GMT</pubDate>
+    <summary>デフォルトの抜粋文</summary>
+</item>
+    
+<item>
     <guid>http://localhost:3000/posts/mc-console-history</guid>
     <title>マインクラフトのゲーム機版が消えるまで</title>
     <link>http://localhost:3000/posts/mc-console-history</link>
-    <pubDate>Thu, 18 Feb 2021 12:16:36 GMT</pubDate>
+    <pubDate>Sun, 21 Feb 2021 09:26:18 GMT</pubDate>
     <summary>マインクラフトはかつて、パソコンでしか遊べないゲームでした。しかし2011年にスマホ向けに「ポケットエディション」が配信。トイレの中で遊んでいるPVを覚えている人はいますか? まだ開発が始まったばかりですし、スマホの性能も今とは大違いですので、当時のPEの内容はPC版には遠く及びませんでした。</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/posts/test-article-3</guid>
-    <title>テスト記事3！！！！！！！</title>
-    <link>http://localhost:3000/posts/test-article-3</link>
-    <pubDate>Sat, 20 Feb 2021 03:43:01 GMT</pubDate>
-    <summary>抜粋です！！！！！！！</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/posts/test-article-2</guid>
-    <title>テスト記事2！！！！！！！</title>
-    <link>http://localhost:3000/posts/test-article-2</link>
-    <pubDate>Fri, 19 Feb 2021 14:50:38 GMT</pubDate>
-    <summary>抜粋です！！！！！！！</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/posts/test-article-1</guid>
-    <title>テスト記事！！！！！！！</title>
-    <link>http://localhost:3000/posts/test-article-1</link>
-    <pubDate>Fri, 19 Feb 2021 12:54:08 GMT</pubDate>
-    <summary>抜粋です！！！！！！！</summary>
 </item>
     
     </channel>
 </rss>
+    

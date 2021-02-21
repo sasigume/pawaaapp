@@ -16,7 +16,7 @@ const generateProfileItem = (creator: Creator): string => {
   return (`
 <url>
     <loc>${process.env.HTTPS_URL}/creators/${creator.slug}</loc>
-    <title>${escapeString(creator.name)}</title>
+    <title>${escapeString(creator.content.displayName)}</title>
     <lastmod>${new Date(creator.published_at ?? '').toUTCString()}</lastmod>
 </url>
     `)
