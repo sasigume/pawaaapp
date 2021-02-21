@@ -20,7 +20,7 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext",
-    "baseUrl": "src/",
+    "baseUrl": "./src",
     "paths": {
       "@/components/*": [
         "components/*"

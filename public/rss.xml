@@ -6,17 +6,17 @@
         <atom:link href="http://localhost:3000/rss.xml" rel="self" type="application/rss+xml"/>
         
 <item>
-    <guid>http://localhost:3000/authors/yakisoba_panaki</guid>
+    <guid>http://localhost:3000/creators/yakisoba_panaki</guid>
     <title>YakisobaPanaki</title>
-    <link>http://localhost:3000/authors/yakisoba_panaki</link>
+    <link>http://localhost:3000/creators/yakisoba_panaki</link>
     <pubDate>Sat, 20 Feb 2021 03:39:11 GMT</pubDate>
     <summary>やややきい〜〜〜そ〜〜〜ば〜〜</summary>
 </item>
     
 <item>
-    <guid>http://localhost:3000/authors/sasigume</guid>
+    <guid>http://localhost:3000/creators/sasigume</guid>
     <title>Sasigume</title>
-    <link>http://localhost:3000/authors/sasigume</link>
+    <link>http://localhost:3000/creators/sasigume</link>
     <pubDate>Sat, 20 Feb 2021 01:51:53 GMT</pubDate>
     <summary>実装担当です。</summary>
 </item>
@@ -56,4 +56,3 @@
     
     </channel>
 </rss>
-    

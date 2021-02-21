@@ -2,13 +2,13 @@
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         
 <url>
-    <loc>http://localhost:3000/authors/yakisoba_panaki</loc>
+    <loc>http://localhost:3000/creators/yakisoba_panaki</loc>
     <title>YakisobaPanaki</title>
     <lastmod>Sat, 20 Feb 2021 03:39:11 GMT</lastmod>
 </url>
     
 <url>
-    <loc>http://localhost:3000/authors/sasigume</loc>
+    <loc>http://localhost:3000/creators/sasigume</loc>
     <title>Sasigume</title>
     <lastmod>Sat, 20 Feb 2021 01:51:53 GMT</lastmod>
 </url>
@@ -39,4 +39,3 @@
 </url>
     
 </urlset>
-    
