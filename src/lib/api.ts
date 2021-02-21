@@ -173,7 +173,6 @@ export async function getAuthorsWithSlug() {
 }
 
 export async function getAllPostsForTag(tag: string, preview: any) {
-  console.log(tag)
   const data = await fetchAPI(
     `
     query PostWithTag($tag: String) {

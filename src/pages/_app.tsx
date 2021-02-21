@@ -1,14 +1,19 @@
 import '../styles/globals.css'
-
 import { AppProps } from 'next/app'
+import { RecoilRoot } from 'recoil'
+import dayjs from 'dayjs'
+import 'dayjs/locale/ja'
 
-import { AuthProvider } from '../context/auth'
+dayjs.locale('ja')
+
+import '@/lib/firebase'
+import 'hooks/authentication'
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <AuthProvider>
+    <RecoilRoot>
       <Component {...pageProps} />
-    </AuthProvider>
+    </RecoilRoot>
   )
 }
 

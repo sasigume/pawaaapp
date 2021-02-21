@@ -1,0 +1,22 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{uid} {
+      allow delete: if request.auth.uid == uid;
+      allow get, update, create, read: if true;
+    }
+    match /comments/{commentId} {
+      allow get, read, create: if true
+        //request.auth.uid == resource.data.senderUid ||
+        //request.auth.uid == resource.data.receiverUid;
+      allow update: if request.auth.uid == resource.data.receiverUid;
+      allow delete: if false;
+    }
+    match /answers/{answerId} {
+      allow update, delete: if request.auth.uid == resource.data.uid;
+      //allow create, read: if request.auth.uid != null;
+      allow create: if request.auth.uid != null;
+      allow get, read: if true;
+    }
+  }
+}

@@ -1,22 +1,27 @@
 {
   "name": "pawaaapp",
-  "version": "1.6.1",
+  "version": "1.6.8",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "firestore": "firebase deploy --only firestore"
   },
   "dependencies": {
     "classnames": "^2.2.6",
     "cloudinary-core": "^2.11.3",
     "date-fns": "^2.17.0",
+    "dayjs": "^1.10.4",
     "firebase": "^8.2.8",
+    "firebase-admin": "^9.5.0",
     "next": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-markdown": "^5.0.3",
     "react-mathjax": "^1.0.1",
+    "react-toastify": "^7.0.3",
+    "recoil": "^0.1.2",
     "remark": "^13.0.0",
     "remark-html": "^13.0.1",
     "remark-math": "^4.0.0"

@@ -6,7 +6,7 @@ import PostList from '@/components/partials/post-list'
 import Layout from '@/components/partials/layout'
 import { getAllPostsForHome, getAllAuthorsForHome } from '../lib/api'
 import { Post } from '../lib/types'
-import { SITE_NAME,SITE_DESC } from '@/lib/constants'
+import { SITE_NAME, SITE_DESC } from '@/lib/constants'
 import publishRss from '@/lib/rss'
 interface IndexProps {
   posts: Post[];
@@ -86,7 +86,7 @@ export async function getStaticProps({ preview = null }) {
   const posts = (await getAllPostsForHome(preview)) || []
   const allAuthors = (await getAllAuthorsForHome(preview)) || []
 
-  publishRss(allAuthors,posts)
+  publishRss(allAuthors, posts)
 
   return {
     props: { posts, preview },
