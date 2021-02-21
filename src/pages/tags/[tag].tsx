@@ -23,10 +23,7 @@ const TagIndex = ({ tag, posts, preview }: IndexProps) => {
       {router.isFallback ? (
         <Layout preview={preview} title={'Loading... | ' + SITE_NAME} desc={''}><div>Tag not found</div></Layout>
       ) : (
-          <Layout preview={preview} title={(`${tag}タグの記事一覧 | ${SITE_NAME}`)} desc={"Pawaa.app"}>
-            <Head>
-              <title>{tag}タグの記事一覧 | {SITE_NAME}</title>
-            </Head>
+          <Layout preview={preview} title={(`${tag}タグの記事一覧`)} desc={"Pawaa.app"}>
             <div>
               <Container>
                 <div>

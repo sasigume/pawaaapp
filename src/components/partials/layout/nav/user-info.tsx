@@ -1,11 +1,10 @@
-import { FC, useContext } from 'react';
-import { AuthContext } from '@/context/auth';
+import { useAuthentication } from '@/hooks/authentication'
 
-const UserInfo: FC = () => {
-  const googleUser = useContext(AuthContext).currentUser
-  if(googleUser) {
+const UserInfo = () => {
+  const {user} = useAuthentication()
+  if(user) {
     return (
-     <div>{googleUser.displayName} ({googleUser.email})</div>
+     <div>{user.name}</div>
     )
   } else {
     return (

@@ -26,10 +26,7 @@ export default function PostPage({ firstPost, morePosts, preview }: PostPageProp
       {(router.isFallback) ? (
         <Layout preview={preview} title={'Loading... | ' +SITE_NAME} desc={''}><div>Loading…</div></Layout>
       ) : (
-          <Layout preview={preview} title={firstPost.content.title + ' | ' + SITE_NAME} desc={firstPost.content.intro ?? ''}>
-            <Head>
-              <title>{firstPost.content.title + ' | ' + SITE_NAME}</title>
-            </Head>
+          <Layout preview={preview} title={firstPost.content.title} desc={firstPost.content.intro ?? ''}>
             <div>
               <Container>
                 {firstPost && <PostList mode="single" posts={[firstPost]} />}
