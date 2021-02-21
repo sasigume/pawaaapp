@@ -10,19 +10,19 @@ type Props = {
 export default function AnswersShow(props: Props) {
   return (
     <Layout preview={false} title={props.answer ? props.answer.body : 'LOADING'} desc={"回答です"}>
-      <div className="row justify-content-center">
-        <div className="col-12 col-md-6">
+      <div className="my-8 justify-center">
+        <div className="">
           <>
-            <div className="card">
-            <h2 className="h4">質問</h2>
-              <div className="card-body">{props.comment.body}</div>
+            <div className="">
+            <h2 className="">質問</h2>
+              <div className="">{props.comment.body}</div>
             </div>
 
             <section className="text-center mt-4">
-              <h2 className="h4">回答</h2>
+              <h2 className="">回答</h2>
 
-              <div className="card">
-                <div className="card-body text-left">{props.answer.body}</div>
+              <div className="">
+                <div className="text-left">{props.answer.body}</div>
               </div>
             </section>
           </>
