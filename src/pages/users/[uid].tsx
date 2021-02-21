@@ -15,7 +15,7 @@ interface Query {
 export default function UserShow() {
   const [user, setUser] = useState<User>(null!)
   const [body, setBody] = useState('')
-  const [isSending, setIsSending] = useState(false)
+  const [didYouSend, setSended] = useState(false)
 
   const router = useRouter()
   const query = router.query as Query
@@ -48,7 +48,7 @@ export default function UserShow() {
     e.preventDefault()
 
     // prevent duplicated post
-    setIsSending(true)
+    setSended(true)
 
     console.log('Sending to ' + user.uid)
 
@@ -59,11 +59,8 @@ export default function UserShow() {
       isReplied: false,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     })
-    // end submit action
-    setIsSending(false)
 
     setBody('')
-    router.push('/users/me')
     toast.success('😙 送信できました! 連投はやめてね', {
       position: "bottom-center",
       autoClose: 4000,
@@ -98,9 +95,9 @@ export default function UserShow() {
                       onChange={(e) => setBody(e.target.value)}
                       required
                     ></textarea>
-                    {isSending ? (
+                    {didYouSend ? (
                       <span className="" role="status">
-                        (送信中)
+                        (送信できました)
                       </span>
                     ) : (
                         <button type="submit" className="p-4 bg-blue-400 text-white font-bold shadow-lg rounded-xl">
