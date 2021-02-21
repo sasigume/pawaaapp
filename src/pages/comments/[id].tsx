@@ -7,6 +7,8 @@ import { useAuthentication } from '@/hooks/authentication'
 import { toast } from 'react-toastify';
 import { Answer } from '../../models/Answer'
 import Container from '@/components/common/container'
+import TweetButton from '@/components/common/tweet-button'
+import EULA from '@/components/common/eula'
 
 type Query = {
   id: string
@@ -101,7 +103,7 @@ export default function CommentsShow() {
   return (
     <Layout preview={false} title={comment ? comment.body : 'LOADING'} desc={comment ? comment.body : ''}>
       <Container>
-        <div className="mt-16 mb-12">
+        <div className="">
           {comment && (
             <>
               <div className="mb-16">
@@ -115,7 +117,7 @@ export default function CommentsShow() {
                   <>
                     <h2 className="my-8 text-3xl">回答する</h2>
                     <div className="flex flex-col items-center">
-                      <div className="bg-red-500 text-white text-3xl font-bold p-16 m-12">公序良俗に反した投稿は即刻削除します。Googleアカウントと投稿が紐づけられていることを忘れないでください。</div>
+                      <div className="bg-red-500 text-white text-3xl font-bold p-16 m-12"><a href="#eula">利用規約</a>に反した投稿は即刻削除します。Googleアカウントと投稿が紐づけられていることを忘れないでください。</div>
 
                       <form onSubmit={onSubmit}>
                         <div className="flex flex-col jusify-center mb-12">
@@ -141,19 +143,24 @@ export default function CommentsShow() {
                       </form>
                     </div>
                   </>) : (
-                    <div>
+                    <div className="">
                       {user.uid == comment.senderUid ?
                         <div>自分の質問には回答できません。</div> :
                         (
-                          <section>
+                          <div className="px-4 flex flex-col items-center">
                             <h2 className="my-8 text-3xl">回答</h2>
-                            <div className="p-4 border-2 border-green-400 rounded-xl shadow-xl m-4">
-                              <div className="card-body text-left">{answer && answer.body}</div>
+                            <div className="p-4 whitespace-normal text-left border-2 border-green-400 rounded-xl shadow-xl ">
+                              {answer && answer.body}
                             </div>
-                          </section>)
+                            {answer && <TweetButton url={process.env.HTTPS_URL + '/answers/' + answer.id} text={answer.body} />}
+                          </div>)
                       }
                     </div>
                   )}
+              </section>
+              <section>
+                <h2 id="eula">利用規約</h2>
+                <EULA />
               </section>
             </>
           )}

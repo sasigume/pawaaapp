@@ -15,7 +15,7 @@ function trimText(text:string) {
 }
 
 export default function Meta({ desc, title }: Props) {
-  const ogpUrl = process.env.WEB_URL + '/api/ogpgen/' + trimText(title)
+  const ogpUrl = process.env.HTTPS_URL + '/api/ogpgen/' + trimText(title)
   return (
     <Head>
       <meta charSet="utf-8" />
