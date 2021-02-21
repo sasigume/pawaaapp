@@ -8,5 +8,5 @@ sitemap({
   pagesDirectory: ".next/server/pages",
   targetDirectory: "public/",
   ignoredExtensions: ["js", "map"],
-  ignoredPaths: ["[fallback]","[slug]","[tag]","[uid]","[id]"],
+  ignoredPaths: ["[fallback]","[slug]","[tag]","[uid]","[id]","[text]"],
 });
