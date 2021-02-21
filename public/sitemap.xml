@@ -21,11 +21,6 @@
 	</url>
 
 	<url>
-		<loc>https://pawaa.app/comments/[id]</loc>
-		<lastmod>2021-02-21</lastmod>
-	</url>
-
-	<url>
 		<loc>https://pawaa.app/comments/received</loc>
 		<lastmod>2021-02-21</lastmod>
 	</url>
@@ -57,11 +52,6 @@
 
 	<url>
 		<loc>https://pawaa.app/tags/Minecraft</loc>
-		<lastmod>2021-02-21</lastmod>
-	</url>
-
-	<url>
-		<loc>https://pawaa.app/users/[uid]</loc>
 		<lastmod>2021-02-21</lastmod>
 	</url>
 </urlset>

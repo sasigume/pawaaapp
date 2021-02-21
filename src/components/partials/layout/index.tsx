@@ -3,7 +3,6 @@ import Meta from './meta'
 import { ReactNode } from 'react'
 import { ToastContainer } from 'react-toastify'
 import { CREATOR_ID } from '@/lib/constants'
-import { useAuthentication } from '@/hooks/authentication'
 
 interface LayoutProps {
   preview: boolean;
@@ -13,7 +12,6 @@ interface LayoutProps {
 }
 
 export default function Layout({ preview, children, title, desc }: LayoutProps) {
-  const { user } = useAuthentication()
   return (
     <div>
       <Meta title={title} desc={desc} />
