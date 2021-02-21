@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { Answer } from '../../models/Answer'
 import Container from '@/components/common/container'
 import TweetButton from '@/components/common/tweet-button'
-import EULA from '@/components/common/eula'
+import Warning from '@/components/common/warning'
 
 type Query = {
   id: string
@@ -66,6 +66,7 @@ export default function CommentsShow() {
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
+
     setIsSending(true)
 
     await firebase.firestore().runTransaction(async (t) => {
@@ -106,7 +107,7 @@ export default function CommentsShow() {
         <div className="">
           {comment && (
             <>
-              <div className="mb-16">
+              <div className="mt-6 mb-8">
                 <div className="p-4 border-2 border-red-400 rounded-xl shadow-xl m-4">{comment.body}</div>
               </div>
 
@@ -115,10 +116,9 @@ export default function CommentsShow() {
 
                 {(user.uid != comment.senderUid && !answer) ? (
                   <>
-                    <h2 className="my-8 text-3xl">回答する</h2>
+                    <h2 className="mt-4 text-3xl">回答する</h2>
                     <div className="flex flex-col items-center">
-                      <div className="bg-red-500 text-white text-3xl font-bold p-16 m-12"><a href="#eula">利用規約</a>に反した投稿は即刻削除します。Googleアカウントと投稿が紐づけられていることを忘れないでください。</div>
-
+                    <Warning />
                       <form onSubmit={onSubmit}>
                         <div className="flex flex-col jusify-center mb-12">
                           <textarea
@@ -157,10 +157,6 @@ export default function CommentsShow() {
                       }
                     </div>
                   )}
-              </section>
-              <section>
-                <h2 id="eula">利用規約</h2>
-                <EULA />
               </section>
             </>
           )}
