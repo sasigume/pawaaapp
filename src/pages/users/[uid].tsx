@@ -6,7 +6,6 @@ import Layout from '@/components/partials/layout'
 import Container from '@/components/common/container'
 import { toast } from 'react-toastify';
 import { useAuthentication } from '@/hooks/authentication'
-import { SITE_URL } from '@/lib/constants'
 
 interface Query {
   uid?: string
@@ -112,7 +111,7 @@ export default function UserShow() {
           ) : (
               <Container>
                 <div className="flex flex-col py-16 justify-center text-center">
-                  <a className="block bg-blue-400 text-white text-4xl shadow-xl font-bold rounded-xl p-4" target="_blank" href={(`https://twitter.com/intent/tweet?text=質問してね！%0A%0A${SITE_URL}/users/${user.uid}`)} data-show-count="false">Tweet</a>
+                  <a className="block bg-blue-400 text-white text-4xl shadow-xl font-bold rounded-xl p-4" target="_blank" href={(`https://twitter.com/intent/tweet?text=質問してね！%0A%0A${process.env.HTTPS_URL}/users/${user.uid}`)} data-show-count="false">Tweet</a>
 
                   <div className="my-16">自分に質問はできません。</div>
                 </div>

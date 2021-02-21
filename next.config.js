@@ -23,6 +23,6 @@ module.exports = {
     CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
     CLOUDINARY_OGP_PATH: process.env.CLOUDINARY_OGP_PATH,
     PART_OF_GCP_CREDENTIAL: process.env.PART_OF_GCP_CREDENTIAL,
-    WEB_URL: process.env.WEB_URL
+    HTTPS_URL: process.env.HTTPS_URL
   }
 }
