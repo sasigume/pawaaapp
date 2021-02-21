@@ -11,7 +11,7 @@ export default function TweetButton(props: Props) {
   )}&text=${encodeURIComponent(props.text)}&hashtags=PAWAAAPP`
 
   return (
-    <a href={url} className="w-40 text-white text-2xl block p-4 rounded-lg m-6 shadow-lg bg-blue-400">
+    <a target="_blank" href={url} className="w-40 text-white text-2xl block p-4 rounded-lg m-6 shadow-lg bg-blue-400">
       <span className="inline-block w-5"><FontAwesomeIcon icon={['fab', 'twitter']} /></span> ツイート
     </a>
   )
