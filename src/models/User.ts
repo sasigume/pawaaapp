@@ -3,4 +3,5 @@ export interface User {
   isAnonymous: boolean
   name: string
   email?: string
+  photoUrl?: string
 }
