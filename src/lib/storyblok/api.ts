@@ -39,18 +39,6 @@ export async function getAllPostsWithSlug() {
   return data?.PostItems.items
 }
 
-export async function getTagsWithSlug() {
-  const data = await fetchAPI(`
-    {
-      Tags {
-        items {
-          name
-        }
-      }
-    }
-  `)
-  return data?.Tags.items
-}
 
 export async function getAllPostsForHome(preview: any) {
   const data = await fetchAPI(
@@ -61,7 +49,6 @@ export async function getAllPostsForHome(preview: any) {
           slug
           published_at
           first_published_at
-          tag_list
           content {
             long_text
             intro
@@ -134,12 +121,15 @@ export async function getAllPostsForCreator(uuid: string, preview: any) {
         slug
         published_at
         first_published_at
-        tag_list
         content {
           long_text
           intro
           title
           image
+          subjects {
+            slug
+            content
+          }
           creator {
             slug
             content
@@ -172,39 +162,6 @@ export async function getCreatorsWithSlug() {
   return data?.CreatorItems.items
 }
 
-export async function getAllPostsForTag(tag: string, preview: any) {
-  const data = await fetchAPI(
-    `
-    query PostWithTag($tag: String) {
-      PostItems(sort_by: "first_published_at:desc",with_tag: $tag) {
-        items {
-          slug
-          published_at
-          first_published_at
-          tag_list
-          content {
-            long_text
-            intro
-            title
-            image
-            creator {
-              slug
-              content
-            }
-          }
-        }
-      }
-    }
-  `,
-    {
-      preview,
-      variables: {
-        tag: `${tag}`,
-      },
-    }
-  )
-  return data?.PostItems.items
-}
 
 export async function getPostsForSinglePage(slug: string, preview: any) {
   const data = await fetchAPI(`
@@ -214,12 +171,15 @@ export async function getPostsForSinglePage(slug: string, preview: any) {
       published_at
       first_published_at
       id
-      tag_list
       content {
         long_text
         intro
         title
         image
+        subjects {
+          slug
+          content
+        }
         creator {
           slug
           content
@@ -231,12 +191,15 @@ export async function getPostsForSinglePage(slug: string, preview: any) {
         slug
         published_at
         first_published_at
-        tag_list
         content {
           long_text
           intro
           title
           image
+          subjects {
+            slug
+            content
+          }
           creator {
             slug
             content
