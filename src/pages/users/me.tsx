@@ -25,10 +25,12 @@ export default function UsersMe() {
   return (
     <Layout preview={false} title={'マイページ'} desc={'マイページ'} >
       <Container>
-        <h1 className="">マイページ</h1>
+        <div className="my-16">
+        <h1 className="text-4xl mb-8">マイページ</h1>
         <p>このページをツイートして質問してもらおう！</p>
-        <div className="d-flex justify-content-center">
+        <div className="flex flex-col items-center justify-center">
           <TweetButton url={url} text={'質問してね！'} />
+        </div>
         </div>
       </Container>
     </Layout>

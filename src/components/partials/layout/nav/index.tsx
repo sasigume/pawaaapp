@@ -5,6 +5,7 @@ import SignIn from './signin'
 import Logo from '@/components/common/Logo'
 
 export default function Nav({ preview }: any) {
+  const btnStyle = 'ml-2 shadow-lg rounded-lg block text-white p-2 '
   return (
     <div
       className={cn('w-screen z-20 bg-white border-b flex flex-col md:flex-row justify-between items-center align-middle py-2 px-3', {
@@ -14,14 +15,15 @@ export default function Nav({ preview }: any) {
     >
       <div className="w-64 py-4 md:py-2">
         <Logo />
-        <div className="flex flex-wrap mt-6">
-          <Link href={(`/users/me`)}><a className="block p-1 bg-blue-200">マイページ</a></Link>
-          <Link href="/comments/received"><a className="block ml-3 p-1 bg-green-200">届いた質問</a></Link>
-        </div>
+
       </div>
-      <div className="flex items-center">
+      <div className="">
         <UserInfo />
-        <SignIn />
+        <div className="flex justify-between">
+          <SignIn />
+          <Link href={(`/users/me`)}><a className={btnStyle + 'bg-blue-600'}>マイページ</a></Link>
+          <Link href="/comments/received"><a className={btnStyle + 'bg-green-600'}>届いた質問</a></Link>
+        </div>
       </div>
     </div>
   )

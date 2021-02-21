@@ -15,7 +15,7 @@ const SignIn: FC = () => {
     firebaseApi.auth().signOut();
   }
   return (
-    <a className={cn('ml-4 text-white cursor-pointer text-center block text-md shadow-lg font-bold p-2 rounded-lg',{
+    <a className={cn('text-white cursor-pointer text-center block text-md shadow-lg font-bold p-2 rounded-lg',{
       'bg-red-700': googleUser.user,
       'bg-blue-500': !googleUser.user
     })} onClick={googleUser.user ? logout : login}>

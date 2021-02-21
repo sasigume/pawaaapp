@@ -15,12 +15,12 @@ export default function AnswersShow(props: Props) {
 
   if(user == null){
     return (
-      <Layout preview={false} title={props.comment ? props.comment.body : 'LOADING'} desc={'回答の詳細ページ'}>
+      <Layout preview={false} title={props.comment ? props.comment.body : '(質問が見つかりませんでした)'} desc={'回答の詳細ページ'}>
         <Container>ログインしてください。</Container>
       </Layout>
     )
   } else return (
-    <Layout preview={false} title={props.comment ? props.comment.body : 'LOADING'} desc={'回答の詳細ページ'}>
+    <Layout preview={false} title={props.comment ? props.comment.body : '(質問が見つかりませんでした)'} desc={'回答の詳細ページ'}>
       <Container>
         
         <div className="flex flex-col items-center my-16">
