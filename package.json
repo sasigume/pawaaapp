@@ -1,13 +1,13 @@
 {
   "name": "pawaaapp",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
     "firestore": "firebase deploy --only firestore",
-    "now-build": "cp src/lib/canvas_lib64/*so.1 node_modules/canvas/build/Release/ && npm run build"
+    "now-build": "cp src/lib/canvas_lib64/*so.1 node_modules/canvas/build/Release/ && npm run build && node src/lib/sitemapgen"
   },
   "dependencies": {
     "canvas": "^2.6.1",
