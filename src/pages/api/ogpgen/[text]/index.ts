@@ -2,9 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import * as path from 'path'
 import { createCanvas, registerFont, loadImage } from 'canvas'
 import '@/lib/firebase-admin'
-import { firestore } from 'firebase-admin'
-import { Answer } from '@/models/Answer'
-import { Comment } from '@/models/Comment'
 
 interface SeparatedText {
   line: string
@@ -44,15 +41,7 @@ function createTextLines(context:any, text: string): string[] {
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const id = req.query.id as string
-
-  const answerDoc = await firestore().collection('answers').doc(id).get()
-  const answer = answerDoc.data() as Answer
-  const commentDoc = await firestore()
-    .collection('comments')
-    .doc(answer.commentId)
-    .get()
-  const comment = commentDoc.data() as Comment
+  const reqText = req.query.text as string
 
   const width = 600
   const height = 315
@@ -73,7 +62,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   context.textAlign = 'center'
   context.textBaseline = 'middle'
 
-  const lines = createTextLines(context, comment.body)
+  const lines = createTextLines(context, reqText)
   lines.forEach((line, index) => {
     const y = 130 + 40 * (index - (lines.length - 1) / 2)
     context.fillText(line, 300, y)

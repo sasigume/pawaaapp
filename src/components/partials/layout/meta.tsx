@@ -1,13 +1,21 @@
 import Head from 'next/head'
 import { SITE_NAME } from '@/lib/constants'
 import GetOGPImage from '@/lib/ogp-image'
-
 interface Props {
   desc: string;
   title: string;
 }
 
+function trimText(text:string) {
+  const body = text.trim().replace(/[ \r\n]/g, '')
+  if (body.length < 140) {
+    return body
+  }
+  return body.substring(0, 140) + '...'
+}
+
 export default function Meta({ desc, title }: Props) {
+  const ogpUrl = process.env.WEB_URL + '/api/ogpgen/' + trimText(title)
   return (
     <Head>
       <meta charSet="utf-8" />
@@ -30,7 +38,12 @@ export default function Meta({ desc, title }: Props) {
         name="description"
         content={desc}
       />
-      <meta property="og:image" content={GetOGPImage(title)} />
+
+      <meta property="og:image" content={ogpUrl} />
+      <meta property="og:image" key="ogImage" content={ogpUrl} />
+      <meta name="twitter:card" key="twitterCard" content="summary_large_image" />
+      <meta name="twitter:image" key="twitterImage" content={ogpUrl} />
+
       <title>{title == SITE_NAME ? SITE_NAME : (title + ' | ' + SITE_NAME)}</title>
     </Head>
   )
