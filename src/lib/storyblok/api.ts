@@ -67,8 +67,7 @@ export async function getAllPostsForHome(preview: any) {
             intro
             title
             image
-            author {
-              name
+            creator {
               slug
               content
             }
@@ -82,16 +81,16 @@ export async function getAllPostsForHome(preview: any) {
   return data?.PostItems.items
 }
 
-export async function getAllAuthorsForHome(preview: any) {
+export async function getAllCreatorsForHome(preview: any) {
   const data = await fetchAPI(
     `
     {
-      AuthorItems(sort_by: "first_published_at:desc") {
+      CreatorItems(sort_by: "first_published_at:desc") {
         items {
-          name
           slug
           published_at
           content {
+            displayName
             picture {
               filename
             }
@@ -103,17 +102,19 @@ export async function getAllAuthorsForHome(preview: any) {
   `,
     { preview }
   )
-  return data?.AuthorItems.items
+  return data?.CreatorItems.items
 }
 
-export async function getAuthor(slug:string, preview: any) {
+export async function getCreator(slug:string, preview: any) {
   const uuids = await fetchAPI(`
   {
-    AuthorItems(by_slugs: "authors/${slug}") {
+    CreatorItems(by_slugs: "creators/${slug}") {
       items {
-        name
         slug
         uuid
+        content {
+          displayName
+        }
       }
     }
   }  
@@ -121,14 +122,14 @@ export async function getAuthor(slug:string, preview: any) {
     { preview }
   )
 
-  return uuids.AuthorItems.items[0]
+  return uuids.CreatorItems.items[0]
 }
 
-export async function getAllPostsForAuthor(uuid: string, preview: any) {
+export async function getAllPostsForCreator(uuid: string, preview: any) {
   const data = await fetchAPI(
 `
-  query PostWithAuthor($uuid: String) {
-    PostItems(sort_by: "first_published_at:desc", filter_query_v2: {author: {in: $uuid}}) {
+  query PostWithCreator($uuid: String) {
+    PostItems(sort_by: "first_published_at:desc", filter_query_v2: {creator: {in: $uuid}}) {
       items {
         slug
         published_at
@@ -139,8 +140,7 @@ export async function getAllPostsForAuthor(uuid: string, preview: any) {
           intro
           title
           image
-          author {
-            name
+          creator {
             slug
             content
           }
@@ -159,17 +159,17 @@ export async function getAllPostsForAuthor(uuid: string, preview: any) {
   return data?.PostItems.items
 }
 
-export async function getAuthorsWithSlug() {
+export async function getCreatorsWithSlug() {
   const data = await fetchAPI(`
     {
-      AuthorItems {
+      CreatorItems {
         items {
           slug
         }
       }
     }
   `)
-  return data?.AuthorItems.items
+  return data?.CreatorItems.items
 }
 
 export async function getAllPostsForTag(tag: string, preview: any) {
@@ -187,8 +187,7 @@ export async function getAllPostsForTag(tag: string, preview: any) {
             intro
             title
             image
-            author {
-              name
+            creator {
               slug
               content
             }
@@ -221,8 +220,7 @@ export async function getPostsForSinglePage(slug: string, preview: any) {
         intro
         title
         image
-        author {
-          name
+        creator {
           slug
           content
         }
@@ -239,8 +237,7 @@ export async function getPostsForSinglePage(slug: string, preview: any) {
           intro
           title
           image
-          author {
-            name
+          creator {
             slug
             content
           }
