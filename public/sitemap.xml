@@ -3,39 +3,28 @@
         
 <url>
     <loc>http://localhost:3000/creators/yakisoba_panaki</loc>
-    <title>YakisobaPanaki</title>
-    <lastmod>Sat, 20 Feb 2021 03:39:11 GMT</lastmod>
+    <title>やきぱな</title>
+    <lastmod>Sun, 21 Feb 2021 09:37:50 GMT</lastmod>
 </url>
     
 <url>
     <loc>http://localhost:3000/creators/sasigume</loc>
-    <title>Sasigume</title>
-    <lastmod>Sat, 20 Feb 2021 01:51:53 GMT</lastmod>
+    <title>さしぐめ</title>
+    <lastmod>Sun, 21 Feb 2021 10:02:59 GMT</lastmod>
 </url>
     
         
 <url>
+    <loc>http://localhost:3000/posts/about-panaki</loc>
+    <title>やきぱなです</title>
+    <lastmod>Sun, 21 Feb 2021 09:41:06 GMT</lastmod>
+</url>
+    
+<url>
     <loc>http://localhost:3000/posts/mc-console-history</loc>
     <title>マインクラフトのゲーム機版が消えるまで</title>
-    <lastmod>Thu, 18 Feb 2021 12:16:36 GMT</lastmod>
-</url>
-    
-<url>
-    <loc>http://localhost:3000/posts/test-article-3</loc>
-    <title>テスト記事3！！！！！！！</title>
-    <lastmod>Sat, 20 Feb 2021 03:43:01 GMT</lastmod>
-</url>
-    
-<url>
-    <loc>http://localhost:3000/posts/test-article-2</loc>
-    <title>テスト記事2！！！！！！！</title>
-    <lastmod>Fri, 19 Feb 2021 14:50:38 GMT</lastmod>
-</url>
-    
-<url>
-    <loc>http://localhost:3000/posts/test-article-1</loc>
-    <title>テスト記事！！！！！！！</title>
-    <lastmod>Fri, 19 Feb 2021 12:54:08 GMT</lastmod>
+    <lastmod>Sun, 21 Feb 2021 09:26:18 GMT</lastmod>
 </url>
     
 </urlset>
+    

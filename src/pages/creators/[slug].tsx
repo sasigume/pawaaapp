@@ -4,8 +4,8 @@ import Container from '../../components/common/container'
 import PostList from '@/components/partials/post-list'
 import Layout from '@/components/partials/layout'
 import { getCreatorsWithSlug, getAllPostsForCreator, getCreator } from '@/lib/storyblok/api'
-import { Post } from '../../lib/types'
-import { SITE_NAME } from '../../lib/constants'
+import { Post } from '@/models/Post'
+import { SITE_NAME } from '@/lib/constants'
 interface IndexProps {
   creatorName?: string;
   posts: Post[];
