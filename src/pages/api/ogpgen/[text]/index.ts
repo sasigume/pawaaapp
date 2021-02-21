@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import * as path from 'path'
 import { createCanvas, registerFont, loadImage } from 'canvas'
 import '@/lib/firebase-admin'
-
+import {NGwords} from '../NGwords'
 interface SeparatedText {
   line: string
   remaining: string
@@ -43,15 +43,15 @@ function createTextLines(context: any, text: string): string[] {
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   let reqText = req.query.text as string
 
-  const NGwords = ['うんこ','しっこ']
-
   const NG = (target: string, pattern: any) => {
     var value = 0
     pattern.forEach(function (word: string) {
       target.includes(word) && value++
     });
-    return (value === 1)
+    return (value >= 1)
   }
+
+  // NGワードや長いやつはクソ小さい画像で警告する
 
   if (reqText.length > 60 || NG(reqText, NGwords)) {
     const noCanvas = createCanvas(100,10)
