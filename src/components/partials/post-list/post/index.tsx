@@ -4,7 +4,7 @@ import CoverImageComponent from './cover-image-component'
 import Link from 'next/link'
 import TagList from './tag-list'
 import PostBody from './post-body'
-import { PostComponentType } from '@/lib/types'
+import { PostComponentType } from '@/models/Post'
 
 export default function PostComponent({
   mode,
@@ -38,7 +38,7 @@ export default function PostComponent({
         公開: <Date dateString={first_published_at} /> /最終更新: <Date dateString={published_at} />
       </div>
       {mode == "list" && <p className="text-lg mb-4">{content.intro}</p>}
-      <Avatar slug={content.author.slug} name={content.author.name} content={content.author.content} />
+      <Avatar slug={content.creator.slug} content={content.creator.content} />
       {mode == "single" ? <PostBody md={content.long_text} /> : ''}
     </div>
   )

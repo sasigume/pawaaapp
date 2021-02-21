@@ -1,5 +1,5 @@
 import PostComponent from './post'
-import { Post } from '@/lib/types'
+import { Post } from '@/models/Post'
 
 interface MultiPostProps {
   posts: Post[];
