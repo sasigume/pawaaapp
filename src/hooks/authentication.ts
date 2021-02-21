@@ -2,6 +2,7 @@ import firebase from 'firebase/app'
 import { useEffect } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { User } from '../models/User'
+import { toast } from 'react-toastify';
 
 const userState = atom<User>({
   key: 'user',
@@ -25,28 +26,37 @@ export function useAuthentication() {
 
   useEffect(() => {
     if (user !== null) {
-      // Oh, there's already user
       return
     }
 
-    firebase
+    /*firebase
       .auth()
-      .signInAnonymously()
+      .signInWithRedirect(provider)
       .catch(function (error) {
         console.error(error)
-      })
+      }) */
 
     firebase.auth().onAuthStateChanged(function (firebaseUser) {
       if (firebaseUser) {
         const loginUser: User = {
           uid: firebaseUser.uid,
           isAnonymous: firebaseUser.isAnonymous,
-          name: 'taro' + new Date().getTime()
+          name: firebaseUser.displayName ?? 'Googleでサインイン中'
         }
         setUser(loginUser)
         createUserIfNotFound(loginUser)
+
+        toast.success('😙 ログインできました', {
+          position: "bottom-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       } else {
-       // Sign out
+        // Sign out
         setUser(null!)
       }
     })
