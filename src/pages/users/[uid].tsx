@@ -6,6 +6,7 @@ import Layout from '@/components/partials/layout'
 import Container from '@/components/common/container'
 import { toast } from 'react-toastify';
 import { useAuthentication } from '@/hooks/authentication'
+import Warning from '@/components/common/warning'
 
 interface Query {
   uid?: string
@@ -62,7 +63,8 @@ export default function UserShow() {
     setIsSending(false)
 
     setBody('')
-    toast.success('😙 送信できました!', {
+    router.push('/users/me')
+    toast.success('😙 送信できました! 連投はやめてね', {
       position: "bottom-center",
       autoClose: 4000,
       hideProgressBar: false,
@@ -71,6 +73,7 @@ export default function UserShow() {
       draggable: true,
       progress: undefined,
     });
+  
   }
   const currentUser = useAuthentication().user
 
@@ -84,7 +87,7 @@ export default function UserShow() {
               <div className="my-5">{user.name}さんに質問を送れます。</div>
 
               <div className="flex flex-col items-center">
-                <div className="bg-red-500 text-white text-3xl font-bold p-16 m-12">公序良俗に反した投稿は即刻削除します。Googleアカウントと投稿が紐づけられていることを忘れないでください。</div>
+              <Warning />
                 <form onSubmit={onSubmit}>
 
                   <div className="flex flex-col jusify-center mb-12">
