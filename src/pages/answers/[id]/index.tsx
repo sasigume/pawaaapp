@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Layout from '@/components/partials/layout'
 import { Answer } from '@/models/Answer'
 import { Comment } from '@/models/Comment'

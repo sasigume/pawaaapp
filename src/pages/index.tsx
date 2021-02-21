@@ -8,6 +8,7 @@ import { getAllPostsForHome, getAllAuthorsForHome } from '../lib/api'
 import { Post } from '../lib/types'
 import { SITE_NAME, SITE_DESC } from '@/lib/constants'
 import publishRss from '@/lib/rss'
+import publishSitemap from '@/lib/sitemap'
 interface IndexProps {
   posts: Post[];
   preview: boolean;
@@ -87,6 +88,7 @@ export async function getStaticProps({ preview = null }) {
   const allAuthors = (await getAllAuthorsForHome(preview)) || []
 
   publishRss(allAuthors, posts)
+  publishSitemap(allAuthors, posts)
 
   return {
     props: { posts, preview },
