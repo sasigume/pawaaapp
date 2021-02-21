@@ -7,31 +7,61 @@
       
 	<url>
 		<loc>https://pawaa.app/404</loc>
-		<lastmod>2021-02-20</lastmod>
+		<lastmod>2021-02-21</lastmod>
+	</url>
+
+	<url>
+		<loc>https://pawaa.app/authors/sasigume</loc>
+		<lastmod>2021-02-21</lastmod>
+	</url>
+
+	<url>
+		<loc>https://pawaa.app/authors/yakisoba_panaki</loc>
+		<lastmod>2021-02-21</lastmod>
+	</url>
+
+	<url>
+		<loc>https://pawaa.app/comments/[id]</loc>
+		<lastmod>2021-02-21</lastmod>
+	</url>
+
+	<url>
+		<loc>https://pawaa.app/comments/received</loc>
+		<lastmod>2021-02-21</lastmod>
 	</url>
 
 	<url>
 		<loc>https://pawaa.app/index</loc>
-		<lastmod>2021-02-20</lastmod>
+		<lastmod>2021-02-21</lastmod>
 	</url>
 
 	<url>
 		<loc>https://pawaa.app/posts/mc-console-history</loc>
-		<lastmod>2021-02-20</lastmod>
+		<lastmod>2021-02-21</lastmod>
 	</url>
 
 	<url>
 		<loc>https://pawaa.app/posts/test-article-1</loc>
-		<lastmod>2021-02-20</lastmod>
+		<lastmod>2021-02-21</lastmod>
 	</url>
 
 	<url>
 		<loc>https://pawaa.app/posts/test-article-2</loc>
-		<lastmod>2021-02-20</lastmod>
+		<lastmod>2021-02-21</lastmod>
+	</url>
+
+	<url>
+		<loc>https://pawaa.app/posts/test-article-3</loc>
+		<lastmod>2021-02-21</lastmod>
 	</url>
 
 	<url>
 		<loc>https://pawaa.app/tags/Minecraft</loc>
-		<lastmod>2021-02-20</lastmod>
+		<lastmod>2021-02-21</lastmod>
+	</url>
+
+	<url>
+		<loc>https://pawaa.app/users/[uid]</loc>
+		<lastmod>2021-02-21</lastmod>
 	</url>
 </urlset>
