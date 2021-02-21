@@ -8,7 +8,7 @@ interface SeparatedText {
   remaining: string
 }
 
-function createTextLine(context:any, text: string): SeparatedText {
+function createTextLine(context: any, text: string): SeparatedText {
   const maxWidth = 500
 
   for (let i = 0; i < text.length; i++) {
@@ -27,7 +27,7 @@ function createTextLine(context:any, text: string): SeparatedText {
   }
 }
 
-function createTextLines(context:any, text: string): string[] {
+function createTextLines(context: any, text: string): string[] {
   const lines: string[] = []
   let currentText = text
 
@@ -41,7 +41,30 @@ function createTextLines(context:any, text: string): string[] {
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const reqText = req.query.text as string
+  let reqText = req.query.text as string
+
+  const NGwords = ['うんこ','しっこ']
+
+  const NG = (target: string, pattern: any) => {
+    var value = 0
+    pattern.forEach(function (word: string) {
+      target.includes(word) && value++
+    });
+    return (value === 1)
+  }
+
+  if (reqText.length > 60 || NG(reqText, NGwords)) {
+    const noCanvas = createCanvas(100,10)
+    const noContext = noCanvas.getContext('2d')
+    noContext.font = '6px sans-serif'
+    noContext.fillText('不正利用はログを残しております。',6,7)
+    res.writeHead(200, {
+      'Content-Type': 'image/png',
+      'Content-Length': noCanvas.toBuffer().length,
+    })
+    res.end(noCanvas.toBuffer(), 'binary')
+    return
+  }
 
   const width = 600
   const height = 315
