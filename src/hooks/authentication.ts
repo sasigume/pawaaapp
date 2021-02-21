@@ -31,7 +31,8 @@ export function useAuthentication() {
           uid: firebaseUser.uid,
           isAnonymous: firebaseUser.isAnonymous,
           name: firebaseUser.displayName ?? '名前を設定していません',
-          email: firebaseUser.email ?? ''
+          email: firebaseUser.email ?? '',
+          photoUrl: firebaseUser.providerData[0]?.photoURL ?? '/public/android-chrome-192x192.png'
         }
         setUser(loginUser)
         createUserIfNotFound(loginUser)

@@ -1,25 +1,27 @@
-import { FC, useContext } from 'react';
 import cn from 'classnames'
 import firebaseApi from '@/lib/firebase';
 import { useAuthentication } from '@/hooks/authentication'
-  
 
-const SignIn: FC = () => {
-  const googleUser = useAuthentication()
 
+const SignIn = () => {
+  const { user } = useAuthentication()
   const login = () => {
-    const provider = new firebaseApi.auth.GoogleAuthProvider();
-    firebaseApi.auth().signInWithRedirect(provider);
+    const provider = new firebaseApi.auth.TwitterAuthProvider();
+    firebaseApi.auth().languageCode = 'ja';
+    firebaseApi.auth().signInWithPopup(provider)
+      .catch((error) => {
+        console.log(error)
+      });
   }
   const logout = () => {
     firebaseApi.auth().signOut();
   }
   return (
-    <a className={cn('text-white cursor-pointer text-center block text-md shadow-lg font-bold p-2 rounded-lg',{
-      'bg-red-700': googleUser.user,
-      'bg-blue-500': !googleUser.user
-    })} onClick={googleUser.user ? logout : login}>
-      {googleUser.user ? 'ログアウトする' : 'Googleでログイン'}
+    <a className={cn('text-white cursor-pointer text-center block text-md shadow-lg font-bold p-2 rounded-lg', {
+      'bg-red-700': user,
+      'bg-blue-500': !user
+    })} onClick={user ? logout : login}>
+      {user ? 'ログアウトする' : 'Twitterでログイン'}
     </a>
   )
 }
