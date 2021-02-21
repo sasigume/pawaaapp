@@ -6,6 +6,7 @@ import Layout from '@/components/partials/layout'
 import Container from '@/components/common/container'
 import { toast } from 'react-toastify';
 import { useAuthentication } from '@/hooks/authentication'
+import Warning from '@/components/common/warning'
 
 interface Query {
   uid?: string
@@ -14,7 +15,7 @@ interface Query {
 export default function UserShow() {
   const [user, setUser] = useState<User>(null!)
   const [body, setBody] = useState('')
-  const [isSending, setIsSending] = useState(false)
+  const [didYouSend, setSended] = useState(false)
 
   const router = useRouter()
   const query = router.query as Query
@@ -47,7 +48,7 @@ export default function UserShow() {
     e.preventDefault()
 
     // prevent duplicated post
-    setIsSending(true)
+    setSended(true)
 
     console.log('Sending to ' + user.uid)
 
@@ -58,11 +59,9 @@ export default function UserShow() {
       isReplied: false,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     })
-    // end submit action
-    setIsSending(false)
 
     setBody('')
-    toast.success('😙 送信できました!', {
+    toast.success('😙 送信できました! 連投はやめてね', {
       position: "bottom-center",
       autoClose: 4000,
       hideProgressBar: false,
@@ -71,6 +70,7 @@ export default function UserShow() {
       draggable: true,
       progress: undefined,
     });
+  
   }
   const currentUser = useAuthentication().user
 
@@ -84,7 +84,7 @@ export default function UserShow() {
               <div className="my-5">{user.name}さんに質問を送れます。</div>
 
               <div className="flex flex-col items-center">
-                <div className="bg-red-500 text-white text-3xl font-bold p-16 m-12">公序良俗に反した投稿は即刻削除します。Googleアカウントと投稿が紐づけられていることを忘れないでください。</div>
+              <Warning />
                 <form onSubmit={onSubmit}>
 
                   <div className="flex flex-col jusify-center mb-12">
@@ -95,9 +95,9 @@ export default function UserShow() {
                       onChange={(e) => setBody(e.target.value)}
                       required
                     ></textarea>
-                    {isSending ? (
+                    {didYouSend ? (
                       <span className="" role="status">
-                        (送信中)
+                        (送信できました)
                       </span>
                     ) : (
                         <button type="submit" className="p-4 bg-blue-400 text-white font-bold shadow-lg rounded-xl">

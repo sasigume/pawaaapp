@@ -1,3 +1,5 @@
+import Container from '@/components/common/container'
+import Layout from '@/components/partials/layout'
 import { SITE_NAME } from '@/lib/constants'
 import eulaStyle from './eula-styles.module.css'
 
@@ -141,6 +143,12 @@ const EULATEXT = (
   </div>
 )
 const EULA = () => (
-  <div className="p-6 m-8 rounded-xl bg-gray-200 text-sm leading-snug">{EULATEXT}<br />原文: https://kiyaku.jp/hinagata/sns.html</div>
+  <Layout preview={false} title={'利用規約'} desc={'利用規約'}>
+    <Container>
+      <h1 className="text-4xl my-8">利用規約</h1>
+      <div className="p-6 m-4 rounded-xl bg-gray-200 text-sm">{EULATEXT}<br />原文: https://kiyaku.jp/hinagata/sns.html</div>
+
+    </Container>
+  </Layout>
 )
 export default EULA
