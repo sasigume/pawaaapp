@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Layout from '@/components/partials/layout'
 import { Answer } from '@/models/Answer'
 import { Comment } from '@/models/Comment'
@@ -7,9 +8,27 @@ type Props = {
   comment: Comment
 }
 
+function getDescription(answer: Answer) {
+  const body = answer.body.trim().replace(/[ \r\n]/g, '')
+  if (body.length < 140) {
+    return body
+  }
+  return body.substring(0, 140) + '...'
+}
+
 export default function AnswersShow(props: Props) {
+  const description = getDescription(props.answer)
+
   return (
     <Layout preview={false} title={props.answer ? props.answer.body : 'LOADING'} desc={"回答です"}>
+      <Head>
+        <meta name="description" key="description" content={description} />
+        <meta
+          property="og:description"
+          key="ogDescription"
+          content={description}
+        />
+      </Head>
       <div className="my-8 justify-center">
         <div className="">
           <>
