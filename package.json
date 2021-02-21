@@ -1,6 +1,6 @@
 {
   "name": "pawaaapp",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "scripts": {
     "dev": "next",
     "build": "next build",
