@@ -104,7 +104,7 @@ export default function CommentsReceived() {
   }, [process.browser, user])
 
   return (
-    <Layout preview={false} title={user ? (user.name + 'さんの受け取った質問') : 'LOADING'} desc={"受け取ったコメントの一覧です"}>
+    <Layout preview={false} title={user ? (user.name + 'さんの受け取った質問') : '(質問一覧)'} desc={"受け取ったコメントの一覧です"}>
       <Container><h1 className="text-4xl my-10">受け取った質問一覧</h1>
 
         <div className="min-h-screen">

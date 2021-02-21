@@ -75,7 +75,7 @@ export default function UserShow() {
   const currentUser = useAuthentication().user
 
   return (
-    <Layout preview={false} title={user ? (user.name + 'さんのページ') : 'LOADING'} desc={"ユーザー詳細ページです"}>
+    <Layout preview={false} title={user ? (user.name + 'さんのページ') : '(ユーザー詳細ページ)'} desc={"ユーザー詳細ページです"}>
       {(user && currentUser)  &&
         <div>
           {user.uid != currentUser.uid ? (
