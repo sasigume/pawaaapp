@@ -101,7 +101,7 @@ export default function CommentsShow() {
   }
 
   return (
-    <Layout preview={false} title={comment ? comment.body : 'LOADING'} desc={comment ? comment.body : ''}>
+    <Layout preview={false} title={comment ? comment.body : '(質問が見つかりませんでした)'} desc={comment ? comment.body : ''}>
       <Container>
         <div className="">
           {comment && (

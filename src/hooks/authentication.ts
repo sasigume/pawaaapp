@@ -15,10 +15,6 @@ async function createUserIfNotFound(user: User) {
   if (doc.exists) {
     return
   }
-
-  await userRef.set({
-    name: user.name
-  })
 }
 
 export function useAuthentication() {
@@ -29,19 +25,13 @@ export function useAuthentication() {
       return
     }
 
-    /*firebase
-      .auth()
-      .signInWithRedirect(provider)
-      .catch(function (error) {
-        console.error(error)
-      }) */
-
     firebase.auth().onAuthStateChanged(function (firebaseUser) {
       if (firebaseUser) {
         const loginUser: User = {
           uid: firebaseUser.uid,
           isAnonymous: firebaseUser.isAnonymous,
-          name: firebaseUser.displayName ?? 'Googleでサインイン中'
+          name: firebaseUser.displayName ?? '名前を設定していません',
+          email: firebaseUser.email ?? ''
         }
         setUser(loginUser)
         createUserIfNotFound(loginUser)
