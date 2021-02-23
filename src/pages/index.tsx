@@ -11,10 +11,10 @@ import publishRss from '@/lib/rss'
 import publishSitemap from '@/lib/sitemap'
 interface IndexProps {
   posts: Post[];
-  preview: boolean;
+  environment: boolean;
 }
 
-const Index = ({ posts, preview }: IndexProps) => {
+const Index = ({ posts, environment }: IndexProps) => {
 
   const mockupList = [
     "/mockup/1.png",
@@ -28,7 +28,7 @@ const Index = ({ posts, preview }: IndexProps) => {
   ]
 
   return (
-    <Layout preview={preview} title={SITE_NAME} desc={SITE_DESC}>
+    <Layout preview={environment} title={SITE_NAME} desc={SITE_DESC}>
       <div className="w-screen bg-red-400 text-white flex">
         <Container>
           <div className="max-w-3xl flex flex-col items-center justify-center">
@@ -83,14 +83,16 @@ const Index = ({ posts, preview }: IndexProps) => {
 
 export default Index
 
-export async function getStaticProps({ preview = null }) {
-  const posts = (await getAllPostsForHome(preview)) || []
-  const allCreators = (await getAllCreatorsForHome(preview)) || []
+export async function getStaticProps() {
+  let environment: boolean
+  process.env.NODE_ENV == "development" ? environment = true : environment = false
+  const posts = (await getAllPostsForHome(environment)) || []
+  const allCreators = (await getAllCreatorsForHome(environment)) || []
 
   publishRss(allCreators, posts)
   publishSitemap(allCreators, posts)
 
   return {
-    props: { posts, preview },
+    props: { posts, environment },
   }
 }
