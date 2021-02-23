@@ -12,7 +12,7 @@ export default function Avatar({slug,content}:Creator) {
         className="w-12 h-12 rounded-full mr-4 grayscale"
         alt={content ? content.displayName : '(クリエイターが見つかりません)'}
       />
-      <div className="text-xl font-bold">{content && content.displayName}</div>
+      <div className="text-xl font-bold">{content ? content.displayName : '(入力なし)'}</div>
     </div>
     </a>
     </Link>
