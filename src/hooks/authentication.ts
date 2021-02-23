@@ -1,8 +1,7 @@
 import firebase from 'firebase/app'
 import { useEffect } from 'react'
 import { atom, useRecoilState } from 'recoil'
-import { User } from '../models/User'
-import { toast } from 'react-toastify';
+import { User } from '@/models/User'
 
 const userState = atom<User>({
   key: 'user',
@@ -32,22 +31,14 @@ export function useAuthentication() {
           isAnonymous: firebaseUser.isAnonymous,
           name: firebaseUser.displayName ?? '名前を設定していません',
           email: firebaseUser.email ?? '',
-          photoUrl: firebaseUser.providerData[0]?.photoURL ?? '/public/android-chrome-192x192.png'
+          photoUrl: firebaseUser.providerData[0]?.photoURL ?? '/public/android-chrome-192x192.png',
         }
         setUser(loginUser)
         createUserIfNotFound(loginUser)
 
-        toast.success('😙 ログインできました', {
-          position: "bottom-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        console.log('Login: ' + loginUser.uid)
       } else {
-        // Sign out
+        console.log('Setuser:null')
         setUser(null!)
       }
     })

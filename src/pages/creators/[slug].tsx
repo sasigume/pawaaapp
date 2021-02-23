@@ -21,7 +21,7 @@ const CreatorIndex = ({ creatorName, posts, preview }: IndexProps) => {
   return (
     <>
       {(router.isFallback) ? (
-        <Layout preview={preview} title={'Loading... | ' + SITE_NAME} desc={''}><div>Article not found</div></Layout>
+        <Layout preview={preview} title={'Loading... | ' + SITE_NAME} desc={''}><div>当てはまる記事がありません。</div></Layout>
       ) : (
           <Layout preview={preview} title={(`${creatorName}が書いた記事一覧`)} desc={"Pawaa.app"}>
             <div>
@@ -66,7 +66,6 @@ export async function getStaticProps({ params }: GSProps) {
 
 export async function getStaticPaths() {
   const allCreators = await getCreatorsWithSlug()
-  console.log('Found auhtos: ', allCreators)
   return {
     paths: allCreators?.map((a: any) => `/creators/${a.slug}`) || [],
     fallback: true,

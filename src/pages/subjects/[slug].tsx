@@ -21,7 +21,7 @@ const SubjectIndex = ({ subjectName, posts, preview }: IndexProps) => {
   return (
     <>
       {(router.isFallback) ? (
-        <Layout preview={preview} title={'Loading... | ' + SITE_NAME} desc={''}><div>Article not found</div></Layout>
+        <Layout preview={preview} title={'Loading... | ' + SITE_NAME} desc={''}><div>当てはまる記事がありません。</div></Layout>
       ) : (
           <Layout preview={preview} title={(`${subjectName}の記事一覧`)} desc={"Pawaa.app"}>
             <div>
@@ -67,7 +67,6 @@ export async function getStaticProps({ params }: GSProps) {
 
 export async function getStaticPaths() {
   const allSubjects = await getSubjectsWithSlug()
-  console.log('Found auhtos: ', allSubjects)
   return {
     paths: allSubjects?.map((a: any) => `/subjects/${a.slug}`) || [],
     fallback: true,
