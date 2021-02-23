@@ -7,6 +7,7 @@ module.exports = {
     }
     return config;
   },
+  
   env: {
     STORYBLOK_PREVIEW_TOKEN: process.env.STORYBLOK_PREVIEW_TOKEN,
     STORYBLOK_PUBLIC_TOKEN: process.env.STORYBLOK_PUBLIC_TOKEN,
@@ -22,6 +23,6 @@ module.exports = {
     HTTPS_URL: process.env.HTTPS_URL
   },
   images: {
-    domains: ['pbs.twimg.com']
+    domains: ['localhost','pbs.twimg.com']
   }
 }

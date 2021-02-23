@@ -18,9 +18,9 @@ export default function Nav({ preview }: any) {
 
       </div>
       <div className="">
-        <UserInfo />
-        <div className="flex justify-between">
-          <SignIn />
+        <div className="flex justify-end items-center mb-2"><UserInfo /><SignIn /></div>
+        <div className="flex justify-end">
+          
           <Link href={(`/users/me`)}><a className={btnStyle + 'bg-blue-600'}>マイページ</a></Link>
           <Link href="/bookmarks"><a className={btnStyle + 'bg-green-600'}>お気に入り記事</a></Link>
         </div>

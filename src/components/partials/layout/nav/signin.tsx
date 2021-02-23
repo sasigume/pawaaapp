@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import firebaseApi from '@/lib/firebase';
 import { useAuthentication } from '@/hooks/authentication'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const SignIn = () => {
   const { user } = useAuthentication()
@@ -17,11 +17,15 @@ const SignIn = () => {
     firebaseApi.auth().signOut();
   }
   return (
-    <a className={cn('text-white cursor-pointer text-center block text-md shadow-lg font-bold p-2 rounded-lg', {
+    <a className={cn('ml-2 text-white cursor-pointer text-center flex items-center p-2 text-md shadow-lg font-bold rounded-lg', {
       'bg-red-700': user,
       'bg-blue-500': !user
     })} onClick={user ? logout : login}>
-      {user ? 'ログアウトする' : 'Twitterでログイン'}
+      {user ? (
+        <>ログアウト</>
+      ) : (
+          <><div className="inline-block w-5"><FontAwesomeIcon icon={['fab','twitter']} /></div> ログイン</>
+        )}
     </a>
   )
 }
