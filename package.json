@@ -1,6 +1,6 @@
 {
   "name": "pawaaapp",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -43,6 +43,9 @@
     "tailwindcss": "^2.0.3",
     "tsc-watch": "^4.2.9",
     "typescript": "4.0"
+  },
+  "repository": {
+    "url": "https://github.com/sasigume/pawaaapp"
   },
   "license": "MIT"
 }

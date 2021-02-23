@@ -52,7 +52,6 @@ export async function getStaticProps({ params }: GSProps) {
   process.env.NODE_ENV == "development" ? environment = true : environment = false
 
   const subjectData = (await getSubject(slug,environment)) || ''
-  console.log(subjectData.uuid)
   const posts = (await getAllPostsForSubject(subjectData.uuid, environment)) || []
 
   return {
