@@ -3,15 +3,20 @@ import { useRouter } from 'next/router'
 import firebase from 'firebase/app'
 import ErrorPage from 'next/error'
 import { toast } from 'react-toastify';
-import Warning from '@/components/common/warning'
+import { useAuthentication } from '@/hooks/authentication'
+import Link from 'next/link'
+
 import { getAllPostsWithSlug, getPostsForSinglePage } from '@/lib/storyblok/api'
 import { Post } from '@/models/Post'
 import { PostComment } from '@/models/PostComment'
+
 import Container from '../../../components/common/container'
 import Layout from '@/components/partials/layout'
 import PostList from '@/components/partials/post-list'
 import SectionSeparator from '@/components/common/section-separator'
 import PostCommentComponent from '@/components/partials/post-comment/'
+import Warning from '@/components/common/warning'
+
 
 interface PostPageProps {
   firstPost: Post;
@@ -22,6 +27,8 @@ interface PostPageProps {
 
 
 export default function PostPage({ firstPost, morePosts, postComments, preview }: PostPageProps) {
+
+  const { user } = useAuthentication()
 
   const [body, setBody] = useState('')
   const [didYouSend, setSended] = useState(false)
@@ -80,14 +87,13 @@ export default function PostPage({ firstPost, morePosts, postComments, preview }
 
                 <div className="flex flex-col items-center">
 
-                  <Warning />
-                  <form onSubmit={onSubmit}>
+                  {user ?(<div className="max-w-xl mb-6"><Warning />
+                  <form className="w-full px-6" onSubmit={onSubmit}>
 
                     <div className="flex flex-col jusify-center mb-12">
                       <textarea
-                        className="w-64 border-2 p-4 mb-4 rounded-xl border-gray-600"
+                        className="w-full border-2 p-4 mb-4 rounded-xl border-gray-600"
                         placeholder="コメントを書いてね"
-                        rows={6}
                         onChange={(e) => setBody(e.target.value)}
                         required
                       ></textarea>
@@ -102,6 +108,9 @@ export default function PostPage({ firstPost, morePosts, postComments, preview }
                         )}
                     </div>
                   </form>
+                  </div>):(<div className="my-6">
+                      <Link href="/login">ログイン</Link>してコメントしてみよう!
+                  </div>)}
                 </div>
 
 
@@ -135,7 +144,7 @@ export async function getStaticProps({ params }: GSProps) {
       morePosts: posts.morePosts,
       postComments: postComments
     },
-    revalidate: 300,
+    revalidate: 60,
   }
 }
 
