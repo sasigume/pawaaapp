@@ -25,9 +25,7 @@ export default function UsersMe() {
       <Container>
         <div className="my-8">
         <h1 className="text-4xl mb-8">マイページ</h1>
-        <div className="my-16">ログイン中: {user.name}さん</div>
-        <p>ツイートして質問してもらおう！(このページのURLは関係ありません)
-        </p>
+        <div className="my-16">ログイン中: {user.name}さん (お問い合わせID: {user.uid})</div>
         <div className="flex flex-col items-center justify-center">
           <TweetButton url={url} text={'質問してね！'} />
         </div>
