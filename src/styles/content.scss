@@ -64,11 +64,11 @@ $mq-lg: "(min-width: 1200px)";
 } */
 
 .globalStyle_content {
+    max-width: 650px;
+
     img {
         max-width: 100%;
         height   : auto;
-        zoom     : 1.4;
-        /* 横幅大きくなったから無理矢理大きくする */
         margin   : 0.5rem 0 0.3rem;
 
         &.border {
