@@ -20,6 +20,7 @@ interface PostPageProps {
   preview: boolean;
 }
 
+
 export default function PostPage({ firstPost, morePosts, postComments, preview }: PostPageProps) {
 
   const [body, setBody] = useState('')
@@ -78,7 +79,7 @@ export default function PostPage({ firstPost, morePosts, postComments, preview }
                   )}
 
                 <div className="flex flex-col items-center">
-                  
+
                   <Warning />
                   <form onSubmit={onSubmit}>
 
@@ -96,7 +97,7 @@ export default function PostPage({ firstPost, morePosts, postComments, preview }
                         </span>
                       ) : (
                           <button type="submit" className="p-4 bg-blue-400 text-white font-bold shadow-lg rounded-xl">
-                            質問を送信する
+                            コメントする
                           </button>
                         )}
                     </div>
@@ -108,7 +109,8 @@ export default function PostPage({ firstPost, morePosts, postComments, preview }
               </Container>
             </div>
           </Layout>
-        )}
+        )
+      }
     </>)
 }
 
@@ -144,4 +146,3 @@ export async function getStaticPaths() {
     fallback: true,
   }
 }
-
