@@ -16,12 +16,12 @@ import PostCommentComponent from '@/components/partials/post-comment/'
 interface PostPageProps {
   firstPost: Post;
   morePosts: Post[];
-  //postComments: PostComment[];
+  postComments: PostComment[];
   preview: boolean;
 }
 
 
-export default function PostPage({ firstPost, morePosts, /*postComments, */ preview }: PostPageProps) {
+export default function PostPage({ firstPost, morePosts, postComments, preview }: PostPageProps) {
 
   const [body, setBody] = useState('')
   const [didYouSend, setSended] = useState(false)
@@ -72,7 +72,7 @@ export default function PostPage({ firstPost, morePosts, /*postComments, */ prev
 
                 <h2 className="text-3xl font-bold mt-8">コメント</h2>
 
-                {/*{(postComments && postComments.length > 0) ? postComments.map(
+                {(postComments && postComments.length > 0) ? postComments.map(
                   (c: PostComment) => <PostCommentComponent c={c} key={c.id} />
                 ) : (
                     <div>コメントはありません。</div>
@@ -102,7 +102,7 @@ export default function PostPage({ firstPost, morePosts, /*postComments, */ prev
                         )}
                     </div>
                   </form>
-                      </div>*/}
+                </div>
 
 
                 {morePosts && morePosts.length > 0 && <PostList mode="more" posts={morePosts} />}
@@ -125,15 +125,15 @@ export async function getStaticProps({ params }: GSProps) {
   process.env.NODE_ENV == "development" ? environment = true : environment = false
   const posts = await getPostsForSinglePage(params.slug, environment)
 
-  //const commentsRes = await fetch(process.env.HTTPS_URL + `/api/postComments/${params.slug}`)
-  //const postComments = await commentsRes.json()
+  const commentsRes = await fetch(process.env.HTTPS_URL + `/api/postComments/${params.slug}`)
+  const postComments = await commentsRes.json()
 
   return {
     props: {
       preview: environment,
       firstPost: posts.firstPost,
       morePosts: posts.morePosts,
-      //postComments: postComments
+      postComments: postComments
     },
     revalidate: 300,
   }
