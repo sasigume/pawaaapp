@@ -1,17 +1,15 @@
 import cn from 'classnames'
+import {useRouter} from 'next/router'
 import firebaseApi from '@/lib/firebase';
 import { useAuthentication } from '@/hooks/authentication'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+
 const SignIn = () => {
   const { user } = useAuthentication()
+  const router = useRouter()
   const login = () => {
-    const provider = new firebaseApi.auth.TwitterAuthProvider();
-    firebaseApi.auth().languageCode = 'ja';
-    firebaseApi.auth().signInWithPopup(provider)
-      .catch((error) => {
-        console.log(error)
-      });
+   router.push('/signin')
   }
   const logout = () => {
     firebaseApi.auth().signOut();
