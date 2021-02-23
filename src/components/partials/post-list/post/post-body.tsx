@@ -7,10 +7,8 @@ interface Props {
 export default function PostBody({ md }: Props) {
   let context
   if (md.includes('<p>')) {
-    console.log('HTML detected')
     context = <div dangerouslySetInnerHTML={{ __html: md }} />
   } else {
-    console.log('MD detected')
     context = <MarkdownRender source={md} />
   }
   return (
