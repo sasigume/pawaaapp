@@ -1,4 +1,5 @@
 import markdownStyles from './markdown-styles.module.css'
+import contentStyles from './content.module.css'
 import ReactMarkdown from 'react-markdown'
 import MarkdownRender from '@/components/common/MarkdownRender'
 interface Props {
@@ -12,9 +13,9 @@ export default function PostBody({ md }: Props) {
     context = <MarkdownRender source={md} />
   }
   return (
-    <div className="text-left w-full max-w-2xl mx-auto">
+    <div className="px-4 text-left w-screen lg:w-auto mx-auto">
       <div
-        className={markdownStyles['markdown']}>
+        className="overflow-hidden globalStyle_content mx-auto" style={{maxWidth: '650px'}}>
         {context}
       </div>
     </div>

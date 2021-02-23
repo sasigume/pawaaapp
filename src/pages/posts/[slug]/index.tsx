@@ -114,7 +114,7 @@ export default function PostPage({ firstPost, morePosts, postComments, preview }
                 </div>
 
 
-                {morePosts && morePosts.length > 0 && <PostList mode="more" posts={morePosts} />}
+                <div className="px-4">{morePosts && morePosts.length > 0 && <PostList mode="more" posts={morePosts} />}</div>
               </Container>
             </div>
           </Layout>
