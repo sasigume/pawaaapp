@@ -89,8 +89,10 @@ export async function getStaticProps() {
   const posts = (await getAllPostsForHome(environment)) || []
   const allCreators = (await getAllCreatorsForHome(environment)) || []
 
-  publishRss(allCreators, posts)
-  publishSitemap(allCreators, posts)
+  // Write only published post into RSS/Sitemap
+  const postsPublished=(await getAllPostsForHome(false)) || []
+  publishRss(allCreators, postsPublished)
+  publishSitemap(allCreators, postsPublished)
 
   return {
     props: { posts, environment },
