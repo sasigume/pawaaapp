@@ -32,16 +32,18 @@ export default function UserShow() {
         .get()
 
       if (!doc.exists) {
-        console.log('returned')
+        console.log('ユーザーが見つかりませんでした')
         return
       }
 
       const gotUser = doc.data() as User
+
       gotUser.uid = doc.id
       setUser(gotUser)
     }
 
     loadUser()
+    // execute when uid in URL is changed
   }, [query.uid])
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -70,13 +72,17 @@ export default function UserShow() {
       draggable: true,
       progress: undefined,
     });
-  
+
   }
   const currentUser = useAuthentication().user
 
+  if(!currentUser) {
+    return <div>ログインしてください。</div>
+  }
+
   return (
     <Layout preview={false} title={user ? (user.name + 'さんのページ') : '(ユーザー詳細ページ)'} desc={"ユーザー詳細ページです"}>
-      {(user && currentUser)  &&
+      {(user && currentUser) ?
         <div>
           {user.uid != currentUser.uid ? (
             <Container>
@@ -84,7 +90,7 @@ export default function UserShow() {
               <div className="my-5">{user.name}さんに質問を送れます。</div>
 
               <div className="flex flex-col items-center">
-              <Warning />
+                <Warning />
                 <form onSubmit={onSubmit}>
 
                   <div className="flex flex-col jusify-center mb-12">
@@ -118,7 +124,9 @@ export default function UserShow() {
               </Container>
             )}
         </div>
-      }
+      :(
+        <div>ユーザーが見つかりませんでした。</div>
+      )}
     </Layout>
   )
 }
