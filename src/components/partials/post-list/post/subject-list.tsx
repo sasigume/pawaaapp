@@ -23,8 +23,6 @@ const OneSubject = ({ subject }: Props) => {
     iconName = "book" as IconName
   }
 
-  console.log(iconStyle,iconName)
-
   return (
     <Link href={(`/subjects/${subject.slug}`)}>
       <a className="flex items-center text-xl p-3 font-bold shadow-lg rounded-lg text-white" style={{ background: `#${subject.content.bgColor}` }}>
