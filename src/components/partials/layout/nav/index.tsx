@@ -18,11 +18,11 @@ export default function Nav({ preview }: any) {
 
       </div>
       <div className="">
-        <UserInfo />
-        <div className="flex justify-between">
-          <SignIn />
+        <div className="flex justify-end items-center mb-2"><UserInfo /><SignIn /></div>
+        <div className="flex justify-end">
+          
           <Link href={(`/users/me`)}><a className={btnStyle + 'bg-blue-600'}>マイページ</a></Link>
-          <Link href="/comments/received"><a className={btnStyle + 'bg-green-600'}>届いた質問</a></Link>
+          <a href="https://blog.pawaa.app" className={btnStyle + 'bg-green-600'}>旧ブログ</a>
         </div>
       </div>
     </div>
