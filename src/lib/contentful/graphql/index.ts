@@ -40,6 +40,8 @@ const POST_GRAPHQL_FIELDS = `
   }
 `
 
+// メモ: 55以上記事を取得しようとすると11110/11000で制限オーバーになる
+
 async function fetchGraphQL(query: any, preview = false) {
   return fetch(
     `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
