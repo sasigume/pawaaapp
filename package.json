@@ -1,8 +1,8 @@
 {
   "name": "pawaaapp",
-  "version": "1.9.4",
+  "version": "1.9.5",
   "scripts": {
-    "dev": "graphql-codegen --require dotenv/config --config codegen.yml && next",
+    "dev": "next",
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",

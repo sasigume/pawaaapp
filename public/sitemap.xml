@@ -2,28 +2,40 @@
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         
 <url>
-    <loc>http://localhost:3000/creators/yakisoba_panaki</loc>
-    <title>やきぱな</title>
-    <lastmod>Sun, 21 Feb 2021 09:37:50 GMT</lastmod>
-</url>
-    
-<url>
     <loc>http://localhost:3000/creators/sasigume</loc>
     <title>さしぐめ</title>
-    <lastmod>Sun, 21 Feb 2021 10:02:59 GMT</lastmod>
+    <lastmod>Wed, 24 Feb 2021 03:25:59 GMT</lastmod>
 </url>
     
         
 <url>
-    <loc>http://localhost:3000/posts/eula</loc>
-    <title>利用規約</title>
-    <lastmod>Sun, 21 Feb 2021 12:32:01 GMT</lastmod>
+    <loc>http://localhost:3000/posts/do-not-buy-win10-edition</loc>
+    <title>スタートメニューに最初からあるMinecraftでMODは使えません</title>
+    <lastmod>Wed, 24 Feb 2021 08:27:50 GMT</lastmod>
 </url>
     
 <url>
-    <loc>http://localhost:3000/posts/mc-console-history</loc>
-    <title>マインクラフトのゲーム機版が消えるまで</title>
-    <lastmod>Sun, 21 Feb 2021 11:15:08 GMT</lastmod>
+    <loc>http://localhost:3000/posts/hikakin-finally-moved-to-bedrock</loc>
+    <title>ヒカキンがついにJava版をやめる。マイクラ実況は大きく変わるかもしれない</title>
+    <lastmod>Wed, 24 Feb 2021 08:25:24 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/posts/privacy-policy</loc>
+    <title>プライバシーポリシー</title>
+    <lastmod>Wed, 24 Feb 2021 08:22:57 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/posts/bedrock-friend-multiplayer-guide</loc>
+    <title>スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <lastmod>Wed, 24 Feb 2021 04:27:12 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/posts/eula</loc>
+    <title>利用規約</title>
+    <lastmod>Wed, 24 Feb 2021 08:22:28 GMT</lastmod>
 </url>
     
 </urlset>
