@@ -1,8 +1,8 @@
 import fs from "fs"
 
-import { Post } from '@/models/Post'
-import { Creator } from '@/models/Creator'
-import { SITE_NAME, SITE_DESC } from './constants'
+import { Post } from '@/models/contentful/Post'
+import { Creator } from '@/models/contentful/Creator'
+import { SITE_NAME, SITE_DESC } from '../constants'
 
 const escapeString = (unsafe: string) => {
   return unsafe
@@ -17,10 +17,10 @@ const generateProfileItem = (creator: Creator): string => {
   return (`
 <item>
     <guid>${process.env.HTTPS_URL}/creators/${creator.slug}</guid>
-    <title>${escapeString(creator.content.displayName)}</title>
+    <title>${escapeString(creator.displayName)}</title>
     <link>${process.env.HTTPS_URL}/creators/${creator.slug}</link>
-    <pubDate>${new Date(creator.published_at ?? '').toUTCString()}</pubDate>
-    <summary>${creator.content.description}</summary>
+    <pubDate>${new Date(creator.sys.publishedAt ?? '').toUTCString()}</pubDate>
+    <summary>${creator.description}</summary>
 </item>
     `)
 }
@@ -29,10 +29,10 @@ const generatePostItem = (post: Post): string => {
   return (`
 <item>
     <guid>${process.env.HTTPS_URL}/posts/${post.slug}</guid>
-    <title>${escapeString(post.content.title)}</title>
+    <title>${escapeString(post.displayName)}</title>
     <link>${process.env.HTTPS_URL}/posts/${post.slug}</link>
-    <pubDate>${new Date(post.published_at).toUTCString()}</pubDate>
-    <summary>${post.content.intro}</summary>
+    <pubDate>${new Date(post.sys.publishedAt).toUTCString()}</pubDate>
+    <summary>${post.intro}</summary>
 </item>
     `)
 }

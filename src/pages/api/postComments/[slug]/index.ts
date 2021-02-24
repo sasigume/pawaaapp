@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import firebase from 'firebase/app'
-import '@/lib/firebase-admin'
+import '@/lib/firebase/admin'
 import { firestore } from 'firebase-admin'
 import { PostComment } from '@/models/PostComment'
 

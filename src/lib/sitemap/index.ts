@@ -1,7 +1,7 @@
 import fs from "fs"
 
-import { Post } from '@/models/Post'
-import { Creator } from '@/models/Creator'
+import { Post } from '@/models/contentful/Post'
+import { Creator } from '@/models/contentful/Creator'
 
 const escapeString = (unsafe: string) => {
   return unsafe
@@ -16,8 +16,8 @@ const generateProfileItem = (creator: Creator): string => {
   return (`
 <url>
     <loc>${process.env.HTTPS_URL}/creators/${creator.slug}</loc>
-    <title>${escapeString(creator.content.displayName)}</title>
-    <lastmod>${new Date(creator.published_at ?? '').toUTCString()}</lastmod>
+    <title>${escapeString(creator.displayName)}</title>
+    <lastmod>${new Date(creator.sys.publishedAt ?? '').toUTCString()}</lastmod>
 </url>
     `)
 }
@@ -26,8 +26,8 @@ const generatePostItem = (post: Post): string => {
   return (`
 <url>
     <loc>${process.env.HTTPS_URL}/posts/${post.slug}</loc>
-    <title>${escapeString(post.content.title)}</title>
-    <lastmod>${new Date(post.published_at).toUTCString()}</lastmod>
+    <title>${escapeString(post.displayName)}</title>
+    <lastmod>${new Date(post.sys.publishedAt).toUTCString()}</lastmod>
 </url>
     `)
 }

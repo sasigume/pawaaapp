@@ -68,6 +68,5 @@ export async function getAllPostsForSubject(uuid: string, preview: any) {
       },
     }
   )
-  console.log(data)
   return data?.PostItems.items
 }
