@@ -1,5 +1,14 @@
+import {Post} from '@/models/contentful/Post'
+import {Creator} from '@/models/contentful/Creator'
+import { Subject } from '@/models/contentful/Subject'
+
 const CREATOR_GRAPHQL_FIELDS = `
+sys {
+  firstPublishedAt
+  publishedAt
+}
 displayName
+description
 slug
 picture {
   url
@@ -7,7 +16,12 @@ picture {
 `
 
 const SUBJECT_GRAPHQL_FIELDS = `
+sys {
+  firstPublishedAt
+  publishedAt
+}
 displayName
+description
 slug
 bgColor
 icon {
@@ -28,12 +42,12 @@ const POST_GRAPHQL_FIELDS = `
     url
   }
   md
-  creatorsCollection {
+  creatorsCollection(limit: 5) {
     items {
       ${CREATOR_GRAPHQL_FIELDS}
     }
   }
-  subjectsCollection {
+  subjectsCollection(limit: 5) {
     items {
       ${SUBJECT_GRAPHQL_FIELDS}
     }
@@ -60,28 +74,37 @@ async function fetchGraphQL(query: any, preview = false) {
 }
 
 function extractPost(fetchResponse: any) {
-  return fetchResponse?.data?.postCollection?.items?.[0]
+  return fetchResponse?.data?.postCollection?.items?.[0] as Post
 }
 
 function extractPostEntries(fetchResponse: any) {
-  return fetchResponse?.data?.postCollection?.items
+  return fetchResponse?.data?.postCollection?.items as Post[]
 }
 
 function extractCreator(fetchResponse: any) {
-  return fetchResponse?.data?.creatorCollection?.items?.[0]
+  return fetchResponse?.data?.creatorCollection?.items?.[0] as Creator
 }
 
-function extractCreatorEntries(fetchResponse: any) {
-  return fetchResponse?.data?.creatorCollection?.items
+function extractCreators(fetchResponse: any) {
+  return fetchResponse?.data?.creatorCollection?.items as Creator[]
 }
 
-function extractSubject(fetchResponse: any) {
-  return fetchResponse?.data?.creatorCollection?.items?.[0]
+function extractPostEntriesFromCreator(fetchResponse:any) {
+  return fetchResponse?.data.creatorCollection?.items[0].linkedFrom.postCollection?.items as Post[]
 }
 
-function extractSubjectEntries(fetchResponse: any) {
-  return fetchResponse?.data?.creatorCollection?.items
+function extractSubject(fetchResponse:any) {
+  return fetchResponse?.data.subjectCollection?.items?.[0] as Subject
 }
+
+function extractSubjects(fetchResponse:any) {
+  return fetchResponse?.data.subjectCollection?.items as Subject[]
+}
+
+function extractPostEntriesFromSubject(fetchResponse:any) {
+  return fetchResponse?.data.subjectCollection?.items[0].linkedFrom.postCollection?.items as Post[]
+}
+
 
 export async function getPreviewPostBySlug(slug: string) {
   const entry = await fetchGraphQL(
@@ -100,7 +123,7 @@ export async function getPreviewPostBySlug(slug: string) {
 export async function getAllPostsWithSlug() {
   const entries = await fetchGraphQL(
     `query {
-      postCollection(where: { slug_exists: true }, order: date_DESC) {
+      postCollection(where: { slug_exists: true }, order: sys_firstPublishedAt_DESC) {
         items {
           ${POST_GRAPHQL_FIELDS}
         }
@@ -110,10 +133,10 @@ export async function getAllPostsWithSlug() {
   return extractPostEntries(entries)
 }
 
-export async function getAllPostsForHome(preview: boolean) {
+export async function getAllPostsForHome(preview: boolean, limit = 5) {
   const entries = await fetchGraphQL(
     `query {
-      postCollection(order: date_DESC, preview: ${preview ? 'true' : 'false'}) {
+      postCollection(limit: 5, order: sys_firstPublishedAt_DESC,preview: ${preview ? true : false}) {
         items {
           ${POST_GRAPHQL_FIELDS}
         }
@@ -138,7 +161,7 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
   )
   const entries = await fetchGraphQL(
     `query {
-      postCollection(where: { slug_not_in: "${slug}" }, order: date_DESC, preview: ${preview ? 'true' : 'false'
+      postCollection(where: { slug_not_in: "${slug}" }, order: sys_firstPublishedAt_DESC, preview: ${preview ? 'true' : 'false'
     }, limit: 2) {
         items {
           ${POST_GRAPHQL_FIELDS}
@@ -153,17 +176,18 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
   }
 }
 
-export async function getAllCreatorsWithSlug() {
+export async function getAllCreatorsWithSlug(preview:boolean) {
   const entries = await fetchGraphQL(
     `query {
-      creatorCollection(where: { slug_exists: true }, order: date_DESC) {
+      creatorCollection(limit: 5, where: { slug_exists: true }, order: sys_firstPublishedAt_DESC) {
         items {
           ${CREATOR_GRAPHQL_FIELDS}
         }
       }
-    }`
+    }` ,
+    preview
   )
-  return extractCreatorEntries(entries)
+  return extractCreators(entries)
 }
 
 export async function getCreator(slug: string, preview: boolean) {
@@ -184,7 +208,7 @@ export async function getCreator(slug: string, preview: boolean) {
 export async function getAllPostsForCreator(slug:string, preview: boolean) {
   const entries = await fetchGraphQL(
     `query {
-      creatorCollection(where: {slug: "${slug}"}) {
+      creatorCollection(limit: 1, where: {slug: "${slug}"}, order: sys_firstPublishedAt_DESC) {
         items {
           displayName
           linkedFrom {
@@ -199,41 +223,41 @@ export async function getAllPostsForCreator(slug:string, preview: boolean) {
     }`,
     preview
   )
-  return extractCreatorEntries(entries)
+  return extractPostEntriesFromCreator(entries)
 }
 
-export async function getAllSubjectWithSlug() {
+export async function getAllSubjectsWithSlug() {
   const entries = await fetchGraphQL(
     `query {
-      subjectCollection(where: { slug_exists: true }, order: date_DESC) {
+      subjectCollection(limit: 5, where: { slug_exists: true }, order: sys_firstPublishedAt_DESC) {
         items {
           ${SUBJECT_GRAPHQL_FIELDS}
         }
       }
     }`
   )
-  return extractCreatorEntries(entries)
+  return extractSubjects(entries)
 }
 
 export async function getSubject(slug: string, preview: boolean) {
   const entry = await fetchGraphQL(
     `query {
-      creatorCollection(where: { slug: "${slug}" }, preview: ${preview ? 'true' : 'false'
+      subjectCollection(where: { slug: "${slug}" }, preview: ${preview ? 'true' : 'false'
     }, limit: 1) {
         items {
-          ${CREATOR_GRAPHQL_FIELDS}
+          ${SUBJECT_GRAPHQL_FIELDS}
         }
       }
     }`,
     preview
   )
-  return extractCreator(entry)
+  return extractSubject(entry)
 }
 
 export async function getAllPostsForSubject(slug:string, preview: boolean) {
   const entries = await fetchGraphQL(
     `query {
-      subjectCollection(where: {slug: "${slug}"}) {
+      subjectCollection(limit: 1, where: {slug: "${slug}"}, order: sys_firstPublishedAt_DESC) {
         items {
           displayName
           linkedFrom {
@@ -248,5 +272,5 @@ export async function getAllPostsForSubject(slug:string, preview: boolean) {
     }`,
     preview
   )
-  return extractSubjectEntries(entries)
+  return extractPostEntriesFromSubject(entries)
 }
