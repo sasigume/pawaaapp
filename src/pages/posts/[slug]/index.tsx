@@ -68,8 +68,6 @@ export default function PostPage({ firstPost, morePosts, postComments, preview }
       </Layout>)
   }
 
-  console.log([firstPost])
-
   return (
     <>
       {(!firstPost) ? (

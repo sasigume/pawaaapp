@@ -36,9 +36,7 @@ export function useAuthentication() {
         setUser(loginUser)
         createUserIfNotFound(loginUser)
 
-        console.log('Login: ' + loginUser.uid)
       } else {
-        console.log('Setuser:null')
         setUser(null!)
       }
     })
