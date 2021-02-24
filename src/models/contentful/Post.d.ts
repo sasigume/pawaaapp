@@ -11,10 +11,10 @@ export interface Post {
   image: {
     url:string
   }
-  subjectsCollection?: Subject[]
-  creatorsCollection?: Creator[]
-}
-
-export interface PostComponentType extends Post {
-  mode?: string;
+  subjectsCollection: {
+    items: Subject[]
+  } 
+  creatorsCollection: {
+    items: Creator[]
+  }
 }
