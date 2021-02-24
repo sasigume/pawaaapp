@@ -10,9 +10,9 @@ A simple Q&A webapp. Built with **[Storyblok](https://www.storyblok.com)**
 https://medium.com/@MatDrinksTea/rendering-markdown-and-latex-in-react-dec355e74119
 
 
-### GraphQL + Storyblok
+### GraphQL + Contentful
 
-https://github.com/vercel/next.js/tree/canary/examples/cms-storyblok
+https://github.com/vercel/next.js/tree/canary/examples/cms-contentful
 
 
 ### Sitemap Generator
