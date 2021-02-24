@@ -1,6 +1,6 @@
 {
   "name": "pawaaapp",
-  "version": "1.9.4",
+  "version": "1.9.5",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -21,6 +21,7 @@
     "dayjs": "^1.10.4",
     "firebase": "^8.2.8",
     "firebase-admin": "^9.5.0",
+    "graphql": "^15.5.0",
     "next": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

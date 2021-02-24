@@ -4,7 +4,10 @@ import UserInfo from './user-info'
 import SignIn from './signin'
 import Logo from '@/components/common/Logo'
 
-export default function Nav({ preview }: any) {
+interface Props {
+  preview: boolean
+}
+export default function Nav({ preview }:Props) {
   const btnStyle = 'ml-2 shadow-lg rounded-lg block text-white p-2 '
   return (
     <div
@@ -15,6 +18,17 @@ export default function Nav({ preview }: any) {
     >
       <div className="w-64 py-4 md:py-2">
         <Logo />
+
+        {preview && (
+            <div>
+              <a
+                href="/api/exit-preview"
+                className="underline"
+              >
+                プレビュー解除
+              </a>
+            </div>
+          )}
 
       </div>
       <div className="">

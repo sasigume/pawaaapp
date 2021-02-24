@@ -6,8 +6,8 @@ import { toast } from 'react-toastify';
 import { useAuthentication } from '@/hooks/authentication'
 import Link from 'next/link'
 
-import { getAllPostsWithSlug, getPostsForSinglePage } from '@/lib/storyblok/api'
-import { Post } from '@/models/Post'
+import { getAllPostsWithSlug, getPostAndMorePosts } from '@/lib/contentful/graphql'
+import { Post } from '@/models/contentful/Post'
 import { PostComment } from '@/models/PostComment'
 
 import Container from '../../../components/common/container'
@@ -63,7 +63,9 @@ export default function PostPage({ firstPost, morePosts, postComments, preview }
   }
 
   if (!router.isFallback && !firstPost) {
-    return <ErrorPage statusCode={404} />
+    return (<Layout preview={preview} title={'404 Not found'} desc={''}>
+      <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
+      </Layout>)
   }
 
   return (
@@ -71,7 +73,7 @@ export default function PostPage({ firstPost, morePosts, postComments, preview }
       {(!firstPost) ? (
         <Layout preview={preview} title={'LOADING'} desc={''}><div>Loading…</div></Layout>
       ) : (
-          <Layout preview={preview} title={firstPost.content.title} desc={firstPost.content.intro ?? ''}>
+          <Layout preview={preview} title={firstPost.displayName} desc={firstPost.intro}>
             <div className="mt-6">
               <Container>
                 {firstPost && <PostList mode="single" posts={[firstPost]} />}
@@ -114,7 +116,7 @@ export default function PostPage({ firstPost, morePosts, postComments, preview }
                 </div>
 
 
-                <div className="px-4">{morePosts && morePosts.length > 0 && <PostList mode="more" posts={morePosts} />}</div>
+                {/*<div className="px-4">{morePosts && morePosts.length > 0 && <PostList mode="more" posts={morePosts} />}</div>*/}
               </Container>
             </div>
           </Layout>
@@ -125,26 +127,24 @@ export default function PostPage({ firstPost, morePosts, postComments, preview }
 
 interface GSProps {
   params: any;
-  preview: any;
+  preview: boolean;
 }
 
-export async function getStaticProps({ params }: GSProps) {
+export async function getStaticProps({ params, preview = false  }: GSProps) {
 
-  let environment: boolean
-  process.env.NODE_ENV == "development" ? environment = true : environment = false
-  const posts = await getPostsForSinglePage(params.slug, environment)
+  const posts = await getPostAndMorePosts(params.slug, preview)
 
   const commentsRes = await fetch(process.env.HTTPS_URL + `/api/postComments/${params.slug}`)
   const postComments = await commentsRes.json()
 
   return {
     props: {
-      preview: environment,
-      firstPost: posts.firstPost,
-      morePosts: posts.morePosts,
-      postComments: postComments
+      preview: preview,
+      firstPost: posts.post ?? null,
+      morePosts: posts.morePosts ?? null,
+      postComments: postComments ?? null
     },
-    revalidate: 60,
+    revalidate: 300,
   }
 }
 

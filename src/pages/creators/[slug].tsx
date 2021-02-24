@@ -1,33 +1,37 @@
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
-import Container from '../../components/common/container'
+import Container from '@/components/common/container'
 import PostList from '@/components/partials/post-list'
 import Layout from '@/components/partials/layout'
-import { getCreatorsWithSlug, getAllPostsForCreator, getCreator } from '@/lib/storyblok/api'
-import { Post } from '@/models/Post'
+import { getAllCreatorsWithSlug, getAllPostsForCreator, getCreator } from '@/lib/contentful/graphql'
+import { Post } from '@/models/contentful/Post'
 import { SITE_NAME } from '@/lib/constants'
+import { Creator } from '@/models/contentful/Creator'
 interface IndexProps {
-  creatorName?: string;
-  posts: Post[];
-  preview: boolean;
+  creator? : Creator
+  posts: Post[]
+  preview: boolean
 }
 
-const CreatorIndex = ({ creatorName, posts, preview }: IndexProps) => {
+const CreatorIndex = ({ creator, posts, preview }: IndexProps) => {
 
   const router = useRouter()
-  if (!router.isFallback && !posts) {
-    return <ErrorPage statusCode={404} />
+  if (!router.isFallback || creator == null) {
+    return (<Layout preview={preview} title={'404 Not found'} desc={''}>
+      <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
+      </Layout>)
   }
   return (
     <>
-      {(router.isFallback) ? (
-        <Layout preview={preview} title={'Loading... | ' + SITE_NAME} desc={''}><div>当てはまる記事がありません。</div></Layout>
+      {(router.isFallback || !creator) ? (
+        <Layout preview={preview} title={'Loading... | ' + SITE_NAME} desc={''}><div>読み込み中です。</div></Layout>
       ) : (
-          <Layout preview={preview} title={(`${creatorName}が書いた記事一覧`)} desc={"Pawaa.app"}>
+          <Layout preview={preview} title={(`${creator?.displayName}が書いた記事一覧`)} desc={"Pawaa.app"}>
             <div>
               <Container>
                 <div>
-                  <h1 className="text-2xl font-bold my-10">{posts[0] ? `${creatorName}が書いた記事一覧` : `${creatorName}が書いた記事はありません`}</h1>
+                  <h1 className="text-2xl font-bold my-10">{posts[0] ? `${creator.displayName}が書いた記事一覧` : `${creator?.displayName}が書いた記事はありません`}</h1>
+                  {creator.description && (<div className="my-4">{creator.description}</div>)}
                 </div>
                 {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
               </Container>
@@ -43,29 +47,28 @@ export default CreatorIndex
 
 interface GSProps {
   params: any;
-  preview: any;
+  preview: boolean;
 }
 
-export async function getStaticProps({ params }: GSProps) {
+export async function getStaticProps({ params, preview = false }: GSProps) {
   const slug = params.slug ?? ''
-  let environment
-  process.env.NODE_ENV == "development" ? environment = true : environment = false
 
-  const creatorData = (await getCreator(slug,environment)) || ''
-  const posts = (await getAllPostsForCreator(creatorData.uuid, environment)) || []
+  let posts : (Post[] | null)
+  const creatorData = (await getCreator(slug, preview)) ?? null
+  creatorData ? posts = (await getAllPostsForCreator(creatorData.slug, preview)) : posts = []
 
   return {
     props: {
-      creatorName: creatorData.content.displayName,
-      preview: environment,
-      posts: posts
+      creator: creatorData ?? null,
+      preview: preview,
+      posts: posts ?? null
     },
     revalidate: 300,
   }
 }
 
-export async function getStaticPaths() {
-  const allCreators = await getCreatorsWithSlug()
+export async function getStaticPaths( {preview = false} ) {
+  const allCreators = await getAllCreatorsWithSlug(preview)
   return {
     paths: allCreators?.map((a: any) => `/creators/${a.slug}`) || [],
     fallback: true,

@@ -1,5 +1,5 @@
 import PostComponent from './post'
-import { Post } from '@/models/Post'
+import { Post } from '@/models/contentful/Post'
 
 interface MultiPostProps {
   posts: Post[];
@@ -13,20 +13,14 @@ const MultiPosts = ({ posts, mode }: MultiPostProps) => {
         <PostComponent
           mode="list"
           key={posts[0].slug}
-          slug={posts[0].slug}
-          first_published_at={posts[0].first_published_at}
-          published_at={posts[0].published_at}
-          content={posts[0].content}
+          post={posts[0]}
         />
         <div className="grid grid-cols-1 md:grid-cols-2 md:col-gap-16 lg:gap-x-16 gap-y-16 md:gap-x-24 mb-16">
-          {morePosts.map((post) => (
+          {morePosts.map((post:Post) => (
             <PostComponent
               mode="list"
               key={post.slug}
-              slug={post.slug}
-              first_published_at={post.first_published_at}
-              published_at={post.published_at}
-              content={post.content}
+              post={post}
             />
           ))}
         </div>
@@ -42,10 +36,7 @@ const MultiPosts = ({ posts, mode }: MultiPostProps) => {
             <PostComponent
               mode="list"
               key={post.slug}
-              slug={post.slug}
-              first_published_at={post.first_published_at}
-              published_at={post.published_at}
-              content={post.content}
+              post={post}
             />
           ))}
         </div>
@@ -64,11 +55,7 @@ export const PostList = ({ posts, mode }: PostListProps) => {
     return (
       <PostComponent
         mode="single"
-        key={posts[0].slug}
-        slug={posts[0].slug}
-        first_published_at={posts[0].first_published_at}
-        published_at={posts[0].published_at}
-        content={posts[0].content}
+        post={posts[0]}
       />
     )
   } else {
