@@ -31,7 +31,6 @@ const OneSubject = ({ subject }: Props) => {
 }
 
 const SubjectList = ({ subjects }: ListProps) => {
-  console.log(subjects)
   return (
     <div className="flex flex-wrap">
       {subjects.map((s: Subject) => <OneSubject subject={s} key={s.slug} />)}
