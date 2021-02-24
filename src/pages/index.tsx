@@ -4,8 +4,8 @@ import Question from '@/components/common/Question'
 import Container from '@/components/common/container'
 import PostList from '@/components/partials/post-list'
 import Layout from '@/components/partials/layout'
-import { getAllPostsForHome, getAllCreatorsForHome } from '../lib/storyblok/api'
-import { Post } from '@/models/Post'
+import { getAllPostsForHome, getAllCreatorsWithSlug } from '../lib/contentful/graphql'
+import { Post } from '@/models/contentful/Post'
 import { SITE_NAME, SITE_DESC } from '@/lib/constants'
 import publishRss from '@/lib/rss'
 import publishSitemap from '@/lib/sitemap'
@@ -83,18 +83,18 @@ const Index = ({ posts, environment }: IndexProps) => {
 
 export default Index
 
-export async function getStaticProps() {
-  let environment: boolean
-  process.env.NODE_ENV == "development" ? environment = true : environment = false
-  const posts = (await getAllPostsForHome(environment)) || []
-  const allCreators = (await getAllCreatorsForHome(environment)) || []
+export async function getStaticProps( {preview = false} ) {
+
+  const posts = (await getAllPostsForHome(preview)) || []
 
   // Write only published post into RSS/Sitemap
+  const allCreatorsPublished = (await getAllCreatorsWithSlug(false)) || []
   const postsPublished=(await getAllPostsForHome(false)) || []
-  publishRss(allCreators, postsPublished)
-  publishSitemap(allCreators, postsPublished)
+
+  publishRss(allCreatorsPublished, postsPublished)
+  publishSitemap(allCreatorsPublished, postsPublished)
 
   return {
-    props: { posts, environment },
+    props: { posts, preview },
   }
 }
