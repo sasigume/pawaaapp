@@ -28,23 +28,27 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
 
   const router = useRouter()
 
-  const intChapterNumber = parseInt(chapterNumber)
+  // if chapter includes alphabet return NaN to prevent parsing number from mixed string
+  const includeAlphabet = new RegExp(`[A-Za-z]`)
+  let intChapterNumber: number
+  includeAlphabet.test(chapterNumber) ? intChapterNumber = NaN : intChapterNumber = parseInt(chapterNumber)
 
   const PageButtons = () => (
-    <div className="flex flex-wrap no-underline text-sm font-bold justify-center items-center">
-      {intChapterNumber != 1 && (<Link href={(`/books/${firstBook.slug}/chapters/${intChapterNumber - 1}`)}>
-        <a className="flex rounded-xl shadow-xl p-2 m-2 bg-red-800 ">
-          <span className="text-white ">&lt; 前のページ</span>
+    <div className="flex no-underline text-md font-bold items-center shadow-xl rounded-xl overflow-hidden">
+      {intChapterNumber != 1 && (
+      <Link href={(`/books/${firstBook.slug}/chapters/${intChapterNumber - 1}`)}>
+        <a className="flex p-4 bg-red-800 flex-grow ">
+          <span className="text-white ">&lt; 前ページ</span>
         </a>
       </Link>)}
       <Link href={(`/books/${firstBook.slug}`)}>
-        <a className="flex rounded-xl shadow-xl p-2 m-2 bg-blue-500">
-          <span className="text-white ">目次に戻る</span>
+        <a className="flex p-4 bg-blue-500 justify-center flex-grow ">
+          <span className="text-white ">目次へ</span>
         </a>
       </Link>
       {(intChapterNumber) < firstBook.chaptersCollection.items.length && (<Link href={(`/books/${firstBook.slug}/chapters/${intChapterNumber + 1}`)}>
-        <a className="flex rounded-xl shadow-xl p-2 m-2 bg-green-800">
-          <span className="text-white ">次のページ &gt;</span>
+        <a className="flex p-4 bg-green-800 justify-end flex-grow ">
+          <span className="text-white ">次ページ &gt;</span>
         </a>
       </Link>)}
     </div>
@@ -52,7 +56,7 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
   )
 
   let target
-  firstBook ? target = firstBook.chaptersCollection.items[intChapterNumber - 1] : target = null
+  (firstBook && intChapterNumber != NaN) ? target = firstBook.chaptersCollection.items[intChapterNumber - 1] : target = null
 
   return (
     <>
@@ -69,11 +73,7 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
                   <div className="mt-6">
                     <Container>
                       <div className="my-20 text-center">
-                        <div>404 Chapter Not found</div>
-
-                        <Link href={(`/books/${firstBook.slug}`)}>
-                          <a className="block p-8 shadow-xl rounded-xl m-4 border-2">目次へ</a>
-                        </Link>
+                        <ErrorPage title="本はありますがチャプターが見つかりません" statusCode={404} />
                       </div>
                     </Container>
                   </div>
@@ -88,7 +88,12 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
                     <div className="px-4 text-left w-screen lg:w-auto mx-auto">
 
                       <div
-                        className="overflow-hidden globalStyle_content mx-auto mb-12" style={{ maxWidth: '650px' }}>
+                        className="overflow-x-hidden globalStyle_content mx-auto mb-12" style={{ maxWidth: '650px' }}>
+                        <Link href={(`/books/${firstBook.slug}`)}>
+                          <a className="">
+                            <h1 className="no-underline text-black text-2xl mb-6 font-bold border-b-2 pb-3 border-gray-300">{firstBook.title}</h1>
+                          </a>
+                        </Link>
                         <PageButtons />
                         <div className="my-2 md:my-8">
                           <h2 className="text-xl font-bold mb-6">{target.title}</h2>
@@ -106,11 +111,18 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
           )}
       </>
       ) : (
+          <>
 
-
-          <Layout preview={preview} title={'404 Book Not found'} desc={''}>
-            <ErrorPage title="本が見つかりませんでした" statusCode={404} />
-          </Layout>
+            {router.isFallback ? (
+              <Layout preview={preview} title={'Loading...'} desc={''}>
+                <div>読み込み中です。</div>
+              </Layout>
+            ) : (
+                <Layout preview={preview} title={'404 Book Not found'} desc={''}>
+                  <ErrorPage title="本が見つかりませんでした" statusCode={404} />
+                </Layout>
+              )}
+          </>
         )}
     </>
   )
@@ -129,7 +141,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
     props: {
       preview: preview ?? false,
       firstBook: books.book ?? null,
-      chapterNumber: params.chapterNumber.toString() ?? 1,
+      chapterNumber: params.chapterNumber.toString() ?? NaN,
       moreBooks: books.moreBooks ?? [],
     },
     revalidate: 300,
