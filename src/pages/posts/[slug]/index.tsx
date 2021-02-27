@@ -65,14 +65,21 @@ export default function PostPage({ firstPost, morePosts, postComments, preview }
   if (!router.isFallback && !firstPost) {
     return (<Layout preview={preview} title={'404 Not found'} desc={''}>
       <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
-      </Layout>)
+    </Layout>)
   }
 
   return (
     <>
-      {(!firstPost) ? (
-        <Layout preview={preview} title={'LOADING'} desc={''}><div>Loading…</div></Layout>
-      ) : (
+      {(!firstPost) ? (<>
+
+        {router.isFallback ? (
+          <Layout preview={preview} title={'Loading...'} desc={''}><div>読み込み中です。</div></Layout>
+        ) : (
+            (<Layout preview={preview} title={'404 Not found'} desc={''}>
+              <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
+            </Layout>)
+          )}
+      </>) : (
           <Layout preview={preview} title={firstPost.displayName} desc={firstPost.intro}>
             <div className="mt-6">
               <Container>
@@ -89,29 +96,29 @@ export default function PostPage({ firstPost, morePosts, postComments, preview }
 
                 <div className="flex flex-col items-center">
 
-                  {user ?(<div className="max-w-xl mb-6"><Warning />
-                  <form className="w-full px-6" onSubmit={onSubmit}>
+                  {user ? (<div className="max-w-xl mb-6"><Warning />
+                    <form className="w-full px-6" onSubmit={onSubmit}>
 
-                    <div className="flex flex-col jusify-center mb-12">
-                      <textarea
-                        className="w-full border-2 p-4 mb-4 rounded-xl border-gray-600"
-                        placeholder="コメントを書いてね"
-                        onChange={(e) => setBody(e.target.value)}
-                        required
-                      ></textarea>
-                      {didYouSend ? (
-                        <span className="" role="status">
-                          (送信できました)
-                        </span>
-                      ) : (
-                          <button type="submit" className="p-4 bg-blue-400 text-white font-bold shadow-lg rounded-xl">
-                            コメントする
-                          </button>
-                        )}
-                    </div>
-                  </form>
-                  </div>):(<div className="my-6">
-                      <Link href="/login">ログイン</Link>してコメントしてみよう!
+                      <div className="flex flex-col jusify-center mb-12">
+                        <textarea
+                          className="w-full border-2 p-4 mb-4 rounded-xl border-gray-600"
+                          placeholder="コメントを書いてね"
+                          onChange={(e) => setBody(e.target.value)}
+                          required
+                        ></textarea>
+                        {didYouSend ? (
+                          <span className="" role="status">
+                            (送信できました)
+                          </span>
+                        ) : (
+                            <button type="submit" className="p-4 bg-blue-400 text-white font-bold shadow-lg rounded-xl">
+                              コメントする
+                            </button>
+                          )}
+                      </div>
+                    </form>
+                  </div>) : (<div className="my-6">
+                    <Link href="/login">ログイン</Link>してコメントしてみよう!
                   </div>)}
                 </div>
 
@@ -130,7 +137,7 @@ interface GSProps {
   preview: boolean;
 }
 
-export async function getStaticProps({ params, preview = false  }: GSProps) {
+export async function getStaticProps({ params, preview = false }: GSProps) {
 
   const posts = await getPostAndMorePosts(params.slug, preview)
 

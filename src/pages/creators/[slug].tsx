@@ -5,26 +5,28 @@ import PostList from '@/components/partials/post-list'
 import Layout from '@/components/partials/layout'
 import { getAllCreatorsWithSlug, getAllPostsForCreator, getCreator } from '@/lib/contentful/graphql'
 import { Post } from '@/models/contentful/Post'
-import { SITE_NAME } from '@/lib/constants'
 import { Creator } from '@/models/contentful/Creator'
 interface IndexProps {
-  creator? : Creator
+  creator?: Creator
   posts: Post[]
   preview: boolean
 }
 
 const CreatorIndex = ({ creator, posts, preview }: IndexProps) => {
-
   const router = useRouter()
-  if (!router.isFallback || creator == null) {
-    return (<Layout preview={preview} title={'404 Not found'} desc={''}>
-      <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
-      </Layout>)
-  }
   return (
     <>
-      {(router.isFallback || !creator) ? (
-        <Layout preview={preview} title={'Loading... | ' + SITE_NAME} desc={''}><div>読み込み中です。</div></Layout>
+      {(!creator) ? (<>
+
+        {router.isFallback ? (
+          <Layout preview={preview} title={'Loading...'} desc={''}><div>読み込み中です。</div></Layout>
+        ) : (
+            (<Layout preview={preview} title={'404 Not found'} desc={''}>
+              <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
+            </Layout>)
+          )}
+      </>
+
       ) : (
           <Layout preview={preview} title={(`${creator?.displayName}が書いた記事一覧`)} desc={"Pawaa.app"}>
             <div>
@@ -53,7 +55,7 @@ interface GSProps {
 export async function getStaticProps({ params, preview = false }: GSProps) {
   const slug = params.slug ?? ''
 
-  let posts : (Post[] | null)
+  let posts: (Post[] | null)
   const creatorData = (await getCreator(slug, preview)) ?? null
   creatorData ? posts = (await getAllPostsForCreator(creatorData.slug, preview)) : posts = []
 
@@ -67,7 +69,7 @@ export async function getStaticProps({ params, preview = false }: GSProps) {
   }
 }
 
-export async function getStaticPaths( {preview = false} ) {
+export async function getStaticPaths({ preview = false }) {
   const allCreators = await getAllCreatorsWithSlug(preview)
   return {
     paths: allCreators?.map((a: any) => `/creators/${a.slug}`) || [],

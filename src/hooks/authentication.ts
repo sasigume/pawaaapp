@@ -29,7 +29,7 @@ export function useAuthentication() {
         const loginUser: User = {
           uid: firebaseUser.uid,
           isAnonymous: firebaseUser.isAnonymous,
-          name: firebaseUser.displayName ?? '名前を設定していません',
+          name: firebaseUser.providerData[0]?.displayName ?? '名前を設定していません',
           email: firebaseUser.email ?? '',
           photoUrl: firebaseUser.providerData[0]?.photoURL ?? '/public/android-chrome-192x192.png',
         }
