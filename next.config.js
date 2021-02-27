@@ -32,6 +32,6 @@ module.exports = {
     HTTPS_URL: process.env.HTTPS_URL
   },
   images: {
-    domains: ['localhost', 'pbs.twimg.com']
+    domains: ['localhost', 'pbs.twimg.com', 'images.ctfassets.net']
   }
 }

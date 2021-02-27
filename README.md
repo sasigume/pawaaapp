@@ -1,6 +1,6 @@
 # PAWAA.APP
 
-![screenshot](https://github.com/sasigume/pawaaapp/blob/main/screenshot/demo.png?raw=true)
+![screenshot](https://github.com/sasigume/pawaaapp/blob/main/screenshot/demo2.png?raw=true)
 
 参考書, Re-Defined.
 ## Thanks
