@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import MarkdownRender from './MarkdownRender'
 import cn from 'classnames'
 import { LandingPagePost } from '@/models/contentful/LandingPagePost'
-import Image from 'next/image'
+import { useSpring, animated } from 'react-spring'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface Props {
@@ -19,12 +19,23 @@ function LandingPagePostComponent({ post, n }: Props) {
     setCount(count + 1)
   }
 
+  const [appeared, setAppeared] = useState(false)
+  const { transform } = useSpring({
+    opacity: appeared ? 1 : 0,
+    transform: `translate(${appeared ? 0 : 300}px, 0px)`,
+    config: { mass:1, tension: 500, friction: 50 }
+  })
+
+  useEffect(()=>{
+    setAppeared(state => !state)
+  },[])
+
   return (
-    <div className={
+    <animated.div style={{ transform }} className={
       cn('w-80 bg-white inline-block my-4 p-4 pb-2 border-2 border-gray-200 rounded-xl shadow-xl',
         {
-          'md:mr-12': n % 2 == 0,
-          'md:ml-12': n % 2 !== 0,
+          'mr-4 md:mr-12': n % 2 == 0,
+          'ml-4 md:ml-12': n % 2 !== 0,
         })}>
       <div className="mb-4 text-lg flex flex-col md:flex-row justify-between">
         <div className="w-full flex justify-between items-center">
@@ -43,7 +54,7 @@ function LandingPagePostComponent({ post, n }: Props) {
       <div className="text-xl">
         <MarkdownRender source={post.md} />
       </div>
-    </div >
+    </animated.div >
   )
 }
 

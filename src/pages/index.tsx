@@ -44,18 +44,20 @@ const Index = ({ page, environment }: IndexProps) => {
             <div className="w-screen flex">
               <Container>
                 <div className="max-w-3xl flex flex-col items-center justify-center">
-                  <div className="flex flex-col align-middle items-center md:flex-row justify-between">
+                  <div className="flex flex-col align-middle items-center md:flex-row justify-between pt-12">
                     <div className="mt-16 md:mt-0 mr-10 font-bold text-6xl whitespace-nowrap leading-loose">
                       <MarkdownRender source={page.message} />
                     </div>
-                    <div className="flex flex-col text-black py-8 relative pt-32 mt-6">
-                      <div className="z-20 mt-4">
+                    <div className="flex flex-col text-black py-8 relative pt-32">
+                      <div className="flex flex-col z-20 mt-4">
                         {(page.postsCollection && page.postsCollection.items.length > 0) && page.postsCollection.items.map(
                         (post: LandingPagePost, n: number) => <LandingPagePostComponent key={post.slug} post={post} n={n} />
                       )}
                       </div>
-                      <div className="absolute top-0 right-16 rounded-xl shadow-2xl overflow-hidden" style={{height: "480px"}}>
-                        <Image src={page.topImage.url} width="300" height="480" />
+                      <div className="w-full absolute top-0">
+                        <div className="mx-auto rounded-xl shadow-2xl overflow-hidden" style={{width: "300px", height: "480px"}}>
+                          <Image src={page.topImage.url} width="300" height="480" />
+                          </div>
                       </div>
                     </div>
                   </div>
@@ -64,7 +66,7 @@ const Index = ({ page, environment }: IndexProps) => {
             </div>
             <div className="bg-white w-screen flex items-center justify-center">
               <Container>
-                <div className="mt-6 mb-12">
+                <div className="mb-16">
                   <h1><Logo /></h1>
                 </div>
 
