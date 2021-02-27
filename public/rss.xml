@@ -15,6 +15,14 @@
     
         
 <item>
+    <guid>http://localhost:3000/posts/we-can-use-mathjax</guid>
+    <title>PAWAAAPPでは、文章中で数式の表示ができます</title>
+    <link>http://localhost:3000/posts/we-can-use-mathjax</link>
+    <pubDate>Wed, 24 Feb 2021 10:43:47 GMT</pubDate>
+    <summary>数式の表示テスト。Remark-mathを使っています</summary>
+</item>
+    
+<item>
     <guid>http://localhost:3000/posts/do-not-buy-win10-edition</guid>
     <title>スタートメニューに最初からあるMinecraftでMODは使えません</title>
     <link>http://localhost:3000/posts/do-not-buy-win10-edition</link>
@@ -34,7 +42,7 @@
     <guid>http://localhost:3000/posts/privacy-policy</guid>
     <title>プライバシーポリシー</title>
     <link>http://localhost:3000/posts/privacy-policy</link>
-    <pubDate>Wed, 24 Feb 2021 08:22:57 GMT</pubDate>
+    <pubDate>Wed, 24 Feb 2021 10:33:14 GMT</pubDate>
     <summary>プライバシーポリシー</summary>
 </item>
     
@@ -44,14 +52,6 @@
     <link>http://localhost:3000/posts/bedrock-friend-multiplayer-guide</link>
     <pubDate>Wed, 24 Feb 2021 04:27:12 GMT</pubDate>
     <summary>スマホ・タブレット・Windows10・XboxOne・NintendoSwitchで配信中の統合版「Minecraft」では、遠く離れた友達とマルチプレイする機能が用意されています。この記事では、スマホ・タブレット・Windows10・XboxOne・Switchで『マイクロソフトアカウント』を作成してサインインし、友達を検索してフレンドに登録して、遠く離れた場所の間でマルチプレイをするまでの手順を分かりやすく解説します。</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/posts/eula</guid>
-    <title>利用規約</title>
-    <link>http://localhost:3000/posts/eula</link>
-    <pubDate>Wed, 24 Feb 2021 08:22:28 GMT</pubDate>
-    <summary>利用規約です。</summary>
 </item>
     
     </channel>
