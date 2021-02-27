@@ -1,12 +1,10 @@
-import { FormEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import ErrorPage from 'next/error'
 import { User } from '../../models/User'
 import firebase from 'firebase/app'
 import Layout from '@/components/partials/layout'
 import Container from '@/components/common/container'
-import { toast } from 'react-toastify';
-import { useAuthentication } from '@/hooks/authentication'
-import Warning from '@/components/common/warning'
 
 interface Query {
   uid?: string
@@ -43,20 +41,31 @@ export default function UserShow() {
     // execute when uid in URL is changed
   }, [query.uid])
 
-  return (
-    <Layout preview={false} title={user ? (user.name + 'さんのページ') : '(ユーザー詳細ページ)'} desc={"ユーザー詳細ページです"}>
 
-      {user ?
-        <div>
-          <Container>
-            <h1 className="text-3xl font-bold my-4">{user.name}さんのページ</h1>
-            <div></div>
-          </Container>
-        </div>
-        : (
-          <div>ユーザーが見つかりませんでした。</div>
-        )}
-    </Layout>
+
+  return (
+    <>
+      {(!user) ? (<>
+
+        {router.isFallback ? (
+          <Layout preview={false} title={'Loading...'} desc={''}><div>読み込み中です。</div></Layout>
+        ) : (
+            (<Layout preview={false} title={'404 Not found'} desc={''}>
+              <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
+            </Layout>)
+          )}
+      </>) : (
+          <Layout preview={false} title={user ? (user.name + 'さんのページ') : '(ユーザー詳細ページ)'} desc={"ユーザー詳細ページです"}>
+            <div>
+              <Container>
+                <h1 className="text-3xl font-bold my-4">{user.name}さんのページ</h1>
+                <div></div>
+              </Container>
+            </div>
+          </Layout >
+        )
+      }
+    </>
   )
 }
 
