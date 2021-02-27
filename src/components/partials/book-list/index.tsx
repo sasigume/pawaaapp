@@ -12,14 +12,12 @@ const MultiBooks = ({ books, mode }: MultiBookProps) => {
     return (
       <section>
         <BookComponent
-          mode="list"
           key={books[0].slug}
           book={books[0]}
         />
         <div className="grid grid-cols-1 md:grid-cols-2 md:col-gap-16 lg:gap-x-16 gap-y-16 md:gap-x-24 mb-16">
           {moreBooks.map((book:Book) => (
             <BookComponent
-              mode="list"
               key={book.slug}
               book={book}
             />
@@ -35,7 +33,6 @@ const MultiBooks = ({ books, mode }: MultiBookProps) => {
         <div className="grid grid-cols-1 md:grid-cols-2 md:col-gap-16 lg:gap-x-16 gap-y-16 md:gap-x-24 mb-16">
           {books.map((book) => (
             <BookComponent
-              mode="list"
               key={book.slug}
               book={book}
             />
