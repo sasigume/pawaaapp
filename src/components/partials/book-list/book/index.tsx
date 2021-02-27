@@ -15,7 +15,7 @@ export default function BookComponent({ book, mode }: Props) {
     <article>
       <div className={cn('px-6', {
         'mb-12': mode == "single",
-        'text-md': mode !== "single"
+        ' rounded-2xl shadow-xl p-6': mode !== "single"
       })}>
         <div className="mb-5">
           <CoverImageComponent slug={book.slug} title={book.title} url={book.coverImage ? book.coverImage.url : ''} />
@@ -38,7 +38,7 @@ export default function BookComponent({ book, mode }: Props) {
         })}>
           公開: {dayjs(book.sys.firstPublishedAt).format('YYYY/MM/DD HH:mm:ss')} /最終更新: {dayjs(book.sys.publishedAt).format('YYYY/MM/DD HH:mm:ss')}
         </div>
-        {book.chaptersCollection.items.length > 0 && (<div className="text-sm mb-4">
+        {mode == 'single' && book.chaptersCollection.items.length > 0 && (<div className="text-sm mb-4">
           <ChapterList bookSlug={book.slug} bookChapters={book.chaptersCollection.items} />
         </div>)}
       </div>
