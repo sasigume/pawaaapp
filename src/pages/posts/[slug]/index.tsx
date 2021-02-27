@@ -10,7 +10,7 @@ import { getAllPostsWithSlug, getPostAndMorePosts } from '@/lib/contentful/graph
 import { Post } from '@/models/contentful/Post'
 import { PostComment } from '@/models/PostComment'
 
-import Container from '../../../components/common/container'
+import Container from '@/components/common/container'
 import Layout from '@/components/partials/layout'
 import PostList from '@/components/partials/post-list'
 import SectionSeparator from '@/components/common/section-separator'

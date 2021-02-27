@@ -1,39 +1,33 @@
+import Link from 'next/link'
 import { BookChapter } from '@/models/contentful/BookChapter'
-import MarkdownRender from '@/components/common/MarkdownRender'
 
 interface Props {
   bookChapter: BookChapter
+  bookSlug: string;
+  num:number
 }
 
 interface ListProps {
   bookChapters: BookChapter[]
+  bookSlug: string
 }
 
 
-const OneBookChapter = ({ bookChapter }: Props) => {
-  let context
-  if (bookChapter.md.includes('<p>')) {
-    context = <div dangerouslySetInnerHTML={{ __html: bookChapter.md }} />
-  } else {
-    context = <>
-      <MarkdownRender source={bookChapter.md} />
-    </>
-  }
+const OneBookChapter = ({ bookChapter, bookSlug, num }: Props) => {
   return (
-    <div className="px-4 text-left w-screen lg:w-auto mx-auto mb-12">
-      <h2 className="text-xl mb-6">{bookChapter.title}</h2>
-      <div
-        className="overflow-hidden globalStyle_content mx-auto" style={{ maxWidth: '650px' }}>
-        {context}
-      </div>
-    </div>
+    <Link href={(`/books/${bookSlug}/chapters/${num + 1}`)}>
+      <a className="block rounded-xl p-4 shadow-xl border-gray-400 border-2 mb-8">
+        <h2 className="text-xl font-bold mb-6">{bookChapter.title}</h2>
+        <div>{bookChapter.description ?? '説明文がありません'}</div>
+      </a>
+    </Link>
   )
 }
 
-const BookChapterList = ({ bookChapters }: ListProps) => {
+const BookChapterList = ({ bookChapters,bookSlug }: ListProps) => {
   return (
-    <div className="flex flex-wrap">
-      {bookChapters.map((s: BookChapter) => <OneBookChapter bookChapter={s} key={s.slug} />)}
+    <div className="">
+      {bookChapters.map((c: BookChapter, num:number) => <OneBookChapter bookSlug={bookSlug} bookChapter={c} key={c.title} num={num} />)}
     </div>
   )
 }
