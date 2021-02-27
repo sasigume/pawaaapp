@@ -1,4 +1,4 @@
-import {LandingPagePost} from './LandingPagePost'
+import { LandingPagePost } from './LandingPagePost'
 
 interface Screenshot {
   url: string
@@ -11,6 +11,10 @@ export interface LandingPage {
   topImage: Screenshot
   message: string
   md: string
-  postsCollection? : LandingPagePost[]
-  screenshotsCollection?: Screenshot[]
+  postsCollection?: {
+    items: LandingPagePost[]
+  }
+  screenshotsCollection?: {
+    items: Screenshot[]
+  }
 }
