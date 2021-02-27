@@ -5,7 +5,6 @@ import PostList from '@/components/partials/post-list'
 import Layout from '@/components/partials/layout'
 import { getSubject, getAllSubjectsWithSlug, getAllPostsForSubject } from '@/lib/contentful/graphql'
 import { Post } from '@/models/contentful/Post'
-import { SITE_NAME } from '@/lib/constants'
 import { Subject } from '@/models/contentful/Subject'
 interface IndexProps {
   subject: Subject;
@@ -16,16 +15,18 @@ interface IndexProps {
 const SubjectIndex = ({ subject, posts, preview }: IndexProps) => {
 
   const router = useRouter()
-  if (!router.isFallback && !posts) {
-    return (<Layout preview={preview} title={'404 Not found'} desc={''}>
-      <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
-      </Layout>)
-  }
   return (
     <>
-      {(router.isFallback) ? (
-        <Layout preview={preview} title={'Loading... | ' + SITE_NAME} desc={''}><div>当てはまる記事がありません。</div></Layout>
-      ) : (
+      {(!subject) ? (<>
+
+        {router.isFallback ? (
+          <Layout preview={preview} title={'Loading...'} desc={''}><div>読み込み中です。</div></Layout>
+        ) : (
+            (<Layout preview={preview} title={'404 Not found'} desc={''}>
+              <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
+            </Layout>)
+          )}
+      </>) : (
           <Layout preview={preview} title={(`${subject.displayName}の記事一覧`)} desc={"Pawaa.app"}>
             <div>
               <Container>
@@ -50,10 +51,11 @@ interface GSProps {
   preview: boolean
 }
 
-export async function getStaticProps({ params, preview=false }: GSProps) {
+export async function getStaticProps({ params, preview = false }: GSProps) {
   const slug = params.slug ?? ''
-  const subjectData = await getSubject(slug,preview)
-  const posts = await getAllPostsForSubject(subjectData.slug, preview)
+  let posts: Post[]
+  const subjectData = await getSubject(slug, preview) ?? null
+  subjectData ? posts = await getAllPostsForSubject(subjectData.slug, preview) : posts = []
   return {
     props: {
       subject: subjectData ?? null,
