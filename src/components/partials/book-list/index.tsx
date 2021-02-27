@@ -1,4 +1,5 @@
-import BookComponent from './book'
+import {SingleBookComponent} from './book'
+import {BookComponent} from './book'
 import { Book } from '@/models/contentful/Book'
 
 interface MultiBookProps {
@@ -30,7 +31,7 @@ const MultiBooks = ({ books, mode }: MultiBookProps) => {
   else {
     return (
       <section>
-        {mode == "more" && <h2 className="mb-8 text-3xl md:text-4xl font-bold tracking-tighter">他の記事</h2>}
+        {mode == "more" && <h2 className="mb-8 text-3xl md:text-4xl font-bold">他の本</h2>}
         <div className="grid grid-cols-1 md:grid-cols-2 md:col-gap-16 lg:gap-x-16 gap-y-16 md:gap-x-24 mb-16">
           {books.map((book) => (
             <BookComponent
@@ -53,8 +54,7 @@ interface BookListProps {
 export const BookList = ({ books, mode }: BookListProps) => {
   if (mode == "single") {
     return (
-      <BookComponent
-        mode="single"
+      <SingleBookComponent
         book={books[0]}
       />
     )
