@@ -53,7 +53,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   // NGワードや長いやつはクソ小さい画像で警告する
 
-  if (reqText.length > 60 || NG(reqText, NGwords)) {
+  if (reqText.length > 120 || NG(reqText, NGwords)) {
     const noCanvas = createCanvas(100,10)
     const noContext = noCanvas.getContext('2d')
     noContext.font = '6px sans-serif'
