@@ -1,6 +1,7 @@
 import { Post } from '@/models/contentful/Post'
 import { Creator } from '@/models/contentful/Creator'
 import { Subject } from '@/models/contentful/Subject'
+import { LandingPage } from '@/models/contentful/LandingPage'
 
 const LANDING_PAGE_POST_GRAPHQL_FIELDS = `
 slug
@@ -139,7 +140,7 @@ function extractPostEntriesFromSubject(fetchResponse: any) {
 }
 
 function extractLandingPage(fetchResponse: any) {
-  return fetchResponse?.data?.postCollection?.items?.[0] as Post
+  return fetchResponse?.data?.landingPageCollection?.items?.[0] as LandingPage
 }
 
 
