@@ -1,10 +1,7 @@
 export interface LandingPagePost {
   slug: string
   md: string
-  accoundId: string
-  accountName: string
-  accountPicture: {
-    url: string
-  }
+  mondaiName: string
+  mondaiPage: string
   good: number
 }
