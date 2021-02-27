@@ -359,7 +359,7 @@ export async function getLandingPage(slug: string, preview: boolean) {
   return extractLandingPage(entry)
 }
 
-export async function getBook(slug: string, preview: boolean) {
+export async function getBookAndMoreBooks(slug: string, preview: boolean) {
   const entry = await fetchGraphQL(
     `query {
       bookCollection(where: { slug: "${slug}" }, preview: ${preview ? 'true' : 'false'
@@ -371,7 +371,21 @@ export async function getBook(slug: string, preview: boolean) {
     }`,
     preview
   )
-  return extractBook(entry)
+  const entries = await fetchGraphQL(
+    `query {
+      bookCollection(where: { slug_not_in: "${slug}" }, order: sys_firstPublishedAt_DESC, preview: ${preview ? 'true' : 'false'
+    }, limit: 2) {
+        items {
+          ${BOOK_GRAPHQL_FIELDS}
+        }
+      }
+    }`,
+    preview
+  )
+  return {
+    book: extractBook(entry),
+    moreBooks: extractBooks(entries)
+  }
 }
 
 export async function getAllBooksWithSlug() {
@@ -386,3 +400,4 @@ export async function getAllBooksWithSlug() {
   )
   return extractBooks(entries)
 }
+

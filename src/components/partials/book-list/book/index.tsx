@@ -14,17 +14,17 @@ export default function BookComponent({ book, mode }: Props) {
   return (
     <article>
       <div className={cn('px-6', {
-        'border-b-2 border-gray-300 mb-12': mode == "single",
+        'mb-12': mode == "single",
         'text-md': mode !== "single"
       })}>
         <div className="mb-5">
           <CoverImageComponent slug={book.slug} title={book.title} url={book.coverImage ? book.coverImage.url : ''} />
         </div>
-        {mode == "single" && (<h2 className="text-3xl font-bold mb-3">
+        {mode == "single" && (<h1 className="text-3xl font-bold mb-6">
           <Link as={`/books/${book.slug}`} href="/books/[slug]">
             <a className="hover:underline">{book.title}</a>
           </Link>
-        </h2>
+        </h1>
         )}
         {mode !== "single" && (<h3 className="text-3xl font-bold mb-3">
           <Link as={`/books/${book.slug}`} href="/books/[slug]">
@@ -32,12 +32,15 @@ export default function BookComponent({ book, mode }: Props) {
           </Link>
         </h3>
         )}
-        {book.chaptersCollection.items.length > 0 && (<div className="text-sm mb-4">
-          <ChapterList bookChapters={book.chaptersCollection.items} />
-        </div>)}
-        <div className="text-lg mb-4">
+        <div className={cn('text-lg',{
+          'mb-6': mode == 'single',
+          'mb-3' : mode !== 'single'
+        })}>
           公開: {dayjs(book.sys.firstPublishedAt).format('YYYY/MM/DD HH:mm:ss')} /最終更新: {dayjs(book.sys.publishedAt).format('YYYY/MM/DD HH:mm:ss')}
         </div>
+        {book.chaptersCollection.items.length > 0 && (<div className="text-sm mb-4">
+          <ChapterList bookSlug={book.slug} bookChapters={book.chaptersCollection.items} />
+        </div>)}
       </div>
     </article>
   )
