@@ -1,6 +1,38 @@
-import {Post} from '@/models/contentful/Post'
-import {Creator} from '@/models/contentful/Creator'
+import { Post } from '@/models/contentful/Post'
+import { Creator } from '@/models/contentful/Creator'
 import { Subject } from '@/models/contentful/Subject'
+
+const LANDING_PAGE_POST_GRAPHQL_FIELDS = `
+slug
+md
+accountId
+accountName
+accountPicture {
+  url
+}
+good
+`
+
+const LANDING_PAGE_GRAPHQL_FIELDS = `
+title
+slug
+topImage {
+  url
+}
+message
+md
+postsCollection {
+  items {
+    ${LANDING_PAGE_POST_GRAPHQL_FIELDS}
+  }
+}
+screenshotsCollection {
+  items {
+    url
+  }
+}
+`
+
 
 const CREATOR_GRAPHQL_FIELDS = `
 sys {
@@ -89,20 +121,24 @@ function extractCreators(fetchResponse: any) {
   return fetchResponse?.data?.creatorCollection?.items as Creator[]
 }
 
-function extractPostEntriesFromCreator(fetchResponse:any) {
+function extractPostEntriesFromCreator(fetchResponse: any) {
   return fetchResponse?.data.creatorCollection?.items[0].linkedFrom.postCollection?.items as Post[]
 }
 
-function extractSubject(fetchResponse:any) {
+function extractSubject(fetchResponse: any) {
   return fetchResponse?.data.subjectCollection?.items?.[0] as Subject
 }
 
-function extractSubjects(fetchResponse:any) {
+function extractSubjects(fetchResponse: any) {
   return fetchResponse?.data.subjectCollection?.items as Subject[]
 }
 
-function extractPostEntriesFromSubject(fetchResponse:any) {
+function extractPostEntriesFromSubject(fetchResponse: any) {
   return fetchResponse?.data.subjectCollection?.items[0].linkedFrom.postCollection?.items as Post[]
+}
+
+function extractLandingPage(fetchResponse: any) {
+  return fetchResponse?.data?.postCollection?.items?.[0] as Post
 }
 
 
@@ -176,7 +212,7 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
   }
 }
 
-export async function getAllCreatorsWithSlug(preview:boolean) {
+export async function getAllCreatorsWithSlug(preview: boolean) {
   const entries = await fetchGraphQL(
     `query {
       creatorCollection(limit: 5, where: { slug_exists: true }, order: sys_firstPublishedAt_DESC) {
@@ -205,7 +241,7 @@ export async function getCreator(slug: string, preview: boolean) {
   return extractCreator(entry)
 }
 
-export async function getAllPostsForCreator(slug:string, preview: boolean) {
+export async function getAllPostsForCreator(slug: string, preview: boolean) {
   const entries = await fetchGraphQL(
     `query {
       creatorCollection(limit: 1, where: {slug: "${slug}"}, order: sys_firstPublishedAt_DESC) {
@@ -254,7 +290,7 @@ export async function getSubject(slug: string, preview: boolean) {
   return extractSubject(entry)
 }
 
-export async function getAllPostsForSubject(slug:string, preview: boolean) {
+export async function getAllPostsForSubject(slug: string, preview: boolean) {
   const entries = await fetchGraphQL(
     `query {
       subjectCollection(limit: 1, where: {slug: "${slug}"}, order: sys_firstPublishedAt_DESC) {
@@ -273,4 +309,19 @@ export async function getAllPostsForSubject(slug:string, preview: boolean) {
     preview
   )
   return extractPostEntriesFromSubject(entries)
+}
+
+export async function getLandingPage(slug: string, preview: boolean) {
+  const entry = await fetchGraphQL(
+    `query {
+      landingPageCollection(where: { slug: "${slug}" }, preview: ${preview ? 'true' : 'false'
+    }, limit: 1) {
+        items {
+          ${LANDING_PAGE_GRAPHQL_FIELDS}
+        }
+      }
+    }`,
+    preview
+  )
+  return extractLandingPage(entry)
 }
