@@ -1,8 +1,7 @@
 import Nav from './nav'
 import Meta from './meta'
 import { ReactNode } from 'react'
-import { CREATOR_ID } from '@/lib/constants'
-import LayoutFooter from './footer'
+import LayoutFooter from './layout-footer'
 
 interface LayoutProps {
   preview: boolean;

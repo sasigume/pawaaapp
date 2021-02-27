@@ -9,6 +9,12 @@
     
         
 <url>
+    <loc>http://localhost:3000/posts/we-can-use-mathjax</loc>
+    <title>PAWAAAPPでは、文章中で数式の表示ができます</title>
+    <lastmod>Wed, 24 Feb 2021 10:43:47 GMT</lastmod>
+</url>
+    
+<url>
     <loc>http://localhost:3000/posts/do-not-buy-win10-edition</loc>
     <title>スタートメニューに最初からあるMinecraftでMODは使えません</title>
     <lastmod>Wed, 24 Feb 2021 08:27:50 GMT</lastmod>
@@ -23,19 +29,13 @@
 <url>
     <loc>http://localhost:3000/posts/privacy-policy</loc>
     <title>プライバシーポリシー</title>
-    <lastmod>Wed, 24 Feb 2021 08:22:57 GMT</lastmod>
+    <lastmod>Wed, 24 Feb 2021 10:33:14 GMT</lastmod>
 </url>
     
 <url>
     <loc>http://localhost:3000/posts/bedrock-friend-multiplayer-guide</loc>
     <title>スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
     <lastmod>Wed, 24 Feb 2021 04:27:12 GMT</lastmod>
-</url>
-    
-<url>
-    <loc>http://localhost:3000/posts/eula</loc>
-    <title>利用規約</title>
-    <lastmod>Wed, 24 Feb 2021 08:22:28 GMT</lastmod>
 </url>
     
 </urlset>
