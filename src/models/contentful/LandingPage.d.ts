@@ -7,6 +7,7 @@ interface Screenshot {
 export interface LandingPage {
   title: string
   slug: string
+  description: string
   topImage: Screenshot
   message: string
   md: string

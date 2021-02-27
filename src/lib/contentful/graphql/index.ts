@@ -16,6 +16,7 @@ good
 const LANDING_PAGE_GRAPHQL_FIELDS = `
 title
 slug
+description
 topImage {
   url
 }
