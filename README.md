@@ -2,7 +2,7 @@
 
 ![screenshot](https://github.com/sasigume/pawaaapp/blob/main/screenshot/demo.png?raw=true)
 
-A simple Q&A webapp. Built with **[Storyblok](https://www.storyblok.com)**
+参考書, Re-Defined.
 ## Thanks
 
 ### MathJax + LaTeX
