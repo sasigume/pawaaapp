@@ -45,6 +45,7 @@ export default function BookPage({ firstBook, moreBooks, preview }: BookPageProp
             <div className="mt-6">
               <Container>
                 {firstBook && <BookList mode="single" books={[firstBook]} />}
+                <SectionSeparator />
                 {<div className="px-4">{moreBooks && moreBooks.length > 0 && <BookList mode="more" books={moreBooks} />}</div>}
               </Container>
             </div>
