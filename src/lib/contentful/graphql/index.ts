@@ -6,11 +6,8 @@ import { LandingPage } from '@/models/contentful/LandingPage'
 const LANDING_PAGE_POST_GRAPHQL_FIELDS = `
 slug
 md
-accountId
-accountName
-accountPicture {
-  url
-}
+mondaiName
+mondaiPage
 good
 `
 
@@ -171,10 +168,10 @@ export async function getAllPostsWithSlug() {
   return extractPostEntries(entries)
 }
 
-export async function getAllPostsForHome(preview: boolean, limit = 5) {
+export async function getAllPostsForHome(preview: boolean, limit?:number) {
   const entries = await fetchGraphQL(
     `query {
-      postCollection(limit: 5, order: sys_firstPublishedAt_DESC,preview: ${preview ? true : false}) {
+      postCollection(limit: ${limit ?? 5}, order: sys_firstPublishedAt_DESC,preview: ${preview ? true : false}) {
         items {
           ${POST_GRAPHQL_FIELDS}
         }
@@ -214,10 +211,10 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
   }
 }
 
-export async function getAllCreatorsWithSlug(preview: boolean) {
+export async function getAllCreatorsWithSlug(preview: boolean, limit?: number) {
   const entries = await fetchGraphQL(
     `query {
-      creatorCollection(limit: 5, where: { slug_exists: true }, order: sys_firstPublishedAt_DESC) {
+      creatorCollection(limit: ${limit ?? 5}, where: { slug_exists: true }, order: sys_firstPublishedAt_DESC) {
         items {
           ${CREATOR_GRAPHQL_FIELDS}
         }

@@ -39,6 +39,7 @@ const generatePostItem = (post: Post): string => {
 
 
 const generateRss = (creators: Creator[], posts: Post[]): string => {
+  console.log('Generating RSS for ' + posts.length + ' posts and ' + creators.length + ' creators!')
   return (`<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>${SITE_NAME}</title>
