@@ -9,9 +9,6 @@ import { Book } from '@/models/contentful/Book'
 import Container from '@/components/common/container'
 import Layout from '@/components/partials/layout'
 import BookList from '@/components/partials/book-list'
-import SectionSeparator from '@/components/common/section-separator'
-import { BookChapter } from '@/models/contentful/BookChapter'
-import BookChapterList from '@/components/partials/book-list/book/chapter-list'
 import MarkdownRender from '@/components/common/MarkdownRender'
 import Link from 'next/link'
 
@@ -29,6 +26,7 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
   const router = useRouter()
 
   // if chapter includes alphabet return NaN to prevent parsing number from mixed string
+  // otherwise string like '1aaa' is somehow considered as chapter number
   const includeAlphabet = new RegExp(`[A-Za-z]`)
   let intChapterNumber: number
   includeAlphabet.test(chapterNumber) ? intChapterNumber = NaN : intChapterNumber = parseInt(chapterNumber)
@@ -85,7 +83,7 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
               <div className="mt-6">
                 <Container>
                   {target && (
-                    <div className="px-4 text-left w-screen lg:w-auto mx-auto">
+                    <div className="text-left lg:w-auto mx-auto">
 
                       <div
                         className="overflow-x-hidden globalStyle_content mx-auto mb-12" style={{ maxWidth: '650px' }}>
@@ -160,6 +158,8 @@ export async function getStaticPaths() {
             params: {
               slug: book.slug,
               chapterNumber: num.toString()
+
+              // Dynamic route only accepts string
             }
           }
         }
