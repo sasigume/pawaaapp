@@ -3,6 +3,8 @@
 ![screenshot](https://github.com/sasigume/pawaaapp/blob/main/screenshot/demo2.png?raw=true)
 
 参考書, Re-Defined.
+
+
 ## Thanks
 
 ### MathJax + LaTeX
@@ -13,11 +15,6 @@ https://medium.com/@MatDrinksTea/rendering-markdown-and-latex-in-react-dec355e74
 ### GraphQL + Contentful
 
 https://github.com/vercel/next.js/tree/canary/examples/cms-contentful
-
-
-### Sitemap Generator
-
-https://github.com/IlusionDev/nextjs-sitemap-generator
 
 
 ### Firebase auth

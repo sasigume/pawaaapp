@@ -12,7 +12,7 @@ export default function PostBody({ md }: Props) {
     </>
   }
   return (
-    <div className="px-4 text-left w-screen lg:w-auto mx-auto">
+    <div className="px-4 text-left lg:w-auto mx-auto">
       <div
         className="overflow-hidden globalStyle_content mx-auto" style={{maxWidth: '650px'}}>
         {context}
