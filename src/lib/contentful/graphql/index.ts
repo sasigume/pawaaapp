@@ -401,3 +401,17 @@ export async function getAllBooksWithSlug() {
   return extractBooks(entries)
 }
 
+export async function getAllBooksForHome(preview: boolean, limit?: number) {
+  const entries = await fetchGraphQL(
+    `query {
+      bookCollection(limit: ${limit ?? 5}, order: sys_firstPublishedAt_DESC,preview: ${preview ? true : false}) {
+        items {
+          ${BOOK_GRAPHQL_FIELDS}
+        }
+      }
+    }`,
+    preview
+  )
+  return extractBooks(entries)
+}
+
