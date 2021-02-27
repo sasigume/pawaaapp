@@ -51,7 +51,8 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
 
   )
 
-  const target = firstBook.chaptersCollection.items[intChapterNumber - 1]
+  let target
+  firstBook ? target = firstBook.chaptersCollection.items[intChapterNumber - 1] : target = null
 
   return (
     <>
@@ -60,8 +61,8 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
         {!target ? (
           <>
             {router.isFallback ? (
-              <Layout preview={preview} title={'404 Book Not found'} desc={''}>
-                <ErrorPage title="本が見つかりませんでした" statusCode={404} />
+              <Layout preview={preview} title={'Loading...'} desc={''}>
+                <div>読み込み中です。</div>
               </Layout>
             ) : (
                 <Layout preview={preview} title={'404 Chapter Not found'} desc={''}>
@@ -106,8 +107,9 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
       </>
       ) : (
 
-          <Layout preview={preview} title={'Loading...'} desc={''}>
-            <div>読み込み中です。</div>
+
+          <Layout preview={preview} title={'404 Book Not found'} desc={''}>
+            <ErrorPage title="本が見つかりませんでした" statusCode={404} />
           </Layout>
         )}
     </>
