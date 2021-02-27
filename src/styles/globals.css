@@ -8,8 +8,4 @@
 
 @layer base {
 
-  p {
-    @apply mb-4;
-  }
-
 }
