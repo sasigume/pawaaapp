@@ -8,9 +8,8 @@ import cn from 'classnames'
 
 interface Props {
   book: Book
-  mode: string
 }
-export function BookComponent({ book, mode }: Props) {
+export function BookComponent({ book }: Props) {
   return (
     <article>
       <div className="p-6 rounded-2xl shadow-xl flex">
