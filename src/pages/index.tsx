@@ -8,8 +8,7 @@ import Logo from '@/components/common/Logo'
 
 import Container from '@/components/common/container'
 import Layout from '@/components/partials/layout'
-import { getAllPostsForHome, getAllCreatorsWithSlug, getLandingPage } from '../lib/contentful/graphql'
-import { Post } from '@/models/contentful/Post'
+import { getAllPostsForHome, getAllBooksWithSlug, getLandingPage } from '../lib/contentful/graphql'
 import { LandingPage } from '@/models/contentful/LandingPage'
 import { LandingPagePost } from '@/models/contentful/LandingPagePost'
 import LandingPagePostComponent from '@/components/common/landing-page-post'
@@ -97,11 +96,11 @@ export async function getStaticProps({ preview = false }) {
   const page = await getLandingPage('index', preview) ?? null
 
   // Write only published post into RSS/Sitemap
-  const allCreatorsPublished = (await getAllCreatorsWithSlug(false)) || []
+  const allBooksPublished = (await getAllBooksWithSlug(false)) || []
   const postsPublished = (await getAllPostsForHome(false, 10)) || []
 
-  publishRss(allCreatorsPublished, postsPublished)
-  publishSitemap(allCreatorsPublished, postsPublished)
+  publishRss(allBooksPublished, postsPublished)
+  publishSitemap(allBooksPublished, postsPublished)
 
   return {
     props: {

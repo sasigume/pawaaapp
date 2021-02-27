@@ -388,15 +388,16 @@ export async function getBookAndMoreBooks(slug: string, preview: boolean) {
   }
 }
 
-export async function getAllBooksWithSlug() {
+export async function getAllBooksWithSlug(preview: boolean) {
   const entries = await fetchGraphQL(
     `query {
-      bookCollection(where: { slug_exists: true }, order: sys_firstPublishedAt_DESC) {
+      bookCollection(where: { slug_exists: true }, order: sys_firstPublishedAt_DESC,preview: ${preview ? 'true' : 'false'}) {
         items {
           ${BOOK_GRAPHQL_FIELDS}
         }
       }
-    }`
+    }`,
+    preview
   )
   return extractBooks(entries)
 }

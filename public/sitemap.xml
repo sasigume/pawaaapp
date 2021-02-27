@@ -2,9 +2,15 @@
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         
 <url>
-    <loc>http://localhost:3000/creators/sasigume</loc>
-    <title>さしぐめ</title>
-    <lastmod>Wed, 24 Feb 2021 03:25:59 GMT</lastmod>
+    <loc>http://localhost:3000/books/sample-book</loc>
+    <title>本のサンプル</title>
+    <lastmod>Sat, 27 Feb 2021 15:35:13 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/bedrock-friend-multiplayer-guide</loc>
+    <title>スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <lastmod>Sat, 27 Feb 2021 08:17:03 GMT</lastmod>
 </url>
     
         

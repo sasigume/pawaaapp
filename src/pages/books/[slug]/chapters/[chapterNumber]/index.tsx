@@ -147,7 +147,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
 }
 
 export async function getStaticPaths() {
-  const allBooks = await getAllBooksWithSlug()
+  const allBooks = await getAllBooksWithSlug(false)
 
   return {
     paths: allBooks?.map((book: Book) => {
