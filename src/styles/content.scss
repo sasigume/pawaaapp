@@ -3,31 +3,31 @@ $listModifyBlue : #0060bc;
 
 // Variables
 
-$shadow-sm: 0 0.1rem 0.3rem 0 rgba(0,0,0,0.1);
-$shadow-md: 0 0.1rem 0.6rem 0 rgba(0,0,0,0.3);
+$shadow-sm: 0 0.1rem 0.3rem 0 rgba(0, 0, 0, 0.1);
+$shadow-md: 0 0.1rem 0.6rem 0 rgba(0, 0, 0, 0.3);
 
 $color-theme: #2687e8;
 
 // Background color
 $background: #fff;
-$bg-light: #f5f5f5;
-$bg-dark: #222;
+$bg-light  : #f5f5f5;
+$bg-dark   : #222;
 
 // text color
-$text: #454545;
-$text-light: #999;
+$text       : #454545;
+$text-light : #999;
 $text-header: #333;
-$text-code: #eee;
+$text-code  : #eee;
 
 // link
-$link: #1487bd;
+$link : #1487bd;
 $hover: darken($link, 10%);
 
 // border
 $border: #ddd;
 
 // button
-$btn: #fff;
+$btn      : #fff;
 $btn-hover: #f5f5f5;
 
 // Media Queries
@@ -38,7 +38,7 @@ $mq-lg: "(min-width: 1200px)";
 
 
 @mixin buttonHoverShadow($bg:$color-theme) {
-    display: block;
+    display        : block;
     padding        : 1rem;
     background     : $bg;
     width          : 100%;
@@ -48,13 +48,14 @@ $mq-lg: "(min-width: 1200px)";
     box-shadow     : $shadow-sm;
     text-decoration: none;
     transition     : .3s ease-in-out;
-    margin: 1rem 0;
-  
+    margin         : 1rem 0;
+
     &:hover {
-      color     : #fff;
-      box-shadow: $shadow-md;
+        color     : #fff;
+        box-shadow: $shadow-md;
     }
-  }
+}
+
 /* @font-face {
     font-family: 'minecraft';
     src: url('/fonts/minecraft.eot');
@@ -66,10 +67,10 @@ $mq-lg: "(min-width: 1200px)";
 .globalStyle_content {
     max-width: 650px;
 
-    img {
-        max-width: 100%;
-        height   : auto;
-        margin   : 0.5rem 0 0.3rem;
+    img,
+    video {
+        @apply max-w-full h-auto my-1;
+        /* zoom: 1.4; 横幅大きくなったから無理矢理大きくする */
 
         &.border {
             border: solid 1px #444;
@@ -77,88 +78,46 @@ $mq-lg: "(min-width: 1200px)";
     }
 
     .youtube-box {
-        position   : relative;
-        width      : 100%;
+        @apply relative w-full mb-2;
         padding-top: 56.25%;
-        margin     : 0 0 0.6rem;
 
         iframe {
-            position: absolute;
-            top     : 0;
-            right   : 0;
-            width   : 100%;
-            height  : 100%;
+            @apply absolute top-0 right-0 w-full h-full;
         }
     }
 
     a {
-        text-decoration: underline;
-        color          : #0066FF;
-
-        &.entry-see-more {
-            @include buttonHoverShadow(#00a5a5);
-        }
+        @apply underline text-blue-600;
 
         &:hover {
-            color: #3F99FF;
+            @apply text-blue-500;
         }
 
         &:visited {
-            color: #723c94;
+            @apply text-purple-700;
         }
 
         &.back-link {
-            float: left;
+            @apply float-left;
         }
 
         &.next-link {
-            float: right;
+            @apply float-right;
         }
 
         &.back-link,
-        &.next-link {
-            display        : block;
-            padding        : 3px;
-            margin         : 2px 2px 2px 10px;
-            background     : #fff;
-            border         : solid 1px #777;
-            text-decoration: none;
-            font-size      : 14px;
-            font-weight    : bold;
-            color          : #000;
-            transition     : all .4s;
-            border-radius  : 5px;
-
-            &:hover {
-                border-color: #000000;
-                color       : #000000;
-                box-shadow  : 0px 0px 5px rgba(100, 100, 100, 1);
-                transition  : all .4s;
-            }
+        &.next-link,
+        &.napo-art-link {
+            @apply block p-1 m-2 ml-4 bg-white border-gray-500 no-underline font-bold text-black rounded-lg;
         }
 
         &.napo-art-link {
-            display      : block;
-            padding      : 8px;
-            border       : solid 2px $color-theme;
-            background   : $color-theme;
-            font-size    : 1.1em;
-            color        : #fff;
-            border-radius: 5px;
-            box-shadow   : 0px 5px 0px #0072D4;
-            text-align   : center;
-            transition   : all .3s;
-
-            &:hover {
-                background: #fff;
-                color     : $color-theme;
-            }
+            @apply border-blue-500 text-center
         }
     }
 
     p {
-        line-height: 1.7;
-        margin     : 0px 0px 1.4em;
+        @apply leading-relaxed mb-4;
     }
 
     h1,
@@ -167,90 +126,70 @@ $mq-lg: "(min-width: 1200px)";
     h4,
     h5,
     h6 {
-        font-size  : 1.05em;
-        font-weight: bold;
-        line-height: 1.3;
-        margin     : 2em 0 0.8em;
+        @apply mx-1 font-bold leading-loose my-5 p-2 pl-3 border-gray-400 relative;
+    }
+
+    h1:before,
+    h2:before,
+    h3:before,
+    h4:before,
+    h5:before,
+    h6:before {
+        content: "";
+        @apply block w-2 h-full left-0 top-0 absolute border-l-2 border-gray-500;
     }
 
     h1 {
-        font-size    : 1.7em;
-        border-left  : 5px solid $color-theme;
-        box-shadow   : 0px 0px 6px rgba(100, 100, 100, 0.5);
-        padding      : 5px 0px 6px 5px;
-        border-radius: 0px 3px 3px 0px;
-        position     : relative;
+        box-shadow: 0px 0px 6px rgba(100, 100, 100, 0.5);
+        @apply text-3xl py-2 pl-3;
+
+        &:before {
+            @apply border-blue-500;
+        }
     }
 
     h2 {
-        font-size    : 1.4em;
-        border       : solid 2px #BDBDBD;
-        padding      : 6px 5px 6px 12px;
-        border-radius: 0px 5px 5px 0px;
-        box-shadow   : 0px 3px 0px #848484;
-        position     : relative;
+        box-shadow: 0px 3px 0px #848484;
+        @apply text-3xl;
 
         &:before {
-            content   : "";
-            display   : block;
-            position  : absolute;
-            width     : 4px;
-            height    : 100%;
-            background: #444;
-            left      : -2px;
-            top       : 0px;
+            @apply border-gray-700;
         }
     }
 
     h3 {
-        font-size    : 1.25em;
-        border       : solid 1px #AAA;
-        padding      : 6px 5px 6px 12px;
-        border-radius: 5px;
-        box-shadow   : 0px 2px 0px #888;
+        box-shadow: 0px 2px 0px #888;
+        @apply text-lg;
     }
 
     h4 {
-        font-size    : 1.17em;
-        border-bottom: 2px solid #ccc;
-        border-left  : 2px solid #ccc;
-        padding      : 0px 0px 4px 6px;
+        @apply text-lg;
     }
 
-    h5 {
-        font-size    : 1.13em;
-        border-bottom: 1px solid #ccc;
-        padding      : 0px 0px 4px 0px;
-    }
+    h5 {}
 
-    #contents-list {
-        padding      : 0px 17px 10px;
-        border-bottom: 2px solid #aaa;
+    #toc_container {
+        margin    : 1rem 0 4rem;
+        background: #f9f9f9;
+        padding   : 1rem;
 
         ul {
+            list-style-type: disc;
+
             li {
-                font-weight: bold;
+                line-height: 2;
+
+                &:after {
+                    display: none;
+                }
             }
 
             >li {
-                margin   : 4px;
-                font-size: 22px;
+                margin: 4px;
 
                 >ul {
                     >li {
                         font-size: 0.9em;
-
-                        >ul {
-                            >li {
-                                font-size: 0.9em;
-
-                                >ul {
-                                    >li {
-                                        font-size: 0.9em;
-                                    }
-                                }
-                            }
-                        }
                     }
                 }
             }
@@ -258,33 +197,41 @@ $mq-lg: "(min-width: 1200px)";
     }
 
     dl {
-        margin    : 30px 0px 10px;
-        padding   : 0px 20px 12px;
-        border    : solid 1px #A1A1A1;
+        @apply mt-12 mb-8 px-6 pb-4 border border-gray-400 shadow-lg;
         box-shadow: 0px 3px 0px rgba(1, 1, 1, 0.1);
 
+        &.nimu_stepchart {
+            @apply border-none shadow-none;
+
+            dd {
+                @apply border-4 border-gray-600 p-3 rounded-xl my-6;
+
+                &:after {
+                    content: '';
+                    @apply block absolute left-0 right-0 m-auto w-0 h-0;
+                    bottom       : -30px;
+                    border-left  : solid 30px transparent;
+                    border-right : solid 30px transparent;
+                    border-bottom: solid 0px transparent;
+                    border-top   : solid 30px #444;
+                }
+
+                &:last-child {
+                    &:after {
+                        display: none;
+                    }
+                }
+            }
+        }
+
         dt {
-            position   : relative;
-            display    : inline-block;
-            top        : -10px;
-            background : #fff;
-            padding    : 0 6px;
-            font-weight: bold;
-            font-size  : 1.1em
+            @apply relative inline-block bg-white px-2 font-bold text-lg;
+            top: -1rem;
         }
 
         dd {
-            position: relative;
-            top     : 0px;
-            margin  : 0 0 2rem 0.4rem;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-
+            @apply relative top-0 m-0
         }
-
-
     }
 
     small {
@@ -297,657 +244,159 @@ $mq-lg: "(min-width: 1200px)";
     }
 
     kbd {
-        padding       : 4px 8px;
-        margin        : 3px 6px;
-        background    : #EFF0F2;
-        border-radius : 4px;
-        border-top    : 1px solid #F5F5F5;
-        box-shadow    : 0 1px 0 #c3c3c3, 0 2px 0 #c9c9c9, 0 2px 3px #333333;
-        color         : #000;
-        text-align    : center;
-        line-height   : 1;
-        font-weight   : bold;
-        display       : inline-block;
-        vertical-align: middle;
-        zoom          : 1;
-        position      : relative;
-        bottom        : 0.2em;
+        border-top: 1px solid #F5F5F5;
+        @apply inline-block bottom-4 relative align-middle py-2 px-4 my-1 mx-2 bg-gray-100 rounded-lg shadow-md text-black text-center font-bold;
     }
 
     blockquote {
-        margin       : 1em 0.5em 1em;
-        padding      : 1em;
-        background   : #eee;
-        border-radius: 8px;
-        border       : 1px solid $border;
-
-        p:first-child {
-            margin-top: 0;
-        }
-
-        p:last-child {
-            margin-bottom: 0;
-        }
+        @apply my-4 mx-2 p-3 bg-gray-50 rounded-xl;
     }
 
     table {
-        border-collapse: collapse;
-        border-spacing : 0;
-        border-bottom  : 1em;
-        margin-bottom  : 1em;
-        width          : 100%;
-        overflow       : auto;
-        display        : block;
-        font-size      : .8rem;
-
-        border       : none;
-        margin-bottom: 1em;
+        @apply mb-6;
+        border: none;
 
         th,
         td {
-            border : 1px solid $border;
-            padding: 5px 10px;
+            border-width: 1px;
+            @apply border-gray-500 py-2 px-3;
 
             &.big {
-                font-size: 1.1em;
+                @apply text-lg;
             }
         }
 
         th {
-            font-weight: bold;
-            background : $bg-light;
+            @apply font-bold bg-gray-400;
         }
 
         td {
-            line-height: 1.6;
-
             &.enable {
-                background: #98FB98;
+                @apply bg-green-400;
             }
 
             &.disable {
-                background: #ffa6a6;
+                @apply bg-red-300;
             }
         }
 
         .bottomB {
-            border-bottom: solid 2px #222
+            @apply border-b-2 border-gray-800;
         }
 
         ul {
-            margin-left: 0px;
+            @apply ml-0;
         }
 
         thead {
             th {
-                background: #D0D0D0;
-                border    : solid 1px #9E9E9E;
+                @apply border-gray-400;
             }
         }
 
         &.map-table {
             th {
-                padding    : 0.4em 0.2em;
-                font-weight: bold;
+                @apply px-6 py-3 font-bold;
             }
 
             td {
-                text-align: left;
-                padding   : 0.5em;
+                @apply p-6 text-left;
             }
         }
 
         &.item-list-table ul {
-            list-style-type: none;
+            @apply list-none;
         }
 
         &.matome-table {
-            font-size   : 1.2rem;
-            table-layout: fixed;
-            width       : 100%;
+            @apply table-fixed text-lg;
 
             tr {
-                border-bottom: solid 2px #444;
+                @apply border-b-2 border-gray-800;
 
                 &:last-child {
-                    border-bottom: 0px;
+                    @apply border-b-0;
                 }
+            }
+        }
+    }
+
+    .list-modify {
+        @apply inline-block m-1 p-2 rounded-md bg-blue-500 text-white font-bold;
+
+        &.green {
+            @apply bg-green-600
+        }
+
+        &.blue {
+            @apply bg-blue-700;
+        }
+    }
+
+    ol {
+        counter-reset: number;
+        @apply list-none my-2 ml-8;
+
+        li {
+            @apply relative my-4;
+
+            &:before {
+                counter-increment: number;
+                content          : counter(number);
+                top              : -0.3em;
+                left             : -0.8em;
+                width            : 14px;
+                height           : 14px;
+                @apply block text-xl text-purple-700 font-bold;
+            }
+        }
+    }
+
+    ul {
+        @apply list-none my-2 ml-8;
+
+        li {
+            position: relative;
+            margin  : 15px 0;
+
+            &:after {
+                display: block;
+                content: '';
+                @apply absolute block bg-purple-800 rounded-full w-4 h-4;
+                top : .5em;
+                left: -1em;
+            }
+
+            >ul {
+                @apply ml-4 text-sm;
             }
         }
     }
 
     pre {
-        background   : $bg-dark;
-        color        : $text-code;
-        border       : none;
-        white-space  : pre-wrap;
-        text-overflow: ellipsis;
-        line-height  : 1.3;
-        font-size    : .8rem;
-        padding      : 1rem;
-        border-radius: 1rem;
-
-        &>code {
-            margin          : 0;
-            padding         : 0;
-            white-space     : pre;
-            border          : none;
-            background-color: transparent;
-            font-family     : 'Monaco', 'Consolas', 'Courier New', Courier, monospace, sans-serif;
-        }
-    }
-
-    code {
-        font-size       : 90%;
-        margin          : 0 2px;
-        padding         : 0px 5px;
-        background-color: $bg-light;
-        border-radius   : 3px;
-    }
-
-    hr {
-        width     : 50%;
-        border    : 0;
-        border    : none;
-        border-top: 1px solid $border;
-        margin    : 2em auto;
-    }
-
-    ul.table-of-contents {
-        padding: 1rem 0 1rem 1rem;
-        margin : 1em 0;
-        border : 1px solid $border;
-
-        li>ul {
-            margin-left: 1em;
-        }
-    }
-
-    .list-modify {
-        display      : inline-block;
-        margin       : 2px;
-        padding      : 3px;
-        border-radius: 7px;
-        background   : $color-theme;
-        font-size    : 1em;
-        color        : white;
-        font-weight  : bold;
-
-        &.green {
-            background: $listModifyGreen;
-        }
-
-        &.blue {
-            background: $listModifyBlue;
-        }
-    }
-
-    // 公式Wiki準拠のアイテム等のスプライト画像
-    .sprite {
-        display          : inline-block;
-        vertical-align   : middle;
-        height           : 16px;
-        width            : 16px;
-        background-repeat: no-repeat;
-        image-rendering  : pixelated;
-    }
-
-    .inv-sprite {
-        background-image: url(https://napoan.com/wp-content/uploads/2018/04/InvSprite-1.png);
-        width           : 32px;
-        height          : 32px;
-    }
-
-    .item-sprite {
-        background-image: url(https://napoan.com/wp-content/uploads/2018/11/ItemCSS.png);
-    }
-
-    .entity-sprite {
-        background-image: url(https://napoan.com/wp-content/uploads/2018/04/EntityCSS.png);
-
-        &.entity-item {
-            background-position: -16px -0px
-        }
-
-        &.entity-xp_orb {
-            background-position: -160px -64px
-        }
-
-        &.entity-area_effect_cloud {
-            background-position: -144px -36px;
-        }
-
-        &.entity-leash_knot {
-            background-position: -144px -112px
-        }
-
-        &.entity-painting {
-            background-position: -64px -80px
-        }
-
-        &.entity-item_frame {
-            background-position: -112px -112px
-        }
-
-        &.entity-evocation_fangs {
-            background-position: -128px -128px
-        }
-
-        &.entity-armor_stand {
-            background-position: -0px -208px
-        }
-
-        &.entity-ender_crystal {
-            background-position: -48px -64px
-        }
-
-        &.entity-egg {
-            background-position: -96px -48px
-        }
-
-        &.entity-arrow {
-            background-position: -64px -48px
-        }
-
-        &.entity-snowball {
-            background-position: -80px -48px
-        }
-
-        &.entity-fireball {
-            background-position: -112px -48px
-        }
-
-        &.entity-small_fireball {
-            background-position: -112px -48px
-        }
-
-        &.entity-ender_pearl {
-            background-position: -144px -48px
-        }
-
-        &.entity-eye_of_ender_signal {
-            background-position: -160px -48px
-        }
-
-        &.entity-potion {
-            background-position: -160px -112px
-        }
-
-        &.entity-xp_bottle {
-            background-position: -112px -64px
-        }
-
-        &.entity-wither_skull {
-            background-position: -176px -64px
-        }
-
-        &.entity-fireworks_rocket {
-            background-position: 0px -160px
-        }
-
-        &.entity-spectral_arrow {
-            background-position: -64px -48px
-        }
-
-        &.entity-shulker_bullet {
-            background-position: -96px -96px
-        }
-
-        &.entity-dragon_fireball {
-            background-position: -112px -96px
-        }
-
-        &.entity-llama_spit {
-            background-position: -160px -128px
-        }
-
-        &.entity-tnt {
-            background-position: -0px -64px
-        }
-
-        &.entity-commandblock_minecart {
-            background-position: -80px -96px
-        }
-
-        &.entity-boat {
-            background-position: -128px -32px
-        }
-
-        &.entity-minecart {
-            background-position: -144px -32px
-        }
-
-        &.entity-chest_minecart {
-            background-position: -160px -32px
-        }
-
-        &.entity-furnace_minecart {
-            background-position: -176px -32px
-        }
-
-        &.entity-tnt_minecart {
-            background-position: -128px -80px
-        }
-
-        &.entity-hopper_minecart {
-            background-position: -144px -80px
-        }
-
-        &.entity-spawner_minecart {
-            background-position: -160px -80px
-        }
-
-        &.entity-evocation_illager {
-            background-position: -80px -128px
-        }
-
-        &.entity-vex {
-            background-position: -96px -128px
-        }
-
-        &.entity-vindication_illager {
-            background-position: -112px -128px
-        }
-
-        &.entity-creeper {
-            background-position: -16px -16px
-        }
-
-        &.entity-skeleton {
-            background-position: -144px -0px
-        }
-
-        &.entity-wither_skeleton {
-            background-position: -64px -64px
-        }
-
-        &.entity-stray {
-            background-position: -16px -128px
-        }
-
-        &.entity-spider {
-            background-position: -160px -0px
-        }
-
-        &.entity-giant {
-            background-position: -128px -0px
-        }
-
-        &.entity-zombie {
-            background-position: -128px -0px
-        }
-
-        &.entity-zombie_villager {
-            background-position: -16px -80px
-        }
-
-        &.entity-husk {
-            background-position: -32px -128px
-        }
-
-        &.entity-slime {
-            background-position: -32px -16px
-        }
-
-        &.entity-ghast {
-            background-position: -48px -16px
-        }
-
-        &.entity-zombie_pigman {
-            background-position: -64px -16px
-        }
-
-        &.entity-enderman {
-            background-position: -128px -16px
-        }
-
-        &.entity-cave_spider {
-            background-position: -0px -16px
-        }
-
-        &.entity-silverfish {
-            background-position: -144px -16px
-        }
-
-        &.entity-blaze {
-            background-position: -112px -32px
-        }
-
-        &.entity-magma_cube {
-            background-position: -176px -16px
-        }
-
-        &.entity-ender_dragon {
-            background-position: -64px -32px
-        }
-
-        &.entity-wither {
-            background-position: -0px -80px
-        }
-
-        &.entity-witch {
-            background-position: -80px -64px
-        }
-
-        &.entity-endermite {
-            background-position: -16px -112px
-        }
-
-        &.entity-guardian {
-            background-position: -32px -112px
-        }
-
-        &.entity-elder_guardian {
-            background-position: -48px -112px
-        }
-
-        &.entity-shulker {
-            background-position: -80px -32px
-        }
-
-        &.entity-bat {
-            background-position: -48px -80px
-        }
-
-        &.entity-pig {
-            background-position: 0px 0px
-        }
-
-        &.entity-sheep {
-            background-position: -16px -0px
-        }
-
-        &.entity-cow {
-            background-position: -32px -0px
-        }
-
-        &.entity-chicken {
-            background-position: -48px -0px
-        }
-
-        &.entity-squid {
-            background-position: -64px -0px
-        }
-
-        &.entity-wolf {
-            background-position: -80px -16px
-        }
-
-        &.entity-mooshroom {
-            background-position: -80px -0px
-        }
-
-        &.entity-snowman {
-            background-position: -96px -32px
-        }
-
-        &.entity-ocelot {
-            background-position: -0px -48px
-        }
-
-        &.entity-villager_golem {
-            background-position: -176px -48px
-        }
-
-        &.entity-horse {
-            background-position: -0px -96px
-        }
-
-        &.entity-donkey {
-            background-position: -16px -96px
-        }
-
-        &.entity-mule {
-            background-position: -32px -96px
-        }
-
-        &.entity-zombie_horse {
-            background-position: -64px -96px
-        }
-
-        &.entity-skeleton_horse {
-            background-position: -48px -96px
-        }
-
-        &.entity-rabbit {
-            background-position: -64px -112px
-        }
-
-        &.entity-polar_bear {
-            background-position: -0px -128px
-        }
-
-        &.entity-llama {
-            background-position: -64px -128px
-        }
-
-        &.entity-villager {
-            background-position: -96px -0px
-        }
-
-        &.entity-player {
-            background-position: -112px -0px
-        }
-
-        &.entity-lightning_bolt {
-            background-position: -144px -64px
-        }
-
-        &.entity-cod_mob {
-            background-position: -80px -160px
-        }
-
-        &.entity-salmon_mob {
-            background-position: -112px -160px
-        }
-
-        &.entity-pupper_fish {
-            background-position: -128px -160px
-        }
-
-        &.entity-phantom {
-            background-position: -64px -160px
-        }
-
-        &.entity-turtle {
-            background-position: -32px -160px
-        }
-
-        &.entity-dolphin {
-            background-position: -32px -176px
-        }
-
-        &.entity-illusioner {
-            background-position: -16px -144px
-        }
-    }
-
-    .block-sprite {
-        background-image: url(https://napoan.com/wp-content/uploads/2018/03/BlockCSS.png);
-    }
-
-    ul,
-    ol {
-        margin: 0.5em 0 0.5em 1em;
-
-        li {
-            margin: 0.3em 0;
-        }
-
-        &.update-content {
-            padding-left   : 1.5em;
-            list-style-type: none;
-            margin         : 0px;
-            margin-bottom  : 1.6em;
-
-            li {
-                position: relative;
-                margin  : 15px 0;
-
-                &:after {
-                    display      : block;
-                    content      : '';
-                    position     : absolute;
-                    top          : .5em;
-                    left         : -1em;
-                    width        : 7px;
-                    height       : 7px;
-                    background   : $color-theme;
-                    border-radius: 100%;
-                }
-
-                >ul,
-                >ol {
-                    list-style-type: none;
-                    font-size      : 0.9em;
-                    margin-left    : 0em;
-                    margin-bottom  : 1em;
-                }
-            }
-        }
-    }
-
-    pre.hljs {
-        border-radius: 6px;
-        background   : #222;
-        font-family  : Consolas, 'Courier New', Courier, Monaco, monospace, Noto Sans;
-        margin       : 0px 0px 8px;
+        @apply rounded-md bg-gray-800 mb-6 text-white;
+        font-family: Consolas, 'Courier New', Courier, Monaco, monospace, "Noto Sans JP";
 
         .highlightline {
-            background: #7B4000;
-            display   : inline-block;
-            width     : 100%;
+            @apply bg-red-900 inline-block w-full;
         }
     }
 
     b.command {
-        font-size    : 1.1em;
-        display      : inline-block;
-        margin       : 3px 2px 3px;
-        padding      : 3px;
-        border-radius: 3px;
-        font-weight  : bold;
-        background   : rgb(219, 219, 219);
-        word-break   : break-word;
+        @apply text-lg inline-block m-1 p-1 rounded-md bg-gray-300 break-normal font-bold;
     }
 
     .command-highlight {
-        display      : inline-block;
-        padding      : 2px 5px;
-        margin       : 0px 2px;
-        background   : #ECECEC;
-        border-radius: 3px;
-        border       : solid 1px #CCC;
-        word-break   : break-all;
+        @apply inline-block py-1 px-3 mx-1 bg-gray-200 rounded-md border border-gray-400 break-all;
     }
 
     .black-highlight {
-        display      : inline-block;
-        padding      : 2px 5px;
-        margin       : 0px 2px;
-        background   : #222;
-        color        : #fff;
-        border-radius: 3px;
+        @apply inline-block py-1 px-3 mx-1 bg-gray-800 text-white rounded-md;
+
+        b::selection,
+        &::selection {
+            @apply bg-blue-500;
+        }
     }
 
     .code {
@@ -956,61 +405,40 @@ $mq-lg: "(min-width: 1200px)";
 
     /* 重要な注意文 */
     .strong-notice {
-        margin          : 10px 6px;
-        padding         : 10px;
-        border          : solid 2px red;
-        background-color: #ffdddd;
-        box-shadow      : 0px 3px 0px rgba(250, 100, 100, 0.3);
+        @apply my-6 mx-3 p-4 border-2 border-red-600 bg-red-300 shadow-lg;
     }
 
     /* コマンドブロック */
     .mode {
-        display      : inline-block;
-        margin       : 3px;
-        padding      : 1px 5px 1px;
-        border-radius: 3px;
-        color        : #fff;
-        font-weight  : bold;
-        font-size    : 1.1em;
+        @apply inline-block m-2 py-1 px-3 rounded-md text-white font-bold text-lg border-2;
     }
 
     .imp {
-        background: #FF3333;
-        border    : solid 2px #FF3333;
+        @apply bg-red-600 border-red-600;
     }
 
     .chain {
-        background: #48D1CC;
-        color     : #000000;
-        border    : solid 2px #48D1CC;
+        @apply bg-green-600 border-green-600;
     }
 
     .repeat {
-        background: #68228B;
-        border    : solid 2px #68228B;
+        @apply bg-purple-600 border-purple-600;
     }
 
     .con {
-        background: #fff;
-        border    : solid 2px #000000;
-        padding   : 1px 3px 1px;
-        color     : #000000;
+        @apply bg-white border-gray-800 text-black;
     }
 
     .unc {
-        background: #000000;
-        border    : solid 2px #000000;
+        @apply bg-black border-black;
     }
 
     .nee {
-        background: #DDD;
-        color     : #000000;
-        border    : solid 2px #DDD;
+        @apply bg-gray-300 border-gray-300 text-black;
     }
 
     .alw {
-        background: #CD0000;
-        border    : solid 2px #CD0000;
+        @apply bg-red-600 border-red-600
     }
 
     /* バージョン表記 */
@@ -1018,11 +446,7 @@ $mq-lg: "(min-width: 1200px)";
     span.v7,
     span.v9,
     span.v10 {
-        display    : inline-block;
-        margin     : 2px;
-        padding    : 3px 6px;
-        color      : #fff;
-        font-weight: bold;
+        @apply inline-block m-1 py-1 px-2 text-white font-bold
     }
 
     span.v8 {
@@ -1042,52 +466,30 @@ $mq-lg: "(min-width: 1200px)";
     }
 
     .mod-inst {
-        margin    : 20px 10px;
-        padding   : 12px 14px;
-        box-shadow: 0px 5px 0px #BBB;
-        border    : solid 1px #CCC;
+        @apply my-5 mx-3 p-3 rounded-xl bg-white shadow-lg border-gray-400;
 
         span.title {
-            font-size  : 1.2em;
-            font-weight: bold;
+            @apply text-lg font-bold;
         }
 
         p.note {
-            margin       : 10px;
-            padding      : 10px;
-            border-radius: 5px;
-            background   : #DDD;
+            @apply bg-white p-3 rounded-xl;
         }
 
         ol,
         ul {
-            margin-left: 1rem;
-
-            li {
-                margin: 0.3em;
-            }
+            @apply ml-5;
         }
 
         .stopmodreposts {
-            display        : block;
-            background     : blue;
-            color          : #fff;
-            margin         : 1.2em 0;
-            padding        : 1.5em 1em 1.5em;
-            text-align     : center;
-            overflow       : hidden;
-            background     : $color-theme;
-            text-decoration: none;
+            @apply block text-white my-5 p-6 text-center overflow-hidden bg-blue-500 no-underline;
 
 
             b {
-                font-size: 3em;
-
-                font-weight: normal;
                 text-shadow: 0px 5px 0px rgb(0, 0, 0);
                 line-height: 1.2;
-                display    : block;
                 animation  : textshadowmoco 5s ease 0s infinite normal;
+                @apply block text-2xl;
             }
         }
     }
@@ -1120,70 +522,41 @@ $mq-lg: "(min-width: 1200px)";
         padding        : 0.5em;
         text-decoration: none;
         border-radius  : 5px;
-        background     : $color-theme;
-        color          : #fff;
+        background     : #2687E8;
+        color          : #fff !important;
         font-size      : 1.1em;
         font-weight    : bold;
     }
 
     ul#mokuzi {
-        list-style-type: none;
-        border         : solid 2px #444;
-        border-top     : solid 0px #fff;
-        padding        : 0px;
-        margin         : 10px;
-        box-shadow     : 0px 3px 0px rgba(1, 1, 1, 0.3);
+        @apply list-none border-gray-500 p-0 m-4 shadow-md;
+
+        li:after {
+            @apply hidden;
+        }
 
         >li {
-            display    : block;
-            margin-left: 0px;
+            @apply block ml-0;
 
             >a {
-                margin-left    : -3px;
-                margin-top     : -1px;
-                display        : block;
-                padding        : 10px;
-                width          : 98%;
-                font-size      : 19px;
-                font-size      : 1.2rem;
-                font-weight    : bold;
-                background     : #b5e8ff;
-                line-height    : 1.2rem;
-                text-decoration: none;
-                box-shadow     : 1px 3px 5px rgba(1, 1, 1, 0.4);
-                z-index        : 2;
+                @apply p-3 z-10 -ml-3 -ml-1 block text-lg font-bold bg-gray-400 leading-5 no-underline shadow-md;
             }
 
             >ul {
-                list-style-type: none;
-                padding-left   : 0px;
-                margin-left    : 0px;
+                @apply list-none pl-0 ml-0;
 
                 >li {
-                    position       : relative;
-                    padding-right  : 15px;
-                    border-bottom  : solid 1px #333;
-                    list-style-type: none;
-                    margin-left    : 0px;
+                    @apply pb-2 list-none relative pl-6 border-b border-gray-500 ml-0;
 
                     &:last-child {
-                        border-bottom: solid 0px #fff;
+                        @apply border-white;
                     }
 
                     a {
-                        font-size      : 17px;
-                        font-size      : 1rem;
-                        display        : block;
-                        line-height    : 20px;
-                        line-height    : 1.4rem;
-                        padding        : 8px;
-                        text-decoration: none;
+                        @apply text-lg no-underline block leading-loose;
 
                         &.big {
-                            font-size  : 19px;
-                            font-size  : 1.2rem;
-                            line-height: 20px;
-                            line-height: 1.4rem;
+                            @apply text-xl;
                         }
 
                         &:before,
@@ -1193,18 +566,16 @@ $mq-lg: "(min-width: 1200px)";
                             border-top   : solid 10px transparent;
                             border-right : solid 10px transparent;
                             border-bottom: solid 10px transparent;
-                            width        : 0px;
-                            height       : 0px;
-                            bottom       : 8px;
+                            @apply absolute w-0 h-0 bottom-2;
                         }
 
                         &:before {
-                            right      : 0px;
+                            @apply right-0;
                             border-left: solid 10px #000000;
                         }
 
                         &:after {
-                            right      : 2px;
+                            @apply right-1;
                             border-left: solid 10px #fff;
                         }
                     }
@@ -1214,36 +585,30 @@ $mq-lg: "(min-width: 1200px)";
     }
 
     .quote-image {
-        display   : inline-block;
-        margin    : 8px 4px;
-        padding   : 5px;
-        background: $color-theme;
-        color     : #fff;
+        @apply inline-block my-2 mx-1 p-2 bg-blue-500 text-white;
 
         a,
         a:visited,
         a:hover {
-            color: #fff;
+            color: #fff !important;
         }
 
     }
 
     /* -------------------
-Amazon
-------------------- */
+    Amazon
+    ------------------- */
     .aalb-pa-ad-unit {
-        padding: 20px 10px;
-        border : solid 2px #DDD;
-        margin : 10px 0px;
+        @apply py-8 px-4 border-gray-100 my-4;
 
         &.pull-left {
             float: none;
         }
     }
 
-    @media screen and (max-width:768px) {
+    @media screen and (max-width:650px) {
         dl {
-            padding: 0px 12px 10px;
+            @apply pt-0 px-6 pb-8;
         }
 
         #contents-list {
@@ -1261,4 +626,9 @@ Amazon
         }
     }
 
+    @media screen and (max-width:500px) {
+        ul>li>ul {
+            margin-left: 0.4em;
+        }
+    }
 }

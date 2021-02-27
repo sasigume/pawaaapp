@@ -2,6 +2,32 @@ import { Post } from '@/models/contentful/Post'
 import { Creator } from '@/models/contentful/Creator'
 import { Subject } from '@/models/contentful/Subject'
 import { LandingPage } from '@/models/contentful/LandingPage'
+import { Book } from '@/models/contentful/Book'
+import { BookChapter } from '@/models/contentful/BookChapter'
+
+const BOOK_CHAPTER_GRAPHQL_FIELDS = `
+title
+description
+md
+`
+
+const BOOK_GRAPHQL_FIELDS = `
+sys {
+  firstPublishedAt
+  publishedAt
+}
+title
+slug
+description
+coverImage {
+  url
+}
+chaptersCollection {
+  items {
+    ${BOOK_CHAPTER_GRAPHQL_FIELDS}
+  }
+}
+`
 
 const LANDING_PAGE_POST_GRAPHQL_FIELDS = `
 slug
@@ -140,6 +166,14 @@ function extractLandingPage(fetchResponse: any) {
   return fetchResponse?.data?.landingPageCollection?.items?.[0] as LandingPage
 }
 
+function extractBook(fetchResponse: any) {
+  return fetchResponse?.data?.bookCollection?.items?.[0] as Book
+}
+
+function extractBooks(fetchResponse: any) {
+  return fetchResponse?.data?.bookCollection?.items as Book[]
+}
+
 
 export async function getPreviewPostBySlug(slug: string) {
   const entry = await fetchGraphQL(
@@ -168,7 +202,7 @@ export async function getAllPostsWithSlug() {
   return extractPostEntries(entries)
 }
 
-export async function getAllPostsForHome(preview: boolean, limit?:number) {
+export async function getAllPostsForHome(preview: boolean, limit?: number) {
   const entries = await fetchGraphQL(
     `query {
       postCollection(limit: ${limit ?? 5}, order: sys_firstPublishedAt_DESC,preview: ${preview ? true : false}) {
@@ -324,3 +358,61 @@ export async function getLandingPage(slug: string, preview: boolean) {
   )
   return extractLandingPage(entry)
 }
+
+export async function getBookAndMoreBooks(slug: string, preview: boolean) {
+  const entry = await fetchGraphQL(
+    `query {
+      bookCollection(where: { slug: "${slug}" }, preview: ${preview ? 'true' : 'false'
+    }, limit: 1) {
+        items {
+          ${BOOK_GRAPHQL_FIELDS}
+        }
+      }
+    }`,
+    preview
+  )
+  const entries = await fetchGraphQL(
+    `query {
+      bookCollection(where: { slug_not_in: "${slug}" }, order: sys_firstPublishedAt_DESC, preview: ${preview ? 'true' : 'false'
+    }, limit: 2) {
+        items {
+          ${BOOK_GRAPHQL_FIELDS}
+        }
+      }
+    }`,
+    preview
+  )
+  return {
+    book: extractBook(entry),
+    moreBooks: extractBooks(entries)
+  }
+}
+
+export async function getAllBooksWithSlug(preview: boolean) {
+  const entries = await fetchGraphQL(
+    `query {
+      bookCollection(where: { slug_exists: true }, order: sys_firstPublishedAt_DESC,preview: ${preview ? 'true' : 'false'}) {
+        items {
+          ${BOOK_GRAPHQL_FIELDS}
+        }
+      }
+    }`,
+    preview
+  )
+  return extractBooks(entries)
+}
+
+export async function getAllBooksForHome(preview: boolean, limit?: number) {
+  const entries = await fetchGraphQL(
+    `query {
+      bookCollection(limit: ${limit ?? 5}, order: sys_firstPublishedAt_DESC,preview: ${preview ? true : false}) {
+        items {
+          ${BOOK_GRAPHQL_FIELDS}
+        }
+      }
+    }`,
+    preview
+  )
+  return extractBooks(entries)
+}
+
