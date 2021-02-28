@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import LinkChakra from '@/components/common/link-chakra'
 
 interface Props {
   fill? : string
@@ -7,8 +7,7 @@ interface Props {
 const Logo = ({ fill = "black" }: Props) =>
 
   <div className="flex justify-center">
-    <Link href="/" as="/">
-      <a href="/">
+    <LinkChakra href="/">
         <svg xmlns="http://www.w3.org/2000/svg" width="256" viewBox="0 0 1356.38 205">
           <g fill={fill}>
             <path d="M5632.91,6599.39a71.6,71.6,0,1,1,0,143.19,69.78,69.78,0,0,1-21.6-3.4v23.6h-50V6596h50v6.8A69.78,69.78,0,0,1,5632.91,6599.39Zm-21.6,71.6a21.6,21.6,0,1,0,21.6-21.6A21.5,21.5,0,0,0,5611.31,6671Z" transform="translate(-5561.31 -6557.79)" />
@@ -22,7 +21,7 @@ const Logo = ({ fill = "black" }: Props) =>
             <path d="M6846.09,6599.39a71.6,71.6,0,1,1,0,143.19,69.78,69.78,0,0,1-21.6-3.4v23.6h-50V6596h50v6.8A69.78,69.78,0,0,1,6846.09,6599.39Zm-21.6,71.6a21.6,21.6,0,1,0,21.6-21.6A21.5,21.5,0,0,0,6824.49,6671Z" transform="translate(-5561.31 -6557.79)" />
           </g>
         </svg>
-      </a></Link>
+      </LinkChakra>
   </div>
 
 export default Logo

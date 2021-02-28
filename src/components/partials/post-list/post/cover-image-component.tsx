@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import LinkChakra from '@/components/common/link-chakra'
 
 interface Props {
   title: string;
@@ -10,11 +10,11 @@ export default function CoverImageComponent({ title, url, slug }: Props) {
   return (
     <div className="">
       {slug ? (
-        <Link as={`/posts/${slug}`} href="/posts/[slug]">
-          <a aria-label={title} className="flex items-center sm:mx-0 max-h-48 relative overflow-hidden">
+        <LinkChakra href={`/posts/${slug}`}>
+          <div aria-label={title} className="flex items-center sm:mx-0 max-h-48 relative overflow-hidden">
             <img className="mx-auto w-auto" src={url} alt={title} />
-          </a>
-        </Link>
+          </div>
+        </LinkChakra>
       ) : (
           <img className="mx-auto w-auto" src={url} alt={title} />
         )}

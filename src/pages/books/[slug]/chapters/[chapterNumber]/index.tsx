@@ -10,7 +10,7 @@ import Container from '@/components/common/container'
 import Layout from '@/components/partials/layout'
 import BookList from '@/components/partials/book-list'
 import MarkdownRender from '@/components/common/MarkdownRender'
-import Link from 'next/link'
+import LinkChakra from '@/components/common/link-chakra'
 
 
 interface BookChapterPageProps {
@@ -34,21 +34,21 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
   const PageButtons = () => (
     <div className="flex no-underline text-md font-bold items-center shadow-xl rounded-xl overflow-hidden">
       {intChapterNumber != 1 && (
-      <Link href={(`/books/${firstBook.slug}/chapters/${intChapterNumber - 1}`)}>
-        <a className="flex p-4 bg-red-800 flex-grow ">
+      <LinkChakra href={(`/books/${firstBook.slug}/chapters/${intChapterNumber - 1}`)}>
+        <div className="flex p-4 bg-red-800 flex-grow ">
           <span className="text-white ">&lt; 前ページ</span>
-        </a>
-      </Link>)}
-      <Link href={(`/books/${firstBook.slug}`)}>
-        <a className="flex p-4 bg-blue-500 justify-center flex-grow ">
+        </div>
+      </LinkChakra>)}
+      <LinkChakra href={(`/books/${firstBook.slug}`)}>
+        <div className="flex p-4 bg-blue-500 justify-center flex-grow ">
           <span className="text-white ">目次へ</span>
-        </a>
-      </Link>
-      {(intChapterNumber) < firstBook.chaptersCollection.items.length && (<Link href={(`/books/${firstBook.slug}/chapters/${intChapterNumber + 1}`)}>
-        <a className="flex p-4 bg-green-800 justify-end flex-grow ">
+        </div>
+      </LinkChakra>
+      {(intChapterNumber) < firstBook.chaptersCollection.items.length && (<LinkChakra href={(`/books/${firstBook.slug}/chapters/${intChapterNumber + 1}`)}>
+        <div className="flex p-4 bg-green-800 justify-end flex-grow ">
           <span className="text-white ">次ページ &gt;</span>
-        </a>
-      </Link>)}
+        </div>
+      </LinkChakra>)}
     </div>
 
   )
@@ -87,11 +87,11 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
 
                       <div
                         className="overflow-x-hidden globalStyle_content mx-auto mb-12" style={{ maxWidth: '650px' }}>
-                        <Link href={(`/books/${firstBook.slug}`)}>
-                          <a className="">
+                        <LinkChakra href={(`/books/${firstBook.slug}`)}>
+                          <div className="">
                             <h1 className="no-underline text-black text-2xl mb-6 font-bold border-b-2 pb-3 border-gray-300">{firstBook.title}</h1>
-                          </a>
-                        </Link>
+                          </div>
+                        </LinkChakra>
                         <PageButtons />
                         <div className="my-2 md:my-8">
                           <h2 className="text-xl font-bold mb-6">{target.title}</h2>
