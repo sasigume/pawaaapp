@@ -5,7 +5,7 @@ service cloud.firestore {
       allow delete: if request.auth.uid == uid;
       allow get, update, write, create, read: if true;
     }
-    match /postComments/{postCommentId} {
+    match /bookComments/{bookCommentId} {
       allow get, read, create, write: if true
         //request.auth.uid == resource.data.senderUid ||
         //request.auth.uid == resource.data.receiverUid;

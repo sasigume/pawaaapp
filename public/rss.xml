@@ -7,59 +7,11 @@
         
         
 <item>
-    <guid>http://localhost:3000/posts/we-can-use-mathjax</guid>
-    <title>PAWAAAPPでは、文章中で数式の表示ができます</title>
-    <link>http://localhost:3000/posts/we-can-use-mathjax</link>
-    <pubDate>Wed, 24 Feb 2021 10:43:47 GMT</pubDate>
-    <summary>数式の表示テスト。Remark-mathを使っています</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/posts/do-not-buy-win10-edition</guid>
-    <title>スタートメニューに最初からあるMinecraftでMODは使えません</title>
-    <link>http://localhost:3000/posts/do-not-buy-win10-edition</link>
-    <pubDate>Wed, 24 Feb 2021 08:27:50 GMT</pubDate>
-    <summary>春から進学してパソコンを買ってもらうそこの君! 今のパソコンには最初からマイクラが入っているのは知っているかな? でもそれでMODは使えないよ!</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/posts/hikakin-finally-moved-to-bedrock</guid>
-    <title>ヒカキンがついにJava版をやめる。マイクラ実況は大きく変わるかもしれない</title>
-    <link>http://localhost:3000/posts/hikakin-finally-moved-to-bedrock</link>
-    <pubDate>Wed, 24 Feb 2021 08:25:24 GMT</pubDate>
-    <summary>ついに「ヒカクラ2」が始まりました。当初はSuperDuperGraphicsPackのリリースを待っていたそうですが、時期がなかなか決まらないということで、結局彼はWindows10版を使うことになりました。そうです、Java版ではないのです。これはマイクラ実況界の大きな変化の始まりかもしれません。</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/posts/privacy-policy</guid>
-    <title>プライバシーポリシー</title>
-    <link>http://localhost:3000/posts/privacy-policy</link>
-    <pubDate>Wed, 24 Feb 2021 10:33:14 GMT</pubDate>
-    <summary>プライバシーポリシー</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/posts/bedrock-friend-multiplayer-guide</guid>
-    <title>スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
-    <link>http://localhost:3000/posts/bedrock-friend-multiplayer-guide</link>
-    <pubDate>Sun, 28 Feb 2021 03:33:56 GMT</pubDate>
-    <summary>スマホ・タブレット・Windows10・XboxOne・NintendoSwitchで配信中の統合版「Minecraft」では、遠く離れた友達とマルチプレイする機能が用意されています。この記事では、スマホ・タブレット・Windows10・XboxOne・Switchで『マイクロソフトアカウント』を作成してサインインし、友達を検索してフレンドに登録して、遠く離れた場所の間でマルチプレイをするまでの手順を分かりやすく解説します。</summary>
-</item>
-    
-<item>
     <guid>http://localhost:3000/posts/eula</guid>
     <title>利用規約</title>
     <link>http://localhost:3000/posts/eula</link>
-    <pubDate>Wed, 24 Feb 2021 08:22:28 GMT</pubDate>
+    <pubDate>Sun, 28 Feb 2021 12:18:14 GMT</pubDate>
     <summary>利用規約です。</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/posts/mc-console-history</guid>
-    <title>マインクラフトのゲーム機版が消えるまで</title>
-    <link>http://localhost:3000/posts/mc-console-history</link>
-    <pubDate>Wed, 24 Feb 2021 03:46:41 GMT</pubDate>
-    <summary>マインクラフトはかつて、パソコンでしか遊べないゲームでした。しかし2011年にスマホ向けに「ポケットエディション」が配信。トイレの中で遊んでいるPVを覚えている人はいますか? まだ開発が始まったばかりですし、スマホの性能も今とは大違いですので、当時のPEの内容はPC版には遠く及びませんでした。</summary>
 </item>
     
     </channel>
