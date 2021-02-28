@@ -18,11 +18,11 @@ export function BookComponent({ book }: Props) {
           <CoverImageComponent slug={book.slug} title={book.title} url={book.coverImage ? book.coverImage.url : ''} />
         </Box>
         <div className="flex-grow">
-          <h3 className="text-xl font-bold mb-3">
+          <Box textStyle="h3">
             <LinkChakra href={`/books/${book.slug}`}>
               <div className="hover:underline">{book.title}</div>
             </LinkChakra>
-          </h3>
+          </Box>
           <div className="text-sm">
             <div>公開: {dayjs(book.sys.firstPublishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
             <div>最終更新: {dayjs(book.sys.publishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>

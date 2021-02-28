@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import '~react-toastify/dist/ReactToastify.css'
 import { AppProps } from 'next/app'
 import { RecoilRoot } from 'recoil'
 import { useRouter } from 'next/router'
