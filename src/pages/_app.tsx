@@ -1,11 +1,9 @@
-import '../../node_modules/react-toastify/dist/ReactToastify.min.css'
 import { AppProps } from 'next/app'
 import { RecoilRoot } from 'recoil'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ja'
-import { ToastContainer } from 'react-toastify'
 
 dayjs.locale('ja')
 
@@ -35,7 +33,6 @@ function App({ Component, pageProps }: AppProps) {
     <RecoilRoot>
       <Chakra cookies={pageProps.cookies}>
         <Component {...pageProps} />
-        <ToastContainer limit={1} />
       </Chakra>
     </RecoilRoot>
   )
