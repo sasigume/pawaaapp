@@ -8,7 +8,7 @@ import Logo from '@/components/common/Logo'
 
 import { Box, Container, Flex, Stack, useColorMode } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
-import { getAllPostsForHome, getAllBooksWithSlug, getLandingPage } from '../lib/contentful/graphql'
+import { getAllBooksWithSlug, getLandingPage } from '../lib/contentful/graphql'
 import { LandingPage } from '@/models/contentful/LandingPage'
 import { LandingPagePost } from '@/models/contentful/LandingPagePost'
 import LandingPagePostComponent from '@/components/common/landing-page-post'
@@ -89,10 +89,9 @@ export async function getStaticProps({ preview = false }) {
 
   // Write only published post into RSS/Sitemap
   const allBooksPublished = (await getAllBooksWithSlug(false)) || []
-  const postsPublished = (await getAllPostsForHome(false, 10)) || []
 
-  publishRss(allBooksPublished, postsPublished)
-  publishSitemap(allBooksPublished, postsPublished)
+  publishRss(allBooksPublished)
+  publishSitemap(allBooksPublished)
 
   return {
     props: {

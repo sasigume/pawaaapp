@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import firebase from 'firebase/app'
 import '@/lib/firebase/admin'
 import { firestore } from 'firebase-admin'
-import { BookComment } from '@/models/contentful/BookComment'
+import { BookComment } from '@/models/firebase/BookComment'
 
 export default async (req: NextApiRequest, res: NextApiResponse<BookComment[]>) => {
 

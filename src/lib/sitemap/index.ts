@@ -1,6 +1,5 @@
 import fs from "fs"
 
-import { Post } from '@/models/contentful/Post'
 import { Book } from '@/models/contentful/Book'
 
 const escapeString = (unsafe: string) => {
@@ -22,28 +21,16 @@ const generateBookItem = (book: Book): string => {
     `)
 }
 
-const generatePostItem = (post: Post): string => {
-  return (`
-<url>
-    <loc>${process.env.HTTPS_URL}/posts/${post.slug}</loc>
-    <title>${escapeString(post.displayName)}</title>
-    <lastmod>${new Date(post.sys.publishedAt).toUTCString()}</lastmod>
-</url>
-    `)
-}
 
-
-const generateSitemap = (books: Book[], posts: Post[]): string => {
+const generateSitemap = (books: Book[]): string => {
   return (`<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-        ${books.map(generateBookItem).join('')}
-        ${posts.map(generatePostItem).join('')}
 </urlset>
     `)
 }
-const publishSitemap = async (books: Book[], posts: Post[]) => {
+const publishSitemap = async (books: Book[]) => {
   const PATH = './public/sitemap.xml'
-  const rss = generateSitemap(books, posts)
+  const rss = generateSitemap(books)
   fs.writeFileSync(PATH, rss)
 }
 

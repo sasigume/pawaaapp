@@ -2,7 +2,6 @@
 import { useRouter } from 'next/router'
 import { FormEvent, useState } from 'react'
 import firebase from 'firebase/app'
-import { toast } from 'react-toastify';
 import { useAuthentication } from '@/hooks/authentication'
 
 import ErrorPage from 'next/error'
@@ -14,22 +13,35 @@ import Layout from '@/components/partials/layout'
 import BookList from '@/components/partials/book-list'
 import SectionSeparator from '@/components/common/section-separator'
 import Mokuzi from '@/components/common/mokuzi'
-import { Box, Button, Checkbox, Container, Stack, Textarea } from '@chakra-ui/react'
+import {
+  Box, Button, Checkbox, Container, Stack, Textarea, useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Center,
+} from '@chakra-ui/react'
 import LinkChakra from '@/components/common/link-chakra'
-import { BookComment } from '@/models/contentful/BookComment'
+import { BookComment } from '@/models/firebase/BookComment'
 import BookCommentComponent from '@/components/partials/book-comment'
 import Warning from '@/components/common/warning';
+import { SITE_URL } from '@/lib/constants'
 
 interface BookPageProps {
   firstBook: Book;
-  //bookComments: BookComment[];
+  bookComments: BookComment[];
   moreBooks: Book[];
   preview: boolean;
+  tweetCount: number;
 }
 
 
-export default function BookPage({ firstBook, /*bookComments,*/ moreBooks, preview }: BookPageProps) {
+export default function BookPage({ firstBook, bookComments, moreBooks, preview, tweetCount }: BookPageProps) {
 
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const { user } = useAuthentication()
 
@@ -52,15 +64,7 @@ export default function BookPage({ firstBook, /*bookComments,*/ moreBooks, previ
     })
 
     setBody('')
-    toast.success('😙 送信できました! 連投はやめてね', {
-      position: "bottom-center",
-      autoClose: 4000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    console.log('送信できました')
 
   }
 
@@ -77,10 +81,10 @@ export default function BookPage({ firstBook, /*bookComments,*/ moreBooks, previ
           </Layout>)
         )}
     </>) : (
-        <Layout drawerChildren={<Mokuzi chapters={firstBook.chaptersCollection.items} bookSlug={firstBook.slug} />} preview={preview} title={firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
+        <Layout tweetCount={tweetCount} drawerChildren={<Mokuzi chapters={firstBook.chaptersCollection.items} bookSlug={firstBook.slug} />} preview={preview} title={firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
           <div className="mt-6">
             <Container>
-              {firstBook && <BookList mode="single" books={[firstBook]} />}
+              {firstBook && <BookList mode="single" books={[firstBook]} expand={preview ?? false} />}
               <SectionSeparator />
 
               <Box mb={12}>
@@ -88,14 +92,14 @@ export default function BookPage({ firstBook, /*bookComments,*/ moreBooks, previ
                   <h2>コメント</h2>
                 </Box>
 
-                {/*{(bookComments && bookComments.length > 0) ? bookComments.map(
+                {(bookComments && bookComments.length > 0) ? bookComments.map(
                   (c: BookComment) => <BookCommentComponent c={c} key={c.id} />
                 ) : (
                     <div>コメントはありません。</div>
-                )}*/}
+                  )}
               </Box>
 
-              {/*
+
               <Box mb={6}>
 
                 {user ? (<div className="max-w-xl mb-6">
@@ -103,31 +107,42 @@ export default function BookPage({ firstBook, /*bookComments,*/ moreBooks, previ
                   <form className="w-full px-6" onSubmit={onSubmit}>
 
                     <div className="flex flex-col jusify-center mb-12">
-                      <Textarea
-                        my={6}
-                        placeholder="コメントを書いてね"
-                        onChange={(e) => setBody(e.target.value)}
-                        required
-                      ></Textarea>
+                      <Modal isOpen={isOpen} onClose={onClose}>
+                        <ModalOverlay />
+                        <ModalContent>
+                          <ModalBody>
+                            送信できました！連投はやめてね
+                          </ModalBody>
+                          <ModalFooter>
+                            <Button colorScheme="blue" mr={3} onClick={onClose}>閉じる</Button>
+                          </ModalFooter>
+                        </ModalContent>
+                      </Modal>
                       {didYouSend ? (
-                        <span className="" role="status">
+                        <Center role="status">
                           (送信できました)
-                        </span>
+                        </Center>
                       ) : (
-                      <Stack spacing={2}>
-                        <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
-                        {agreed && (
-                          <Button colorScheme="blue" type="submit">
-                            コメントする
-                          </Button>)}
-                      </Stack>
+                          <Stack spacing={2}>
+                            <Textarea
+                              my={6}
+                              placeholder="コメントを書いてね"
+                              onChange={(e) => setBody(e.target.value)}
+                              required
+                            ></Textarea>
+                            <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
+                            {agreed && (
+                              <Button onClick={onOpen} colorScheme="blue" type="submit">
+                                コメントする
+                              </Button>)}
+                          </Stack>
                         )}
                     </div>
                   </form>
                 </div>) : (<div className="my-6">
                   <LinkChakra href="/login">ログイン</LinkChakra>してコメントしてみよう!
                 </div>)}
-              </Box> */}
+              </Box>
               <SectionSeparator />
               {moreBooks && moreBooks.length > 0 && (
                 <Box my={10}>
@@ -151,15 +166,23 @@ export async function getStaticProps({ params, preview }: GSProps) {
 
   const books = await getBookAndMoreBooks(params.slug, preview)
 
-  //const commentsRes = await fetch(process.env.HTTPS_URL + `/api/bookComments/${params.slug}`)
-  //const bookComments = await commentsRes.json()
+  const commentsRes = await fetch(process.env.HTTPS_URL + `/api/bookComments/${params.slug}`)
+  const bookComments = await commentsRes.json()
+
+  const searchWord = SITE_URL + '/books/' + params.slug
+
+  //const tweets = await fetch(process.env.HTTPS_URL + '/api/twitter?word=' + encodeURIComponent(searchWord) + '&secret=' + process.env.TWITTER_SECRET)
+  //const tweetsJson = await tweets.json()
+  let tweetCount = 0
+  //tweetsJson.data ? tweetCount = tweetsJson.data.length : tweetCount = 0
 
   return {
     props: {
       preview: preview ?? false,
       firstBook: books.book ?? null,
-      //bookComments: bookComments ?? null,
-      moreBooks: books.moreBooks ?? null
+      bookComments: bookComments ?? null,
+      moreBooks: books.moreBooks ?? null,
+      tweetCount: tweetCount ?? 0
     },
     revalidate: 300,
   }
