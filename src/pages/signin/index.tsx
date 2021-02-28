@@ -16,6 +16,7 @@ export default function LoginPage() {
       category: 'user',
       label: 'ログインページからのログイン',
     })
+    
     const provider = new firebaseApi.auth.TwitterAuthProvider();
     firebaseApi.auth().languageCode = 'ja';
     firebaseApi.auth().signInWithPopup(provider)
