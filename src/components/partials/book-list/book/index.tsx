@@ -4,7 +4,8 @@ import LinkChakra from '@/components/common/link-chakra'
 import ChapterList from './chapter-list'
 import { Book } from '@/models/contentful/Book'
 import dayjs from 'dayjs'
-import cn from 'classnames'
+import SubjectList from './subject-list'
+import CreatorList from './creator-list'
 import { Box, Center, Flex } from '@chakra-ui/react'
 
 interface Props {
@@ -43,6 +44,13 @@ export function SingleBookComponent({ book }: Props) {
         <Box textStyle="h1" mb={8}>
           <h1>{book.title}</h1>
         </Box>
+        {(book.subjectsCollection && book.subjectsCollection.items.length > 0) && (<div className="text-sm mb-4">
+            <SubjectList subjects={book.subjectsCollection.items} />
+          </div>)}
+
+          {(book.creatorsCollection && book.creatorsCollection.items.length > 0) && (<div className="text-sm mb-4">
+            <CreatorList creators={book.creatorsCollection.items} />
+          </div>)}
 
         <Box mb={6}>
           <div>公開: {dayjs(book.sys.firstPublishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>

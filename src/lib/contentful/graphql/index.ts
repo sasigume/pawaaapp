@@ -5,29 +5,7 @@ import { LandingPage } from '@/models/contentful/LandingPage'
 import { Book } from '@/models/contentful/Book'
 import { BookChapter } from '@/models/contentful/BookChapter'
 
-const BOOK_CHAPTER_GRAPHQL_FIELDS = `
-title
-description
-md
-`
 
-const BOOK_GRAPHQL_FIELDS = `
-sys {
-  firstPublishedAt
-  publishedAt
-}
-title
-slug
-description
-coverImage {
-  url
-}
-chaptersCollection {
-  items {
-    ${BOOK_CHAPTER_GRAPHQL_FIELDS}
-  }
-}
-`
 
 const LANDING_PAGE_POST_GRAPHQL_FIELDS = `
 slug
@@ -111,6 +89,40 @@ const POST_GRAPHQL_FIELDS = `
   }
 `
 
+const BOOK_CHAPTER_GRAPHQL_FIELDS = `
+title
+description
+md
+`
+
+const BOOK_GRAPHQL_FIELDS = `
+sys {
+  firstPublishedAt
+  publishedAt
+}
+title
+slug
+description
+coverImage {
+  url
+}
+chaptersCollection {
+  items {
+    ${BOOK_CHAPTER_GRAPHQL_FIELDS}
+  }
+}
+creatorsCollection(limit: 5) {
+  items {
+    ${CREATOR_GRAPHQL_FIELDS}
+  }
+}
+subjectsCollection(limit: 5) {
+  items {
+    ${SUBJECT_GRAPHQL_FIELDS}
+  }
+}
+`
+
 // メモ: 55以上記事を取得しようとすると11110/11000で制限オーバーになる
 
 async function fetchGraphQL(query: any, preview = false) {
@@ -172,6 +184,14 @@ function extractBook(fetchResponse: any) {
 
 function extractBooks(fetchResponse: any) {
   return fetchResponse?.data?.bookCollection?.items as Book[]
+}
+
+function extractBooksFromCreator(fetchResponse: any) {
+  return fetchResponse?.data.creatorCollection?.items[0].linkedFrom.bookCollection?.items as Book[]
+}
+
+function extractBooksFromSubject(fetchResponse: any) {
+  return fetchResponse?.data.subjectCollection?.items[0].linkedFrom.bookCollection?.items as Book[]
 }
 
 
@@ -416,3 +436,44 @@ export async function getAllBooksForHome(preview: boolean, limit?: number) {
   return extractBooks(entries)
 }
 
+export async function getAllBooksForCreator(slug: string, preview: boolean) {
+  const entries = await fetchGraphQL(
+    `query {
+      creatorCollection(limit: 1, where: {slug: "${slug}"}, order: sys_firstPublishedAt_DESC) {
+        items {
+          displayName
+          linkedFrom {
+            bookCollection(limit:10) {
+              items {
+                ${BOOK_GRAPHQL_FIELDS}
+              }
+            }
+          }
+        }
+      }
+    }`,
+    preview
+  )
+  return extractBooksFromCreator(entries)
+}
+
+export async function getAllBooksForSubject(slug: string, preview: boolean) {
+  const entries = await fetchGraphQL(
+    `query {
+      subjectCollection(limit: 1, where: {slug: "${slug}"}, order: sys_firstPublishedAt_DESC) {
+        items {
+          displayName
+          linkedFrom {
+            bookCollection(limit:10){
+              items {
+                ${BOOK_GRAPHQL_FIELDS}
+              }
+            }
+          }
+        }
+      }
+    }`,
+    preview
+  )
+  return extractBooksFromSubject(entries)
+}
