@@ -1,3 +1,5 @@
+import { Box } from "@chakra-ui/react";
+
 export default function SectionSeparator() {
-  return <hr className="border-accent-2 mt-12 mb-16" />
+  return <Box my={20} borderBottom="solid" borderColor="gray.400" h={0} />
 }
