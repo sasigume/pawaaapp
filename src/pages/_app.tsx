@@ -14,12 +14,12 @@ import '@/lib/firebase'
 import 'hooks/authentication'
 import addIcon from '@/lib/fontawesome'
 import * as gtag from '@/lib/gtag'
-import { ChakraProvider, extendTheme} from "@chakra-ui/react"
+import { ChakraProvider,extendTheme } from "@chakra-ui/react"
 
-import colors from '@/lib/chakraui/colors'
+import {EXTEND_CHAKRA} from '@/lib/chakra'
+const theme = extendTheme(EXTEND_CHAKRA)
 
 function App({ Component, pageProps }: AppProps) {
-  const theme = extendTheme({ colors })
   addIcon()
 
   // Google Analytics
