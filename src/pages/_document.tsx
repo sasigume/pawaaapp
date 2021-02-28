@@ -1,7 +1,9 @@
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document'
 import React from 'react'
+import { ColorModeScript } from "@chakra-ui/react"
 
 import { GA_TRACKING_ID } from '@/lib/gtag'
+import colorMode from '@/lib/chakra/color-mode'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -32,6 +34,8 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
+          {/* dark mode */}
+          <ColorModeScript initialColorMode={colorMode.config.initialColorMode} />
           <Main />
           <NextScript />
         </body>
