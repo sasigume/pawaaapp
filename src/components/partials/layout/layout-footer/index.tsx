@@ -15,7 +15,7 @@ const LayoutFooter = () => (
         <div className="mb-4"><Logo fill="white" /></div>
         <div className="mb-2">made with</div>
 
-        <div className="w-full flex flex-col md:flex-row items-center justify-between ">
+        <Flex direction={{base:"column", md:"row"}} justifyContent="center" alignItems="center">
           <LinkChakra href="https://nextjs.org/">
             <div className="flex items-center mx-2 mb-6">
               <div className="w-5 mr-1"><img src="/svg/next-js.svg" className="text-white" width="100" /></div>
@@ -35,7 +35,7 @@ const LayoutFooter = () => (
               <span>GitHub</span>
             </div>
           </LinkChakra>
-        </div>
+        </Flex>
         <div>This app is distributed under MIT Lisence. Developed by{` `}
           <LinkChakra href={(`https://twitter.com/${CREATOR_ID}`)}>@{CREATOR_ID}</LinkChakra></div>
       </Container>

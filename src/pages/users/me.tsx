@@ -1,7 +1,7 @@
 import Layout from '@/components/partials/layout'
 import { useAuthentication } from '../../hooks/authentication'
 import TweetButton from '@/components/common/tweet-button'
-import Container from '@/components/common/container'
+import { Container } from '@chakra-ui/react'
 
 export default function UsersMe() {
   const { user } = useAuthentication()

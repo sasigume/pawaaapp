@@ -2,7 +2,7 @@ import Layout from '@/components/partials/layout'
 import { useAuthentication } from '../../hooks/authentication'
 import firebaseApi from '@/lib/firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Container from '@/components/common/container'
+import { Container } from '@chakra-ui/react'
 import Warning from '@/components/common/warning'
 import { useRouter } from 'next/router'
 import * as gtag from '@/lib/gtag'

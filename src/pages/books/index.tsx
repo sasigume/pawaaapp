@@ -3,13 +3,12 @@ import { useRouter } from 'next/router'
 
 import ErrorPage from 'next/error'
 
-import { getAllBooksForHome, getAllBooksWithSlug } from '@/lib/contentful/graphql'
+import { getAllBooksForHome } from '@/lib/contentful/graphql'
 import { Book } from '@/models/contentful/Book'
 
-import Container from '@/components/common/container'
+import { Container } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
 import BookList from '@/components/partials/book-list'
-import SectionSeparator from '@/components/common/section-separator'
 
 
 interface BookIndexProps {

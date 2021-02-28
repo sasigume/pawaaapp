@@ -5,6 +5,8 @@ import cn from 'classnames'
 import { LandingPagePost } from '@/models/contentful/LandingPagePost'
 import { useSpring, animated } from 'react-spring'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Box, Button, Flex, Stack } from '@chakra-ui/react'
+import FaiconDiv from './faicon-div'
 
 interface Props {
   post: LandingPagePost
@@ -23,37 +25,36 @@ function LandingPagePostComponent({ post, n }: Props) {
   const { transform } = useSpring({
     opacity: appeared ? 1 : 0,
     transform: `translate(${appeared ? 0 : 300}px, 0px)`,
-    config: { mass:1, tension: 500, friction: 50 }
+    config: { mass: 1, tension: 500, friction: 50 }
   })
 
-  useEffect(()=>{
+  useEffect(() => {
     setAppeared(state => !state)
-  },[])
+  }, [])
 
   return (
-    <animated.div style={{ transform }} className={
-      cn('w-80 bg-white inline-block my-4 p-4 pb-2 border-2 border-gray-200 rounded-xl shadow-xl',
-        {
-          'mr-4 md:mr-12': n % 2 == 0,
-          'ml-4 md:ml-12': n % 2 !== 0,
-        })}>
-      <div className="mb-4 text-lg flex flex-col md:flex-row justify-between">
-        <div className="w-full flex justify-between items-center">
-          <div className="flex-col">
+    <animated.div>
+      <Box my={4} p={4} border="solid" background="white" borderColor="gray.300" rounded="xl" shadow="xl"
+        style={{ transform }} className={
+          cn({
+            'mr-4 md:mr-12': n % 2 == 0,
+            'ml-4 md:ml-12': n % 2 !== 0,
+          })}>
+        <Flex mb={2}>
+          <Stack mr={4}> 
             <div>{post.mondaiName}</div>
             <div className="text-gray-600">{post.mondaiPage}</div>
-          </div>
+          </Stack>
 
-          <a onClick={addCount} className="cursor-pointer inline-block p-2 shadow-xl bg-blue-500 text-white rounded-xl">
-            <div className="flex items-center">
-              <div className="w-5 mr-2"><FontAwesomeIcon icon={['fas', 'thumbs-up']} /></div><div>{post.good + count}</div>
-            </div>
-          </a>
+          <Button onClick={addCount} leftIcon={<FaiconDiv icon={['fas', 'thumbs-up']} />} colorScheme="blue">
+            {post.good + count}
+          </Button>
+        </Flex>
+        <div className="text-xl">
+          <MarkdownRender source={post.md} />
         </div>
-      </div>
-      <div className="text-xl">
-        <MarkdownRender source={post.md} />
-      </div>
+      </Box>
+
     </animated.div >
   )
 }

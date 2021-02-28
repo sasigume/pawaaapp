@@ -10,7 +10,7 @@ import Layout from '@/components/partials/layout'
 import BookList from '@/components/partials/book-list'
 import SectionSeparator from '@/components/common/section-separator'
 import Mokuzi from '@/components/common/mokuzi'
-import { Container } from '@chakra-ui/react'
+import { Box, Container } from '@chakra-ui/react'
 
 
 interface BookPageProps {
@@ -47,7 +47,10 @@ export default function BookPage({ firstBook, moreBooks, preview }: BookPageProp
               <Container>
                 {firstBook && <BookList mode="single" books={[firstBook]} />}
                 <SectionSeparator />
-                {<div className="px-4">{moreBooks && moreBooks.length > 0 && <BookList mode="more" books={moreBooks} />}</div>}
+                {moreBooks && moreBooks.length > 0 && (
+                  <Box mb={10}>
+                    <BookList mode="more" books={moreBooks} />
+                  </Box>)}
               </Container>
             </div>
           </Layout>

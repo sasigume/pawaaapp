@@ -6,7 +6,7 @@ import Mockup from '@/components/common/Mockup'
 import MarkdownRender from '@/components/common/MarkdownRender'
 import Logo from '@/components/common/Logo'
 
-import Container from '@/components/common/container'
+import { Container, Stack } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
 import { getAllPostsForHome, getAllBooksWithSlug, getLandingPage } from '../lib/contentful/graphql'
 import { LandingPage } from '@/models/contentful/LandingPage'
@@ -48,7 +48,7 @@ const Index = ({ page, environment }: IndexProps) => {
                       <MarkdownRender source={page.message} />
                     </div>
                     <div className="flex flex-col text-black py-8 relative pt-32">
-                      <div className="flex flex-col z-20 mt-4">
+                      <div className="flex flex-col z-20 mt-6">
                         {(page.postsCollection && page.postsCollection.items.length > 0) && page.postsCollection.items.map(
                           (post: LandingPagePost, n: number) => <LandingPagePostComponent key={post.slug} post={post} n={n} />
                         )}
@@ -73,13 +73,13 @@ const Index = ({ page, environment }: IndexProps) => {
                     <MarkdownRender source={page.md} />
                   </div>
 
-                  <div className="grid gap-x-10 md:grid-flow-col md:auto-cols-max">
+                  <Stack direction={{ base: "column", md: "row"}}>
 
                     {(page.screenshotsCollection && page.screenshotsCollection.items.length > 0) && page.screenshotsCollection.items.map(
                       (sc: Screenshot) => <Mockup key={sc.url} src={sc.url} />
                     )}
 
-                  </div>
+                  </Stack>
                 </div>
               </Container>
             </div>
