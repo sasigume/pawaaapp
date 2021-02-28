@@ -4,7 +4,7 @@ import ErrorPage from 'next/error'
 import { User } from '../../models/User'
 import firebase from 'firebase/app'
 import Layout from '@/components/partials/layout'
-import Container from '@/components/common/container'
+import { Container } from '@chakra-ui/react'
 
 interface Query {
   uid?: string

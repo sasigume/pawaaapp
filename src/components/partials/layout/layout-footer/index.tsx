@@ -2,41 +2,45 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { CREATOR_ID } from '@/lib/constants'
 import LinkChakra from '@/components/common/link-chakra'
 import Logo from '@/components/common/Logo'
+import { Button, Box, Container, Flex, Stack, useColorMode } from '@chakra-ui/react'
+import FaiconDiv from '@/components/common/faicon-div'
 
 const pkg = require('../../../../../package.json')
 const repoUrl = pkg.repository.url
 
-const LayoutFooter = () => (
-  <div className="w-screen border-t bg-gray-700 text-white py-10 text-center px-2 flex justify-center">
-    <div className="flex flex-col items-center justify-center">
-    <div className="mb-2">Brand-new way to study with books.</div>
-      <div className="mb-4"><Logo fill="white" /></div>
-      <div className="mb-2">made with</div>
+const LayoutFooter = () => {
+  const { colorMode } = useColorMode()
 
-      <div className="w-full flex flex-col md:flex-row items-center justify-between ">
-        <LinkChakra href="https://nextjs.org/">
-          <div className="flex items-center mx-2 mb-6">
-            <div className="w-5 mr-1"><img src="/svg/next-js.svg" className="text-white" width="100" /></div>
-            <span>Next.js</span>
-          </div>
-        </LinkChakra>
+  return (
+    <Box w="full" background="gray.700" py={8} color="white" textAlign="center" >
 
-        <LinkChakra href="https://www.contentful.com/">
-          <div className="flex items-center mx-2 mb-6">
-            <div className="w-24"><img src="/svg/contentful.svg" width="100" /></div>
-          </div>
-        </LinkChakra>
+      <Container>
+        <Flex direction="column" justifyContent="center" alignItems="center">
+          <Box mb={2}>Brand-new way to study with books.</Box>
+          <Box mb={4}><Logo fill="white" /></Box>
+          <Box mb={4}>made with</Box>
 
-        <LinkChakra href={repoUrl}>
-          <div className="flex items-center mx-2 mb-6">
-            <div className="w-5 mr-1"><FontAwesomeIcon icon={['fab', 'github']} /></div>
-            <span>GitHub</span>
-          </div>
-        </LinkChakra>
-      </div>
-      <div>This app is distributed under MIT Lisence. Developed by{` `}
-        <LinkChakra href={(`https://twitter.com/${CREATOR_ID}`)}>@{CREATOR_ID}</LinkChakra></div>
-    </div>
-  </div>)
+          <Stack spacing={4} mb={6} direction={{ base: "column", md: "row" }} justifyContent="center" alignItems="center">
+            <Button colorScheme="blue" leftIcon={<div className="w-5 mr-1"><img src="/svg/next-js.svg" width="10" /></div>} href="https://nextjs.org/" as={LinkChakra}>
+              Next.js
+          </Button>
+
+            <Button colorScheme="gray" href="https://www.contentful.com/" as={LinkChakra}>
+              <img src={colorMode == "light" ? "/svg/contentful-black.svg" : "/svg/contentful.svg"} width="100" />
+            </Button>
+
+            <Button colorScheme="teal" leftIcon={<FaiconDiv color="white" icon={['fab', 'github']} />} href={repoUrl} as={LinkChakra}>
+              GitHub
+          </Button>
+
+          </Stack>
+          <div>This app is distributed under MIT Lisence. Developed by{` `}
+            <LinkChakra href={(`https://twitter.com/${CREATOR_ID}`)}>@{CREATOR_ID}</LinkChakra></div>
+        </Flex>
+      </Container>
+
+    </Box >
+  )
+}
 
 export default LayoutFooter

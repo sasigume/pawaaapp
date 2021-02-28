@@ -1,18 +1,18 @@
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
-import Container from '@/components/common/container'
-import PostList from '@/components/partials/post-list'
+import { Container } from '@chakra-ui/react'
+import BookList from '@/components/partials/book-list'
 import Layout from '@/components/partials/layout'
-import { getAllCreatorsWithSlug, getAllPostsForCreator, getCreator } from '@/lib/contentful/graphql'
-import { Post } from '@/models/contentful/Post'
+import { getAllCreatorsWithSlug, getAllBooksForCreator, getCreator } from '@/lib/contentful/graphql'
+import { Book } from '@/models/contentful/Book'
 import { Creator } from '@/models/contentful/Creator'
 interface IndexProps {
   creator?: Creator
-  posts: Post[]
+  books: Book[]
   preview: boolean
 }
 
-const CreatorIndex = ({ creator, posts, preview }: IndexProps) => {
+const CreatorIndex = ({ creator, books, preview }: IndexProps) => {
   const router = useRouter()
   return (
     <>
@@ -28,14 +28,14 @@ const CreatorIndex = ({ creator, posts, preview }: IndexProps) => {
       </>
 
       ) : (
-          <Layout preview={preview} title={(`${creator?.displayName}が書いた記事一覧`)} desc={"Pawaa.app"}>
+          <Layout preview={preview} title={(`${creator?.displayName}が書いた本一覧`)} desc={"Pawaa.app"}>
             <div>
               <Container>
                 <div>
-                  <h1 className="text-2xl font-bold my-10">{posts[0] ? `${creator.displayName}が書いた記事一覧` : `${creator?.displayName}が書いた記事はありません`}</h1>
+                  <h1 className="text-2xl font-bold my-10">{books[0] ? `${creator.displayName}が書いた本一覧` : `${creator?.displayName}が書いた記事はありません`}</h1>
                   {creator.description && (<div className="my-4">{creator.description}</div>)}
                 </div>
-                {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
+                {books && books.length > 0 && <BookList mode="archive" books={books} />}
               </Container>
             </div>
           </Layout>
@@ -55,15 +55,15 @@ interface GSProps {
 export async function getStaticProps({ params, preview = false }: GSProps) {
   const slug = params.slug ?? ''
 
-  let posts: (Post[] | null)
+  let books: (Book[] | null)
   const creatorData = (await getCreator(slug, preview)) ?? null
-  creatorData ? posts = (await getAllPostsForCreator(creatorData.slug, preview)) : posts = []
+  creatorData ? books = (await getAllBooksForCreator(creatorData.slug, preview)) : books = []
 
   return {
     props: {
       creator: creatorData ?? null,
       preview: preview,
-      posts: posts ?? null
+      books: books ?? null
     },
     revalidate: 300,
   }

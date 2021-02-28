@@ -8,11 +8,6 @@ module.exports = {
     }
     return config;
   },
-
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'src/styles')],
-  },
-
   env: {
     STORYBLOK_PREVIEW_TOKEN: process.env.STORYBLOK_PREVIEW_TOKEN,
     STORYBLOK_PUBLIC_TOKEN: process.env.STORYBLOK_PUBLIC_TOKEN,

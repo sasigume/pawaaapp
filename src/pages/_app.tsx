@@ -1,5 +1,4 @@
-import '../styles/globals.css'
-import '../styles/content.scss'
+import '../../node_modules/react-toastify/dist/ReactToastify.min.css'
 import { AppProps } from 'next/app'
 import { RecoilRoot } from 'recoil'
 import { useRouter } from 'next/router'
@@ -14,12 +13,9 @@ import '@/lib/firebase'
 import 'hooks/authentication'
 import addIcon from '@/lib/fontawesome'
 import * as gtag from '@/lib/gtag'
-import { ChakraProvider, extendTheme} from "@chakra-ui/react"
-
-import colors from '@/lib/chakraui/colors'
+import { Chakra } from '@/components/providers/chakra'
 
 function App({ Component, pageProps }: AppProps) {
-  const theme = extendTheme({ colors })
   addIcon()
 
   // Google Analytics
@@ -37,12 +33,15 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <RecoilRoot>
-      <ChakraProvider theme={theme}>
+      <Chakra cookies={pageProps.cookies}>
         <Component {...pageProps} />
         <ToastContainer limit={1} />
-      </ChakraProvider>
+      </Chakra>
     </RecoilRoot>
   )
 }
 
 export default App
+
+// https://chakra-ui.com/docs/features/color-mode
+export { getServerSideProps } from "@/components/providers/chakra"

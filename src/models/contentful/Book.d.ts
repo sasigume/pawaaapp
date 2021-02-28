@@ -1,5 +1,6 @@
 import { BookChapter } from './BookChapter'
 import { BookChapter } from './BookChapter';
+import { Subject } from './Subject';
 import {Sys} from './Sys'
 
 export interface Book {
@@ -12,5 +13,11 @@ export interface Book {
   }
   chaptersCollection: {
     items: BookChapter[]
+  }
+  subjectsCollection? : {
+    items: Subject[]
+  }
+  creatorsCollection?: {
+    items: Creator[]
   }
 }
