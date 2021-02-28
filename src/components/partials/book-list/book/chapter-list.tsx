@@ -18,7 +18,7 @@ const OneBookChapter = ({ bookChapter, bookSlug, num }: Props) => {
   return (
     <LinkChakra href={(`/books/${bookSlug}/chapters/${num + 1}`)}>
       <Box m={4}  border="solid" rounded="xl" borderColor="gray" p={3}>
-        <h2 className="text-xl font-bold mb-6">{bookChapter.title}</h2>
+        <Box textStyle="h4"><h2>{bookChapter.title}</h2></Box>
         <div>{bookChapter.description ?? '説明文がありません'}</div>
       </Box>
     </LinkChakra>

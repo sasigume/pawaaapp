@@ -42,7 +42,7 @@ export default function BookPage({ firstBook, moreBooks, preview }: BookPageProp
             </Layout>)
           )}
       </>) : (
-          <Layout drawerChildren={<Mokuzi list={firstBook.chaptersCollection.items} bookSlug={firstBook.slug} />} preview={preview} title={firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
+          <Layout drawerChildren={<Mokuzi chapters={firstBook.chaptersCollection.items} bookSlug={firstBook.slug} />} preview={preview} title={firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
             <div className="mt-6">
               <Container>
                 {firstBook && <BookList mode="single" books={[firstBook]} />}

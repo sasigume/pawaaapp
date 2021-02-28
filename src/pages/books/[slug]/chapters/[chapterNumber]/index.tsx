@@ -10,7 +10,7 @@ import BookList from '@/components/partials/book-list'
 import MarkdownRender from '@/components/common/MarkdownRender'
 import LinkChakra from '@/components/common/link-chakra'
 import Mokuzi from '@/components/common/mokuzi'
-import { Box, Button, Center, Container, Stack } from '@chakra-ui/react'
+import { Box, Button, Center, Container, Stack, Flex } from '@chakra-ui/react'
 import SectionSeparator from '@/components/common/section-separator'
 
 
@@ -33,7 +33,7 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
   includeAlphabet.test(chapterNumber) ? intChapterNumber = NaN : intChapterNumber = parseInt(chapterNumber)
 
   const PageButtons = () => (
-    <Center>
+    <Center my={8}>
       <Stack direction="row" spacing={4}>
         {intChapterNumber != 1 && (
           <Button colorScheme="red" as={LinkChakra} href={(`/books/${firstBook.slug}/chapters/${intChapterNumber - 1}`)}>
@@ -76,25 +76,25 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
               )}
           </>
         ) : (
-            <Layout drawerChildren={firstBook.chaptersCollection.items ? <Mokuzi list={firstBook.chaptersCollection.items} bookSlug={firstBook.slug} /> : <></>} preview={preview} title={target.title + ' | ' + firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
+            <Layout drawerChildren={firstBook.chaptersCollection.items ? <Mokuzi chapters={firstBook.chaptersCollection.items} bookSlug={firstBook.slug} /> : <></>} preview={preview} title={target.title + ' | ' + firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
               <div className="mt-6">
                 <Container>
                   {target && (
 
-                      <div
-                        className="overflow-x-hiddenmb-12">
-                        <LinkChakra href={(`/books/${firstBook.slug}`)}>
-                          <Box textStyle="h1" mb={10}>
-                            <h1>{firstBook.title}</h1>
-                          </Box>
-                        </LinkChakra>
-                        <PageButtons />
-                        <div className="my-2 md:my-8 globalStyle_content mx-auto" style={{ maxWidth: '650px' }}>
-                          <h2 className="text-xl font-bold mb-6">{target.title}</h2>
-                          <MarkdownRender source={target.md} />
-                        </div>
-                        <PageButtons />
-                      </div>
+                    <div
+                      className="overflow-x-hiddenmb-12">
+                      <LinkChakra href={(`/books/${firstBook.slug}`)}>
+                        <Box textStyle="h1" mb={10}>
+                          <h1>{firstBook.title}</h1>
+                        </Box>
+                      </LinkChakra>
+                      <PageButtons />
+                      <Flex direction="column" style={{ maxWidth: '650px' }}>
+                        <Box textStyle="h2"><h2>{target.title}</h2></Box>
+                        <MarkdownRender source={target.md} />
+                      </Flex>
+                      <PageButtons />
+                    </div>
 
                   )}
                   <SectionSeparator />
