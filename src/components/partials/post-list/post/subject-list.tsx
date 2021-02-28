@@ -2,6 +2,8 @@ import { Subject } from '@/models/contentful/Subject'
 import LinkChakra from '@/components/common/link-chakra'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconName, IconPrefix } from '@fortawesome/fontawesome-svg-core'
+import { Button } from '@chakra-ui/react'
+import FaiconDiv from '@/components/common/faicon-div'
 
 interface Props {
   subject: Subject
@@ -24,11 +26,10 @@ const OneSubject = ({ subject }: Props) => {
   }
 
   return (
-    <LinkChakra href={(`/subjects/${subject.slug}`)}>
-      <div className="flex items-center text-xl p-3 font-bold shadow-lg rounded-lg text-white" style={{ background: `#${subject.bgColor}` }}>
-        <div className="w-5 text-white mr-3"><FontAwesomeIcon icon={[iconStyle, iconName]} /></div><span>{subject.displayName}</span>
-        </div>
-    </LinkChakra>)
+    <Button href={(`/subjects/${subject.slug}`)} color="white" background={subject.bgColor ?? "green"} as={LinkChakra} leftIcon={<FaiconDiv icon={[iconStyle, iconName]} />}>
+      {subject.displayName}
+    </Button>
+  )
 }
 
 const SubjectList = ({ subjects }: ListProps) => {

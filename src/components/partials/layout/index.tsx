@@ -22,7 +22,7 @@ export default function Layout({ preview, children, drawerChildren, title, desc 
           <Spacer />
           <Logo/>
         </Flex>
-        <main>
+        <main style={{flexGrow: 1}}>
           {children}
 
         </main>
