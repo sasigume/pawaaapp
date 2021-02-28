@@ -22,13 +22,13 @@ import Warning from '@/components/common/warning';
 
 interface BookPageProps {
   firstBook: Book;
-  bookComments: BookComment[];
+  //bookComments: BookComment[];
   moreBooks: Book[];
   preview: boolean;
 }
 
 
-export default function BookPage({ firstBook, bookComments, moreBooks, preview }: BookPageProps) {
+export default function BookPage({ firstBook, /*bookComments,*/ moreBooks, preview }: BookPageProps) {
 
 
   const { user } = useAuthentication()
@@ -88,13 +88,14 @@ export default function BookPage({ firstBook, bookComments, moreBooks, preview }
                   <h2>コメント</h2>
                 </Box>
 
-                {(bookComments && bookComments.length > 0) ? bookComments.map(
+                {/*{(bookComments && bookComments.length > 0) ? bookComments.map(
                   (c: BookComment) => <BookCommentComponent c={c} key={c.id} />
                 ) : (
                     <div>コメントはありません。</div>
-                  )}
+                )}*/}
               </Box>
 
+              {/*
               <Box mb={6}>
 
                 {user ? (<div className="max-w-xl mb-6">
@@ -126,7 +127,7 @@ export default function BookPage({ firstBook, bookComments, moreBooks, preview }
                 </div>) : (<div className="my-6">
                   <LinkChakra href="/login">ログイン</LinkChakra>してコメントしてみよう!
                 </div>)}
-              </Box>
+              </Box> */}
               <SectionSeparator />
               {moreBooks && moreBooks.length > 0 && (
                 <Box my={10}>
@@ -150,14 +151,14 @@ export async function getStaticProps({ params, preview }: GSProps) {
 
   const books = await getBookAndMoreBooks(params.slug, preview)
 
-  const commentsRes = await fetch(process.env.HTTPS_URL + `/api/bookComments/${params.slug}`)
-  const bookComments = await commentsRes.json()
+  //const commentsRes = await fetch(process.env.HTTPS_URL + `/api/bookComments/${params.slug}`)
+  //const bookComments = await commentsRes.json()
 
   return {
     props: {
       preview: preview ?? false,
       firstBook: books.book ?? null,
-      bookComments: bookComments ?? null,
+      //bookComments: bookComments ?? null,
       moreBooks: books.moreBooks ?? null
     },
     revalidate: 300,
