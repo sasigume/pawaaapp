@@ -5,17 +5,18 @@ import ChapterList from './chapter-list'
 import { Book } from '@/models/contentful/Book'
 import dayjs from 'dayjs'
 import cn from 'classnames'
+import { Box, Flex } from '@chakra-ui/react'
 
 interface Props {
   book: Book
 }
 export function BookComponent({ book }: Props) {
   return (
-    <article>
-      <div className="p-6 rounded-2xl shadow-xl flex">
-        <div className="mr-6 w-min-64 flex-grow-0">
+    <Box m={3} p={6} rounded="2xl" shadow="xl">
+      <Flex>
+        <Box w={64} mr={4}>
           <CoverImageComponent slug={book.slug} title={book.title} url={book.coverImage ? book.coverImage.url : ''} />
-        </div>
+        </Box>
         <div className="flex-grow">
           <h3 className="text-xl font-bold mb-3">
             <LinkChakra href={`/books/${book.slug}`}>
@@ -27,15 +28,15 @@ export function BookComponent({ book }: Props) {
             <div>最終更新: {dayjs(book.sys.publishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
           </div>
         </div>
-      </div>
-    </article>
+      </Flex>
+    </Box>
   )
 }
 
 export function SingleBookComponent({ book }: Props) {
   return (
     <article>
-      <div className="px-6 mb-12 flex flex-col ">
+      <Box p={6}>
         <div className="mb-5 max-w-lg mx-auto overflow-hidden flex items-center">
           <CoverImageComponent slug={book.slug} title={book.title} url={book.coverImage ? book.coverImage.url : ''} />
         </div>
@@ -52,7 +53,7 @@ export function SingleBookComponent({ book }: Props) {
         {book.chaptersCollection.items.length > 0 && (<div className="text-sm mb-4">
           <ChapterList bookSlug={book.slug} bookChapters={book.chaptersCollection.items} />
         </div>)}
-      </div>
+      </Box>
     </article>
   )
 }

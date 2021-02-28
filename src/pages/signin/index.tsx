@@ -8,6 +8,7 @@ import { useRouter } from 'next/router'
 import * as gtag from '@/lib/gtag'
 import { Button, Center, Checkbox, Stack, useCheckbox } from '@chakra-ui/react';
 import { useState } from 'react';
+import FaiconDiv from '@/components/common/faicon-div';
 
 export default function LoginPage() {
 
@@ -42,7 +43,7 @@ export default function LoginPage() {
           <Stack direction="column">
             <Warning />
             <Checkbox onChange={(e)=> setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
-            {agreed && <Button colorScheme="twitter" leftIcon={<div className="w-5"><FontAwesomeIcon icon={['fab', 'twitter']} /></div>} onClick={login}>
+            {agreed && <Button colorScheme="twitter" leftIcon={<FaiconDiv icon={['fas','twitter']} />} onClick={login}>
               ログイン
           </Button>}
           </Stack>

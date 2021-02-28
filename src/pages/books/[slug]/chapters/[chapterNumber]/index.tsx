@@ -5,12 +5,12 @@ import ErrorPage from 'next/error'
 
 import { getBookAndMoreBooks, getAllBooksWithSlug } from '@/lib/contentful/graphql'
 import { Book } from '@/models/contentful/Book'
-
-import Container from '@/components/common/container'
 import Layout from '@/components/partials/layout'
 import BookList from '@/components/partials/book-list'
 import MarkdownRender from '@/components/common/MarkdownRender'
 import LinkChakra from '@/components/common/link-chakra'
+import Mokuzi from '@/components/common/mokuzi'
+import { Button, Center, Container, Stack } from '@chakra-ui/react'
 
 
 interface BookChapterPageProps {
@@ -32,25 +32,21 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
   includeAlphabet.test(chapterNumber) ? intChapterNumber = NaN : intChapterNumber = parseInt(chapterNumber)
 
   const PageButtons = () => (
-    <div className="flex no-underline text-md font-bold items-center shadow-xl rounded-xl overflow-hidden">
-      {intChapterNumber != 1 && (
-      <LinkChakra href={(`/books/${firstBook.slug}/chapters/${intChapterNumber - 1}`)}>
-        <div className="flex p-4 bg-red-800 flex-grow ">
-          <span className="text-white ">&lt; 前ページ</span>
-        </div>
-      </LinkChakra>)}
-      <LinkChakra href={(`/books/${firstBook.slug}`)}>
-        <div className="flex p-4 bg-blue-500 justify-center flex-grow ">
-          <span className="text-white ">目次へ</span>
-        </div>
-      </LinkChakra>
-      {(intChapterNumber) < firstBook.chaptersCollection.items.length && (<LinkChakra href={(`/books/${firstBook.slug}/chapters/${intChapterNumber + 1}`)}>
-        <div className="flex p-4 bg-green-800 justify-end flex-grow ">
-          <span className="text-white ">次ページ &gt;</span>
-        </div>
-      </LinkChakra>)}
-    </div>
-
+    <Center>
+      <Stack direction="row" spacing={4}>
+        {intChapterNumber != 1 && (
+          <Button colorScheme="red" as={LinkChakra} href={(`/books/${firstBook.slug}/chapters/${intChapterNumber - 1}`)}>
+            &lt; 前ページ
+          </Button>)}
+        <Button colorScheme="gray" as={LinkChakra} href={(`/books/${firstBook.slug}`)}>
+          目次へ
+      </Button>
+        {(intChapterNumber) < firstBook.chaptersCollection.items.length && (
+          <Button colorScheme="green" as={LinkChakra} href={(`/books/${firstBook.slug}/chapters/${intChapterNumber + 1}`)}>
+            次ページ &gt;
+          </Button>)}
+      </Stack>
+    </Center>
   )
 
   let target
@@ -79,28 +75,26 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
               )}
           </>
         ) : (
-            <Layout preview={preview} title={target.title + ' | ' + firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
+            <Layout drawerChildren={firstBook.chaptersCollection.items ? <Mokuzi list={firstBook.chaptersCollection.items} bookSlug={firstBook.slug} /> : <></>} preview={preview} title={target.title + ' | ' + firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
               <div className="mt-6">
                 <Container>
                   {target && (
-                    <div className="text-left lg:w-auto mx-auto">
 
                       <div
-                        className="overflow-x-hidden globalStyle_content mx-auto mb-12" style={{ maxWidth: '650px' }}>
+                        className="overflow-x-hiddenmb-12">
                         <LinkChakra href={(`/books/${firstBook.slug}`)}>
                           <div className="">
                             <h1 className="no-underline text-black text-2xl mb-6 font-bold border-b-2 pb-3 border-gray-300">{firstBook.title}</h1>
                           </div>
                         </LinkChakra>
                         <PageButtons />
-                        <div className="my-2 md:my-8">
+                        <div className="my-2 md:my-8 globalStyle_content mx-auto" style={{ maxWidth: '650px' }}>
                           <h2 className="text-xl font-bold mb-6">{target.title}</h2>
                           <MarkdownRender source={target.md} />
                         </div>
                         <PageButtons />
                       </div>
 
-                    </div>
                   )}
                   {<div className="px-4">{moreBooks && moreBooks.length > 0 && <BookList mode="more" books={moreBooks} />}</div>}
                 </Container>

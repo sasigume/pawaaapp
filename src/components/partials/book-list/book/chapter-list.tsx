@@ -1,5 +1,6 @@
 import LinkChakra from '@/components/common/link-chakra'
 import { BookChapter } from '@/models/contentful/BookChapter'
+import { Box } from '@chakra-ui/react'
 
 interface Props {
   bookChapter: BookChapter
@@ -16,10 +17,10 @@ interface ListProps {
 const OneBookChapter = ({ bookChapter, bookSlug, num }: Props) => {
   return (
     <LinkChakra href={(`/books/${bookSlug}/chapters/${num + 1}`)}>
-      <div className="block rounded-xl p-4 shadow-xl border-gray-400 border-2 mb-8">
+      <Box m={4}  border="solid" rounded="xl" borderColor="gray" p={3}>
         <h2 className="text-xl font-bold mb-6">{bookChapter.title}</h2>
         <div>{bookChapter.description ?? '説明文がありません'}</div>
-      </div>
+      </Box>
     </LinkChakra>
   )
 }
