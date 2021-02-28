@@ -2,7 +2,6 @@
 import { useRouter } from 'next/router'
 import { FormEvent, useState } from 'react'
 import firebase from 'firebase/app'
-import { toast } from 'react-toastify';
 import { useAuthentication } from '@/hooks/authentication'
 
 import ErrorPage from 'next/error'
@@ -19,16 +18,18 @@ import LinkChakra from '@/components/common/link-chakra'
 import { BookComment } from '@/models/firebase/BookComment'
 import BookCommentComponent from '@/components/partials/book-comment'
 import Warning from '@/components/common/warning';
+import { SITE_URL } from '@/lib/constants'
 
 interface BookPageProps {
   firstBook: Book;
   bookComments: BookComment[];
   moreBooks: Book[];
   preview: boolean;
+  tweetCount: number;
 }
 
 
-export default function BookPage({ firstBook, bookComments, moreBooks, preview }: BookPageProps) {
+export default function BookPage({ firstBook, bookComments, moreBooks, preview, tweetCount }: BookPageProps) {
 
   const { user } = useAuthentication()
 
@@ -51,15 +52,7 @@ export default function BookPage({ firstBook, bookComments, moreBooks, preview }
     })
 
     setBody('')
-    toast.success('😙 送信できました! 連投はやめてね', {
-      position: "bottom-center",
-      autoClose: 4000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    console.log('送信できました')
 
   }
 
@@ -76,7 +69,7 @@ export default function BookPage({ firstBook, bookComments, moreBooks, preview }
           </Layout>)
         )}
     </>) : (
-        <Layout drawerChildren={<Mokuzi chapters={firstBook.chaptersCollection.items} bookSlug={firstBook.slug} />} preview={preview} title={firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
+        <Layout tweetCount={tweetCount} drawerChildren={<Mokuzi chapters={firstBook.chaptersCollection.items} bookSlug={firstBook.slug} />} preview={preview} title={firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
           <div className="mt-6">
             <Container>
               {firstBook && <BookList mode="single" books={[firstBook]} expand={preview ?? false} />}
@@ -91,10 +84,10 @@ export default function BookPage({ firstBook, bookComments, moreBooks, preview }
                   (c: BookComment) => <BookCommentComponent c={c} key={c.id} />
                 ) : (
                     <div>コメントはありません。</div>
-                )}
+                  )}
               </Box>
 
-              
+
               <Box mb={6}>
 
                 {user ? (<div className="max-w-xl mb-6">
@@ -113,13 +106,13 @@ export default function BookPage({ firstBook, bookComments, moreBooks, preview }
                           (送信できました)
                         </span>
                       ) : (
-                      <Stack spacing={2}>
-                        <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
-                        {agreed && (
-                          <Button colorScheme="blue" type="submit">
-                            コメントする
-                          </Button>)}
-                      </Stack>
+                          <Stack spacing={2}>
+                            <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
+                            {agreed && (
+                              <Button colorScheme="blue" type="submit">
+                                コメントする
+                              </Button>)}
+                          </Stack>
                         )}
                     </div>
                   </form>
@@ -153,12 +146,20 @@ export async function getStaticProps({ params, preview }: GSProps) {
   const commentsRes = await fetch(process.env.HTTPS_URL + `/api/bookComments/${params.slug}`)
   const bookComments = await commentsRes.json()
 
+  const searchWord = SITE_URL + '/books/' + params.slug
+
+  const tweets = await fetch(process.env.HTTPS_URL + '/api/twitter?word=' + encodeURIComponent(searchWord) + '&secret=' + process.env.TWITTER_SECRET)
+  const tweetsJson = await tweets.json()
+  let tweetCount
+  tweetsJson.data ? tweetCount=tweetsJson.data.length : tweetCount = 0
+
   return {
     props: {
       preview: preview ?? false,
       firstBook: books.book ?? null,
       bookComments: bookComments ?? null,
-      moreBooks: books.moreBooks ?? null
+      moreBooks: books.moreBooks ?? null,
+      tweetCount: tweetCount ?? 0
     },
     revalidate: 300,
   }
