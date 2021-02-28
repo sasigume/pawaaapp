@@ -24,7 +24,9 @@ module.exports = {
     FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
     FIREBASE_MEASUREMENT_ID: process.env.FIREBASE_MEASUREMENT_ID,
     PART_OF_GCP_CREDENTIAL: process.env.PART_OF_GCP_CREDENTIAL,
-    HTTPS_URL: process.env.HTTPS_URL
+    HTTPS_URL: process.env.HTTPS_URL,
+    TWITTER_SECRET: process.env.TWITTER_SECRET,
+    TWITTER_BEARER: process.env.TWITTER_BEARER
   },
   images: {
     domains: ['localhost', 'pbs.twimg.com', 'images.ctfassets.net']
