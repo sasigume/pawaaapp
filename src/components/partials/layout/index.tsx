@@ -25,14 +25,9 @@ export default function Layout({ preview, children, drawerChildren, title, desc,
   return (
     <>
       <Meta title={title} desc={desc} />
-      <Box w="full" h="full">
-        <Flex w="full" py={6} px={5} direction="row">
-          <Spacer />
-          <Logo fill={colorMode == "light" ? "#000" : "#fff"} />
-        </Flex>
+      <Box w="full" h="full" py={10}>
         <main style={{ flexGrow: 1 }}>
           {children}
-
         </main>
         <LayoutFooter />
         <LayoutDrawer preview={preview}>
