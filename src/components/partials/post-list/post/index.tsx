@@ -1,6 +1,6 @@
 
 import CoverImageComponent from './cover-image-component'
-import Link from 'next/link'
+import LinkChakra from '@/components/common/link-chakra'
 import SubjectList from './subject-list'
 import CreatorList from './creator-list'
 import PostBody from './post-body'
@@ -23,15 +23,15 @@ export default function PostComponent({ post, mode }: Props) {
           <CoverImageComponent slug={post.slug} title={post.displayName} url={post.image.url} />
         </div>
         {mode == "single" && (<h2 className="text-3xl font-bold mb-3">
-          <Link as={`/posts/${post.slug}`} href="/posts/[slug]">
-            <a className="hover:underline">{post.displayName}</a>
-          </Link>
+          <LinkChakra href={`/posts/${post.slug}`}>
+           {post.displayName}
+          </LinkChakra>
         </h2>
         )}
         {mode !== "single" && (<h3 className="text-3xl font-bold mb-3">
-          <Link as={`/posts/${post.slug}`} href="/posts/[slug]">
-            <a className="hover:underline">{post.displayName}</a>
-          </Link>
+          <LinkChakra href={`/posts/${post.slug}`}>
+            {post.displayName}
+          </LinkChakra>
         </h3>
         )}
         {post.subjectsCollection.items.length > 0 && (<div className="text-sm mb-4">
