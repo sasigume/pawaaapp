@@ -1,14 +1,18 @@
 import Meta from './meta'
 import { ReactNode } from 'react'
+
+import FloatShare from './float-share'
 import LayoutFooter from './layout-footer'
 import LayoutDrawer from './layout-drawer'
-import { Box, color, Flex, Spacer, useColorMode } from '@chakra-ui/react'
+import { Box, Button, Flex, Spacer, useColorMode } from '@chakra-ui/react'
 import Logo from '@/components/common/Logo'
+import { useRouter } from 'next/router'
+import LinkChakra from '@/components/common/link-chakra'
 
 interface LayoutProps {
   preview: boolean;
   children: ReactNode;
-  drawerChildren? : ReactNode,
+  drawerChildren?: ReactNode,
   title: string;
   desc: string;
 }
@@ -25,7 +29,7 @@ export default function Layout({ preview, children, drawerChildren, title, desc 
           <Spacer />
           <Logo fill={colorMode == "light" ? "#000" : "#fff"} />
         </Flex>
-        <main style={{flexGrow: 1}}>
+        <main style={{ flexGrow: 1 }}>
           {children}
 
         </main>
@@ -33,6 +37,13 @@ export default function Layout({ preview, children, drawerChildren, title, desc 
         <LayoutDrawer preview={preview}>
           {drawerChildren}
         </LayoutDrawer>
+        <FloatShare text={title} />
+
+        {preview && (
+          <Box position="fixed" bottom={0} left={0}>
+            <Button as={LinkChakra} href="/api/exit-preview">プレビュー解除</Button>
+          </Box>
+        )}
       </Box>
     </>
   )

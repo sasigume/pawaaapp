@@ -15,12 +15,14 @@ const MultiBooks = ({ books, mode }: MultiBookProps) => {
         <BookComponent
           key={books[0].slug}
           book={books[0]}
+          expand={false}
         />
         <div className="grid grid-cols-1 md:grid-cols-2 md:col-gap-16 lg:gap-x-16 gap-y-16 md:gap-x-24 mb-16">
           {moreBooks.map((book: Book) => (
             <BookComponent
               key={book.slug}
               book={book}
+              expand={false}
             />
           ))}
         </div>
@@ -38,6 +40,7 @@ const MultiBooks = ({ books, mode }: MultiBookProps) => {
             <BookComponent
               key={book.slug}
               book={book}
+              expand={false}
             />
           ))}
         </Stack>
@@ -49,13 +52,15 @@ const MultiBooks = ({ books, mode }: MultiBookProps) => {
 interface BookListProps {
   books: Book[];
   mode?: string;
+  expand?: boolean;
 }
 
-export const BookList = ({ books, mode }: BookListProps) => {
+export const BookList = ({ books, mode, expand }: BookListProps) => {
   if (mode == "single") {
     return (
       <SingleBookComponent
         book={books[0]}
+        expand={expand ?? false}
       />
     )
   } else {
