@@ -15,9 +15,11 @@ import {
   DrawerContent,
   DrawerCloseButton,
   Stack,
+  Center,
 } from "@chakra-ui/react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import FaiconDiv from '@/components/common/faicon-div'
+import Logo from '@/components/common/Logo'
 
 interface Props {
   preview: boolean;
@@ -39,19 +41,23 @@ export default function LayoutDrawer({ preview, children }: Props) {
         placement="left"
         onClose={onClose}
         finalFocusRef={btnRef}
+        aria-label="ドロワーメニュー"
       >
         <DrawerOverlay>
           <DrawerContent pb={4}>
             <DrawerCloseButton />
             <DrawerHeader mt={8}>
               <Stack direction="column" spacing={4}>
-                <Button colorScheme={colorMode === "light" ? "purple" : "cyan"} onClick={toggleColorMode} leftIcon={colorMode === "light" ? 
-                (<FaiconDiv icon={['fas','moon']} />) : (<FaiconDiv  icon={['fas','sun']} />)}>
+                <Center my={6}>
+                  <Logo fill={colorMode === "light" ? "#000" : "#fff"} />
+                </Center>
+                <Button aria-label="カラーモードを切り替える" colorScheme={colorMode === "light" ? "purple" : "cyan"} onClick={toggleColorMode} leftIcon={colorMode === "light" ?
+                  (<FaiconDiv icon={['fas', 'moon']} />) : (<FaiconDiv icon={['fas', 'sun']} />)}>
                   {colorMode === "light" ? "ダークモード" : "ライトモード"}
                 </Button>
                 <SignIn />
                 <Button href="https://blog.pawaa.app" as={LinkChakra}>旧ブログ</Button>
-                <Button href="/books" as={LinkChakra} colorScheme="green">本の一覧</Button>
+                <Button aria-label="本の一覧を見る" href="/books" as={LinkChakra} colorScheme="green">本の一覧</Button>
               </Stack>
             </DrawerHeader>
             <DrawerBody>
