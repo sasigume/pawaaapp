@@ -13,7 +13,17 @@ import Layout from '@/components/partials/layout'
 import BookList from '@/components/partials/book-list'
 import SectionSeparator from '@/components/common/section-separator'
 import Mokuzi from '@/components/common/mokuzi'
-import { Box, Button, Checkbox, Container, Stack, Textarea } from '@chakra-ui/react'
+import {
+  Box, Button, Checkbox, Container, Stack, Textarea, useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Center,
+} from '@chakra-ui/react'
 import LinkChakra from '@/components/common/link-chakra'
 import { BookComment } from '@/models/firebase/BookComment'
 import BookCommentComponent from '@/components/partials/book-comment'
@@ -30,6 +40,8 @@ interface BookPageProps {
 
 
 export default function BookPage({ firstBook, bookComments, moreBooks, preview, tweetCount }: BookPageProps) {
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const { user } = useAuthentication()
 
@@ -95,21 +107,32 @@ export default function BookPage({ firstBook, bookComments, moreBooks, preview, 
                   <form className="w-full px-6" onSubmit={onSubmit}>
 
                     <div className="flex flex-col jusify-center mb-12">
-                      <Textarea
-                        my={6}
-                        placeholder="コメントを書いてね"
-                        onChange={(e) => setBody(e.target.value)}
-                        required
-                      ></Textarea>
+                      <Modal isOpen={isOpen} onClose={onClose}>
+                        <ModalOverlay />
+                        <ModalContent>
+                          <ModalBody>
+                            送信できました！連投はやめてね
+                          </ModalBody>
+                          <ModalFooter>
+                            <Button colorScheme="blue" mr={3} onClick={onClose}>閉じる</Button>
+                          </ModalFooter>
+                        </ModalContent>
+                      </Modal>
                       {didYouSend ? (
-                        <span className="" role="status">
+                        <Center role="status">
                           (送信できました)
-                        </span>
+                        </Center>
                       ) : (
                           <Stack spacing={2}>
+                            <Textarea
+                              my={6}
+                              placeholder="コメントを書いてね"
+                              onChange={(e) => setBody(e.target.value)}
+                              required
+                            ></Textarea>
                             <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
                             {agreed && (
-                              <Button colorScheme="blue" type="submit">
+                              <Button onClick={onOpen} colorScheme="blue" type="submit">
                                 コメントする
                               </Button>)}
                           </Stack>
@@ -151,7 +174,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
   const tweets = await fetch(process.env.HTTPS_URL + '/api/twitter?word=' + encodeURIComponent(searchWord) + '&secret=' + process.env.TWITTER_SECRET)
   const tweetsJson = await tweets.json()
   let tweetCount
-  tweetsJson.data ? tweetCount=tweetsJson.data.length : tweetCount = 0
+  tweetsJson.data ? tweetCount = tweetsJson.data.length : tweetCount = 0
 
   return {
     props: {
