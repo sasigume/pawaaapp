@@ -40,10 +40,10 @@ export default function LoginPage() {
     <Layout preview={false} title={'マイページ'} desc={'マイページ'} >
       <Container>
         {!user ? (<div className="max-w-xl mb-6">
-          <Stack direction="column">
+          <Stack direction="column" mb={8} >
             <Warning />
             <Checkbox onChange={(e)=> setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
-            {agreed && <Button colorScheme="twitter" leftIcon={<FaiconDiv icon={['fas','twitter']} />} onClick={login}>
+            {agreed && <Button colorScheme="twitter" leftIcon={<FaiconDiv icon={['fab','twitter']} />} onClick={login}>
               ログイン
           </Button>}
           </Stack>
