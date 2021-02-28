@@ -1,4 +1,4 @@
-import { getPreviewPostBySlug } from '@/lib/contentful/graphql'
+import { getPreviewBook } from '@/lib/contentful/graphql'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 // https://github.com/vercel/next.js/blob/canary/examples/cms-contentful/pages/api/preview.js
@@ -12,11 +12,11 @@ export default async function preview(req:NextApiRequest, res:NextApiResponse) {
   }
 
   // Fetch the headless CMS to check if the provided `slug` exists
-  const post = await getPreviewPostBySlug(slug)
+  const book = await getPreviewBook(slug)
 
   // If the slug doesn't exist prevent preview mode from being enabled
-  if (!post) {
-    return res.status(401).json({ message: '記事が見つかりません。' })
+  if (!book) {
+    return res.status(401).json({ message: '本が見つかりません。' })
   }
 
   // Enable Preview Mode by setting the cookies
@@ -25,7 +25,7 @@ export default async function preview(req:NextApiRequest, res:NextApiResponse) {
   // Redirect to the path from the fetched post
   // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
   // res.writeHead(307, { Location: `/posts/${post.slug}` })
-  const url = `/posts/${post.slug}`
+  const url = `/books/${book.slug}`
   res.write(
     `<!DOCTYPE html><html><head><meta http-equiv="Refresh" content="0; url=${url}" />
     <script>window.location.href = '${url}'</script>
