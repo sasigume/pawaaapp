@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
-import { User } from '../../models/User'
+import { User } from '../../models/firebase/User'
 import firebase from 'firebase/app'
 import Layout from '@/components/partials/layout'
 import { Container } from '@chakra-ui/react'
