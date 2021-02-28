@@ -14,8 +14,12 @@ import '@/lib/firebase'
 import 'hooks/authentication'
 import addIcon from '@/lib/fontawesome'
 import * as gtag from '@/lib/gtag'
+import { ChakraProvider, extendTheme} from "@chakra-ui/react"
+
+import colors from '@/lib/chakraui/colors'
 
 function App({ Component, pageProps }: AppProps) {
+  const theme = extendTheme({ colors })
   addIcon()
 
   // Google Analytics
@@ -33,8 +37,10 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <RecoilRoot>
-      <Component {...pageProps} />
-      <ToastContainer limit={1} />
+      <ChakraProvider theme={theme}>
+        <Component {...pageProps} />
+        <ToastContainer limit={1} />
+      </ChakraProvider>
     </RecoilRoot>
   )
 }

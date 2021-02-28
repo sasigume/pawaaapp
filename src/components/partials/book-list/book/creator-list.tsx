@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import LinkChakra from '@/components/common/link-chakra'
 import { Creator } from '@/models/contentful/Creator'
 
 interface OneProps {
@@ -11,8 +11,8 @@ interface ListProps {
 const OneCreator = ({ creator }: OneProps) => {
 
   return (
-    <Link as={`/creators/${creator.slug}`} href="/creators/[slug]">
-      <a className="block">
+    <LinkChakra href={`/creators/${creator.slug}`}>
+      <div className="block">
         <div className="flex items-center">
           <img
             src={creator.picture ? creator.picture.url : (process.env.HTTPS_URL + '/favicon.png')}
@@ -21,8 +21,8 @@ const OneCreator = ({ creator }: OneProps) => {
           />
           <div className="text-xl font-bold">{creator.displayName ? creator.displayName : '(名前なし)'}</div>
         </div>
-      </a>
-    </Link>
+      </div>
+    </LinkChakra>
   )
 }
 

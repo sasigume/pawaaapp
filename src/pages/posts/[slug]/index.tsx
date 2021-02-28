@@ -4,7 +4,7 @@ import firebase from 'firebase/app'
 import ErrorPage from 'next/error'
 import { toast } from 'react-toastify';
 import { useAuthentication } from '@/hooks/authentication'
-import Link from 'next/link'
+import LinkChakra from '@/components/common/link-chakra'
 
 import { getAllPostsWithSlug, getPostAndMorePosts } from '@/lib/contentful/graphql'
 import { Post } from '@/models/contentful/Post'
@@ -118,7 +118,7 @@ export default function PostPage({ firstPost, morePosts, postComments, preview }
                       </div>
                     </form>
                   </div>) : (<div className="my-6">
-                    <Link href="/login">ログイン</Link>してコメントしてみよう!
+                    <LinkChakra href="/login">ログイン</LinkChakra>してコメントしてみよう!
                   </div>)}
                 </div>
 

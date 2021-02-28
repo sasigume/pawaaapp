@@ -44,7 +44,7 @@ const Index = ({ page, environment }: IndexProps) => {
               <Container>
                 <div className="max-w-3xl flex flex-col items-center justify-center">
                   <div className="flex flex-col align-middle items-center md:flex-row justify-between pt-12">
-                    <div className="mt-16 md:mt-0 mr-10 font-bold text-6xl whitespace-nowrap leading-loose">
+                    <div className="mb-12 mt-6 md:mt-0 mr-10 font-bold text-3xl whitespace-nowrap leading-loose">
                       <MarkdownRender source={page.message} />
                     </div>
                     <div className="flex flex-col text-black py-8 relative pt-32">
