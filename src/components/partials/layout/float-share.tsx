@@ -5,9 +5,10 @@ import { useRouter } from "next/router"
 
 interface Props {
   text: string
+  count?: number
 }
 
-const FloatShare = ({ text }: Props) => {
+const FloatShare = ({ text,count }: Props) => {
 
   const {asPath} = useRouter()
   const shareUrl = process.env.HTTPS_URL + asPath as string
@@ -16,7 +17,7 @@ const FloatShare = ({ text }: Props) => {
   return (
     <Box position="fixed" bottom={5} right={5}>
       <Button target="_blank" as={LinkChakra} href={tweetUrl} colorScheme="twitter" leftIcon={<FaiconDiv icon={['fab', 'twitter']} />}>
-        ツイート
+        ツイート {count && <>{(`${count}件`)}</>}
         </Button>
     </Box>
   )

@@ -15,9 +15,10 @@ interface LayoutProps {
   drawerChildren?: ReactNode,
   title: string;
   desc: string;
+  tweetCount?: number;
 }
 
-export default function Layout({ preview, children, drawerChildren, title, desc }: LayoutProps) {
+export default function Layout({ preview, children, drawerChildren, title, desc,tweetCount }: LayoutProps) {
 
   const { colorMode } = useColorMode()
 
@@ -37,7 +38,7 @@ export default function Layout({ preview, children, drawerChildren, title, desc 
         <LayoutDrawer preview={preview}>
           {drawerChildren}
         </LayoutDrawer>
-        <FloatShare text={title} />
+        <FloatShare count={tweetCount} text={title} />
 
         {preview && (
           <Box position="fixed" bottom={0} left={0}>
