@@ -23,14 +23,14 @@ const SignIn = () => {
         <Button leftIcon={<Box w={6} rounded="full" overflow="hidden"><Image src={user.photoUrl} width={32} height={32} /></Box>}>
           {user.name}
         </Button>
-        <Button onClick={logout} leftIcon={<FaiconDiv icon={['fab', 'twitter']} />} colorScheme="red" variant="solid">
+        <Button aria-label="ログアウトする" onClick={logout} leftIcon={<FaiconDiv icon={['fab', 'twitter']} />} colorScheme="red" variant="solid">
           ログアウト
         </Button></>
       ) : (<>
         <Button href="/users/me" as={LinkChakra} leftIcon={<Box w={6} rounded="full" overflow="hidden"><Image src={process.env.HTTPS_URL + '/favicon.png'} width={32} height={32} /></Box>}>
           ログインしていません
         </Button>
-        <Button onClick={login} leftIcon={<FaiconDiv icon={['fab', 'twitter']} />} colorScheme="twitter" variant="solid">
+        <Button aria-label="ログインする" onClick={login} leftIcon={<FaiconDiv icon={['fab', 'twitter']} />} colorScheme="twitter" variant="solid">
           ログイン
           </Button>
       </>
