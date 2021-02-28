@@ -1,6 +1,6 @@
 
 import CoverImageComponent from './cover-image-component'
-import Link from 'next/link'
+import LinkChakra from '@/components/common/link-chakra'
 import ChapterList from './chapter-list'
 import { Book } from '@/models/contentful/Book'
 import dayjs from 'dayjs'
@@ -18,9 +18,9 @@ export function BookComponent({ book }: Props) {
         </div>
         <div className="flex-grow">
           <h3 className="text-xl font-bold mb-3">
-            <Link as={`/books/${book.slug}`} href="/books/[slug]">
-              <a className="hover:underline">{book.title}</a>
-            </Link>
+            <LinkChakra href={`/books/${book.slug}`}>
+              <div className="hover:underline">{book.title}</div>
+            </LinkChakra>
           </h3>
           <div className="text-sm">
             <div>公開: {dayjs(book.sys.firstPublishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
@@ -40,9 +40,9 @@ export function SingleBookComponent({ book }: Props) {
           <CoverImageComponent slug={book.slug} title={book.title} url={book.coverImage ? book.coverImage.url : ''} />
         </div>
         <h1 className="text-3xl font-bold mb-6">
-          <Link as={`/books/${book.slug}`} href="/books/[slug]">
-            <a className="hover:underline">{book.title}</a>
-          </Link>
+          <LinkChakra href={`/books/${book.slug}`}>
+            <div className="hover:underline">{book.title}</div>
+          </LinkChakra>
         </h1>
 
         <div className="mb-12">
