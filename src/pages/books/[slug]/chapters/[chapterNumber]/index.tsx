@@ -10,7 +10,8 @@ import BookList from '@/components/partials/book-list'
 import MarkdownRender from '@/components/common/MarkdownRender'
 import LinkChakra from '@/components/common/link-chakra'
 import Mokuzi from '@/components/common/mokuzi'
-import { Button, Center, Container, Stack } from '@chakra-ui/react'
+import { Box, Button, Center, Container, Stack } from '@chakra-ui/react'
+import SectionSeparator from '@/components/common/section-separator'
 
 
 interface BookChapterPageProps {
@@ -83,9 +84,9 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
                       <div
                         className="overflow-x-hiddenmb-12">
                         <LinkChakra href={(`/books/${firstBook.slug}`)}>
-                          <div className="">
-                            <h1 className="no-underline text-black text-2xl mb-6 font-bold border-b-2 pb-3 border-gray-300">{firstBook.title}</h1>
-                          </div>
+                          <Box textStyle="h1" mb={10}>
+                            <h1>{firstBook.title}</h1>
+                          </Box>
                         </LinkChakra>
                         <PageButtons />
                         <div className="my-2 md:my-8 globalStyle_content mx-auto" style={{ maxWidth: '650px' }}>
@@ -96,7 +97,8 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
                       </div>
 
                   )}
-                  {<div className="px-4">{moreBooks && moreBooks.length > 0 && <BookList mode="more" books={moreBooks} />}</div>}
+                  <SectionSeparator />
+                  {<Box>{moreBooks && moreBooks.length > 0 && <BookList mode="more" books={moreBooks} />}</Box>}
                 </Container>
               </div>
             </Layout>

@@ -40,11 +40,9 @@ export function SingleBookComponent({ book }: Props) {
         <div className="mb-5 max-w-lg mx-auto overflow-hidden flex items-center">
           <CoverImageComponent slug={book.slug} title={book.title} url={book.coverImage ? book.coverImage.url : ''} />
         </div>
-        <h1 className="text-3xl font-bold mb-6">
-          <LinkChakra href={`/books/${book.slug}`}>
-            <div className="hover:underline">{book.title}</div>
-          </LinkChakra>
-        </h1>
+        <Box textStyle="h1">
+          <h1>{book.title}</h1>
+        </Box>
 
         <div className="mb-12">
           <div>公開: {dayjs(book.sys.firstPublishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
