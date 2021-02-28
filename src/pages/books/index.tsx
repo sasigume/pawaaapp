@@ -9,6 +9,7 @@ import { Book } from '@/models/contentful/Book'
 import { Container } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
 import BookList from '@/components/partials/book-list'
+import Mokuzi from '@/components/common/mokuzi'
 
 
 interface BookIndexProps {
@@ -39,7 +40,7 @@ export default function BookIndex({ books, preview }: BookIndexProps) {
             </Layout>)
           )}
       </>) : (
-          <Layout preview={preview} title={'本の一覧'} desc={'本の一覧です'}>
+          <Layout drawerChildren={books.length>0 && <Mokuzi books={books} />} preview={preview} title={'本の一覧'} desc={'本の一覧です'}>
             <div className="mt-6">
               <Container>
                 {<div className="px-4">{books && books.length > 0 && <BookList mode="archive" books={books} />}</div>}

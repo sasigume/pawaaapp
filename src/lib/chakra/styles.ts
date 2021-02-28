@@ -40,6 +40,9 @@ export const EXTEND_CHAKRA = {
   styles: {
     global: {
       ".mdrenderWrapper": {
+        p: {
+          margin: "0.6rem 0 2.4rem"
+        },
         "h1,h2,h3,h4,h5,h6": {
           position: "relative",
           marginTop: "2rem",
