@@ -48,7 +48,7 @@ export default function BookPage({ firstBook, moreBooks, preview }: BookPageProp
                 {firstBook && <BookList mode="single" books={[firstBook]} />}
                 <SectionSeparator />
                 {moreBooks && moreBooks.length > 0 && (
-                  <Box mb={10}>
+                  <Box my={10}>
                     <BookList mode="more" books={moreBooks} />
                   </Box>)}
               </Container>
