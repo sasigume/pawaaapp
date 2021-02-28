@@ -6,7 +6,7 @@ import Mockup from '@/components/common/Mockup'
 import MarkdownRender from '@/components/common/MarkdownRender'
 import Logo from '@/components/common/Logo'
 
-import Container from '@/components/common/container'
+import { Box, Container, Flex, Stack, useColorMode } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
 import { getAllPostsForHome, getAllBooksWithSlug, getLandingPage } from '../lib/contentful/graphql'
 import { LandingPage } from '@/models/contentful/LandingPage'
@@ -26,6 +26,7 @@ interface Screenshot {
 
 const Index = ({ page, environment }: IndexProps) => {
   const router = useRouter()
+  const { colorMode } = useColorMode()
 
   return (
     <>
@@ -40,49 +41,40 @@ const Index = ({ page, environment }: IndexProps) => {
           )}
       </>) : (
           <Layout preview={environment} title={page.title} desc={page.description}>
-            <div className="w-screen flex mb-6">
-              <Container>
-                <div className="max-w-3xl flex flex-col items-center justify-center">
-                  <div className="flex flex-col align-middle items-center md:flex-row justify-between pt-12">
-                    <div className="mb-12 mt-6 md:mt-0 mr-10 font-bold text-3xl whitespace-nowrap leading-loose">
-                      <MarkdownRender source={page.message} />
-                    </div>
-                    <div className="flex flex-col text-black py-8 relative pt-32">
-                      <div className="flex flex-col z-20 mt-4">
-                        {(page.postsCollection && page.postsCollection.items.length > 0) && page.postsCollection.items.map(
-                          (post: LandingPagePost, n: number) => <LandingPagePostComponent key={post.slug} post={post} n={n} />
-                        )}
-                      </div>
-                      <div className="w-full absolute top-0">
-                        <div className="mx-auto rounded-xl shadow-2xl overflow-hidden" style={{ width: "300px", height: "480px" }}>
-                          <Image src={page.topImage.url} width="300" height="480" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Container>
-            </div>
-            <div className="bg-white w-screen flex items-center justify-center">
-              <Container>
-                <div className="w-max-3xl mx-auto text-center">
-                  <div className="mb-16">
-                    <h1><Logo /></h1>
-                  </div>
-                  <div className="mb-16">
-                    <MarkdownRender source={page.md} />
-                  </div>
 
-                  <div className="grid gap-x-10 md:grid-flow-col md:auto-cols-max">
+            <Container>
 
-                    {(page.screenshotsCollection && page.screenshotsCollection.items.length > 0) && page.screenshotsCollection.items.map(
-                      (sc: Screenshot) => <Mockup key={sc.url} src={sc.url} />
+              <Flex mt={10} direction={{ base: "column", md: "row" }} w="full" justifyContent="center" alignItems="center">
+                <Flex direction="column" fontWeight="bold" fontSize="xxx-large" mr={10} mb={{ base: 10, md: 0 }}>
+                  <MarkdownRender source={page.message} />
+                </Flex>
+                <Box position="relative">
+                  <Box shadow="xl" rounded="xl" overflow="hidden" style={{ width: "300px", height: "480px" }}>
+                    <Image src={page.topImage.url} width="300" height="480" />
+                  </Box>
+                  <Stack position="absolute" top={40} left={10}>
+                    {(page.postsCollection && page.postsCollection.items.length > 0) && page.postsCollection.items.map(
+                      (post: LandingPagePost, n: number) => <LandingPagePostComponent key={post.slug} post={post} n={n} />
                     )}
+                  </Stack>
+                </Box>
+              </Flex>
 
-                  </div>
-                </div>
-              </Container>
-            </div>
+              <Flex mt={40} mb={10} direction="column" alignItems="center">
+                <Logo fill={colorMode == "light" ? "#000" : "#fff"} />
+                <Stack my={10}>
+                  <MarkdownRender source={page.md} />
+                </Stack>
+              </Flex>
+
+              <Stack spacing={4} alignItems="center" direction={{ base: "column", md: "row" }} mb={20}>
+
+                {(page.screenshotsCollection && page.screenshotsCollection.items.length > 0) && page.screenshotsCollection.items.map(
+                  (sc: Screenshot) => <Mockup key={sc.url} src={sc.url} />
+                )}
+
+              </Stack>
+            </Container>
           </Layout>
         )}
     </>

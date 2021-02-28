@@ -7,6 +7,7 @@ import PostBody from './post-body'
 import { Post } from '@/models/contentful/Post'
 import dayjs from 'dayjs'
 import cn from 'classnames'
+import { Box } from '@chakra-ui/react'
 
 interface Props {
   post: Post
@@ -46,7 +47,7 @@ export default function PostComponent({ post, mode }: Props) {
         </div>)}
       </div>
       <div>
-        {mode == "single" ? <PostBody md={post.md} /> : ''}
+        {mode == "single" ? <Box className="articleMdWrapper"><PostBody md={post.md} /></Box> : ''}
       </div>
     </article>
   )

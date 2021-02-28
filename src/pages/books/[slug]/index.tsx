@@ -6,10 +6,11 @@ import ErrorPage from 'next/error'
 import { getBookAndMoreBooks, getAllBooksWithSlug } from '@/lib/contentful/graphql'
 import { Book } from '@/models/contentful/Book'
 
-import Container from '@/components/common/container'
 import Layout from '@/components/partials/layout'
 import BookList from '@/components/partials/book-list'
 import SectionSeparator from '@/components/common/section-separator'
+import Mokuzi from '@/components/common/mokuzi'
+import { Box, Container } from '@chakra-ui/react'
 
 
 interface BookPageProps {
@@ -41,12 +42,15 @@ export default function BookPage({ firstBook, moreBooks, preview }: BookPageProp
             </Layout>)
           )}
       </>) : (
-          <Layout preview={preview} title={firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
+          <Layout drawerChildren={<Mokuzi chapters={firstBook.chaptersCollection.items} bookSlug={firstBook.slug} />} preview={preview} title={firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
             <div className="mt-6">
               <Container>
                 {firstBook && <BookList mode="single" books={[firstBook]} />}
                 <SectionSeparator />
-                {<div className="px-4">{moreBooks && moreBooks.length > 0 && <BookList mode="more" books={moreBooks} />}</div>}
+                {moreBooks && moreBooks.length > 0 && (
+                  <Box my={10}>
+                    <BookList mode="more" books={moreBooks} />
+                  </Box>)}
               </Container>
             </div>
           </Layout>

@@ -4,55 +4,62 @@ import LinkChakra from '@/components/common/link-chakra'
 import ChapterList from './chapter-list'
 import { Book } from '@/models/contentful/Book'
 import dayjs from 'dayjs'
-import cn from 'classnames'
+import SubjectList from './subject-list'
+import CreatorList from './creator-list'
+import { Box, Center, Flex } from '@chakra-ui/react'
 
 interface Props {
   book: Book
 }
 export function BookComponent({ book }: Props) {
   return (
-    <article>
-      <div className="p-6 rounded-2xl shadow-xl flex">
-        <div className="mr-6 w-min-64 flex-grow-0">
+    <Box m={3} p={6} rounded="2xl" shadow="xl">
+      <Flex>
+        <Box w={64} mr={4}>
           <CoverImageComponent slug={book.slug} title={book.title} url={book.coverImage ? book.coverImage.url : ''} />
-        </div>
+        </Box>
         <div className="flex-grow">
-          <h3 className="text-xl font-bold mb-3">
+          <Box textStyle="h3">
             <LinkChakra href={`/books/${book.slug}`}>
               <div className="hover:underline">{book.title}</div>
             </LinkChakra>
-          </h3>
+          </Box>
           <div className="text-sm">
             <div>公開: {dayjs(book.sys.firstPublishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
             <div>最終更新: {dayjs(book.sys.publishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
           </div>
         </div>
-      </div>
-    </article>
+      </Flex>
+    </Box>
   )
 }
 
 export function SingleBookComponent({ book }: Props) {
   return (
     <article>
-      <div className="px-6 mb-12 flex flex-col ">
-        <div className="mb-5 max-w-lg mx-auto overflow-hidden flex items-center">
+      <Flex direction="column" alignItems="center" p={6}>
+        <Box mb={10} maxW="md">
           <CoverImageComponent slug={book.slug} title={book.title} url={book.coverImage ? book.coverImage.url : ''} />
-        </div>
-        <h1 className="text-3xl font-bold mb-6">
-          <LinkChakra href={`/books/${book.slug}`}>
-            <div className="hover:underline">{book.title}</div>
-          </LinkChakra>
-        </h1>
+        </Box>
+        <Box textStyle="h1" mb={8}>
+          <h1>{book.title}</h1>
+        </Box>
+        {(book.subjectsCollection && book.subjectsCollection.items.length > 0) && (<div className="text-sm mb-4">
+            <SubjectList subjects={book.subjectsCollection.items} />
+          </div>)}
 
-        <div className="mb-12">
+          {(book.creatorsCollection && book.creatorsCollection.items.length > 0) && (<div className="text-sm mb-4">
+            <CreatorList creators={book.creatorsCollection.items} />
+          </div>)}
+
+        <Box mb={6}>
           <div>公開: {dayjs(book.sys.firstPublishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
           <div>最終更新: {dayjs(book.sys.publishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
-        </div>
+        </Box>
         {book.chaptersCollection.items.length > 0 && (<div className="text-sm mb-4">
           <ChapterList bookSlug={book.slug} bookChapters={book.chaptersCollection.items} />
         </div>)}
-      </div>
+      </Flex>
     </article>
   )
 }

@@ -1,18 +1,18 @@
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
-import Container from '../../components/common/container'
-import PostList from '@/components/partials/post-list'
+import BookList from '@/components/partials/book-list'
 import Layout from '@/components/partials/layout'
-import { getSubject, getAllSubjectsWithSlug, getAllPostsForSubject } from '@/lib/contentful/graphql'
-import { Post } from '@/models/contentful/Post'
+import { getSubject, getAllSubjectsWithSlug, getAllBooksForSubject } from '@/lib/contentful/graphql'
+import { Book } from '@/models/contentful/Book'
 import { Subject } from '@/models/contentful/Subject'
+import { Container } from '@chakra-ui/react'
 interface IndexProps {
   subject: Subject;
-  posts: Post[];
+  books: Book[];
   preview: boolean;
 }
 
-const SubjectIndex = ({ subject, posts, preview }: IndexProps) => {
+const SubjectIndex = ({ subject, books, preview }: IndexProps) => {
 
   const router = useRouter()
   return (
@@ -28,15 +28,15 @@ const SubjectIndex = ({ subject, posts, preview }: IndexProps) => {
           )}
       </>) : (
           <Layout preview={preview} title={(`${subject.displayName}の記事一覧`)} desc={"Pawaa.app"}>
-            <div>
-              <Container>
-                <div>
-                  <h1 className="text-2xl font-bold my-10">{posts[0] ? `${subject.displayName}の記事一覧` : `${subject.displayName}の記事はありません`}</h1>
-                  {subject.description && (<div className="my-4">{subject.description}</div>)}
-                </div>
-                {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
-              </Container>
-            </div>
+
+            <Container>
+              <div>
+                <h1 className="text-2xl font-bold my-10">{books[0] ? `${subject.displayName}の記事一覧` : `${subject.displayName}の記事はありません`}</h1>
+                {subject.description && (<div className="my-4">{subject.description}</div>)}
+              </div>
+              {books && books.length > 0 && <BookList mode="archive" books={books} />}
+            </Container>
+
           </Layout>
         )
       }
@@ -53,14 +53,14 @@ interface GSProps {
 
 export async function getStaticProps({ params, preview = false }: GSProps) {
   const slug = params.slug ?? ''
-  let posts: Post[]
+  let books: Book[]
   const subjectData = await getSubject(slug, preview) ?? null
-  subjectData ? posts = await getAllPostsForSubject(subjectData.slug, preview) : posts = []
+  subjectData ? books = await getAllBooksForSubject(subjectData.slug, preview) : books = []
   return {
     props: {
       subject: subjectData ?? null,
       preview: preview,
-      posts: posts ?? null
+      books: books ?? null
     },
     revalidate: 300,
   }

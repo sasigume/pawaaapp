@@ -2,11 +2,13 @@ import Layout from '@/components/partials/layout'
 import { useAuthentication } from '../../hooks/authentication'
 import firebaseApi from '@/lib/firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Container from '@/components/common/container'
+import { Container } from '@chakra-ui/react'
 import Warning from '@/components/common/warning'
 import { useRouter } from 'next/router'
 import * as gtag from '@/lib/gtag'
-import { Button, Center, Stack } from '@chakra-ui/react';
+import { Button, Center, Checkbox, Stack, useCheckbox } from '@chakra-ui/react';
+import { useState } from 'react';
+import FaiconDiv from '@/components/common/faicon-div';
 
 export default function LoginPage() {
 
@@ -32,15 +34,18 @@ export default function LoginPage() {
 
   const { user } = useAuthentication()
 
+  const [agreed, setAgreed] = useState(false)
+
   return (
     <Layout preview={false} title={'マイページ'} desc={'マイページ'} >
       <Container>
         {!user ? (<div className="max-w-xl mb-6">
-          <Stack direction="column">
+          <Stack direction="column" mb={8} >
             <Warning />
-            <Button colorScheme="twitter" leftIcon={<div className="w-5"><FontAwesomeIcon icon={['fab', 'twitter']} /></div>} onClick={login}>
+            <Checkbox onChange={(e)=> setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
+            {agreed && <Button colorScheme="twitter" leftIcon={<FaiconDiv icon={['fab','twitter']} />} onClick={login}>
               ログイン
-          </Button>
+          </Button>}
           </Stack>
         </div>
         ) : (<div>

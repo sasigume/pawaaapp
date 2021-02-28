@@ -1,6 +1,7 @@
-import {SingleBookComponent} from './book'
-import {BookComponent} from './book'
+import { SingleBookComponent } from './book'
+import { BookComponent } from './book'
 import { Book } from '@/models/contentful/Book'
+import { Box, Stack } from '@chakra-ui/react'
 
 interface MultiBookProps {
   books: Book[];
@@ -16,7 +17,7 @@ const MultiBooks = ({ books, mode }: MultiBookProps) => {
           book={books[0]}
         />
         <div className="grid grid-cols-1 md:grid-cols-2 md:col-gap-16 lg:gap-x-16 gap-y-16 md:gap-x-24 mb-16">
-          {moreBooks.map((book:Book) => (
+          {moreBooks.map((book: Book) => (
             <BookComponent
               key={book.slug}
               book={book}
@@ -29,15 +30,17 @@ const MultiBooks = ({ books, mode }: MultiBookProps) => {
   else {
     return (
       <section>
-        {mode == "more" && <h2 className="mb-8 text-3xl md:text-4xl font-bold">他の本</h2>}
-        <div className="grid grid-cols-1 md:grid-cols-2 md:col-gap-16 lg:gap-x-16 gap-y-16 md:gap-x-24 mb-16">
+        {mode == "more" && (<Box textStyle="h2">
+          <h2>他の本</h2>
+        </Box>)}
+        <Stack>
           {books.map((book) => (
             <BookComponent
               key={book.slug}
               book={book}
             />
           ))}
-        </div>
+        </Stack>
       </section>
     )
   }
