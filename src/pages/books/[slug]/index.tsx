@@ -16,7 +16,7 @@ import SectionSeparator from '@/components/common/section-separator'
 import Mokuzi from '@/components/common/mokuzi'
 import { Box, Button, Checkbox, Container, Stack, Textarea } from '@chakra-ui/react'
 import LinkChakra from '@/components/common/link-chakra'
-import { BookComment } from '@/models/contentful/BookComment'
+import { BookComment } from '@/models/firebase/BookComment'
 import BookCommentComponent from '@/components/partials/book-comment'
 import Warning from '@/components/common/warning';
 
@@ -155,7 +155,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
 
   return {
     props: {
-      preview: preview,
+      preview: preview ?? false,
       firstBook: books.book ?? null,
       bookComments: bookComments ?? null,
       moreBooks: books.moreBooks ?? null

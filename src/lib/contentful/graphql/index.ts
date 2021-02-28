@@ -1,4 +1,3 @@
-import { Post } from '@/models/contentful/Post'
 import { Creator } from '@/models/contentful/Creator'
 import { Subject } from '@/models/contentful/Subject'
 import { LandingPage } from '@/models/contentful/LandingPage'

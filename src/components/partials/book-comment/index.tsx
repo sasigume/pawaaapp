@@ -1,6 +1,6 @@
 
 import MarkdownRender from '@/components/common/MarkdownRender'
-import { BookComment } from '@/models/contentful/BookComment'
+import { BookComment } from '@/models/firebase/BookComment'
 import { Box, Stack } from '@chakra-ui/react'
 import dayjs from 'dayjs'
 
