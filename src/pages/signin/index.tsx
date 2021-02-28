@@ -5,10 +5,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Container from '@/components/common/container'
 import Warning from '@/components/common/warning'
 import { useRouter } from 'next/router'
+import * as gtag from '@/lib/gtag'
 
 export default function LoginPage() {
+
   const router = useRouter()
   const login = () => {
+    gtag.event({
+      action: 'login',
+      category: 'user',
+      label: 'ログインページからのログイン',
+    })
+    
     const provider = new firebaseApi.auth.TwitterAuthProvider();
     firebaseApi.auth().languageCode = 'ja';
     firebaseApi.auth().signInWithPopup(provider)
