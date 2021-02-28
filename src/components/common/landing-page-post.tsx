@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
 import MarkdownRender from './MarkdownRender'
-import cn from 'classnames'
 import { LandingPagePost } from '@/models/contentful/LandingPagePost'
 import { useSpring, animated } from 'react-spring'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Box, Button, Flex, Stack } from '@chakra-ui/react'
+import { Box, Button, Flex, Stack, useColorMode } from '@chakra-ui/react'
 import FaiconDiv from './faicon-div'
 
 interface Props {
@@ -32,10 +30,12 @@ function LandingPagePostComponent({ post, n }: Props) {
     setAppeared(state => !state)
   }, [])
 
+  const { colorMode } = useColorMode()
+
   return (
-    <animated.div>
-      <Box w={60} my={4} mr={(n % 2 == 0) ? 12 : 0} ml={(n % 2 != 0) ? 12 : 0} p={4} border="solid" background="white" borderColor="gray.300" rounded="xl" shadow="xl"
-        style={{ transform }} >
+    <Box pr={(n % 2 == 0) ? 12 : 0} pl={(n % 2 != 0) ? 12 : 0}>
+      <Box p={4} rounded="xl" shadow="xl" color={colorMode == "light" ? "black" : "white"} background={colorMode == "light" ? "white" : "black"} as={animated.div}
+        style={{ transform }}>
         <Flex mb={2}>
           <Stack mr={4}>
             <div>{post.mondaiName}</div>
@@ -50,7 +50,7 @@ function LandingPagePostComponent({ post, n }: Props) {
           <MarkdownRender source={post.md} />
         </div>
       </Box>
-    </animated.div >
+    </Box>
   )
 }
 

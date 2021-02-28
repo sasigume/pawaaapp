@@ -1,4 +1,4 @@
-import '~react-toastify/dist/ReactToastify.css'
+import '../../node_modules/react-toastify/dist/ReactToastify.min.css'
 import { AppProps } from 'next/app'
 import { RecoilRoot } from 'recoil'
 import { useRouter } from 'next/router'
@@ -13,10 +13,7 @@ import '@/lib/firebase'
 import 'hooks/authentication'
 import addIcon from '@/lib/fontawesome'
 import * as gtag from '@/lib/gtag'
-import { ChakraProvider,extendTheme } from "@chakra-ui/react"
-
-import {EXTEND_CHAKRA} from '@/lib/chakra'
-const theme = extendTheme(EXTEND_CHAKRA)
+import { Chakra } from '@/components/providers/chakra'
 
 function App({ Component, pageProps }: AppProps) {
   addIcon()
@@ -36,12 +33,15 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <RecoilRoot>
-      <ChakraProvider theme={theme}>
+      <Chakra cookies={pageProps.cookies}>
         <Component {...pageProps} />
         <ToastContainer limit={1} />
-      </ChakraProvider>
+      </Chakra>
     </RecoilRoot>
   )
 }
 
 export default App
+
+// https://chakra-ui.com/docs/features/color-mode
+export { getServerSideProps } from "@/components/providers/chakra"

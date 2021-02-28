@@ -6,7 +6,7 @@ import Mockup from '@/components/common/Mockup'
 import MarkdownRender from '@/components/common/MarkdownRender'
 import Logo from '@/components/common/Logo'
 
-import { Box, Center, Container, Flex, Stack } from '@chakra-ui/react'
+import { Box, Container, Flex, Stack, useColorMode } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
 import { getAllPostsForHome, getAllBooksWithSlug, getLandingPage } from '../lib/contentful/graphql'
 import { LandingPage } from '@/models/contentful/LandingPage'
@@ -26,6 +26,7 @@ interface Screenshot {
 
 const Index = ({ page, environment }: IndexProps) => {
   const router = useRouter()
+  const { colorMode } = useColorMode()
 
   return (
     <>
@@ -60,7 +61,7 @@ const Index = ({ page, environment }: IndexProps) => {
               </Flex>
 
               <Flex mt={40} mb={10} direction="column" alignItems="center">
-                <Logo />
+                <Logo fill={colorMode == "light" ? "#000" : "#fff"} />
                 <Stack my={10}>
                   <MarkdownRender source={page.md} />
                 </Stack>

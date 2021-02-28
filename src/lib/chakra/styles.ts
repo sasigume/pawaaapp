@@ -41,8 +41,10 @@ export const EXTEND_CHAKRA = {
     global: {
       ".mdrenderWrapper": {
         "h1,h2,h3,h4,h5,h6": {
+          position: "relative",
           marginTop: "2rem",
           marginBottom: "1rem",
+          paddingLeft: "0.4rem"
         },
         "h1:before,h2:before,h3:before,h4:before,h5:before,h6:before": {
           content: "''",
