@@ -15,9 +15,9 @@ interface LayoutProps {
 
 export default function Layout({ preview, children, drawerChildren, title, desc }: LayoutProps) {
   return (
-    <div>
+    <>
       <Meta title={title} desc={desc} />
-      <div className="w-screen flex flex-col items-center justify-start overflow-hidden min-h-screen">
+      <Box w="full" h="full">
         <Flex w="full" py={6} px={5} direction="row">
           <Spacer />
           <Logo/>
@@ -30,7 +30,7 @@ export default function Layout({ preview, children, drawerChildren, title, desc 
         <LayoutDrawer preview={preview}>
           {drawerChildren}
         </LayoutDrawer>
-      </div>
-    </div>
+      </Box>
+    </>
   )
 }

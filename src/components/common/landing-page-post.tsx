@@ -34,14 +34,10 @@ function LandingPagePostComponent({ post, n }: Props) {
 
   return (
     <animated.div>
-      <Box my={4} p={4} border="solid" background="white" borderColor="gray.300" rounded="xl" shadow="xl"
-        style={{ transform }} className={
-          cn({
-            'mr-4 md:mr-12': n % 2 == 0,
-            'ml-4 md:ml-12': n % 2 !== 0,
-          })}>
+      <Box w={60} my={4} mr={(n % 2 == 0) ? 12 : 0} ml={(n % 2 != 0) ? 12 : 0} p={4} border="solid" background="white" borderColor="gray.300" rounded="xl" shadow="xl"
+        style={{ transform }} >
         <Flex mb={2}>
-          <Stack mr={4}> 
+          <Stack mr={4}>
             <div>{post.mondaiName}</div>
             <div className="text-gray-600">{post.mondaiPage}</div>
           </Stack>
@@ -54,7 +50,6 @@ function LandingPagePostComponent({ post, n }: Props) {
           <MarkdownRender source={post.md} />
         </div>
       </Box>
-
     </animated.div >
   )
 }

@@ -40,8 +40,8 @@ export default function LayoutDrawer({ preview, children }: Props) {
         <DrawerOverlay>
           <DrawerContent pb={4}>
             <DrawerCloseButton />
-            <DrawerHeader mt={4}>
-              <div className="w-64 py-4 md:py-2">
+            <DrawerHeader mt={8}>
+              <Box>
 
                 {preview && (
                   <div>
@@ -54,7 +54,7 @@ export default function LayoutDrawer({ preview, children }: Props) {
                   </div>
                 )}
 
-              </div>
+              </Box>
               <div className="">
                 <SignIn />
                 <Stack direction="row" spacing={4}>
