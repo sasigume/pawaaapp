@@ -1,5 +1,4 @@
 import '../styles/globals.css'
-import '../styles/content.scss'
 import { AppProps } from 'next/app'
 import { RecoilRoot } from 'recoil'
 import { useRouter } from 'next/router'
