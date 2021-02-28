@@ -59,7 +59,8 @@ export default function LayoutDrawer({ preview, children }: Props) {
 
               </Box>
               <Stack direction="column" spacing={4}>
-                <Button onClick={toggleColorMode}>
+                <Button colorScheme={colorMode === "light" ? "purple" : "cyan"} onClick={toggleColorMode} leftIcon={colorMode === "light" ? 
+                (<FaiconDiv icon={['fas','moon']} />) : (<FaiconDiv  icon={['fas','sun']} />)}>
                   {colorMode === "light" ? "ダークモード" : "ライトモード"}
                 </Button>
                 <SignIn />
