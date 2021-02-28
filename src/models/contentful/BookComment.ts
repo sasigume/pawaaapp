@@ -1,4 +1,4 @@
-export interface bookComment {
+export interface BookComment {
   id: string
   senderUid: string
   senderName: string
