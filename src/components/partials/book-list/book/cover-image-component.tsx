@@ -12,11 +12,11 @@ export default function CoverImageComponent({ title, url, slug }: Props) {
       {slug ? (
         <LinkChakra href={`/books/${slug}`}>
           <div className="flex items-center justify-center">
-            <img className="mx-auto w-auto" src={url} alt={title} />
+            <img className="mx-auto w-auto" src={url ? url : "/api/ogpgen/サムネイルがありません"} alt={title} />
           </div>
         </LinkChakra>
       ) : (
-          <img className="mx-auto w-auto" src={url} alt={title} />
+          <img className="mx-auto w-auto" src={"/api/ogpgen/記事が見つかりませんでした"} alt={title} />
         )}
     </div>
   )
