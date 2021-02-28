@@ -39,7 +39,7 @@ export const EXTEND_CHAKRA = {
   },
   styles: {
     global: {
-      ".mdrenderWrapper": {
+      ".articleMdWrapper": {
         p: {
           margin: "0.6rem 0 2.4rem"
         },

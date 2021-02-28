@@ -91,7 +91,7 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
                       <PageButtons />
                       <Flex direction="column" style={{ maxWidth: '650px' }}>
                         <Box textStyle="h2"><h2>{target.title}</h2></Box>
-                        <MarkdownRender source={target.md} />
+                        <MarkdownRender className="articleMdWrapper" source={target.md} />
                       </Flex>
                       <PageButtons />
                     </div>
