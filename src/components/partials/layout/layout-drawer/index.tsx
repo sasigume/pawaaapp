@@ -44,20 +44,6 @@ export default function LayoutDrawer({ preview, children }: Props) {
           <DrawerContent pb={4}>
             <DrawerCloseButton />
             <DrawerHeader mt={8}>
-              <Box>
-
-                {preview && (
-                  <div>
-                    <a
-                      href="/api/exit-preview"
-                      className="underline"
-                    >
-                      プレビュー解除
-              </a>
-                  </div>
-                )}
-
-              </Box>
               <Stack direction="column" spacing={4}>
                 <Button colorScheme={colorMode === "light" ? "purple" : "cyan"} onClick={toggleColorMode} leftIcon={colorMode === "light" ? 
                 (<FaiconDiv icon={['fas','moon']} />) : (<FaiconDiv  icon={['fas','sun']} />)}>
