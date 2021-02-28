@@ -12,17 +12,18 @@ import LinkChakra from '@/components/common/link-chakra'
 import Mokuzi from '@/components/common/mokuzi'
 import { Box, Button, Center, Container, Stack, Flex } from '@chakra-ui/react'
 import SectionSeparator from '@/components/common/section-separator'
-
+import {SITE_URL} from '@/lib/constants'
 
 interface BookChapterPageProps {
   firstBook: Book;
   moreBooks: Book[];
   chapterNumber: string;
   preview: boolean;
+  tweetCount: number;
 }
 
 
-export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, preview }: BookChapterPageProps) {
+export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, preview, tweetCount }: BookChapterPageProps) {
 
   const router = useRouter()
 
@@ -76,7 +77,7 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
               )}
           </>
         ) : (
-            <Layout drawerChildren={firstBook.chaptersCollection.items ? <Mokuzi chapters={firstBook.chaptersCollection.items} bookSlug={firstBook.slug} /> : <></>} preview={preview} title={target.title + ' | ' + firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
+            <Layout tweetCount={tweetCount} drawerChildren={firstBook.chaptersCollection.items ? <Mokuzi chapters={firstBook.chaptersCollection.items} bookSlug={firstBook.slug} /> : <></>} preview={preview} title={target.title + ' | ' + firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
               <div className="mt-6">
                 <Container>
                   {target && (
@@ -131,12 +132,20 @@ interface GSProps {
 export async function getStaticProps({ params, preview }: GSProps) {
 
   const books = await getBookAndMoreBooks(params.slug, preview)
+  const searchWord = SITE_URL + '/books/' + params.slug
+
+  const tweets = await fetch(process.env.HTTPS_URL + '/api/twitter?word=' + encodeURIComponent(searchWord) + '&secret=' + process.env.TWITTER_SECRET)
+  const tweetsJson = await tweets.json()
+  let tweetCount
+  tweetsJson.data ? tweetCount = tweetsJson.data.length : tweetCount = null
+
   return {
     props: {
       preview: preview ?? false,
       firstBook: books.book ?? null,
       chapterNumber: params.chapterNumber.toString() ?? NaN,
       moreBooks: books.moreBooks ?? [],
+      tweetCount: tweetCount ?? null
     },
     revalidate: 300,
   }
@@ -154,7 +163,6 @@ export async function getStaticPaths() {
             params: {
               slug: book.slug,
               chapterNumber: num.toString()
-
               // Dynamic route only accepts string
             }
           }

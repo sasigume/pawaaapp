@@ -171,10 +171,10 @@ export async function getStaticProps({ params, preview }: GSProps) {
 
   const searchWord = SITE_URL + '/books/' + params.slug
 
-  //const tweets = await fetch(process.env.HTTPS_URL + '/api/twitter?word=' + encodeURIComponent(searchWord) + '&secret=' + process.env.TWITTER_SECRET)
-  //const tweetsJson = await tweets.json()
-  let tweetCount = 0
-  //tweetsJson.data ? tweetCount = tweetsJson.data.length : tweetCount = 0
+  const tweets = await fetch(process.env.HTTPS_URL + '/api/twitter?word=' + encodeURIComponent(searchWord) + '&secret=' + process.env.TWITTER_SECRET)
+  const tweetsJson = await tweets.json()
+  let tweetCount
+  tweetsJson.data ? tweetCount = tweetsJson.data.length : tweetCount = null
 
   return {
     props: {
@@ -182,7 +182,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
       firstBook: books.book ?? null,
       bookComments: bookComments ?? null,
       moreBooks: books.moreBooks ?? null,
-      tweetCount: tweetCount ?? 0
+      tweetCount: tweetCount ?? null
     },
     revalidate: 300,
   }
