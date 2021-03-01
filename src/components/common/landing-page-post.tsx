@@ -46,9 +46,9 @@ function LandingPagePostComponent({ post, n }: Props) {
             {post.good + count}
           </Button>
         </Flex>
-        <div className="text-xl">
+        <Box fontSize="1.4rem">
           <MarkdownRender source={post.md} />
-        </div>
+        </Box>
       </Box>
     </Box>
   )
