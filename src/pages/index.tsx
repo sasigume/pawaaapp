@@ -16,6 +16,7 @@ import publishRss from '@/lib/rss'
 import publishSitemap from '@/lib/sitemap'
 import Image from 'next/image'
 import { SITE_URL } from '@/lib/constants'
+import Loading from '@/components/common/loading'
 interface IndexProps {
   page: LandingPage;
   tweetCount: number;
@@ -35,7 +36,7 @@ const Index = ({ page, environment, tweetCount }: IndexProps) => {
       {(!page) ? (<>
 
         {router.isFallback ? (
-          <></>
+          <Loading />
         ) : (
             (<Layout preview={false} title={'404 Not found'} desc={''}>
               <ErrorPage title="ページのデータを取得できませんでした" statusCode={404} />

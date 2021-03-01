@@ -10,6 +10,7 @@ import { Box, Container } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
 import BookList from '@/components/partials/book'
 import Mokuzi from '@/components/common/mokuzi'
+import Loading from '@/components/common/loading'
 
 
 interface BookIndexProps {
@@ -33,7 +34,7 @@ export default function BookIndex({ books, preview }: BookIndexProps) {
       {(!books) ? (<>
 
         {router.isFallback ? (
-          <Layout preview={preview} title={'Loading...'} desc={''}><div>読み込み中です。</div></Layout>
+          <Loading />
         ) : (
             (<Layout preview={preview} title={'404 Not found'} desc={''}>
               <ErrorPage title="本が見つかりませんでした" statusCode={404} />

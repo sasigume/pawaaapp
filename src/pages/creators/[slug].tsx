@@ -6,6 +6,7 @@ import Layout from '@/components/partials/layout'
 import { getAllCreatorsWithSlug, getAllBooksForCreator, getCreator } from '@/lib/contentful/graphql'
 import { Book } from '@/models/contentful/Book'
 import { Creator } from '@/models/contentful/Creator'
+import Loading from '@/components/common/loading'
 interface IndexProps {
   creator?: Creator
   books: Book[]
@@ -19,7 +20,7 @@ const CreatorIndex = ({ creator, books, preview }: IndexProps) => {
       {(!creator) ? (<>
 
         {router.isFallback ? (
-          <Layout preview={preview} title={'Loading...'} desc={''}><div>読み込み中です。</div></Layout>
+          <Loading />
         ) : (
             (<Layout preview={preview} title={'404 Not found'} desc={''}>
               <ErrorPage title="ページが見つかりませんでした" statusCode={404} />

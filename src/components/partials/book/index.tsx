@@ -18,6 +18,7 @@ const MultiBooks = ({ books, mode }: MultiBookProps) => {
               book={books[0]}
               expand={false}
               mokuji={false}
+              isArchive={true}
             />
           </Container>
           <Divider my={8} borderColor="gray.400" />

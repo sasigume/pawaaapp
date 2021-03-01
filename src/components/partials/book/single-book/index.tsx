@@ -15,6 +15,7 @@ interface Props {
   book: Book
   expand: boolean
   mokuji?: boolean
+  isArchive?: boolean
 }
 export function BookComponent({ book }: Props) {
   return (
@@ -37,7 +38,7 @@ export function BookComponent({ book }: Props) {
   )
 }
 
-export function SingleBookComponent({ book, expand, mokuji }: Props) {
+export function SingleBookComponent({ book, expand, mokuji, isArchive }: Props) {
   return (
     <article area-label={book.title}>
       <Flex direction={{ base: "column", md: "row" }}>
@@ -63,7 +64,9 @@ export function SingleBookComponent({ book, expand, mokuji }: Props) {
 
         <Box flexGrow={1}>
           <Box textStyle="h1" mb={8}>
-            <h1>{book.title}</h1>
+            <LinkChakra href={`/books/${book.slug}`}>
+              {isArchive ? <h2>{book.title}</h2> : <h1>{book.title}</h1>}
+            </LinkChakra>
           </Box>
           {(expand && book.chaptersCollection.items.length > 0) && (<>
             <Box mb={6} textStyle="h1">WARNING: プレビュークッキーが検出されました。全展開モードで表示します</Box>

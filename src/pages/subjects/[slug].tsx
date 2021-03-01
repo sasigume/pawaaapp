@@ -6,6 +6,7 @@ import { getSubject, getAllSubjectsWithSlug, getAllBooksForSubject } from '@/lib
 import { Book } from '@/models/contentful/Book'
 import { Subject } from '@/models/contentful/Subject'
 import { Box, Container } from '@chakra-ui/react'
+import Loading from '@/components/common/loading'
 interface IndexProps {
   subject: Subject;
   books: Book[];
@@ -20,7 +21,7 @@ const SubjectIndex = ({ subject, books, preview }: IndexProps) => {
       {(!subject) ? (<>
 
         {router.isFallback ? (
-          <Layout preview={preview} title={'Loading...'} desc={''}><div>読み込み中です。</div></Layout>
+          <Loading />
         ) : (
             (<Layout preview={preview} title={'404 Not found'} desc={''}>
               <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
