@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 import FloatShare from './float-share'
 import LayoutFooter from './layout-footer'
 import LayoutDrawer from './layout-drawer'
-import { Box, Button, Flex, Spacer, useColorMode } from '@chakra-ui/react'
+import { Box, Button, Center, Flex, Spacer, useColorMode } from '@chakra-ui/react'
 import Logo from '@/components/common/Logo'
 import { useRouter } from 'next/router'
 import LinkChakra from '@/components/common/link-chakra'
@@ -25,7 +25,7 @@ export default function Layout({ preview, children, drawerChildren, title, desc,
   return (
     <>
       <Meta title={title} desc={desc} />
-      <Box w="full" h="full" py={10}>
+      <Box pt={10}>
         <main style={{ flexGrow: 1 }}>
           {children}
         </main>

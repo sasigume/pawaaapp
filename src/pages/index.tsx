@@ -15,8 +15,11 @@ import LandingPagePostComponent from '@/components/common/landing-page-post'
 import publishRss from '@/lib/rss'
 import publishSitemap from '@/lib/sitemap'
 import Image from 'next/image'
+import { SITE_URL } from '@/lib/constants'
+import Loading from '@/components/common/loading'
 interface IndexProps {
   page: LandingPage;
+  tweetCount: number;
   environment: boolean;
 }
 
@@ -24,7 +27,7 @@ interface Screenshot {
   url: string;
 }
 
-const Index = ({ page, environment }: IndexProps) => {
+const Index = ({ page, environment, tweetCount }: IndexProps) => {
   const router = useRouter()
   const { colorMode } = useColorMode()
 
@@ -33,14 +36,14 @@ const Index = ({ page, environment }: IndexProps) => {
       {(!page) ? (<>
 
         {router.isFallback ? (
-          <Layout preview={false} title={'Loading...'} desc={''}><div>読み込み中です。</div></Layout>
+          <Loading />
         ) : (
             (<Layout preview={false} title={'404 Not found'} desc={''}>
               <ErrorPage title="ページのデータを取得できませんでした" statusCode={404} />
             </Layout>)
           )}
       </>) : (
-          <Layout preview={environment} title={page.title} desc={page.description}>
+          <Layout preview={environment} title={page.title} desc={page.description} tweetCount={tweetCount}>
 
             <Container>
 
@@ -87,6 +90,13 @@ export async function getStaticProps({ preview = false }) {
 
   const page = await getLandingPage('index', preview) ?? null
 
+  const searchWord = SITE_URL
+
+  const tweets = await fetch(process.env.HTTPS_URL + '/api/twitter?word=' + encodeURIComponent(searchWord) + '&secret=' + process.env.TWITTER_SECRET)
+  const tweetsJson = await tweets.json()
+  let tweetCount
+  tweetsJson.data ? tweetCount = tweetsJson.data.length : tweetCount = null
+
   // Write only published post into RSS/Sitemap
   const allBooksPublished = (await getAllBooksWithSlug(false)) || []
 
@@ -96,7 +106,8 @@ export async function getStaticProps({ preview = false }) {
   return {
     props: {
       page: page ?? null,
-      preview
+      tweetCount: tweetCount ?? null,
+      preview: preview ?? null
     },
   }
 }
