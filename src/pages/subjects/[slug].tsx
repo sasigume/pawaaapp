@@ -5,7 +5,7 @@ import Layout from '@/components/partials/layout'
 import { getSubject, getAllSubjectsWithSlug, getAllBooksForSubject } from '@/lib/contentful/graphql'
 import { Book } from '@/models/contentful/Book'
 import { Subject } from '@/models/contentful/Subject'
-import { Container } from '@chakra-ui/react'
+import { Box, Container } from '@chakra-ui/react'
 interface IndexProps {
   subject: Subject;
   books: Book[];
@@ -29,12 +29,14 @@ const SubjectIndex = ({ subject, books, preview }: IndexProps) => {
       </>) : (
           <Layout preview={preview} title={(`${subject.displayName}の記事一覧`)} desc={"Pawaa.app"}>
 
-            <Container>
-              <div>
-                <h1 className="text-2xl font-bold my-10">{books[0] ? `${subject.displayName}の記事一覧` : `${subject.displayName}の記事はありません`}</h1>
+            <Container maxW="container.lg">
+              <Box py={16}>
+                <Box textStyle="h1">
+                <h1>{books[0] ? `${subject.displayName}の記事一覧` : `${subject.displayName}の記事はありません`}</h1>
+              </Box>
                 {subject.description && (<div className="my-4">{subject.description}</div>)}
-              </div>
-              {books && books.length > 0 && <BookList mode="archive" books={books} />}
+                {books && books.length > 0 && <BookList mode="archive" books={books} />}
+              </Box>
             </Container>
 
           </Layout>

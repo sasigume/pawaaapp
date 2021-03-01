@@ -14,31 +14,30 @@ import MarkdownRender from '@/components/common/MarkdownRender'
 interface Props {
   book: Book
   expand: boolean
+  mokuji?: boolean
 }
 export function BookComponent({ book }: Props) {
   return (
-    <Box m={3} p={6} rounded="2xl" shadow="xl">
-      <Flex>
-        <Box w={64} mr={4}>
-          <BookImage slug={book.slug} title={book.title} url={book.coverImage ? book.coverImage.url : ''} />
+    <Flex rounded="xl" shadow="lg" p={6}>
+      <Box mr={4}>
+        <BookImage slug={book.slug} title={book.title} url={book.coverImage ? book.coverImage.url : ''} />
+      </Box>
+      <Box flexGrow={1}>
+        <Box textStyle="h4">
+          <LinkChakra href={`/books/${book.slug}`}>
+            <div className="hover:underline">{book.title}</div>
+          </LinkChakra>
         </Box>
-        <div className="flex-grow">
-          <Box textStyle="h3">
-            <LinkChakra href={`/books/${book.slug}`}>
-              <div className="hover:underline">{book.title}</div>
-            </LinkChakra>
-          </Box>
-          <div className="text-sm">
-            <div>公開: {dayjs(book.sys.firstPublishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
-            <div>最終更新: {dayjs(book.sys.publishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
-          </div>
+        <div className="text-sm">
+          <div>公開: {dayjs(book.sys.firstPublishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
+          <div>最終更新: {dayjs(book.sys.publishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
         </div>
-      </Flex>
-    </Box>
+      </Box>
+    </Flex>
   )
 }
 
-export function SingleBookComponent({ book, expand }: Props) {
+export function SingleBookComponent({ book, expand, mokuji }: Props) {
   return (
     <article>
       <Flex direction={{ base: "column", md: "row" }}>
@@ -77,7 +76,10 @@ export function SingleBookComponent({ book, expand }: Props) {
               )
             )}
           </>)}
-          {book.chaptersCollection.items.length > 0 && (<div className="text-sm mb-4">
+          <Box my={4} fontSize="1.4rem">
+            {book.description}
+          </Box>
+          {(mokuji != false && book.chaptersCollection.items.length > 0 )&& (<div className="text-sm mb-4">
             <ChapterList bookSlug={book.slug} bookChapters={book.chaptersCollection.items} />
           </div>)}
         </Box>

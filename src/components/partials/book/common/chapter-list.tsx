@@ -18,7 +18,7 @@ const OneBookChapter = ({ bookChapter, bookSlug, num }: Props) => {
   return (
     <LinkChakra href={(`/books/${bookSlug}/chapters/${num + 1}`)}>
       <Box mb={4} p={3} borderBlockEnd="solid" borderBlockEndColor="gray.100">
-        <Badge colorScheme="green">CHAPTER {num}</Badge>
+        <Badge colorScheme="green">CHAPTER {num + 1}</Badge>
         <Box textStyle="h4"><h2>{bookChapter.title}</h2></Box>
         <div>{bookChapter.description ?? '説明文がありません'}</div>
       </Box>
