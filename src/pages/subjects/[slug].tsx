@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
-import BookList from '@/components/partials/book-list'
+import BookList from '@/components/partials/book'
 import Layout from '@/components/partials/layout'
 import { getSubject, getAllSubjectsWithSlug, getAllBooksForSubject } from '@/lib/contentful/graphql'
 import { Book } from '@/models/contentful/Book'

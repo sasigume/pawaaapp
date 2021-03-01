@@ -6,13 +6,12 @@ import ErrorPage from 'next/error'
 import { getBookAndMoreBooks, getAllBooksWithSlug } from '@/lib/contentful/graphql'
 import { Book } from '@/models/contentful/Book'
 import Layout from '@/components/partials/layout'
-import BookList from '@/components/partials/book-list'
-import MarkdownRender from '@/components/common/MarkdownRender'
-import LinkChakra from '@/components/common/link-chakra'
+import BookList from '@/components/partials/book'
 import Mokuzi from '@/components/common/mokuzi'
-import { Box, Button, Center, Container, Stack, Flex } from '@chakra-ui/react'
+import { Box, Container } from '@chakra-ui/react'
+import SingleChapter from '@/components/partials/book/single-chapter'
 import SectionSeparator from '@/components/common/section-separator'
-import {SITE_URL} from '@/lib/constants'
+import { SITE_URL } from '@/lib/constants'
 
 interface BookChapterPageProps {
   firstBook: Book;
@@ -33,24 +32,6 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
   let intChapterNumber: number
   includeAlphabet.test(chapterNumber) ? intChapterNumber = NaN : intChapterNumber = parseInt(chapterNumber)
 
-  const PageButtons = () => (
-    <Center my={8}>
-      <Stack direction="row" spacing={4}>
-        {intChapterNumber != 1 && (
-          <Button colorScheme="red" as={LinkChakra} href={(`/books/${firstBook.slug}/chapters/${intChapterNumber - 1}`)}>
-            &lt; 前ページ
-          </Button>)}
-        <Button colorScheme="gray" as={LinkChakra} href={(`/books/${firstBook.slug}`)}>
-          目次へ
-      </Button>
-        {(intChapterNumber) < firstBook.chaptersCollection.items.length && (
-          <Button colorScheme="green" as={LinkChakra} href={(`/books/${firstBook.slug}/chapters/${intChapterNumber + 1}`)}>
-            次ページ &gt;
-          </Button>)}
-      </Stack>
-    </Center>
-  )
-
   let target
   (firstBook && intChapterNumber != NaN) ? target = firstBook.chaptersCollection.items[intChapterNumber - 1] : target = null
 
@@ -61,47 +42,24 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
         {!target ? (
           <>
             {router.isFallback ? (
-              <Layout preview={preview} title={'Loading...'} desc={''}>
-                <div>読み込み中です。</div>
-              </Layout>
+              <></>
             ) : (
                 <Layout preview={preview} title={'404 Chapter Not found'} desc={''}>
-                  <div className="mt-6">
-                    <Container>
-                      <div className="my-20 text-center">
-                        <ErrorPage title="本はありますがチャプターが見つかりません" statusCode={404} />
-                      </div>
-                    </Container>
-                  </div>
+                  <ErrorPage title="本はありますがチャプターが見つかりません" statusCode={404} />
                 </Layout>
               )}
           </>
         ) : (
-            <Layout tweetCount={tweetCount} drawerChildren={firstBook.chaptersCollection.items ? <Mokuzi chapters={firstBook.chaptersCollection.items} bookSlug={firstBook.slug} /> : <></>} preview={preview} title={target.title + ' | ' + firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
-              <div className="mt-6">
-                <Container>
+            <Layout tweetCount={tweetCount} preview={preview} title={target.title + ' | ' + firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
+              <Box mt={12} mb={10}>
+                <Container maxW="container.lg">
                   {target && (
-
-                    <div
-                      className="overflow-x-hiddenmb-12">
-                      <LinkChakra href={(`/books/${firstBook.slug}`)}>
-                        <Box textStyle="h1" mb={10}>
-                          <h1>{firstBook.title}</h1>
-                        </Box>
-                      </LinkChakra>
-                      <PageButtons />
-                      <Flex direction="column" style={{ maxWidth: '650px' }}>
-                        <Box textStyle="h2"><h2>{target.title}</h2></Box>
-                        <MarkdownRender className="articleMdWrapper" source={target.md} />
-                      </Flex>
-                      <PageButtons />
-                    </div>
-
+                    <SingleChapter chapter={target} chapterNumber={intChapterNumber} book={firstBook} />
                   )}
                   <SectionSeparator />
                   {<Box>{moreBooks && moreBooks.length > 0 && <BookList mode="more" books={moreBooks} />}</Box>}
                 </Container>
-              </div>
+              </Box>
             </Layout>
           )}
       </>
@@ -109,9 +67,7 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
           <>
 
             {router.isFallback ? (
-              <Layout preview={preview} title={'Loading...'} desc={''}>
-                <div>読み込み中です。</div>
-              </Layout>
+              <></>
             ) : (
                 <Layout preview={preview} title={'404 Book Not found'} desc={''}>
                   <ErrorPage title="本が見つかりませんでした" statusCode={404} />

@@ -10,7 +10,7 @@ import { getBookAndMoreBooks, getAllBooksWithSlug } from '@/lib/contentful/graph
 import { Book } from '@/models/contentful/Book'
 
 import Layout from '@/components/partials/layout'
-import BookList from '@/components/partials/book-list'
+import BookList from '@/components/partials/book'
 import SectionSeparator from '@/components/common/section-separator'
 import Mokuzi from '@/components/common/mokuzi'
 import {
@@ -74,20 +74,20 @@ export default function BookPage({ firstBook, bookComments, moreBooks, preview, 
     {(!firstBook) ? (<>
 
       {router.isFallback ? (
-        <Layout preview={preview} title={'Loading...'} desc={''}><div>読み込み中です。</div></Layout>
+        <></>
       ) : (
           (<Layout preview={preview} title={'404 Not found'} desc={''}>
             <ErrorPage title="本が見つかりませんでした" statusCode={404} />
           </Layout>)
         )}
     </>) : (
-        <Layout tweetCount={tweetCount} drawerChildren={<Mokuzi chapters={firstBook.chaptersCollection.items} bookSlug={firstBook.slug} />} preview={preview} title={firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
-          <div className="mt-6">
-            <Container>
+        <Layout tweetCount={tweetCount} preview={preview} title={firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
+          <Box mt={12}>
+            <Container maxW="container.lg">
               {firstBook && <BookList mode="single" books={[firstBook]} expand={preview ?? false} />}
               <SectionSeparator />
 
-              <Box mb={12}>
+              <Box mb={8}>
                 <Box textStyle="h2" mb={6}>
                   <h2>コメント</h2>
                 </Box>
@@ -149,7 +149,7 @@ export default function BookPage({ firstBook, bookComments, moreBooks, preview, 
                   <BookList mode="more" books={moreBooks} />
                 </Box>)}
             </Container>
-          </div>
+          </Box>
         </Layout>
       )
     }

@@ -6,6 +6,14 @@
         <atom:link href="http://localhost:3000/rss.xml" rel="self" type="application/rss+xml"/>
         
 <item>
+    <guid>http://localhost:3000/books/obs-iphone-mac</guid>
+    <title>OBSでiPhoneの画面を配信する方法</title>
+    <link>http://localhost:3000/books/obs-iphone-mac</link>
+    <pubDate>Sun, 28 Feb 2021 23:34:43 GMT</pubDate>
+    <summary>近頃、YouTubeでの生放送が大変賑わっていますね。この記事ではiPhoneのゲーム画面をMacを使って配信する方法を紹介します</summary>
+</item>
+    
+<item>
     <guid>http://localhost:3000/books/hytale-faq-matome</guid>
     <title>Hytale: 対応ゲーム機・MOD・対象年齢など、よくある質問まとめ</title>
     <link>http://localhost:3000/books/hytale-faq-matome</link>

@@ -25,7 +25,7 @@ export default function Layout({ preview, children, drawerChildren, title, desc,
   return (
     <>
       <Meta title={title} desc={desc} />
-      <Box w="full" h="full" py={10}>
+      <Box w="full" h="full" pt={10}>
         <main style={{ flexGrow: 1 }}>
           {children}
         </main>
