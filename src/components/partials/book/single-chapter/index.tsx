@@ -44,7 +44,7 @@ const PageButtons = ({ book, chapterNumber }: PageButtonsProps) => {
 
 const SingleChapter = ({ book, chapter, chapterNumber }: ChapterProps) => {
   return (
-    <article>
+    <article area-label={'「' + book.title + '」のチャプター' + chapterNumber + '、「' + chapter.title + '」'}>
       <Flex direction={{ base: "column", lg: "row" }} alignItems={{ base: "center", md: "stretch" }}>
         <Center mb={{ base: 16, lg: 0 }} alignItems="start">
           <Box width="300px" mr={{ base: 0, lg: 16 }} h="full">

@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { Box, Center, Flex } from '@chakra-ui/react'
+import { Badge, Box, Center, Flex } from '@chakra-ui/react'
 import { Book } from '@/models/contentful/Book'
 import { BookChapter } from '@/models/contentful/BookChapter'
 
@@ -18,20 +18,20 @@ interface Props {
 }
 export function BookComponent({ book }: Props) {
   return (
-    <Flex rounded="xl" shadow="lg" p={6}>
+    <Flex rounded="xl" shadow="lg" p={6} area-label={book.title}>
       <Box mr={4}>
         <BookImage slug={book.slug} title={book.title} url={book.coverImage ? book.coverImage.url : ''} />
       </Box>
       <Box flexGrow={1}>
-        <Box textStyle="h4">
+        <Box textStyle="h4" mb={2}>
           <LinkChakra href={`/books/${book.slug}`}>
-            <div className="hover:underline">{book.title}</div>
+            {book.title}
           </LinkChakra>
         </Box>
-        <div className="text-sm">
-          <div>公開: {dayjs(book.sys.firstPublishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
-          <div>最終更新: {dayjs(book.sys.publishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
-        </div>
+        <Box area-label="更新日時">
+          <Badge colorScheme="blue">公開: {dayjs(book.sys.firstPublishedAt).format('YYYY/MM/DD')}</Badge>
+          <Badge colorScheme="green">最終更新: {dayjs(book.sys.publishedAt).format('YYYY/MM/DD')}</Badge>
+        </Box>
       </Box>
     </Flex>
   )
@@ -39,7 +39,7 @@ export function BookComponent({ book }: Props) {
 
 export function SingleBookComponent({ book, expand, mokuji }: Props) {
   return (
-    <article>
+    <article area-label={book.title}>
       <Flex direction={{ base: "column", md: "row" }}>
         <Center>
           <Box width="300px" mr={{ base: 0, md: 8 }}>
@@ -54,9 +54,9 @@ export function SingleBookComponent({ book, expand, mokuji }: Props) {
               <CreatorList creators={book.creatorsCollection.items} />
             </div>)}
 
-            <Box mb={6}>
-              <div>公開: {dayjs(book.sys.firstPublishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
-              <div>最終更新: {dayjs(book.sys.publishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
+            <Box area-label="更新日時" mb={6}>
+              <Badge colorScheme="blue">公開: {dayjs(book.sys.firstPublishedAt).format('YYYY/MM/DD')}</Badge>
+              <Badge colorScheme="green">最終更新: {dayjs(book.sys.publishedAt).format('YYYY/MM/DD')}</Badge>
             </Box>
           </Box>
         </Center>
@@ -76,10 +76,10 @@ export function SingleBookComponent({ book, expand, mokuji }: Props) {
               )
             )}
           </>)}
-          <Box my={4} fontSize="1.4rem">
+          <Box area-label="記事の概要" my={4} fontSize="1.4rem">
             {book.description}
           </Box>
-          {(mokuji != false && book.chaptersCollection.items.length > 0 )&& (<div className="text-sm mb-4">
+          {(mokuji != false && book.chaptersCollection.items.length > 0) && (<div className="text-sm mb-4">
             <ChapterList bookSlug={book.slug} bookChapters={book.chaptersCollection.items} />
           </div>)}
         </Box>

@@ -1,4 +1,5 @@
 import LinkChakra from '@/components/common/link-chakra'
+import { Box } from '@chakra-ui/react'
 
 interface Props {
   fill?: string
@@ -7,7 +8,7 @@ interface Props {
 const Logo = ({ fill = "black" }: Props) => {
 
   return (
-    <div className="flex justify-center">
+    <Box area-label="ロゴ">
       <LinkChakra href="/">
         <svg xmlns="http://www.w3.org/2000/svg" width="256" viewBox="0 0 1356.38 205">
           <g fill={fill}>
@@ -23,7 +24,7 @@ const Logo = ({ fill = "black" }: Props) => {
           </g>
         </svg>
       </LinkChakra>
-    </div>
+    </Box>
   )
 }
 
