@@ -10,7 +10,7 @@ interface Props {
 
 export default function BookCommentComponent({ c }: Props) {
   return (
-    <Box border="solid" borderWidth={2} shadow="xl" borderColor="gray" p={6} my={3} rounded="xl">
+    <Box border="solid" borderWidth={1} shadow="lg" borderColor="gray.300" mb={4} p={6} rounded="xl">
       <Stack spacing={2}>
         <div>{c.senderName}さん:</div>
         <MarkdownRender source={c.body} />

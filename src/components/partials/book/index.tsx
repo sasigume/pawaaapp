@@ -13,7 +13,7 @@ const MultiBooks = ({ books, mode }: MultiBookProps) => {
     return (
       <section>
         <Center flexDirection="column">
-          <Container maxW="container.md" mt={10}>
+          <Container maxW="container.md">
             <SingleBookComponent
               book={books[0]}
               expand={false}
