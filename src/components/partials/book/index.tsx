@@ -38,11 +38,11 @@ const MultiBooks = ({ books, mode }: MultiBookProps) => {
   else {
     return (
       <Box>
-        {mode == "more" && (<Box textStyle="h2">
+        {mode == "more" && (<Box textStyle="h2" mb={4}>
           <h2>他の本</h2>
         </Box>)}
         <Center>
-          <SimpleGrid columns={{ base: 1, lg: 2 }}>
+          <SimpleGrid spacing={6} columns={{ base: 1, lg: 2 }}>
             {books.map((book) => (
               <BookComponent
                 key={book.slug}
