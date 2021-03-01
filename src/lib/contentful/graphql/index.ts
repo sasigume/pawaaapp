@@ -195,15 +195,16 @@ export async function getCreator(slug: string, preview: boolean) {
 }
 
 
-export async function getAllSubjectsWithSlug() {
+export async function getAllSubjectsWithSlug(preview: boolean, limit?: number) {
   const entries = await fetchGraphQL(
     `query {
-      subjectCollection(limit: 5, where: { slug_exists: true }, order: sys_firstPublishedAt_DESC) {
+      subjectCollection(limit: ${limit ?? 5}, where: { slug_exists: true }, order: sys_firstPublishedAt_DESC) {
         items {
           ${SUBJECT_GRAPHQL_FIELDS}
         }
       }
-    }`
+    }`,
+    preview
   )
   return extractSubjects(entries)
 }
