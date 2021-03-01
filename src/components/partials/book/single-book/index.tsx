@@ -41,7 +41,7 @@ export function BookComponent({ book }: Props) {
 export function SingleBookComponent({ book, expand, mokuji, isArchive }: Props) {
   return (
     <article area-label={book.title}>
-      <Flex direction={{ base: "column", md: "row" }}>
+      <Flex direction={{ base: "column", md: "row" }} alignItems="start">
         <Center>
           <Box width="300px" mr={{ base: 0, md: 8 }}>
             <Box mb={8}>
