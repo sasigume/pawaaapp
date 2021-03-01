@@ -9,6 +9,7 @@ import ErrorPage from 'next/error'
 import { getBookAndMoreBooks, getAllBooksWithSlug } from '@/lib/contentful/graphql'
 import { Book } from '@/models/contentful/Book'
 
+import Loading from '@/components/common/loading'
 import Layout from '@/components/partials/layout'
 import BookList from '@/components/partials/book'
 import {
@@ -20,7 +21,8 @@ import {
   ModalBody,
   Center,
   Divider,
-  Flex
+  Flex,
+  Skeleton
 } from '@chakra-ui/react'
 import LinkChakra from '@/components/common/link-chakra'
 import { BookComment } from '@/models/firebase/BookComment'
@@ -72,7 +74,7 @@ export default function BookPage({ firstBook, bookComments, moreBooks, preview, 
     {(!firstBook) ? (<>
 
       {router.isFallback ? (
-        <></>
+        <Loading />
       ) : (
           (<Layout preview={preview} title={'404 Not found'} desc={''}>
             <ErrorPage title="本が見つかりませんでした" statusCode={404} />
