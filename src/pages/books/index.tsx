@@ -41,12 +41,15 @@ export default function BookIndex({ books, preview }: BookIndexProps) {
             </Layout>)
           )}
       </>) : (
-          <Layout drawerChildren={books.length>0 && <Mokuzi books={books} />} preview={preview} title={'本の一覧'} desc={'本の一覧です'}>
-            <Box mt={12}>
-              <Container>
-                {<div className="px-4">{books && books.length > 0 && <BookList mode="archive" books={books} />}</div>}
-              </Container>
-            </Box>
+          <Layout drawerChildren={books.length > 0 && <Mokuzi books={books} />} preview={preview} title={'本の一覧'} desc={'本の一覧です'}>
+            <Container>
+              <Box mb={10}>
+                <Box textStyle="h1" mb={8}>
+                  <h1>本の一覧</h1>
+                </Box>
+                {books && books.length > 0 && <BookList mode="archive" books={books} />}
+              </Box>
+            </Container>
           </Layout>
         )
       }
