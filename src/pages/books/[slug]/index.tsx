@@ -11,18 +11,15 @@ import { Book } from '@/models/contentful/Book'
 
 import Layout from '@/components/partials/layout'
 import BookList from '@/components/partials/book'
-import SectionSeparator from '@/components/common/section-separator'
-import Mokuzi from '@/components/common/mokuzi'
 import {
   Box, Button, Checkbox, Container, Stack, Textarea, useDisclosure,
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton,
   Center,
+  Divider
 } from '@chakra-ui/react'
 import LinkChakra from '@/components/common/link-chakra'
 import { BookComment } from '@/models/firebase/BookComment'
@@ -85,7 +82,7 @@ export default function BookPage({ firstBook, bookComments, moreBooks, preview, 
           <Box mt={12}>
             <Container maxW="container.lg">
               {firstBook && <BookList mode="single" books={[firstBook]} expand={preview ?? false} />}
-              <SectionSeparator />
+              <Divider my={8} borderColor="gray.400" />
 
               <Box mb={8}>
                 <Box textStyle="h2" mb={6}>
@@ -143,7 +140,7 @@ export default function BookPage({ firstBook, bookComments, moreBooks, preview, 
                   <LinkChakra href="/login">ログイン</LinkChakra>してコメントしてみよう!
                 </div>)}
               </Box>
-              <SectionSeparator />
+              <Divider my={8} borderColor="gray.400" />
               {moreBooks && moreBooks.length > 0 && (
                 <Box my={10}>
                   <BookList mode="more" books={moreBooks} />

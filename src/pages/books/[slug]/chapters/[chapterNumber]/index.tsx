@@ -7,10 +7,8 @@ import { getBookAndMoreBooks, getAllBooksWithSlug } from '@/lib/contentful/graph
 import { Book } from '@/models/contentful/Book'
 import Layout from '@/components/partials/layout'
 import BookList from '@/components/partials/book'
-import Mokuzi from '@/components/common/mokuzi'
-import { Box, Container } from '@chakra-ui/react'
+import { Box, Container, Divider } from '@chakra-ui/react'
 import SingleChapter from '@/components/partials/book/single-chapter'
-import SectionSeparator from '@/components/common/section-separator'
 import { SITE_URL } from '@/lib/constants'
 
 interface BookChapterPageProps {
@@ -51,13 +49,14 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
           </>
         ) : (
             <Layout tweetCount={tweetCount} preview={preview} title={target.title + ' | ' + firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
-              <Box mt={12} mb={10}>
-                <Container maxW="container.lg">
+              <Box w="full" mt={12} mb={10}>
+                <Container maxW="container.lg" px={0}>
                   {target && (
                     <SingleChapter chapter={target} chapterNumber={intChapterNumber} book={firstBook} />
                   )}
-                  <SectionSeparator />
-                  {<Box>{moreBooks && moreBooks.length > 0 && <BookList mode="more" books={moreBooks} />}</Box>}
+                  <Divider my={8} borderColor="gray.400" />
+                  {<Box px={6}>
+                    {moreBooks && moreBooks.length > 0 && <BookList mode="more" books={moreBooks} />}</Box>}
                 </Container>
               </Box>
             </Layout>

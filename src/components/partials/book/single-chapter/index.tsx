@@ -45,9 +45,9 @@ const PageButtons = ({ book, chapterNumber }: PageButtonsProps) => {
 const SingleChapter = ({ book, chapter, chapterNumber }: ChapterProps) => {
   return (
     <article>
-      <Flex direction={{ base: "column", md: "row" }} alignItems={{base:"center",md:"stretch"}}>
-        <Center mb={{base:16,md:0}} alignItems="start">
-          <Box width="300px" mr={{ base: 0, md: 8 }} h="full">
+      <Flex direction={{ base: "column", lg: "row" }} alignItems={{ base: "center", md: "stretch" }}>
+        <Center mb={{ base: 16, lg: 0 }} alignItems="start">
+          <Box width="300px" mr={{ base: 0, lg: 16 }} h="full">
             <Box mb={8}>
               <BookImage mode="single" slug={book.slug} title={book.title} url={book.coverImage ? book.coverImage.url : ''} />
             </Box>
@@ -69,8 +69,8 @@ const SingleChapter = ({ book, chapter, chapterNumber }: ChapterProps) => {
           </Box>
         </Center>
 
-        <Box flexGrow={1}>
-          <Box>
+        <Center flexGrow={1}>
+          <Box style={{ maxWidth: '650px' }}>
             <LinkChakra href={(`/books/${book.slug}`)}>
               <Box textStyle="h1" mb={10}>
                 <h1>{book.title}</h1>
@@ -78,12 +78,14 @@ const SingleChapter = ({ book, chapter, chapterNumber }: ChapterProps) => {
             </LinkChakra>
             <PageButtons book={book} chapterNumber={chapterNumber} />
             <Flex direction="column" style={{ maxWidth: '650px' }}>
-              <Box textStyle="h2"><h2>{chapter.title}</h2></Box>
+              <Box mb={4} textStyle="h2"><h2>{chapter.title}</h2></Box>
+              <Box mb={6}>{chapter.description}</Box>
               <MarkdownRender className="articleMdWrapper" source={chapter.md} />
             </Flex>
             <PageButtons book={book} chapterNumber={chapterNumber} />
           </Box>
-        </Box>
+        </Center>
+
       </Flex>
     </article>
   )

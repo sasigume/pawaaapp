@@ -1,7 +1,7 @@
 import { SingleBookComponent } from './single-book'
 import { BookComponent } from './single-book'
 import { Book } from '@/models/contentful/Book'
-import { Box, SimpleGrid, Stack } from '@chakra-ui/react'
+import { Box, Center, Container, Divider, Flex, SimpleGrid, Stack } from '@chakra-ui/react'
 
 interface MultiBookProps {
   books: Book[];
@@ -12,39 +12,46 @@ const MultiBooks = ({ books, mode }: MultiBookProps) => {
     const moreBooks = books.slice(1)
     return (
       <section>
-        <BookComponent
-          key={books[0].slug}
-          book={books[0]}
-          expand={false}
-        />
-        <div className="grid grid-cols-1 md:grid-cols-2 md:col-gap-16 lg:gap-x-16 gap-y-16 md:gap-x-24 mb-16">
-          {moreBooks.map((book: Book) => (
-            <BookComponent
-              key={book.slug}
-              book={book}
+        <Center flexDirection="column">
+          <Container maxW="container.md" mt={10}>
+            <SingleBookComponent
+              book={books[0]}
               expand={false}
+              mokuji={false}
             />
-          ))}
-        </div>
+          </Container>
+          <Divider my={8} borderColor="gray.400" />
+          <SimpleGrid spacing={4} columns={{ base: 1, lg: 2 }}>
+            {moreBooks.map((book: Book) => (
+              <BookComponent
+                key={book.slug}
+                book={book}
+                expand={false}
+              />
+            ))}
+          </SimpleGrid>
+        </Center>
       </section>
     )
   }
   else {
     return (
-      <section>
+      <Box>
         {mode == "more" && (<Box textStyle="h2">
           <h2>他の本</h2>
         </Box>)}
-        <SimpleGrid columns={{base:1,md:2}}>
-          {books.map((book) => (
-            <BookComponent
-              key={book.slug}
-              book={book}
-              expand={false}
-            />
-          ))}
-        </SimpleGrid>
-      </section>
+        <Center>
+          <SimpleGrid columns={{ base: 1, lg: 2 }}>
+            {books.map((book) => (
+              <BookComponent
+                key={book.slug}
+                book={book}
+                expand={false}
+              />
+            ))}
+          </SimpleGrid>
+        </Center>
+      </Box>
     )
   }
 }

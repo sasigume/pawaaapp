@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
-import { Container } from '@chakra-ui/react'
+import { Box, Container } from '@chakra-ui/react'
 import BookList from '@/components/partials/book'
 import Layout from '@/components/partials/layout'
 import { getAllCreatorsWithSlug, getAllBooksForCreator, getCreator } from '@/lib/contentful/graphql'
@@ -29,15 +29,15 @@ const CreatorIndex = ({ creator, books, preview }: IndexProps) => {
 
       ) : (
           <Layout preview={preview} title={(`${creator?.displayName}が書いた本一覧`)} desc={"Pawaa.app"}>
-            <div>
-              <Container>
-                <div>
+            <Container>
+              <Box py={16}>
+                <Box textStyle="h1">
                   <h1 className="text-2xl font-bold my-10">{books[0] ? `${creator.displayName}が書いた本一覧` : `${creator?.displayName}が書いた記事はありません`}</h1>
-                  {creator.description && (<div className="my-4">{creator.description}</div>)}
-                </div>
+                </Box>
+                {creator.description && (<div className="my-4">{creator.description}</div>)}
                 {books && books.length > 0 && <BookList mode="archive" books={books} />}
-              </Container>
-            </div>
+              </Box>
+            </Container>
           </Layout>
         )
       }
