@@ -45,9 +45,9 @@ const PageButtons = ({ book, chapterNumber }: PageButtonsProps) => {
 const SingleChapter = ({ book, chapter, chapterNumber }: ChapterProps) => {
   return (
     <article area-label={'「' + book.title + '」のチャプター' + chapterNumber + '、「' + chapter.title + '」'}>
-      <Flex direction={{ base: "column", lg: "row" }} alignItems={{ base: "center", md: "stretch" }}>
-        <Center mb={{ base: 16, lg: 0 }} alignItems="start">
-          <Box width="300px" mr={{ base: 0, lg: 16 }} h="full">
+      <Flex direction={{ base: "column", md: "row" }} alignItems={{ base: "center", md: "stretch" }} px={6}>
+        <Center mb={{ base: 16, md: 0 }} alignItems="start">
+          <Box width="300px" mr={{ base: 0, md:8, lg: 16 }} h="full">
             <Box mb={8}>
               <BookImage mode="single" slug={book.slug} title={book.title} url={book.coverImage ? book.coverImage.url : ''} />
             </Box>
@@ -72,13 +72,14 @@ const SingleChapter = ({ book, chapter, chapterNumber }: ChapterProps) => {
         <Center flexGrow={1}>
           <Box style={{ maxWidth: '650px' }}>
             <LinkChakra href={(`/books/${book.slug}`)}>
-              <Box textStyle="h1" mb={10}>
+              <Box textStyle="h2" mb={10}>
                 <h1>{book.title}</h1>
               </Box>
             </LinkChakra>
             <PageButtons book={book} chapterNumber={chapterNumber} />
             <Flex direction="column" style={{ maxWidth: '650px' }}>
-              <Box mb={4} textStyle="h2"><h2>{chapter.title}</h2></Box>
+              <Box textStyle="h3" p={2} bg="cyan.100" rounded="lg"><h2>{chapter.title}</h2>
+              </Box>
               <Box mb={6}>{chapter.description}</Box>
               <MarkdownRender className="articleMdWrapper" source={chapter.md} />
             </Flex>

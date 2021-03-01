@@ -19,7 +19,7 @@ interface Props {
 }
 export function BookComponent({ book }: Props) {
   return (
-    <Flex rounded="xl" shadow="lg" p={6} area-label={book.title}>
+    <Flex rounded="xl" shadow="lg" p={6} alignItems="center" area-label={book.title}>
       <Box mr={4}>
         <BookImage slug={book.slug} title={book.title} url={book.coverImage ? book.coverImage.url : ''} />
       </Box>
@@ -41,7 +41,7 @@ export function BookComponent({ book }: Props) {
 export function SingleBookComponent({ book, expand, mokuji, isArchive }: Props) {
   return (
     <article area-label={book.title}>
-      <Flex direction={{ base: "column", md: "row" }} alignItems="start">
+      <Flex direction={{ base: "column", md: "row" }} alignItems={{base:"center",md:"start"}}>
         <Center>
           <Box width="300px" mr={{ base: 0, md: 8 }}>
             <Box mb={8}>
