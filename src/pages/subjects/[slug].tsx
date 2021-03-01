@@ -31,7 +31,7 @@ const SubjectIndex = ({ subject, books, preview }: IndexProps) => {
           <Layout preview={preview} title={(`${subject.displayName}の記事一覧`)} desc={"Pawaa.app"}>
 
             <Container maxW="container.lg">
-              <Box my={16}>
+              <Box mb={16}>
                 <Box textStyle="h1" mb={8}>
                   <h1>{books[0] ? `${subject.displayName}の記事一覧` : `${subject.displayName}の記事はありません`}</h1>
                 </Box>
@@ -70,7 +70,7 @@ export async function getStaticProps({ params, preview = false }: GSProps) {
 }
 
 export async function getStaticPaths() {
-  const allSubjects = await getAllSubjectsWithSlug()
+  const allSubjects = await getAllSubjectsWithSlug(false)
   return {
     paths: allSubjects?.map((a: any) => `/subjects/${a.slug}`) || [],
     fallback: true,

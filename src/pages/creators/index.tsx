@@ -44,7 +44,7 @@ export default function CreatorIndex({ creators, preview }: CreatorIndexProps) {
             <Container>
               <Box mb={10}>
                 <VStack textStyle="h1" spacing={4} mb={8}>
-                  <h1>最近更新された本</h1>
+                  <h1>クリエイター</h1>
                   <Divider />
                 </VStack>
                 {creators && creators.length > 0 && <CreatorList creators={creators} />}
