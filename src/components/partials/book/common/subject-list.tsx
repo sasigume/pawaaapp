@@ -25,7 +25,7 @@ const OneSubject = ({ subject }: Props) => {
   }
 
   return (
-    <Button href={(`/subjects/${subject.slug}`)} color="white" background={subject.bgColor ?? "green"} as={LinkChakra} leftIcon={<FaiconDiv icon={[iconStyle, iconName]} />}>
+    <Button href={(`/subjects/${subject.slug}`)} colorScheme={subject.bgColor ?? "green"} as={LinkChakra} leftIcon={<FaiconDiv icon={[iconStyle, iconName]} />}>
       {subject.displayName}
     </Button>
   )

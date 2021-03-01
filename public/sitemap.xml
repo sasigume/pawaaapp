@@ -1,4 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+<url>
+    <loc>http://localhost:3000/books/obs-iphone-mac</loc>
+    <title>OBSでiPhoneの画面を配信する方法</title>
+    <lastmod>Sun, 28 Feb 2021 23:34:43 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/hytale-faq-matome</loc>
+    <title>Hytale: 対応ゲーム機・MOD・対象年齢など、よくある質問まとめ</title>
+    <lastmod>Sun, 28 Feb 2021 13:02:45 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/mcbe-fill-syntax-guide</loc>
+    <title>マインクラフトのfillコマンドを徹底解説</title>
+    <lastmod>Sun, 28 Feb 2021 12:37:59 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/privacy-policy</loc>
+    <title>プライバシーポリシー</title>
+    <lastmod>Sun, 28 Feb 2021 12:15:51 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/eula</loc>
+    <title>利用規約 </title>
+    <lastmod>Sun, 28 Feb 2021 12:10:05 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/mc-console-history</loc>
+    <title>マインクラフトのゲーム機版が消えるまで</title>
+    <lastmod>Sun, 28 Feb 2021 10:08:05 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/do-not-buy-win10-edition</loc>
+    <title>スタートメニューに最初からあるMinecraftでMODは使えません</title>
+    <lastmod>Sun, 28 Feb 2021 10:05:54 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/hikakin-finally-moved-to-bedrock</loc>
+    <title>ヒカキンがついにJava版をやめる。マイクラ実況は大きく変わるかもしれない</title>
+    <lastmod>Sun, 28 Feb 2021 10:00:33 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/bedrock-friend-multiplayer-guide</loc>
+    <title>スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <lastmod>Sun, 28 Feb 2021 09:41:26 GMT</lastmod>
+</url>
+    
 </urlset>
     

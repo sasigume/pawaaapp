@@ -6,7 +6,7 @@ import Mockup from '@/components/common/Mockup'
 import MarkdownRender from '@/components/common/MarkdownRender'
 import Logo from '@/components/common/Logo'
 
-import { Box, Container, Flex, Stack, useColorMode } from '@chakra-ui/react'
+import { Box, Center, Container, Divider, Flex, Stack, useColorMode, VStack } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
 import { getAllBooksWithSlug, getLandingPage } from '../lib/contentful/graphql'
 import { LandingPage } from '@/models/contentful/LandingPage'
@@ -17,8 +17,11 @@ import publishSitemap from '@/lib/sitemap'
 import Image from 'next/image'
 import { SITE_URL } from '@/lib/constants'
 import Loading from '@/components/common/loading'
+import { Book } from '@/models/contentful/Book'
+import BookList from '@/components/partials/book'
 interface IndexProps {
   page: LandingPage;
+  books: Book[];
   tweetCount: number;
   environment: boolean;
 }
@@ -27,7 +30,7 @@ interface Screenshot {
   url: string;
 }
 
-const Index = ({ page, environment, tweetCount }: IndexProps) => {
+const Index = ({ page, books, environment, tweetCount }: IndexProps) => {
   const router = useRouter()
   const { colorMode } = useColorMode()
 
@@ -45,7 +48,7 @@ const Index = ({ page, environment, tweetCount }: IndexProps) => {
       </>) : (
           <Layout preview={environment} title={page.title} desc={page.description} tweetCount={tweetCount}>
 
-            <Container>
+            <Container maxW="container.lg">
 
               <Flex mt={10} direction={{ base: "column", md: "row" }} w="full" justifyContent="center" alignItems="center">
                 <Flex direction="column" fontWeight="bold" fontSize="xxx-large" mr={10} mb={{ base: 10, md: 0 }}>
@@ -55,7 +58,7 @@ const Index = ({ page, environment, tweetCount }: IndexProps) => {
                   <Box shadow="xl" rounded="xl" overflow="hidden" style={{ width: "300px", height: "480px" }}>
                     <Image src={page.topImage.url} width="300" height="480" />
                   </Box>
-                  <Stack position="absolute" top={40} left={10}>
+                  <Stack position="absolute" top={40} left={0}>
                     {(page.postsCollection && page.postsCollection.items.length > 0) && page.postsCollection.items.map(
                       (post: LandingPagePost, n: number) => <LandingPagePostComponent key={post.slug} post={post} n={n} />
                     )}
@@ -70,13 +73,13 @@ const Index = ({ page, environment, tweetCount }: IndexProps) => {
                 </Stack>
               </Flex>
 
-              <Stack spacing={4} alignItems="center" direction={{ base: "column", md: "row" }} mb={20}>
-
-                {(page.screenshotsCollection && page.screenshotsCollection.items.length > 0) && page.screenshotsCollection.items.map(
-                  (sc: Screenshot) => <Mockup key={sc.url} src={sc.url} />
-                )}
-
-              </Stack>
+              {books && (<Box mb={10}>
+                <VStack textStyle="h1" spacing={4} mb={8}>
+                  <h1>最近更新された本</h1>
+                  <Divider />
+                </VStack>
+                {books && books.length > 0 && <BookList mode="archive" books={books} />}
+              </Box>)}
             </Container>
           </Layout>
         )}
@@ -106,6 +109,7 @@ export async function getStaticProps({ preview = false }) {
   return {
     props: {
       page: page ?? null,
+      books: allBooksPublished ?? null,
       tweetCount: tweetCount ?? null,
       preview: preview ?? null
     },
