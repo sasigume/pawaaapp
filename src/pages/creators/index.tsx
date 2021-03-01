@@ -3,27 +3,26 @@ import { useRouter } from 'next/router'
 
 import ErrorPage from 'next/error'
 
-import { getAllBooksForHome } from '@/lib/contentful/graphql'
-import { Book } from '@/models/contentful/Book'
+import { getAllCreatorsWithSlug } from '@/lib/contentful/graphql'
+import { Creator } from '@/models/contentful/Creator'
 
-import { Box, Container, VStack, Divider } from '@chakra-ui/react'
+import { Box, Container, Divider, VStack } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
-import BookList from '@/components/partials/book'
-import Mokuzi from '@/components/common/mokuzi'
+import CreatorList from '@/components/partials/book/common/creator-list'
 import Loading from '@/components/common/loading'
 
 
-interface BookIndexProps {
-  books: Book[];
+interface CreatorIndexProps {
+  creators: Creator[];
   preview: boolean;
 }
 
 
-export default function BookIndex({ books, preview }: BookIndexProps) {
+export default function CreatorIndex({ creators, preview }: CreatorIndexProps) {
 
   const router = useRouter()
 
-  if (!router.isFallback && !books) {
+  if (!router.isFallback && !creators) {
     return (<Layout preview={preview} title={'404 Not found'} desc={''}>
       <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
     </Layout>)
@@ -31,24 +30,24 @@ export default function BookIndex({ books, preview }: BookIndexProps) {
 
   return (
     <>
-      {(!books) ? (<>
+      {(!creators) ? (<>
 
         {router.isFallback ? (
           <Loading />
         ) : (
             (<Layout preview={preview} title={'404 Not found'} desc={''}>
-              <ErrorPage title="本が見つかりませんでした" statusCode={404} />
+              <ErrorPage title="クリエイターが見つかりませんでした" statusCode={404} />
             </Layout>)
           )}
       </>) : (
-          <Layout drawerChildren={books.length > 0 && <Mokuzi books={books} />} preview={preview} title={'本の一覧'} desc={'本の一覧です'}>
+          <Layout preview={preview} title={'クリエイターの一覧'} desc={'クリエイターの一覧'}>
             <Container>
               <Box mb={10}>
                 <VStack textStyle="h1" spacing={4} mb={8}>
-                  <h1>本の一覧</h1>
+                  <h1>クリエイター</h1>
                   <Divider />
                 </VStack>
-                {books && books.length > 0 && <BookList mode="archive" books={books} />}
+                {creators && creators.length > 0 && <CreatorList creators={creators} />}
               </Box>
             </Container>
           </Layout>
@@ -64,12 +63,12 @@ interface GSProps {
 
 export async function getStaticProps({ preview }: GSProps) {
 
-  const allBooks = await getAllBooksForHome(preview, 10)
+  const allCreators = await getAllCreatorsWithSlug(preview, 10)
 
   return {
     props: {
       preview: preview ?? false,
-      books: allBooks ?? null
+      creators: allCreators ?? null
     },
     revalidate: 300,
   }

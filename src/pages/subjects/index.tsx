@@ -3,27 +3,26 @@ import { useRouter } from 'next/router'
 
 import ErrorPage from 'next/error'
 
-import { getAllBooksForHome } from '@/lib/contentful/graphql'
-import { Book } from '@/models/contentful/Book'
+import { getAllSubjectsWithSlug } from '@/lib/contentful/graphql'
+import { Subject } from '@/models/contentful/Subject'
 
-import { Box, Container, VStack, Divider } from '@chakra-ui/react'
+import { Box, VStack, Divider, Container } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
-import BookList from '@/components/partials/book'
-import Mokuzi from '@/components/common/mokuzi'
+import SubjectList from '@/components/partials/book/common/subject-list'
 import Loading from '@/components/common/loading'
 
 
-interface BookIndexProps {
-  books: Book[];
+interface SubjectIndexProps {
+  subjects: Subject[];
   preview: boolean;
 }
 
 
-export default function BookIndex({ books, preview }: BookIndexProps) {
+export default function SubjectIndex({ subjects, preview }: SubjectIndexProps) {
 
   const router = useRouter()
 
-  if (!router.isFallback && !books) {
+  if (!router.isFallback && !subjects) {
     return (<Layout preview={preview} title={'404 Not found'} desc={''}>
       <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
     </Layout>)
@@ -31,24 +30,24 @@ export default function BookIndex({ books, preview }: BookIndexProps) {
 
   return (
     <>
-      {(!books) ? (<>
+      {(!subjects) ? (<>
 
         {router.isFallback ? (
           <Loading />
         ) : (
             (<Layout preview={preview} title={'404 Not found'} desc={''}>
-              <ErrorPage title="本が見つかりませんでした" statusCode={404} />
+              <ErrorPage title="教科が見つかりませんでした" statusCode={404} />
             </Layout>)
           )}
       </>) : (
-          <Layout drawerChildren={books.length > 0 && <Mokuzi books={books} />} preview={preview} title={'本の一覧'} desc={'本の一覧です'}>
+          <Layout preview={preview} title={'教科の一覧'} desc={'教科の一覧'}>
             <Container>
               <Box mb={10}>
                 <VStack textStyle="h1" spacing={4} mb={8}>
-                  <h1>本の一覧</h1>
+                  <h1>教科の一覧</h1>
                   <Divider />
                 </VStack>
-                {books && books.length > 0 && <BookList mode="archive" books={books} />}
+                {subjects && subjects.length > 0 && <SubjectList subjects={subjects} />}
               </Box>
             </Container>
           </Layout>
@@ -64,12 +63,12 @@ interface GSProps {
 
 export async function getStaticProps({ preview }: GSProps) {
 
-  const allBooks = await getAllBooksForHome(preview, 10)
+  const allSubjects = await getAllSubjectsWithSlug(preview, 10)
 
   return {
     props: {
       preview: preview ?? false,
-      books: allBooks ?? null
+      subjects: allSubjects ?? null
     },
     revalidate: 300,
   }

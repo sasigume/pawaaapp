@@ -16,6 +16,8 @@ import {
   DrawerCloseButton,
   Stack,
   Center,
+  VStack,
+  SimpleGrid,
 } from "@chakra-ui/react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import FaiconDiv from '@/components/common/faicon-div'
@@ -44,25 +46,36 @@ export default function LayoutDrawer({ preview, children }: Props) {
         aria-label="ドロワーメニュー"
       >
         <DrawerOverlay>
-          <DrawerContent pb={4}>
+          <DrawerContent pt={4}>
             <DrawerCloseButton />
             <DrawerHeader mt={8}>
-              <Stack direction="column" spacing={4}>
-                <Center my={6}>
-                  <Logo fill={colorMode === "light" ? "#000" : "#fff"} />
-                </Center>
+
+
+              <Stack direction="row" spacing={2} mb={4}>
                 <Button aria-label="カラーモードを切り替える" colorScheme={colorMode === "light" ? "purple" : "cyan"} onClick={toggleColorMode} leftIcon={colorMode === "light" ?
                   (<FaiconDiv icon={['fas', 'moon']} />) : (<FaiconDiv icon={['fas', 'sun']} />)}>
                   {colorMode === "light" ? "ダークモード" : "ライトモード"}
                 </Button>
-                <SignIn />
-                <Button href="https://blog.pawaa.app" as={LinkChakra}>旧ブログ</Button>
-                <Button aria-label="本の一覧を見る" href="/books" as={LinkChakra} colorScheme="green">本の一覧</Button>
               </Stack>
+
+              <Stack direction="row" spacing={2} mb={4}>
+                <Button href="https://blog.pawaa.app" as={LinkChakra}>旧ブログ</Button>
+                <Button aria-label="教科の一覧を見る" href="/subjects" as={LinkChakra} colorScheme="blue">教科一覧</Button>
+              </Stack>
+
+              <SignIn />
+
             </DrawerHeader>
-            <DrawerBody>
+            <DrawerBody overflow-y="scroll">
               {children}
             </DrawerBody>
+            <DrawerFooter>
+              <Box mb={8}>
+                <Center>
+                  <Logo fill={colorMode === "light" ? "#000" : "#fff"} />
+                </Center>
+              </Box>
+            </DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>
