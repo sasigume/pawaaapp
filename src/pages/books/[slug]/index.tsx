@@ -9,20 +9,20 @@ import ErrorPage from 'next/error'
 import { getBookAndMoreBooks, getAllBooksWithSlug } from '@/lib/contentful/graphql'
 import { Book } from '@/models/contentful/Book'
 
+import Loading from '@/components/common/loading'
 import Layout from '@/components/partials/layout'
-import BookList from '@/components/partials/book-list'
-import SectionSeparator from '@/components/common/section-separator'
-import Mokuzi from '@/components/common/mokuzi'
+import BookList from '@/components/partials/book'
 import {
   Box, Button, Checkbox, Container, Stack, Textarea, useDisclosure,
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton,
   Center,
+  Divider,
+  Flex,
+  Skeleton
 } from '@chakra-ui/react'
 import LinkChakra from '@/components/common/link-chakra'
 import { BookComment } from '@/models/firebase/BookComment'
@@ -74,82 +74,87 @@ export default function BookPage({ firstBook, bookComments, moreBooks, preview, 
     {(!firstBook) ? (<>
 
       {router.isFallback ? (
-        <Layout preview={preview} title={'Loading...'} desc={''}><div>読み込み中です。</div></Layout>
+        <Loading />
       ) : (
           (<Layout preview={preview} title={'404 Not found'} desc={''}>
             <ErrorPage title="本が見つかりませんでした" statusCode={404} />
           </Layout>)
         )}
     </>) : (
-        <Layout tweetCount={tweetCount} drawerChildren={<Mokuzi chapters={firstBook.chaptersCollection.items} bookSlug={firstBook.slug} />} preview={preview} title={firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
-          <div className="mt-6">
-            <Container>
+        <Layout tweetCount={tweetCount} preview={preview} title={firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
+          <Box mt={12}>
+            <Container maxW="container.lg">
               {firstBook && <BookList mode="single" books={[firstBook]} expand={preview ?? false} />}
-              <SectionSeparator />
+              <Divider my={8} borderColor="gray.400" />
 
-              <Box mb={12}>
-                <Box textStyle="h2" mb={6}>
-                  <h2>コメント</h2>
+              <Box textStyle="h2" mb={6}>
+                <h2>コメント</h2>
+              </Box>
+
+              <Flex direction={{ base: "column", md: "row" }}>
+
+                <Box minW={{ base: "", md: "sm" }} mb={{ base: 8, md: 0 }} mr={{ base: 0, md: 16 }}>
+
+
+                  {(bookComments && bookComments.length > 0) ? bookComments.map(
+                    (c: BookComment) => <BookCommentComponent c={c} key={c.id} />
+                  ) : (
+                      <div>コメントはありません。</div>
+                    )}
                 </Box>
 
-                {(bookComments && bookComments.length > 0) ? bookComments.map(
-                  (c: BookComment) => <BookCommentComponent c={c} key={c.id} />
-                ) : (
-                    <div>コメントはありません。</div>
-                  )}
-              </Box>
 
+                <Box mb={6}>
 
-              <Box mb={6}>
+                  {user ? (<Box>
+                    <Warning />
+                    <form className="w-full px-6" onSubmit={onSubmit}>
 
-                {user ? (<div className="max-w-xl mb-6">
-                  <Warning />
-                  <form className="w-full px-6" onSubmit={onSubmit}>
-
-                    <div className="flex flex-col jusify-center mb-12">
-                      <Modal isOpen={isOpen} onClose={onClose}>
-                        <ModalOverlay />
-                        <ModalContent>
-                          <ModalBody>
-                            送信できました！連投はやめてね
+                      <div className="flex flex-col jusify-center mb-12">
+                        <Modal isOpen={isOpen} onClose={onClose} isCentered>
+                          <ModalOverlay />
+                          <ModalContent py={6}>
+                            <ModalBody>
+                              送信できました！連投はやめてね
                           </ModalBody>
-                          <ModalFooter>
-                            <Button colorScheme="blue" mr={3} onClick={onClose}>閉じる</Button>
-                          </ModalFooter>
-                        </ModalContent>
-                      </Modal>
-                      {didYouSend ? (
-                        <Center role="status">
-                          (送信できました)
-                        </Center>
-                      ) : (
-                          <Stack spacing={2}>
-                            <Textarea
-                              my={6}
-                              placeholder="コメントを書いてね"
-                              onChange={(e) => setBody(e.target.value)}
-                              required
-                            ></Textarea>
-                            <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
-                            {agreed && (
-                              <Button onClick={onOpen} colorScheme="blue" type="submit">
-                                コメントする
-                              </Button>)}
-                          </Stack>
-                        )}
-                    </div>
-                  </form>
-                </div>) : (<div className="my-6">
-                  <LinkChakra href="/login">ログイン</LinkChakra>してコメントしてみよう!
-                </div>)}
-              </Box>
-              <SectionSeparator />
+                            <ModalFooter>
+                              <Button colorScheme="blue" mr={3} onClick={onClose}>閉じる</Button>
+                            </ModalFooter>
+                          </ModalContent>
+                        </Modal>
+                        {didYouSend ? (
+                          <Center role="status">
+                            (送信できました)
+                          </Center>
+                        ) : (
+                            <Stack spacing={2}>
+                              <Textarea
+                                my={6}
+                                placeholder="コメントを書いてね"
+                                onChange={(e) => setBody(e.target.value)}
+                                required
+                              ></Textarea>
+                              <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
+                              {agreed && (
+                                <Button onClick={onOpen} colorScheme="blue" type="submit">
+                                  コメントする
+                                </Button>)}
+                            </Stack>
+                          )}
+                      </div>
+                    </form>
+                  </Box>) : (<div className="my-6">
+                    <LinkChakra href="/login">ログイン</LinkChakra>してコメントしてみよう!
+                  </div>)}
+                </Box>
+              </Flex>
+              <Divider my={8} borderColor="gray.400" />
               {moreBooks && moreBooks.length > 0 && (
                 <Box my={10}>
                   <BookList mode="more" books={moreBooks} />
                 </Box>)}
             </Container>
-          </div>
+          </Box>
         </Layout>
       )
     }
