@@ -31,7 +31,7 @@ const CreatorIndex = ({ creator, books, preview }: IndexProps) => {
       ) : (
           <Layout preview={preview} title={(`${creator?.displayName}が書いた本一覧`)} desc={"Pawaa.app"}>
             <Container>
-              <Box my={16}>
+              <Box mb={16}>
                 <Box textStyle="h1" mb={8}>
                   <h1 className="text-2xl font-bold my-10">{books[0] ? `${creator.displayName}が書いた本一覧` : `${creator?.displayName}が書いた記事はありません`}</h1>
                 </Box>

@@ -10,6 +10,7 @@ import BookList from '@/components/partials/book'
 import { Box, Container, Divider } from '@chakra-ui/react'
 import SingleChapter from '@/components/partials/book/single-chapter'
 import { SITE_URL } from '@/lib/constants'
+import Mokuzi from '@/components/common/mokuzi'
 
 interface BookChapterPageProps {
   firstBook: Book;
@@ -48,7 +49,7 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
               )}
           </>
         ) : (
-            <Layout tweetCount={tweetCount} preview={preview} title={target.title + ' | ' + firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
+            <Layout drawerChildren={firstBook && <Mokuzi chapters={firstBook.chaptersCollection.items} bookSlug={firstBook.slug} />} tweetCount={tweetCount} preview={preview} title={target.title + ' | ' + firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
               <Box w="full" mt={12} mb={10}>
                 <Container maxW="container.lg" px={0}>
                   {target && (
