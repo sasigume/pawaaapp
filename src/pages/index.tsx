@@ -58,7 +58,7 @@ const Index = ({ page, books, environment, tweetCount }: IndexProps) => {
                   <Box shadow="xl" rounded="xl" overflow="hidden" style={{ width: "300px", height: "480px" }}>
                     <Image src={page.topImage.url} width="300" height="480" />
                   </Box>
-                  <Stack position="absolute" top={40} left={10}>
+                  <Stack position="absolute" top={40} left={0}>
                     {(page.postsCollection && page.postsCollection.items.length > 0) && page.postsCollection.items.map(
                       (post: LandingPagePost, n: number) => <LandingPagePostComponent key={post.slug} post={post} n={n} />
                     )}
