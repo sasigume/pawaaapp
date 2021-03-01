@@ -31,10 +31,10 @@ const SubjectIndex = ({ subject, books, preview }: IndexProps) => {
           <Layout preview={preview} title={(`${subject.displayName}の記事一覧`)} desc={"Pawaa.app"}>
 
             <Container maxW="container.lg">
-              <Box py={16}>
-                <Box textStyle="h1">
-                <h1>{books[0] ? `${subject.displayName}の記事一覧` : `${subject.displayName}の記事はありません`}</h1>
-              </Box>
+              <Box my={16}>
+                <Box textStyle="h1" mb={8}>
+                  <h1>{books[0] ? `${subject.displayName}の記事一覧` : `${subject.displayName}の記事はありません`}</h1>
+                </Box>
                 {subject.description && (<div className="my-4">{subject.description}</div>)}
                 {books && books.length > 0 && <BookList mode="archive" books={books} />}
               </Box>
