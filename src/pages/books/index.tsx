@@ -6,9 +6,9 @@ import ErrorPage from 'next/error'
 import { getAllBooksForHome } from '@/lib/contentful/graphql'
 import { Book } from '@/models/contentful/Book'
 
-import { Container } from '@chakra-ui/react'
+import { Box, Container } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
-import BookList from '@/components/partials/book-list'
+import BookList from '@/components/partials/book'
 import Mokuzi from '@/components/common/mokuzi'
 
 
@@ -41,11 +41,11 @@ export default function BookIndex({ books, preview }: BookIndexProps) {
           )}
       </>) : (
           <Layout drawerChildren={books.length>0 && <Mokuzi books={books} />} preview={preview} title={'本の一覧'} desc={'本の一覧です'}>
-            <div className="mt-6">
+            <Box mt={12}>
               <Container>
                 {<div className="px-4">{books && books.length > 0 && <BookList mode="archive" books={books} />}</div>}
               </Container>
-            </div>
+            </Box>
           </Layout>
         )
       }

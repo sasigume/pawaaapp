@@ -1,11 +1,11 @@
 import LinkChakra from '@/components/common/link-chakra'
 import { BookChapter } from '@/models/contentful/BookChapter'
-import { Box } from '@chakra-ui/react'
+import { Badge, Box, Flex } from '@chakra-ui/react'
 
 interface Props {
   bookChapter: BookChapter
   bookSlug: string;
-  num:number
+  num: number
 }
 
 interface ListProps {
@@ -17,7 +17,8 @@ interface ListProps {
 const OneBookChapter = ({ bookChapter, bookSlug, num }: Props) => {
   return (
     <LinkChakra href={(`/books/${bookSlug}/chapters/${num + 1}`)}>
-      <Box m={4}  border="solid" rounded="xl" borderColor="gray" p={3}>
+      <Box mb={4} p={3} borderBlockEnd="solid" borderBlockEndColor="gray.100">
+        <Badge colorScheme="green">CHAPTER {num}</Badge>
         <Box textStyle="h4"><h2>{bookChapter.title}</h2></Box>
         <div>{bookChapter.description ?? '説明文がありません'}</div>
       </Box>
@@ -25,11 +26,11 @@ const OneBookChapter = ({ bookChapter, bookSlug, num }: Props) => {
   )
 }
 
-const BookChapterList = ({ bookChapters,bookSlug }: ListProps) => {
+const BookChapterList = ({ bookChapters, bookSlug }: ListProps) => {
   return (
-    <div className="">
-      {bookChapters.map((c: BookChapter, num:number) => <OneBookChapter bookSlug={bookSlug} bookChapter={c} key={c.title} num={num} />)}
-    </div>
+    <Flex direction="column">
+      {bookChapters.map((c: BookChapter, num: number) => <OneBookChapter bookSlug={bookSlug} bookChapter={c} key={c.title} num={num} />)}
+    </Flex>
   )
 }
 
