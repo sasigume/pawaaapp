@@ -32,12 +32,12 @@ const BookChapterList = ({ bookChapters, bookSlug }: ListProps) => {
       {bookChapters.map((c: BookChapter, num: number, arr: any) => {
         // if it's last chapter
         if (arr.length - 1 === num) {
-          return (<Box mb={4} p={2} pb={0}>
-            <OneBookChapter bookSlug={bookSlug} bookChapter={c} key={c.title} num={num} />
+          return (<Box mb={4} p={2} pb={0} key={c.title}>
+            <OneBookChapter bookSlug={bookSlug} bookChapter={c} num={num} />
           </Box>)
         } else {
-          return (<Box mb={4} p={2} pb={5} borderBlockEnd="solid" borderBlockEndColor="gray.100">
-            <OneBookChapter bookSlug={bookSlug} bookChapter={c} key={c.title} num={num} />
+          return (<Box mb={4} p={2} pb={5} key={c.title} borderBlockEnd="solid" borderBlockEndColor="gray.100">
+            <OneBookChapter bookSlug={bookSlug} bookChapter={c} num={num} />
           </Box>)
         }
       }
