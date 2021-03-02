@@ -46,8 +46,8 @@ const SingleChapter = ({ book, chapter, chapterNumber }: ChapterProps) => {
   return (
     <article area-label={'「' + book.title + '」のチャプター' + chapterNumber + '、「' + chapter.title + '」'}>
       <Flex direction={{ base: "column", md: "row" }} alignItems={{ base: "center", md: "stretch" }} px={6}>
-        <Center mb={{ base: 16, md: 0 }} alignItems="start">
-          <Box width="300px" mr={{ base: 0, md:8, lg: 16 }} h="full">
+        <Center mb={{ base: 16, md: 0 }} alignItems="start" display={{ base: "none", md: "flex" }}>
+          <Box width="300px" mr={{ base: 0, md: 8, lg: 16 }} h="full">
             <Box mb={8}>
               <BookImage mode="single" slug={book.slug} title={book.title} url={book.coverImage ? book.coverImage.url : ''} />
             </Box>
@@ -64,7 +64,7 @@ const SingleChapter = ({ book, chapter, chapterNumber }: ChapterProps) => {
               <div>最終更新: {dayjs(book.sys.publishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
             </Box>
             {/* set max height so that can scroll on desktop */}
-            <Box position="sticky" top={20} overflowY="scroll" style={{maxHeight: 'calc(100vh - 7rem)'}}>
+            <Box position="sticky" top={20} overflowY="scroll" style={{ maxHeight: 'calc(100vh - 7rem)' }}>
               {book.chaptersCollection.items && <Mokuzi chapters={book.chaptersCollection.items} bookSlug={book.slug} />}
             </Box>
           </Box>
