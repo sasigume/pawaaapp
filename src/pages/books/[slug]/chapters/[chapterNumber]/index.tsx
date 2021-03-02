@@ -49,7 +49,7 @@ export default function BookChapterPage({ firstBook, moreBooks, chapterNumber, p
               )}
           </>
         ) : (
-            <Layout drawerChildren={firstBook && <Mokuzi chapters={firstBook.chaptersCollection.items} bookSlug={firstBook.slug} />} tweetCount={tweetCount} preview={preview} title={target.title + ' | ' + firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
+            <Layout drawerLeftChildren={firstBook && <Mokuzi chapters={firstBook.chaptersCollection.items} bookSlug={firstBook.slug} />} tweetCount={tweetCount} preview={preview} title={target.title + ' | ' + firstBook.title} desc={firstBook.description ? firstBook.description : ''}>
               <Box w="full" mt={12} mb={10}>
                 <Container maxW="container.lg" px={0}>
                   {target && (

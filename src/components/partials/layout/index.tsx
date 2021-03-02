@@ -3,22 +3,22 @@ import { ReactNode } from 'react'
 
 import FloatShare from './float-share'
 import LayoutFooter from './layout-footer'
-import LayoutDrawer from './layout-drawer'
-import { Box, Button, Center, Flex, Spacer, useColorMode } from '@chakra-ui/react'
-import Logo from '@/components/common/Logo'
-import { useRouter } from 'next/router'
+import DrawerLeft from './drawer-left'
+import DrawerRight from './drawer-right'
+import { Box, Button, useColorMode } from '@chakra-ui/react'
 import LinkChakra from '@/components/common/link-chakra'
 
 interface LayoutProps {
   preview: boolean;
   children: ReactNode;
-  drawerChildren?: ReactNode,
+  drawerLeftChildren?: ReactNode,
+  drawerRightChildren?: ReactNode,
   title: string;
   desc: string;
   tweetCount?: number;
 }
 
-export default function Layout({ preview, children, drawerChildren, title, desc,tweetCount }: LayoutProps) {
+export default function Layout({ preview, children, drawerLeftChildren, drawerRightChildren, title, desc, tweetCount }: LayoutProps) {
 
   const { colorMode } = useColorMode()
 
@@ -30,9 +30,12 @@ export default function Layout({ preview, children, drawerChildren, title, desc,
           {children}
         </main>
         <LayoutFooter />
-        <LayoutDrawer preview={preview}>
-          {drawerChildren}
-        </LayoutDrawer>
+        {drawerLeftChildren && <DrawerLeft preview={preview}>
+          {drawerLeftChildren}
+        </DrawerLeft>}
+        <DrawerRight preview={preview}>
+          {drawerRightChildren}
+        </DrawerRight>
         <FloatShare count={tweetCount} text={title} />
 
         {preview && (
