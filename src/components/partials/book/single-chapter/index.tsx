@@ -63,7 +63,8 @@ const SingleChapter = ({ book, chapter, chapterNumber }: ChapterProps) => {
               <div>公開: {dayjs(book.sys.firstPublishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
               <div>最終更新: {dayjs(book.sys.publishedAt).format('YYYY/MM/DD HH:mm:ss')}</div>
             </Box>
-            <Box position="sticky" top={20}>
+            {/* set max height so that can scroll on desktop */}
+            <Box position="sticky" top={20} overflowY="scroll" style={{maxHeight: 'calc(100vh - 7rem)'}}>
               {book.chaptersCollection.items && <Mokuzi chapters={book.chaptersCollection.items} bookSlug={book.slug} />}
             </Box>
           </Box>
