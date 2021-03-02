@@ -18,7 +18,7 @@ const SignIn = () => {
   }
 
   return (
-    <Stack direction="column" spacing={2}>
+    <Stack direction="column" spacing={6}>
       {user ? (<>
         <Button leftIcon={<Box w={6} rounded="full" overflow="hidden"><Image src={user.photoUrl} width={32} height={32} /></Box>}>
           {user.name}

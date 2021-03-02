@@ -113,5 +113,6 @@ export async function getStaticProps({ preview = false }) {
       tweetCount: tweetCount ?? null,
       preview: preview ?? null
     },
+    revalidate: 300
   }
 }

@@ -6,12 +6,165 @@
         <atom:link href="http://localhost:3000/rss.xml" rel="self" type="application/rss+xml"/>
         
 <item>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki</guid>
+    <title>ナポアンのマイクラ日記</title>
+    <link>http://localhost:3000/books/napoan-maikura-nikki</link>
+    <pubDate>Tue, 02 Mar 2021 08:28:24 GMT</pubDate>
+    <summary>2013年10月から2016年ごろまで、約三年間一つのワールドを遊び続けた男の記録です。</summary>
+</item>
+
+<item>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/1</guid>
+    <title>これまでのマイクラ生活紹介！part1【サバイバル日記】 | ナポアンのマイクラ日記</title>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/1</guid>
+    <pubDate>Tue, 02 Mar 2021 07:46:00 GMT</pubDate>
+    <summary>さあ！
+始まりましたこのブログの本編！
+Minecraftサバイバル生活記です！
+</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/2</guid>
+    <title>これまでのマイクラ生活紹介！part2【サバイバル日記】 | ナポアンのマイクラ日記</title>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/2</guid>
+    <pubDate>Tue, 02 Mar 2021 07:36:37 GMT</pubDate>
+    <summary>採掘に飽きて、ちょっと探索。
+1.0から1.5へのバージョンの壁ですね。
+これで何かできそうです。
+</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/3</guid>
+    <title>これまでのマイクラ生活紹介！part3【サバイバル生活記】 | ナポアンのマイクラ日記</title>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/3</guid>
+    <pubDate>Tue, 02 Mar 2021 07:45:05 GMT</pubDate>
+    <summary>植林場がもっさりなってました。地下拠点作りスタートです。
+食糧難はおさらばです。
+</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/4</guid>
+    <title>これまでのマイクラ生活紹介！part4【サバイバル生活記】 | ナポアンのマイクラ日記</title>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/4</guid>
+    <pubDate>Tue, 02 Mar 2021 07:49:03 GMT</pubDate>
+    <summary>早いものでもう12月です。
+長い間更新が遅れてしまい、申し訳ございませんでした。
+「次回へ続く」と書いたからには、続けます。マイクラ生活記です。
+</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/5</guid>
+    <title>これまでのマイクラ生活紹介！part5【サバイバル生活記】 | ナポアンのマイクラ日記</title>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/5</guid>
+    <pubDate>Tue, 02 Mar 2021 07:55:07 GMT</pubDate>
+    <summary>前回、家の3、4階を建てました。今回は採掘です。
+</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/6</guid>
+    <title>山岳に城を建てていく[1] | ナポアンのマイクラ日記</title>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/6</guid>
+    <pubDate>Tue, 02 Mar 2021 08:07:04 GMT</pubDate>
+    <summary>迷子になった時のために、この地域のシンボルを建てます。
+何を建てるかというと・・・・
+</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/7</guid>
+    <title>【経験値/素材】トラップタワー1号を建てる[1] | ナポアンのマイクラ日記</title>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/7</guid>
+    <pubDate>Tue, 02 Mar 2021 08:15:43 GMT</pubDate>
+    <summary>私、パイナポはビビリです。洞窟探索には滅多に行きません。
+なので助さんがドロップする矢や、匠が落とす火薬などが一向に集まりません。
+という事で、トラップタワーを建てます。
+</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/8</guid>
+    <title>拠点周辺を探索【1】 | ナポアンのマイクラ日記</title>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/8</guid>
+    <pubDate>Tue, 02 Mar 2021 08:17:24 GMT</pubDate>
+    <summary>拠点周辺を探検してみました。やっと1.7にバージョンアップです。
+</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/9</guid>
+    <title>【経験値/素材】トラップタワー1号を建てる[2] | ナポアンのマイクラ日記</title>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/9</guid>
+    <pubDate>Tue, 02 Mar 2021 08:20:10 GMT</pubDate>
+    <summary>前回、沸き層の1階を建てました。
+それが機能するように調整するのと、2,3階を建てます。
+</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/10</guid>
+    <title>拠点周辺を探索【2】 | ナポアンのマイクラ日記</title>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/10</guid>
+    <pubDate>Tue, 02 Mar 2021 08:26:23 GMT</pubDate>
+    <summary>前回の探索の続き。地図の左半分を埋めます。
+</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/11</guid>
+    <title>拠点周辺を探索【3】 | ナポアンのマイクラ日記</title>
+    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/11</guid>
+    <pubDate>Tue, 02 Mar 2021 08:28:13 GMT</pubDate>
+    <summary>探索の続きです。ジャングル怖し。
+フラグはいつか回収しますよ、いつか・・・
+</summary>
+</item>
+    
+    
+<item>
     <guid>http://localhost:3000/books/obs-iphone-mac</guid>
     <title>OBSでiPhoneの画面を配信する方法</title>
     <link>http://localhost:3000/books/obs-iphone-mac</link>
     <pubDate>Sun, 28 Feb 2021 23:34:43 GMT</pubDate>
     <summary>近頃、YouTubeでの生放送が大変賑わっていますね。この記事ではiPhoneのゲーム画面をMacを使って配信する方法を紹介します</summary>
 </item>
+
+<item>
+    <guid>http://localhost:3000/books/obs-iphone-mac/chapters/1</guid>
+    <title>必要なMacのスペック | OBSでiPhoneの画面を配信する方法</title>
+    <guid>http://localhost:3000/books/obs-iphone-mac/chapters/1</guid>
+    <pubDate>Mon, 01 Mar 2021 00:45:44 GMT</pubDate>
+    <summary>必要なMacのスペックです。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/obs-iphone-mac/chapters/2</guid>
+    <title>導入方法 | OBSでiPhoneの画面を配信する方法</title>
+    <guid>http://localhost:3000/books/obs-iphone-mac/chapters/2</guid>
+    <pubDate>Sun, 28 Feb 2021 23:29:37 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/obs-iphone-mac/chapters/3</guid>
+    <title>OBSの初期設定 | OBSでiPhoneの画面を配信する方法</title>
+    <guid>http://localhost:3000/books/obs-iphone-mac/chapters/3</guid>
+    <pubDate>Sun, 28 Feb 2021 23:30:14 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/obs-iphone-mac/chapters/4</guid>
+    <title>配信の終了と開始 | OBSでiPhoneの画面を配信する方法</title>
+    <guid>http://localhost:3000/books/obs-iphone-mac/chapters/4</guid>
+    <pubDate>Sun, 28 Feb 2021 23:30:58 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
     
 <item>
     <guid>http://localhost:3000/books/hytale-faq-matome</guid>
@@ -20,6 +173,31 @@
     <pubDate>Sun, 28 Feb 2021 13:02:45 GMT</pubDate>
     <summary>2021年リリース予定の「Hytale(ハイテール)」について、よくある質問とその回答をまとめた。開発中のため未確定な部分も多いが、プレイスタイルを検討する手がかりになれば幸いだ。</summary>
 </item>
+
+<item>
+    <guid>http://localhost:3000/books/hytale-faq-matome/chapters/1</guid>
+    <title>ゲーム内容に関する質問 | Hytale: 対応ゲーム機・MOD・対象年齢など、よくある質問まとめ</title>
+    <guid>http://localhost:3000/books/hytale-faq-matome/chapters/1</guid>
+    <pubDate>Sun, 28 Feb 2021 13:01:15 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/hytale-faq-matome/chapters/2</guid>
+    <title>技術的な質問 | Hytale: 対応ゲーム機・MOD・対象年齢など、よくある質問まとめ</title>
+    <guid>http://localhost:3000/books/hytale-faq-matome/chapters/2</guid>
+    <pubDate>Sun, 28 Feb 2021 13:02:08 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/hytale-faq-matome/chapters/3</guid>
+    <title>YouTuber/ブロガーなどに関する質問 | Hytale: 対応ゲーム機・MOD・対象年齢など、よくある質問まとめ</title>
+    <guid>http://localhost:3000/books/hytale-faq-matome/chapters/3</guid>
+    <pubDate>Sun, 28 Feb 2021 13:02:31 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
     
 <item>
     <guid>http://localhost:3000/books/mcbe-fill-syntax-guide</guid>
@@ -28,14 +206,40 @@
     <pubDate>Sun, 28 Feb 2021 12:37:59 GMT</pubDate>
     <summary>悪用は厳禁だが、マインクラフトではどうしても「ブロックを一気に置きたい」という場面に遭遇する。そんな時に便利なのが「fill」コマンドだ。この記事では、スイッチやスマホの統合版Minecraftにおける「fillコマンド」の使い方を解説する。</summary>
 </item>
+
+<item>
+    <guid>http://localhost:3000/books/mcbe-fill-syntax-guide/chapters/1</guid>
+    <title>fillコマンドの構文 | マインクラフトのfillコマンドを徹底解説</title>
+    <guid>http://localhost:3000/books/mcbe-fill-syntax-guide/chapters/1</guid>
+    <pubDate>Sun, 28 Feb 2021 12:36:34 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/mcbe-fill-syntax-guide/chapters/2</guid>
+    <title>fillコマンドの使用例 | マインクラフトのfillコマンドを徹底解説</title>
+    <guid>http://localhost:3000/books/mcbe-fill-syntax-guide/chapters/2</guid>
+    <pubDate>Sun, 28 Feb 2021 12:37:04 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
     
 <item>
     <guid>http://localhost:3000/books/privacy-policy</guid>
     <title>プライバシーポリシー</title>
     <link>http://localhost:3000/books/privacy-policy</link>
     <pubDate>Sun, 28 Feb 2021 12:15:51 GMT</pubDate>
-    <summary>null</summary>
+    <summary>説明文なし</summary>
 </item>
+
+<item>
+    <guid>http://localhost:3000/books/privacy-policy/chapters/1</guid>
+    <title>Cookieについて | プライバシーポリシー</title>
+    <guid>http://localhost:3000/books/privacy-policy/chapters/1</guid>
+    <pubDate>Sun, 28 Feb 2021 12:15:40 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
     
 <item>
     <guid>http://localhost:3000/books/eula</guid>
@@ -44,6 +248,15 @@
     <pubDate>Sun, 28 Feb 2021 12:10:05 GMT</pubDate>
     <summary>利用規約です。</summary>
 </item>
+
+<item>
+    <guid>http://localhost:3000/books/eula/chapters/1</guid>
+    <title>第1条〜第16条 | 利用規約 </title>
+    <guid>http://localhost:3000/books/eula/chapters/1</guid>
+    <pubDate>Sun, 28 Feb 2021 12:17:00 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
     
 <item>
     <guid>http://localhost:3000/books/mc-console-history</guid>
@@ -52,6 +265,23 @@
     <pubDate>Sun, 28 Feb 2021 10:08:05 GMT</pubDate>
     <summary>マインクラフトはかつて、パソコンでしか遊べないゲームでした。しかし2011年にスマホ向けに「ポケットエディション」が配信。トイレの中で遊んでいるPVを覚えている人はいますか? まだ開発が始まったばかりですし、スマホの性能も今とは大違いですので、当時のPEの内容はPC版には遠く及びませんでした。</summary>
 </item>
+
+<item>
+    <guid>http://localhost:3000/books/mc-console-history/chapters/1</guid>
+    <title>マインクラフトはかつて、パソコンでしか遊べないゲームだった | マインクラフトのゲーム機版が消えるまで</title>
+    <guid>http://localhost:3000/books/mc-console-history/chapters/1</guid>
+    <pubDate>Sun, 28 Feb 2021 10:07:19 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/mc-console-history/chapters/2</guid>
+    <title>スマホ版をゲーム機で動かせばいいのでは…？ | マインクラフトのゲーム機版が消えるまで</title>
+    <guid>http://localhost:3000/books/mc-console-history/chapters/2</guid>
+    <pubDate>Sun, 28 Feb 2021 10:07:59 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
     
 <item>
     <guid>http://localhost:3000/books/do-not-buy-win10-edition</guid>
@@ -60,6 +290,31 @@
     <pubDate>Sun, 28 Feb 2021 10:05:54 GMT</pubDate>
     <summary>春から進学してパソコンを買ってもらうそこの君! 今のパソコンには最初からマイクラが入っているのは知っているかな? でもそれでMODは使えないよ!</summary>
 </item>
+
+<item>
+    <guid>http://localhost:3000/books/do-not-buy-win10-edition/chapters/1</guid>
+    <title>Windows10のスタートメニューにはマイクラが置いてある | スタートメニューに最初からあるMinecraftでMODは使えません</title>
+    <guid>http://localhost:3000/books/do-not-buy-win10-edition/chapters/1</guid>
+    <pubDate>Sun, 28 Feb 2021 10:04:22 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/do-not-buy-win10-edition/chapters/2</guid>
+    <title>「Java版」と「Windows10版」の違い | スタートメニューに最初からあるMinecraftでMODは使えません</title>
+    <guid>http://localhost:3000/books/do-not-buy-win10-edition/chapters/2</guid>
+    <pubDate>Sun, 28 Feb 2021 10:04:07 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/do-not-buy-win10-edition/chapters/3</guid>
+    <title>Windows10版を間違えて買う人が後を絶ちません | スタートメニューに最初からあるMinecraftでMODは使えません</title>
+    <guid>http://localhost:3000/books/do-not-buy-win10-edition/chapters/3</guid>
+    <pubDate>Sun, 28 Feb 2021 10:04:52 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
     
 <item>
     <guid>http://localhost:3000/books/hikakin-finally-moved-to-bedrock</guid>
@@ -68,6 +323,31 @@
     <pubDate>Sun, 28 Feb 2021 10:00:33 GMT</pubDate>
     <summary>ついに「ヒカクラ2」が始まりました。当初はSuperDuperGraphicsPackのリリースを待っていたそうですが、時期がなかなか決まらないということで、結局彼はWindows10版を使うことになりました。そうです、Java版ではないのです。これはマイクラ実況界の大きな変化の始まりかもしれません。</summary>
 </item>
+
+<item>
+    <guid>http://localhost:3000/books/hikakin-finally-moved-to-bedrock/chapters/1</guid>
+    <title>ヒカキンさんが遊んでいるのは「Windows10版」 | ヒカキンがついにJava版をやめる。マイクラ実況は大きく変わるかもしれない</title>
+    <guid>http://localhost:3000/books/hikakin-finally-moved-to-bedrock/chapters/1</guid>
+    <pubDate>Sun, 28 Feb 2021 09:58:52 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/hikakin-finally-moved-to-bedrock/chapters/2</guid>
+    <title> でもWindows10版は買っちゃダメ！ | ヒカキンがついにJava版をやめる。マイクラ実況は大きく変わるかもしれない</title>
+    <guid>http://localhost:3000/books/hikakin-finally-moved-to-bedrock/chapters/2</guid>
+    <pubDate>Sun, 28 Feb 2021 09:59:27 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/hikakin-finally-moved-to-bedrock/chapters/3</guid>
+    <title>ついに超大物がBEに移行。マイクラ実況界が大きく変わるかもしれない | ヒカキンがついにJava版をやめる。マイクラ実況は大きく変わるかもしれない</title>
+    <guid>http://localhost:3000/books/hikakin-finally-moved-to-bedrock/chapters/3</guid>
+    <pubDate>Sun, 28 Feb 2021 09:59:47 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
     
 <item>
     <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide</guid>
@@ -76,6 +356,71 @@
     <pubDate>Sun, 28 Feb 2021 09:41:26 GMT</pubDate>
     <summary>スマホ・タブレット・Windows10・XboxOne・NintendoSwitchで配信中の統合版「Minecraft」では、遠く離れた友達とマルチプレイする機能が用意されています。この記事では、スマホ・タブレット・Windows10・XboxOne・Switchで『マイクロソフトアカウント』を作成してサインインし、友達を検索してフレンドに登録して、遠く離れた場所の間でマルチプレイをするまでの手順を分かりやすく解説します。</summary>
 </item>
+
+<item>
+    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/1</guid>
+    <title>この本は「統合版」向けに書いています。Switchでは新しい方のソフトを起動してください | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/1</guid>
+    <pubDate>Sat, 27 Feb 2021 11:01:29 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/2</guid>
+    <title>ステップ1. 『Xbox Liveアカウント(MSアカウント)』を作成してサインインしよう | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/2</guid>
+    <pubDate>Sat, 27 Feb 2021 08:14:04 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/3</guid>
+    <title>ステップ2. 自動生成されたプレイヤー名を、自分好みに変更しよう | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/3</guid>
+    <pubDate>Sat, 27 Feb 2021 08:14:39 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/4</guid>
+    <title>ステップ3.「ゲーマータグ」でユーザーを検索してフレンドに追加しよう | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/4</guid>
+    <pubDate>Sat, 27 Feb 2021 08:15:07 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/5</guid>
+    <title>ステップ4. ワールドのマルチプレイヤー設定を確認しよう | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/5</guid>
+    <pubDate>Sat, 27 Feb 2021 08:15:33 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/6</guid>
+    <title> ステップ5. フレンドを招待したり、メニュー画面から参加してもらおう | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/6</guid>
+    <pubDate>Sat, 27 Feb 2021 08:16:01 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/7</guid>
+    <title>プレイヤーごとの細かい権限の設定方法。OP権限を与えるには? | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/7</guid>
+    <pubDate>Sat, 27 Feb 2021 08:16:30 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/8</guid>
+    <title>一緒に遊べる最大人数を設定するには | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/8</guid>
+    <pubDate>Sat, 27 Feb 2021 08:16:57 GMT</pubDate>
+    <summary>説明文なし</summary>
+</item>
+    
     
     </channel>
 </rss>
