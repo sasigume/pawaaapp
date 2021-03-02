@@ -62,6 +62,10 @@ icon {
 `
 
 const BOOK_CHAPTER_GRAPHQL_FIELDS = `
+sys {
+  firstPublishedAt
+  publishedAt
+}
 title
 description
 md
