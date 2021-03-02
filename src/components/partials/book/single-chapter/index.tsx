@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { Box, Flex, Stack, Button, Center } from "@chakra-ui/react"
+import { Box, Flex, Stack, Button, Center, Divider } from "@chakra-ui/react"
 
 import LinkChakra from "@/components/common/link-chakra"
 import BookImage from '../common/book-image'
@@ -79,7 +79,9 @@ const SingleChapter = ({ book, chapter, chapterNumber }: ChapterProps) => {
             </LinkChakra>
             <PageButtons book={book} chapterNumber={chapterNumber} />
             <Flex direction="column" style={{ maxWidth: '650px' }}>
-              <Box textStyle="h3" p={2} bg="cyan.100" rounded="lg"><h2>{chapter.title}</h2>
+              <Box textStyle="h3" mb={12}>
+                <h2>{chapter.title}</h2>
+                <Divider />
               </Box>
               <Box mb={6}>{chapter.description}</Box>
               <MarkdownRender className="articleMdWrapper" source={chapter.md} />
