@@ -2,58 +2,302 @@
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
 <url>
+    <loc>http://localhost:3000/books/napoan-maikura-nikki</loc>
+    <title>ナポアンのマイクラ日記</title>
+    <lastmod>Tue, 02 Mar 2021 08:28:24 GMT</lastmod>
+</url>
+
+<url>
+    <loc>http://localhost:3000/books/napoan-maikura-nikki/chapters/1</loc>
+    <title>これまでのマイクラ生活紹介！part1【サバイバル日記】 | ナポアンのマイクラ日記</title>
+    <lastmod>Tue, 02 Mar 2021 07:46:00 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/napoan-maikura-nikki/chapters/2</loc>
+    <title>これまでのマイクラ生活紹介！part2【サバイバル日記】 | ナポアンのマイクラ日記</title>
+    <lastmod>Tue, 02 Mar 2021 07:36:37 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/napoan-maikura-nikki/chapters/3</loc>
+    <title>これまでのマイクラ生活紹介！part3【サバイバル生活記】 | ナポアンのマイクラ日記</title>
+    <lastmod>Tue, 02 Mar 2021 07:45:05 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/napoan-maikura-nikki/chapters/4</loc>
+    <title>これまでのマイクラ生活紹介！part4【サバイバル生活記】 | ナポアンのマイクラ日記</title>
+    <lastmod>Tue, 02 Mar 2021 07:49:03 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/napoan-maikura-nikki/chapters/5</loc>
+    <title>これまでのマイクラ生活紹介！part5【サバイバル生活記】 | ナポアンのマイクラ日記</title>
+    <lastmod>Tue, 02 Mar 2021 07:55:07 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/napoan-maikura-nikki/chapters/6</loc>
+    <title>山岳に城を建てていく[1] | ナポアンのマイクラ日記</title>
+    <lastmod>Tue, 02 Mar 2021 08:07:04 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/napoan-maikura-nikki/chapters/7</loc>
+    <title>【経験値/素材】トラップタワー1号を建てる[1] | ナポアンのマイクラ日記</title>
+    <lastmod>Tue, 02 Mar 2021 08:15:43 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/napoan-maikura-nikki/chapters/8</loc>
+    <title>拠点周辺を探索【1】 | ナポアンのマイクラ日記</title>
+    <lastmod>Tue, 02 Mar 2021 08:17:24 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/napoan-maikura-nikki/chapters/9</loc>
+    <title>【経験値/素材】トラップタワー1号を建てる[2] | ナポアンのマイクラ日記</title>
+    <lastmod>Tue, 02 Mar 2021 08:20:10 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/napoan-maikura-nikki/chapters/10</loc>
+    <title>拠点周辺を探索【2】 | ナポアンのマイクラ日記</title>
+    <lastmod>Tue, 02 Mar 2021 08:26:23 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/napoan-maikura-nikki/chapters/11</loc>
+    <title>拠点周辺を探索【3】 | ナポアンのマイクラ日記</title>
+    <lastmod>Tue, 02 Mar 2021 08:28:13 GMT</lastmod>
+</url>
+    
+    
+<url>
     <loc>http://localhost:3000/books/obs-iphone-mac</loc>
     <title>OBSでiPhoneの画面を配信する方法</title>
     <lastmod>Sun, 28 Feb 2021 23:34:43 GMT</lastmod>
 </url>
+
+<url>
+    <loc>http://localhost:3000/books/obs-iphone-mac/chapters/1</loc>
+    <title>必要なMacのスペック | OBSでiPhoneの画面を配信する方法</title>
+    <lastmod>Mon, 01 Mar 2021 00:45:44 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/obs-iphone-mac/chapters/2</loc>
+    <title>導入方法 | OBSでiPhoneの画面を配信する方法</title>
+    <lastmod>Sun, 28 Feb 2021 23:29:37 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/obs-iphone-mac/chapters/3</loc>
+    <title>OBSの初期設定 | OBSでiPhoneの画面を配信する方法</title>
+    <lastmod>Sun, 28 Feb 2021 23:30:14 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/obs-iphone-mac/chapters/4</loc>
+    <title>配信の終了と開始 | OBSでiPhoneの画面を配信する方法</title>
+    <lastmod>Sun, 28 Feb 2021 23:30:58 GMT</lastmod>
+</url>
+    
     
 <url>
     <loc>http://localhost:3000/books/hytale-faq-matome</loc>
     <title>Hytale: 対応ゲーム機・MOD・対象年齢など、よくある質問まとめ</title>
     <lastmod>Sun, 28 Feb 2021 13:02:45 GMT</lastmod>
 </url>
+
+<url>
+    <loc>http://localhost:3000/books/hytale-faq-matome/chapters/1</loc>
+    <title>ゲーム内容に関する質問 | Hytale: 対応ゲーム機・MOD・対象年齢など、よくある質問まとめ</title>
+    <lastmod>Sun, 28 Feb 2021 13:01:15 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/hytale-faq-matome/chapters/2</loc>
+    <title>技術的な質問 | Hytale: 対応ゲーム機・MOD・対象年齢など、よくある質問まとめ</title>
+    <lastmod>Sun, 28 Feb 2021 13:02:08 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/hytale-faq-matome/chapters/3</loc>
+    <title>YouTuber/ブロガーなどに関する質問 | Hytale: 対応ゲーム機・MOD・対象年齢など、よくある質問まとめ</title>
+    <lastmod>Sun, 28 Feb 2021 13:02:31 GMT</lastmod>
+</url>
+    
     
 <url>
     <loc>http://localhost:3000/books/mcbe-fill-syntax-guide</loc>
     <title>マインクラフトのfillコマンドを徹底解説</title>
     <lastmod>Sun, 28 Feb 2021 12:37:59 GMT</lastmod>
 </url>
+
+<url>
+    <loc>http://localhost:3000/books/mcbe-fill-syntax-guide/chapters/1</loc>
+    <title>fillコマンドの構文 | マインクラフトのfillコマンドを徹底解説</title>
+    <lastmod>Sun, 28 Feb 2021 12:36:34 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/mcbe-fill-syntax-guide/chapters/2</loc>
+    <title>fillコマンドの使用例 | マインクラフトのfillコマンドを徹底解説</title>
+    <lastmod>Sun, 28 Feb 2021 12:37:04 GMT</lastmod>
+</url>
+    
     
 <url>
     <loc>http://localhost:3000/books/privacy-policy</loc>
     <title>プライバシーポリシー</title>
     <lastmod>Sun, 28 Feb 2021 12:15:51 GMT</lastmod>
 </url>
+
+<url>
+    <loc>http://localhost:3000/books/privacy-policy/chapters/1</loc>
+    <title>Cookieについて | プライバシーポリシー</title>
+    <lastmod>Sun, 28 Feb 2021 12:15:40 GMT</lastmod>
+</url>
+    
     
 <url>
     <loc>http://localhost:3000/books/eula</loc>
     <title>利用規約 </title>
     <lastmod>Sun, 28 Feb 2021 12:10:05 GMT</lastmod>
 </url>
+
+<url>
+    <loc>http://localhost:3000/books/eula/chapters/1</loc>
+    <title>第1条〜第16条 | 利用規約 </title>
+    <lastmod>Sun, 28 Feb 2021 12:17:00 GMT</lastmod>
+</url>
+    
     
 <url>
     <loc>http://localhost:3000/books/mc-console-history</loc>
     <title>マインクラフトのゲーム機版が消えるまで</title>
     <lastmod>Sun, 28 Feb 2021 10:08:05 GMT</lastmod>
 </url>
+
+<url>
+    <loc>http://localhost:3000/books/mc-console-history/chapters/1</loc>
+    <title>マインクラフトはかつて、パソコンでしか遊べないゲームだった | マインクラフトのゲーム機版が消えるまで</title>
+    <lastmod>Sun, 28 Feb 2021 10:07:19 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/mc-console-history/chapters/2</loc>
+    <title>スマホ版をゲーム機で動かせばいいのでは…？ | マインクラフトのゲーム機版が消えるまで</title>
+    <lastmod>Sun, 28 Feb 2021 10:07:59 GMT</lastmod>
+</url>
+    
     
 <url>
     <loc>http://localhost:3000/books/do-not-buy-win10-edition</loc>
     <title>スタートメニューに最初からあるMinecraftでMODは使えません</title>
     <lastmod>Sun, 28 Feb 2021 10:05:54 GMT</lastmod>
 </url>
+
+<url>
+    <loc>http://localhost:3000/books/do-not-buy-win10-edition/chapters/1</loc>
+    <title>Windows10のスタートメニューにはマイクラが置いてある | スタートメニューに最初からあるMinecraftでMODは使えません</title>
+    <lastmod>Sun, 28 Feb 2021 10:04:22 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/do-not-buy-win10-edition/chapters/2</loc>
+    <title>「Java版」と「Windows10版」の違い | スタートメニューに最初からあるMinecraftでMODは使えません</title>
+    <lastmod>Sun, 28 Feb 2021 10:04:07 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/do-not-buy-win10-edition/chapters/3</loc>
+    <title>Windows10版を間違えて買う人が後を絶ちません | スタートメニューに最初からあるMinecraftでMODは使えません</title>
+    <lastmod>Sun, 28 Feb 2021 10:04:52 GMT</lastmod>
+</url>
+    
     
 <url>
     <loc>http://localhost:3000/books/hikakin-finally-moved-to-bedrock</loc>
     <title>ヒカキンがついにJava版をやめる。マイクラ実況は大きく変わるかもしれない</title>
     <lastmod>Sun, 28 Feb 2021 10:00:33 GMT</lastmod>
 </url>
+
+<url>
+    <loc>http://localhost:3000/books/hikakin-finally-moved-to-bedrock/chapters/1</loc>
+    <title>ヒカキンさんが遊んでいるのは「Windows10版」 | ヒカキンがついにJava版をやめる。マイクラ実況は大きく変わるかもしれない</title>
+    <lastmod>Sun, 28 Feb 2021 09:58:52 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/hikakin-finally-moved-to-bedrock/chapters/2</loc>
+    <title> でもWindows10版は買っちゃダメ！ | ヒカキンがついにJava版をやめる。マイクラ実況は大きく変わるかもしれない</title>
+    <lastmod>Sun, 28 Feb 2021 09:59:27 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/hikakin-finally-moved-to-bedrock/chapters/3</loc>
+    <title>ついに超大物がBEに移行。マイクラ実況界が大きく変わるかもしれない | ヒカキンがついにJava版をやめる。マイクラ実況は大きく変わるかもしれない</title>
+    <lastmod>Sun, 28 Feb 2021 09:59:47 GMT</lastmod>
+</url>
+    
     
 <url>
     <loc>http://localhost:3000/books/bedrock-friend-multiplayer-guide</loc>
     <title>スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
     <lastmod>Sun, 28 Feb 2021 09:41:26 GMT</lastmod>
 </url>
+
+<url>
+    <loc>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/1</loc>
+    <title>この本は「統合版」向けに書いています。Switchでは新しい方のソフトを起動してください | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <lastmod>Sat, 27 Feb 2021 11:01:29 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/2</loc>
+    <title>ステップ1. 『Xbox Liveアカウント(MSアカウント)』を作成してサインインしよう | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <lastmod>Sat, 27 Feb 2021 08:14:04 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/3</loc>
+    <title>ステップ2. 自動生成されたプレイヤー名を、自分好みに変更しよう | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <lastmod>Sat, 27 Feb 2021 08:14:39 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/4</loc>
+    <title>ステップ3.「ゲーマータグ」でユーザーを検索してフレンドに追加しよう | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <lastmod>Sat, 27 Feb 2021 08:15:07 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/5</loc>
+    <title>ステップ4. ワールドのマルチプレイヤー設定を確認しよう | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <lastmod>Sat, 27 Feb 2021 08:15:33 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/6</loc>
+    <title> ステップ5. フレンドを招待したり、メニュー画面から参加してもらおう | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <lastmod>Sat, 27 Feb 2021 08:16:01 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/7</loc>
+    <title>プレイヤーごとの細かい権限の設定方法。OP権限を与えるには? | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <lastmod>Sat, 27 Feb 2021 08:16:30 GMT</lastmod>
+</url>
+    
+<url>
+    <loc>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/8</loc>
+    <title>一緒に遊べる最大人数を設定するには | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
+    <lastmod>Sat, 27 Feb 2021 08:16:57 GMT</lastmod>
+</url>
+    
     
 </urlset>
     
