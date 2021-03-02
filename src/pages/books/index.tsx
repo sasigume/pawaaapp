@@ -41,7 +41,7 @@ export default function BookIndex({ books, preview }: BookIndexProps) {
             </Layout>)
           )}
       </>) : (
-          <Layout drawerChildren={books.length > 0 && <Mokuzi books={books} />} preview={preview} title={'本の一覧'} desc={'本の一覧です'}>
+          <Layout drawerLeftChildren={books.length > 0 && <Mokuzi books={books} />} preview={preview} title={'本の一覧'} desc={'本の一覧です'}>
             <Container>
               <Box mb={10}>
                 <VStack textStyle="h1" spacing={4} mb={8}>

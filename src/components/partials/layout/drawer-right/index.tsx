@@ -5,7 +5,6 @@ import {
   useColorMode,
   useDisclosure,
   Box,
-  Flex,
   Button,
   Drawer,
   DrawerBody,
@@ -16,10 +15,8 @@ import {
   DrawerCloseButton,
   Stack,
   Center,
-  VStack,
-  SimpleGrid,
+  Divider,
 } from "@chakra-ui/react"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import FaiconDiv from '@/components/common/faicon-div'
 import Logo from '@/components/common/Logo'
 
@@ -28,37 +25,40 @@ interface Props {
   children: ReactNode
 }
 
-export default function LayoutDrawer({ preview, children }: Props) {
+export default function DrawerRight({ children }: Props) {
   const { colorMode, toggleColorMode } = useColorMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef(null)
 
   return (
     <>
-      <Button ref={btnRef} colorScheme="blue" leftIcon={<FaiconDiv icon={['fas', 'bars']} />} onClick={onOpen} position="fixed" top={5} left={5}>
+      <Button ref={btnRef} colorScheme="green" leftIcon={<FaiconDiv icon={['fas', 'user']} />} onClick={onOpen} position="fixed" top={5} right={5}>
         MENU
       </Button>
       <Drawer
         isOpen={isOpen}
-        placement="left"
+        placement="right"
         onClose={onClose}
         finalFocusRef={btnRef}
-        aria-label="ドロワーメニュー"
+        aria-label="ドロワーメニュー(右)"
       >
         <DrawerOverlay>
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader>
+            <DrawerHeader mt={12} justifyContent="center">
+              <Box mb={8}>
+                <Center>
+                  <Logo fill={colorMode === "light" ? "#000" : "#fff"} />
+                </Center>
+              </Box>
 
+              <Divider mb={8} />
 
-              <Stack direction="row" spacing={2} mb={4}>
+              <Stack direction="column" spacing={6} mb={6}>
                 <Button aria-label="カラーモードを切り替える" colorScheme={colorMode === "light" ? "purple" : "cyan"} onClick={toggleColorMode} leftIcon={colorMode === "light" ?
                   (<FaiconDiv icon={['fas', 'moon']} />) : (<FaiconDiv icon={['fas', 'sun']} />)}>
                   {colorMode === "light" ? "ダークモード" : "ライトモード"}
                 </Button>
-              </Stack>
-
-              <Stack direction="row" spacing={2} mb={4}>
                 <Button href="https://blog.pawaa.app" as={LinkChakra}>旧ブログ</Button>
                 <Button aria-label="教科の一覧を見る" href="/subjects" as={LinkChakra} colorScheme="blue">教科一覧</Button>
               </Stack>
@@ -69,12 +69,8 @@ export default function LayoutDrawer({ preview, children }: Props) {
             <DrawerBody overflow-y="scroll">
               {children}
             </DrawerBody>
-            <DrawerFooter justifyContent="center">
-              <Box>
-                <Center>
-                  <Logo fill={colorMode === "light" ? "#000" : "#fff"} />
-                </Center>
-              </Box>
+            <DrawerFooter>
+
             </DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
