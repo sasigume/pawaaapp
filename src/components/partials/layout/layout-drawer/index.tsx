@@ -46,9 +46,9 @@ export default function LayoutDrawer({ preview, children }: Props) {
         aria-label="ドロワーメニュー"
       >
         <DrawerOverlay>
-          <DrawerContent pt={4}>
+          <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader mt={8}>
+            <DrawerHeader>
 
 
               <Stack direction="row" spacing={2} mb={4}>
@@ -69,8 +69,8 @@ export default function LayoutDrawer({ preview, children }: Props) {
             <DrawerBody overflow-y="scroll">
               {children}
             </DrawerBody>
-            <DrawerFooter>
-              <Box mb={8}>
+            <DrawerFooter justifyContent="center">
+              <Box>
                 <Center>
                   <Logo fill={colorMode === "light" ? "#000" : "#fff"} />
                 </Center>
