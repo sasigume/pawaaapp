@@ -1,6 +1,6 @@
 {
-  "name": "pawaaapp",
-  "version": "2.2.4",
+  "name": "cmswithbookandchapter",
+  "version": "2.2.5",
   "scripts": {
     "dev": "next",
     "build": "next build",
