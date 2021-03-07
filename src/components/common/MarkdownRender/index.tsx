@@ -35,11 +35,11 @@ function MarkdownRender(props: any) {
   };
   // wrap with class for chakra theme
   return (
-    <div className="mdrenderWrapper">
+    <Box maxW="100vw" overflowX="hidden" className="mdrenderWrapper">
       <MathJax.Provider input="tex">
         <ReactMarkdownWithHtml allowDangerousHtml {...newProps} />
       </MathJax.Provider>
-    </div>
+    </Box>
   );
 }
 

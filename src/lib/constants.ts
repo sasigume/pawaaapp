@@ -1,4 +1,4 @@
-export const SITE_NAME = 'cmswithbookandchapter'
-export const SITE_URL = 'pawaa.app'
+export const SITE_NAME = 'ナポアンのマイクラ'
+export const SITE_URL = 'napoan.com'
 export const CREATOR_ID = 'sasigume'
-export const SITE_DESC = 'cmswithbookandchapter'
+export const SITE_DESC = '日本最大のマイクラブログ'

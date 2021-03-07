@@ -1,426 +1,732 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>PAWAAAPP</title>
+        <title>ナポアンのマイクラ</title>
         <link>http://localhost:3000</link>
-        <description>問題が「流れる」学習アプリ。パワーアップ。</description>
+        <description>日本最大のマイクラブログ</description>
         <atom:link href="http://localhost:3000/rss.xml" rel="self" type="application/rss+xml"/>
         
 <item>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki</guid>
-    <title>ナポアンのマイクラ日記</title>
-    <link>http://localhost:3000/books/napoan-maikura-nikki</link>
-    <pubDate>Tue, 02 Mar 2021 08:28:24 GMT</pubDate>
-    <summary>2013年10月から2016年ごろまで、約三年間一つのワールドを遊び続けた男の記録です。</summary>
-</item>
-
-<item>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/1</guid>
-    <title>これまでのマイクラ生活紹介！part1【サバイバル日記】 | ナポアンのマイクラ日記</title>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/1</guid>
-    <pubDate>Tue, 02 Mar 2021 07:46:00 GMT</pubDate>
-    <summary>さあ！
-始まりましたこのブログの本編！
-Minecraftサバイバル生活記です！
-</summary>
+    <guid>http://localhost:3000/41156544-2</guid>
+    <title>シープタウンにスポナー発見! 早速トラップを作る [2]～湧き検証～</title>
+    <link>http://localhost:3000/41156544-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:46:05 GMT</pubDate>
+    <summary>前回の『シープタウンにスポナー発見! 早速トラップを作る [1]』
+ でゾンビトラップの基礎を作りました。
+ 今回はエレベーターや処理部分を作り、効率の検証をしてみます。</summary>
 </item>
     
 <item>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/2</guid>
-    <title>これまでのマイクラ生活紹介！part2【サバイバル日記】 | ナポアンのマイクラ日記</title>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/2</guid>
-    <pubDate>Tue, 02 Mar 2021 07:36:37 GMT</pubDate>
-    <summary>採掘に飽きて、ちょっと探索。
-1.0から1.5へのバージョンの壁ですね。
-これで何かできそうです。
-</summary>
+    <guid>http://localhost:3000/38930143-2</guid>
+    <title>TTの真下に潜む廃坑を探検 part2 ～広すぎる廃坑！お宝モリモリだゾ～</title>
+    <link>http://localhost:3000/38930143-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:46:04 GMT</pubDate>
+    <summary>part1でTTの地下にある渓谷と廃坑に潜入しました。
+ 今回はその続きです。
+ 前回見つけた苔石の周辺に、クモが湧いてました。
+ ということで、あのスポナーの正体は・・・・</summary>
 </item>
     
 <item>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/3</guid>
-    <title>これまでのマイクラ生活紹介！part3【サバイバル生活記】 | ナポアンのマイクラ日記</title>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/3</guid>
-    <pubDate>Tue, 02 Mar 2021 07:45:05 GMT</pubDate>
+    <guid>http://localhost:3000/41140063-2</guid>
+    <title>【MOD紹介】見えない/剥がれない/場所を問わず湧き潰しできる「InvisibLights」</title>
+    <link>http://localhost:3000/41140063-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:46:04 GMT</pubDate>
+    <summary>湧き潰しをする時、松明がバラバラ配置されてるのがダサいと思ったことはありませんか?
+ そんなあなたにお勧めなのが、今回紹介するMOD「InvisibLights」(制作:domi1819さん)です。
+ 新時代の湧き潰しを始めましょう。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/40788054-2</guid>
+    <title>3分で524個! 高効率ガーディアントラップの作り方/湧き検証</title>
+    <link>http://localhost:3000/40788054-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:46:03 GMT</pubDate>
+    <summary>Minecraft 1.8で新Mob「ガーディアン」が追加されましたね!
+ なかなかの強敵で、倒すのは難しく面倒です。
+ そこで、ほっとけばガーディアンが次々死んでいく落下式トラップの作り方を解説します!
+ アイテムが溜まりすぎてゲームバランス崩壊に注意!!</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/41053645-2</guid>
+    <title>【MOD紹介】スケさん好きのあなたへ – 9種のスケルトンを追加「Mo`Skeletons Mod」</title>
+    <link>http://localhost:3000/41053645-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:46:03 GMT</pubDate>
+    <summary>今回紹介するMODは、Diego_Steveさん制作の「Mo` Skeletons Mod」です。
+ 炎のスケさんやクリーパースケさん、エンダースケさんなど9種のスケルトンが追加されます。
+ スケルトン好きのクラフターにはもってこいのMODですよ。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/40623466-2</guid>
+    <title>本日でブログ開設一周年です。これまでの一年間総まとめ。</title>
+    <link>http://localhost:3000/40623466-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:46:02 GMT</pubDate>
+    <summary>本日でこのブログを開設して1年が経ちました。
+ これまでコメントやTwitterのリプライで応援して下さった方々に心より感謝申し上げます。
+ これからもどうぞよろしくお願いします。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/40888696-2</guid>
+    <title>シープタウンの地下に潜む廃坑を探検![1] スポナー発見の巻</title>
+    <link>http://localhost:3000/40888696-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:46:02 GMT</pubDate>
+    <summary>西の平原に広がる街「シープタウン」。一歩山奥へ入ると恐ろしい洞窟が口を開けています。
+ 名物のヒツジたちが吸い込まれそうなほど深い闇の奥に、一体何が待ち受けているのでしょうか。 洞窟探検の始まりです。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/40869747-2</guid>
+    <title>シープタウンにみんなの酒場を建てる</title>
+    <link>http://localhost:3000/40869747-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:46:02 GMT</pubDate>
+    <summary>今日の記事は更新が遅れてしまい、申し訳ございません。
+ 時間がなくて中々マイクラを遊べず、遊んですぐそれを記事に書いている次第です。
+ さて、今日はここシープタウンに新しい建物を建てます。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/40690052-2</guid>
+    <title>【MOD紹介】組み合わせ無限大!世界に1つのドアを作ろう「MalisisDoors」</title>
+    <link>http://localhost:3000/40690052-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:46:01 GMT</pubDate>
+    <summary>今回紹介するのは、Ordinastieさん制作の「MalisisDoors」です。
+ 6種のドアが追加され、自分だけのオリジナルドアも作れます。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/40560860-2</guid>
+    <title>シープタウンにモダン&amp;ナチュラルな拠点を建てる[2]</title>
+    <link>http://localhost:3000/40560860-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:46:01 GMT</pubDate>
+    <summary>前回の記事で、シープタウンに町長の拠点が着工されました。その続きです。
+ 片方の棟は土に埋まるような配置になるのですが、土の整地がとても面倒なので、ある秘密兵器を使います。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/40772419-2</guid>
+    <title>シープタウンにモダン&amp;ナチュラルな拠点を建てる[4]（おまけ付き）</title>
+    <link>http://localhost:3000/40772419-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:46:00 GMT</pubDate>
+    <summary>最初に言っておきます、今回も完成しません。
+ 前回の記事、前々回の記事で触れた主人の部屋に板ガラスを設置。
+ 一時的にOptifineの設定をいじってみたら違和感ありすぎてすぐやめました。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/40805228-2</guid>
+    <title>【MOD紹介】自分だけのダンジョン/ショップを作って生成させよう「GenCreator」</title>
+    <link>http://localhost:3000/40805228-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:46:00 GMT</pubDate>
+    <summary>今回紹介するMODは、Vazkiiさん制作の「GenCreator」です。
+ スポーン部屋や魔女の小屋など、ダンジョンや生成物を自分で作りたいと思いませんか?
+ このMODならどんなダンジョンだって自分で作って生成も思い通りにできます。
+ ダンジョンを共有して友達を驚かせよう!</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/40674970-2</guid>
+    <title>【進捗とろとろ】シープタウンにモダン&amp;ナチュラルな拠点を建てる[3]</title>
+    <link>http://localhost:3000/40674970-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:58 GMT</pubDate>
+    <summary>前回の記事で、大体の骨組みを作り終えました。今回は細かいディティールと壁を作る作業です。 本当に1.8やらなんたらで忙しくって、Part3まで来ちゃいました。 果たして完成するのか!?</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38914302-2</guid>
+    <title>TTの真下に潜む廃坑を探検 part1 ～いざ、廃坑へ潜入！～</title>
+    <link>http://localhost:3000/38914302-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:58 GMT</pubDate>
+    <summary>『TTの効率を上げるべく、湧き潰しったら湧き潰し』で地下渓谷と洞窟の軽い湧き潰しをしました。その後、TTの効率は良くなったのですが、やはり参考にさせて頂いたTTの半分ほどしか効率が良くありません。
+ なので、あの時湧き潰ししきれなかった渓谷の向こうを探索します。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/40576974-2</guid>
+    <title>【MOD紹介】天空の神殿からアルプスへ行こう（少女は居ません）「The Alps Mod」</title>
+    <link>http://localhost:3000/40576974-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:58 GMT</pubDate>
+    <summary>今回紹介するMODは、unpause_itさん制作の「The Alps Mod」です。
+ 天空に現れる神殿から、新ディメンション「Alps（アルプス）」へ行くことができます。
+ そこには絶景とお宝が盛り沢山…!!</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/40484914-2</guid>
+    <title>【MOD紹介】何でも自由に上昇/降下させるエレベーターを追加「Moving Box Mod」</title>
+    <link>http://localhost:3000/40484914-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:56 GMT</pubDate>
+    <summary>今回紹介するのは、Sumさん制作の「Moving Box Mod」です。
+ エンティティを何でも上昇/下降させるブロックを追加します。
+ 使い方次第でエレベーターにも殺戮兵器にもなります、ご注意!!</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/40532156-2</guid>
+    <title>シープタウンにモダン&amp;ナチュラルな拠点を建てる[1]</title>
+    <link>http://localhost:3000/40532156-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:56 GMT</pubDate>
+    <summary>前回の記事で、新たな街「シープタウン」に橋やら道やらを整備しました。
+ 今回はあの橋の向こうの小高い丘に拠点を建てます。 立派でいてモダンな建築にします。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/40500410-2</guid>
+    <title>新たな街「シープタウン」開発記 part1 橋と畑の整備。</title>
+    <link>http://localhost:3000/40500410-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:56 GMT</pubDate>
+    <summary>久々napoan日記となります。長らく更新を停止してしまい、申し訳ありません。いきなりですがここはどこでしょう？  正解は、『拠点から北西のタイガへ道を整備する[1]』で通りかかった羊牧場の近くです。この周辺一帯を「シー… 続きを読む 新たな街「シープタウン」開発記 part1 橋と畑の整備。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38910737-2</guid>
+    <title>拠点から北西のタイガへ道を整備する[1]</title>
+    <link>http://localhost:3000/38910737-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:55 GMT</pubDate>
+    <summary>この間着工した「ロッジ松川」と拠点の間には、相当な距離があります。
+ 拠点から西へ道が全くない、というかこれまで道を整備したことなんて無いので、道を作ります。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/37125701-2</guid>
+    <title>テクスチャパック（リソースパック）紹介！超リアルなおすすめ三本立て！村人こっち見んな</title>
+    <link>http://localhost:3000/37125701-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:55 GMT</pubDate>
+    <summary>今回、初めてテクスチャパックの紹介をします！
+ 第一回となる今回は！超リアルなテクスチャを3つ紹介します！
+ それぞれのテクスチャを、観点別に紹介していきます！
+ どうぞ最後まで読んで、お気に入りのテクスチャを見つけてください！ ダウンロードあり！</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38663538-2</guid>
+    <title>【MOD紹介】旅立とう、スーパーリアルバイ王蟲へ「Enhanced Biomes」</title>
+    <link>http://localhost:3000/38663538-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:54 GMT</pubDate>
+    <summary>今回紹介するのは、SMEZ1234さん制作の「Enhanced Biomes」です。
+ 1.7でバイオームが追加されましたが、このMODではさらにリアル志向のバイ王蟲を追加します。全部で87種類もあるそうですよ。大冒険の始まりだ！</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38821756-2</guid>
+    <title>羊牧場の北にロッジ「松川」を建てる [1]</title>
+    <link>http://localhost:3000/38821756-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:54 GMT</pubDate>
+    <summary>ここは、拠点の西の山岳の向こう、タイガの近くの土地です。
+ だいぶ前に松の植林場を作ろうとして整地しましたが、松なんてどうでも良くなって結局放置されてました。
+ ふと思いついたので、ここに別荘代わりに民宿を建てます。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38861610-2</guid>
+    <title>【MOD紹介】スクショは4Kの時代へ/ジオラマ風スクショを撮れる「Mineshot」</title>
+    <link>http://localhost:3000/38861610-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:54 GMT</pubDate>
+    <summary>今回紹介するのは、BarracudaATAさん制作の「Mineshot」です。
+ いつものスクショの4倍の解像度の「4K」スクショが撮れます。
+ 鳥瞰図のようなダイナミックスクショを撮る便利機能も。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38682436-2</guid>
+    <title>TTの効率を上げるべく、湧き潰しったら湧き潰し</title>
+    <link>http://localhost:3000/38682436-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:53 GMT</pubDate>
+    <summary>時はさかのぼり、4月1日の村人デーです。
+ 前々から気になってたんですが、TTの効率が悪すぎます。10分待って10レベル上がるくらいです。分かりやすい動画を参考に作って、もう半年が経とうとしています。なので今回は湧き潰しを徹底的にします。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38768454-2</guid>
+    <title>【MOD紹介】中井貴一も大喜び！「みんなが幸せになれるミキプルーンMOD」</title>
+    <link>http://localhost:3000/38768454-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:53 GMT</pubDate>
+    <summary>今回紹介するのは、すいーとはーとさん制作の「みんなが幸せになれるミキプルーンMOD」です。ミキプルーン、食べたことありますか？マイクラで食べれば、幸せになれるんです。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38609878-2</guid>
+    <title>ネザーリベンジ！ついにネザー砦を発見！</title>
+    <link>http://localhost:3000/38609878-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:53 GMT</pubDate>
+    <summary>この間の『ネザー拠点をこしらえる！だがマグマという大きな壁・・・・』で、ネザーの恐ろしさを知り、少しトラウマになりかけましたが、今回やっとネザー冒険リベンジです。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38716222-2</guid>
+    <title>東のジャングルの向こうの世界を冒険 part2</title>
+    <link>http://localhost:3000/38716222-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:52 GMT</pubDate>
+    <summary>前回の続きからです。ここは拠点のはるか南東、海を越えた先のサバンナです。
+ サバイバルでサバンナ初上陸ということもあってなかなか足が動きませんが、サバンナ村を期待して進んでいきます。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38512887-2</guid>
+    <title>ケイブスパイダー経験値トラップを作る[2]</title>
+    <link>http://localhost:3000/38512887-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:52 GMT</pubDate>
+    <summary>前回の記事で、ケイブスパイダー経験値トラップのスポーン部屋部分を作りました。
+ 今回は処理部分を作ります。
+ スポーン部屋の溝から流された毒グモは、高さ1ブロックの水路を通り、処理部分に集められます。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38548275-2</guid>
+    <title>【MOD紹介】余りまくる骨を装備にしちゃえ！「Skeleton Armor MOD」</title>
+    <link>http://localhost:3000/38548275-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:50 GMT</pubDate>
+    <summary>今回紹介するのは、SuperJenBotさん制作の「Skeleton Armor MOD」です。
+ 余りまくる、スケさんの骨。これをうまく使いましょう！</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38628858-2</guid>
+    <title>東のジャングルの向こうの世界を冒険 part1</title>
+    <link>http://localhost:3000/38628858-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:50 GMT</pubDate>
+    <summary>前回の冒険で、 海を越え、山を越え、ついに村を発見しましたが、教会や鍛冶屋が無くて残念だったので、欲張りは東も冒険して村を探すことにしました。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38019693-2</guid>
+    <title>西へ大冒険 part3 ～村人のヘソクリ～</title>
+    <link>http://localhost:3000/38019693-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:49 GMT</pubDate>
+    <summary>前回の冒険で初めて生きた村を発見しました。村の周囲を歩きまわってたら、いろいろなものを発見しました。西へ大冒険シリーズ最終回。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38099683-2</guid>
+    <title>エンチャントハウスを建てる[2]</title>
+    <link>http://localhost:3000/38099683-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:48 GMT</pubDate>
+    <summary>ここは拠点の横のエンチャントハウス。『エンチャントハウスを建てる[1]』で1階のエンチャント部屋を作ったので、今回は2階~3階です。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38498324-2</guid>
+    <title>【MOD紹介】可愛いゾンビ!可愛いゾンビ!ヘイ!「ゾンビガールMOD」</title>
+    <link>http://localhost:3000/38498324-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:48 GMT</pubDate>
+    <summary>今回紹介するのは、 メッかにさん制作の「ゾンビガールMOD」です。
+ 女の子だってゾンビになっちゃう！　　ですが・・・・・・・</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38512603-2</guid>
+    <title>ケイブスパイダー経験値トラップを作る[1]</title>
+    <link>http://localhost:3000/38512603-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:48 GMT</pubDate>
+    <summary>この間、『スケルトン経験値トラップを作る』でスケさんトラップを作りました。
+ 次はケイブスパイダーの経験値トラップを作ります。
+ 拠点の北、整地した部分の地下から怪しげな声が聞こえるので、掘ってみます。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38400091-2</guid>
+    <title>シルクタッチが出た！氷を採取＆TTに埋め込む</title>
+    <link>http://localhost:3000/38400091-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:48 GMT</pubDate>
+    <summary>なんと念願のシルクタッチが出ました。効率強化と耐久力もついていて、大満足です。
+ 『【経験値/素材】トラップタワー1号を建てる[3]』で、TTのために氷が必要と言いましたね。
+ 氷を採取しに行きます。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38423852-2</guid>
+    <title>ネザー拠点をこしらえる！だがマグマという大きな壁・・・・</title>
+    <link>http://localhost:3000/38423852-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:48 GMT</pubDate>
+    <summary>『ネザーに初潜入！～更なる深みへ～』で、ネザーに進攻しましたが、ゲート周りが無防備な状態で、あったカフェレストランに爆撃されまくりです。
+ なので、まずは拠点作りです。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38309380-2</guid>
+    <title>【MOD紹介】時間を操れ、マトリックス風に！「Time Control MOD」</title>
+    <link>http://localhost:3000/38309380-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:47 GMT</pubDate>
+    <summary>今回紹介するのは、grim3212さん制作の「Time Control」です。
+ かなり時間の掛かる、または時間が短縮できるMODです。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/37688781-2</guid>
+    <title>西へ大冒険 Part1 ～これが1.7の新世界じゃ！～</title>
+    <link>http://localhost:3000/37688781-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:47 GMT</pubDate>
+    <summary>Minecraftカテゴリランキング4位ありがとうございます！皆さんのおかげで、最下位からついにここまでやって来られました！という訳で、今回は大冒険に出かけますよ！1.7の新世界へ！</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38269970-2</guid>
+    <title>西の平原に羊牧場を作る[1]</title>
+    <link>http://localhost:3000/38269970-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:46 GMT</pubDate>
+    <summary>拠点の西側には平原があります。かなり平らなので、ここになにか建てようと前々から考えてました。今回は羊の牧場を作ります。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38176145-2</guid>
+    <title>秘技！風車型ブランチマイニングゥ！ part2</title>
+    <link>http://localhost:3000/38176145-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:46 GMT</pubDate>
+    <summary>『秘技！風車型ブランチマイニングゥ！ part1』で、風車型改め井の字ブランチマイニングをはじめました。二周目で早速ダイヤ発見。やはり効率いいですよ。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38244700-2</guid>
+    <title>気が付くと、そこは奈落の底だった　～セーブデータがぶっ壊れた～</title>
+    <link>http://localhost:3000/38244700-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:46 GMT</pubDate>
+    <summary>皆さん、ここがどこか分かりますか？私も最初はわかりませんでした。『秘技！風車型ブランチマイニングゥ。 part2』で採掘をしている途中、やべぇ！もう寝ないと！・・・と思ってパソコンを強制終了しました。そして次の日、ログインしたら目の前が真っ暗でした。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38156378-2</guid>
+    <title>【MOD紹介】全バイオームでイチャイチャの予感「MO&#039; VILLAGES」</title>
+    <link>http://localhost:3000/38156378-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:45 GMT</pubDate>
+    <summary>今回紹介するのは、Pigs_FTWさん制作の「MO’ VILLAGES」です。どこでも、村が付いてくる・・・・このMODを導入すると、ほぼ全てのバイオームに村が生成されるようになります。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/37942287-2</guid>
+    <title>【MOD紹介】一生寝ていたらどうなるのか「寝たきりベッドMOD」</title>
+    <link>http://localhost:3000/37942287-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:45 GMT</pubDate>
+    <summary>今回紹介するMODは、sinkuuさん制作の「Netakiri Bed」です。 皆さん、忙しい毎日から開放されて、ずっと寝て居られたら良いと思いませんか？ 永遠に眠り続けるのです…</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38033944-2</guid>
+    <title>村人の声を聞けるリソースパックを紹介！エイプリルフールよ永遠に！</title>
+    <link>http://localhost:3000/38033944-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:44 GMT</pubDate>
+    <summary>エイプリルフールはもう終わってしまいました。でも！あの村人の声はまだ聞けるんです！
+ 今回のエイプリルフールの音声を収録したリソースパックを紹介します！</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/38134601-2</guid>
+    <title>秘技！風車型ブランチマイニングゥ！part1</title>
+    <link>http://localhost:3000/38134601-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:44 GMT</pubDate>
+    <summary>良いエンチャントが出て、ちょっと興奮気味です。折角なので、この間動画を見て知った「風車型ブランチマイニング」をやってみます。どれだけ採れるかな～？</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/37723371-2</guid>
+    <title>【マインクラフトPE】新バージョン0.9.0 アップデート内容まとめ！無限の世界へ！洞窟が追加！村人なども追加！</title>
+    <link>http://localhost:3000/37723371-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:42 GMT</pubDate>
+    <summary>Minecraft PocketEdition 0.9.0マイクラPE 0.9.0が来ました! アップデート予定リリース日 =7月10日 午前7時以降　正式決定 ついにやって来たアップデート「0.9.0」の内容をまとめま… 続きを読む 【マインクラフトPE】新バージョン0.9.0 アップデート内容まとめ！無限の世界へ！洞窟が追加！村人なども追加！</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/37976968-2</guid>
+    <title>【MOD紹介】クラフターよ、これが&quot;鉄道&quot;だ！「RealTrainMod」</title>
+    <link>http://localhost:3000/37976968-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:42 GMT</pubDate>
+    <summary>今回紹介するのは、ngt5479さん制作の「RealTrainMod」です。キハ600!223系!おなじみの電車でGO!踏切や信号もありますよ！</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/37903717-2</guid>
+    <title>砂漠の大型植林場を作る[2]</title>
+    <link>http://localhost:3000/37903717-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:42 GMT</pubDate>
+    <summary>前回、植林場の外枠を作りました。それだけでは木がボウボウに生えるので、
+ 上にブロックを設置して巨木が映えるのを防ぎます。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/36887784-2</guid>
+    <title>走る！動く！落ちる！おすすめ配布ワールド3連発！【配布ワールド、ダンジョン紹介】</title>
+    <link>http://localhost:3000/36887784-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:40 GMT</pubDate>
+    <summary>走ったり！落ちたり！仕掛けを動かしたり！匠トロッコと戦ったり！
+ 楽しい配布ワールドを3つ紹介します！ダンジョン10種詰め合わせ！スカイブロックならぬスカイグリッド！超大型巨人・・・・じゃない！</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/37823841-2</guid>
+    <title>【MOD紹介】矢にカメラマンを縛り付けてカッコいいスクショを撮ろう！「Arrow Camera」</title>
+    <link>http://localhost:3000/37823841-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:40 GMT</pubDate>
+    <summary>かっこいいスクショを撮るにはどうすればいいの？そうだ、矢にカメラマンを縛り付ければ・・・！今回紹介するのは、ShadowBlade50さん制作の「Arrow Camera」です。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/37767836-2</guid>
+    <title>【MOD紹介】あなたのワールドを丁寧に個包装しました「Cube World」</title>
+    <link>http://localhost:3000/37767836-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:40 GMT</pubDate>
+    <summary>世界が個包装されるMOD「Cube World」を紹介します。なんでも包まれたこの世界で生きていこう！</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/37862270-2</guid>
+    <title>西へ大冒険 part2 ～ついに生きた村を発見！～</title>
+    <link>http://localhost:3000/37862270-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:40 GMT</pubDate>
+    <summary>前回の冒険、いかがでしたか。そおれ。とドボンした後、無事上陸し、1.7の神秘的なメガタイガを眺めているところです。 実はこの冒険の目的は、あの死んだ村ではなく、生きた村を探すことです。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/37357612-2</guid>
+    <title>掘って掘って掘りまくれ！！ブランチマイニングゥ。</title>
+    <link>http://localhost:3000/37357612-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:39 GMT</pubDate>
+    <summary>久しぶりの採掘、一丁行きますか！今回はどれだけ取れるかな～♪
+ （今回から画像が大きくなっております。読み込みが遅いかもしれません。）</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/37167848-2</guid>
+    <title>【MOD紹介】自分がもう一人いればいいのに(GTA風MOD)「Sync MOD」</title>
+    <link>http://localhost:3000/37167848-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:39 GMT</pubDate>
+    <summary>今回紹介するのは、iChun`sさん制作の「Sync」です。 自分がもう一人いればいいのにと思ったことはありませんか？もう一人、作れるんですよ。マイクラなら。   <!– ——&… 続きを読む 【MOD紹介】自分がもう一人いればいいのに(GTA風MOD)「Sync MOD」</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/37553953-2</guid>
+    <title>ネザーに初潜入！～更なる深みへ～</title>
+    <link>http://localhost:3000/37553953-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:38 GMT</pubDate>
+    <summary>さあ、前回の採掘でダイヤ装備も揃えたことだし、（足は鉄だけど）
+ ネザーに行ってきます！弓をエンチャント（射撃ダメージ増加2）して、いざ出発！</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/37672384-2</guid>
+    <title>【MOD紹介】カオスとはまさにこの事。混沌とした世界を創ろう！「Pandora&#039;s Box」</title>
+    <link>http://localhost:3000/37672384-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:38 GMT</pubDate>
+    <summary>今回のMODは危険です。取り扱いには十分注意してください。セーブデータのバックアップも忘れずに。今回紹介するのは、「Pandora’s Box」です。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/37427805-2</guid>
+    <title>砂漠の大型植林場を作る[1]</title>
+    <link>http://localhost:3000/37427805-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:38 GMT</pubDate>
+    <summary>拠点の東に広がる砂漠を整地して、大きな植林場を建てていきます。シリーズ一回目。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/37272766-2</guid>
+    <title>スケルトン経験値トラップを作る</title>
+    <link>http://localhost:3000/37272766-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:37 GMT</pubDate>
+    <summary>前回、スケさんスポナーを発見しました。それを丸石でとりあえず覆います。そして、経験値トラップを作ります。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/35563208-2</guid>
+    <title>これまでのマイクラ生活紹介！part5【サバイバル生活記】</title>
+    <link>http://localhost:3000/35563208-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:36 GMT</pubDate>
+    <summary>前回、家の3、4階を建てました。今回は採掘です。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/37188511-2</guid>
+    <title>ついにスケルトンスポナーを発見</title>
+    <link>http://localhost:3000/37188511-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:36 GMT</pubDate>
+    <summary>は今、攻撃手段が剣しかありません。矢を持ってないので、どうやって矢を集めようかなと考えながら採掘していました。すると！ついに発見です！</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/36997998-2</guid>
+    <title>整地の続きと、橋を架ける</title>
+    <link>http://localhost:3000/36997998-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:34 GMT</pubDate>
+    <summary>前回、めまいのせいで整地を中断しましたが、再開しました。
+ それと、北への橋をかけます。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/37165266-2</guid>
+    <title>西の山岳に別荘を建てる[1]</title>
+    <link>http://localhost:3000/37165266-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:34 GMT</pubDate>
+    <summary>久々napoan日記です。 体調を崩してしまい、今後は日記ばかりになるかもしれません。早めの回復を目指しています。体調が良くなったら、MOD紹介をしていく予定です。 さて、前回は橋を架けました。今回は冒険＆建築です。 拠… 続きを読む 西の山岳に別荘を建てる[1]</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/37039136-2</guid>
+    <title>作った覚えのない謎の小屋を探す</title>
+    <link>http://localhost:3000/37039136-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:34 GMT</pubDate>
+    <summary>この間、MCMAPで遊んでいたら、サバイバルのワールドでこんなものを発見しました。
+ これはなんだろう？さあ、冒険だ！</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/36907955-2</guid>
+    <title>【MOD紹介】立春寒波により、ジャングルに雪が降った！「AllSnow Mod」</title>
+    <link>http://localhost:3000/36907955-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:32 GMT</pubDate>
+    <summary>【MOD紹介】気象に関するニュースです。大スクープ！
+ ジャングルに、観測史上初の雪が降りました。
+ 現場の村人さん！</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/36662546-2</guid>
+    <title>エンチャントハウスを建てる[1]</title>
+    <link>http://localhost:3000/36662546-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:32 GMT</pubDate>
+    <summary>前回の記事で、TTを完成させるために氷が必要、そして氷を手に入れるためにエンチャントの設備を作らねばということを書きました。 今回エンチャントハウスを建て始めます。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/36995974-2</guid>
+    <title>【MOD紹介】もらったチョコは建材にしてしまえ！「Chocolate mod」</title>
+    <link>http://localhost:3000/36995974-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:32 GMT</pubDate>
+    <summary>「Chocolate MOD」の紹介です。今日はバレンタイン！はチョコを貰うはずが、何故かジャングルへ向かいます。そこで作るものとは・・・・・</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/36862291-2</guid>
+    <title>家の北を整地するはずだった</title>
+    <link>http://localhost:3000/36862291-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:32 GMT</pubDate>
+    <summary>拠点の北は、森が広がっています。将来、ここを街にする予定なので、整地していきます。    高さはこのくらいでいいかな。  オラァオラァ!  ——10分後—–  こんなに綺麗… 続きを読む 家の北を整地するはずだった</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/36086441-2</guid>
+    <title>あけましておめでとうございます</title>
+    <link>http://localhost:3000/36086441-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:31 GMT</pubDate>
+    <summary>明けましておめでとうございます。
+ 今年も当ブログをよろしくお願いします。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/2018-upcoming-updates</guid>
+    <title>パンダ等はBEで先行配信し、JEでは1.14にまとめられることが判明</title>
+    <link>http://localhost:3000/2018-upcoming-updates</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:30 GMT</pubDate>
+    <summary>MINECON Earth 2018以来混乱が続いてきた「Java版の1.14はどうなるのか」という件ですが、Dinnerbone氏が公式に「1.14に村とピレッジアップデートの内容が含まれる」ことを発表しました。BEではホリデーアップデート(パンダなど)がまず配信され、来年に村とピレッジアップデートが配信されます。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/36325967-2</guid>
+    <title>【経験値/素材】トラップタワー1号を建てる[3]</title>
+    <link>http://localhost:3000/36325967-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:30 GMT</pubDate>
+    <summary>トラップタワーが完成しました！でもなにか調子がおかしい。1分で腐肉3個。湧き層に不備があったのかな？</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/36814689-2</guid>
+    <title>ついにピラミッドォを発見</title>
+    <link>http://localhost:3000/36814689-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:30 GMT</pubDate>
+    <summary>今回は探索です。拠点の南には、広い砂漠が広がっています。こんなに広いのだから、ピラミッドもあるはず。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/36839671-2</guid>
+    <title>【MOD紹介】今日は節分！鬼は俺！福も俺！「Angels&amp;DemonsMOD」</title>
+    <link>http://localhost:3000/36839671-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:30 GMT</pubDate>
+    <summary>節分MODなんて無かったのでせめて鬼だけでも・・・
+ 今回紹介するのは、monkeyfunk26氏制作の 「Angels&DemonsMod」です。
+ このMODでは、名前の通り天使や鬼が追加される・・・・
+ わけではありません。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/36155041-2</guid>
+    <title>植林場を作る</title>
+    <link>http://localhost:3000/36155041-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:28 GMT</pubDate>
+    <summary>深刻な素材不足　・・・と前々から言ってましたが、一番深刻なのは木材不足です。
+ 森は北に大きく広がっていますが、木を採りに行くのが怖いんです。
+ なので、植林場を作ります。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/36251908-2</guid>
+    <title>【MOD紹介】ホップスティックジャンピング～♪「Pogo Stick」</title>
+    <link>http://localhost:3000/36251908-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:28 GMT</pubDate>
+    <summary>今回紹介するのは、benjibobs氏制作の「Pogo Stick」です。ホップスティックジャンピング～♪</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/36229893-2</guid>
+    <title>ネザーゲート、オープン！</title>
+    <link>http://localhost:3000/36229893-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:28 GMT</pubDate>
+    <summary>には夢がある・・・・・・
+ あの黒い恐ろしい魔獣、エンダードラゴンを征伐し、
+ この帝国の平和を取り戻すのダ・・・・・・ッ！</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/33771731-2</guid>
+    <title>これまでのマイクラ生活紹介！part3【サバイバル生活記】</title>
+    <link>http://localhost:3000/33771731-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:26 GMT</pubDate>
     <summary>植林場がもっさりなってました。地下拠点作りスタートです。
-食糧難はおさらばです。
-</summary>
+ 食糧難はおさらばです。</summary>
 </item>
     
 <item>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/4</guid>
-    <title>これまでのマイクラ生活紹介！part4【サバイバル生活記】 | ナポアンのマイクラ日記</title>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/4</guid>
-    <pubDate>Tue, 02 Mar 2021 07:49:03 GMT</pubDate>
+    <guid>http://localhost:3000/33740384-2</guid>
+    <title>これまでのマイクラ生活紹介！part2【サバイバル日記】</title>
+    <link>http://localhost:3000/33740384-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:26 GMT</pubDate>
+    <summary>採掘に飽きて、ちょっと探索。
+ 1.0から1.5へのバージョンの壁ですね。
+ これで何かできそうです。</summary>
+</item>
+    
+<item>
+    <guid>http://localhost:3000/35484205-2</guid>
+    <title>これまでのマイクラ生活紹介！part4【サバイバル生活記】</title>
+    <link>http://localhost:3000/35484205-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:26 GMT</pubDate>
     <summary>早いものでもう12月です。
-長い間更新が遅れてしまい、申し訳ございませんでした。
-「次回へ続く」と書いたからには、続けます。マイクラ生活記です。
-</summary>
+ 長い間更新が遅れてしまい、申し訳ございませんでした。
+ 「次回へ続く」と書いたからには、続けます。マイクラ生活記です。</summary>
 </item>
     
 <item>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/5</guid>
-    <title>これまでのマイクラ生活紹介！part5【サバイバル生活記】 | ナポアンのマイクラ日記</title>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/5</guid>
-    <pubDate>Tue, 02 Mar 2021 07:55:07 GMT</pubDate>
-    <summary>前回、家の3、4階を建てました。今回は採掘です。
-</summary>
+    <guid>http://localhost:3000/33644258-2</guid>
+    <title>【超重要】URLを変更します！</title>
+    <link>http://localhost:3000/33644258-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:24 GMT</pubDate>
+    <summary>ライブドアブログに、「blog.jp」のサブドメインが追加されましたね。早速使おうと思います。新URLは/です。変更するとどうなるか、よくわかりませんが、念のため上記新URLをブックマークしていただけると幸いです。 これ… 続きを読む 【超重要】URLを変更します！</summary>
 </item>
     
 <item>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/6</guid>
-    <title>山岳に城を建てていく[1] | ナポアンのマイクラ日記</title>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/6</guid>
-    <pubDate>Tue, 02 Mar 2021 08:07:04 GMT</pubDate>
-    <summary>迷子になった時のために、この地域のシンボルを建てます。
-何を建てるかというと・・・・
-</summary>
+    <guid>http://localhost:3000/2016-april-netabarashi</guid>
+    <title>エイプリルフール2016 (bySxxxxxR) のネタばらし。模様入りベッドなどの仕組みを解説します</title>
+    <link>http://localhost:3000/2016-april-netabarashi</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:24 GMT</pubDate>
+    <summary>皆様お久しぶりです、です。今年のエイプリルフール企画は多忙によりネタばらしが大変遅くなってしまいました。多大な混乱を招いてしまったことお詫びします。この記事では企画の概要の説明と、仕掛けの種明かしをします。果たして縦ハーフブロックや模様入りのベッドの正体とは。あの悪夢のような仕様変更は如何にして具現化されたのでしょうか。そして何よりこの企画の仕掛人とは…</summary>
 </item>
     
 <item>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/7</guid>
-    <title>【経験値/素材】トラップタワー1号を建てる[1] | ナポアンのマイクラ日記</title>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/7</guid>
-    <pubDate>Tue, 02 Mar 2021 08:15:43 GMT</pubDate>
-    <summary>私、パイナポはビビリです。洞窟探索には滅多に行きません。
-なので助さんがドロップする矢や、匠が落とす火薬などが一向に集まりません。
-という事で、トラップタワーを建てます。
-</summary>
+    <guid>http://localhost:3000/33712311-2</guid>
+    <title>これまでのマイクラ生活紹介！part1【サバイバル日記】</title>
+    <link>http://localhost:3000/33712311-2</link>
+    <pubDate>Sun, 07 Mar 2021 11:45:24 GMT</pubDate>
+    <summary>さあ！
+ 始まりましたこのブログの本編！
+ Minecraftサバイバル生活記です！</summary>
 </item>
-    
-<item>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/8</guid>
-    <title>拠点周辺を探索【1】 | ナポアンのマイクラ日記</title>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/8</guid>
-    <pubDate>Tue, 02 Mar 2021 08:17:24 GMT</pubDate>
-    <summary>拠点周辺を探検してみました。やっと1.7にバージョンアップです。
-</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/9</guid>
-    <title>【経験値/素材】トラップタワー1号を建てる[2] | ナポアンのマイクラ日記</title>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/9</guid>
-    <pubDate>Tue, 02 Mar 2021 08:20:10 GMT</pubDate>
-    <summary>前回、沸き層の1階を建てました。
-それが機能するように調整するのと、2,3階を建てます。
-</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/10</guid>
-    <title>拠点周辺を探索【2】 | ナポアンのマイクラ日記</title>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/10</guid>
-    <pubDate>Tue, 02 Mar 2021 08:26:23 GMT</pubDate>
-    <summary>前回の探索の続き。地図の左半分を埋めます。
-</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/11</guid>
-    <title>拠点周辺を探索【3】 | ナポアンのマイクラ日記</title>
-    <guid>http://localhost:3000/books/napoan-maikura-nikki/chapters/11</guid>
-    <pubDate>Tue, 02 Mar 2021 08:28:13 GMT</pubDate>
-    <summary>探索の続きです。ジャングル怖し。
-フラグはいつか回収しますよ、いつか・・・
-</summary>
-</item>
-    
-    
-<item>
-    <guid>http://localhost:3000/books/obs-iphone-mac</guid>
-    <title>OBSでiPhoneの画面を配信する方法</title>
-    <link>http://localhost:3000/books/obs-iphone-mac</link>
-    <pubDate>Sun, 28 Feb 2021 23:34:43 GMT</pubDate>
-    <summary>近頃、YouTubeでの生放送が大変賑わっていますね。この記事ではiPhoneのゲーム画面をMacを使って配信する方法を紹介します</summary>
-</item>
-
-<item>
-    <guid>http://localhost:3000/books/obs-iphone-mac/chapters/1</guid>
-    <title>必要なMacのスペック | OBSでiPhoneの画面を配信する方法</title>
-    <guid>http://localhost:3000/books/obs-iphone-mac/chapters/1</guid>
-    <pubDate>Mon, 01 Mar 2021 00:45:44 GMT</pubDate>
-    <summary>必要なMacのスペックです。</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/obs-iphone-mac/chapters/2</guid>
-    <title>導入方法 | OBSでiPhoneの画面を配信する方法</title>
-    <guid>http://localhost:3000/books/obs-iphone-mac/chapters/2</guid>
-    <pubDate>Sun, 28 Feb 2021 23:29:37 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/obs-iphone-mac/chapters/3</guid>
-    <title>OBSの初期設定 | OBSでiPhoneの画面を配信する方法</title>
-    <guid>http://localhost:3000/books/obs-iphone-mac/chapters/3</guid>
-    <pubDate>Sun, 28 Feb 2021 23:30:14 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/obs-iphone-mac/chapters/4</guid>
-    <title>配信の終了と開始 | OBSでiPhoneの画面を配信する方法</title>
-    <guid>http://localhost:3000/books/obs-iphone-mac/chapters/4</guid>
-    <pubDate>Sun, 28 Feb 2021 23:30:58 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-    
-<item>
-    <guid>http://localhost:3000/books/hytale-faq-matome</guid>
-    <title>Hytale: 対応ゲーム機・MOD・対象年齢など、よくある質問まとめ</title>
-    <link>http://localhost:3000/books/hytale-faq-matome</link>
-    <pubDate>Sun, 28 Feb 2021 13:02:45 GMT</pubDate>
-    <summary>2021年リリース予定の「Hytale(ハイテール)」について、よくある質問とその回答をまとめた。開発中のため未確定な部分も多いが、プレイスタイルを検討する手がかりになれば幸いだ。</summary>
-</item>
-
-<item>
-    <guid>http://localhost:3000/books/hytale-faq-matome/chapters/1</guid>
-    <title>ゲーム内容に関する質問 | Hytale: 対応ゲーム機・MOD・対象年齢など、よくある質問まとめ</title>
-    <guid>http://localhost:3000/books/hytale-faq-matome/chapters/1</guid>
-    <pubDate>Sun, 28 Feb 2021 13:01:15 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/hytale-faq-matome/chapters/2</guid>
-    <title>技術的な質問 | Hytale: 対応ゲーム機・MOD・対象年齢など、よくある質問まとめ</title>
-    <guid>http://localhost:3000/books/hytale-faq-matome/chapters/2</guid>
-    <pubDate>Sun, 28 Feb 2021 13:02:08 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/hytale-faq-matome/chapters/3</guid>
-    <title>YouTuber/ブロガーなどに関する質問 | Hytale: 対応ゲーム機・MOD・対象年齢など、よくある質問まとめ</title>
-    <guid>http://localhost:3000/books/hytale-faq-matome/chapters/3</guid>
-    <pubDate>Sun, 28 Feb 2021 13:02:31 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-    
-<item>
-    <guid>http://localhost:3000/books/mcbe-fill-syntax-guide</guid>
-    <title>マインクラフトのfillコマンドを徹底解説</title>
-    <link>http://localhost:3000/books/mcbe-fill-syntax-guide</link>
-    <pubDate>Sun, 28 Feb 2021 12:37:59 GMT</pubDate>
-    <summary>悪用は厳禁だが、マインクラフトではどうしても「ブロックを一気に置きたい」という場面に遭遇する。そんな時に便利なのが「fill」コマンドだ。この記事では、スイッチやスマホの統合版Minecraftにおける「fillコマンド」の使い方を解説する。</summary>
-</item>
-
-<item>
-    <guid>http://localhost:3000/books/mcbe-fill-syntax-guide/chapters/1</guid>
-    <title>fillコマンドの構文 | マインクラフトのfillコマンドを徹底解説</title>
-    <guid>http://localhost:3000/books/mcbe-fill-syntax-guide/chapters/1</guid>
-    <pubDate>Sun, 28 Feb 2021 12:36:34 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/mcbe-fill-syntax-guide/chapters/2</guid>
-    <title>fillコマンドの使用例 | マインクラフトのfillコマンドを徹底解説</title>
-    <guid>http://localhost:3000/books/mcbe-fill-syntax-guide/chapters/2</guid>
-    <pubDate>Sun, 28 Feb 2021 12:37:04 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-    
-<item>
-    <guid>http://localhost:3000/books/privacy-policy</guid>
-    <title>プライバシーポリシー</title>
-    <link>http://localhost:3000/books/privacy-policy</link>
-    <pubDate>Sun, 28 Feb 2021 12:15:51 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-
-<item>
-    <guid>http://localhost:3000/books/privacy-policy/chapters/1</guid>
-    <title>Cookieについて | プライバシーポリシー</title>
-    <guid>http://localhost:3000/books/privacy-policy/chapters/1</guid>
-    <pubDate>Sun, 28 Feb 2021 12:15:40 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-    
-<item>
-    <guid>http://localhost:3000/books/eula</guid>
-    <title>利用規約 </title>
-    <link>http://localhost:3000/books/eula</link>
-    <pubDate>Sun, 28 Feb 2021 12:10:05 GMT</pubDate>
-    <summary>利用規約です。</summary>
-</item>
-
-<item>
-    <guid>http://localhost:3000/books/eula/chapters/1</guid>
-    <title>第1条〜第16条 | 利用規約 </title>
-    <guid>http://localhost:3000/books/eula/chapters/1</guid>
-    <pubDate>Sun, 28 Feb 2021 12:17:00 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-    
-<item>
-    <guid>http://localhost:3000/books/mc-console-history</guid>
-    <title>マインクラフトのゲーム機版が消えるまで</title>
-    <link>http://localhost:3000/books/mc-console-history</link>
-    <pubDate>Sun, 28 Feb 2021 10:08:05 GMT</pubDate>
-    <summary>マインクラフトはかつて、パソコンでしか遊べないゲームでした。しかし2011年にスマホ向けに「ポケットエディション」が配信。トイレの中で遊んでいるPVを覚えている人はいますか? まだ開発が始まったばかりですし、スマホの性能も今とは大違いですので、当時のPEの内容はPC版には遠く及びませんでした。</summary>
-</item>
-
-<item>
-    <guid>http://localhost:3000/books/mc-console-history/chapters/1</guid>
-    <title>マインクラフトはかつて、パソコンでしか遊べないゲームだった | マインクラフトのゲーム機版が消えるまで</title>
-    <guid>http://localhost:3000/books/mc-console-history/chapters/1</guid>
-    <pubDate>Sun, 28 Feb 2021 10:07:19 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/mc-console-history/chapters/2</guid>
-    <title>スマホ版をゲーム機で動かせばいいのでは…？ | マインクラフトのゲーム機版が消えるまで</title>
-    <guid>http://localhost:3000/books/mc-console-history/chapters/2</guid>
-    <pubDate>Sun, 28 Feb 2021 10:07:59 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-    
-<item>
-    <guid>http://localhost:3000/books/do-not-buy-win10-edition</guid>
-    <title>スタートメニューに最初からあるMinecraftでMODは使えません</title>
-    <link>http://localhost:3000/books/do-not-buy-win10-edition</link>
-    <pubDate>Sun, 28 Feb 2021 10:05:54 GMT</pubDate>
-    <summary>春から進学してパソコンを買ってもらうそこの君! 今のパソコンには最初からマイクラが入っているのは知っているかな? でもそれでMODは使えないよ!</summary>
-</item>
-
-<item>
-    <guid>http://localhost:3000/books/do-not-buy-win10-edition/chapters/1</guid>
-    <title>Windows10のスタートメニューにはマイクラが置いてある | スタートメニューに最初からあるMinecraftでMODは使えません</title>
-    <guid>http://localhost:3000/books/do-not-buy-win10-edition/chapters/1</guid>
-    <pubDate>Sun, 28 Feb 2021 10:04:22 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/do-not-buy-win10-edition/chapters/2</guid>
-    <title>「Java版」と「Windows10版」の違い | スタートメニューに最初からあるMinecraftでMODは使えません</title>
-    <guid>http://localhost:3000/books/do-not-buy-win10-edition/chapters/2</guid>
-    <pubDate>Sun, 28 Feb 2021 10:04:07 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/do-not-buy-win10-edition/chapters/3</guid>
-    <title>Windows10版を間違えて買う人が後を絶ちません | スタートメニューに最初からあるMinecraftでMODは使えません</title>
-    <guid>http://localhost:3000/books/do-not-buy-win10-edition/chapters/3</guid>
-    <pubDate>Sun, 28 Feb 2021 10:04:52 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-    
-<item>
-    <guid>http://localhost:3000/books/hikakin-finally-moved-to-bedrock</guid>
-    <title>ヒカキンがついにJava版をやめる。マイクラ実況は大きく変わるかもしれない</title>
-    <link>http://localhost:3000/books/hikakin-finally-moved-to-bedrock</link>
-    <pubDate>Sun, 28 Feb 2021 10:00:33 GMT</pubDate>
-    <summary>ついに「ヒカクラ2」が始まりました。当初はSuperDuperGraphicsPackのリリースを待っていたそうですが、時期がなかなか決まらないということで、結局彼はWindows10版を使うことになりました。そうです、Java版ではないのです。これはマイクラ実況界の大きな変化の始まりかもしれません。</summary>
-</item>
-
-<item>
-    <guid>http://localhost:3000/books/hikakin-finally-moved-to-bedrock/chapters/1</guid>
-    <title>ヒカキンさんが遊んでいるのは「Windows10版」 | ヒカキンがついにJava版をやめる。マイクラ実況は大きく変わるかもしれない</title>
-    <guid>http://localhost:3000/books/hikakin-finally-moved-to-bedrock/chapters/1</guid>
-    <pubDate>Sun, 28 Feb 2021 09:58:52 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/hikakin-finally-moved-to-bedrock/chapters/2</guid>
-    <title> でもWindows10版は買っちゃダメ！ | ヒカキンがついにJava版をやめる。マイクラ実況は大きく変わるかもしれない</title>
-    <guid>http://localhost:3000/books/hikakin-finally-moved-to-bedrock/chapters/2</guid>
-    <pubDate>Sun, 28 Feb 2021 09:59:27 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/hikakin-finally-moved-to-bedrock/chapters/3</guid>
-    <title>ついに超大物がBEに移行。マイクラ実況界が大きく変わるかもしれない | ヒカキンがついにJava版をやめる。マイクラ実況は大きく変わるかもしれない</title>
-    <guid>http://localhost:3000/books/hikakin-finally-moved-to-bedrock/chapters/3</guid>
-    <pubDate>Sun, 28 Feb 2021 09:59:47 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-    
-<item>
-    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide</guid>
-    <title>スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
-    <link>http://localhost:3000/books/bedrock-friend-multiplayer-guide</link>
-    <pubDate>Sun, 28 Feb 2021 09:41:26 GMT</pubDate>
-    <summary>スマホ・タブレット・Windows10・XboxOne・NintendoSwitchで配信中の統合版「Minecraft」では、遠く離れた友達とマルチプレイする機能が用意されています。この記事では、スマホ・タブレット・Windows10・XboxOne・Switchで『マイクロソフトアカウント』を作成してサインインし、友達を検索してフレンドに登録して、遠く離れた場所の間でマルチプレイをするまでの手順を分かりやすく解説します。</summary>
-</item>
-
-<item>
-    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/1</guid>
-    <title>この本は「統合版」向けに書いています。Switchでは新しい方のソフトを起動してください | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
-    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/1</guid>
-    <pubDate>Sat, 27 Feb 2021 11:01:29 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/2</guid>
-    <title>ステップ1. 『Xbox Liveアカウント(MSアカウント)』を作成してサインインしよう | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
-    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/2</guid>
-    <pubDate>Sat, 27 Feb 2021 08:14:04 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/3</guid>
-    <title>ステップ2. 自動生成されたプレイヤー名を、自分好みに変更しよう | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
-    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/3</guid>
-    <pubDate>Sat, 27 Feb 2021 08:14:39 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/4</guid>
-    <title>ステップ3.「ゲーマータグ」でユーザーを検索してフレンドに追加しよう | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
-    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/4</guid>
-    <pubDate>Sat, 27 Feb 2021 08:15:07 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/5</guid>
-    <title>ステップ4. ワールドのマルチプレイヤー設定を確認しよう | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
-    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/5</guid>
-    <pubDate>Sat, 27 Feb 2021 08:15:33 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/6</guid>
-    <title> ステップ5. フレンドを招待したり、メニュー画面から参加してもらおう | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
-    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/6</guid>
-    <pubDate>Sat, 27 Feb 2021 08:16:01 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/7</guid>
-    <title>プレイヤーごとの細かい権限の設定方法。OP権限を与えるには? | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
-    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/7</guid>
-    <pubDate>Sat, 27 Feb 2021 08:16:30 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
-<item>
-    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/8</guid>
-    <title>一緒に遊べる最大人数を設定するには | スマホとスイッチでマルチプレイ・フレンド追加・名前変更する方法 [Minecraft]</title>
-    <guid>http://localhost:3000/books/bedrock-friend-multiplayer-guide/chapters/8</guid>
-    <pubDate>Sat, 27 Feb 2021 08:16:57 GMT</pubDate>
-    <summary>説明文なし</summary>
-</item>
-    
     
     </channel>
 </rss>

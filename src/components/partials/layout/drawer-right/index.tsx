@@ -46,11 +46,7 @@ export default function DrawerRight({ children }: Props) {
           <DrawerContent>
             <DrawerCloseButton />
             <DrawerHeader mt={12} justifyContent="center">
-              <Box mb={8}>
-                <Center>
-                  <Logo fill={colorMode === "light" ? "#000" : "#fff"} />
-                </Center>
-              </Box>
+
 
               <Divider mb={8} />
 
@@ -59,8 +55,6 @@ export default function DrawerRight({ children }: Props) {
                   (<FaiconDiv icon={['fas', 'moon']} />) : (<FaiconDiv icon={['fas', 'sun']} />)}>
                   {colorMode === "light" ? "ダークモード" : "ライトモード"}
                 </Button>
-                <Button href="https://blog.pawaa.app" as={LinkChakra}>旧ブログ</Button>
-                <Button aria-label="教科の一覧を見る" href="/subjects" as={LinkChakra} colorScheme="blue">教科一覧</Button>
               </Stack>
 
               <SignIn />
@@ -70,7 +64,13 @@ export default function DrawerRight({ children }: Props) {
               {children}
             </DrawerBody>
             <DrawerFooter>
-
+              <Box>Powered by
+              <Box mb={8}>
+                  <Center>
+                    <Logo fill={colorMode === "light" ? "#000" : "#fff"} />
+                  </Center>
+                </Box>
+              </Box>
             </DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>

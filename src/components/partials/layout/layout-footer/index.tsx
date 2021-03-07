@@ -16,7 +16,7 @@ const LayoutFooter = () => {
 
       <Container>
         <Flex direction="column" justifyContent="center" alignItems="center">
-          <Box mb={2}>Brand-new way to study with books.</Box>
+          <Box mb={4}>Powered by</Box>
           <Box mb={4}><Logo fill="white" /></Box>
           <Box mb={4}>made with</Box>
 
