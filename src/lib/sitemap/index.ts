@@ -1,7 +1,6 @@
 import fs from "fs"
 
-import { Book } from '@/models/contentful/Book'
-import { BookChapter } from "@/models/contentful/BookChapter";
+import { Post } from '@/models/contentful/Post'
 
 const escapeString = (unsafe: string) => {
   return unsafe
@@ -12,44 +11,27 @@ const escapeString = (unsafe: string) => {
     .replace(/'/g, "&#039;");
 }
 
-const generateChapterItem = (book: Book, chapter: BookChapter, num: number): string => {
+const generatePostItem = (post: Post): string => {
   return (`
 <url>
-    <loc>${process.env.HTTPS_URL}/books/${book.slug}/chapters/${num + 1}</loc>
-    <title>${escapeString(chapter.title)} | ${book.title}</title>
-    <lastmod>${new Date(chapter.sys.publishedAt ?? '').toUTCString()}</lastmod>
+    <loc>${process.env.HTTPS_URL}/${post.slug}</loc>
+    <title>${escapeString(post.title)}</title>
+    <lastmod>${new Date(post.sys.publishedAt ?? '').toUTCString()}</lastmod>
 </url>
     `)
 }
 
-const generateBookItem = (book: Book): string => {
-  let chapters: string[] = []
-  if (book.chaptersCollection.items && book.chaptersCollection.items.length > 0) {
-    chapters = book.chaptersCollection.items.map(
-      (c: BookChapter, n: number) => generateChapterItem(book, c, n)
-    )
-  }
-  return (`
-<url>
-    <loc>${process.env.HTTPS_URL}/books/${book.slug}</loc>
-    <title>${escapeString(book.title)}</title>
-    <lastmod>${new Date(book.sys.publishedAt ?? '').toUTCString()}</lastmod>
-</url>
-${chapters.length > 0 && chapters.join('')}
-    `)
-}
 
-
-const generateSitemap = (books: Book[]): string => {
+const generateSitemap = (posts: Post[]): string => {
   return (`<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${books.map(generateBookItem).join('')}
+  ${posts.map(generatePostItem).join('')}
 </urlset>
     `)
 }
-const publishSitemap = async (books: Book[]) => {
+const publishSitemap = async (posts: Post[]) => {
   const PATH = './public/sitemap.xml'
-  const rss = generateSitemap(books)
+  const rss = generateSitemap(posts)
   fs.writeFileSync(PATH, rss)
 }
 

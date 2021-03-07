@@ -76,12 +76,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   })
 
   const backgroundImage = await loadImage(
-    path.resolve('public/canvas/ogp-base.png')
+    path.resolve('public/logo-ogp3.png')
   )
 
   context.drawImage(backgroundImage, 0, 0, width, height)
   context.font = '30px Noto Sans JP'
-  context.fillStyle = '#424242'
+  context.fillStyle = '#000000'
   context.textAlign = 'center'
   context.textBaseline = 'middle'
 

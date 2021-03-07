@@ -2,9 +2,9 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import firebase from 'firebase/app'
 import '@/lib/firebase/admin'
 import { firestore } from 'firebase-admin'
-import { BookComment } from '@/models/firebase/BookComment'
+import { PostComment } from '@/models/firebase/PostComment'
 
-export default async (req: NextApiRequest, res: NextApiResponse<BookComment[]>) => {
+export default async (req: NextApiRequest, res: NextApiResponse<PostComment[]>) => {
 
   const slug = req.query.slug as string
 
@@ -12,7 +12,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<BookComment[]>) 
     snapshot: firestore.QuerySnapshot<firebase.firestore.DocumentData>
   ) {
     const array = snapshot.docs.map((doc) => {
-      const comment = doc.data() as BookComment
+      const comment = doc.data() as PostComment
       comment.id = doc.id
       return comment
     })
@@ -21,15 +21,15 @@ export default async (req: NextApiRequest, res: NextApiResponse<BookComment[]>) 
 
   function createBaseQuery() {
     return firestore()
-      .collection('bookComments')
-      .where('bookSlug', '==', slug)
+      .collection('postComments')
+      .where('postSlug', '==', slug)
       .orderBy('createdAt', 'desc')
       .limit(10)
   }
 
   const snapshot = await createBaseQuery().get()
 
-  const bookComments = GetArrayOfComments(snapshot)
+  const postComments = GetArrayOfComments(snapshot)
 
-  res.status(200).json(bookComments)
+  res.status(200).json(postComments)
 }

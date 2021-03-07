@@ -2,6 +2,28 @@ import { Creator } from '@/models/contentful/Creator'
 import { Subject } from '@/models/contentful/Subject'
 import { LandingPage } from '@/models/contentful/LandingPage'
 import { Book } from '@/models/contentful/Book'
+import { Post } from '@/models/contentful/Post'
+
+const AUTHOR_GRAPHQL_FIELDS = `
+id
+name
+`
+const POST_GRAPHQL_FIELDS = `
+sys {
+  firstPublishedAt
+  publishedAt
+}
+title
+slug
+body
+description
+heroImage {
+  url
+}
+author {
+  ${AUTHOR_GRAPHQL_FIELDS}
+}
+`
 
 const LANDING_PAGE_POST_GRAPHQL_FIELDS = `
 slug
@@ -167,7 +189,56 @@ function extractBooksFromSubject(fetchResponse: any) {
   return fetchResponse?.data.subjectCollection?.items[0].linkedFrom.bookCollection?.items as Book[]
 }
 
+//-----------------
+function extractPost(fetchResponse: any) {
+  return fetchResponse?.data?.blogPostCollection?.items?.[0] as Post
+}
+function extractPosts(fetchResponse: any) {
+  return fetchResponse?.data?.blogPostCollection?.items as Post[]
+}
+export async function getPostAndMorePosts(slug: string, preview: boolean) {
+  const entry = await fetchGraphQL(
+    `query {
+      blogPostCollection(where: { slug: "${slug}" }, preview: ${preview ? 'true' : 'false'
+    }, limit: 1) {
+        items {
+          ${POST_GRAPHQL_FIELDS}
+        }
+      }
+    }`,
+    preview
+  )
+  const entries = await fetchGraphQL(
+    `query {
+      blogPostCollection(where: { slug_not_in: "${slug}" }, order: sys_firstPublishedAt_DESC, preview: ${preview ? 'true' : 'false'
+    }, limit: 2) {
+        items {
+          ${POST_GRAPHQL_FIELDS}
+        }
+      }
+    }`,
+    preview
+  )
+  return {
+    post: extractPost(entry),
+    morePosts: extractPosts(entries)
+  }
+}
 
+export async function getAllPostsWithSlug(preview: boolean, limit?:number) {
+  const entries = await fetchGraphQL(
+    `query {
+      blogPostCollection(limit:${limit ?? 100},where: { slug_exists: true }, order: sys_firstPublishedAt_DESC,preview: ${preview ? 'true' : 'false'}) {
+        items {
+          ${POST_GRAPHQL_FIELDS}
+        }
+      }
+    }`,
+    preview
+  )
+  return extractPosts(entries)
+}
+//----------------
 
 export async function getAllCreatorsWithSlug(preview: boolean, limit?: number) {
   const entries = await fetchGraphQL(

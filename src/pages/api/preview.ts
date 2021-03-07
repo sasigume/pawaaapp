@@ -16,7 +16,7 @@ export default async function preview(req:NextApiRequest, res:NextApiResponse) {
 
   // If the slug doesn't exist prevent preview mode from being enabled
   if (!book) {
-    return res.status(401).json({ message: '本が見つかりません。' })
+    return res.status(401).json({ message: '記事が見つかりません。' })
   }
 
   // Enable Preview Mode by setting the cookies
@@ -24,7 +24,7 @@ export default async function preview(req:NextApiRequest, res:NextApiResponse) {
 
   // Redirect to the path from the fetched post
   // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
-  // res.writeHead(307, { Location: `/posts/${post.slug}` })
+  // res.writeHead(307, { Location: `/${post.slug}` })
   const url = `/books/${book.slug}`
   res.write(
     `<!DOCTYPE html><html><head><meta http-equiv="Refresh" content="0; url=${url}" />
