@@ -12,10 +12,10 @@ interface Props {
 
 export function SinglePostComponent({ post }: Props) {
   return (
-    <article style={{ maxWidth: '100vw', overflowX:'hidden' }} area-label={post.title}>
+    <Box as="article" px={{ base: 3, md: 0 }} style={{ maxWidth: '100vw', overflowX: 'hidden' }} area-label={post.title}>
       <Flex w="full" overflowX="hidden" direction="column">
         <Center>
-          <Box mr={{ base: 0, md: 8 }}>
+          <Box>
 
             <Box area-label="更新日時" mb={6}>
               <Badge colorScheme="blue">公開: {dayjs(post.sys.firstPublishedAt).format('YYYY/MM/DD')}</Badge>
@@ -40,6 +40,6 @@ export function SinglePostComponent({ post }: Props) {
           </Box>
         </Box>
       </Flex>
-    </article>
+    </Box>
   )
 }
