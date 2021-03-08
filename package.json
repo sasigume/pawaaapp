@@ -1,6 +1,6 @@
 {
   "name": "cmswithbookandchapter",
-  "version": "2.3.2",
+  "version": "2.3.6",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -23,7 +23,6 @@
     "date-fns": "^2.17.0",
     "dayjs": "^1.10.4",
     "firebase": "^8.2.8",
-    "firebase-admin": "^9.5.0",
     "framer-motion": "^3.7.0",
     "graphql": "^15.5.0",
     "next": "latest",

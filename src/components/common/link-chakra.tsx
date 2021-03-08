@@ -5,12 +5,12 @@ import NextLink from 'next/link';
 import { Link, LinkProps } from '@chakra-ui/react';
 
 interface LinkChakraProps extends LinkProps {
-  underline?: boolean;
+  isUnderline?: boolean;
 }
 
 const LinkChakra: React.FC<LinkChakraProps> = (props) => {
   let textDec
-  props.underline ? textDec = 'underline' : textDec = 'none'
+  props.isUnderline ? textDec = 'underline' : textDec = 'none'
   return (
     <NextLink href={props.href ?? ''}>
       <Link {...props} style={{ textDecoration: textDec}} onClick={() => (document.activeElement as HTMLElement).blur()} />

@@ -52,8 +52,7 @@ const EXTEND_CHAKRA = {
   },
   styles: {
     global: {
-      ".articleMdWrapper": {
-maxWidth: "100vw",
+      ".mdrenderWrapper": {
         p: {
           margin: "0.6rem 0 2.4rem"
         },
@@ -84,7 +83,7 @@ maxWidth: "100vw",
           background: "linear-gradient(rgba(0, 0, 0, 0) 80%, #ffff66 75%)"
         },
         "img,video": {
-          maxWidth: "100vw",
+          maxWidth: "100%",
           height: "auto",
           margin: "0.2rem 0"
         },
