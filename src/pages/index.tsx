@@ -19,6 +19,7 @@ import { SITE_DESC, SITE_NAME, SITE_URL } from '@/lib/constants'
 import Loading from '@/components/common/loading'
 import { Post } from '@/models/contentful/Post'
 import PostList from '@/components/partials/post'
+import { BreakpointContainer } from '@/components/common/breakpoint-container'
 interface IndexProps {
   posts: Post[];
   tweetCount: number;
@@ -36,15 +37,15 @@ const Index = ({ posts, environment, tweetCount }: IndexProps) => {
         {router.isFallback ? (
           <Loading />
         ) : (
-            (<Layout preview={false} title={'404 Not found'} desc={''}>
-              <ErrorPage title="ページのデータを取得できませんでした" statusCode={404} />
-            </Layout>)
-          )}
+          (<Layout preview={false} title={'404 Not found'} desc={''}>
+            <ErrorPage title="ページのデータを取得できませんでした" statusCode={404} />
+          </Layout>)
+        )}
       </>) : (
-          <Layout preview={environment} title={SITE_NAME} desc={SITE_DESC} tweetCount={tweetCount}>
+        <Layout preview={environment} title={SITE_NAME} desc={SITE_DESC} tweetCount={tweetCount}>
 
-            <Container maxW="container.lg">
-
+          <Container maxW="container.lg">
+            <BreakpointContainer>
               {posts && (<Box mb={10}>
                 <VStack textStyle="h1" spacing={4} mb={8}>
                   <h1>最近更新された記事</h1>
@@ -52,9 +53,10 @@ const Index = ({ posts, environment, tweetCount }: IndexProps) => {
                 </VStack>
                 {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
               </Box>)}
-            </Container>
-          </Layout>
-        )}
+            </BreakpointContainer>
+          </Container>
+        </Layout>
+      )}
     </>
   )
 }
@@ -70,9 +72,9 @@ export async function getStaticProps({ preview = false }) {
   //let tweetCount
   //tweetsJson.data ? tweetCount = tweetsJson.data.length : tweetCount = null
 
-  const allPostsForIndex = (await getAllPostsWithSlug(false,7)) || []
+  const allPostsForIndex = (await getAllPostsWithSlug(false, 7)) || []
   // Write only published post into RSS/Sitemap
-  const allPostsPublished = (await getAllPostsWithSlug(false,600)) || []
+  const allPostsPublished = (await getAllPostsWithSlug(false, 600)) || []
 
   publishRss(allPostsPublished)
   publishSitemap(allPostsPublished)
