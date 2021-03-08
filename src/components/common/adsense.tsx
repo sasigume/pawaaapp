@@ -7,7 +7,7 @@ export default function Adsense(props: any) {
 
   useEffect(() => {
     if (window.adsbygoogle && process.env.NODE_ENV !== "development") {
-      window.adsbygoogle.push({});
+      window.adsbygoogle.push({google_ad_client: process.env.GOOGLE_AD_CLIENT,enable_page_level_ads: true});
     }
   }, [])
 
