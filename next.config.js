@@ -31,7 +31,9 @@ module.exports = {
     REVALIDATE: process.env.REVALIDATE,
     GOOGLE_AD_CLIENT: process.env.GOOGLE_AD_CLIENT,
     GOOGLE_AD_SLOT: process.env.GOOGLE_AD_SLOT,
-    ENABLE_AD: process.env.ENABLE_AD
+    ENABLE_AD: process.env.ENABLE_AD,
+    PAGINATION: process.env.PAGINATION,
+    TOTAL_PAGINATION: process.env.TOTAL_PAGINATION
   },
   images: {
     domains: ['localhost', 'pbs.twimg.com', 'images.ctfassets.net']

@@ -12,8 +12,6 @@ interface Props {
 }
 
 export function SinglePostComponent({ post }: Props) {
-
-  const enableAd = process.env.ENABLE_AD ?? false
   
   return (
     <>
@@ -24,8 +22,6 @@ export function SinglePostComponent({ post }: Props) {
           <Badge colorScheme="green">最終更新: {dayjs(post.sys.publishedAt).format('YYYY/MM/DD')}</Badge>
         </Box>
       </Box>
-
-      {enableAd && <Adsense />}
 
       <Box px={0} direction="column">
         <Box textStyle="h1" mb={8}>
