@@ -39,7 +39,7 @@ const generateRss = (posts: Post[]): string => {
     `)
 }
 const publishRss = async (posts: Post[]) => {
-  const PATH_DEVELOPINNG = './public/ignore/sitemap.xml'
+  const PATH_DEVELOPINNG = './public/ignore/rss.xml'
   const PATH = './public/rss.xml'
   const rss = generateRss(posts)
   if (process.env.NODE_ENV == "production" || process.env.NODE_ENV == "test") {
