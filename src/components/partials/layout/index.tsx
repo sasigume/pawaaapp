@@ -29,9 +29,11 @@ export default function Layout({ preview, children, drawerLeftChildren, drawerRi
       <Box pt={20}>
         <Heading mb={6}>
           <Center>
-            <Stack>
-              <Box as="h1" textStyle="h1">{SITE_NAME}</Box>
-              <Box>爆速エディション ALPHA</Box>
+            <Stack whiteSpace="normal">
+              <LinkChakra href="/">
+                <Box as="h1" textStyle="h2">{SITE_NAME}</Box>
+                <Box textStyle="h4">爆速エディション ALPHA</Box>
+              </LinkChakra>
             </Stack>
           </Center>
         </Heading>
