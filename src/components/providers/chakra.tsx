@@ -7,15 +7,12 @@ import {
   extendTheme
 } from "@chakra-ui/react"
 import { ReactNode } from "react"
-
-import {EXTEND_CHAKRA} from '@/lib/chakra/styles'
-const theme = extendTheme(EXTEND_CHAKRA)
-
+import { theme } from '@/lib/chakra/styles'
 interface Props {
   cookies: any
   children: ReactNode
 }
-export function Chakra({ cookies, children }:Props) {
+export function Chakra({ cookies, children }: Props) {
   // b) Pass `colorModeManager` prop
   const colorModeManager =
     typeof cookies === "string"
@@ -28,7 +25,7 @@ export function Chakra({ cookies, children }:Props) {
   )
 }
 // also export a reusable function getServerSideProps
-export function getServerSideProps({ req }:any) {
+export function getServerSideProps({ req }: any) {
   return {
     props: {
       // first time users will not have any cookies and you may not return

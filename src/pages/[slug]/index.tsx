@@ -83,7 +83,7 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
     </>) : (
       <Layout tweetCount={tweetCount} preview={preview} title={firstPost.title} desc={firstPost.description ? firstPost.description : ''}>
         <Box mt={12}>
-          <Container px={0} maxW="650px">
+          <Container px={0} maxW="container.lg">
             {firstPost && <PostList mode="single" posts={[firstPost]} expand={preview ?? false} />}
             <Divider my={8} borderColor="gray.400" />
 
