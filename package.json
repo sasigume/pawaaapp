@@ -1,6 +1,6 @@
 {
   "name": "cmswithbookandchapter",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "scripts": {
     "dev": "next",
     "build": "next build",
