@@ -29,10 +29,10 @@ export function PostComponent({ post }: Props) {
 
 export function SinglePostComponent({ post }: Props) {
   return (
-    <article area-label={post.title}>
-      <Flex direction="column">
+    <article style={{ maxWidth: '100vw', overflowX:'hidden' }} area-label={post.title}>
+      <Flex w="full" overflowX="hidden" direction="column">
         <Center>
-          <Box width="300px" mr={{ base: 0, md: 8 }}>
+          <Box mr={{ base: 0, md: 8 }}>
 
             <Box area-label="更新日時" mb={6}>
               <Badge colorScheme="blue">公開: {dayjs(post.sys.firstPublishedAt).format('YYYY/MM/DD')}</Badge>
