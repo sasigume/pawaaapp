@@ -170,8 +170,8 @@ interface GSProps {
 export async function getStaticProps({ params, preview }: GSProps) {
 
   const posts = await getPostAndMorePosts(params.slug, preview)
-  const commentsRes = await fetch(process.env.HTTPS_URL + `/api/postComments/${params.slug}`)
-  const postComments = await commentsRes.json()
+  //const commentsRes = await fetch(process.env.HTTPS_URL + `/api/postComments/${params.slug}`)
+  //const postComments = await commentsRes.json()
 
   const searchWord = SITE_URL + '/' + params.slug
 
@@ -184,7 +184,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
     props: {
       preview: preview ?? false,
       firstPost: posts.post ?? null,
-      postComments: postComments ?? null,
+      //postComments: postComments ?? null,
       morePosts: posts.morePosts ?? null,
       tweetCount: tweetCount ?? null
     },
