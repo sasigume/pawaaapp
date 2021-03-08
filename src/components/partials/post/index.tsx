@@ -1,7 +1,7 @@
 import { SinglePostComponent } from './single-post'
-import { PostComponent } from './single-post'
 import { Post } from '@/models/contentful/Post'
 import { Box, Center, Container, Divider, Flex, SimpleGrid, Stack } from '@chakra-ui/react'
+import { PostForList } from './post-for-list'
 
 interface MultiPostProps {
   posts: Post[];
@@ -14,14 +14,14 @@ const MultiPosts = ({ posts, mode }: MultiPostProps) => {
       <section>
         <Center flexDirection="column">
           <Container maxW="container.md">
-            <PostComponent
+            <PostForList
               post={posts[0]}
             />
           </Container>
           <Divider my={8} borderColor="gray.400" />
           <SimpleGrid spacing={4} columns={{ base: 1, lg: 2 }}>
             {morePosts.map((post: Post) => (
-              <PostComponent
+              <PostForList
                 key={post.slug}
                 post={post}
               />
@@ -40,7 +40,7 @@ const MultiPosts = ({ posts, mode }: MultiPostProps) => {
         <Center>
           <SimpleGrid spacing={6} columns={{ base: 1, lg: 2 }}>
             {posts.map((post) => (
-              <PostComponent
+              <PostForList
                 key={post.slug}
                 post={post}
               />
