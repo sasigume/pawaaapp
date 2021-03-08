@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import * as path from 'path'
 import { createCanvas, registerFont, loadImage } from 'canvas'
-import '@/lib/firebase/admin'
 import {NGwords} from './NGwords'
 interface SeparatedText {
   line: string
@@ -53,7 +52,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   // NGワードや長いやつはクソ小さい画像で警告する
 
-  if (reqText.length > 120 || NG(reqText, NGwords)) {
+  if (reqText.length > 100 || NG(reqText, NGwords)) {
     const noCanvas = createCanvas(100,10)
     const noContext = noCanvas.getContext('2d')
     noContext.font = '6px sans-serif'
@@ -76,19 +75,19 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   })
 
   const backgroundImage = await loadImage(
-    path.resolve('public/logo-ogp3.png')
+    path.resolve('public/ogp/ogp-canvas.png')
   )
 
   context.drawImage(backgroundImage, 0, 0, width, height)
   context.font = '30px Noto Sans JP'
   context.fillStyle = '#000000'
-  context.textAlign = 'center'
+  context.textAlign = 'left'
   context.textBaseline = 'middle'
 
   const lines = createTextLines(context, reqText)
   lines.forEach((line, index) => {
     const y = 130 + 40 * (index - (lines.length - 1) / 2)
-    context.fillText(line, 300, y)
+    context.fillText(line, 56, y) // この真ん中がX
   })
 
   const buffer = canvas.toBuffer()

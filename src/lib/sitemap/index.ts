@@ -30,9 +30,17 @@ const generateSitemap = (posts: Post[]): string => {
     `)
 }
 const publishSitemap = async (posts: Post[]) => {
+
   const PATH = './public/sitemap.xml'
-  const rss = generateSitemap(posts)
-  fs.writeFileSync(PATH, rss)
+  const PATH_DEVELOPINNG = './public/ignore/sitemap.xml'
+  const sitemap = generateSitemap(posts)
+  if (process.env.NODE_ENV == "production" || process.env.NODE_ENV == "test") {
+    fs.writeFileSync(PATH, sitemap)
+    console.log('Updated sitemap for production: ' + posts.length + ' posts writed')
+  } else {
+    fs.writeFileSync(PATH_DEVELOPINNG, sitemap)
+    console.log('Updated sitemap for development: ' + posts.length + ' posts writed')
+  }
 }
 
 export default publishSitemap

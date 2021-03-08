@@ -67,10 +67,10 @@ export async function getStaticProps({ preview = false }) {
 
   const searchWord = SITE_URL
 
-  //const tweets = await fetch(process.env.HTTPS_URL + '/api/twitter?word=' + encodeURIComponent(searchWord) + '&secret=' + process.env.TWITTER_SECRET)
-  //const tweetsJson = await tweets.json()
-  //let tweetCount
-  //tweetsJson.data ? tweetCount = tweetsJson.data.length : tweetCount = null
+  const tweets = await fetch(process.env.API_URL + '/api/twitter?word=' + encodeURIComponent(searchWord) + '&secret=' + process.env.TWITTER_SECRET)
+  const tweetsJson = await tweets.json()
+  let tweetCount
+  tweetsJson.data ? tweetCount = tweetsJson.data.length : tweetCount = null
 
   const allPostsForIndex = (await getAllPostsWithSlug(false, 7)) || []
   // Write only published post into RSS/Sitemap
@@ -82,7 +82,7 @@ export async function getStaticProps({ preview = false }) {
   return {
     props: {
       posts: allPostsForIndex ?? null,
-      //tweetCount: tweetCount ?? null,
+      tweetCount: tweetCount ?? null,
       preview: preview ?? null
     },
     // Index shouldn't update so often because of rss/sitemap

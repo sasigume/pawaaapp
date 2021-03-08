@@ -37,10 +37,11 @@ interface PostPageProps {
   morePosts: Post[];
   preview: boolean;
   tweetCount: number;
+  revalEnv: number;
 }
 
 
-export default function PostPage({ firstPost, postComments, morePosts, preview, tweetCount }: PostPageProps) {
+export default function PostPage({ firstPost, postComments, morePosts, preview, tweetCount ,revalEnv}: PostPageProps) {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -82,7 +83,7 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
         </Layout>)
       )}
     </>) : (
-      <Layout tweetCount={tweetCount} preview={preview} title={firstPost.title} desc={firstPost.description ? firstPost.description : ''}>
+      <Layout revalEnv={revalEnv} tweetCount={tweetCount} preview={preview} title={firstPost.title} desc={firstPost.description ? firstPost.description : ''}>
         <Box mt={12}>
           <Container px={0} maxW="container.lg">
             <BreakpointContainer breakpointName="md" actualWidth="650px">
@@ -146,7 +147,7 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
                       </div>
                     </form>
                   </Box>) : (<div className="my-6">
-                    <LinkChakra href="/login">ログイン</LinkChakra>してコメントしてみよう!
+                    <LinkChakra href="/signin">サインイン</LinkChakra>してコメントしてみよう!
                   </div>)}
                 </Box>
               </Flex>
@@ -173,15 +174,17 @@ interface GSProps {
 export async function getStaticProps({ params, preview }: GSProps) {
 
   const posts = await getPostAndMorePosts(params.slug, preview)
-  const commentsRes = await fetch(process.env.HTTPS_URL + `/api/postComments/${params.slug}`)
+  const commentsRes = await fetch(process.env.API_URL + `/api/postComments/${params.slug}`)
   const postComments = await commentsRes.json()
 
   const searchWord = SITE_URL + '/' + params.slug
 
-  //const tweets = await fetch(process.env.HTTPS_URL + '/api/twitter?word=' + encodeURIComponent(searchWord) + '&secret=' + process.env.TWITTER_SECRET)
-  //const tweetsJson = await tweets.json()
-  //let tweetCount
-  //tweetsJson.data ? tweetCount = tweetsJson.data.length : tweetCount = null
+  const tweets = await fetch(process.env.API_URL + '/api/twitter?word=' + encodeURIComponent(searchWord) + '&secret=' + process.env.TWITTER_SECRET)
+  const tweetsJson = await tweets.json()
+  let tweetCount
+  tweetsJson.data ? tweetCount = tweetsJson.data.length : tweetCount = null
+
+  const revalEnv = parseInt(process.env.REVALIDATE ?? '1800')
 
   return {
     props: {
@@ -189,9 +192,10 @@ export async function getStaticProps({ params, preview }: GSProps) {
       firstPost: posts.post ?? null,
       postComments: postComments ?? null,
       morePosts: posts.morePosts ?? null,
-      //tweetCount: tweetCount ?? null 
+      tweetCount: tweetCount ?? null,
+      revalEnv: revalEnv
     },
-    revalidate: 300,
+    revalidate: revalEnv,
   }
 }
 
