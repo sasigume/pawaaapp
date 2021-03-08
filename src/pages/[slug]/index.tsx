@@ -29,6 +29,7 @@ import { PostComment } from '@/models/firebase/PostComment'
 import PostCommentComponent from '@/components/partials/post-comment'
 import Warning from '@/components/common/warning';
 import { SITE_URL } from '@/lib/constants'
+import { BreakpointContainer } from '@/components/common/breakpoint-container'
 
 interface PostPageProps {
   firstPost: Post;
@@ -69,7 +70,7 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
   }
 
   const [agreed, setAgreed] = useState(false)
-  
+
   return (<>
     {(!firstPost) ? (<>
 
@@ -83,76 +84,78 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
     </>) : (
       <Layout tweetCount={tweetCount} preview={preview} title={firstPost.title} desc={firstPost.description ? firstPost.description : ''}>
         <Box mt={12}>
-          <Container px={0} maxW="650px">
-            {firstPost && <PostList mode="single" posts={[firstPost]} expand={preview ?? false} />}
-            <Divider my={8} borderColor="gray.400" />
+          <Container px={0} maxW="container.lg">
+            <BreakpointContainer breakpointName="md" actualWidth="650px">
+              {firstPost && <PostList mode="single" posts={[firstPost]} expand={preview ?? false} />}
+              <Divider my={8} borderColor="gray.400" />
 
-            <Box textStyle="h2" mb={6}>
-              <h2>コメント</h2>
-            </Box>
-
-            <Flex direction={{ base: "column", md: "row" }}>
-
-              <Box minW={{ base: "", md: "sm" }} mb={{ base: 8, md: 0 }} mr={{ base: 0, md: 16 }}>
-
-
-                {(postComments && postComments.length > 0) ? postComments.map(
-                  (c: PostComment) => <PostCommentComponent c={c} key={c.id} />
-                ) : (
-                  <div>コメントはありません。</div>
-                )}
+              <Box textStyle="h2" mb={6}>
+                <h2>コメント</h2>
               </Box>
 
+              <Flex direction={{ base: "column", md: "row" }}>
 
-              <Box mb={6}>
+                <Box minW={{ base: "", md: "sm" }} mb={{ base: 8, md: 0 }} mr={{ base: 0, md: 16 }}>
 
-                {user ? (<Box>
-                  <Warning />
-                  <form className="w-full px-6" onSubmit={onSubmit}>
 
-                    <div className="flex flex-col jusify-center mb-12">
-                      <Modal isOpen={isOpen} onClose={onClose} isCentered>
-                        <ModalOverlay />
-                        <ModalContent py={6}>
-                          <ModalBody>
-                            送信できました！連投はやめてね
+                  {(postComments && postComments.length > 0) ? postComments.map(
+                    (c: PostComment) => <PostCommentComponent c={c} key={c.id} />
+                  ) : (
+                    <div>コメントはありません。</div>
+                  )}
+                </Box>
+
+
+                <Box mb={6}>
+
+                  {user ? (<Box>
+                    <Warning />
+                    <form className="w-full px-6" onSubmit={onSubmit}>
+
+                      <div className="flex flex-col jusify-center mb-12">
+                        <Modal isOpen={isOpen} onClose={onClose} isCentered>
+                          <ModalOverlay />
+                          <ModalContent py={6}>
+                            <ModalBody>
+                              送信できました！連投はやめてね
                           </ModalBody>
-                          <ModalFooter>
-                            <Button colorScheme="blue" mr={3} onClick={onClose}>閉じる</Button>
-                          </ModalFooter>
-                        </ModalContent>
-                      </Modal>
-                      {didYouSend ? (
-                        <Center role="status">
-                          (送信できました)
-                        </Center>
-                      ) : (
-                        <Stack spacing={2}>
-                          <Textarea
-                            my={6}
-                            placeholder="コメントを書いてね"
-                            onChange={(e) => setBody(e.target.value)}
-                            required
-                          ></Textarea>
-                          <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
-                          {agreed && (
-                            <Button onClick={onOpen} colorScheme="blue" type="submit">
-                              コメントする
-                            </Button>)}
-                        </Stack>
-                      )}
-                    </div>
-                  </form>
-                </Box>) : (<div className="my-6">
-                  <LinkChakra href="/login">ログイン</LinkChakra>してコメントしてみよう!
-                </div>)}
-              </Box>
-            </Flex>
-            <Divider my={8} borderColor="gray.400" />
-            {morePosts && morePosts.length > 0 && (
-              <Box my={10}>
-                <PostList mode="more" posts={morePosts} />
-              </Box>)}
+                            <ModalFooter>
+                              <Button colorScheme="blue" mr={3} onClick={onClose}>閉じる</Button>
+                            </ModalFooter>
+                          </ModalContent>
+                        </Modal>
+                        {didYouSend ? (
+                          <Center role="status">
+                            (送信できました)
+                          </Center>
+                        ) : (
+                          <Stack spacing={2}>
+                            <Textarea
+                              my={6}
+                              placeholder="コメントを書いてね"
+                              onChange={(e) => setBody(e.target.value)}
+                              required
+                            ></Textarea>
+                            <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
+                            {agreed && (
+                              <Button onClick={onOpen} colorScheme="blue" type="submit">
+                                コメントする
+                              </Button>)}
+                          </Stack>
+                        )}
+                      </div>
+                    </form>
+                  </Box>) : (<div className="my-6">
+                    <LinkChakra href="/login">ログイン</LinkChakra>してコメントしてみよう!
+                  </div>)}
+                </Box>
+              </Flex>
+              <Divider my={8} borderColor="gray.400" />
+              {morePosts && morePosts.length > 0 && (
+                <Box my={10}>
+                  <PostList mode="more" posts={morePosts} />
+                </Box>)}
+            </BreakpointContainer>
           </Container>
         </Box>
       </Layout>
@@ -170,8 +173,8 @@ interface GSProps {
 export async function getStaticProps({ params, preview }: GSProps) {
 
   const posts = await getPostAndMorePosts(params.slug, preview)
-  //const commentsRes = await fetch(process.env.HTTPS_URL + `/api/postComments/${params.slug}`)
-  //const postComments = await commentsRes.json()
+  const commentsRes = await fetch(process.env.HTTPS_URL + `/api/postComments/${params.slug}`)
+  const postComments = await commentsRes.json()
 
   const searchWord = SITE_URL + '/' + params.slug
 
@@ -184,7 +187,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
     props: {
       preview: preview ?? false,
       firstPost: posts.post ?? null,
-      //postComments: postComments ?? null,
+      postComments: postComments ?? null,
       morePosts: posts.morePosts ?? null,
       //tweetCount: tweetCount ?? null 
     },
@@ -193,7 +196,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
 }
 
 export async function getStaticPaths() {
-  const allPosts = await getAllPostsWithSlug(false,600)
+  const allPosts = await getAllPostsWithSlug(false, 600)
   let paths = allPosts?.map((post: Post) => `/${post.slug}`) ?? []
 
   return {

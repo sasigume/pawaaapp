@@ -9,6 +9,7 @@ import * as gtag from '@/lib/gtag'
 import { Button, Center, Checkbox, Stack, useCheckbox } from '@chakra-ui/react';
 import { useState } from 'react';
 import FaiconDiv from '@/components/common/faicon-div';
+import { BreakpointContainer } from '@/components/common/breakpoint-container';
 
 export default function LoginPage() {
 
@@ -39,18 +40,20 @@ export default function LoginPage() {
   return (
     <Layout preview={false} title={'マイページ'} desc={'マイページ'} >
       <Container>
-        {!user ? (<div className="max-w-xl mb-6">
-          <Stack direction="column" mb={8} >
-            <Warning />
-            <Checkbox onChange={(e)=> setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
-            {agreed && <Button colorScheme="twitter" leftIcon={<FaiconDiv icon={['fab','twitter']} />} onClick={login}>
-              ログイン
+        <BreakpointContainer>
+          {!user ? (<div className="max-w-xl mb-6">
+            <Stack direction="column" mb={8} >
+              <Warning />
+              <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
+              {agreed && <Button colorScheme="twitter" leftIcon={<FaiconDiv icon={['fab', 'twitter']} />} onClick={login}>
+                ログイン
           </Button>}
-          </Stack>
-        </div>
-        ) : (<div>
-          <div className="my-16">ログイン中: {user.name}さん (お問い合わせID: {user.uid})</div>
-        </div>)}
+            </Stack>
+          </div>
+          ) : (<div>
+            <div className="my-16">ログイン中: {user.name}さん (お問い合わせID: {user.uid})</div>
+          </div>)}
+        </BreakpointContainer>
       </Container>
     </Layout>
   )

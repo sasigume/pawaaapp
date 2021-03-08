@@ -9,7 +9,7 @@ interface Props {
 }
 export function PostForList({ post }: Props) {
   return (
-    <Flex rounded="xl" shadow="lg" p={0} alignItems="center" area-label={post.title}>
+    <Flex rounded="xl" shadow="lg" p={3} alignItems="center" area-label={post.title}>
       <Box flexGrow={1}>
         <Box textStyle="h4" mb={2}>
           <LinkChakra href={`/${post.slug}`}>
