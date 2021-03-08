@@ -28,10 +28,10 @@ const SignIn = () => {
         </Button></>
       ) : (<>
         <Button href="/users/me" as={LinkChakra} leftIcon={<Box w={6} rounded="full" overflow="hidden"><Image src={process.env.HTTPS_URL + '/favicon.png'} width={32} height={32} /></Box>}>
-          未ログイン
+          未サインイン
         </Button>
-        <Button aria-label="ログインする" onClick={login} leftIcon={<FaiconDiv icon={['fab', 'twitter']} />} colorScheme="twitter" variant="solid">
-          ログイン
+        <Button aria-label="サインインする" onClick={login} leftIcon={<FaiconDiv icon={['fab', 'twitter']} />} colorScheme="twitter" variant="solid">
+          サインイン
           </Button>
       </>
         )}

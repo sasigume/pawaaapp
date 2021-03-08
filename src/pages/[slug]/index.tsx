@@ -146,7 +146,7 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
                       </div>
                     </form>
                   </Box>) : (<div className="my-6">
-                    <LinkChakra href="/login">ログイン</LinkChakra>してコメントしてみよう!
+                    <LinkChakra href="/signin">サインイン</LinkChakra>してコメントしてみよう!
                   </div>)}
                 </Box>
               </Flex>
