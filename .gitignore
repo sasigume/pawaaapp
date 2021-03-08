@@ -34,10 +34,6 @@ yarn-error.log*
 # vercel
 .vercel
 
-# Sitemap and rss
-public/rss.xml
-public/sitemap.xml
-
 # Firebase
 serviceAccountKey*
 pawaaapp-firebase-adminsdk*

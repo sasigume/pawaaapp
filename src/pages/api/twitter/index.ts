@@ -19,8 +19,22 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const tweets = await fetch(`https://api.twitter.com/2/tweets/search/recent?query=${word}`, requestOptions)
-  .then(response => {return response.text() as any})
-  .catch(error => console.log('error', error));
+    .then(response => {
+
+      if (response.status != 200) {
+        console.log('TWITTER API RESPONSE IS NOT 200')
+        return {
+          data: []
+          /*------------------------------------------
+          // IMPORTANT: returning blank data
+          // TO AVOID API LIMIT WHEN BUILD
+          // --------------------------------------------*/
+        }
+      } else {
+        return response.text() as any
+      }
+    })
+    .catch(error => console.log('error', error));
 
   res.status(200).json(tweets)
 }
