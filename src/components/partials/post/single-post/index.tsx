@@ -5,12 +5,16 @@ import { Post } from '@/models/contentful/Post'
 import LinkChakra from '@/components/common/link-chakra'
 
 import MarkdownRender from '@/components/common/MarkdownRender'
+import Adsense from '@/components/common/adsense'
 
 interface Props {
   post: Post
 }
 
 export function SinglePostComponent({ post }: Props) {
+
+  const enableAd = process.env.ENABLE_AD ?? false
+  
   return (
     <>
       <Box>
@@ -20,6 +24,8 @@ export function SinglePostComponent({ post }: Props) {
           <Badge colorScheme="green">最終更新: {dayjs(post.sys.publishedAt).format('YYYY/MM/DD')}</Badge>
         </Box>
       </Box>
+
+      {enableAd && <Adsense />}
 
       <Box px={0} direction="column">
         <Box textStyle="h1" mb={8}>
