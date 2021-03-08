@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import * as path from 'path'
 import { createCanvas, registerFont, loadImage } from 'canvas'
-import '@/lib/firebase/admin'
 import {NGwords} from './NGwords'
 interface SeparatedText {
   line: string
