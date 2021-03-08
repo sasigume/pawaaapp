@@ -18,8 +18,6 @@ export default function UsersMe() {
     )
   }
 
-  const url = `${process.env.HTTPS_URL}/users/${user.uid}`
-
   return (
     <Layout preview={false} title={'マイページ'} desc={'マイページ'} >
       <Container>
