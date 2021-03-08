@@ -1,13 +1,13 @@
 const path = require('path')
 module.exports = {
-  /*ebpack: (config, { isServer }) => {
+  webpack: (config, { isServer }) => {
     if (!isServer) {
       config.node = {
         fs: 'empty'
       };
     }
     return config;
-  },*/
+  },
   env: {
     STORYBLOK_PREVIEW_TOKEN: process.env.STORYBLOK_PREVIEW_TOKEN,
     STORYBLOK_PUBLIC_TOKEN: process.env.STORYBLOK_PUBLIC_TOKEN,
