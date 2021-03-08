@@ -71,7 +71,7 @@ export async function getStaticProps({ preview = false }) {
   //tweetsJson.data ? tweetCount = tweetsJson.data.length : tweetCount = null
 
   // Write only published post into RSS/Sitemap
-  const allPostsPublished = (await getAllPostsWithSlug(false)) || []
+  const allPostsPublished = (await getAllPostsWithSlug(false,600)) || []
 
   publishRss(allPostsPublished)
   publishSitemap(allPostsPublished)
