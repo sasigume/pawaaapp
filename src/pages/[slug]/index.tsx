@@ -186,7 +186,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
       firstPost: posts.post ?? null,
       //postComments: postComments ?? null,
       morePosts: posts.morePosts ?? null,
-      tweetCount: tweetCount ?? null 
+      //tweetCount: tweetCount ?? null 
     },
     revalidate: 300,
   }
