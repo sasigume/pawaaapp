@@ -18,7 +18,7 @@ export default function LoginPage() {
     gtag.event({
       action: 'login',
       category: 'user',
-      label: 'ログインページからのログイン',
+      label: 'サインインページからのサインイン',
     })
 
     const provider = new firebaseApi.auth.TwitterAuthProvider();
@@ -46,12 +46,12 @@ export default function LoginPage() {
               <Warning />
               <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
               {agreed && <Button colorScheme="twitter" leftIcon={<FaiconDiv icon={['fab', 'twitter']} />} onClick={login}>
-                ログイン
+                サインイン
           </Button>}
             </Stack>
           </div>
           ) : (<div>
-            <div className="my-16">ログイン中: {user.name}さん (お問い合わせID: {user.uid})</div>
+            <div className="my-16">サインイン中: {user.name}さん (お問い合わせID: {user.uid})</div>
           </div>)}
         </BreakpointContainer>
       </Container>

@@ -11,7 +11,7 @@ export default function UsersMe() {
       <Layout preview={false} title={'マイページ'} desc={'マイページ'} >
         <Container>
           <div className="my-16">
-            ログインしていません
+            サインインしていません
         </div>
         </Container>
       </Layout>
@@ -26,7 +26,7 @@ export default function UsersMe() {
         <BreakpointContainer>
           <div className="my-8">
             <h1 className="text-4xl mb-8">マイページ</h1>
-            <div className="my-16">ログイン中: {user.name}さん (お問い合わせID: {user.uid})</div>
+            <div className="my-16">サインイン中: {user.name}さん (お問い合わせID: {user.uid})</div>
           </div>
         </BreakpointContainer>
       </Container>
