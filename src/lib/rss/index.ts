@@ -39,10 +39,18 @@ const generateRss = (posts: Post[]): string => {
     `)
 }
 const publishRss = async (posts: Post[]) => {
+  const PATH_DEVELOPINNG = './public/ignore/sitemap.xml'
   const PATH = './public/rss.xml'
   const rss = generateRss(posts)
-  fs.writeFileSync(PATH, rss)
-  console.log('Updated RSS: ' + posts.length + ' posts writed')
+  if (process.env.NODE_ENV == "production" || process.env.NODE_ENV == "test") {
+    fs.writeFileSync(PATH, rss)
+    console.log('Updated RSS for production: ' + posts.length + ' posts writed')
+
+  } else {
+    fs.writeFileSync(PATH_DEVELOPINNG, rss)
+    console.log('Updated RSS for development: ' + posts.length + ' posts writed')
+  }
+
 }
 
 export default publishRss
