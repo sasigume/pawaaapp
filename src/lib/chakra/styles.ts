@@ -40,6 +40,7 @@ export const EXTEND_CHAKRA = {
   styles: {
     global: {
       ".articleMdWrapper": {
+maxWidth: "100vw",
         p: {
           margin: "0.6rem 0 2.4rem"
         },
@@ -70,7 +71,7 @@ export const EXTEND_CHAKRA = {
           background: "linear-gradient(rgba(0, 0, 0, 0) 80%, #ffff66 75%)"
         },
         "img,video": {
-          maxWidth: "100%",
+          maxWidth: "100vw",
           height: "auto",
           margin: "0.2rem 0"
         },
