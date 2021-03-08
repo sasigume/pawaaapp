@@ -238,6 +238,20 @@ export async function getAllPostsWithSlug(preview: boolean, limit?:number) {
   )
   return extractPosts(entries)
 }
+
+export async function getAllPostsByRange(preview: boolean, skip:number, limit?:number) {
+  const entries = await fetchGraphQL(
+    `query {
+      blogPostCollection(skip:${skip ?? 0} ,limit:${limit ?? 10},where: { slug_exists: true }, order: sys_firstPublishedAt_DESC,preview: ${preview ? 'true' : 'false'}) {
+        items {
+          ${POST_GRAPHQL_FIELDS}
+        }
+      }
+    }`,
+    preview
+  )
+  return extractPosts(entries)
+}
 //----------------
 
 export async function getAllCreatorsWithSlug(preview: boolean, limit?: number) {

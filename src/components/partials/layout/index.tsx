@@ -37,7 +37,7 @@ export default function Layout({ preview,
       <Meta title={title} desc={desc} />
       <Box pt={20}>
         <Heading mb={6}>
-          <Center>
+          <Center textAlign="center">
             <Stack whiteSpace="normal">
               <LinkChakra href="/" mb={4}>
                 <Box as="h1" textStyle="h2">{SITE_NAME}</Box>
