@@ -1,10 +1,4 @@
-# PAWAA.APP
-
-![screenshot](https://github.com/sasigume/pawaaapp/blob/main/screenshot/demo2.png?raw=true)
-
-参考書, Re-Defined.
-
-
+# cmswithbookandchapter
 ## Thanks
 
 ### Google Analytics
@@ -31,3 +25,6 @@ https://qiita.com/y-shida1997/items/f5e52c7288813a8184ff
 
 https://qiita.com/cheez921/items/39ae1ad2c38e5829b89c
 
+### Adsense
+
+https://qiita.com/qrusadorz/items/14972b6e069feaf777a9

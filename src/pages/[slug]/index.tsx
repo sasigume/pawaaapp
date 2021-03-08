@@ -171,6 +171,8 @@ interface GSProps {
   preview: boolean;
 }
 
+const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600')
+
 export async function getStaticProps({ params, preview }: GSProps) {
 
   const posts = await getPostAndMorePosts(params.slug, preview)
@@ -200,11 +202,11 @@ export async function getStaticProps({ params, preview }: GSProps) {
 }
 
 export async function getStaticPaths() {
-  const allPosts = await getAllPostsWithSlug(false, 600)
+  const allPosts = await getAllPostsWithSlug(false, TOTAL_LIMIT)
   let paths = allPosts?.map((post: Post) => `/${post.slug}`) ?? []
 
   return {
     paths: paths,
-    fallback: true
+    fallback: false
   }
 }

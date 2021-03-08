@@ -5,12 +5,14 @@ import { Post } from '@/models/contentful/Post'
 import LinkChakra from '@/components/common/link-chakra'
 
 import MarkdownRender from '@/components/common/MarkdownRender'
+import Adsense from '@/components/common/adsense'
 
 interface Props {
   post: Post
 }
 
 export function SinglePostComponent({ post }: Props) {
+  
   return (
     <>
       <Box>
