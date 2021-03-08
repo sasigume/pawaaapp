@@ -79,7 +79,7 @@ export async function getStaticProps({ preview = false }) {
   return {
     props: {
       posts: allPostsPublished ?? null,
-      tweetCount: tweetCount ?? null,
+      //tweetCount: tweetCount ?? null,
       preview: preview ?? null
     },
     revalidate: 300
