@@ -70,6 +70,7 @@ export async function getStaticProps({ preview = false }) {
   //let tweetCount
   //tweetsJson.data ? tweetCount = tweetsJson.data.length : tweetCount = null
 
+  const allPostsForIndex = (await getAllPostsWithSlug(false,7)) || []
   // Write only published post into RSS/Sitemap
   const allPostsPublished = (await getAllPostsWithSlug(false,600)) || []
 
@@ -78,10 +79,11 @@ export async function getStaticProps({ preview = false }) {
 
   return {
     props: {
-      posts: allPostsPublished ?? null,
+      posts: allPostsForIndex ?? null,
       //tweetCount: tweetCount ?? null,
       preview: preview ?? null
     },
-    revalidate: 300
+    // Index shouldn't update so often because of rss/sitemap
+    revalidate: 14400
   }
 }
