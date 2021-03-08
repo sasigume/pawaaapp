@@ -1,4 +1,17 @@
-export const EXTEND_CHAKRA = {
+import { extendTheme } from "@chakra-ui/react"
+import { createBreakpoints } from "@chakra-ui/theme-tools"
+
+const customBreakPoints = createBreakpoints({
+  sm: "30em",
+  //md: "48em",
+  md: "40.625em", // 650px
+  lg: "62em",
+  xl: "80em",
+  "2xl": "96em"
+})
+
+const EXTEND_CHAKRA = {
+  breakPoints: customBreakPoints,
   textStyles: {
     h1: {
       fontSize: ["44px", "52px"],
@@ -371,3 +384,5 @@ maxWidth: "100vw",
     }
   }
 }
+
+export const theme = extendTheme(EXTEND_CHAKRA)

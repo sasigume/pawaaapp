@@ -12,19 +12,17 @@ interface Props {
 
 export function SinglePostComponent({ post }: Props) {
   return (
-    <Box as="article" px={{ base: 3, md: 0 }} style={{ maxWidth: '100vw', overflowX: 'hidden' }} area-label={post.title}>
+    <Box mx="auto" as="article" px={{ base: 3, md: 0 }} maxWidth={{ base: "100vw", md: "650px" }} overflowX="hidden" area-label={post.title}>
       <Flex w="full" overflowX="hidden" direction="column">
-        <Center>
-          <Box>
+        <Box>
 
-            <Box area-label="更新日時" mb={6}>
-              <Badge colorScheme="blue">公開: {dayjs(post.sys.firstPublishedAt).format('YYYY/MM/DD')}</Badge>
-              <Badge colorScheme="green">最終更新: {dayjs(post.sys.publishedAt).format('YYYY/MM/DD')}</Badge>
-            </Box>
+          <Box area-label="更新日時" mb={6}>
+            <Badge colorScheme="blue">公開: {dayjs(post.sys.firstPublishedAt).format('YYYY/MM/DD')}</Badge>
+            <Badge colorScheme="green">最終更新: {dayjs(post.sys.publishedAt).format('YYYY/MM/DD')}</Badge>
           </Box>
-        </Center>
+        </Box>
 
-        <Box mx="auto" px={0} direction="column" style={{ maxWidth: '100vw' }}>
+        <Box px={0} direction="column">
           <Box textStyle="h1" mb={8}>
             <LinkChakra href={`/${post.slug}`}>
               <h1>{post.title}</h1>
