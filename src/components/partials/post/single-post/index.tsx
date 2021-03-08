@@ -11,7 +11,7 @@ interface Props {
 }
 export function PostComponent({ post }: Props) {
   return (
-    <Flex rounded="xl" shadow="lg" p={6} alignItems="center" area-label={post.title}>
+    <Flex rounded="xl" shadow="lg" p={0} alignItems="center" area-label={post.title}>
       <Box flexGrow={1}>
         <Box textStyle="h4" mb={2}>
           <LinkChakra href={`/${post.slug}`}>
@@ -41,7 +41,7 @@ export function SinglePostComponent({ post }: Props) {
           </Box>
         </Center>
 
-        <Box mx="auto" px={{base:3,md:0}} direction="column" style={{ maxWidth: '650px' }}>
+        <Box mx="auto" px={0} direction="column" style={{ maxWidth: '100vw' }}>
           <Box textStyle="h1" mb={8}>
             <LinkChakra href={`/${post.slug}`}>
               <h1>{post.title}</h1>
