@@ -35,7 +35,7 @@ const MultiPosts = ({ posts, mode }: MultiPostProps) => {
     return (
       <Box>
         {mode == "more" && (<Box textStyle="h2" mb={4}>
-          <h2>他の記事</h2>
+          <h2>おすすめ記事</h2>
         </Box>)}
         <Center>
           <SimpleGrid spacing={6} columns={{ base: 1, lg: 2 }}>
