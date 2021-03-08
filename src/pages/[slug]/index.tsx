@@ -37,10 +37,11 @@ interface PostPageProps {
   morePosts: Post[];
   preview: boolean;
   tweetCount: number;
+  revalEnv: number;
 }
 
 
-export default function PostPage({ firstPost, postComments, morePosts, preview, tweetCount }: PostPageProps) {
+export default function PostPage({ firstPost, postComments, morePosts, preview, tweetCount ,revalEnv}: PostPageProps) {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -82,7 +83,7 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
         </Layout>)
       )}
     </>) : (
-      <Layout tweetCount={tweetCount} preview={preview} title={firstPost.title} desc={firstPost.description ? firstPost.description : ''}>
+      <Layout revalEnv={revalEnv} tweetCount={tweetCount} preview={preview} title={firstPost.title} desc={firstPost.description ? firstPost.description : ''}>
         <Box mt={12}>
           <Container px={0} maxW="container.lg">
             <BreakpointContainer breakpointName="md" actualWidth="650px">
@@ -183,15 +184,18 @@ export async function getStaticProps({ params, preview }: GSProps) {
   let tweetCount
   tweetsJson.data ? tweetCount = tweetsJson.data.length : tweetCount = null
 
+  const revalEnv = parseInt(process.env.REVALIDATE ?? '1800')
+
   return {
     props: {
       preview: preview ?? false,
       firstPost: posts.post ?? null,
       postComments: postComments ?? null,
       morePosts: posts.morePosts ?? null,
-      tweetCount: tweetCount ?? null 
+      tweetCount: tweetCount ?? null,
+      revalEnv: revalEnv
     },
-    revalidate: 300,
+    revalidate: revalEnv,
   }
 }
 

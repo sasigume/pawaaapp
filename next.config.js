@@ -27,7 +27,8 @@ module.exports = {
     HTTPS_URL: process.env.HTTPS_URL,
     TWITTER_SECRET: process.env.TWITTER_SECRET,
     TWITTER_BEARER: process.env.TWITTER_BEARER,
-    API_URL: process.env.API_URL
+    API_URL: process.env.API_URL,
+    REVALIDATE: process.env.REVALIDATE
   },
   images: {
     domains: ['localhost', 'pbs.twimg.com', 'images.ctfassets.net']
