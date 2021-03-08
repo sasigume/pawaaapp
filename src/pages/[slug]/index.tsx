@@ -193,7 +193,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
 }
 
 export async function getStaticPaths() {
-  const allPosts = await getAllPostsWithSlug(false)
+  const allPosts = await getAllPostsWithSlug(false,600)
   let paths = allPosts?.map((post: Post) => `/${post.slug}`) ?? []
 
   return {
