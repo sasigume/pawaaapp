@@ -26,7 +26,8 @@ module.exports = {
     PART_OF_GCP_CREDENTIAL: process.env.PART_OF_GCP_CREDENTIAL,
     HTTPS_URL: process.env.HTTPS_URL,
     TWITTER_SECRET: process.env.TWITTER_SECRET,
-    TWITTER_BEARER: process.env.TWITTER_BEARER
+    TWITTER_BEARER: process.env.TWITTER_BEARER,
+    API_URL: process.env.API_URL
   },
   images: {
     domains: ['localhost', 'pbs.twimg.com', 'images.ctfassets.net']

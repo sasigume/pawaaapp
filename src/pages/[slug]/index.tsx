@@ -173,15 +173,15 @@ interface GSProps {
 export async function getStaticProps({ params, preview }: GSProps) {
 
   const posts = await getPostAndMorePosts(params.slug, preview)
-  const commentsRes = await fetch(process.env.HTTPS_URL + `/api/postComments/${params.slug}`)
+  const commentsRes = await fetch(process.env.API_URL + `/api/postComments/${params.slug}`)
   const postComments = await commentsRes.json()
 
   const searchWord = SITE_URL + '/' + params.slug
 
-  //const tweets = await fetch(process.env.HTTPS_URL + '/api/twitter?word=' + encodeURIComponent(searchWord) + '&secret=' + process.env.TWITTER_SECRET)
-  //const tweetsJson = await tweets.json()
-  //let tweetCount
-  //tweetsJson.data ? tweetCount = tweetsJson.data.length : tweetCount = null
+  const tweets = await fetch(process.env.API_URL + '/api/twitter?word=' + encodeURIComponent(searchWord) + '&secret=' + process.env.TWITTER_SECRET)
+  const tweetsJson = await tweets.json()
+  let tweetCount
+  tweetsJson.data ? tweetCount = tweetsJson.data.length : tweetCount = null
 
   return {
     props: {
@@ -189,7 +189,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
       firstPost: posts.post ?? null,
       postComments: postComments ?? null,
       morePosts: posts.morePosts ?? null,
-      //tweetCount: tweetCount ?? null 
+      tweetCount: tweetCount ?? null 
     },
     revalidate: 300,
   }
