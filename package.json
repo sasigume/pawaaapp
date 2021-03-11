@@ -1,6 +1,6 @@
 {
-  "name": "cmswithbookandchapter",
-  "version": "2.4.0",
+  "name": "napoancom",
+  "version": "2.4.1",
   "scripts": {
     "dev": "next",
     "build": "next build",
