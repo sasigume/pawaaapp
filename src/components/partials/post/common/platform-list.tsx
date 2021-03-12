@@ -25,7 +25,7 @@ const OnePlatform = ({ platform }: Props) => {
   }
 
   return (
-    <Button href={(`/platforms/${platform.slug}`)} colorScheme={platform.bgColor ?? "green"} as={LinkChakra} leftIcon={<FaiconDiv icon={[iconStyle, iconName]} />}>
+    <Button mb={2} href={(`/platforms/${platform.slug}`)} colorScheme={platform.bgColor ?? "green"} as={LinkChakra} leftIcon={<FaiconDiv icon={[iconStyle, iconName]} />}>
       {platform.displayName}
     </Button>
   )
@@ -33,7 +33,7 @@ const OnePlatform = ({ platform }: Props) => {
 
 const PlatformList = ({ platforms }: ListProps) => {
   return (
-    <Stack direction="row" mb={4}>
+    <Stack maxW="100vw" direction="column" mb={4}>
       {platforms.map((s: Platform) => <OnePlatform platform={s} key={s.slug} />)}
     </Stack>
   )

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 
 import { Box, Container, Divider, useColorMode, VStack } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
-import { getAllPostsWithSlug } from '../lib/contentful/graphql'
+import { getAllPlatformsWithSlug, getAllPostsWithSlug } from '../lib/contentful/graphql'
 import publishRss from '@/lib/rss'
 import publishSitemap from '@/lib/sitemap'
 import { SITE_DESC, SITE_NAME, SITE_URL } from '@/lib/constants'
@@ -14,14 +14,16 @@ import { Post } from '@/models/contentful/Post'
 import PostList from '@/components/partials/post'
 import { BreakpointContainer } from '@/components/common/breakpoint-container'
 import { Pagination } from '@/components/common/pagenation'
+import { Platform } from '@/models/contentful/Platform'
 interface IndexProps {
   posts: Post[];
   totalCount: number;
   tweetCount: number;
   environment: boolean;
+  allPlatforms: Platform[]
 }
 
-const Index = ({ posts,totalCount, environment, tweetCount }: IndexProps) => {
+const Index = ({ posts,totalCount, environment, tweetCount, allPlatforms }: IndexProps) => {
   const router = useRouter()
   const { colorMode } = useColorMode()
 
@@ -37,7 +39,7 @@ const Index = ({ posts,totalCount, environment, tweetCount }: IndexProps) => {
           </Layout>)
         )}
       </>) : (
-        <Layout preview={environment} title={SITE_NAME} desc={SITE_DESC} tweetCount={tweetCount}>
+        <Layout platforms={allPlatforms} preview={environment} title={SITE_NAME} desc={SITE_DESC} tweetCount={tweetCount}>
 
           <Container maxW="container.lg">
             <BreakpointContainer>
@@ -66,6 +68,8 @@ export async function getStaticProps({ preview = false }) {
 
   const searchWord = SITE_URL
 
+  const allPlatforms = await getAllPlatformsWithSlug(preview, 10)
+
   const tweets = await fetch(process.env.API_URL + '/api/twitter?word=' + encodeURIComponent(searchWord) + '&secret=' + process.env.TWITTER_SECRET)
   const tweetsJson = await tweets.json()
   let tweetCount
@@ -84,7 +88,8 @@ export async function getStaticProps({ preview = false }) {
       posts: allPostsForIndex ?? null,
       totalCount: allPostsPublished.length ?? null,
       tweetCount: tweetCount ?? null,
-      preview: preview ?? null
+      preview: preview ?? null,
+      allPlatforms: allPlatforms ?? null
     },
     // Index shouldn't update so often because of rss/sitemap
     revalidate: 14400

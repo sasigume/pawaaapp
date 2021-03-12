@@ -39,6 +39,7 @@ title
 slug
 body
 description
+publishDate
 heroImage {
   url
 }

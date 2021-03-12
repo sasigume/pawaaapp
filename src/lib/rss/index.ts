@@ -19,7 +19,7 @@ const generatePostItem = (post: Post): string => {
     <guid>${process.env.HTTPS_URL}/${post.slug}</guid>
     <title>${escapeString(post.title)}</title>
     <link>${process.env.HTTPS_URL}/${post.slug}</link>
-    <pubDate>${new Date(post.sys.publishedAt ?? '').toUTCString()}</pubDate>
+    <pubDate>${new Date(post.publishDate ?? post.sys.firstPublishedAt).toUTCString()}</pubDate>
     <summary>${post.description ?? "説明文なし"}</summary>
 </item>
     `)
