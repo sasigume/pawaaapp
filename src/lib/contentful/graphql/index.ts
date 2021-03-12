@@ -1,6 +1,7 @@
 import { Person } from '@/models/contentful/Person'
 import { Platform } from '@/models/contentful/Platform'
 import { Post } from '@/models/contentful/Post'
+const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600')
 
 const PLATFORM_GRAPHQL_FIELDS = `
 sys {
@@ -136,7 +137,7 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
 export async function getAllPostsWithSlug(preview: boolean, limit?:number) {
   const entries = await fetchGraphQL(
     `query {
-      blogPostCollection(limit:${limit ?? 100},where: { slug_exists: true }, order: sys_firstPublishedAt_DESC,preview: ${preview ? 'true' : 'false'}) {
+      blogPostCollection(limit:${limit ?? TOTAL_LIMIT},where: { slug_exists: true }, order: sys_firstPublishedAt_DESC,preview: ${preview ? 'true' : 'false'}) {
         items {
           ${POST_GRAPHQL_FIELDS}
         }
@@ -199,7 +200,7 @@ export async function getAllPostsForPlatform(slug: string, preview: boolean, lim
         items {
           displayName
           linkedFrom {
-            blogPostCollection(limit:${limit ?? 100}){
+            blogPostCollection(limit:${limit ?? TOTAL_LIMIT}){
               items {
                 ${POST_GRAPHQL_FIELDS}
               }
@@ -220,7 +221,7 @@ export async function getAllPostsForPlatformByRange(slug: string, preview: boole
         items {
           displayName
           linkedFrom {
-            blogPostCollection(limit:${limit ?? 100}){
+            blogPostCollection(limit:${limit ?? TOTAL_LIMIT}){
               items {
                 ${POST_GRAPHQL_FIELDS}
               }
@@ -274,7 +275,7 @@ export async function getAllPostsForPerson(slug: string, preview: boolean, limit
         items {
           displayName
           linkedFrom {
-            blogPostCollection(limit:${limit ?? 100}) {
+            blogPostCollection(limit:${limit ?? TOTAL_LIMIT}) {
               items {
                 ${POST_GRAPHQL_FIELDS}
               }
