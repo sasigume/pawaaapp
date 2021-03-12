@@ -6,7 +6,7 @@ import { useAuthentication } from '@/hooks/authentication'
 
 import ErrorPage from 'next/error'
 
-import { getPostAndMorePosts, getAllPostsWithSlug } from '@/lib/contentful/graphql'
+import { getAllPlatformsWithSlug, getPostAndMorePosts, getAllPostsWithSlug } from '@/lib/contentful/graphql'
 import { Post } from '@/models/contentful/Post'
 
 import Loading from '@/components/common/loading'
@@ -30,6 +30,7 @@ import PostCommentComponent from '@/components/partials/post-comment'
 import Warning from '@/components/common/warning';
 import { SITE_URL } from '@/lib/constants'
 import { BreakpointContainer } from '@/components/common/breakpoint-container'
+import { Platform } from '@/models/contentful/Platform'
 
 interface PostPageProps {
   firstPost: Post;
@@ -38,10 +39,11 @@ interface PostPageProps {
   preview: boolean;
   tweetCount: number;
   revalEnv: number;
+  allPlatforms: Platform[];
 }
 
 
-export default function PostPage({ firstPost, postComments, morePosts, preview, tweetCount ,revalEnv}: PostPageProps) {
+export default function PostPage({ firstPost, postComments, morePosts, preview, tweetCount, revalEnv, allPlatforms }: PostPageProps) {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -83,7 +85,7 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
         </Layout>)
       )}
     </>) : (
-      <Layout revalEnv={revalEnv} tweetCount={tweetCount} preview={preview} title={firstPost.title} desc={firstPost.description ? firstPost.description : ''}>
+      <Layout platforms={allPlatforms} revalEnv={revalEnv} tweetCount={tweetCount} preview={preview} title={firstPost.title} desc={firstPost.description ? firstPost.description : ''}>
         <Box mt={12}>
           <Container px={0} maxW="container.lg">
             <BreakpointContainer breakpointName="md" actualWidth="650px">
@@ -175,6 +177,8 @@ const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600')
 
 export async function getStaticProps({ params, preview }: GSProps) {
 
+  const allPlatforms = await getAllPlatformsWithSlug(preview, 10)
+
   const posts = await getPostAndMorePosts(params.slug, preview)
   const commentsRes = await fetch(process.env.API_URL + `/api/postComments/${params.slug}`)
   const postComments = await commentsRes.json()
@@ -195,7 +199,8 @@ export async function getStaticProps({ params, preview }: GSProps) {
       postComments: postComments ?? null,
       morePosts: posts.morePosts ?? null,
       tweetCount: tweetCount ?? null,
-      revalEnv: revalEnv
+      revalEnv: revalEnv,
+      allPlatforms: allPlatforms ?? null
     },
     revalidate: revalEnv,
   }

@@ -5,9 +5,12 @@ import FloatShare from './float-share'
 import LayoutFooter from './layout-footer'
 import DrawerLeft from './drawer-left'
 import DrawerRight from './drawer-right'
-import { Box, Button, Center, Heading, Stack, useColorMode } from '@chakra-ui/react'
+import { Box, Button, Center, Divider, Heading, Stack, useColorMode } from '@chakra-ui/react'
 import LinkChakra from '@/components/common/link-chakra'
 import { SITE_NAME } from '@/lib/constants'
+import { Platform } from '@/models/contentful/Platform'
+import PlatformList from '../post/common/platform-list'
+import Image from 'next/image'
 
 interface LayoutProps {
   preview: boolean
@@ -18,6 +21,7 @@ interface LayoutProps {
   desc: string
   tweetCount?: number
   revalEnv?: number
+  platforms?: Platform[]
 }
 
 export default function Layout({ preview,
@@ -27,7 +31,8 @@ export default function Layout({ preview,
   title,
   desc,
   tweetCount,
-  revalEnv
+  revalEnv,
+  platforms
 }: LayoutProps) {
 
   const { colorMode } = useColorMode()
@@ -35,24 +40,18 @@ export default function Layout({ preview,
   return (
     <>
       <Meta title={title} desc={desc} />
-      <Box pt={20}>
-        <Heading mb={6}>
-          <Center textAlign="center">
+      <Box pt={0}>
+        <Heading mb={4}>
+          <Center>
             <Stack whiteSpace="normal">
-              <LinkChakra href="/" mb={4}>
-                <Box as="h1" textStyle="h2">{SITE_NAME}</Box>
-                <Box textStyle="h4">爆速エディション ALPHA</Box>
+              <LinkChakra position="relative" h={256} href="/" mb={2}>
+                <Image width={256} height={256} src="/logo3-512x.png" />
+                <Box position="absolute" bottom={0} as="h1" textStyle="h4">ナポアン<br />の<br />マイクラ</Box>
               </LinkChakra>
-              {revalEnv && (<Box textStyle="h5">
-                <LinkChakra href="https://nextjs.org/docs/basic-features/data-fetching#incremental-static-regeneration" isExternal>
-                  ISR
-                    </LinkChakra>
-                  で{revalEnv}秒ごとに更新!!
-              </Box>)}
-
             </Stack>
           </Center>
         </Heading>
+        <Divider my={4} borderWidth={4} borderColor="blue.500" />
         <main style={{ flexGrow: 1 }}>
           {children}
         </main>
@@ -61,6 +60,12 @@ export default function Layout({ preview,
           {drawerLeftChildren}
         </DrawerLeft>}
         <DrawerRight preview={preview}>
+          {platforms && (
+            <Box>
+              <PlatformList platforms={platforms} />
+              <Divider mb={2} />
+            </Box>
+          )}
           {drawerRightChildren}
         </DrawerRight>
         <FloatShare count={tweetCount} text={title} />
