@@ -5,7 +5,8 @@ import { Post } from '@/models/contentful/Post'
 import LinkChakra from '@/components/common/link-chakra'
 
 import MarkdownRender from '@/components/common/MarkdownRender'
-import Adsense from '@/components/common/adsense'
+import PlatformList from '../common/platform-list'
+import PersonList from '../common/person-list'
 
 interface Props {
   post: Post
@@ -16,6 +17,14 @@ export function SinglePostComponent({ post }: Props) {
   return (
     <>
       <Box>
+
+      {(post.platformsCollection && post.platformsCollection.items.length > 0) && (<Box>
+              <PlatformList platforms={post.platformsCollection.items} />
+            </Box>)}
+
+            {post.person && (<Box>
+              <PersonList persons={[post.person]} />
+            </Box>)}
 
         <Box area-label="更新日時" mb={6}>
           <Badge colorScheme="blue">公開: {dayjs(post.sys.firstPublishedAt).format('YYYY/MM/DD')}</Badge>
