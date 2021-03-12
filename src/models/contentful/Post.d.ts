@@ -6,6 +6,7 @@ export interface Post {
   sys :Sys
   title: string
   slug: string
+  publishDate?: string
   description?: string
   heroImage?: {
     url: string
