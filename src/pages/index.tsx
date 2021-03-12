@@ -60,6 +60,7 @@ const Index = ({ posts,totalCount, environment, tweetCount }: IndexProps) => {
 export default Index
 
 const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600')
+const PER_PAGE = parseInt(process.env.PAGINATION ?? '10')
 
 export async function getStaticProps({ preview = false }) {
 
@@ -69,8 +70,9 @@ export async function getStaticProps({ preview = false }) {
   const tweetsJson = await tweets.json()
   let tweetCount
   tweetsJson.data ? tweetCount = tweetsJson.data.length : tweetCount = null
+  
 
-  const allPostsForIndex = (await getAllPostsWithSlug(false, 7)) || []
+  const allPostsForIndex = (await getAllPostsWithSlug(false, PER_PAGE)) || []
   // Write only published post into RSS/Sitemap
   const allPostsPublished = (await getAllPostsWithSlug(false, TOTAL_LIMIT)) || []
 
