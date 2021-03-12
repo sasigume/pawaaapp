@@ -16,7 +16,7 @@ const generatePostItem = (post: Post): string => {
 <url>
     <loc>${process.env.HTTPS_URL}/${post.slug}</loc>
     <title>${escapeString(post.title)}</title>
-    <lastmod>${new Date(post.sys.publishedAt ?? '').toUTCString()}</lastmod>
+    <lastmod>${new Date(post.sys.publishedAt).toUTCString()}</lastmod>
 </url>
     `)
 }
