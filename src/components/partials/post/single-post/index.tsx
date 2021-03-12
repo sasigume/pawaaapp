@@ -27,7 +27,7 @@ export function SinglePostComponent({ post }: Props) {
             </Box>)}
 
         <Box area-label="更新日時" mb={6}>
-          <Badge colorScheme="blue">公開: {dayjs(post.sys.firstPublishedAt).format('YYYY/MM/DD')}</Badge>
+          <Badge colorScheme="blue">公開: {dayjs(post.publishDate ?? post.sys.firstPublishedAt).format('YYYY/MM/DD')}</Badge>
           <Badge colorScheme="green">最終更新: {dayjs(post.sys.publishedAt).format('YYYY/MM/DD')}</Badge>
         </Box>
       </Box>
