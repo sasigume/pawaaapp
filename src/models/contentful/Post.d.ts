@@ -1,4 +1,5 @@
-import { Author } from './Author';
+import { Person } from './Person';
+import { Platform } from './Platform';
 import {Sys} from './Sys'
 
 export interface Post {
@@ -10,5 +11,8 @@ export interface Post {
     url: string
   }
   body: string
-  author?: Author
+  person?: Person
+  platformsCollection?: {
+    items: Platform[]
+  }
 }
