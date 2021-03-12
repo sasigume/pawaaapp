@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { Badge, Box, Center, Flex } from '@chakra-ui/react'
+import { Badge, Box, Center, Divider, Flex } from '@chakra-ui/react'
 import { Post } from '@/models/contentful/Post'
 
 import LinkChakra from '@/components/common/link-chakra'
@@ -18,9 +18,7 @@ export function SinglePostComponent({ post }: Props) {
     <>
       <Box>
 
-      {(post.platformsCollection && post.platformsCollection.items.length > 0) && (<Box>
-              <PlatformList platforms={post.platformsCollection.items} />
-            </Box>)}
+      
 
             {post.person && (<Box>
               <PersonList persons={[post.person]} />
@@ -38,9 +36,13 @@ export function SinglePostComponent({ post }: Props) {
             <h1>{post.title}</h1>
           </LinkChakra>
         </Box>
+        {(post.platformsCollection && post.platformsCollection.items.length > 0) && (<Box>
+              <PlatformList platforms={post.platformsCollection.items} />
+            </Box>)}
         <Box area-label="記事の概要" my={4} fontSize="1.4rem">
           {post.description}
         </Box>
+        <Divider my={4} />
         <Box>
           <Flex w="full">
             <MarkdownRender source={post.body} />
