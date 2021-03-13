@@ -31,6 +31,7 @@ import Warning from '@/components/common/warning';
 import { SITE_URL } from '@/lib/constants'
 import { BreakpointContainer } from '@/components/common/breakpoint-container'
 import { Platform } from '@/models/contentful/Platform'
+import Head from 'next/head'
 
 interface PostPageProps {
   firstPost: Post;
@@ -86,6 +87,9 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
       )}
     </>) : (
       <Layout platforms={allPlatforms} revalEnv={revalEnv} tweetCount={tweetCount} preview={preview} title={firstPost.title} desc={firstPost.description ? firstPost.description : ''}>
+        <Head>
+          <link rel="canonical" href={(`${process.env.HTTPS_URL ?? ''}/${firstPost.slug ?? ''}`)} />
+        </Head>
         <Box mt={12}>
           <Container px={0} maxW="container.lg">
             <BreakpointContainer breakpointName="md" actualWidth="650px">
