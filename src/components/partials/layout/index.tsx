@@ -41,7 +41,7 @@ export default function Layout({ preview,
     <>
       <Meta title={title} desc={desc} />
       <Box pt={0}>
-        <Heading mb={4}>
+        <Heading mb={4} borderBottom="solid" borderBottomWidth={4} borderBottomColor="gray.500">
           <Flex justifyContent="center" direction="column">
             <Stack mb={4} w={256} mx="auto" whiteSpace="normal">
               <LinkChakra position="relative" w={256} h={256} href="/" mb={2}>
@@ -53,7 +53,6 @@ export default function Layout({ preview,
 
           </Flex>
         </Heading>
-        <Divider my={4} borderWidth={4} borderColor="blue.500" />
         <main style={{ flexGrow: 1 }}>
           {children}
         </main>
