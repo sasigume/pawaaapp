@@ -2,6 +2,7 @@ import { AppProps } from 'next/app'
 import { RecoilRoot } from 'recoil'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import TagManager from 'react-gtm-module'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ja'
 
@@ -41,6 +42,11 @@ function App({ Component, pageProps }: AppProps) {
     }
 
   }, [router.events]) */}
+
+  useEffect(()=>{
+    TagManager.initialize({ gtmId: process.env.GTM_ID });
+  },[])
+
 
 
   return (
