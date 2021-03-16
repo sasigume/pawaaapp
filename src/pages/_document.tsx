@@ -33,6 +33,11 @@ export default class MyDocument extends Document {
             }}
           />
           <script data-ad-client={process.env.GOOGLE_AD_CLIENT} async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <script dangerouslySetInnerHTML={{
+              __html: `
+              (adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "${process.env.GOOGLE_AD_CLIENT}",enable_page_level_ads: true});
+              `}}
+          />
         </Head>
         <body>
           {/* dark mode */}
