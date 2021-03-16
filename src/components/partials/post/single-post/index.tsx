@@ -40,7 +40,7 @@ export function SinglePostComponent({ post }: Props) {
         {(post.platformsCollection && post.platformsCollection.items.length > 0) && (<Box>
               <PlatformList platforms={post.platformsCollection.items} />
             </Box>)}
-        <Box area-label="記事の概要" my={4} fontSize="1.4rem">
+        <Box display={{base:"none", md:"flex"}} area-label="記事の概要" my={4} fontSize="1.4rem">
           {post.description}
         </Box>
         <Adsense slot={"1773582608"} />
