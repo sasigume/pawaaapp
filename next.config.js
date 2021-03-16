@@ -33,7 +33,8 @@ module.exports = {
     ENABLE_AD: process.env.ENABLE_AD,
     PAGINATION: process.env.PAGINATION,
     TOTAL_PAGINATION: process.env.TOTAL_PAGINATION,
-    ADSENSE_AUTH_ID: process.env.ADSENSE_AUTH_ID
+    ADSENSE_AUTH_ID: process.env.ADSENSE_AUTH_ID,
+    GTM_ID: process.env.GTM_ID
   },
   images: {
     domains: ['localhost', 'pbs.twimg.com', 'images.ctfassets.net']
