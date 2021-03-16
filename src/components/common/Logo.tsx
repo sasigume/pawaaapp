@@ -9,7 +9,7 @@ const Logo = ({ fill = "black" }: Props) => {
 
   return (
     <Box area-label="ロゴ">
-      <LinkChakra isExternal href="https://twitter.com/pawaaapp">
+      <LinkChakra isExternal href="https://pawaa.app">
         <svg xmlns="http://www.w3.org/2000/svg" width="256" viewBox="0 0 1356.38 205">
           <g fill={fill}>
             <path d="M5632.91,6599.39a71.6,71.6,0,1,1,0,143.19,69.78,69.78,0,0,1-21.6-3.4v23.6h-50V6596h50v6.8A69.78,69.78,0,0,1,5632.91,6599.39Zm-21.6,71.6a21.6,21.6,0,1,0,21.6-21.6A21.5,21.5,0,0,0,5611.31,6671Z" transform="translate(-5561.31 -6557.79)" />

@@ -1,7 +1,7 @@
 import { Platform } from '@/models/contentful/Platform'
 import LinkChakra from '@/components/common/link-chakra'
 import { IconName, IconPrefix } from '@fortawesome/fontawesome-svg-core'
-import { Button, Stack } from '@chakra-ui/react'
+import { Box, Button, Stack } from '@chakra-ui/react'
 import FaiconDiv from '@/components/common/faicon-div'
 
 interface Props {
@@ -25,16 +25,16 @@ const OnePlatform = ({ platform }: Props) => {
   }
 
   return (
-    <Button mb={2} href={(`/platforms/${platform.slug}`)} colorScheme={platform.bgColor ?? "green"} as={LinkChakra} leftIcon={<FaiconDiv icon={[iconStyle, iconName]} />}>
-      {platform.displayName}
+    <Button mr={2} w={{ base: "45%", sm: "auto" }} fontSize={{ base: "0.8rem", sm: "1rem" }} mb={2} href={(`/platforms/${platform.slug}`)} colorScheme={platform.bgColor ?? "green"} as={LinkChakra} leftIcon={<FaiconDiv icon={[iconStyle, iconName]} />}>
+      <Box>{platform.displayName}</Box>
     </Button>
   )
 }
 
 const PlatformList = ({ platforms }: ListProps) => {
   return (
-    <Stack maxW="100vw" direction="column" mb={4}>
-      {platforms.map((s: Platform) => <OnePlatform platform={s} key={s.slug} />)}
+    <Stack flexWrap="wrap" direction="row" mb={4}>
+      <Box>{platforms.map((s: Platform) => <OnePlatform platform={s} key={s.slug} />)}</Box>
     </Stack>
   )
 }
