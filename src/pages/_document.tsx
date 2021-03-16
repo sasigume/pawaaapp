@@ -2,7 +2,6 @@ import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/do
 import React from 'react'
 import { ColorModeScript } from "@chakra-ui/react"
 
-import { GTM_ID } from '@/lib/gtag'
 import colorMode from '@/lib/chakra/color-mode'
 
 export default class MyDocument extends Document {
@@ -24,7 +23,7 @@ export default class MyDocument extends Document {
         <body>
           {/* for Adsense */}
           <noscript dangerouslySetInnerHTML={{
-            __html: `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>`
+            __html: `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${process.env.GTM_ID ?? ''}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>`
           }} />
 
           {/* dark mode */}

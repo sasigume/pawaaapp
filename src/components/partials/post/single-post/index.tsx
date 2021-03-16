@@ -43,14 +43,14 @@ export function SinglePostComponent({ post }: Props) {
         <Box area-label="記事の概要" my={4} fontSize="1.4rem">
           {post.description}
         </Box>
-        <Adsense slot={"1773582608"} />
+        <Adsense slot={"1773582608"} currentPath={post.slug} />
         <Divider my={4} />
         <Box>
           <Flex w="full">
             <MarkdownRender source={post.body} />
           </Flex>
         </Box>
-        <Adsense slot={"1529491287"} />
+        <Adsense slot={"1529491287"} currentPath={post.slug} />
       </Box>
     </>
   )
