@@ -44,7 +44,8 @@ const Index = ({ posts,totalCount, environment, tweetCount, allPlatforms }: Inde
 
           <Container maxW="container.lg">
             <BreakpointContainer>
-              {posts && (<Box mb={10}>
+              {posts && (
+              <Box mt={6} mb={10}>
                 <VStack textStyle="h1" spacing={4} mb={8}>
                   <h1>最近更新された記事</h1>
                   <Divider />
