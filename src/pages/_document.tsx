@@ -1,7 +1,6 @@
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document'
 import React from 'react'
 import { ColorModeScript } from "@chakra-ui/react"
-import TagManager from 'react-gtm-module'
 
 import { GTM_ID } from '@/lib/gtag'
 import colorMode from '@/lib/chakra/color-mode'
@@ -14,9 +13,6 @@ export default class MyDocument extends Document {
     }
   }
 
-  componentDidMount() {
-    TagManager.initialize({ gtmId: process.env.GTM_ID });
-  }
 
   render() {
     return (
