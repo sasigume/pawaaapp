@@ -102,7 +102,7 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
 
               <Flex direction={{ base: "column", md: "row" }}>
 
-                <Box minW={{ base: "", md: "sm" }} mb={{ base: 8, md: 0 }} mr={{ base: 0, md: 16 }}>
+                <Box minW={{ base: "", md: "15rem" }} mb={{ base: 8, md: 0 }} mr={{ base: 0, md: 16 }}>
 
 
                   {(postComments && postComments.length > 0) ? postComments.map(

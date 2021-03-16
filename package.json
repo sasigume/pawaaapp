@@ -1,6 +1,6 @@
 {
   "name": "napoancom",
-  "version": "2.5.1",
+  "version": "2.5.2",
   "scripts": {
     "dev": "next",
     "build": "next build",
