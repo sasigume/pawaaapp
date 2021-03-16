@@ -25,7 +25,7 @@ const OnePlatform = ({ platform }: Props) => {
   }
 
   return (
-    <Button mr={2} w={{ base: "45%", sm: "auto" }} fontSize={{ base: "0.8rem", sm: "1rem" }} mb={2} href={(`/platforms/${platform.slug}`)} colorScheme={platform.bgColor ?? "green"} as={LinkChakra} leftIcon={<FaiconDiv icon={[iconStyle, iconName]} />}>
+    <Button mr={2} fontSize={{ base: "0.8rem", sm: "1rem" }} mb={2} href={(`/platforms/${platform.slug}`)} colorScheme={platform.bgColor ?? "green"} as={LinkChakra} leftIcon={<FaiconDiv icon={[iconStyle, iconName]} />}>
       <Box>{platform.displayName}</Box>
     </Button>
   )

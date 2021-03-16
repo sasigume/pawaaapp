@@ -40,15 +40,11 @@ export default function Layout({ preview,
     <>
       <Meta title={title} desc={desc} />
       <Box pt={0}>
-        <Heading mb={4} py={6} borderBottom="solid" borderBottomWidth={4} borderBottomColor="gray.500">
-          <Flex justifyContent="center" direction="column">
-            <Stack mx="auto" whiteSpace="normal">
-              <LinkChakra href="/">
-                <Box as="h1" textStyle="h4">{SITE_NAME}</Box>
-              </LinkChakra>
-            </Stack>
+        <Heading mb={4} px={4} py={6} borderBottom="solid" borderBottomWidth={4} borderBottomColor="gray.500">
+          <LinkChakra href="/">
+            <Box as="h1" textStyle="h4">{SITE_NAME}</Box>
+          </LinkChakra>
 
-          </Flex>
         </Heading>
         <main style={{ flexGrow: 1 }}>
           {children}
