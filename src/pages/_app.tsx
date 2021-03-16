@@ -22,11 +22,19 @@ function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const handleRouteChange = (url: string) => {
       gtag.pageview(url)
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({google_ad_client: gtag.ADSENSE_PUB,enable_page_level_ads: true})
+        console.log('Adsense pushed!')
+      } catch (err) {
+        console.log(err);
+      }
     }
     router.events.on('routeChangeComplete', handleRouteChange)
+
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
+    
   }, [router.events])
 
   return (
