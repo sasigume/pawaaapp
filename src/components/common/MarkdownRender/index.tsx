@@ -1,4 +1,4 @@
-import { Box, Button, Code } from '@chakra-ui/react';
+import { Box, Code } from '@chakra-ui/react';
 import Markdown from 'markdown-to-jsx'
 import LinkChakra from '../link-chakra';
 
@@ -18,10 +18,7 @@ const MdLink = ({ url, title }: MdLinkProps) => (
 
 const MdCode = ({children}:any) => (<Code whiteSpace="pre-wrap" colorScheme="teal">{children}</Code>)
 
-interface MdProps {
-  source: string
-}
-function MarkdownRender(props: MdProps) {
+function MarkdownRender(props:any) {
   // wrap with class for chakra theme
   return (
     <Box w="full" className="mdrenderWrapper">
