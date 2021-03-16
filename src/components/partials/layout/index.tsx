@@ -10,7 +10,6 @@ import LinkChakra from '@/components/common/link-chakra'
 import { SITE_NAME } from '@/lib/constants'
 import { Platform } from '@/models/contentful/Platform'
 import PlatformList from '../post/common/platform-list'
-import Image from 'next/image'
 
 interface LayoutProps {
   preview: boolean
@@ -41,14 +40,12 @@ export default function Layout({ preview,
     <>
       <Meta title={title} desc={desc} />
       <Box pt={0}>
-        <Heading mb={4} borderBottom="solid" borderBottomWidth={4} borderBottomColor="gray.500">
+        <Heading mb={4} py={6} borderBottom="solid" borderBottomWidth={4} borderBottomColor="gray.500">
           <Flex justifyContent="center" direction="column">
-            <Stack mb={4} w={256} mx="auto" whiteSpace="normal">
-              <LinkChakra position="relative" w={256} h={256} href="/" mb={2}>
-                <Image width={256} height={256} src="/icon-180x.png" />
-                <Box position="absolute" bottom={0} as="h1" textStyle="h4">ナポアン<br />の<br />マイクラ</Box>
+            <Stack mx="auto" whiteSpace="normal">
+              <LinkChakra href="/">
+                <Box as="h1" textStyle="h4">{SITE_NAME}</Box>
               </LinkChakra>
-              <Box fontSize="1rem">移転中なので画像リンクが切れてる<br />箇所が多いかもしれません＞＜</Box>
             </Stack>
 
           </Flex>
