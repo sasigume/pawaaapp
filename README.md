@@ -6,11 +6,6 @@
 https://sunday-morning.app/posts/2020-12-09-nextjs-google-analytics
 
 
-### MathJax + LaTeX
-
-https://medium.com/@MatDrinksTea/rendering-markdown-and-latex-in-react-dec355e74119
-
-
 ### GraphQL + Contentful
 
 https://github.com/vercel/next.js/tree/canary/examples/cms-contentful

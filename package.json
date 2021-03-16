@@ -1,6 +1,6 @@
 {
   "name": "napoancom",
-  "version": "2.6.4",
+  "version": "2.6.6",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -25,18 +25,14 @@
     "firebase": "^8.2.8",
     "framer-motion": "^3.7.0",
     "graphql": "^15.5.0",
+    "markdown-to-jsx": "^7.1.2",
     "next": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-gtm-module": "^2.0.11",
     "react-markdown": "^5.0.3",
-    "react-mathjax": "^1.0.1",
     "react-spring": "^8.0.27",
-    "recoil": "^0.1.2",
-    "remark": "^13.0.0",
-    "remark-gfm": "^1.0.0",
-    "remark-html": "^13.0.1",
-    "remark-math": "^4.0.0"
+    "recoil": "^0.1.2"
   },
   "devDependencies": {
     "@types/node": "^12.12.21",
@@ -44,7 +40,7 @@
     "@types/react-dom": "^17.0.1",
     "autoprefixer": "^10.2.4",
     "firebase-functions-test": "^0.2.3",
-    "firebase-tools": "^9.4.0",
+    "firebase-tools": "^9.6.1",
     "tsc-watch": "^4.2.9",
     "typescript": "4.0"
   },
