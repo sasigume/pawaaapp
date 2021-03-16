@@ -15,6 +15,7 @@ import PostList from '@/components/partials/post'
 import { BreakpointContainer } from '@/components/common/breakpoint-container'
 import { Pagination } from '@/components/common/pagenation'
 import { Platform } from '@/models/contentful/Platform'
+import publishAdsTxt from '@/lib/adsense'
 interface IndexProps {
   posts: Post[];
   totalCount: number;
@@ -82,6 +83,9 @@ export async function getStaticProps({ preview = false }) {
 
   publishRss(allPostsPublished)
   publishSitemap(allPostsPublished)
+
+  // adsense ads.txt
+  publishAdsTxt()
 
   return {
     props: {
