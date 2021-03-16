@@ -7,6 +7,7 @@ import LinkChakra from '@/components/common/link-chakra'
 import MarkdownRender from '@/components/common/MarkdownRender'
 import PlatformList from '../common/platform-list'
 import PersonList from '../common/person-list'
+import Adsense from '@/components/common/adsense'
 
 interface Props {
   post: Post
@@ -42,12 +43,14 @@ export function SinglePostComponent({ post }: Props) {
         <Box area-label="記事の概要" my={4} fontSize="1.4rem">
           {post.description}
         </Box>
+        <Adsense slot={"1773582608"} />
         <Divider my={4} />
         <Box>
           <Flex w="full">
             <MarkdownRender source={post.body} />
           </Flex>
         </Box>
+        <Adsense slot={"1529491287"} />
       </Box>
     </>
   )
