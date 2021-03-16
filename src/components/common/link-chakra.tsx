@@ -10,7 +10,7 @@ interface LinkChakraProps extends LinkProps {
 
 const LinkChakra: React.FC<LinkChakraProps> = (props) => {
   let textDec
-  props.isUnderline ? textDec = 'underline' : textDec = 'none'
+  props.isUnderline == true ? textDec = 'underline' : textDec = 'none'
   return (
     <NextLink href={props.href ?? ''}>
       <Link {...props} style={{ textDecoration: textDec}} onClick={() => (document.activeElement as HTMLElement).blur()} />
