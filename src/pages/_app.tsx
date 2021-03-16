@@ -21,6 +21,12 @@ function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
   useEffect(() => {
     const handleRouteChange = (url: string) => {
+      // only on client
+      if (typeof window !== 'undefined') {
+        (window.adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: gtag.ADSENSE_PUB, enable_page_level_ads: true })
+        console.log('Adsense pushed!')
+
+      }
       gtag.pageview(url)
     }
     router.events.on('routeChangeComplete', handleRouteChange)
@@ -28,20 +34,8 @@ function App({ Component, pageProps }: AppProps) {
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
-    
-  }, [router.events])
 
-  useEffect(() => {
-    // only on client
-    if (typeof window !== 'undefined') {
-      try {
-        (window.adsbygoogle = window.adsbygoogle || []).push({google_ad_client: gtag.ADSENSE_PUB,enable_page_level_ads: true})
-        console.log('Adsense pushed!')
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  }, [])
+  }, [router.events])
 
   return (
     <RecoilRoot>
