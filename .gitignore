@@ -34,11 +34,10 @@ yarn-error.log*
 # vercel
 .vercel
 
-# Sitemap and rss
+# Sitemap and rss and ads.txt
 /public/ignore/*
 
 # Firebase
 serviceAccountKey*
 pawaaapp-firebase-adminsdk*
 encoded.txt
-
