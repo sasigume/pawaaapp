@@ -32,11 +32,14 @@ function App({ Component, pageProps }: AppProps) {
   }, [router.events])
 
   useEffect(() => {
-    try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({google_ad_client: gtag.ADSENSE_PUB,enable_page_level_ads: true})
-      console.log('Adsense pushed!')
-    } catch (err) {
-      console.log(err);
+    // only on client
+    if (typeof window !== 'undefined') {
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({google_ad_client: gtag.ADSENSE_PUB,enable_page_level_ads: true})
+        console.log('Adsense pushed!')
+      } catch (err) {
+        console.log(err);
+      }
     }
   }, [])
 
