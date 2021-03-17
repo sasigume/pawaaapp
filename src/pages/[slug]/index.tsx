@@ -89,7 +89,7 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
     </>) : (
       <Layout leftFixedChildren={<MarkdownToc markdown={firstPost.body} />} drawerLeftChildren={<MarkdownToc headingDepth={6} markdown={firstPost.body} />} platforms={allPlatforms} revalEnv={revalEnv} tweetCount={tweetCount} preview={preview} title={firstPost.title} desc={firstPost.description ? firstPost.description : ''}>
         <Head>
-          <link rel="canonical" href={(`${process.env.HTTPS_URL ?? ''}/${firstPost.slug ?? ''}`)} />
+          <link rel="canonical" href={(`${process.env.HTTPS_URL ?? ''}/${firstPost.slug ?? ''}/`)} />
         </Head>
         <Box mt={12}>
           <Container px={0} maxW="container.lg">

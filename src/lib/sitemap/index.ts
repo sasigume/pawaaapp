@@ -14,7 +14,7 @@ const escapeString = (unsafe: string) => {
 const generatePostItem = (post: Post): string => {
   return (`
 <url>
-    <loc>${process.env.HTTPS_URL}/${post.slug}</loc>
+    <loc>${process.env.HTTPS_URL}/${post.slug}/</loc>
     <title>${escapeString(post.title)}</title>
     <lastmod>${new Date(post.sys.publishedAt).toUTCString()}</lastmod>
 </url>
