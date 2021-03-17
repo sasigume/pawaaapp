@@ -4,6 +4,16 @@
 
 .toc li {
   margin: 0.6rem 0;
+  padding: 0 0 0.5rem;
+  border-bottom: solid 1px #999;
+}
+.toc li>ul {
+  margin: 0 0 0 2rem;
+}
+
+.toc li:last-child {
+  margin: 0.6rem 0;
+  border-bottom: none;
 }
 
 .toc li a {
