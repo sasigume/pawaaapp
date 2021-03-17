@@ -23,28 +23,21 @@ const MdCode = ({ children }: any) => (<Code whiteSpace="pre-wrap" colorScheme="
 function MarkdownRender(props: any) {
   console.log
   // wrap with class for chakra theme
-
-  if (typeof window !== undefined) {
-    return (
-      <Box w="full" className="mdrenderWrapper">
-        <Markdown children={props.source} options={{
-          slugify: str => str,
-          overrides: {
-            MdLink: {
-              component: MdLink
-            },
-            pre: {
-              component: MdCode
-            }
+  return (
+    <Box w="full" className="mdrenderWrapper">
+     <Markdown children={props.source} options={{
+        slugify: str => str,
+        overrides: {
+          MdLink: {
+            component: MdLink
+          },
+          pre: {
+            component: MdCode
           }
-        }} />
-      </Box>
-    )
-  } else {
-    return (
-      <Box w="full" className="mdrenderWrapper"></Box>
-    )
-  }
+        }
+      }} />
+    </Box>
+  )
 }
 
 export default MarkdownRender

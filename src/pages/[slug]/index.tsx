@@ -86,87 +86,90 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
         </Layout>)
       )}
     </>) : (
-      <Layout platforms={allPlatforms} revalEnv={revalEnv} tweetCount={tweetCount} preview={preview} title={firstPost.title} desc={firstPost.description ? firstPost.description : ''}>
-        <Head>
-          <link rel="canonical" href={(`${process.env.HTTPS_URL ?? ''}/${firstPost.slug ?? ''}`)} />
-        </Head>
-        <Box mt={12}>
-          <Container px={0} maxW="container.lg">
-            <BreakpointContainer breakpointName="md" actualWidth="650px">
-              {preview && <Box>デバッグ: プレビューON</Box>}
-              {firstPost && <PostList mode="single" posts={[firstPost]} expand={preview ?? false} />}
-              <Divider my={8} borderColor="gray.400" />
+      <>{router.isFallback ? (
+        <Loading />) : (
+        <Layout platforms={allPlatforms} revalEnv={revalEnv} tweetCount={tweetCount} preview={preview} title={firstPost.title} desc={firstPost.description ? firstPost.description : ''}>
+          <Head>
+            <link rel="canonical" href={(`${process.env.HTTPS_URL ?? ''}/${firstPost.slug ?? ''}`)} />
+          </Head>
+          <Box mt={12}>
+            <Container px={0} maxW="container.lg">
+              <BreakpointContainer breakpointName="md" actualWidth="650px">
+                {preview && <Box>デバッグ: プレビューON</Box>}
+                {firstPost && <PostList mode="single" posts={[firstPost]} expand={preview ?? false} />}
+                <Divider my={8} borderColor="gray.400" />
 
-              <Box textStyle="h2" mb={6}>
-                <h2>コメント</h2>
-              </Box>
-
-              <Flex direction={{ base: "column", md: "row" }}>
-
-                <Box minW={{ base: "", md: "15rem" }} mb={{ base: 8, md: 0 }} mr={{ base: 0, md: 16 }}>
-
-
-                  {(postComments && postComments.length > 0) ? postComments.map(
-                    (c: PostComment) => <PostCommentComponent c={c} key={c.id} />
-                  ) : (
-                    <div>コメントはありません。</div>
-                  )}
+                <Box textStyle="h2" mb={6}>
+                  <h2>コメント</h2>
                 </Box>
 
+                <Flex direction={{ base: "column", md: "row" }}>
 
-                <Box mb={6}>
+                  <Box minW={{ base: "", md: "15rem" }} mb={{ base: 8, md: 0 }} mr={{ base: 0, md: 16 }}>
 
-                  {user ? (<Box>
-                    <Warning />
-                    <form className="w-full px-6" onSubmit={onSubmit}>
 
-                      <div className="flex flex-col jusify-center mb-12">
-                        <Modal isOpen={isOpen} onClose={onClose} isCentered>
-                          <ModalOverlay />
-                          <ModalContent py={6}>
-                            <ModalBody>
-                              送信できました！連投はやめてね
+                    {(postComments && postComments.length > 0) ? postComments.map(
+                      (c: PostComment) => <PostCommentComponent c={c} key={c.id} />
+                    ) : (
+                      <div>コメントはありません。</div>
+                    )}
+                  </Box>
+
+
+                  <Box mb={6}>
+
+                    {user ? (<Box>
+                      <Warning />
+                      <form className="w-full px-6" onSubmit={onSubmit}>
+
+                        <div className="flex flex-col jusify-center mb-12">
+                          <Modal isOpen={isOpen} onClose={onClose} isCentered>
+                            <ModalOverlay />
+                            <ModalContent py={6}>
+                              <ModalBody>
+                                送信できました！連投はやめてね
                           </ModalBody>
-                            <ModalFooter>
-                              <Button colorScheme="blue" mr={3} onClick={onClose}>閉じる</Button>
-                            </ModalFooter>
-                          </ModalContent>
-                        </Modal>
-                        {didYouSend ? (
-                          <Center role="status">
-                            (送信できました)
-                          </Center>
-                        ) : (
-                          <Stack spacing={2}>
-                            <Textarea
-                              my={6}
-                              placeholder="コメントを書いてね"
-                              onChange={(e) => setBody(e.target.value)}
-                              required
-                            ></Textarea>
-                            <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
-                            {agreed && (
-                              <Button onClick={onOpen} colorScheme="blue" type="submit">
-                                コメントする
-                              </Button>)}
-                          </Stack>
-                        )}
-                      </div>
-                    </form>
-                  </Box>) : (<div className="my-6">
-                    <LinkChakra href="/signin">サインイン</LinkChakra>してコメントしてみよう!
-                  </div>)}
-                </Box>
-              </Flex>
-              <Divider my={8} borderColor="gray.400" />
-              {morePosts && morePosts.length > 0 && (
-                <Box my={10}>
-                  <PostList mode="more" posts={morePosts} />
-                </Box>)}
-            </BreakpointContainer>
-          </Container>
-        </Box>
-      </Layout>
+                              <ModalFooter>
+                                <Button colorScheme="blue" mr={3} onClick={onClose}>閉じる</Button>
+                              </ModalFooter>
+                            </ModalContent>
+                          </Modal>
+                          {didYouSend ? (
+                            <Center role="status">
+                              (送信できました)
+                            </Center>
+                          ) : (
+                            <Stack spacing={2}>
+                              <Textarea
+                                my={6}
+                                placeholder="コメントを書いてね"
+                                onChange={(e) => setBody(e.target.value)}
+                                required
+                              ></Textarea>
+                              <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
+                              {agreed && (
+                                <Button onClick={onOpen} colorScheme="blue" type="submit">
+                                  コメントする
+                                </Button>)}
+                            </Stack>
+                          )}
+                        </div>
+                      </form>
+                    </Box>) : (<div className="my-6">
+                      <LinkChakra href="/signin">サインイン</LinkChakra>してコメントしてみよう!
+                    </div>)}
+                  </Box>
+                </Flex>
+                <Divider my={8} borderColor="gray.400" />
+                {morePosts && morePosts.length > 0 && (
+                  <Box my={10}>
+                    <PostList mode="more" posts={morePosts} />
+                  </Box>)}
+              </BreakpointContainer>
+            </Container>
+          </Box>
+        </Layout>)
+      }</>
     )
     }
   </>
@@ -218,6 +221,6 @@ export async function getStaticPaths() {
 
   return {
     paths: paths,
-    fallback: false
+    fallback: true
   }
 }
