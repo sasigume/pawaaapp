@@ -12,7 +12,7 @@ const MarkdownToc = (props: TocProps) => {
     <div className={markdownTocStyles['toc']}>
       <Box textStyle="h2" mb={4}>目次</Box>
       <ReactMarkdownHeading headingDepth={props.headingDepth ?? 2} markdown={props.markdown} hyperlink />
-      <Badge colorScheme="red">※Markdownが正しくない場合は表示されません</Badge>
+      <Badge colorScheme="red">※Markdownの見出しにのみ対応しています</Badge>
     </div>
   )
 }

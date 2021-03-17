@@ -18,7 +18,7 @@ const FloatShare = ({ text, count }: Props) => {
     <Tooltip label={count ? <>{(`${count}件のツイートが見つかったよ!`)}</> : "まだツイートされてないみたい😥"} bg="blue.300" mr={4}>
       <Box position="fixed" bottom={5} right={5}>
         <Button aria-label="ツイートする" target="_blank" as={LinkChakra} href={tweetUrl} colorScheme="twitter" leftIcon={<FaiconDiv icon={['fab', 'twitter']} />}>
-          ツイート
+          ツイート: {count ?? 0}
         </Button>
       </Box>
     </Tooltip>
