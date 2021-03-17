@@ -1,5 +1,7 @@
 const path = require('path')
 module.exports = {
+  // add slash for Twitter card
+  trailingSlash: true,
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.node = {

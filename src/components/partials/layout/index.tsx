@@ -4,7 +4,6 @@ import { ReactNode } from 'react'
 import FloatShare from './float-share'
 import LayoutFooter from './layout-footer'
 import DrawerLeft from './drawer-left'
-import DrawerRight from './drawer-right'
 import { Box, Button, Divider, Heading } from '@chakra-ui/react'
 import LinkChakra from '@/components/common/link-chakra'
 import { SITE_NAME } from '@/lib/constants'
@@ -16,7 +15,6 @@ interface LayoutProps {
   preview: boolean
   children: ReactNode
   drawerLeftChildren?: ReactNode
-  drawerRightChildren?: ReactNode
   leftFixedChildren?: ReactNode
   title: string
   desc: string
@@ -28,7 +26,6 @@ interface LayoutProps {
 export default function Layout({ preview,
   children,
   drawerLeftChildren,
-  drawerRightChildren,
   leftFixedChildren,
   title,
   desc,
@@ -40,9 +37,10 @@ export default function Layout({ preview,
     <>
       <Meta title={title} desc={desc} />
       <Box pt={0}>
-        <Heading textAlign="center" mb={4} px={4} py={6} borderBottom="solid" borderBottomWidth={4} borderBottomColor="gray.500">
+        <Heading textAlign="center" mb={4} px={4} py={6}>
           <LinkChakra href="/">
-            <Box as="h1" textStyle="h4">{SITE_NAME}</Box>
+            <Box as="h1" textStyle="h3">{SITE_NAME}</Box>
+            <Box color="gray.500" fontSize="1rem">since 2014</Box>
           </LinkChakra>
 
         </Heading>
@@ -50,18 +48,9 @@ export default function Layout({ preview,
           {children}
         </main>
         <LayoutFooter />
-        {drawerLeftChildren && <DrawerLeft preview={preview}>
+        <DrawerLeft preview={preview}>
           {drawerLeftChildren}
-        </DrawerLeft>}
-        <DrawerRight preview={preview}>
-          {platforms && (
-            <Box>
-              <PlatformList platforms={platforms} />
-              <Divider mb={2} />
-            </Box>
-          )}
-          {drawerRightChildren}
-        </DrawerRight>
+        </DrawerLeft>
         <FloatShare count={tweetCount} text={title} />
 
         {leftFixedChildren && <LeftFixed preview={preview}>{leftFixedChildren}</LeftFixed>}
