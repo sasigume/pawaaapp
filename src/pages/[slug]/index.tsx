@@ -194,7 +194,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
   const tweets = await fetch(process.env.API_URL + '/api/twitter?word=' + encodeURIComponent(searchWord) + '&secret=' + process.env.TWITTER_SECRET)
   const tweetsJson = await tweets.json()
   let tweetCount
-  tweetsJson.data ? tweetCount = tweetsJson.data.length : tweetCount = null
+  tweetsJson.data ? tweetCount = tweetsJson.meta.result_count : tweetCount = null
 
   const revalEnv = parseInt(process.env.REVALIDATE ?? '1800')
 
