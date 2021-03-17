@@ -203,7 +203,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
       preview: preview ?? false,
       firstPost: posts.post ?? null,
       postComments: postComments ?? null,
-      //morePosts: posts.morePosts ?? null,
+      morePosts: posts.morePosts ?? null,
       tweetCount: tweetCount ?? null,
       revalEnv: revalEnv,
       allPlatforms: allPlatforms ?? null
