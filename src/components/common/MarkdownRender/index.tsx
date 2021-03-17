@@ -12,7 +12,7 @@ interface MdLinkProps {
 }
 
 const MdLink = ({ url, title }: MdLinkProps) => (
-  <LinkChakra href="url" area-label={title}>
+  <LinkChakra href={url} area-label={title}>
     <Box fontWeight="bold" transitionDuration=".3s" shadow="sm" _hover={{ shadow: "lg" }} my={4} p={3} rounded="lg" border="solid" borderWidth={1} borderColor="gray.400">
       <Box textStyle="h4">{title}</Box>
       {url}
