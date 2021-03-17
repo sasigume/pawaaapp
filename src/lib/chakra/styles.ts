@@ -14,31 +14,31 @@ const EXTEND_CHAKRA = {
   breakPoints: customBreakPoints,
   textStyles: {
     h1: {
-      fontSize: ["44px", "52px"],
+      fontSize: ["28px", "36px"],
       fontWeight: "bold",
       lineHeight: "110%",
       letterSpacing: "-2%",
     },
     h2: {
-      fontSize: ["36px", "42px"],
+      fontSize: ["26px", "34px"],
       fontWeight: "semibold",
       lineHeight: "110%",
       letterSpacing: "-1%",
     },
     h3: {
-      fontSize: ["28px", "34px"],
+      fontSize: ["24px", "32px"],
       fontWeight: "semibold",
       lineHeight: "110%",
       letterSpacing: "-1%",
     },
     h4: {
-      fontSize: ["22px", "26px"],
+      fontSize: ["22px", "24px"],
       fontWeight: "semibold",
       lineHeight: "110%",
       letterSpacing: "-1%",
     },
     h5: {
-      fontSize: ["16px", "20px"],
+      fontSize: ["20px", "28px"],
       fontWeight: "semibold",
       lineHeight: "110%",
       letterSpacing: "-1%",
@@ -53,13 +53,49 @@ const EXTEND_CHAKRA = {
   styles: {
     global: {
       ".mdrenderWrapper": {
+        h1: {
+          fontSize: ["28px", "36px"],
+          fontWeight: "bold",
+          lineHeight: "110%",
+          letterSpacing: "-2%",
+        },
+        h2: {
+          fontSize: ["26px", "34px"],
+          fontWeight: "semibold",
+          lineHeight: "110%",
+          letterSpacing: "-1%",
+        },
+        h3: {
+          fontSize: ["24px", "32px"],
+          fontWeight: "semibold",
+          lineHeight: "110%",
+          letterSpacing: "-1%",
+        },
+        h4: {
+          fontSize: ["22px", "24px"],
+          fontWeight: "semibold",
+          lineHeight: "110%",
+          letterSpacing: "-1%",
+        },
+        h5: {
+          fontSize: ["20px", "28px"],
+          fontWeight: "semibold",
+          lineHeight: "110%",
+          letterSpacing: "-1%",
+        },
+        h6: {
+          fontSize: ["11px", "14px"],
+          fontWeight: "semibold",
+          lineHeight: "110%",
+          letterSpacing: "-1%",
+        },
         p: {
           margin: "0.6rem 0 2.4rem"
         },
         "h1,h2,h3,h4,h5,h6": {
           position: "relative",
-          marginTop: "2rem",
-          marginBottom: "1rem",
+          marginTop: "2.5rem",
+          marginBottom: "1.4rem",
           paddingLeft: "0.4rem"
         },
         "h1:before,h2:before,h3:before,h4:before,h5:before,h6:before": {
