@@ -76,7 +76,7 @@ function MarkdownRender(props: RenderProps) {
   const ErrorMd = () => {
     if (!showMd) {
       return <>
-        <Badge colorScheme="red">編集担当者へ: Markdownが間違っているので目次を生成できません！</Badge>
+        <Badge colorScheme="red">編集担当者へ: Markdown中のHTMLに構文ミスがあります！</Badge>
         <ReactMarkdown allowDangerousHtml {...newProps} />
       </>
     } else {

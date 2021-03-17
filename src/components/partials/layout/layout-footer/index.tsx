@@ -34,8 +34,10 @@ const LayoutFooter = () => {
           </Button>
 
           </Stack>
-          <div>This app is distributed under MIT Lisence. Developed by{` `}
-            <LinkChakra href={(`https://twitter.com/${CREATOR_ID}`)}>@{CREATOR_ID}</LinkChakra></div>
+          <Box>Articles/images: &copy; 2021{` `}
+            <LinkChakra href={(`https://twitter.com/${CREATOR_ID}`)}>{CREATOR_ID}</LinkChakra></Box>
+            <Box>Code of web app: {` `}
+            <LinkChakra href={repoUrl}>MIT License</LinkChakra></Box>
         </Flex>
       </Container>
 
