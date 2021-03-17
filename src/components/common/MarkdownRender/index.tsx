@@ -25,7 +25,7 @@ function MarkdownRender(props: any) {
   // wrap with class for chakra theme
   return (
     <Box w="full" className="mdrenderWrapper">
-      {/*<Markdown children={props.source} options={{
+      {props.source ? <Markdown children={props.source} options={{
         slugify: str => str,
         overrides: {
           MdLink: {
@@ -35,18 +35,7 @@ function MarkdownRender(props: any) {
             component: MdCode
           }
         }
-      }} /> */}
-      {compiler(props.source, {
-        slugify: str => str,
-        overrides: {
-          MdLink: {
-            component: MdLink
-          },
-          pre: {
-            component: MdCode
-          }
-        }
-      })}
+      }} /> : <></>}
     </Box>
   )
 }
