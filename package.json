@@ -1,6 +1,6 @@
 {
   "name": "napoancom",
-  "version": "2.6.7",
+  "version": "2.6.8",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -25,14 +25,15 @@
     "firebase": "^8.2.8",
     "framer-motion": "^3.7.0",
     "graphql": "^15.5.0",
-    "markdown-to-jsx": "^7.1.2",
     "next": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-gtm-module": "^2.0.11",
+    "react-jsx-parser": "^1.28.3",
     "react-markdown": "^5.0.3",
     "react-spring": "^8.0.27",
-    "recoil": "^0.1.2"
+    "recoil": "^0.1.2",
+    "remark-gfm": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^12.12.21",
