@@ -1,0 +1,12 @@
+.toc ul {
+  list-style-type: none;
+}
+
+.toc li {
+  margin: 0.6rem 0;
+}
+
+.toc li a {
+  font-size: 1rem;
+  padding: 0.3rem;
+}

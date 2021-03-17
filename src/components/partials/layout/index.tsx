@@ -5,7 +5,7 @@ import FloatShare from './float-share'
 import LayoutFooter from './layout-footer'
 import DrawerLeft from './drawer-left'
 import DrawerRight from './drawer-right'
-import { Box, Button, Center, Divider, Flex, Heading, Stack, useColorMode } from '@chakra-ui/react'
+import { Box, Button,  Divider,  Heading } from '@chakra-ui/react'
 import LinkChakra from '@/components/common/link-chakra'
 import { SITE_NAME } from '@/lib/constants'
 import { Platform } from '@/models/contentful/Platform'
@@ -33,14 +33,11 @@ export default function Layout({ preview,
   revalEnv,
   platforms
 }: LayoutProps) {
-
-  const { colorMode } = useColorMode()
-
   return (
     <>
       <Meta title={title} desc={desc} />
       <Box pt={0}>
-        <Heading mb={4} px={4} py={6} borderBottom="solid" borderBottomWidth={4} borderBottomColor="gray.500">
+        <Heading textAlign="center" mb={4} px={4} py={6} borderBottom="solid" borderBottomWidth={4} borderBottomColor="gray.500">
           <LinkChakra href="/">
             <Box as="h1" textStyle="h4">{SITE_NAME}</Box>
           </LinkChakra>
