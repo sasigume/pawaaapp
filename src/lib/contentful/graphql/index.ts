@@ -68,7 +68,9 @@ async function fetchGraphQL(query: any, preview = false) {
       },
       body: JSON.stringify({ query }),
     }
-  ).then((response) => response.json())
+  )
+  .then((response) => response.json())
+  .catch((e)=>console.error(e))
 }
 
 function extractPerson(fetchResponse: any) {
@@ -87,6 +89,7 @@ function extractPlatforms(fetchResponse: any) {
 }
 
 function extractPost(fetchResponse: any) {
+  console.log('Fetching: ' + fetchResponse?.data?.blogPostCollection?.items?.[0].slug)
   return fetchResponse?.data?.blogPostCollection?.items?.[0] as Post
 }
 function extractPosts(fetchResponse: any) {
@@ -129,7 +132,6 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
     }`,
     preview
   )
-  console.log('Fetching: ' + entry.data)
   return {
     post: extractPost(entry),
     morePosts: extractPosts(entries)
