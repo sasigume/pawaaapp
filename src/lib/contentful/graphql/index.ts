@@ -135,6 +135,20 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
   }
 }
 
+export async function getPreviewPost(slug: string) {
+  const entry = await fetchGraphQL(
+    `query {
+      blogPostCollection(where: { slug: "${slug}" }, preview: true, limit: 1) {
+        items {
+          ${POST_GRAPHQL_FIELDS}
+        }
+      }
+    }`,
+    true
+  )
+  return extractPost(entry)
+}
+
 export async function getAllPostsWithSlug(preview: boolean, limit?:number) {
   const entries = await fetchGraphQL(
     `query {
