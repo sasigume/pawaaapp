@@ -118,7 +118,7 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
     preview
   )
 
-  // CRAZY RANDOMIZE(slash 5 means only show newer content and minimize build time)
+  /* CRAZY RANDOMIZE(slash 5 means only show newer content and minimize build time)
   const randomSkipMax = parseInt(process.env.TOTAL_PAGINATION ?? '600') / 10
   const randomSkip = Math.round(Math.random() * randomSkipMax)
 
@@ -132,10 +132,10 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
       }
     }`,
     preview
-  )
+  ) */
   return {
     post: extractPost(entry),
-    morePosts: extractPosts(entries)
+    //morePosts: extractPosts(entries)
   }
 }
 
