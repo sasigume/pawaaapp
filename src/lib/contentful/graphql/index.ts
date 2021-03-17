@@ -89,8 +89,9 @@ function extractPlatforms(fetchResponse: any) {
 }
 
 function extractPost(fetchResponse: any) {
-  console.log('Fetching: ' + fetchResponse?.data?.blogPostCollection?.items?.[0].slug)
-  return fetchResponse?.data?.blogPostCollection?.items?.[0] as Post
+  const fetchedPost = fetchResponse?.data?.blogPostCollection?.items?.[0]
+  console.log(`Fetching: ${fetchedPost.slug}, firstPublishedAt: ${fetchedPost.sys.firstPublishedAt}`)
+  return fetchedPost as Post
 }
 function extractPosts(fetchResponse: any) {
   return fetchResponse?.data?.blogPostCollection?.items as Post[]
