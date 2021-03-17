@@ -31,7 +31,7 @@ export default function DrawerLeft({ children }: Props) {
 
   return (
     <>
-      <Button pr={{base:2,md:4}} ref={btnRef} colorScheme="blue" leftIcon={<FaiconDiv icon={['fas', 'bars']} />} onClick={onOpen} position="fixed" top={5} left={5}>
+      <Button zIndex={10} pr={{base:2,md:4}} ref={btnRef} colorScheme="blue" leftIcon={<FaiconDiv icon={['fas', 'bars']} />} onClick={onOpen} position="fixed" top={5} left={5}>
         <Box display={{ base: "none", md: "flex" }}>MENU</Box>
       </Button>
       <Drawer
