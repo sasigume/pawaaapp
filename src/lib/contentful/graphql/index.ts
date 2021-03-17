@@ -68,7 +68,9 @@ async function fetchGraphQL(query: any, preview = false) {
       },
       body: JSON.stringify({ query }),
     }
-  ).then((response) => response.json())
+  )
+  .then((response) => response.json())
+  .catch((e)=>console.error(e))
 }
 
 function extractPerson(fetchResponse: any) {
@@ -87,7 +89,9 @@ function extractPlatforms(fetchResponse: any) {
 }
 
 function extractPost(fetchResponse: any) {
-  return fetchResponse?.data?.blogPostCollection?.items?.[0] as Post
+  const fetchedPost = fetchResponse?.data?.blogPostCollection?.items?.[0]
+  console.log(`Fetching: ${fetchedPost.slug}, firstPublishedAt: ${fetchedPost.sys.firstPublishedAt}`)
+  return fetchedPost as Post
 }
 function extractPosts(fetchResponse: any) {
   return fetchResponse?.data?.blogPostCollection?.items as Post[]
@@ -115,7 +119,7 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
   )
 
   // CRAZY RANDOMIZE(slash 5 means only show newer content and minimize build time)
-  const randomSkipMax = parseInt(process.env.TOTAL_PAGINATION ?? '600')/10
+  const randomSkipMax = parseInt(process.env.TOTAL_PAGINATION ?? '600') / 10
   const randomSkip = Math.round(Math.random() * randomSkipMax)
 
   const entries = await fetchGraphQL(
@@ -149,7 +153,7 @@ export async function getPreviewPost(slug: string) {
   return extractPost(entry)
 }
 
-export async function getAllPostsWithSlug(preview: boolean, limit?:number) {
+export async function getAllPostsWithSlug(preview: boolean, limit?: number) {
   const entries = await fetchGraphQL(
     `query {
       blogPostCollection(limit:${limit ?? TOTAL_LIMIT},where: { slug_exists: true }, order: sys_firstPublishedAt_DESC,preview: ${preview ? 'true' : 'false'}) {
@@ -163,7 +167,7 @@ export async function getAllPostsWithSlug(preview: boolean, limit?:number) {
   return extractPosts(entries)
 }
 
-export async function getAllPostsByRange(preview: boolean, skip:number, limit?:number) {
+export async function getAllPostsByRange(preview: boolean, skip: number, limit?: number) {
   const entries = await fetchGraphQL(
     `query {
       blogPostCollection(skip:${skip ?? 0} ,limit:${limit ?? 10},where: { slug_exists: true }, order: sys_firstPublishedAt_DESC,preview: ${preview ? 'true' : 'false'}) {
@@ -229,7 +233,7 @@ export async function getAllPostsForPlatform(slug: string, preview: boolean, lim
   return extractPostsFromPlatform(entries)
 }
 
-export async function getAllPostsForPlatformByRange(slug: string, preview: boolean, skip:number, limit?: number) {
+export async function getAllPostsForPlatformByRange(slug: string, preview: boolean, skip: number, limit?: number) {
   const entries = await fetchGraphQL(
     `query {
       platformCollection(skip:${skip ?? 0} ,limit: 1, where: {slug: "${slug}"}, order: sys_firstPublishedAt_DESC) {
@@ -283,7 +287,7 @@ export async function getPerson(slug: string, preview: boolean) {
 }
 
 
-export async function getAllPostsForPerson(slug: string, preview: boolean, limit?:number) {
+export async function getAllPostsForPerson(slug: string, preview: boolean, limit?: number) {
   const entries = await fetchGraphQL(
     `query {
       personCollection(limit: 1, where: {slug: "${slug}"}, order: sys_firstPublishedAt_DESC) {
