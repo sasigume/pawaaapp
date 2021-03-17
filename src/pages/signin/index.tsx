@@ -15,11 +15,13 @@ export default function LoginPage() {
 
   const router = useRouter()
   const login = () => {
-    gtag.event({
-      action: 'login',
-      category: 'user',
-      label: 'サインインページからのサインイン',
-    })
+    if (typeof window !== 'undefined') {
+      gtag.event({
+        action: 'login',
+        category: 'user',
+        label: 'サインインページからのサインイン',
+      })
+    }
 
     const provider = new firebaseApi.auth.TwitterAuthProvider();
     firebaseApi.auth().languageCode = 'ja';
