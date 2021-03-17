@@ -40,6 +40,10 @@ function MarkdownRender(props: any) {
         }} />
       </Box>
     )
+  } else {
+    return (
+      <Box w="full" className="mdrenderWrapper"></Box>
+    )
   }
 }
 
