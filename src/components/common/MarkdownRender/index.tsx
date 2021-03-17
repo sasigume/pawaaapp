@@ -3,7 +3,7 @@ import ReactMarkdown from 'react-markdown'
 import JsxParser from "react-jsx-parser"
 import LinkChakra from '../link-chakra'
 import React from 'react'
-import Image from 'next/image'
+
 
 const gfm = require('remark-gfm')
 interface MdLinkProps {
@@ -50,8 +50,6 @@ function MarkdownRender(props: any) {
         </Box>),
       code: (props: any) =>
         <Code whiteSpace="pre-wrap" colorScheme="teal">{props.value}</Code>,
-      image: (props: any) =>
-        <Image {...props} />
     }
   }
   const newPropsIfValid = {
