@@ -93,6 +93,7 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
         <Box mt={12}>
           <Container px={0} maxW="container.lg">
             <BreakpointContainer breakpointName="md" actualWidth="650px">
+              {preview && <Box>デバッグ: プレビューON</Box>}
               {firstPost && <PostList mode="single" posts={[firstPost]} expand={preview ?? false} />}
               <Divider my={8} borderColor="gray.400" />
 
