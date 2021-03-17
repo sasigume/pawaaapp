@@ -66,7 +66,7 @@ function MarkdownRender(props: RenderProps) {
         <JsxParser
           renderError={(e) => <Badge colorScheme="red">{JSON.stringify(e)}</Badge>}
           // change state to false if JSX has error
-          onError={(e) => { console.log(e); setShowMd(false) }}
+          onError={(e) => { setShowMd(false) }}
           autoCloseVoidElements
           jsx={props.value}
           components={componentTransforms} />
