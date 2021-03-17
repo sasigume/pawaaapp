@@ -23,7 +23,7 @@ export default function DrawerLeft({ children }: Props) {
 
   return (
     <>
-      <Button ref={btnRef} colorScheme="blue" leftIcon={<FaiconDiv icon={['fas', 'bars']} />} onClick={onOpen} position="fixed" top={5} left={5}>
+      <Button display={{ base: "flex", xl: "none" }} ref={btnRef} colorScheme="blue" leftIcon={<FaiconDiv icon={['fas', 'bars']} />} onClick={onOpen} position="fixed" top={5} left={5}>
         CONTENTS
       </Button>
       <Drawer

@@ -3,9 +3,8 @@ import ReactMarkdown from 'react-markdown'
 import JsxParser from "react-jsx-parser"
 import LinkChakra from '../link-chakra'
 import React from 'react'
-
-
 const gfm = require('remark-gfm')
+
 interface MdLinkProps {
   url: string
   title: string
@@ -20,8 +19,13 @@ const MdLink = ({ url, title }: MdLinkProps) => (
   </LinkChakra>
 )
 
+interface RenderProps {
+  source: string
+  plugins?: any[]
+  renderers?: any
+}
 
-function MarkdownRender(props: any) {
+function MarkdownRender(props: RenderProps) {
 
   // check if JSX has error
   const [showMd, setShowMd] = React.useState(true)
@@ -30,6 +34,8 @@ function MarkdownRender(props: any) {
     MdLink: (props: any) => <MdLink {...props} />,
   }
 
+  // match id space to automatic generated anchor link hyphene
+  const headingId = (props:any) => props.children[0].props.children.replace(` `,`-`)
 
   const newProps = {
     source: props.source,
@@ -41,12 +47,12 @@ function MarkdownRender(props: any) {
 
       heading: (props: any) => (
         <Box textStyle={(`h${props.level}`)}>
-          {props.level == 1 && <h1>{props.children}</h1>}
-          {props.level == 2 && <h2>{props.children}</h2>}
-          {props.level == 3 && <h3>{props.children}</h3>}
-          {props.level == 4 && <h4>{props.children}</h4>}
-          {props.level == 5 && <h5>{props.children}</h5>}
-          {props.level == 6 && <h6>{props.children}</h6>}
+          {props.level == 1 && <h1 id={headingId(props)}>{props.children}</h1>}
+          {props.level == 2 && <h2 id={headingId(props)}>{props.children}</h2>}
+          {props.level == 3 && <h3 id={headingId(props)}>{props.children}</h3>}
+          {props.level == 4 && <h4 id={headingId(props)}>{props.children}</h4>}
+          {props.level == 5 && <h5 id={headingId(props)}>{props.children}</h5>}
+          {props.level == 6 && <h6 id={headingId(props)}>{props.children}</h6>}
         </Box>),
       code: (props: any) =>
         <Code whiteSpace="pre-wrap" colorScheme="teal">{props.value}</Code>,
@@ -70,12 +76,11 @@ function MarkdownRender(props: any) {
   const ErrorMd = () => {
     if (!showMd) {
       return <>
-        <Badge colorScheme="red">編集担当者へ: MarkdownをJSXとしてパースできませんでした</Badge>
+        <Badge colorScheme="red">編集担当者へ: Markdownが間違っているので目次を生成できません！</Badge>
         <ReactMarkdown allowDangerousHtml {...newProps} />
       </>
     } else {
       return <>
-        <Badge>編集担当者へ: JSXにエラーなし</Badge>
         <ReactMarkdown allowDangerousHtml {...newPropsIfValid} />
       </>
     }

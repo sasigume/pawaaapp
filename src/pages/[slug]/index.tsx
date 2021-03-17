@@ -32,6 +32,7 @@ import { SITE_URL } from '@/lib/constants'
 import { BreakpointContainer } from '@/components/common/breakpoint-container'
 import { Platform } from '@/models/contentful/Platform'
 import Head from 'next/head'
+import MarkdownToc from '@/components/common/markdown-toc'
 
 interface PostPageProps {
   firstPost: Post;
@@ -86,7 +87,7 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
         </Layout>)
       )}
     </>) : (
-      <Layout platforms={allPlatforms} revalEnv={revalEnv} tweetCount={tweetCount} preview={preview} title={firstPost.title} desc={firstPost.description ? firstPost.description : ''}>
+      <Layout leftFixedChildren={<MarkdownToc markdown={firstPost.body} />} drawerLeftChildren={<MarkdownToc headingDepth={6} markdown={firstPost.body} />} platforms={allPlatforms} revalEnv={revalEnv} tweetCount={tweetCount} preview={preview} title={firstPost.title} desc={firstPost.description ? firstPost.description : ''}>
         <Head>
           <link rel="canonical" href={(`${process.env.HTTPS_URL ?? ''}/${firstPost.slug ?? ''}`)} />
         </Head>
