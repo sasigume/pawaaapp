@@ -56,7 +56,7 @@ export default function Layout({ preview,
         {leftFixedChildren && <LeftFixed preview={preview}>{leftFixedChildren}</LeftFixed>}
 
         {preview && (
-          <Box position="fixed" bottom={0} left={0}>
+          <Box zIndex={15} position="fixed" bottom={0} left={0}>
             <Button as={LinkChakra} href="/api/exit-preview">プレビュー解除</Button>
           </Box>
         )}
