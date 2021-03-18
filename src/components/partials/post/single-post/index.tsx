@@ -8,22 +8,25 @@ import MarkdownRender from '@/components/common/MarkdownRender'
 import PlatformList from '../common/platform-list'
 import PersonList from '../common/person-list'
 import Adsense from '@/components/common/adsense'
+import Image from 'next/image'
 
 interface Props {
   post: Post
 }
 
 export function SinglePostComponent({ post }: Props) {
-  
+
   return (
     <>
       <Box>
 
-      
+        {post.heroImage && <Center w="full" mb={4}>
+          <img src={post.heroImage.url} width="600px" height="auto" />
+          </Center>}
 
-            {post.person && (<Box>
-              <PersonList persons={[post.person]} />
-            </Box>)}
+        {post.person && (<Box>
+          <PersonList persons={[post.person]} />
+        </Box>)}
 
         <Box area-label="更新日時" mb={6}>
           <Badge colorScheme="blue">公開: {dayjs(post.publishDate ?? post.sys.firstPublishedAt).format('YYYY/MM/DD')}</Badge>
@@ -38,9 +41,9 @@ export function SinglePostComponent({ post }: Props) {
           </LinkChakra>
         </Box>
         {(post.platformsCollection && post.platformsCollection.items.length > 0) && (<Box>
-              <PlatformList platforms={post.platformsCollection.items} />
-            </Box>)}
-        <Box display={{base:"none", md:"flex"}} area-label="記事の概要" my={4} fontSize="1.4rem">
+          <PlatformList platforms={post.platformsCollection.items} />
+        </Box>)}
+        <Box display={{ base: "none", md: "flex" }} area-label="記事の概要" my={4} fontSize="1.4rem">
           {post.description}
         </Box>
         <Adsense slot={"1773582608"} />
