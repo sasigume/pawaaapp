@@ -31,8 +31,8 @@ const generateSitemap = (posts: Post[]): string => {
 }
 const publishSitemap = async (posts: Post[]) => {
 
-  const PATH = './public/sitemap.xml'
-  const PATH_DEVELOPINNG = './public/ignore/sitemap.xml'
+  const PATH = 'public/sitemap.xml'
+  const PATH_DEVELOPINNG = 'public/ignore/sitemap.xml'
   const sitemap = generateSitemap(posts)
   if (process.env.NODE_ENV == "production" || process.env.NODE_ENV == "test") {
     fs.writeFileSync(PATH, sitemap)
