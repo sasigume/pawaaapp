@@ -21,6 +21,7 @@ interface LayoutProps {
   tweetCount?: number
   revalEnv?: number
   platforms?: Platform[]
+  heroImageUrl?: string
 }
 
 export default function Layout({ preview,
@@ -31,11 +32,12 @@ export default function Layout({ preview,
   desc,
   tweetCount,
   revalEnv,
-  platforms
+  platforms,
+  heroImageUrl
 }: LayoutProps) {
   return (
     <>
-      <Meta title={title} desc={desc} />
+      <Meta title={title} desc={desc} heroImageUrl={heroImageUrl} />
       <Box pt={0}>
         <Heading textAlign="center" mb={4} px={4} py={6}>
           <LinkChakra href="/">
@@ -56,7 +58,7 @@ export default function Layout({ preview,
         {leftFixedChildren && <LeftFixed preview={preview}>{leftFixedChildren}</LeftFixed>}
 
         {preview && (
-          <Box position="fixed" bottom={0} left={0}>
+          <Box zIndex={15} position="fixed" bottom={0} left={0}>
             <Button as={LinkChakra} href="/api/exit-preview">プレビュー解除</Button>
           </Box>
         )}

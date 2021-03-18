@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import { SITE_NAME } from '@/lib/constants'
 interface Props {
-  desc: string;
-  title: string;
+  desc: string
+  title: string
+  heroImageUrl?: string
 }
 
 function trimText(text:string) {
@@ -13,8 +14,10 @@ function trimText(text:string) {
   return body.substring(0, 140) + '...'
 }
 
-export default function Meta({ desc, title }: Props) {
-  const ogpUrl = process.env.HTTPS_URL + '/api/ogpgen/?text=' + encodeURIComponent(trimText(title))
+export default function Meta({ desc, title, heroImageUrl }: Props) {
+
+  const ogpUrl = heroImageUrl ?? process.env.HTTPS_URL + '/api/ogpgen/?text=' + encodeURIComponent(trimText(title))
+
   return (
     <Head>
       <meta charSet="utf-8" />
