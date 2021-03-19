@@ -4,20 +4,6 @@ import LinkChakra from '../link-chakra'
 import React from 'react'
 const gfm = require('remark-gfm')
 
-interface MdLinkProps {
-  url: string
-  title: string
-}
-
-const MdLink = ({ url, title }: MdLinkProps) => (
-  <LinkChakra href={url} area-label={title}>
-    <Box fontWeight="bold" transitionDuration=".3s" shadow="sm" _hover={{ shadow: "lg" }} my={4} p={3} rounded="lg" border="solid" borderWidth={1} borderColor="gray.400">
-      <Box textStyle="h4">{title}</Box>
-      {url}
-    </Box>
-  </LinkChakra>
-)
-
 interface RenderProps {
   source: string
   plugins?: any[]
@@ -50,21 +36,15 @@ function MarkdownRender(props: RenderProps) {
         <Code whiteSpace="pre-wrap" colorScheme="teal">{props.value}</Code>,
     }
   }
-  const newPropsIfValid = {
-    ...newProps,
-    renderers: {
-      ...newProps.renderers
-    }
-  }
 
-  const ErrorMd = () => {
-    return <ReactMarkdown allowDangerousHtml {...newPropsIfValid} />
+  const MdRenderer = () => {
+    return <ReactMarkdown allowDangerousHtml {...newProps} />
   }
 
   // wrap with class for chakra theme
   return (
     <Box w="full" className="mdrenderWrapper">
-      <ErrorMd />
+      <MdRenderer />
     </Box>
   );
 }
