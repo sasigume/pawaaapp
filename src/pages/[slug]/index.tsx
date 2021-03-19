@@ -34,19 +34,20 @@ import { Platform } from '@/models/contentful/Platform'
 import Head from 'next/head'
 import MarkdownToc from '@/components/common/markdown-toc'
 import HeroWithThumbnails from '@/components/common/hero-with-thumbnails'
+import AsyncMd from '@/components/common/unified-md'
 
 interface PostPageProps {
-  firstPost: Post;
-  postComments: PostComment[];
-  morePosts: Post[];
-  preview: boolean;
-  tweetCount: number;
-  revalEnv: number;
-  allPlatforms: Platform[];
+  firstPost: Post
+  postComments: PostComment[]
+  morePosts: Post[]
+  preview: boolean
+  tweetCount: number
+  revalEnv: number
+  allPlatforms: Platform[]
 }
 
 
-export default function PostPage({ firstPost, postComments, morePosts, preview, tweetCount, revalEnv, allPlatforms }: PostPageProps) {
+export default function PostPage({ firstPost, postComments, morePosts, preview, tweetCount, revalEnv, allPlatforms}: PostPageProps) {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -97,6 +98,7 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
           <Container px={0} maxW="container.lg">
             <BreakpointContainer breakpointName="md" actualWidth="650px">
               {preview && <Box>デバッグ: プレビューON</Box>}
+
               {firstPost && <PostList mode="single" posts={[firstPost]} expand={preview ?? false} />}
               <Divider my={8} borderColor="gray.400" />
 
@@ -208,7 +210,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
       morePosts: posts.morePosts ?? null,
       tweetCount: tweetCount ?? null,
       revalEnv: revalEnv,
-      allPlatforms: allPlatforms ?? null
+      allPlatforms: allPlatforms ?? null,
     },
     revalidate: revalEnv,
   }
