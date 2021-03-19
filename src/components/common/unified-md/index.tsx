@@ -1,38 +1,42 @@
-import { Badge, Box, Code } from '@chakra-ui/react'
-import ReactMarkdown from 'react-markdown'
-import LinkChakra from '../link-chakra'
+import { Box } from '@chakra-ui/react'
 import React from 'react'
+const unified = require('unified')
+const remarkParse = require('remark-parse')
+const directive = require('remark-directive')
+const rehypeStringify = require('rehype-stringify')
+const remark2rehype = require('remark-rehype')
 const gfm = require('remark-gfm')
-
-interface MdLinkProps {
-  url: string
-  title: string
-}
-
-const MdLink = ({ url, title }: MdLinkProps) => (
-  <LinkChakra href={url} area-label={title}>
-    <Box fontWeight="bold" transitionDuration=".3s" shadow="sm" _hover={{ shadow: "lg" }} my={4} p={3} rounded="lg" border="solid" borderWidth={1} borderColor="gray.400">
-      <Box textStyle="h4">{title}</Box>
-      {url}
-    </Box>
-  </LinkChakra>
-)
-
 interface RenderProps {
   source: string
-  plugins?: any[]
-  renderers?: any
 }
 
-function MarkdownRender(props: RenderProps) {
+function UnifiedMd(props: RenderProps) {
+
+  const result = unified()
+    .use(remarkParse)
+    .use(directive)
+    .use(gfm)
+    .use(remark2rehype)
+    .use(rehypeStringify)
+    .processSync(props.source)
+
+  return (<>
+    <Box w="full" className="mdrenderWrapper" dangerouslySetInnerHTML={{ __html: result.contents }} />
+  </>)
 
   // match id space to automatic generated anchor link hyphene
   const headingId = (props: any) => props.children[0].props.children.replace(` `, `-`)
 
-  const newProps = {
+  /* const newProps = {
     source: props.source,
     plugins: [
       gfm,
+      [remarkCustomBlocks, {
+        MdLink: {
+          classes: 'md_link',
+          title: 'required',
+        }
+      }]
     ],
     renderers: {
       ...props.renderers,
@@ -49,24 +53,7 @@ function MarkdownRender(props: RenderProps) {
       code: (props: any) =>
         <Code whiteSpace="pre-wrap" colorScheme="teal">{props.value}</Code>,
     }
-  }
-  const newPropsIfValid = {
-    ...newProps,
-    renderers: {
-      ...newProps.renderers
-    }
-  }
-
-  const ErrorMd = () => {
-    return <ReactMarkdown allowDangerousHtml {...newPropsIfValid} />
-  }
-
-  // wrap with class for chakra theme
-  return (
-    <Box w="full" className="mdrenderWrapper">
-      <ErrorMd />
-    </Box>
-  );
+  } */
 }
 
-export default MarkdownRender
+export default UnifiedMd
