@@ -22,7 +22,7 @@ export function SinglePostComponent({ post }: Props) {
 
         {post.heroImage && <Center w="full" mb={4}>
           <img src={post.heroImage.url} width="600px" height="auto" />
-          </Center>}
+        </Center>}
 
         {post.person && (<Box>
           <PersonList persons={[post.person]} />
@@ -49,10 +49,15 @@ export function SinglePostComponent({ post }: Props) {
         <Adsense slot={"1773582608"} />
         <Divider my={4} />
         <Box>
-          <Flex w="full">
-            <MarkdownRender source={post.body} />
-          </Flex>
+          <MarkdownRender source={post.body} />
         </Box>
+        <Divider my={3} />
+        <Box>
+          <Button h="60px" w="full" aria-label="フォロー" target="_blank" as={LinkChakra} href="https://twitter.com/sasigume" colorScheme="twitter" leftIcon={<FaiconDiv icon={['fab', 'twitter']} />}>
+            記事がお役にたったら...<br />フォローをお願いします
+        </Button>
+        </Box>
+        <Divider my={3} />
         <Adsense slot={"1529491287"} />
       </Box>
     </>

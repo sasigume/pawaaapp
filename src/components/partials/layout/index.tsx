@@ -38,7 +38,7 @@ export default function Layout({ preview,
   return (
     <>
       <Meta title={title} desc={desc} heroImageUrl={heroImageUrl} />
-      <Box pt={0}>
+      <Box maxW="100vw" overflow="hidden">
         <Heading textAlign="center" px={4} py={6}>
           <LinkChakra href="/">
             <Box as="h1" textStyle="h3">{SITE_NAME}</Box>
