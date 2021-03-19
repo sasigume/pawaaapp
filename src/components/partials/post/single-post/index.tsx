@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { Badge, Box, Center, Divider, Flex } from '@chakra-ui/react'
+import { Badge, Box, Button, Center, Divider, Flex } from '@chakra-ui/react'
 import { Post } from '@/models/contentful/Post'
 
 import LinkChakra from '@/components/common/link-chakra'
@@ -8,6 +8,7 @@ import PlatformList from '../common/platform-list'
 import PersonList from '../common/person-list'
 import Adsense from '@/components/common/adsense'
 import MarkdownRender from '@/components/common/MarkdownRender'
+import FaiconDiv from '@/components/common/faicon-div'
 
 interface Props {
   post: Post
@@ -26,6 +27,10 @@ export function SinglePostComponent({ post }: Props) {
         {post.person && (<Box>
           <PersonList persons={[post.person]} />
         </Box>)}
+
+        <Button aria-label="フォロー" target="_blank" as={LinkChakra} href="https://twitter.com/sasigume" colorScheme="twitter" leftIcon={<FaiconDiv icon={['fab', 'twitter']} />}>
+        フォローしてね!
+        </Button>
 
         <Box area-label="更新日時" mb={6}>
           <Badge colorScheme="blue">公開: {dayjs(post.publishDate ?? post.sys.firstPublishedAt).format('YYYY/MM/DD')}</Badge>
