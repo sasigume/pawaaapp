@@ -7,7 +7,7 @@ import LinkChakra from '@/components/common/link-chakra'
 import PlatformList from '../common/platform-list'
 import PersonList from '../common/person-list'
 import Adsense from '@/components/common/adsense'
-import UnifiedMd from '@/components/common/unified-md'
+import MarkdownRender from '@/components/common/MarkdownRender'
 
 interface Props {
   post: Post
@@ -49,7 +49,7 @@ export function SinglePostComponent({ post }: Props) {
         <Divider my={4} />
         <Box>
           <Flex w="full">
-            <UnifiedMd source={post.body} />
+            <MarkdownRender source={post.body} />
           </Flex>
         </Box>
         <Adsense slot={"1529491287"} />
