@@ -1,6 +1,7 @@
+import FaiconDiv from '@/components/common/faicon-div'
 import LinkChakra from '@/components/common/link-chakra'
 import { Person } from '@/models/contentful/Person'
-import { Avatar, Button, Flex, Stack, Tooltip } from '@chakra-ui/react'
+import { Avatar, Box, Button, Stack } from '@chakra-ui/react'
 
 interface OneProps {
   person: Person
@@ -12,7 +13,6 @@ interface ListProps {
 const OnePerson = ({ person }: OneProps) => {
 
   return (
-    <Tooltip label="二重コンテンツになるから著者記事一覧はないよ！">
       <Button cursor="default" leftIcon={
         <Avatar
           w={6}
@@ -22,8 +22,10 @@ const OnePerson = ({ person }: OneProps) => {
         />
       }>
         {person.displayName ? person.displayName : '(名前なし)'}
+          <Button ml={6} aria-label="フォロー" target="_blank" as={LinkChakra} href="https://twitter.com/sasigume" colorScheme="twitter" leftIcon={<FaiconDiv icon={['fab', 'twitter']} />}>
+        フォローしてね!
+        </Button>
       </Button>
-    </Tooltip>
   )
 }
 
