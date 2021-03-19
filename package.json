@@ -1,6 +1,6 @@
 {
   "name": "napoancom",
-  "version": "2.7.7",
+  "version": "2.7.8",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -31,14 +31,10 @@
     "react-gtm-module": "^2.0.11",
     "react-markdown": "^5.0.3",
     "react-markdown-heading": "^1.1.2",
+    "react-remark": "^2.0.3",
     "react-spring": "^8.0.27",
     "recoil": "^0.1.2",
-    "rehype-stringify": "^8.0.0",
-    "remark-directive": "^1.0.1",
-    "remark-gfm": "^1.0.0",
-    "remark-parse": "^9.0.0",
-    "remark-rehype": "^8.0.0",
-    "unified": "^9.2.1"
+    "remark-gfm": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^12.12.21",

@@ -1,59 +1,62 @@
-import { Box } from '@chakra-ui/react'
+import { Box, Code } from '@chakra-ui/react'
 import React from 'react'
-const unified = require('unified')
-const remarkParse = require('remark-parse')
-const directive = require('remark-directive')
-const rehypeStringify = require('rehype-stringify')
-const remark2rehype = require('remark-rehype')
+import { Remark } from 'react-remark'
+import LinkChakra from '../link-chakra'
 const gfm = require('remark-gfm')
+
 interface RenderProps {
   source: string
 }
 
+interface MdLinkProps {
+  url: string
+  title: string
+}
+
+const MdLink = ({ url, title }: MdLinkProps) => (
+  <LinkChakra href={url} area-label={title}>
+    <Box fontWeight="bold" transitionDuration=".3s" shadow="sm" _hover={{ shadow: "lg" }} my={4} p={3} rounded="lg" border="solid" borderWidth={1} borderColor="gray.400">
+      <Box textStyle="h4">{title}</Box>
+      {url}
+    </Box>
+  </LinkChakra>
+)
+
 function UnifiedMd(props: RenderProps) {
 
-  const result = unified()
-    .use(remarkParse)
-    .use(directive)
-    .use(gfm)
-    .use(remark2rehype)
-    .use(rehypeStringify)
-    .processSync(props.source)
+  // match id space to automatic generated anchor link hyphene
+  const headingId = (props: any) => props.children[0].replace(` `, `-`)
 
   return (<>
-    <Box w="full" className="mdrenderWrapper" dangerouslySetInnerHTML={{ __html: result.contents }} />
+    <Box w="full" className="mdrenderWrapper">
+      <Remark
+        //remarkParseOptions={}
+        remarkPlugins={[gfm]}
+        //remarkToRehypeOptions={}
+        //rehypePlugins={}
+        rehypeReactOptions={{
+          components: {
+            h1: (props: any) =>
+              <Box textStyle="h1"><h1 id={headingId(props)} {...props} /></Box>,
+            h2: (props: any) =>
+              <Box textStyle="h2"><h2 id={headingId(props)} {...props} /></Box>,
+            h3: (props: any) =>
+              <Box textStyle="h2"><h3 id={headingId(props)} {...props} /></Box>,
+            h4: (props: any) =>
+              <Box textStyle="h2"><h4 id={headingId(props)} {...props} /></Box>,
+            h5: (props: any) =>
+              <Box textStyle="h2"><h5 id={headingId(props)} {...props} /></Box>,
+            h6: (props: any) =>
+              <Box textStyle="h2"><h6 id={headingId(props)} {...props} /></Box>,
+            code: (props: any) =>
+              <Code whiteSpace="pre-wrap" colorScheme="teal">{props.value}</Code>,
+          },
+        }}
+      >
+        {props.source}
+      </Remark>
+    </Box>
   </>)
-
-  // match id space to automatic generated anchor link hyphene
-  const headingId = (props: any) => props.children[0].props.children.replace(` `, `-`)
-
-  /* const newProps = {
-    source: props.source,
-    plugins: [
-      gfm,
-      [remarkCustomBlocks, {
-        MdLink: {
-          classes: 'md_link',
-          title: 'required',
-        }
-      }]
-    ],
-    renderers: {
-      ...props.renderers,
-
-      heading: (props: any) => (
-        <Box textStyle={(`h${props.level}`)}>
-          {props.level == 1 && <h1 id={headingId(props)}>{props.children}</h1>}
-          {props.level == 2 && <h2 id={headingId(props)}>{props.children}</h2>}
-          {props.level == 3 && <h3 id={headingId(props)}>{props.children}</h3>}
-          {props.level == 4 && <h4 id={headingId(props)}>{props.children}</h4>}
-          {props.level == 5 && <h5 id={headingId(props)}>{props.children}</h5>}
-          {props.level == 6 && <h6 id={headingId(props)}>{props.children}</h6>}
-        </Box>),
-      code: (props: any) =>
-        <Code whiteSpace="pre-wrap" colorScheme="teal">{props.value}</Code>,
-    }
-  } */
 }
 
 export default UnifiedMd
