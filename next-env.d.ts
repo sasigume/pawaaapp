@@ -3,8 +3,8 @@
 
 declare module 'classnames'
 declare module 'react-gtm-module'
-declare module 'remark-react'
-declare module 'remark-custom-blocks'
+declare module 'react-syntax-highlighter'
+declare module 'react-syntax-highlighter/dist/cjs/styles/prism'
 
 // https://sunday-morning.app/posts/2020-12-09-nextjs-google-analytics
 interface Window {
