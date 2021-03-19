@@ -14,7 +14,7 @@ const FloatShare = ({ text, count }: Props) => {
   const shareUrl = process.env.HTTPS_URL + asPath as string
 
   const tweetUrl = `https://twitter.com/share?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(text)}&hashtags=PAWAAAPP`
-  return (
+  /*return (
     <Tooltip label={count ? <>{(`${count}件のツイートが見つかったよ!`)}</> : "まだツイートされてないみたい😥"} bg="blue.300" mr={4}>
       <Box position="fixed" bottom={5} right={5}>
         <Button aria-label="ツイートする" target="_blank" as={LinkChakra} href={tweetUrl} colorScheme="twitter" leftIcon={<FaiconDiv icon={['fab', 'twitter']} />}>
@@ -22,6 +22,14 @@ const FloatShare = ({ text, count }: Props) => {
         </Button>
       </Box>
     </Tooltip>
+  )*/
+  return (
+    <Box position="fixed" bottom={5} right={5}>
+      <Button aria-label="フォロー" target="_blank" as={LinkChakra} href="https://twitter.com/sasigume" colorScheme="twitter" leftIcon={<FaiconDiv icon={['fab', 'twitter']} />}>
+        フォロー
+        </Button>
+    </Box>
+
   )
 }
 export default FloatShare
