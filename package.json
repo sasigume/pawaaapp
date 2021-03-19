@@ -31,7 +31,6 @@
     "react-gtm-module": "^2.0.11",
     "react-markdown": "^5.0.3",
     "react-markdown-heading": "^1.1.2",
-    "react-remark": "^2.0.3",
     "react-spring": "^8.0.27",
     "recoil": "^0.1.2",
     "remark-gfm": "^1.0.0"
