@@ -1,12 +1,19 @@
-import { Badge, Box, Code } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import ReactMarkdown from 'react-markdown'
-import LinkChakra from '../link-chakra'
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+import {atomDark} from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import React from 'react'
 const gfm = require('remark-gfm')
+
 interface RenderProps {
   source: string
   plugins?: any[]
   renderers?: any
+}
+
+interface CodeProps {
+  language: string,
+  value: any
 }
 
 const MarkdownRender = (props: RenderProps) => {
@@ -31,8 +38,9 @@ const MarkdownRender = (props: RenderProps) => {
           {props.level == 5 && <h5 id={headingId(props)}>{props.children}</h5>}
           {props.level == 6 && <h6 id={headingId(props)}>{props.children}</h6>}
         </Box>),
-      code: (props: any) =>
-        <Code whiteSpace="pre-wrap" colorScheme="teal">{props.value}</Code>,
+      code: ({language, value}:CodeProps) => {
+        return <SyntaxHighlighter style={atomDark} language={language} children={value} />
+      },
       html: (props: any) =>
         <div className="containHtml" dangerouslySetInnerHTML={{ __html: props.value }} />
     }

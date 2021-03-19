@@ -1,6 +1,6 @@
 {
   "name": "napoancom",
-  "version": "2.8.0",
+  "version": "2.8.1",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -32,6 +32,7 @@
     "react-markdown": "^5.0.3",
     "react-markdown-heading": "^1.1.2",
     "react-spring": "^8.0.27",
+    "react-syntax-highlighter": "^15.4.3",
     "recoil": "^0.1.2",
     "remark-gfm": "^1.0.0"
   },
