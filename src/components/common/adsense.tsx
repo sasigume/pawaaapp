@@ -1,6 +1,5 @@
 import { Box } from '@chakra-ui/layout';
 import React, { useEffect, useState } from 'react';
-import AdsenseStyle from './adsense.module.css'
 
 interface AdsenseProps {
   slot: string
@@ -19,7 +18,7 @@ export default function Adsense(props: AdsenseProps) {
   })
 
   return (
-    <Box className={AdsenseStyle['adsense']} key={Math.random()} mx="auto" my={3}>
+    <Box key={Math.random()} mx="auto" my={4}>
       {enableAd ? (<>
         <ins className="adsbygoogle"
           style={{ "display": "block" }}
