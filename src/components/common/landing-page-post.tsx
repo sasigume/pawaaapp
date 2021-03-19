@@ -47,7 +47,7 @@ function LandingPagePostComponent({ post, n }: Props) {
           </Button>
         </Flex>
         <Box fontSize="1.4rem">
-          <UnifiedMd source={post.md} />
+          <MarkdownRender source={post.md} />
         </Box>
       </Box>
     </Box>
