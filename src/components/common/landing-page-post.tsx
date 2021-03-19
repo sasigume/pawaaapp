@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 
-import MarkdownRender from './MarkdownRender'
 import { LandingPagePost } from '@/models/contentful/LandingPagePost'
 import { useSpring, animated } from 'react-spring'
 import { Box, Button, Flex, Stack, useColorMode } from '@chakra-ui/react'
 import FaiconDiv from './faicon-div'
+import UnifiedMd from './unified-md'
 
 interface Props {
   post: LandingPagePost
@@ -47,7 +47,7 @@ function LandingPagePostComponent({ post, n }: Props) {
           </Button>
         </Flex>
         <Box fontSize="1.4rem">
-          <MarkdownRender source={post.md} />
+          <UnifiedMd source={post.md} />
         </Box>
       </Box>
     </Box>

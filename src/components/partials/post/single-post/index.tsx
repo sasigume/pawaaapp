@@ -4,11 +4,10 @@ import { Post } from '@/models/contentful/Post'
 
 import LinkChakra from '@/components/common/link-chakra'
 
-import MarkdownRender from '@/components/common/MarkdownRender'
 import PlatformList from '../common/platform-list'
 import PersonList from '../common/person-list'
 import Adsense from '@/components/common/adsense'
-import Image from 'next/image'
+import UnifiedMd from '@/components/common/unified-md'
 
 interface Props {
   post: Post
@@ -50,7 +49,7 @@ export function SinglePostComponent({ post }: Props) {
         <Divider my={4} />
         <Box>
           <Flex w="full">
-            <MarkdownRender source={post.body} />
+            <UnifiedMd source={post.body} />
           </Flex>
         </Box>
         <Adsense slot={"1529491287"} />
