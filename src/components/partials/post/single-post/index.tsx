@@ -28,10 +28,6 @@ export function SinglePostComponent({ post }: Props) {
           <PersonList persons={[post.person]} />
         </Box>)}
 
-        <Button aria-label="フォロー" target="_blank" as={LinkChakra} href="https://twitter.com/sasigume" colorScheme="twitter" leftIcon={<FaiconDiv icon={['fab', 'twitter']} />}>
-        フォローしてね!
-        </Button>
-
         <Box area-label="更新日時" mb={6}>
           <Badge colorScheme="blue">公開: {dayjs(post.publishDate ?? post.sys.firstPublishedAt).format('YYYY/MM/DD')}</Badge>
           <Badge colorScheme="green">最終更新: {dayjs(post.sys.publishedAt).format('YYYY/MM/DD')}</Badge>
