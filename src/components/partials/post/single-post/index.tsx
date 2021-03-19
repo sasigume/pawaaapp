@@ -53,8 +53,8 @@ export function SinglePostComponent({ post }: Props) {
         </Box>
         <Divider my={3} />
         <Box>
-          <Button w="full" aria-label="フォロー" target="_blank" as={LinkChakra} href="https://twitter.com/sasigume" colorScheme="twitter" leftIcon={<FaiconDiv icon={['fab', 'twitter']} />}>
-            フォロー
+          <Button h="60px" w="full" aria-label="フォロー" target="_blank" as={LinkChakra} href="https://twitter.com/sasigume" colorScheme="twitter" leftIcon={<FaiconDiv icon={['fab', 'twitter']} />}>
+            記事がお役にたったら...<br />フォローをお願いします
         </Button>
         </Box>
         <Divider my={3} />
