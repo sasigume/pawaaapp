@@ -34,7 +34,6 @@ import { Platform } from '@/models/contentful/Platform'
 import Head from 'next/head'
 import MarkdownToc from '@/components/common/markdown-toc'
 import HeroWithThumbnails from '@/components/common/hero-with-thumbnails'
-import AsyncMd from '@/components/common/unified-md'
 
 interface PostPageProps {
   firstPost: Post
