@@ -3,14 +3,13 @@ import ReactMarkdown from 'react-markdown'
 import LinkChakra from '../link-chakra'
 import React from 'react'
 const gfm = require('remark-gfm')
-
 interface RenderProps {
   source: string
   plugins?: any[]
   renderers?: any
 }
 
-function MarkdownRender(props: RenderProps) {
+const MarkdownRender = (props: RenderProps) => {
 
   // match id space to automatic generated anchor link hyphene
   const headingId = (props: any) => props.children[0].props.children.replace(` `, `-`)
@@ -34,6 +33,8 @@ function MarkdownRender(props: RenderProps) {
         </Box>),
       code: (props: any) =>
         <Code whiteSpace="pre-wrap" colorScheme="teal">{props.value}</Code>,
+      html: (props: any) =>
+        <div className="containHtml" dangerouslySetInnerHTML={{ __html: props.value }} />
     }
   }
 
