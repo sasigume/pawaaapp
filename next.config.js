@@ -36,7 +36,11 @@ module.exports = {
     PAGINATION: process.env.PAGINATION,
     TOTAL_PAGINATION: process.env.TOTAL_PAGINATION,
     ADSENSE_AUTH_ID: process.env.ADSENSE_AUTH_ID,
-    GTM_ID: process.env.GTM_ID
+    GTM_ID: process.env.GTM_ID,
+    VERCEL_GIT_REPO_OWNER: process.env.VERCEL_GIT_REPO_OWNER,
+    VERCEL_GIT_REPO_SLUG: process.env.VERCEL_GIT_REPO_SLUG,
+    VERCEL_GIT_COMMIT_SHA: process.env.VERCEL_GIT_COMMIT_SHA,
+    VERCEL_GIT_COMMIT_MESSAGE: process.env.VERCEL_GIT_COMMIT_MESSAGE
   },
   images: {
     domains: ['localhost', 'pbs.twimg.com', 'images.ctfassets.net']

@@ -43,9 +43,9 @@ const Index = ({ posts, totalCount, environment, tweetCount, allPlatforms }: Ind
         )}
       </>) : (
         <Layout platforms={allPlatforms} preview={environment} title={SITE_NAME} desc={SITE_DESC} tweetCount={tweetCount}>
-          
+          <HeroWithThumbnails totalCount={totalCount} />
           <Container bg="white" maxW="container.lg">
-            <HeroWithThumbnails totalCount={totalCount} />
+
             <BreakpointContainer>
               {posts && (
                 <Box mt={6} mb={10}>
