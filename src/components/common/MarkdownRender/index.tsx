@@ -1,6 +1,5 @@
 import { Badge, Box, Code } from '@chakra-ui/react'
 import ReactMarkdown from 'react-markdown'
-import JsxParser from "react-jsx-parser"
 import LinkChakra from '../link-chakra'
 import React from 'react'
 const gfm = require('remark-gfm')
@@ -27,15 +26,8 @@ interface RenderProps {
 
 function MarkdownRender(props: RenderProps) {
 
-  // check if JSX has error
-  const [showMd, setShowMd] = React.useState(true)
-
-  const componentTransforms = {
-    MdLink: (props: any) => <MdLink {...props} />,
-  }
-
   // match id space to automatic generated anchor link hyphene
-  const headingId = (props:any) => props.children[0].props.children.replace(` `,`-`)
+  const headingId = (props: any) => props.children[0].props.children.replace(` `, `-`)
 
   const newProps = {
     source: props.source,
@@ -61,29 +53,12 @@ function MarkdownRender(props: RenderProps) {
   const newPropsIfValid = {
     ...newProps,
     renderers: {
-      ...newProps.renderers,
-      html: (props: any) =>
-        <JsxParser
-          renderError={(e) => <Badge colorScheme="red">{JSON.stringify(e)}</Badge>}
-          // change state to false if JSX has error
-          onError={(e) => { setShowMd(false) }}
-          autoCloseVoidElements
-          jsx={props.value}
-          components={componentTransforms} />
+      ...newProps.renderers
     }
   }
 
   const ErrorMd = () => {
-    if (!showMd) {
-      return <>
-        <Badge colorScheme="red">編集担当者へ: Markdown中のHTMLに構文ミスがあります！</Badge>
-        <ReactMarkdown allowDangerousHtml {...newProps} />
-      </>
-    } else {
-      return <>
-        <ReactMarkdown allowDangerousHtml {...newPropsIfValid} />
-      </>
-    }
+    return <ReactMarkdown allowDangerousHtml {...newPropsIfValid} />
   }
 
   // wrap with class for chakra theme

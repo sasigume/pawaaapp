@@ -16,6 +16,8 @@ import { BreakpointContainer } from '@/components/common/breakpoint-container'
 import { Pagination } from '@/components/common/pagenation'
 import { Platform } from '@/models/contentful/Platform'
 import publishAdsTxt from '@/lib/adsense'
+import Image from 'next/image'
+import HeroWithThumbnails from '@/components/common/hero-with-thumbnails'
 interface IndexProps {
   posts: Post[];
   totalCount: number;
@@ -24,7 +26,7 @@ interface IndexProps {
   allPlatforms: Platform[]
 }
 
-const Index = ({ posts,totalCount, environment, tweetCount, allPlatforms }: IndexProps) => {
+const Index = ({ posts, totalCount, environment, tweetCount, allPlatforms }: IndexProps) => {
   const router = useRouter()
   const { colorMode } = useColorMode()
 
@@ -41,18 +43,19 @@ const Index = ({ posts,totalCount, environment, tweetCount, allPlatforms }: Inde
         )}
       </>) : (
         <Layout platforms={allPlatforms} preview={environment} title={SITE_NAME} desc={SITE_DESC} tweetCount={tweetCount}>
-
-          <Container maxW="container.lg">
+          
+          <Container bg="white" maxW="container.lg">
+            <HeroWithThumbnails totalCount={totalCount} />
             <BreakpointContainer>
               {posts && (
-              <Box mt={6} mb={10}>
-                <VStack textStyle="h1" spacing={4} mb={8}>
-                  <h1>最近更新された記事</h1>
-                  <Divider />
-                </VStack>
-                {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
-                <Pagination totalCount={totalCount} />
-              </Box>)}
+                <Box mt={6} mb={10}>
+                  <VStack textStyle="h1" spacing={4} mb={8}>
+                    <h2>最近更新された記事</h2>
+                    <Divider />
+                  </VStack>
+                  {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
+                  <Pagination totalCount={totalCount} />
+                </Box>)}
             </BreakpointContainer>
           </Container>
         </Layout>
@@ -76,7 +79,7 @@ export async function getStaticProps({ preview = false }) {
   const tweetsJson = await tweets.json()
   let tweetCount
   tweetsJson.meta ? tweetCount = tweetsJson.meta.result_count : tweetCount = null
-  
+
 
   const allPostsForIndex = (await getAllPostsWithSlug(false, PER_PAGE)) || []
   // Write only published post into RSS/Sitemap
