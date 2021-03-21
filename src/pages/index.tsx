@@ -2,13 +2,12 @@
 import ErrorPage from 'next/error'
 import { Box, Container, Divider, useColorMode, VStack } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
-import { getAllPlatformsWithSlug, getAllPostsWithSlug } from '../lib/contentful/graphql'
+import { getAllPostsWithSlug } from '../lib/contentful/graphql'
 import { SITE_DESC, SITE_NAME, SITE_URL } from '@/lib/constants'
 import { Post } from '@/models/contentful/Post'
 import PostList from '@/components/partials/post'
 import { BreakpointContainer } from '@/components/common/breakpoint-container'
 import { Pagination } from '@/components/common/pagenation'
-import { Platform } from '@/models/contentful/Platform'
 import publishAdsTxt from '@/lib/adstxt'
 import HeroWithThumbnails from '@/components/common/hero-with-thumbnails'
 import publishRobotsTxt from '@/lib/robotstxt'
@@ -17,10 +16,9 @@ interface IndexProps {
   totalCount: number;
   tweetCount: number;
   environment: boolean;
-  allPlatforms: Platform[]
 }
 
-const Index = ({ posts, totalCount, environment, tweetCount, allPlatforms }: IndexProps) => {
+const Index = ({ posts, totalCount, environment, tweetCount }: IndexProps) => {
 
   const { colorMode } = useColorMode()
   return (
@@ -60,8 +58,6 @@ export async function getStaticProps({ preview = false }) {
 
   const searchWord = SITE_URL
 
-  const allPlatforms = await getAllPlatformsWithSlug(preview, 10)
-
   const tweets = await fetch(process.env.API_URL + '/api/twitter?word=' + encodeURIComponent(searchWord) + '&secret=' + process.env.TWITTER_SECRET)
   const tweetsJson = await tweets.json()
   let tweetCount
@@ -82,7 +78,6 @@ export async function getStaticProps({ preview = false }) {
       totalCount: allPostsPublished.length ?? null,
       tweetCount: tweetCount ?? null,
       preview: preview ?? null,
-      allPlatforms: allPlatforms ?? null
     },
     revalidate: revalEnv
   }

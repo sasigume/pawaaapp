@@ -42,7 +42,7 @@ const MarkdownToc = (props: TocProps) => {
     }
   }
 
-  const tweetUrl = `https://twitter.com/share?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(props.tweetText ?? '')}&hashtags=PAWAAAPP`
+  const tweetUrl = `https://twitter.com/share?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(props.tweetText ?? '')}`
 
   return (
     <Box>
