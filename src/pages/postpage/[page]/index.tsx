@@ -1,14 +1,12 @@
 
 import ErrorPage from 'next/error'
-import { useRouter } from 'next/router'
 
 
-import { Box, Container, Divider, useColorMode, VStack } from '@chakra-ui/react'
+import { Box, Container, Divider, VStack } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
 import { getAllPostsByRange, getAllPostsWithSlug } from '@/lib/contentful/graphql'
 
 import { SITE_DESC, SITE_NAME } from '@/lib/constants'
-import Loading from '@/components/common/loading'
 import { Post } from '@/models/contentful/Post'
 import PostList from '@/components/partials/post'
 import { BreakpointContainer } from '@/components/common/breakpoint-container'
