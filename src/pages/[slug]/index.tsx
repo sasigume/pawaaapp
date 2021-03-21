@@ -1,6 +1,5 @@
 
-import { useRouter } from 'next/router'
-import { FormEvent, useState } from 'react'
+import { useState } from 'react'
 import firebase from 'firebase/app'
 import { useAuthentication } from '@/hooks/authentication'
 
@@ -9,20 +8,19 @@ import ErrorPage from 'next/error'
 import { getAllPlatformsWithSlug, getPostAndMorePosts, getAllPostsWithSlug } from '@/lib/contentful/graphql'
 import { Post } from '@/models/contentful/Post'
 
-import Loading from '@/components/common/loading'
 import Layout from '@/components/partials/layout'
 import PostList from '@/components/partials/post'
 import {
-  Box, Button, Checkbox, Container, Stack, Textarea, useDisclosure,
+  Box, Button, Container, Stack, useDisclosure,
   Modal,
   ModalOverlay,
   ModalContent,
   ModalFooter,
   ModalBody,
-  Center,
   Divider,
   Flex,
-  Skeleton
+  ButtonGroup,
+  Center
 } from '@chakra-ui/react'
 import LinkChakra from '@/components/common/link-chakra'
 import { PostComment } from '@/models/firebase/PostComment'
@@ -34,6 +32,16 @@ import { Platform } from '@/models/contentful/Platform'
 import Head from 'next/head'
 import MarkdownToc from '@/components/common/markdown-toc'
 import HeroWithThumbnails from '@/components/common/hero-with-thumbnails'
+import * as Yup from "yup";
+
+import {
+  TextareaControl,
+  ResetButton,
+  SubmitButton,
+  CheckboxSingleControl
+} from "formik-chakra-ui"
+import { NGwords } from 'pages/api/ogpgen/NGwords'
+import { Formik } from 'formik'
 
 interface PostPageProps {
   firstPost: Post
@@ -49,36 +57,15 @@ interface PostPageProps {
 
 export default function PostPage({ firstPost, postComments, morePosts, preview, tweetCount, revalEnv, allPlatforms, hideAdsense }: PostPageProps) {
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
-
   const { user } = useAuthentication()
 
-  const [body, setBody] = useState('')
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const [didYouSend, setSended] = useState(false)
 
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    // prevent duplicated post
-    setSended(true)
-
-    if (localStorage === null) {
-      console.log("localStorage is disabled");
-    }
-
-    await firebase.firestore().collection('postComments').add({
-      senderUid: firebase.auth().currentUser?.uid,
-      senderName: firebase.auth().currentUser?.displayName,
-      postSlug: firstPost.slug,
-      body,
-      createdAt: firebase.firestore.Timestamp.fromDate(new Date())
-    })
-
-    setBody('')
-    console.log('Comment posted')
-
-  }
-
-  const [agreed, setAgreed] = useState(false)
+  const validationSchema = Yup.object({
+    body: Yup.string().required('入力してください').notOneOf(NGwords, '使用できない言葉が含まれています'),
+    agreed: Yup.boolean().required()
+  })
 
   return (<>
     {(!firstPost) ? (<>
@@ -121,41 +108,57 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
 
                   {user ? (<Box>
                     <Warning />
-                    <form className="w-full px-6" onSubmit={onSubmit}>
-
-                      <div className="flex flex-col jusify-center mb-12">
-                        <Modal isOpen={isOpen} onClose={onClose} isCentered>
-                          <ModalOverlay />
-                          <ModalContent py={6}>
-                            <ModalBody>
-                              送信できました！連投はやめてね
+                    <Modal isOpen={isOpen} onClose={onClose} isCentered>
+                      <ModalOverlay />
+                      <ModalContent py={6}>
+                        <ModalBody>
+                          送信できました！連投はやめてね
                           </ModalBody>
-                            <ModalFooter>
-                              <Button colorScheme="blue" mr={3} onClick={onClose}>閉じる</Button>
-                            </ModalFooter>
-                          </ModalContent>
-                        </Modal>
-                        {didYouSend ? (
-                          <Center role="status">
-                            (送信できました)
-                          </Center>
-                        ) : (
-                          <Stack spacing={2}>
-                            <Textarea
-                              my={6}
-                              placeholder="コメントを書いてね"
-                              onChange={(e) => setBody(e.target.value)}
-                              required
-                            ></Textarea>
-                            <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
-                            {agreed && (
-                              <Button onClick={onOpen} colorScheme="blue" type="submit">
-                                コメントする
-                              </Button>)}
-                          </Stack>
-                        )}
-                      </div>
-                    </form>
+                        <ModalFooter>
+                          <Button colorScheme="blue" mr={3} onClick={onClose}>閉じる</Button>
+                        </ModalFooter>
+                      </ModalContent>
+                    </Modal>
+                    {!didYouSend ? (<Formik
+                      initialValues={{
+                        body: "",
+                        agreed: false
+                      }}
+                      validationSchema={validationSchema}
+                      onSubmit={(values) => {
+                        setTimeout(() => {
+                          firebase.firestore().collection('postComments').add({
+                            senderUid: firebase.auth().currentUser?.uid,
+                            senderName: firebase.auth().currentUser?.displayName,
+                            postSlug: firstPost.slug,
+                            body: values.body,
+                            createdAt: firebase.firestore.Timestamp.fromDate(new Date())
+                          }).then(() => {
+                            setSended(true)
+                          })
+                          console.log(`Comment posted: please wait until revalidation(${revalEnv} sec.)`)
+                        }, 1000)
+                      }}>
+                      {({ handleSubmit, values }) => (
+                        <Stack as="form"
+                          onSubmit={handleSubmit as any} spacing={6}>
+                          <TextareaControl name="body" placeholder="コメントを入力" label="コメント" />
+                          <CheckboxSingleControl name="agreed">
+                            利用規約に同意しました
+                          </CheckboxSingleControl>
+                          <ButtonGroup>
+                            {values.agreed && (
+                              <SubmitButton>コメントを投稿する</SubmitButton>)}
+                            <ResetButton>リセット</ResetButton>
+                          </ButtonGroup>
+                        </Stack>
+                      )}
+                    </Formik>) : (<>
+                      <Center my={16}>
+                        送信できました。一覧は{revalEnv / 60}分後に更新されます。
+                      </Center>
+                    </>)
+                    }
                   </Box>) : (<div className="my-6">
                     <LinkChakra href="/signin">サインイン</LinkChakra>してコメントしてみよう!
                   </div>)}

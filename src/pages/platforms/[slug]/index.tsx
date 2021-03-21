@@ -6,8 +6,7 @@ import { getPlatform, getAllPlatformsWithSlug, getAllPostsForPlatform } from '@/
 import { Post } from '@/models/contentful/Post'
 import { Platform } from '@/models/contentful/Platform'
 import { Box, Container } from '@chakra-ui/react'
-import Loading from '@/components/common/loading'
-import { Pagination } from '@/components/common/pagenation'
+
 interface IndexProps {
   platform: Platform;
   posts: Post[];
