@@ -8,7 +8,11 @@ const pkg = require('../../../../../package.json')
 const repoUrl = pkg.repository.url
 const repoV = pkg.version
 
-const LayoutFooter = () => {
+interface FooterProps {
+  revalidate?: number
+}
+
+const LayoutFooter = ({ revalidate }: FooterProps) => {
   const { colorMode } = useColorMode()
 
   return (
@@ -37,10 +41,20 @@ const LayoutFooter = () => {
           <Box>Articles/images: &copy; 2021{` `}
             <LinkChakra href={(`https://twitter.com/${CREATOR_ID}`)}>{CREATOR_ID}</LinkChakra></Box>
           <Box mb={3}>Code of web app: {` `}
-            <LinkChakra href={repoUrl}>MIT License</LinkChakra></Box>
-          <Box>
-            <Badge textTransform="none">v{repoV} / Last commit: <LinkChakra href={VERCEL_LAST_COMMIT}>{VERCEL_LAST_COMMIT_MESSAGE}</LinkChakra></Badge>
+            <LinkChakra href={repoUrl}>MIT License</LinkChakra>
           </Box>
+          <Stack direction={{ base: "column", md: "row" }}>
+            <Box>
+              <Badge colorScheme="green" textTransform="none"><a href="/privacy-policy/">プライバシーポリシー</a></Badge>
+            </Box>
+            {revalidate && <Box>
+              <Badge colorScheme="purple" textTransform="none">速度向上のため、このページは{revalidate / 60}分間隔で更新されます</Badge>
+            </Box>}
+            <Box>
+              <Badge textTransform="none">v{repoV} / Last commit: <LinkChakra href={VERCEL_LAST_COMMIT}>{VERCEL_LAST_COMMIT_MESSAGE}</LinkChakra></Badge>
+            </Box>
+          </Stack>
+
         </Flex>
       </Container>
 
