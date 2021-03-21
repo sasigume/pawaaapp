@@ -50,7 +50,7 @@ export default function Layout({ preview,
         <main style={{ flexGrow: 1 }}>
           {children}
         </main>
-        <LayoutFooter />
+        <LayoutFooter revalidate={revalEnv} />
         <DrawerLeft preview={preview}>
           {drawerLeftChildren}
         </DrawerLeft>
