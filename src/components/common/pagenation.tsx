@@ -1,5 +1,3 @@
-import Router from 'next/router'
-import Link from 'next/link'
 import { Box, Stack } from '@chakra-ui/layout'
 import LinkChakra from './link-chakra'
 import { Button } from '@chakra-ui/button'
