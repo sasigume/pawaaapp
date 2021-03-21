@@ -1,6 +1,6 @@
 {
   "name": "napoancom",
-  "version": "2.9.1",
+  "version": "2.9.2",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -23,6 +23,8 @@
     "date-fns": "^2.17.0",
     "dayjs": "^1.10.4",
     "firebase": "^8.2.8",
+    "formik": "^2.2.6",
+    "formik-chakra-ui": "^1.4.6",
     "framer-motion": "^3.7.0",
     "graphql": "^15.5.0",
     "next": "latest",
@@ -36,7 +38,8 @@
     "react-syntax-highlighter": "^15.4.3",
     "recoil": "^0.1.2",
     "remark-gfm": "^1.0.0",
-    "rss": "^1.2.2"
+    "rss": "^1.2.2",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@types/node": "^12.12.21",

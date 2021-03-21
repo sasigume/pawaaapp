@@ -22,6 +22,9 @@ function App({ Component, pageProps }: AppProps) {
   }
 
   useEffect(() => {
+    if(typeof localStorage === null){
+      console.error('Cannot use Local Storage!')
+    }
     TagManager.initialize({
       gtmId: process.env.GTM_ID,
       dataLayer: {
