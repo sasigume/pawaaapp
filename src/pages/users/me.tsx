@@ -7,7 +7,8 @@ import { BreakpointContainer } from '@/components/common/breakpoint-container'
 import Warning from '@/components/common/warning'
 import { Formik } from 'formik'
 import { SITE_FULL_URL } from '@/lib/constants'
-import * as Yup from "yup";
+import * as Yup from "yup"
+import * as gtag from "@/lib/gtag"
 
 import {
   InputControl,
@@ -58,6 +59,13 @@ export default function UsersMe() {
                 }}
                 validationSchema={validationSchema}
                 onSubmit={(values) => {
+                  if (typeof window !== 'undefined') {
+                    gtag.event({
+                      action: 'updateProfile',
+                      category: 'user',
+                      label: 'プロフィールのアップデート',
+                    })
+                  }
                   setTimeout(() => {
                     firebaseApi.auth().currentUser?.updateProfile({
                       displayName: values.displayName ?? user.name,
