@@ -1,5 +1,4 @@
 import firebase from 'firebase/app'
-import firebaseApi from '@/lib/firebase'
 import { useEffect } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { User } from '@/models/firebase/User'

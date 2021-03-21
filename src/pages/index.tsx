@@ -5,13 +5,13 @@ import { Box, Container, Divider, useColorMode, VStack } from '@chakra-ui/react'
 import { getAllPostsWithSlug } from '../lib/contentful/graphql'
 import { SITE_DESC, SITE_NAME, SITE_URL } from '@/lib/constants'
 import { Post } from '@/models/contentful/Post'
-import { BreakpointContainer } from '@/components/common/breakpoint-container'
-import { Pagination } from '@/components/common/pagenation'
+
 import publishAdsTxt from '@/lib/adstxt'
 import publishRobotsTxt from '@/lib/robotstxt'
-
 import Layout from '@/components/partials/layout'
-const HeroWithThumbnails = dynamic(() => import('@/components/common/hero-with-thumbnails'))
+
+const Pagination = dynamic(() => import('@/components/common/pagenation'))
+const BreakpointContainer = dynamic(() => import('@/components/common/breakpoint-container'))
 const PostList = dynamic(() => import('@/components/partials/post'))
 
 interface IndexProps {
@@ -31,7 +31,6 @@ const Index = ({ posts, totalCount, environment, tweetCount }: IndexProps) => {
       </Layout>
         : (
           <Layout preview={environment} title={SITE_NAME} desc={SITE_DESC} tweetCount={tweetCount}>
-            <HeroWithThumbnails totalCount={totalCount} />
             <Container bg={colorMode == "light" ? "white" : "dark"} maxW="container.lg">
 
               <BreakpointContainer>

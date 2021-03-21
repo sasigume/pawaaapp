@@ -1,7 +1,7 @@
 import FaiconDiv from '@/components/common/faicon-div'
 import LinkChakra from '@/components/common/link-chakra'
 import { Person } from '@/models/contentful/Person'
-import { Avatar, Box, Button, Stack } from '@chakra-ui/react'
+import { Avatar, Button, Stack } from '@chakra-ui/react'
 
 interface OneProps {
   person: Person
