@@ -2,7 +2,7 @@ import Layout from '@/components/partials/layout'
 import { useAuthentication } from '../../hooks/authentication'
 import firebaseApi from '@/lib/firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Container } from '@chakra-ui/react'
+import { Box, Container } from '@chakra-ui/react'
 import Warning from '@/components/common/warning'
 import { useRouter } from 'next/router'
 import * as gtag from '@/lib/gtag'
@@ -23,9 +23,8 @@ export default function LoginPage() {
       })
     }
 
-    const provider = new firebaseApi.auth.TwitterAuthProvider();
     firebaseApi.auth().languageCode = 'ja';
-    firebaseApi.auth().signInWithPopup(provider)
+    firebaseApi.auth().signInAnonymously()
       .then(() => {
         router.back()
       })
@@ -43,15 +42,15 @@ export default function LoginPage() {
     <Layout preview={false} title={'マイページ'} desc={'マイページ'} >
       <Container>
         <BreakpointContainer>
-          {!user ? (<div className="max-w-xl mb-6">
+          {!user ? (<Box py={16}>
             <Stack direction="column" mb={8} >
               <Warning />
               <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>利用規約に同意しました</Checkbox>
-              {agreed && <Button colorScheme="twitter" leftIcon={<FaiconDiv icon={['fab', 'twitter']} />} onClick={login}>
+              {agreed && <Button leftIcon={<FaiconDiv icon={['fas', 'user']} />} onClick={login}>
                 サインイン
           </Button>}
             </Stack>
-          </div>
+          </Box>
           ) : (<div>
             <div className="my-16">サインイン中: {user.name}さん (お問い合わせID: {user.uid})</div>
           </div>)}
