@@ -33,8 +33,9 @@ export default function Layout({ preview,
   tweetCount,
   revalEnv,
   platforms,
-  heroImageUrl
+  heroImageUrl,
 }: LayoutProps) {
+
   return (
     <>
       <Meta title={title} desc={desc} heroImageUrl={heroImageUrl} />

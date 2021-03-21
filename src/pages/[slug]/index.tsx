@@ -43,10 +43,11 @@ interface PostPageProps {
   tweetCount: number
   revalEnv: number
   allPlatforms: Platform[]
+  hideAdsense: boolean
 }
 
 
-export default function PostPage({ firstPost, postComments, morePosts, preview, tweetCount, revalEnv, allPlatforms }: PostPageProps) {
+export default function PostPage({ firstPost, postComments, morePosts, preview, tweetCount, revalEnv, allPlatforms, hideAdsense }: PostPageProps) {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -214,6 +215,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
         tweetCount: tweetCount ?? null,
         revalEnv: revalEnv,
         allPlatforms: allPlatforms ?? null,
+        hideAdsense: posts.post.hideAdsense ?? false
       },
       revalidate: revalEnv,
     }
