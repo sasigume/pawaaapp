@@ -83,8 +83,8 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
     </>) : (
       <Layout
         heroImageUrl={firstPost.heroImage && firstPost.heroImage.url}
-        leftFixedChildren={<MarkdownToc {...tocProps} />}
-        drawerLeftChildren={<MarkdownToc {...tocProps} headingDepth={6} />}
+        leftFixedChildren={(firstPost && postComments) && <MarkdownToc {...tocProps} />}
+        drawerLeftChildren={(firstPost && postComments) && <MarkdownToc {...tocProps} headingDepth={6} />}
         revalEnv={revalEnv}
         tweetCount={tweetCount}
         preview={preview}
