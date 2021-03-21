@@ -51,6 +51,7 @@ platformsCollection(limit: 5) {
     ${PLATFORM_GRAPHQL_FIELDS}
   }
 }
+hideAdsense
 `
 
 
