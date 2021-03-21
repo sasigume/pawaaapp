@@ -1,19 +1,30 @@
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document'
 import React from 'react'
+import nookies from 'nookies'
 import { ColorModeScript } from "@chakra-ui/react"
 import { GA_TRACKING_ID } from '@/lib/gtag'
 import colorMode from '@/lib/chakra/color-mode'
 
-export default class MyDocument extends Document {
+interface DocumentProps {
+  preview: boolean
+}
+
+export default class MyDocument extends Document<DocumentProps> {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx)
+
+    // check preview by cookie
+    const cookies = nookies.get(ctx)
+    const preview = cookies.__next_preview_data || false
     return {
-      ...initialProps
+      ...initialProps,
+      preview
     }
   }
 
-
   render() {
+    const preview = this.props.preview
+
     return (
       <Html>
         <Head>
@@ -35,6 +46,8 @@ export default class MyDocument extends Document {
                 gtag('config', '${GA_TRACKING_ID}', {
                   page_path: window.location.pathname,
                 });
+
+                ${preview ? "window['ga-disable-" + GA_TRACKING_ID + "'] = true;" : ''}
         `,
             }}
           />
