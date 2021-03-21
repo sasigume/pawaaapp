@@ -46,7 +46,7 @@ interface PostPageProps {
 }
 
 
-export default function PostPage({ firstPost, postComments, morePosts, preview, tweetCount, revalEnv, allPlatforms}: PostPageProps) {
+export default function PostPage({ firstPost, postComments, morePosts, preview, tweetCount, revalEnv, allPlatforms }: PostPageProps) {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -80,13 +80,9 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
   return (<>
     {(!firstPost) ? (<>
 
-      {router.isFallback ? (
-        <Loading />
-      ) : (
-        (<Layout preview={preview} title={'404 Not found'} desc={''}>
-          <ErrorPage title="記事が見つかりませんでした" statusCode={404} />
-        </Layout>)
-      )}
+      <Layout preview={preview} title={'404 Not found'} desc={''}>
+        <ErrorPage title="記事が見つかりませんでした" statusCode={404} />
+      </Layout>
     </>) : (
       <Layout heroImageUrl={firstPost.heroImage && firstPost.heroImage.url} leftFixedChildren={<MarkdownToc markdown={firstPost.body} />} drawerLeftChildren={<MarkdownToc headingDepth={6} markdown={firstPost.body} />} platforms={allPlatforms} revalEnv={revalEnv} tweetCount={tweetCount} preview={preview} title={firstPost.title} desc={firstPost.description ? firstPost.description : ''}>
         <Head>
@@ -189,6 +185,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
   const allPlatforms = await getAllPlatformsWithSlug(preview, 10)
 
   const posts = await getPostAndMorePosts(params.slug, preview)
+
   const commentsRes = await fetch(process.env.API_URL + `/api/postComments/${params.slug}`)
   const postComments = await commentsRes.json()
 
@@ -201,26 +198,34 @@ export async function getStaticProps({ params, preview }: GSProps) {
 
   const revalEnv = parseInt(process.env.REVALIDATE ?? '1800')
 
-  return {
-    props: {
-      preview: preview ?? false,
-      firstPost: posts.post ?? null,
-      postComments: postComments ?? null,
-      morePosts: posts.morePosts ?? null,
-      tweetCount: tweetCount ?? null,
-      revalEnv: revalEnv,
-      allPlatforms: allPlatforms ?? null,
-    },
-    revalidate: revalEnv,
+  if (!posts) {
+    return {
+      // return 404
+      notFound: true
+    }
+  } else {
+
+    return {
+      props: {
+        preview: preview ?? false,
+        firstPost: posts.post ?? null,
+        postComments: postComments ?? null,
+        morePosts: posts.morePosts ?? null,
+        tweetCount: tweetCount ?? null,
+        revalEnv: revalEnv,
+        allPlatforms: allPlatforms ?? null,
+      },
+      revalidate: revalEnv,
+    }
   }
 }
 
 export async function getStaticPaths() {
   const allPosts = await getAllPostsWithSlug(false, TOTAL_LIMIT)
-  let paths = allPosts?.map((post: Post) => `/${post.slug}`) ?? []
+  let paths = allPosts?.map((post: Post) => `/${post.slug}/`) ?? []
 
   return {
     paths: paths,
-    fallback: false
+    fallback: true
   }
 }
