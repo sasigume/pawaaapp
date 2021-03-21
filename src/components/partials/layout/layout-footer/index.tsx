@@ -29,7 +29,7 @@ const LayoutFooter = ({ revalidate }: FooterProps) => {
               Next.js
           </Button>
 
-            <Button colorScheme="gray" href="https://www.contentful.com/" as={LinkChakra}>
+            <Button colorScheme={colorMode == "light" ? "gray" : "black"} href="https://www.contentful.com/" as={LinkChakra}>
               <img src={colorMode == "light" ? "/svg/contentful-black.svg" : "/svg/contentful.svg"} width="100" />
             </Button>
 
@@ -51,7 +51,7 @@ const LayoutFooter = ({ revalidate }: FooterProps) => {
               <Badge colorScheme="purple" textTransform="none">速度向上のため、このページは{revalidate / 60}分間隔で更新されます</Badge>
             </Box>}
             <Box>
-              <Badge textTransform="none">v{repoV} / Last commit: <LinkChakra href={VERCEL_LAST_COMMIT}>{VERCEL_LAST_COMMIT_MESSAGE}</LinkChakra></Badge>
+              <Badge maxW="20rem" whiteSpace="nowrap" textTransform="none" isTruncated>v{repoV} / Last commit: <LinkChakra href={VERCEL_LAST_COMMIT}>{VERCEL_LAST_COMMIT_MESSAGE}</LinkChakra></Badge>
             </Box>
           </Stack>
 
