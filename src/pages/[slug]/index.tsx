@@ -31,7 +31,6 @@ import { BreakpointContainer } from '@/components/common/breakpoint-container'
 import { Platform } from '@/models/contentful/Platform'
 import Head from 'next/head'
 import MarkdownToc from '@/components/common/markdown-toc'
-import HeroWithThumbnails from '@/components/common/hero-with-thumbnails'
 import * as Yup from "yup";
 
 import {
@@ -102,6 +101,13 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
               {preview && <Box>デバッグ: プレビューON</Box>}
 
               {firstPost && <PostList mode="single" posts={[firstPost]} expand={preview ?? false} />}
+
+              <Divider my={8} borderColor="gray.400" />
+              {morePosts && morePosts.length > 0 && (
+                <Box my={10}>
+                  <PostList mode="more" posts={morePosts} />
+                </Box>)}
+
               <Divider my={8} borderColor="gray.400" />
 
               <Box id="a_comment" textStyle="h2" mb={6}>
@@ -181,11 +187,7 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
                   </div>)}
                 </Box>
               </Flex>
-              <Divider my={8} borderColor="gray.400" />
-              {morePosts && morePosts.length > 0 && (
-                <Box my={10}>
-                  <PostList mode="more" posts={morePosts} />
-                </Box>)}
+
             </BreakpointContainer>
           </Container>
         </Box>
