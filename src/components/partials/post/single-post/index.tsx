@@ -1,14 +1,14 @@
+import dynamic from 'next/dynamic'
 import dayjs from 'dayjs'
-import { Badge, Box, Button, Center, Divider, Flex } from '@chakra-ui/react'
+import { Badge, Box, Button, Divider } from '@chakra-ui/react'
 import { Post } from '@/models/contentful/Post'
 
-import LinkChakra from '@/components/common/link-chakra'
-
-import PlatformList from '../common/platform-list'
-import PersonList from '../common/person-list'
-import Adsense from '@/components/common/adsense'
-import MarkdownRender from '@/components/common/MarkdownRender'
-import FaiconDiv from '@/components/common/faicon-div'
+const LinkChakra = dynamic(() => import('@/components/common/link-chakra'))
+const PlatformList = dynamic(() => import('../common/platform-list'))
+const PersonList = dynamic(() => import('../common/person-list'))
+const Adsense = dynamic(() => import('@/components/common/adsense'))
+const MarkdownRender = dynamic(() => import('@/components/common/MarkdownRender'))
+const FaiconDiv = dynamic(() => import('@/components/common/faicon-div'))
 
 interface Props {
   post: Post

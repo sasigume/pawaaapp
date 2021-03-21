@@ -1,6 +1,5 @@
-
+import dynamic from 'next/dynamic'
 import ErrorPage from 'next/error'
-
 
 import { Box, Container, Divider, VStack } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
@@ -8,9 +7,9 @@ import { getAllPostsByRange, getAllPostsWithSlug } from '@/lib/contentful/graphq
 
 import { SITE_DESC, SITE_NAME } from '@/lib/constants'
 import { Post } from '@/models/contentful/Post'
-import PostList from '@/components/partials/post'
-import { BreakpointContainer } from '@/components/common/breakpoint-container'
-import { Pagination } from '@/components/common/pagenation'
+const PostList = dynamic(() => import('@/components/partials/post'))
+const BreakpointContainer = dynamic(() => import('@/components/common/breakpoint-container'))
+const Pagination = dynamic(() => import('@/components/common/pagenation'))
 
 interface IndexProps {
   posts: Post[];
@@ -24,29 +23,29 @@ const PostPage = ({ posts, totalCount, currentPage, environment, tweetCount }: I
 
   return (
     <>
-      {!posts ? 
+      {!posts ?
 
         <Layout preview={false} title={'404 Not found'} desc={''}>
           <ErrorPage title="ページのデータを取得できませんでした" statusCode={404} />
         </Layout>
 
-      : (
-        <Layout preview={environment} title={(`${currentPage}ページ目 | ${SITE_NAME}`)} desc={SITE_DESC} tweetCount={tweetCount}>
+        : (
+          <Layout preview={environment} title={(`${currentPage}ページ目 | ${SITE_NAME}`)} desc={SITE_DESC} tweetCount={tweetCount}>
 
-          <Container maxW="container.lg">
-            <BreakpointContainer>
-              {posts && (<Box mb={10}>
-                <VStack textStyle="h1" spacing={4} mb={8}>
-                  <h1>{currentPage}ページ目</h1>
-                  <Divider />
-                </VStack>
-                {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
-                <Pagination totalCount={totalCount} />
-              </Box>)}
-            </BreakpointContainer>
-          </Container>
-        </Layout>
-      )}
+            <Container maxW="container.lg">
+              <BreakpointContainer>
+                {posts && (<Box mb={10}>
+                  <VStack textStyle="h1" spacing={4} mb={8}>
+                    <h1>{currentPage}ページ目</h1>
+                    <Divider />
+                  </VStack>
+                  {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
+                  <Pagination totalCount={totalCount} />
+                </Box>)}
+              </BreakpointContainer>
+            </Container>
+          </Layout>
+        )}
     </>
   )
 }

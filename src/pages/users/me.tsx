@@ -1,15 +1,9 @@
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import firebaseApi from '@/lib/firebase'
 import Layout from '@/components/partials/layout'
 import { useAuthentication } from '../../hooks/authentication'
 import { Box, Radio, Container, Divider, Heading, ButtonGroup, Stack, SkeletonText } from '@chakra-ui/react'
-import { BreakpointContainer } from '@/components/common/breakpoint-container'
-import Warning from '@/components/common/warning'
-import { Formik } from 'formik'
-import { SITE_FULL_URL } from '@/lib/constants'
-import * as Yup from "yup"
-import * as gtag from "@/lib/gtag"
-
 import {
   InputControl,
   RadioGroupControl,
@@ -18,6 +12,15 @@ import {
   CheckboxSingleControl
 } from "formik-chakra-ui"
 import { NGwords } from 'pages/api/ogpgen/NGwords'
+import { Formik } from 'formik'
+import { SITE_FULL_URL } from '@/lib/constants'
+import * as Yup from "yup"
+import * as gtag from "@/lib/gtag"
+
+const BreakpointContainer = dynamic(() => import('@/components/common/breakpoint-container'))
+const Warning = dynamic(() => import('@/components/common/warning'))
+
+
 
 
 export default function UsersMe() {

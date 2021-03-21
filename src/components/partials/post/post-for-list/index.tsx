@@ -3,7 +3,6 @@ import { Badge, Box, Center, Flex, useColorMode } from '@chakra-ui/react'
 import { Post } from '@/models/contentful/Post'
 
 import LinkChakra from '@/components/common/link-chakra'
-import Image from 'next/image'
 
 interface Props {
   post: Post
