@@ -24,14 +24,15 @@ import {
 import LinkChakra from '@/components/common/link-chakra'
 import { PostComment } from '@/models/firebase/PostComment'
 import { SITE_URL } from '@/lib/constants'
-import { BreakpointContainer } from '@/components/common/breakpoint-container'
+
 import { Platform } from '@/models/contentful/Platform'
 import Head from 'next/head'
 import * as Yup from "yup"
 
-const PostCommentComponent = dynamic(()=>import('@/components/partials/post-comment'))
-const Warning = dynamic(()=>import('@/components/common/warning'))
-const MarkdownToc = dynamic(()=>import('@/components/common/markdown-toc'))
+const BreakpointContainer = dynamic(() => import('@/components/common/breakpoint-container'))
+const PostCommentComponent = dynamic(() => import('@/components/partials/post-comment'))
+const Warning = dynamic(() => import('@/components/common/warning'))
+const MarkdownToc = dynamic(() => import('@/components/common/markdown-toc'))
 const PostList = dynamic(() => import('@/components/partials/post'))
 
 

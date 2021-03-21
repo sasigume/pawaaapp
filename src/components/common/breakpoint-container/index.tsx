@@ -7,7 +7,7 @@ interface Props {
   actualWidth?: any
 }
 
-export function BreakpointContainer({ children, breakpointName, actualWidth }: Props) {
+export default function BreakpointContainer({ children, breakpointName, actualWidth }: Props) {
   return (
     <Box mx="auto" as="article" px={{ base: 3, [breakpointName ?? 'md']: 0 }} maxWidth={{ base: "100vw", [breakpointName ?? 'md']: actualWidth ?? "650px" }} overflowX="hidden">
       <Flex w="full" overflowX="hidden" direction="column">
