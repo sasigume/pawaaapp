@@ -24,14 +24,21 @@ export function useAuthentication() {
       return
     }
 
+    firebase
+      .auth()
+      .signInAnonymously()
+      .catch(function (error) {
+        console.error(error)
+      })
+
     firebase.auth().onAuthStateChanged(function (firebaseUser) {
       if (firebaseUser) {
         const loginUser: User = {
           uid: firebaseUser.uid,
           isAnonymous: firebaseUser.isAnonymous,
-          name: firebaseUser.providerData[0]?.displayName ?? '名前を設定していません',
+          name: firebaseUser.providerData[0]?.displayName ?? '未設定',
           email: firebaseUser.email ?? '',
-          photoUrl: firebaseUser.providerData[0]?.photoURL ?? '/public/android-chrome-192x192.png',
+          photoUrl: firebaseUser.providerData[0]?.photoURL ?? '/icon-180x.png',
         }
         setUser(loginUser)
         createUserIfNotFound(loginUser)
@@ -40,7 +47,7 @@ export function useAuthentication() {
         setUser(null!)
       }
     })
-  }, []) // Blank array prevent from changing
+  }, [])
 
   return { user }
 }

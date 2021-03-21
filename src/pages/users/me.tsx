@@ -1,6 +1,6 @@
 import Layout from '@/components/partials/layout'
 import { useAuthentication } from '../../hooks/authentication'
-import { Button, Container } from '@chakra-ui/react'
+import { Box, Button, Container, Heading } from '@chakra-ui/react'
 import { BreakpointContainer } from '@/components/common/breakpoint-container'
 
 export default function UsersMe() {
@@ -9,11 +9,12 @@ export default function UsersMe() {
   if (user === null) {
     return (
       <Layout preview={false} title={'マイページ'} desc={'マイページ'} >
-        <Container>
-          <div className="my-16">
-            サインインしていません
-        </div>
-        </Container>
+        <BreakpointContainer>
+          <Box py={16}>
+            <Heading as="h1" fontStyle="h1">マイページ</Heading>
+            <Box>サインインしていません</Box>
+          </Box>
+        </BreakpointContainer>
       </Layout>
     )
   }
@@ -22,10 +23,11 @@ export default function UsersMe() {
     <Layout preview={false} title={'マイページ'} desc={'マイページ'} >
       <Container>
         <BreakpointContainer>
-          <div className="my-8">
-            <h1 className="text-4xl mb-8">マイページ</h1>
-            <div className="my-16">サインイン中: {user.name}さん (お問い合わせID: {user.uid})</div>
-          </div>
+          <Box py={16}>
+            <Heading as="h1" fontStyle="h1">マイページ</Heading>
+            <Box>サインイン中: {user.name}さん</Box>
+            <Box>(お問い合わせID: {user.uid})</Box>
+          </Box>
         </BreakpointContainer>
       </Container>
     </Layout>
