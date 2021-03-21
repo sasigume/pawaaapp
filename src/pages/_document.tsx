@@ -17,6 +17,10 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          {/* for GTM */}
+          <script dangerouslySetInnerHTML={{
+            __html: `dataLayer = [];`
+          }} />
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}

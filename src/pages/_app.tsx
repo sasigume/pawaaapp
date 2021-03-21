@@ -13,12 +13,22 @@ import addIcon from '@/lib/fontawesome'
 import { Chakra } from '@/components/providers/chakra'
 
 function App({ Component, pageProps }: AppProps) {
+
   addIcon()
 
-  useEffect(()=>{
-    TagManager.initialize({ gtmId: process.env.GTM_ID });
+  if (pageProps.hideAdsense) {
+    console.info(`%c Adsense is disabled for this page`, `color:purple`)
+  }
+
+  useEffect(() => {
+    TagManager.initialize({
+      gtmId: process.env.GTM_ID,
+      events: {
+        hideAdsense: pageProps.hideAdsense ?? false
+      }
+    })
   })
-  
+
   return (
     <RecoilRoot>
       <Chakra cookies={pageProps.cookies}>
