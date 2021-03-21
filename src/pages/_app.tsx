@@ -15,16 +15,17 @@ import { Chakra } from '@/components/providers/chakra'
 function App({ Component, pageProps }: AppProps) {
 
   addIcon()
+  let hideAdsense:boolean = pageProps.hideAdsense ?? false
 
-  if (pageProps.hideAdsense) {
+  if (hideAdsense) {
     console.info(`%c Adsense is disabled for this page`, `color:purple`)
   }
 
   useEffect(() => {
     TagManager.initialize({
       gtmId: process.env.GTM_ID,
-      events: {
-        hideAdsense: pageProps.hideAdsense ?? false
+      dataLayer: {
+        'hideAdsense': hideAdsense
       }
     })
   })
