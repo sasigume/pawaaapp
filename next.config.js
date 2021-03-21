@@ -40,7 +40,8 @@ module.exports = {
     VERCEL_GIT_REPO_OWNER: process.env.VERCEL_GIT_REPO_OWNER,
     VERCEL_GIT_REPO_SLUG: process.env.VERCEL_GIT_REPO_SLUG,
     VERCEL_GIT_COMMIT_SHA: process.env.VERCEL_GIT_COMMIT_SHA,
-    VERCEL_GIT_COMMIT_MESSAGE: process.env.VERCEL_GIT_COMMIT_MESSAGE
+    VERCEL_GIT_COMMIT_MESSAGE: process.env.VERCEL_GIT_COMMIT_MESSAGE,
+    VERCEL_URL: process.env.VERCEL_URL
   },
   images: {
     domains: ['localhost', 'pbs.twimg.com', 'images.ctfassets.net']

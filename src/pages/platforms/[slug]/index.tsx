@@ -14,20 +14,16 @@ interface IndexProps {
   preview: boolean;
 }
 
-const platformIndex = ({ platform, posts, preview}: IndexProps) => {
+const platformIndex = ({ platform, posts, preview }: IndexProps) => {
 
   const router = useRouter()
   return (
     <>
       {(!platform) ? (<>
 
-        {router.isFallback ? (
-          <Loading />
-        ) : (
-          (<Layout preview={preview} title={'404 Not found'} desc={''}>
-            <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
-          </Layout>)
-        )}
+        <Layout preview={preview} title={'404 Not found'} desc={''}>
+          <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
+        </Layout>
       </>) : (
         <Layout preview={preview} title={(`${platform.displayName}の記事一覧`)} desc={"Pawaa.app"}>
 

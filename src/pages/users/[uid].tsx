@@ -46,26 +46,22 @@ export default function UserShow() {
 
   return (
     <>
-      {(!user) ? (<>
+      {!user ?
 
-        {router.isFallback ? (
-          <Layout preview={false} title={'Loading...'} desc={''}><div>読み込み中です。</div></Layout>
-        ) : (
-          (<Layout preview={false} title={'404 Not found'} desc={''}>
-            <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
-          </Layout>)
-        )}
-      </>) : (
-        <Layout preview={false} title={user ? (user.name + 'さんのページ') : '(ユーザー詳細ページ)'} desc={"ユーザー詳細ページです"}>
-
-          <Container>
-            <BreakpointContainer>
-              <h1 className="text-3xl font-bold my-4">{user.name}さんのページ</h1>
-            </BreakpointContainer>
-          </Container>
-
+        <Layout preview={false} title={'404 Not found'} desc={''}>
+          <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
         </Layout>
-      )
+        : (
+          <Layout preview={false} title={user ? (user.name + 'さんのページ') : '(ユーザー詳細ページ)'} desc={"ユーザー詳細ページです"}>
+
+            <Container>
+              <BreakpointContainer>
+                <h1 className="text-3xl font-bold my-4">{user.name}さんのページ</h1>
+              </BreakpointContainer>
+            </Container>
+
+          </Layout>
+        )
       }
     </>
   )
