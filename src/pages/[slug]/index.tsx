@@ -42,6 +42,7 @@ import {
 } from "formik-chakra-ui"
 import { NGwords } from 'pages/api/ogpgen/NGwords'
 import { Formik } from 'formik'
+import HeroWithImage from '@/components/common/hero-with-image'
 
 interface PostPageProps {
   firstPost: Post
@@ -67,6 +68,13 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
     agreed: Yup.boolean().required()
   })
 
+  const tocProps = {
+    tweetCount: tweetCount,
+    tweetText: firstPost.title,
+    commentCount: postComments.length,
+    markdown: firstPost.body
+  }
+
   return (<>
     {(!firstPost) ? (<>
 
@@ -74,12 +82,21 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
         <ErrorPage title="記事が見つかりませんでした" statusCode={404} />
       </Layout>
     </>) : (
-      <Layout heroImageUrl={firstPost.heroImage && firstPost.heroImage.url} leftFixedChildren={<MarkdownToc markdown={firstPost.body} />} drawerLeftChildren={<MarkdownToc headingDepth={6} markdown={firstPost.body} />} platforms={allPlatforms} revalEnv={revalEnv} tweetCount={tweetCount} preview={preview} title={firstPost.title} desc={firstPost.description ? firstPost.description : ''}>
+      <Layout
+        heroImageUrl={firstPost.heroImage && firstPost.heroImage.url}
+        leftFixedChildren={<MarkdownToc {...tocProps} />}
+        drawerLeftChildren={<MarkdownToc {...tocProps} headingDepth={6} />}
+        revalEnv={revalEnv}
+        tweetCount={tweetCount}
+        preview={preview}
+        title={firstPost.title}
+        desc={firstPost.description ? firstPost.description : ''}
+      >
         <Head>
           <link rel="canonical" href={(`${process.env.HTTPS_URL ?? ''}/${firstPost.slug ?? ''}/`)} />
         </Head>
-        <HeroWithThumbnails />
-        <Box mt={4}>
+        {firstPost.heroImage && <HeroWithImage src={firstPost.heroImage?.url} />}
+        <Box>
           <Container px={0} maxW="container.lg">
             <BreakpointContainer breakpointName="md" actualWidth="650px">
               {preview && <Box>デバッグ: プレビューON</Box>}
@@ -87,7 +104,7 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
               {firstPost && <PostList mode="single" posts={[firstPost]} expand={preview ?? false} />}
               <Divider my={8} borderColor="gray.400" />
 
-              <Box textStyle="h2" mb={6}>
+              <Box id="a_comment" textStyle="h2" mb={6}>
                 <h2>コメント</h2>
               </Box>
 

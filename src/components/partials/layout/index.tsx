@@ -20,7 +20,6 @@ interface LayoutProps {
   desc: string
   tweetCount?: number
   revalEnv?: number
-  platforms?: Platform[]
   heroImageUrl?: string
 }
 
@@ -32,7 +31,6 @@ export default function Layout({ preview,
   desc,
   tweetCount,
   revalEnv,
-  platforms,
   heroImageUrl,
 }: LayoutProps) {
 

@@ -19,11 +19,6 @@ export function SinglePostComponent({ post }: Props) {
   return (
     <>
       <Box>
-
-        {post.heroImage && <Center w="full" mb={4}>
-          <img src={post.heroImage.url} width="600px" height="auto" />
-        </Center>}
-
         {post.person && (<Box>
           <PersonList persons={[post.person]} />
         </Box>)}
