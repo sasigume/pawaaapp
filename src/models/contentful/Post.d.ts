@@ -16,4 +16,5 @@ export interface Post {
   platformsCollection?: {
     items: Platform[]
   }
+  hideAdsense?: boolean
 }

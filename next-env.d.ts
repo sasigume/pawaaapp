@@ -22,4 +22,5 @@ interface Window {
 
 interface Window {
   adsbygoogle: {[key: string]: unknown}[]
+  dataLayer: {[key: string]: unknown}[]
 }
