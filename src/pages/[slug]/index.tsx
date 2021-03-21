@@ -1,4 +1,4 @@
-
+import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import firebase from 'firebase/app'
 import { useAuthentication } from '@/hooks/authentication'
@@ -9,7 +9,6 @@ import { getAllPlatformsWithSlug, getPostAndMorePosts, getAllPostsWithSlug } fro
 import { Post } from '@/models/contentful/Post'
 
 import Layout from '@/components/partials/layout'
-import PostList from '@/components/partials/post'
 import {
   Box, Button, Container, Stack, useDisclosure,
   Modal,
@@ -24,14 +23,18 @@ import {
 } from '@chakra-ui/react'
 import LinkChakra from '@/components/common/link-chakra'
 import { PostComment } from '@/models/firebase/PostComment'
-import PostCommentComponent from '@/components/partials/post-comment'
-import Warning from '@/components/common/warning';
 import { SITE_URL } from '@/lib/constants'
-import { BreakpointContainer } from '@/components/common/breakpoint-container'
+
 import { Platform } from '@/models/contentful/Platform'
 import Head from 'next/head'
-import MarkdownToc from '@/components/common/markdown-toc'
-import * as Yup from "yup";
+import * as Yup from "yup"
+
+const BreakpointContainer = dynamic(() => import('@/components/common/breakpoint-container'))
+const PostCommentComponent = dynamic(() => import('@/components/partials/post-comment'))
+const Warning = dynamic(() => import('@/components/common/warning'))
+const MarkdownToc = dynamic(() => import('@/components/common/markdown-toc'))
+const PostList = dynamic(() => import('@/components/partials/post'))
+
 
 import {
   TextareaControl,

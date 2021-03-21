@@ -1,7 +1,7 @@
 import { CREATOR_ID, VERCEL_LAST_COMMIT, VERCEL_LAST_COMMIT_MESSAGE } from '@/lib/constants'
+import { Button, Box, Container, Flex, Stack, useColorMode, Badge } from '@chakra-ui/react'
 import LinkChakra from '@/components/common/link-chakra'
 import Logo from '@/components/common/Logo'
-import { Button, Box, Container, Flex, Stack, useColorMode, Badge } from '@chakra-ui/react'
 import FaiconDiv from '@/components/common/faicon-div'
 
 const pkg = require('../../../../../package.json')

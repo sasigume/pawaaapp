@@ -1,16 +1,12 @@
-
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-
 import ErrorPage from 'next/error'
-
 import { getAllPlatformsWithSlug } from '@/lib/contentful/graphql'
 import { Platform } from '@/models/contentful/Platform'
-
 import { Box, VStack, Divider, Container } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
-import PlatformList from '@/components/partials/post/common/platform-list'
-import Loading from '@/components/common/loading'
 
+const PlatformList = dynamic(() => import('@/components/partials/post/common/platform-list'))
 
 interface PlatformIndexProps {
   platforms: Platform[];
