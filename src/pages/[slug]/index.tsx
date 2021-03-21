@@ -56,23 +56,25 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
   const [body, setBody] = useState('')
   const [didYouSend, setSended] = useState(false)
 
-  const router = useRouter()
-
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     // prevent duplicated post
     setSended(true)
 
+    if (localStorage === null) {
+      console.log("localStorage is disabled");
+    }
+
     await firebase.firestore().collection('postComments').add({
       senderUid: firebase.auth().currentUser?.uid,
-      senderName: firebase.auth().currentUser?.providerData[0]?.displayName,
+      senderName: firebase.auth().currentUser?.displayName,
       postSlug: firstPost.slug,
       body,
       createdAt: firebase.firestore.Timestamp.fromDate(new Date())
     })
 
     setBody('')
-    console.log('送信できました')
+    console.log('Comment posted')
 
   }
 
