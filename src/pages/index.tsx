@@ -26,39 +26,31 @@ interface IndexProps {
 }
 
 const Index = ({ posts, totalCount, environment, tweetCount, allPlatforms }: IndexProps) => {
-  const router = useRouter()
-  const { colorMode } = useColorMode()
 
   return (
     <>
-      {(!posts) ? (<>
+      {!posts ? <Layout preview={false} title={'404 Not found'} desc={''}>
+        <ErrorPage title="ページのデータを取得できませんでした" statusCode={404} />
+      </Layout>
+        : (
+          <Layout platforms={allPlatforms} preview={environment} title={SITE_NAME} desc={SITE_DESC} tweetCount={tweetCount}>
+            <HeroWithThumbnails totalCount={totalCount} />
+            <Container bg="white" maxW="container.lg">
 
-        {router.isFallback ? (
-          <Loading />
-        ) : (
-          (<Layout preview={false} title={'404 Not found'} desc={''}>
-            <ErrorPage title="ページのデータを取得できませんでした" statusCode={404} />
-          </Layout>)
+              <BreakpointContainer>
+                {posts && (
+                  <Box mt={6} mb={10}>
+                    <VStack textStyle="h1" spacing={4} mb={8}>
+                      <h2>最近更新された記事</h2>
+                      <Divider />
+                    </VStack>
+                    {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
+                    <Pagination totalCount={totalCount} />
+                  </Box>)}
+              </BreakpointContainer>
+            </Container>
+          </Layout>
         )}
-      </>) : (
-        <Layout platforms={allPlatforms} preview={environment} title={SITE_NAME} desc={SITE_DESC} tweetCount={tweetCount}>
-          <HeroWithThumbnails totalCount={totalCount} />
-          <Container bg="white" maxW="container.lg">
-
-            <BreakpointContainer>
-              {posts && (
-                <Box mt={6} mb={10}>
-                  <VStack textStyle="h1" spacing={4} mb={8}>
-                    <h2>最近更新された記事</h2>
-                    <Divider />
-                  </VStack>
-                  {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
-                  <Pagination totalCount={totalCount} />
-                </Box>)}
-            </BreakpointContainer>
-          </Container>
-        </Layout>
-      )}
     </>
   )
 }

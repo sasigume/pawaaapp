@@ -23,21 +23,16 @@ interface IndexProps {
 }
 
 const PostPage = ({ posts, totalCount, currentPage, environment, tweetCount }: IndexProps) => {
-  const router = useRouter()
-  const { colorMode } = useColorMode()
 
   return (
     <>
-      {(!posts) ? (<>
+      {!posts ? 
 
-        {router.isFallback ? (
-          <Loading />
-        ) : (
-          (<Layout preview={false} title={'404 Not found'} desc={''}>
-            <ErrorPage title="ページのデータを取得できませんでした" statusCode={404} />
-          </Layout>)
-        )}
-      </>) : (
+        <Layout preview={false} title={'404 Not found'} desc={''}>
+          <ErrorPage title="ページのデータを取得できませんでした" statusCode={404} />
+        </Layout>
+
+      : (
         <Layout preview={environment} title={(`${currentPage}ページ目 | ${SITE_NAME}`)} desc={SITE_DESC} tweetCount={tweetCount}>
 
           <Container maxW="container.lg">
