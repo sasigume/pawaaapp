@@ -1,12 +1,15 @@
-import Meta from './meta'
-import { ReactNode } from 'react'
+import dynamic from 'next/dynamic'
 
-import LayoutFooter from './layout-footer'
-import DrawerLeft from './drawer-left'
-import { Box, Button, Heading } from '@chakra-ui/react'
-import LinkChakra from '@/components/common/link-chakra'
+import { ReactNode } from 'react'
 import { SITE_NAME } from '@/lib/constants'
-import LeftFixed from './left-fixed'
+import { Box, Button, Heading } from '@chakra-ui/react'
+// IMPORTANT: Drawer should not be imported dynamically
+import DrawerLeft from './drawer-left'
+
+const Meta = dynamic(() => import('./meta'))
+const LayoutFooter = dynamic(() => import('./layout-footer'))
+const LinkChakra = dynamic(() => import('@/components/common/link-chakra'))
+const LeftFixed = dynamic(() => import('./left-fixed'))
 
 interface LayoutProps {
   preview: boolean

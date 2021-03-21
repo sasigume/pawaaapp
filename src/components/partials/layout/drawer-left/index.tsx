@@ -1,5 +1,6 @@
+import dynamic from 'next/dynamic'
 import { ReactNode, useRef } from 'react'
-import SignIn from './signin'
+
 import {
   useColorMode,
   useDisclosure,
@@ -16,8 +17,9 @@ import {
   Center,
   Divider,
 } from "@chakra-ui/react"
-import FaiconDiv from '@/components/common/faicon-div'
-import Logo from '@/components/common/Logo'
+const SignIn = dynamic(() => import('./signin'))
+const FaiconDiv = dynamic(() => import('@/components/common/faicon-div'))
+const Logo = dynamic(() => import('@/components/common/Logo'))
 
 interface Props {
   preview: boolean;
@@ -31,7 +33,7 @@ export default function DrawerLeft({ children }: Props) {
 
   return (
     <>
-      <Button zIndex={10} pr={{base:2,md:4}} ref={btnRef} colorScheme="blue" leftIcon={<FaiconDiv icon={['fas', 'bars']} />} onClick={onOpen} position="fixed" top={5} left={5}>
+      <Button zIndex={10} pr={{ base: 2, md: 4 }} ref={btnRef} colorScheme="blue" leftIcon={<FaiconDiv icon={['fas', 'bars']} />} onClick={onOpen} position="fixed" top={5} left={5}>
         <Box display={{ base: "none", md: "flex" }}>MENU</Box>
       </Button>
       <Drawer
