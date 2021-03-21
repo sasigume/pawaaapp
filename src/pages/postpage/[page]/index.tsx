@@ -7,8 +7,6 @@ import { Box, Container, Divider, useColorMode, VStack } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
 import { getAllPostsByRange, getAllPostsWithSlug } from '@/lib/contentful/graphql'
 
-import publishRss from '@/lib/rss'
-import publishSitemap from '@/lib/sitemap'
 import { SITE_DESC, SITE_NAME } from '@/lib/constants'
 import Loading from '@/components/common/loading'
 import { Post } from '@/models/contentful/Post'
@@ -75,8 +73,9 @@ export async function getStaticProps({ preview = false, params }: GSProps) {
   const skipAmount = (params.page - 1) * PER_PAGE
 
   const allPostsForIndex = (await getAllPostsByRange(false, skipAmount, PER_PAGE)) || []
-  // Write only published post into RSS/Sitemap
   const allPostsPublished = (await getAllPostsWithSlug(false, TOTAL_LIMIT)) || []
+
+  const revalEnv = parseInt(process.env.REVALIDATE ?? '1800')
 
   return {
     props: {
@@ -85,8 +84,7 @@ export async function getStaticProps({ preview = false, params }: GSProps) {
       currentPage: params.page ?? 1,
       preview: preview ?? null
     },
-    // Index shouldn't update so often because of rss/sitemap
-    revalidate: 3600
+    revalidate: revalEnv
   }
 }
 
