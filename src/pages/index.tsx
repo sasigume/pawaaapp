@@ -6,8 +6,6 @@ import { useRouter } from 'next/router'
 import { Box, Container, Divider, useColorMode, VStack } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
 import { getAllPlatformsWithSlug, getAllPostsWithSlug } from '../lib/contentful/graphql'
-import publishRss from '@/lib/rss'
-import publishSitemap from '@/lib/sitemap'
 import { SITE_DESC, SITE_NAME, SITE_URL } from '@/lib/constants'
 import Loading from '@/components/common/loading'
 import { Post } from '@/models/contentful/Post'
@@ -15,9 +13,10 @@ import PostList from '@/components/partials/post'
 import { BreakpointContainer } from '@/components/common/breakpoint-container'
 import { Pagination } from '@/components/common/pagenation'
 import { Platform } from '@/models/contentful/Platform'
-import publishAdsTxt from '@/lib/adsense'
+import publishAdsTxt from '@/lib/adstxt'
 import Image from 'next/image'
 import HeroWithThumbnails from '@/components/common/hero-with-thumbnails'
+import publishRobotsTxt from '@/lib/robotstxt'
 interface IndexProps {
   posts: Post[];
   totalCount: number;
@@ -82,14 +81,12 @@ export async function getStaticProps({ preview = false }) {
 
 
   const allPostsForIndex = (await getAllPostsWithSlug(false, PER_PAGE)) || []
-  // Write only published post into RSS/Sitemap
   const allPostsPublished = (await getAllPostsWithSlug(false, TOTAL_LIMIT)) || []
 
-  publishRss(allPostsPublished)
-  publishSitemap(allPostsPublished)
+  const revalEnv = parseInt(process.env.REVALIDATE ?? '1800')
 
-  // adsense ads.txt
   publishAdsTxt()
+  publishRobotsTxt()
 
   return {
     props: {
@@ -99,7 +96,6 @@ export async function getStaticProps({ preview = false }) {
       preview: preview ?? null,
       allPlatforms: allPlatforms ?? null
     },
-    // Index shouldn't update so often because of rss/sitemap
-    revalidate: 14400
+    revalidate: revalEnv
   }
 }
