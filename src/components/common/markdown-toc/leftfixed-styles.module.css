@@ -1,0 +1,19 @@
+.leftfixed {
+  position: relative;
+  background: #fff;
+  padding: 7px 14px 7px;
+  border-radius: 10px;
+  box-shadow: 0px 1px 5px 3px rgba(0,0,0,0.1);
+}
+
+.leftfixed::before {
+  content : '';
+  display : block;
+  position: absolute;
+  top: 15px;
+  left: -10px;
+  width: 0px;
+  height: 0px;
+  border-width: 5px;
+  border-color: transparent #fff transparent transparent;
+}
