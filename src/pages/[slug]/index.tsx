@@ -67,11 +67,13 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
     agreed: Yup.boolean().required()
   })
 
-  const tocProps = {
-    tweetCount: tweetCount,
-    tweetText: firstPost.title,
-    commentCount: postComments.length,
-    markdown: firstPost.body
+  const tocProps = (post: Post) => {
+    return {
+      tweetCount: tweetCount ?? 0,
+      tweetText: post.title,
+      commentCount: postComments.length ?? 0,
+      markdown: post.body
+    }
   }
 
   return (<>
@@ -83,8 +85,8 @@ export default function PostPage({ firstPost, postComments, morePosts, preview, 
     </>) : (
       <Layout
         heroImageUrl={firstPost.heroImage && firstPost.heroImage.url}
-        leftFixedChildren={(firstPost && postComments) && <MarkdownToc {...tocProps} />}
-        drawerLeftChildren={(firstPost && postComments) && <MarkdownToc {...tocProps} headingDepth={6} />}
+        leftFixedChildren={(firstPost && postComments) && <MarkdownToc {...tocProps(firstPost)} />}
+        drawerLeftChildren={(firstPost && postComments) && <MarkdownToc {...tocProps(firstPost)} headingDepth={6} />}
         revalEnv={revalEnv}
         tweetCount={tweetCount}
         preview={preview}
