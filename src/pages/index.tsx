@@ -1,6 +1,6 @@
 
 import ErrorPage from 'next/error'
-import { Box, Container, Divider, VStack } from '@chakra-ui/react'
+import { Box, Container, Divider, useColorMode, VStack } from '@chakra-ui/react'
 import Layout from '@/components/partials/layout'
 import { getAllPlatformsWithSlug, getAllPostsWithSlug } from '../lib/contentful/graphql'
 import { SITE_DESC, SITE_NAME, SITE_URL } from '@/lib/constants'
@@ -22,15 +22,16 @@ interface IndexProps {
 
 const Index = ({ posts, totalCount, environment, tweetCount, allPlatforms }: IndexProps) => {
 
+  const { colorMode } = useColorMode()
   return (
     <>
       {!posts ? <Layout preview={false} title={'404 Not found'} desc={''}>
         <ErrorPage title="ページのデータを取得できませんでした" statusCode={404} />
       </Layout>
         : (
-          <Layout platforms={allPlatforms} preview={environment} title={SITE_NAME} desc={SITE_DESC} tweetCount={tweetCount}>
+          <Layout preview={environment} title={SITE_NAME} desc={SITE_DESC} tweetCount={tweetCount}>
             <HeroWithThumbnails totalCount={totalCount} />
-            <Container bg="white" maxW="container.lg">
+            <Container bg={colorMode == "light" ? "white" : "dark"} maxW="container.lg">
 
               <BreakpointContainer>
                 {posts && (

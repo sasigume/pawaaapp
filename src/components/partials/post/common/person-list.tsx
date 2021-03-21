@@ -13,7 +13,7 @@ interface ListProps {
 const OnePerson = ({ person }: OneProps) => {
 
   return (
-      <Button cursor="default" leftIcon={
+      <Button cursor="default" _hover={{transition:"none"}} h="60px" leftIcon={
         <Avatar
           w={6}
           h={6}

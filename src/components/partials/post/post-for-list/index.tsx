@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { Badge, Box, Center, Flex } from '@chakra-ui/react'
+import { Badge, Box, Center, Flex, useColorMode } from '@chakra-ui/react'
 import { Post } from '@/models/contentful/Post'
 
 import LinkChakra from '@/components/common/link-chakra'
