@@ -1,13 +1,14 @@
-
 export async function fetchAPI(query: any, { variables, preview }: any = {}) {
-  let token
-  preview ? token = process.env.STORYBLOK_PREVIEW_TOKEN : token = process.env.STORYBLOK_PUBLIC_TOKEN
+  let token;
+  preview
+    ? (token = process.env.STORYBLOK_PREVIEW_TOKEN)
+    : (token = process.env.STORYBLOK_PUBLIC_TOKEN);
 
   const headerOption = {
     'Content-Type': 'application/json',
     Token: token ?? '',
     Version: preview ? 'draft' : 'published',
-  }
+  };
   const res = await fetch('https://gapi.storyblok.com/v1/api', {
     method: 'POST',
     headers: headerOption,
@@ -15,15 +16,15 @@ export async function fetchAPI(query: any, { variables, preview }: any = {}) {
       query,
       variables,
     }),
-  })
+  });
 
-  const json = await res.json()
+  const json = await res.json();
   if (json.errors) {
-    console.error(json.errors)
-    throw new Error('Failed to fetch API')
+    console.error(json.errors);
+    throw new Error('Failed to fetch API');
   }
 
-  return json.data
+  return json.data;
 }
 
 export async function getAllPostsWithSlug() {
@@ -35,10 +36,9 @@ export async function getAllPostsWithSlug() {
         }
       }
     }
-  `)
-  return data?.PostItems.items
+  `);
+  return data?.PostItems.items;
 }
-
 
 export async function getAllPostsForHome(preview: any) {
   const data = await fetchAPI(
@@ -63,9 +63,9 @@ export async function getAllPostsForHome(preview: any) {
       }
     }
   `,
-    { preview }
-  )
-  return data?.PostItems.items
+    { preview },
+  );
+  return data?.PostItems.items;
 }
 
 export async function getAllCreatorsForHome(preview: any) {
@@ -87,13 +87,14 @@ export async function getAllCreatorsForHome(preview: any) {
       }
     }
   `,
-    { preview }
-  )
-  return data?.CreatorItems.items
+    { preview },
+  );
+  return data?.CreatorItems.items;
 }
 
-export async function getCreator(slug:string, preview: any) {
-  const uuids = await fetchAPI(`
+export async function getCreator(slug: string, preview: any) {
+  const uuids = await fetchAPI(
+    `
   {
     CreatorItems(by_slugs: "creators/${slug}") {
       items {
@@ -106,15 +107,15 @@ export async function getCreator(slug:string, preview: any) {
     }
   }  
   `,
-    { preview }
-  )
+    { preview },
+  );
 
-  return uuids.CreatorItems.items[0]
+  return uuids.CreatorItems.items[0];
 }
 
 export async function getAllPostsForCreator(uuid: string, preview: any) {
   const data = await fetchAPI(
-`
+    `
   query PostWithCreator($uuid: String) {
     PostItems(sort_by: "first_published_at:desc", filter_query_v2: {creator: {in: $uuid}}) {
       items {
@@ -144,9 +145,9 @@ export async function getAllPostsForCreator(uuid: string, preview: any) {
       variables: {
         uuid: `${uuid}`,
       },
-    }
-  )
-  return data?.PostItems.items
+    },
+  );
+  return data?.PostItems.items;
 }
 
 export async function getCreatorsWithSlug() {
@@ -158,13 +159,13 @@ export async function getCreatorsWithSlug() {
         }
       }
     }
-  `)
-  return data?.CreatorItems.items
+  `);
+  return data?.CreatorItems.items;
 }
 
-
 export async function getPostsForSinglePage(slug: string, preview: any) {
-  const data = await fetchAPI(`
+  const data = await fetchAPI(
+    `
   query PostBySlug($slug: ID!) {
     PostItem(id: $slug) {
       slug
@@ -214,15 +215,14 @@ export async function getPostsForSinglePage(slug: string, preview: any) {
       variables: {
         slug: `posts/${slug}`,
       },
-    }
-  )
+    },
+  );
 
-  const morePosts = (data?.PostItems?.items || [])
-  .filter((item: any) => item.slug !== slug)
-  .slice(0, 2) || []
+  const morePosts =
+    (data?.PostItems?.items || []).filter((item: any) => item.slug !== slug).slice(0, 2) || [];
 
   return {
     firstPost: data?.PostItem,
-    morePosts: morePosts
-  }
+    morePosts: morePosts,
+  };
 }

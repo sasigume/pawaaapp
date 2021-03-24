@@ -1,7 +1,7 @@
-import firebase from 'firebase/app'
-import 'firebase/analytics'
-import 'firebase/auth'
-import 'firebase/firestore'
+import firebase from 'firebase/app';
+import 'firebase/analytics';
+import 'firebase/auth';
+import 'firebase/firestore';
 
 const config = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -11,11 +11,11 @@ const config = {
   messagingSenderId: process.env.FIREBASE_MESSEGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
   measurementId: process.env.FIREBASE_MEASUREMENT_ID,
-}
+};
 if (!firebase.apps.length) {
-  firebase.initializeApp(config)
+  firebase.initializeApp(config);
 }
 
-export default firebase
+export default firebase;
 
 // https://qiita.com/y-shida1997/items/f5e52c7288813a8184ff

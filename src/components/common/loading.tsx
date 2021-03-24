@@ -1,4 +1,4 @@
-import { Center, Skeleton, Stack } from "@chakra-ui/react";
+import { Center, Skeleton, Stack } from '@chakra-ui/react';
 
 const Loading = () => (
   <Center bg="gray.500" w="full" h="full">
@@ -8,6 +8,6 @@ const Loading = () => (
       <Skeleton height="40px" />
     </Stack>
   </Center>
-)
+);
 
-export default Loading
+export default Loading;
