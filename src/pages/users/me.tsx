@@ -26,8 +26,11 @@ import { SITE_FULL_URL } from '@/lib/constants';
 import * as Yup from 'yup';
 import * as gtag from '@/lib/gtag';
 
-const BreakpointContainer = dynamic(() => import('@/components/common/breakpoint-container'));
-const Warning = dynamic(() => import('@/components/common/warning'));
+// issue #106
+/*const BreakpointContainer = dynamic(() => import('@/components/common/breakpoint-container'));
+const Warning = dynamic(() => import('@/components/common/warning'));*/
+import BreakpointContainer from '@/components/common/breakpoint-container';
+import Warning from '@/components/common/warning';
 
 export default function UsersMe() {
   const { user } = useAuthentication();

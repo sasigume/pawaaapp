@@ -6,10 +6,15 @@ import { Box, Button, Heading } from '@chakra-ui/react';
 // IMPORTANT: Drawer should not be imported dynamically
 import DrawerLeft from './drawer-left';
 
-const Meta = dynamic(() => import('./meta'));
+// issue $106
+/*const Meta = dynamic(() => import('./meta'));
 const LayoutFooter = dynamic(() => import('./layout-footer'));
 const LinkChakra = dynamic(() => import('@/components/common/link-chakra'));
-const LeftFixed = dynamic(() => import('./left-fixed'));
+const LeftFixed = dynamic(() => import('./left-fixed'));*/
+import Meta from './meta';
+import LayoutFooter from './layout-footer';
+import LinkChakra from '@/components/common/link-chakra';
+import LeftFixed from './left-fixed';
 
 interface LayoutProps {
   preview: boolean;

@@ -5,9 +5,11 @@ import { getAllPlatformsWithSlug } from '@/lib/contentful/graphql';
 import { Platform } from '@/models/contentful/Platform';
 import { Box, VStack, Divider, Container } from '@chakra-ui/react';
 import Layout from '@/components/partials/layout';
-
+// issue #106
+/*
 const PlatformList = dynamic(() => import('@/components/partials/post/common/platform-list'));
-
+*/
+import PlatformList from '@/components/partials/post/common/platform-list';
 interface PlatformIndexProps {
   platforms: Platform[];
   preview: boolean;

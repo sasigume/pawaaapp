@@ -9,9 +9,13 @@ import publishAdsTxt from '@/lib/adstxt';
 import publishRobotsTxt from '@/lib/robotstxt';
 import Layout from '@/components/partials/layout';
 
-const Pagination = dynamic(() => import('@/components/common/pagenation'));
+// issue #106
+/*const Pagination = dynamic(() => import('@/components/common/pagenation'));
 const BreakpointContainer = dynamic(() => import('@/components/common/breakpoint-container'));
-const PostList = dynamic(() => import('@/components/partials/post'));
+const PostList = dynamic(() => import('@/components/partials/post'));*/
+import Pagination from '@/components/common/pagenation';
+import BreakpointContainer from '@/components/common/breakpoint-container';
+import PostList from '@/components/partials/post';
 
 interface IndexProps {
   posts: Post[];
