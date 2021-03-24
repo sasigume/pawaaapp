@@ -18,11 +18,11 @@ import {
   Divider,
 } from '@chakra-ui/react';
 
+const SignIn = dynamic(() => import('./signin'), { ssr: false });
 // issue#106
-/*const SignIn = dynamic(() => import('./signin'));
-const FaiconDiv = dynamic(() => import('@/components/common/faicon-div'));
+/*const FaiconDiv = dynamic(() => import('@/components/common/faicon-div'));
 const Logo = dynamic(() => import('@/components/common/Logo'));*/
-import SignIn from './signin';
+//import SignIn from './signin';
 import FaiconDiv from '@/components/common/faicon-div';
 import Logo from '@/components/common/Logo';
 
