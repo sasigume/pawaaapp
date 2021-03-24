@@ -20,7 +20,7 @@ export default function PostCommentComponent({ c }: Props) {
     >
       <Stack spacing={2}>
         <div>{c.senderName}さん:</div>
-        <ReactMarkdown children={c.body} />
+        <ReactMarkdown source={c.body} />
         <div className="text-sm text-right">
           <small>{dayjs(c.createdAt._seconds * 1000).format('YYYY/MM/DD HH:mm:ss')}</small>
         </div>
