@@ -37,11 +37,17 @@ import { Platform } from '@/models/contentful/Platform';
 import Head from 'next/head';
 import * as Yup from 'yup';
 
-const BreakpointContainer = dynamic(() => import('@/components/common/breakpoint-container'));
+// 2021-03-24 Issue #106
+/*const BreakpointContainer = dynamic(() => import('@/components/common/breakpoint-container'));
 const PostCommentComponent = dynamic(() => import('@/components/partials/post-comment'));
 const Warning = dynamic(() => import('@/components/common/warning'));
 const MarkdownToc = dynamic(() => import('@/components/common/markdown-toc'));
-const PostList = dynamic(() => import('@/components/partials/post'));
+const PostList = dynamic(() => import('@/components/partials/post'));*/
+import BreakpointContainer from '@/components/common/breakpoint-container';
+import PostCommentComponent from '@/components/partials/post-comment';
+import Warning from '@/components/common/warning';
+import MarkdownToc from '@/components/common/markdown-toc';
+import PostList from '@/components/partials/post';
 
 import {
   TextareaControl,

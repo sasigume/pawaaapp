@@ -7,9 +7,14 @@ import { getAllPostsByRange, getAllPostsWithSlug } from '@/lib/contentful/graphq
 
 import { SITE_DESC, SITE_NAME } from '@/lib/constants';
 import { Post } from '@/models/contentful/Post';
-const PostList = dynamic(() => import('@/components/partials/post'));
+
+// issue #106
+/*const PostList = dynamic(() => import('@/components/partials/post'));
 const BreakpointContainer = dynamic(() => import('@/components/common/breakpoint-container'));
-const Pagination = dynamic(() => import('@/components/common/pagenation'));
+const Pagination = dynamic(() => import('@/components/common/pagenation'));*/
+import PostList from '@/components/partials/post';
+import BreakpointContainer from '@/components/common/breakpoint-container';
+import Pagination from '@/components/common/pagenation';
 
 interface IndexProps {
   posts: Post[];

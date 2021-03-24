@@ -3,12 +3,19 @@ import dayjs from 'dayjs';
 import { Badge, Box, Button, Divider } from '@chakra-ui/react';
 import { Post } from '@/models/contentful/Post';
 
-const LinkChakra = dynamic(() => import('@/components/common/link-chakra'));
+// issue #106
+/*const LinkChakra = dynamic(() => import('@/components/common/link-chakra'));
 const PlatformList = dynamic(() => import('../common/platform-list'));
 const PersonList = dynamic(() => import('../common/person-list'));
 const Adsense = dynamic(() => import('@/components/common/adsense'));
 const MarkdownRender = dynamic(() => import('@/components/common/MarkdownRender'));
-const FaiconDiv = dynamic(() => import('@/components/common/faicon-div'));
+const FaiconDiv = dynamic(() => import('@/components/common/faicon-div'));*/
+import LinkChakra from '@/components/common/link-chakra';
+import PlatformList from '../common/platform-list';
+import PersonList from '../common/person-list';
+import Adsense from '@/components/common/adsense';
+import MarkdownRender from '@/components/common/MarkdownRender';
+import FaiconDiv from '@/components/common/faicon-div';
 
 interface Props {
   post: Post;
