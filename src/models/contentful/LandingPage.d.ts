@@ -1,20 +1,20 @@
-import { LandingPagePost } from './LandingPagePost'
+import { LandingPagePost } from './LandingPagePost';
 
 interface Screenshot {
-  url: string
+  url: string;
 }
 
 export interface LandingPage {
-  title: string
-  slug: string
-  description: string
-  topImage: Screenshot
-  message: string
-  md: string
+  title: string;
+  slug: string;
+  description: string;
+  topImage: Screenshot;
+  message: string;
+  md: string;
   postsCollection?: {
-    items: LandingPagePost[]
-  }
+    items: LandingPagePost[];
+  };
   screenshotsCollection?: {
-    items: Screenshot[]
-  }
+    items: Screenshot[];
+  };
 }

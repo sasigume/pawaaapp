@@ -1,28 +1,28 @@
-import firebase from 'firebase/app'
-import { useEffect } from 'react'
-import { atom, useRecoilState } from 'recoil'
-import { User } from '@/models/firebase/User'
-import { SITE_FULL_URL } from '@/lib/constants'
+import firebase from 'firebase/app';
+import { useEffect } from 'react';
+import { atom, useRecoilState } from 'recoil';
+import { User } from '@/models/firebase/User';
+import { SITE_FULL_URL } from '@/lib/constants';
 
 const userState = atom<User>({
   key: 'user',
   default: null!,
-})
+});
 
 export function useAuthentication() {
-  const [user, setUser] = useRecoilState(userState)
+  const [user, setUser] = useRecoilState(userState);
 
   useEffect(() => {
     if (user !== null) {
-      return
+      return;
     }
 
     firebase
       .auth()
       .signInAnonymously()
       .catch(function (error) {
-        console.error(error)
-      })
+        console.error(error);
+      });
 
     firebase.auth().onAuthStateChanged(function (firebaseUser) {
       if (firebaseUser) {
@@ -31,15 +31,14 @@ export function useAuthentication() {
           isAnonymous: firebaseUser.isAnonymous,
           name: firebaseUser.displayName ?? '未設定',
           email: firebaseUser.email ?? '',
-          photoURL: firebaseUser.photoURL ?? `${SITE_FULL_URL}/photoURL/1.png`
-        }
-        setUser(loginUser)
-
+          photoURL: firebaseUser.photoURL ?? `${SITE_FULL_URL}/photoURL/1.png`,
+        };
+        setUser(loginUser);
       } else {
-        setUser(null!)
+        setUser(null!);
       }
-    })
-  }, [])
+    });
+  }, []);
 
-  return { user }
+  return { user };
 }

@@ -1,16 +1,23 @@
-
-import { PostComment } from '@/models/firebase/PostComment'
-import { Box, Stack } from '@chakra-ui/react'
-import dayjs from 'dayjs'
-import ReactMarkdown from 'react-markdown'
+import { PostComment } from '@/models/firebase/PostComment';
+import { Box, Stack } from '@chakra-ui/react';
+import dayjs from 'dayjs';
+import ReactMarkdown from 'react-markdown';
 
 interface Props {
-  c: PostComment
+  c: PostComment;
 }
 
 export default function PostCommentComponent({ c }: Props) {
   return (
-    <Box border="solid" borderWidth={1} shadow="lg" borderColor="gray.300" mb={4} p={6} rounded="xl">
+    <Box
+      border="solid"
+      borderWidth={1}
+      shadow="lg"
+      borderColor="gray.300"
+      mb={4}
+      p={6}
+      rounded="xl"
+    >
       <Stack spacing={2}>
         <div>{c.senderName}さん:</div>
         <ReactMarkdown children={c.body} />
@@ -19,5 +26,5 @@ export default function PostCommentComponent({ c }: Props) {
         </div>
       </Stack>
     </Box>
-  )
+  );
 }
