@@ -2,10 +2,10 @@
 
 import { SITE_DESC, SITE_FULL_URL, SITE_NAME } from '@/lib/constants';
 import { getAllPostsWithSlug } from '@/lib/contentful/graphql';
-import { GetServerSidePropsContext } from 'next'
+import { GetServerSidePropsContext } from 'next';
 import RSS from 'rss';
 
-const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600')
+const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600');
 
 async function generateFeedXml() {
   const feed = new RSS({
@@ -16,7 +16,7 @@ async function generateFeedXml() {
     language: 'ja',
   });
 
-  const posts = await getAllPostsWithSlug(false, TOTAL_LIMIT) ?? []
+  const posts = (await getAllPostsWithSlug(false, TOTAL_LIMIT)) ?? [];
   posts?.forEach((post) => {
     feed.item({
       title: post.title,
@@ -24,24 +24,24 @@ async function generateFeedXml() {
       author: post.person?.displayName ?? '',
       date: new Date(post.sys.firstPublishedAt),
       url: `${process.env.HTTPS_URL}/${post.slug}/`,
-    })
-  })
+    });
+  });
 
-  return feed.xml({ indent: true })
+  return feed.xml({ indent: true });
 }
 
 export const getServerSideProps = async ({ res }: GetServerSidePropsContext) => {
-  const xml = await generateFeedXml()
+  const xml = await generateFeedXml();
 
   res.statusCode = 200;
-  res.setHeader('Cache-Control', 's-maxage=14400, stale-while-revalidate')
-  res.setHeader('Content-Type', 'text/xml')
-  res.end(xml)
+  res.setHeader('Cache-Control', 's-maxage=14400, stale-while-revalidate');
+  res.setHeader('Content-Type', 'text/xml');
+  res.end(xml);
 
   return {
     props: {},
-  }
-}
+  };
+};
 
-const Page = () => null
-export default Page
+const Page = () => null;
+export default Page;

@@ -1,11 +1,11 @@
-const path = require('path')
+const path = require('path');
 module.exports = {
   // add slash for Twitter card
   trailingSlash: true,
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.node = {
-        fs: 'empty'
+        fs: 'empty',
       };
     }
     return config;
@@ -16,7 +16,8 @@ module.exports = {
     STORYBLOK_PREVIEW_SECRET: process.env.STORYBLOK_PREVIEW_SECRET,
     CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,
     CONTENTFUL_ACCESS_TOKEN: process.env.CONTENTFUL_ACCESS_TOKEN,
-    CONTENTFUL_PREVIEW_ACCESS_TOKEN: process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
+    CONTENTFUL_PREVIEW_ACCESS_TOKEN:
+      process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
     CONTENTFUL_PREVIEW_SECRET: process.env.CONTENTFUL_PREVIEW_SECRET,
     FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
     FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
@@ -41,9 +42,9 @@ module.exports = {
     VERCEL_GIT_REPO_SLUG: process.env.VERCEL_GIT_REPO_SLUG,
     VERCEL_GIT_COMMIT_SHA: process.env.VERCEL_GIT_COMMIT_SHA,
     VERCEL_GIT_COMMIT_MESSAGE: process.env.VERCEL_GIT_COMMIT_MESSAGE,
-    VERCEL_URL: process.env.VERCEL_URL
+    VERCEL_URL: process.env.VERCEL_URL,
   },
   images: {
-    domains: ['localhost', 'pbs.twimg.com', 'images.ctfassets.net']
-  }
-}
+    domains: ['localhost', 'pbs.twimg.com', 'images.ctfassets.net'],
+  },
+};

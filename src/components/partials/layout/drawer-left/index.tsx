@@ -1,5 +1,5 @@
-import dynamic from 'next/dynamic'
-import { ReactNode, useRef } from 'react'
+import dynamic from 'next/dynamic';
+import { ReactNode, useRef } from 'react';
 
 import {
   useColorMode,
@@ -16,25 +16,35 @@ import {
   Stack,
   Center,
   Divider,
-} from "@chakra-ui/react"
-const SignIn = dynamic(() => import('./signin'))
-const FaiconDiv = dynamic(() => import('@/components/common/faicon-div'))
-const Logo = dynamic(() => import('@/components/common/Logo'))
+} from '@chakra-ui/react';
+const SignIn = dynamic(() => import('./signin'));
+const FaiconDiv = dynamic(() => import('@/components/common/faicon-div'));
+const Logo = dynamic(() => import('@/components/common/Logo'));
 
 interface Props {
   preview: boolean;
-  children: ReactNode
+  children: ReactNode;
 }
 
 export default function DrawerLeft({ children }: Props) {
-  const { colorMode, toggleColorMode } = useColorMode()
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = useRef(null)
+  const { colorMode, toggleColorMode } = useColorMode();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = useRef(null);
 
   return (
     <>
-      <Button zIndex={10} pr={{ base: 2, md: 4 }} ref={btnRef} colorScheme="blue" leftIcon={<FaiconDiv icon={['fas', 'bars']} />} onClick={onOpen} position="fixed" top={5} left={5}>
-        <Box display={{ base: "none", md: "flex" }}>MENU</Box>
+      <Button
+        zIndex={10}
+        pr={{ base: 2, md: 4 }}
+        ref={btnRef}
+        colorScheme="blue"
+        leftIcon={<FaiconDiv icon={['fas', 'bars']} />}
+        onClick={onOpen}
+        position="fixed"
+        top={5}
+        left={5}
+      >
+        <Box display={{ base: 'none', md: 'flex' }}>MENU</Box>
       </Button>
       <Drawer
         isOpen={isOpen}
@@ -50,22 +60,31 @@ export default function DrawerLeft({ children }: Props) {
               <Divider mb={8} />
 
               <Stack direction="column" spacing={6} mb={6}>
-                <Button aria-label="カラーモードを切り替える" colorScheme={colorMode === "light" ? "purple" : "cyan"} onClick={toggleColorMode} leftIcon={colorMode === "light" ?
-                  (<FaiconDiv icon={['fas', 'moon']} />) : (<FaiconDiv icon={['fas', 'sun']} />)}>
-                  {colorMode === "light" ? "ダークモード" : "ライトモード"}
+                <Button
+                  aria-label="カラーモードを切り替える"
+                  colorScheme={colorMode === 'light' ? 'purple' : 'cyan'}
+                  onClick={toggleColorMode}
+                  leftIcon={
+                    colorMode === 'light' ? (
+                      <FaiconDiv icon={['fas', 'moon']} />
+                    ) : (
+                      <FaiconDiv icon={['fas', 'sun']} />
+                    )
+                  }
+                >
+                  {colorMode === 'light' ? 'ダークモード' : 'ライトモード'}
                 </Button>
               </Stack>
 
               <SignIn />
             </DrawerHeader>
-            <DrawerBody overflow-y="scroll">
-              {children}
-            </DrawerBody>
+            <DrawerBody overflow-y="scroll">{children}</DrawerBody>
             <DrawerFooter>
-              <Box>Powered by
-              <Box mb={8}>
+              <Box>
+                Powered by
+                <Box mb={8}>
                   <Center>
-                    <Logo fill={colorMode === "light" ? "#000" : "#fff"} />
+                    <Logo fill={colorMode === 'light' ? '#000' : '#fff'} />
                   </Center>
                 </Box>
               </Box>
@@ -74,5 +93,5 @@ export default function DrawerLeft({ children }: Props) {
         </DrawerOverlay>
       </Drawer>
     </>
-  )
+  );
 }
