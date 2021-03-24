@@ -1,5 +1,4 @@
-import {fetchAPI} from './api'
-
+import { fetchAPI } from './api';
 
 export async function getSubjectsWithSlug() {
   const data = await fetchAPI(`
@@ -10,12 +9,13 @@ export async function getSubjectsWithSlug() {
         }
       }
     }
-  `)
-  return data?.SubjectItems.items
+  `);
+  return data?.SubjectItems.items;
 }
 
-export async function getSubject(slug:string, preview: any) {
-  const subjects = await fetchAPI(`
+export async function getSubject(slug: string, preview: any) {
+  const subjects = await fetchAPI(
+    `
   {
     SubjectItems(by_slugs: "subjects/${slug}") {
       items {
@@ -28,10 +28,10 @@ export async function getSubject(slug:string, preview: any) {
     }
   }  
   `,
-    { preview }
-  )
+    { preview },
+  );
 
-  return subjects.SubjectItems.items[0]
+  return subjects.SubjectItems.items[0];
 }
 
 export async function getAllPostsForSubject(uuid: string, preview: any) {
@@ -66,7 +66,7 @@ export async function getAllPostsForSubject(uuid: string, preview: any) {
       variables: {
         uuid: `${uuid}`,
       },
-    }
-  )
-  return data?.PostItems.items
+    },
+  );
+  return data?.PostItems.items;
 }

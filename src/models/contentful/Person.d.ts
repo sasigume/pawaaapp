@@ -1,11 +1,11 @@
-import { Sys } from './Sys'
+import { Sys } from './Sys';
 
 export interface Person {
-  sys: Sys
-  displayName: string
-  slug: string
-  description?: string
+  sys: Sys;
+  displayName: string;
+  slug: string;
+  description?: string;
   picture: {
-    url: string
-  }
+    url: string;
+  };
 }
