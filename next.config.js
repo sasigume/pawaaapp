@@ -16,8 +16,7 @@ module.exports = {
     STORYBLOK_PREVIEW_SECRET: process.env.STORYBLOK_PREVIEW_SECRET,
     CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,
     CONTENTFUL_ACCESS_TOKEN: process.env.CONTENTFUL_ACCESS_TOKEN,
-    CONTENTFUL_PREVIEW_ACCESS_TOKEN:
-      process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
+    CONTENTFUL_PREVIEW_ACCESS_TOKEN: process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
     CONTENTFUL_PREVIEW_SECRET: process.env.CONTENTFUL_PREVIEW_SECRET,
     FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
     FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
@@ -43,8 +42,11 @@ module.exports = {
     VERCEL_GIT_COMMIT_SHA: process.env.VERCEL_GIT_COMMIT_SHA,
     VERCEL_GIT_COMMIT_MESSAGE: process.env.VERCEL_GIT_COMMIT_MESSAGE,
     VERCEL_URL: process.env.VERCEL_URL,
+    NAPOANCOM_NEST_URL: process.env.NAPOANCOM_NEST_URL,
+    NAPOANCOM_NEST_SECRET: process.env.NAPOANCOM_NEST_SECRET,
+    NAPOANCOM_NEST_LIMIT: process.env.NAPOANCOM_NEST_LIMIT,
   },
   images: {
-    domains: ['localhost', 'pbs.twimg.com', 'images.ctfassets.net'],
+    domains: ['localhost', 'static.wikia.nocookie.net', 'pbs.twimg.com', 'images.ctfassets.net'],
   },
 };

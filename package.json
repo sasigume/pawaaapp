@@ -1,6 +1,6 @@
 {
   "name": "napoancom",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "author": "pawaaapp",
   "scripts": {
     "dev": "next",
@@ -43,6 +43,7 @@
     "recoil": "^0.1.2",
     "remark-gfm": "^1.0.0",
     "rss": "^1.2.2",
+    "swr": "^0.5.4",
     "yup": "^0.32.9"
   },
   "devDependencies": {
