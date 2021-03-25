@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 
 import { ReactNode } from 'react';
 import { SITE_NAME } from '@/lib/constants';
-import { Box, Button, Heading } from '@chakra-ui/react';
+import { Box, Button, Center, Heading } from '@chakra-ui/react';
 // IMPORTANT: Drawer should not be imported dynamically
 import DrawerLeft from './drawer-left';
 import LinkChakra from '@/components/common/link-chakra';
@@ -65,6 +65,11 @@ export default function Layout({
             </Box>
           </LinkChakra>
         </Heading>
+        <Center pb={6}>
+          <Button as={LinkChakra} colorScheme="orange" href="/entityatsume/">
+            エンティティあつめ
+          </Button>
+        </Center>
         <main style={{ flexGrow: 1 }}>{children}</main>
         <LayoutFooter revalidate={revalEnv} />
         <DrawerLeft preview={preview}>{drawerLeftChildren}</DrawerLeft>

@@ -219,7 +219,7 @@ export default function UsersMe() {
                                   onClick={() => {
                                     randomEntity = [];
                                     setFetching(true);
-                                    mutateEntity().then((res) => {
+                                    mutateEntity().then((res: any) => {
                                       if (res && res?.length > 0) {
                                         onOpen();
                                       }

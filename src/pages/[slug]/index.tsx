@@ -21,6 +21,7 @@ import { useRouter } from 'next/router';
 import ReactMarkdownHeading from 'react-markdown-heading';
 import FukidashiShare from '@/components/common/fukidashi-share';
 import PostCommentList from '@/components/partials/post-comment/post-comment-list';
+import tocStyles from '../../styles/markdown-toc-styles.module.css';
 
 interface PostPageProps {
   firstPost: Post;
@@ -42,7 +43,11 @@ export default function PostPage({
 }: PostPageProps) {
   const router = useRouter();
 
-  const Toc = (post: Post) => <ReactMarkdownHeading markdown={post.body} hyperlink />;
+  const Toc = (post: Post) => (
+    <Box className={tocStyles['toc']}>
+      <ReactMarkdownHeading markdown={post.body} hyperlink />
+    </Box>
+  );
 
   return (
     <>
