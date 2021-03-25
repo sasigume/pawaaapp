@@ -58,6 +58,7 @@ import {
 import { NGwords } from 'pages/api/ogpgen/NGwords';
 import { Formik } from 'formik';
 import HeroWithImage from '@/components/common/hero-with-image';
+import { useRouter } from 'next/router';
 
 interface PostPageProps {
   firstPost: Post;
@@ -81,6 +82,7 @@ export default function PostPage({
   hideAdsense,
 }: PostPageProps) {
   const { user } = useAuthentication();
+  const router = useRouter();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [didYouSend, setSended] = useState(false);
@@ -103,7 +105,7 @@ export default function PostPage({
 
   return (
     <>
-      {!firstPost ? (
+      {!firstPost && router.isFallback ? (
         <>
           <Layout preview={preview} title={'404 Not found'} desc={''}>
             <ErrorPage title="記事が見つかりませんでした" statusCode={404} />
@@ -302,6 +304,6 @@ export async function getStaticPaths() {
 
   return {
     paths: paths,
-    fallback: false,
+    fallback: true,
   };
 }
