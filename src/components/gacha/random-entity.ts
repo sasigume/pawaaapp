@@ -1,32 +1,41 @@
 import { Entity } from '@/models/nest/Entity';
 import useSWR from 'swr';
-const NAPOANCOM_NEST_URL = process.env.NAPOANCOM_NEST_URL ?? 'https://example.com/';
+const NAPOANCOM_NEST_URL = process.env.NAPOANCOM_NEST_URL ?? 'https://ERROR-ENV-NOT-OUND/';
+const NAPOANCOM_NEST_URL_STAGING =
+  process.env.NAPOANCOM_NEST_URL_STATING ?? 'https://ERROR-STATING-ENV-NOT-OUND/';
 const NAPOANCOM_NEST_SECRET = process.env.NAPOANCOM_NEST_SECRET ?? 'secret';
 
 interface fetchProps {
-  useLocal?: boolean;
+  useStating?: boolean;
 }
 
-function GetRandomEntity({ useLocal }: fetchProps) {
+function GetRandomEntity({ useStating }: fetchProps) {
+  if (process.env.NODE_ENV !== 'production') {
+    console.debug(
+      `DEBUG: \n\nNAPOANCOM_NEST_URL: ${NAPOANCOM_NEST_URL}\n\nNAPOANCOM_NEST_URL_STAGING: ${NAPOANCOM_NEST_URL_STAGING}`,
+    );
+  }
+  let apiUrl = NAPOANCOM_NEST_URL;
+
   const fetcher = (): Promise<Array<Entity>> => {
-    let backendUrl: string;
-    useLocal ? (backendUrl = 'http://localhost:5000') : (backendUrl = NAPOANCOM_NEST_URL);
-    return fetch(`${backendUrl}/entity/random`, {
-      body: JSON.stringify({
-        // here is query
-      }),
-      method: 'POST',
+    if (useStating) {
+      console.info(`Fetching stating api`);
+      apiUrl = NAPOANCOM_NEST_URL_STAGING;
+    } else {
+      console.info(`Fetching production api`);
+    }
+    return fetch(`${apiUrl}/entity/random`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `${NAPOANCOM_NEST_SECRET}`,
       },
     })
       .then((res) => {
-        console.info(`Fetch completed from ${useLocal ? 'localhost' : 'remote'}`);
+        console.info(`Fetch completed`);
         return res.json();
       })
       .catch((e) => {
-        alert(e);
         console.log(`Gatcha fetcher error: ${e}`);
       });
   };
@@ -46,26 +55,17 @@ function GetRandomEntity({ useLocal }: fetchProps) {
 
   if (data?.length == undefined) {
     return {
-      /* When too many request sended res become 'ERROR' */
-      randomEntity: [
-        {
-          bedrockId: 'ERROR',
-          iconUrl: '/api/ogpgen?text=ERROR',
-          pictureUrl: '/api/ogpgen?text=ERROR',
-          iconBgPos: 'ERROR',
-          name: 'ERROR',
-        },
-      ],
+      randomEntity: [],
+      mutateEntity: mutate,
+      error: error,
+    };
+  } else {
+    return {
+      randomEntity: data,
       mutateEntity: mutate,
       error: error,
     };
   }
-
-  return {
-    randomEntity: data,
-    mutateEntity: mutate,
-    error: error,
-  };
 }
 
 export default GetRandomEntity;
