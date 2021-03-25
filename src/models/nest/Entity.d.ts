@@ -11,4 +11,13 @@ export interface Entity {
   description?: string;
   size?: string;
   firstAdded?: string;
+  rarelity:
+    | 'Common'
+    | 'Uncommon'
+    | 'Rare'
+    | 'Very Rare'
+    | 'Super Rare'
+    | 'Victory'
+    | 'Legend'
+    | 'Master';
 }

@@ -1,6 +1,6 @@
 {
   "name": "napoancom",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "author": "pawaaapp",
   "scripts": {
     "dev": "next",
