@@ -16,6 +16,14 @@ import {
   Flex,
   Center,
   Badge,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { InputControl, ResetButton, SubmitButton, CheckboxSingleControl } from 'formik-chakra-ui';
 import { NGwords } from 'pages/api/ogpgen/NGwords';
@@ -31,13 +39,12 @@ import BreakpointContainer from '@/components/common/breakpoint-container';
 import Warning from '@/components/common/warning';
 
 import { CheckApi, GetRandomEntity } from '@/lib/nest/entities';
-import { Entity } from '@/models/nest/Entity';
-import { string } from 'yup/lib/locale';
 
 export default function UsersMe() {
   const { user } = useAuthentication();
   const router = useRouter();
   const [fetching, setFetching] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const useStaging = router.query.useStaging == 'yes' ?? false;
 
@@ -133,35 +140,66 @@ export default function UsersMe() {
                         <>
                           {randomEntity.length > 0 && (
                             <>
-                              <Center flexDirection="column" p={6} bg="orange.100" rounded="xl">
-                                {randomEntity[0].pictureUrl ? (
-                                  <Image
-                                    width={128}
-                                    height={128}
-                                    src={randomEntity[0].pictureUrl ?? ''}
-                                  />
-                                ) : (
-                                  <img
-                                    src={`/api/ogpgen?text=${randomEntity[0].name}の画像の設定忘れてるよごめんね! この状態で更新しても写真は変わらないよ`}
-                                  />
-                                )}
-                                <Flex alignItems="center" textStyle="h3">
-                                  <Box
-                                    mr={2}
-                                    w="16px"
-                                    h="16px"
-                                    backgroundImage={`url(${randomEntity[0].iconUrl ?? ``})`}
-                                    backgroundPosition={randomEntity[0].iconBgPos ?? ''}
-                                  />
-                                  <Box fontSize="1.6rem">
-                                    {randomEntity[0].name} (
-                                    {randomEntity[0].nameJapanese ?? '日本語名未設定'})
-                                  </Box>
-                                </Flex>
-                                <Box fontSize="1.6rem">
-                                  {randomEntity[0].rarelity ?? 'レアリティ未設定'}
-                                </Box>
-                              </Center>
+                              <Modal isOpen={isOpen} onClose={onClose}>
+                                <ModalOverlay />
+                                <ModalContent minW="80vw">
+                                  <ModalHeader>ガチャ結果</ModalHeader>
+                                  <ModalCloseButton />
+                                  <ModalBody>
+                                    <Center
+                                      flexDirection="column"
+                                      p={6}
+                                      bg="orange.100"
+                                      rounded="xl"
+                                    >
+                                      {randomEntity[0].pictureUrl ? (
+                                        <Image
+                                          width={128}
+                                          height={128}
+                                          src={randomEntity[0].pictureUrl ?? ''}
+                                        />
+                                      ) : (
+                                        <img
+                                          src={`/api/ogpgen?text=${randomEntity[0].name}の画像の設定忘れてるよごめんね! この状態で更新しても写真は変わらないよ`}
+                                        />
+                                      )}
+                                      <Flex alignItems="center" textStyle="h3">
+                                        <Box
+                                          mr={2}
+                                          w="16px"
+                                          h="16px"
+                                          backgroundImage={`url(${randomEntity[0].iconUrl ?? ``})`}
+                                          backgroundPosition={randomEntity[0].iconBgPos ?? ''}
+                                        />
+                                        <Box fontSize="1.6rem">
+                                          {randomEntity[0].name} (
+                                          {randomEntity[0].nameJapanese ?? '日本語名未設定'})
+                                        </Box>
+                                      </Flex>
+                                      <Box fontSize="1.6rem">
+                                        {randomEntity[0].rarelity ?? 'レアリティ未設定'}
+                                      </Box>
+                                    </Center>
+                                  </ModalBody>
+
+                                  <ModalFooter>
+                                    <Button colorScheme="blue" onClick={onClose}>
+                                      閉じる
+                                    </Button>
+                                  </ModalFooter>
+                                </ModalContent>
+                              </Modal>
+                              {randomEntity[0].pictureUrl ? (
+                                <Image
+                                  width={128}
+                                  height={128}
+                                  src={randomEntity[0].pictureUrl ?? ''}
+                                />
+                              ) : (
+                                <img
+                                  src={`/api/ogpgen?text=${randomEntity[0].name}の画像の設定忘れてるよごめんね! この状態で更新しても写真は変わらないよ`}
+                                />
+                              )}
                             </>
                           )}
 
@@ -181,7 +219,11 @@ export default function UsersMe() {
                                   onClick={() => {
                                     randomEntity = [];
                                     setFetching(true);
-                                    mutateEntity();
+                                    mutateEntity().then((res) => {
+                                      if (res && res?.length > 0) {
+                                        onOpen();
+                                      }
+                                    });
                                   }}
                                 >
                                   エンティティガチャを回す
