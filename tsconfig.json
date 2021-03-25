@@ -6,10 +6,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "lib": [
-      "dom",
-      "es2017"
-    ],
+    "lib": ["dom", "es2017"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
@@ -22,25 +19,12 @@
     "target": "esnext",
     "baseUrl": "src/",
     "paths": {
-      "@/components/*": [
-        "components/*"
-      ],
-      "@/lib/*": [
-        "lib/*"
-      ],
-      "@/hooks/*": [
-        "hooks/*"
-      ],
-      "@/models/*": [
-        "models/*"
-      ]
-    },
+      "@/components/*": ["components/*"],
+      "@/lib/*": ["lib/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/models/*": ["models/*"]
+    }
   },
-  "exclude": [
-    "./node_modules"
-  ],
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-, "./src/lib/sitemapgen.js"  ]
+  "exclude": ["./node_modules"],
+  "include": ["**/*.ts", "**/*.tsx", "./src/lib/sitemapgen.js"]
 }
