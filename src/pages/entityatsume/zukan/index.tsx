@@ -1,24 +1,24 @@
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
-import { getAllPlatformsWithSlug } from '@/lib/contentful/graphql';
-import { Platform } from '@/models/contentful/Platform';
+import { Entity } from '@/models/nest/Entity';
 import { Box, VStack, Divider, Container } from '@chakra-ui/react';
 import Layout from '@/components/partials/layout';
 // issue #106
 /*
-const PlatformList = dynamic(() => import('@/components/partials/post/common/platform-list'));
+const EntityList = dynamic(() => import('@/components/partials/post/common/entity-list'));
 */
-import PlatformList from '@/components/partials/post/common/platform-list';
-interface PlatformIndexProps {
-  platforms: Platform[];
+import EntityList from '@/components/partials/entity/';
+import { getAllEntities } from '@/lib/nest/entities';
+interface EntityIndexProps {
+  entities: Entity[];
   preview: boolean;
 }
 
-export default function PlatformIndex({ platforms, preview }: PlatformIndexProps) {
+export default function EntityIndex({ entities, preview }: EntityIndexProps) {
   const router = useRouter();
 
-  if (!router.isFallback && !platforms) {
+  if (!router.isFallback && !entities) {
     return (
       <Layout preview={preview} meta={{ title: '404 Not found', desc: '' }}>
         <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
@@ -28,22 +28,22 @@ export default function PlatformIndex({ platforms, preview }: PlatformIndexProps
 
   return (
     <>
-      {!platforms ? (
+      {!entities ? (
         <Layout preview={preview} meta={{ title: '404 Not found', desc: '' }}>
           <ErrorPage title="教科が見つかりませんでした" statusCode={404} />
         </Layout>
       ) : (
         <Layout
           preview={preview}
-          meta={{ title: 'プラットフォームの一覧', desc: 'プラットフォームの一覧' }}
+          meta={{ title: 'エンティティの一覧', desc: 'エンティティの一覧' }}
         >
           <Container>
             <Box mb={10}>
               <VStack textStyle="h1" spacing={4} mb={8}>
-                <h1>プラットフォームの一覧</h1>
+                <h1>エンティティの一覧</h1>
                 <Divider />
               </VStack>
-              {platforms && platforms.length > 0 && <PlatformList platforms={platforms} />}
+              {entities && entities.length > 0 && <EntityList entities={entities} />}
             </Box>
           </Container>
         </Layout>
@@ -58,12 +58,12 @@ interface GSProps {
 }
 
 export async function getStaticProps({ preview }: GSProps) {
-  const allPlatforms = await getAllPlatformsWithSlug(preview, 10);
+  const allEntities = await getAllEntities({ useStaging: false });
 
   return {
     props: {
       preview: preview ?? false,
-      platforms: allPlatforms ?? null,
+      entities: allEntities ?? null,
     },
     revalidate: 300,
   };

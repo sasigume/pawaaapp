@@ -37,7 +37,8 @@ const LinkConverter = (props: LinkProps) => {
 
 const MarkdownRender = (props: RenderProps) => {
   // match id space to automatic generated anchor link hyphene
-  const headingId = (props: any) => props.children[0].props.children.replace(` `, `-`);
+  const headingId = (props: any) => props.node.children[0].value.replace(` `, `-`);
+  //const headingId = (props: any) => <Box>{JSON.stringify(props)}</Box>;
 
   const newProps = {
     source: props.source,
@@ -57,7 +58,11 @@ const MarkdownRender = (props: RenderProps) => {
         </Box>
       ),
       code: ({ language, value }: CodeProps) => {
-        return <SyntaxHighlighter style={atomDark} language={language} children={value} />;
+        return (
+          <SyntaxHighlighter style={atomDark} language={language}>
+            {value}
+          </SyntaxHighlighter>
+        );
       },
       html: (props: any) => (
         <div className="containHtml" dangerouslySetInnerHTML={{ __html: props.value }} />

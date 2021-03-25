@@ -28,15 +28,13 @@ const PostPage = ({ posts, totalCount, currentPage, environment, tweetCount }: I
   return (
     <>
       {!posts ? (
-        <Layout preview={false} title={'404 Not found'} desc={''}>
+        <Layout preview={false} meta={{ title: '404 Not found', desc: '' }}>
           <ErrorPage title="ページのデータを取得できませんでした" statusCode={404} />
         </Layout>
       ) : (
         <Layout
           preview={environment}
-          title={`${currentPage}ページ目 | ${SITE_NAME}`}
-          desc={SITE_DESC}
-          tweetCount={tweetCount}
+          meta={{ title: `${currentPage}ページ目 | ${SITE_NAME}`, desc: SITE_DESC }}
         >
           <Container maxW="container.lg">
             <BreakpointContainer>

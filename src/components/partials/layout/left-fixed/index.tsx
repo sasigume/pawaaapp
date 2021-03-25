@@ -3,7 +3,6 @@ import { Box, Center } from '@chakra-ui/layout';
 import { ReactNode } from 'react';
 
 interface Props {
-  preview: boolean;
   children: ReactNode;
 }
 

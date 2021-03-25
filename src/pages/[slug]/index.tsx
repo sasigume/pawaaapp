@@ -1,64 +1,27 @@
-import dynamic from 'next/dynamic';
-import { useState } from 'react';
-import firebase from 'firebase/app';
-import { useAuthentication } from '@/hooks/authentication';
-
 import ErrorPage from 'next/error';
-
 import {
   getAllPlatformsWithSlug,
   getPostAndMorePosts,
   getAllPostsWithSlug,
 } from '@/lib/contentful/graphql';
 import { Post } from '@/models/contentful/Post';
-
 import Layout from '@/components/partials/layout';
-import {
-  Box,
-  Button,
-  Container,
-  Stack,
-  useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalFooter,
-  ModalBody,
-  Divider,
-  Flex,
-  ButtonGroup,
-  Center,
-} from '@chakra-ui/react';
-import LinkChakra from '@/components/common/link-chakra';
+import { Box, Container, Divider } from '@chakra-ui/react';
+
 import { PostComment } from '@/models/firebase/PostComment';
 import { SITE_URL } from '@/lib/constants';
 
 import { Platform } from '@/models/contentful/Platform';
 import Head from 'next/head';
-import * as Yup from 'yup';
 
-// 2021-03-24 Issue #106
-/*const BreakpointContainer = dynamic(() => import('@/components/common/breakpoint-container'));
-const PostCommentComponent = dynamic(() => import('@/components/partials/post-comment'));
-const Warning = dynamic(() => import('@/components/common/warning'));
-const MarkdownToc = dynamic(() => import('@/components/common/markdown-toc'));
-const PostList = dynamic(() => import('@/components/partials/post'));*/
 import BreakpointContainer from '@/components/common/breakpoint-container';
-import PostCommentComponent from '@/components/partials/post-comment';
-import Warning from '@/components/common/warning';
-import MarkdownToc from '@/components/common/markdown-toc';
 import PostList from '@/components/partials/post';
-
-import {
-  TextareaControl,
-  ResetButton,
-  SubmitButton,
-  CheckboxSingleControl,
-} from 'formik-chakra-ui';
-import { NGwords } from 'pages/api/ogpgen/NGwords';
-import { Formik } from 'formik';
 import HeroWithImage from '@/components/common/hero-with-image';
 import { useRouter } from 'next/router';
+import ReactMarkdownHeading from 'react-markdown-heading';
+import FukidashiShare from '@/components/common/fukidashi-share';
+import PostCommentList from '@/components/partials/post-comment/post-comment-list';
+import tocStyles from '../../styles/markdown-toc-styles.module.css';
 
 interface PostPageProps {
   firstPost: Post;
@@ -68,7 +31,6 @@ interface PostPageProps {
   tweetCount: number;
   revalEnv: number;
   allPlatforms: Platform[];
-  hideAdsense: boolean;
 }
 
 export default function PostPage({
@@ -78,51 +40,44 @@ export default function PostPage({
   preview,
   tweetCount,
   revalEnv,
-  allPlatforms,
-  hideAdsense,
 }: PostPageProps) {
-  const { user } = useAuthentication();
   const router = useRouter();
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [didYouSend, setSended] = useState(false);
-
-  const validationSchema = Yup.object({
-    body: Yup.string()
-      .required('入力してください')
-      .notOneOf(NGwords, '使用できない言葉が含まれています'),
-    agreed: Yup.boolean().required(),
-  });
-
-  const tocProps = (post: Post) => {
-    return {
-      tweetCount: tweetCount ?? 0,
-      tweetText: post.title,
-      commentCount: postComments.length ?? 0,
-      markdown: post.body,
-    };
-  };
+  const Toc = (post: Post) => (
+    <Box className={tocStyles['toc']}>
+      <ReactMarkdownHeading markdown={post.body} hyperlink />
+    </Box>
+  );
 
   return (
     <>
       {!firstPost && router.isFallback ? (
         <>
-          <Layout preview={preview} title={'404 Not found'} desc={''}>
+          <Layout preview={preview} meta={{ title: '404 Not found', desc: '' }}>
             <ErrorPage title="記事が見つかりませんでした" statusCode={404} />
           </Layout>
         </>
       ) : (
         <Layout
-          heroImageUrl={firstPost.heroImage && firstPost.heroImage.url}
-          leftFixedChildren={firstPost && postComments && <MarkdownToc {...tocProps(firstPost)} />}
-          drawerLeftChildren={
-            firstPost && postComments && <MarkdownToc {...tocProps(firstPost)} headingDepth={6} />
-          }
+          meta={{
+            title: firstPost.title,
+            desc: firstPost.description ? firstPost.description : '',
+            ogpUrl: firstPost.heroImage && firstPost.heroImage.url,
+          }}
           revalEnv={revalEnv}
-          tweetCount={tweetCount}
           preview={preview}
-          title={firstPost.title}
-          desc={firstPost.description ? firstPost.description : ''}
+          drawerLeftChildren={Toc(firstPost)}
+          leftFixedChuldren={
+            <Box>
+              <FukidashiShare
+                tweetText={firstPost.title}
+                tweetCount={tweetCount}
+                commentCount={postComments.length}
+              />
+              {Toc(firstPost)}
+            </Box>
+          }
+          hideAdsense={firstPost.hideAdsense}
         >
           <Head>
             <link
@@ -153,98 +108,7 @@ export default function PostPage({
                   <h2>コメント</h2>
                 </Box>
 
-                <Flex direction={{ base: 'column', md: 'row' }}>
-                  <Box
-                    minW={{ base: '', md: '15rem' }}
-                    mb={{ base: 8, md: 0 }}
-                    mr={{ base: 0, md: 16 }}
-                  >
-                    {postComments && postComments.length > 0 ? (
-                      postComments.map((c: PostComment) => (
-                        <PostCommentComponent c={c} key={c.id} />
-                      ))
-                    ) : (
-                      <div>コメントはありません。</div>
-                    )}
-                  </Box>
-
-                  <Box mb={6}>
-                    {user ? (
-                      <Box>
-                        <Warning />
-                        <Modal isOpen={isOpen} onClose={onClose} isCentered>
-                          <ModalOverlay />
-                          <ModalContent py={6}>
-                            <ModalBody>送信できました！連投はやめてね</ModalBody>
-                            <ModalFooter>
-                              <Button colorScheme="blue" mr={3} onClick={onClose}>
-                                閉じる
-                              </Button>
-                            </ModalFooter>
-                          </ModalContent>
-                        </Modal>
-                        {!didYouSend ? (
-                          <Formik
-                            initialValues={{
-                              body: '',
-                              agreed: false,
-                            }}
-                            validationSchema={validationSchema}
-                            onSubmit={(values) => {
-                              setTimeout(() => {
-                                firebase
-                                  .firestore()
-                                  .collection('postComments')
-                                  .add({
-                                    senderUid: firebase.auth().currentUser?.uid,
-                                    senderName: firebase.auth().currentUser?.displayName,
-                                    postSlug: firstPost.slug,
-                                    body: values.body,
-                                    createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
-                                  })
-                                  .then(() => {
-                                    setSended(true);
-                                  });
-                                console.log(
-                                  `Comment posted: please wait until revalidation(${revalEnv} sec.)`,
-                                );
-                              }, 1000);
-                            }}
-                          >
-                            {({ handleSubmit, values }) => (
-                              <Stack as="form" onSubmit={handleSubmit as any} spacing={6}>
-                                <TextareaControl
-                                  name="body"
-                                  placeholder="コメントを入力"
-                                  label="コメント"
-                                />
-                                <CheckboxSingleControl name="agreed">
-                                  利用規約に同意しました
-                                </CheckboxSingleControl>
-                                <ButtonGroup>
-                                  {values.agreed && <SubmitButton>コメントを投稿する</SubmitButton>}
-                                  <ResetButton>リセット</ResetButton>
-                                </ButtonGroup>
-                              </Stack>
-                            )}
-                          </Formik>
-                        ) : (
-                          <>
-                            <Center my={16}>
-                              送信できました。一覧は{revalEnv / 60}
-                              分後に更新されます。
-                            </Center>
-                          </>
-                        )}
-                      </Box>
-                    ) : (
-                      <div className="my-6">
-                        <LinkChakra href="/signin">サインイン</LinkChakra>
-                        してコメントしてみよう!
-                      </div>
-                    )}
-                  </Box>
-                </Flex>
+                <PostCommentList postComments={postComments} post={firstPost} />
               </BreakpointContainer>
             </Container>
           </Box>
