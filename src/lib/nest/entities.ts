@@ -32,11 +32,11 @@ const ReturnDataOrError = async ({ path, useStaging }: fetchProps): Promise<Enti
       console.log('Fetch ok');
       return response.json();
     } else {
-      console.log('Failed to fetch: ' + response.status);
+      console.error('Failed to fetch: ' + response.status);
       return response.statusText;
     }
   } catch (e) {
-    console.log('A real error!');
+    console.error(e);
     return e as string;
   }
 };
@@ -54,7 +54,7 @@ async function ReturnBool({ path, useStaging }: fetchProps) {
     if (response.ok) {
       return true;
     } else {
-      console.log(`Check failed: ${response.status}`);
+      console.error(`Check failed: ${response.status}`);
       return false;
     }
   } catch (e) {
@@ -116,3 +116,52 @@ export function GetRandomEntity({ useStaging }: fetchProps) {
     }
   }
 }
+
+export const getAllEntities = async ({ useStaging }: fetchProps): Promise<Entity[]> => {
+  const apiUrl = getApiUrl(useStaging);
+
+  try {
+    let response = await fetch(apiUrl + '/entity/query', {
+      // BE AWARE:POST
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${NAPOANCOM_NEST_SECRET}`,
+      },
+    });
+    if (response.ok) {
+      console.log('GetAllEntities ok');
+      return response.json();
+    } else {
+      console.error('Failed to fetch: ' + response.status);
+      return [];
+    }
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
+};
+
+export const getEntity = async (bedrockId: string): Promise<Entity | null> => {
+  const apiUrl = getApiUrl(false);
+
+  try {
+    let response = await fetch(apiUrl + '/entity/bedrockId/' + bedrockId, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${NAPOANCOM_NEST_SECRET}`,
+      },
+    });
+    if (response.ok) {
+      console.log('GetEntity ok');
+      return response.json();
+    } else {
+      console.error('Failed to fetch: ' + response.status);
+      return null;
+    }
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+};
