@@ -41,7 +41,7 @@ export default function LoginPage() {
   const [agreed, setAgreed] = useState(false);
 
   return (
-    <Layout preview={false} title={'サインイン'} desc={'サインイン'}>
+    <Layout preview={false} meta={{ title: 'サインイン', desc: 'サインイン' }}>
       <Container>
         <BreakpointContainer>
           {!user ? (

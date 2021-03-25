@@ -23,12 +23,15 @@ const platformIndex = ({ platform, posts, preview }: IndexProps) => {
     <>
       {!platform ? (
         <>
-          <Layout preview={preview} title={'404 Not found'} desc={''}>
+          <Layout preview={preview} meta={{ title: '404 Not found', desc: '' }}>
             <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
           </Layout>
         </>
       ) : (
-        <Layout preview={preview} title={`${platform.displayName}の記事一覧`} desc={'Pawaa.app'}>
+        <Layout
+          preview={preview}
+          meta={{ title: `${platform.displayName}の記事一覧`, desc: 'Pawaa.app' }}
+        >
           <Container maxW="container.lg">
             <Box mb={16}>
               <Box textStyle="h1" mb={8}>
