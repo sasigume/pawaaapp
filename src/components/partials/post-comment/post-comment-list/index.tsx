@@ -102,8 +102,13 @@ export default function PostCommentList({ postComments, post }: Props) {
                     <CheckboxSingleControl name="agreed">
                       利用規約に同意しました
                     </CheckboxSingleControl>
+                    <Button as={LinkChakra} href="/users/me">
+                      名前: {user.name}
+                    </Button>
                     <ButtonGroup>
-                      {values.agreed && <SubmitButton>コメントを投稿する</SubmitButton>}
+                      {values.agreed && (
+                        <SubmitButton flexGrow={1}>コメントを投稿する</SubmitButton>
+                      )}
                       <ResetButton>リセット</ResetButton>
                     </ButtonGroup>
                   </Stack>
