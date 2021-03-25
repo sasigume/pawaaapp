@@ -20,7 +20,7 @@ export default function PlatformIndex({ platforms, preview }: PlatformIndexProps
 
   if (!router.isFallback && !platforms) {
     return (
-      <Layout preview={preview} title={'404 Not found'} desc={''}>
+      <Layout preview={preview} meta={{ title: '404 Not found', desc: '' }}>
         <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
       </Layout>
     );
@@ -29,11 +29,14 @@ export default function PlatformIndex({ platforms, preview }: PlatformIndexProps
   return (
     <>
       {!platforms ? (
-        <Layout preview={preview} title={'404 Not found'} desc={''}>
+        <Layout preview={preview} meta={{ title: '404 Not found', desc: '' }}>
           <ErrorPage title="教科が見つかりませんでした" statusCode={404} />
         </Layout>
       ) : (
-        <Layout preview={preview} title={'プラットフォームの一覧'} desc={'プラットフォームの一覧'}>
+        <Layout
+          preview={preview}
+          meta={{ title: 'プラットフォームの一覧', desc: 'プラットフォームの一覧' }}
+        >
           <Container>
             <Box mb={10}>
               <VStack textStyle="h1" spacing={4} mb={8}>

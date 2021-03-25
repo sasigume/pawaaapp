@@ -7,7 +7,7 @@ interface Props {
   c: PostComment;
 }
 
-export default function PostCommentComponent({ c }: Props) {
+export default function PostCommentSingle({ c }: Props) {
   return (
     <Box
       border="solid"

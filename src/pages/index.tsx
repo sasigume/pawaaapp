@@ -29,11 +29,11 @@ const Index = ({ posts, totalCount, environment, tweetCount }: IndexProps) => {
   return (
     <>
       {!posts ? (
-        <Layout preview={false} title={'404 Not found'} desc={''}>
+        <Layout preview={false} meta={{ title: '404 Not found', desc: '' }}>
           <ErrorPage title="ページのデータを取得できませんでした" statusCode={404} />
         </Layout>
       ) : (
-        <Layout preview={environment} title={SITE_NAME} desc={SITE_DESC} tweetCount={tweetCount}>
+        <Layout preview={environment} meta={{ title: SITE_NAME, desc: SITE_DESC }}>
           <Container bg={colorMode == 'light' ? 'white' : 'dark'} maxW="container.lg">
             <BreakpointContainer>
               {posts && (

@@ -54,7 +54,7 @@ export default function UsersMe() {
   });
 
   return (
-    <Layout preview={false} title={'マイページ'} desc={'マイページ'}>
+    <Layout preview={false} meta={{ title: 'マイページ', desc: 'マイページ' }}>
       <Container>
         <BreakpointContainer>
           {user ? (
