@@ -1,6 +1,7 @@
 import { useAuthentication } from '@/hooks/authentication';
 import { Box, Button, Stack } from '@chakra-ui/react';
 import LinkChakra from '@/components/common/link-chakra';
+import Image from 'next/image';
 
 const SignIn = () => {
   const { user } = useAuthentication();
@@ -13,7 +14,7 @@ const SignIn = () => {
             href="/users/me/"
             leftIcon={
               <Box w={6} rounded="full" overflow="hidden">
-                <img src={user.photoURL} width={32} height={32} />
+                <Image src={user.photoURL} width={32} height={32} />
               </Box>
             }
           >

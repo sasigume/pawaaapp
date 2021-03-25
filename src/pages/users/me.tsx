@@ -12,17 +12,14 @@ import {
   ButtonGroup,
   Stack,
   SkeletonText,
+  Button,
+  Badge,
+  Flex,
 } from '@chakra-ui/react';
-import {
-  InputControl,
-  RadioGroupControl,
-  ResetButton,
-  SubmitButton,
-  CheckboxSingleControl,
-} from 'formik-chakra-ui';
+import { InputControl, ResetButton, SubmitButton, CheckboxSingleControl } from 'formik-chakra-ui';
 import { NGwords } from 'pages/api/ogpgen/NGwords';
 import { Formik } from 'formik';
-import { SITE_FULL_URL } from '@/lib/constants';
+import Image from 'next/image';
 import * as Yup from 'yup';
 import * as gtag from '@/lib/gtag';
 
@@ -32,22 +29,27 @@ const Warning = dynamic(() => import('@/components/common/warning'));*/
 import BreakpointContainer from '@/components/common/breakpoint-container';
 import Warning from '@/components/common/warning';
 
+import GetRandomEntity from '@/components/gacha/random-entity';
+import { useState } from 'react';
+
 export default function UsersMe() {
   const { user } = useAuthentication();
   const router = useRouter();
+  const useLocal = router.query.useLocal == 'yes' ?? false;
+  const [fetching, setFetching] = useState(false);
 
-  const actualPhotoUrl = (n: number) => `${SITE_FULL_URL}/photoURL/${n}.png`;
+  const { randomEntity, mutateEntity, error } = GetRandomEntity({
+    useLocal: useLocal,
+  });
+  if (randomEntity[0].name == 'ERROR') {
+    mutateEntity({ ...randomEntity });
+  }
+
   const validationSchema = Yup.object({
     displayName: Yup.string().notOneOf(NGwords, '使用できない言葉が含まれています'),
     photoURL: Yup.string(),
     agreed: Yup.boolean().required(),
   });
-
-  let loadedUser = false;
-
-  if (user) {
-    loadedUser = true;
-  }
 
   return (
     <Layout preview={false} title={'マイページ'} desc={'マイページ'}>
@@ -90,7 +92,7 @@ export default function UsersMe() {
                         .auth()
                         .currentUser?.updateProfile({
                           displayName: values.displayName ?? user.name,
-                          photoURL: actualPhotoUrl(parseInt(values.photoURL ?? user.photoURL)),
+                          photoURL: randomEntity[0].pictureUrl ?? user.photoURL,
                         })
                         .then(() => {
                           router.reload();
@@ -100,28 +102,76 @@ export default function UsersMe() {
                 >
                   {({ handleSubmit, values }) => (
                     <Stack as="form" onSubmit={handleSubmit as any} spacing={6}>
-                      <InputControl name="displayName" label="表示名" />
-                      <RadioGroupControl name="photoURL" label="プロフィール画像">
-                        <Box>
-                          <Radio value="1"></Radio>
-                          <img width={64} src={actualPhotoUrl(1)} />
-                        </Box>
-                        <Box>
-                          <Radio value="2"></Radio>
-                          <img width={64} src={actualPhotoUrl(2)} />
-                        </Box>
-                        <Box>
-                          <Radio value="3"></Radio>
-                          <img width={64} src={actualPhotoUrl(3)} />
-                        </Box>
-                      </RadioGroupControl>
-                      <CheckboxSingleControl name="agreed">
+                      <Box fontSize="1.5rem">表示名</Box>
+                      <InputControl mb={6} name="displayName" />
+
+                      <Divider my={4} />
+
+                      <Box fontSize="1.5rem">プロフィール画像</Box>
+                      <Box h="340px">
+                        {/* When too many request sended res become 'ERROR' */}
+                        {randomEntity[0].name !== 'ERROR' && (
+                          <>
+                            {randomEntity[0].pictureUrl ? (
+                              <Image
+                                width="256px"
+                                height="auto"
+                                src={randomEntity[0].pictureUrl ?? ''}
+                              />
+                            ) : (
+                              <img
+                                src={`/api/ogpgen?text=${randomEntity[0].name}の画像の設定忘れてるよごめんね! この状態で更新しても写真は変わらないよ`}
+                              />
+                            )}
+                          </>
+                        )}
+                        <Flex alignItems="center" textStyle="h3">
+                          {randomEntity[0].iconUrl && (
+                            <Box
+                              mr={2}
+                              w="16px"
+                              h="16px"
+                              backgroundImage={`url(${randomEntity[0].iconUrl ?? ``})`}
+                              backgroundPosition={randomEntity[0].iconBgPos ?? ''}
+                            />
+                          )}
+                          {randomEntity[0].name !== 'ERROR'
+                            ? randomEntity[0].name
+                            : `しばらくお待ちください`}
+                        </Flex>
+                      </Box>
+
+                      <ButtonGroup>
+                        <Button
+                          w="fill"
+                          colorScheme="orange"
+                          fontSize="1.7rem"
+                          py={6}
+                          isLoading={randomEntity[0].name == 'ERROR' || fetching}
+                          onClick={() => {
+                            setFetching(true);
+                            mutateEntity().then(() => setFetching(false));
+                          }}
+                        >
+                          エンティティガチャを回す
+                        </Button>
+                      </ButtonGroup>
+
+                      <Divider my={4} />
+
+                      <CheckboxSingleControl mt={2} name="agreed">
                         利用規約に同意しました
                       </CheckboxSingleControl>
-                      <ButtonGroup>
-                        {values.agreed && <SubmitButton>プロフィールを更新</SubmitButton>}
-                        <ResetButton>リセット</ResetButton>
-                      </ButtonGroup>
+                      {randomEntity[0].name !== 'ERROR' ? (
+                        <>
+                          <ButtonGroup>
+                            {values.agreed && <SubmitButton>プロフィールを更新</SubmitButton>}
+                            <ResetButton>リセット</ResetButton>
+                          </ButtonGroup>
+                        </>
+                      ) : (
+                        <Box>ガチャ結果を待っているので更新できません。</Box>
+                      )}
                     </Stack>
                   )}
                 </Formik>
