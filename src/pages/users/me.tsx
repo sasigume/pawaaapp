@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import firebaseApi from '@/lib/firebase';
 import Layout from '@/components/partials/layout';
@@ -16,6 +16,14 @@ import {
   Flex,
   Center,
   Badge,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { InputControl, ResetButton, SubmitButton, CheckboxSingleControl } from 'formik-chakra-ui';
 import { NGwords } from 'pages/api/ogpgen/NGwords';
@@ -30,17 +38,22 @@ const Warning = dynamic(() => import('@/components/common/warning'));*/
 import BreakpointContainer from '@/components/common/breakpoint-container';
 import Warning from '@/components/common/warning';
 
-import GetRandomEntity from '@/components/gacha/random-entity';
+import { CheckApi, GetRandomEntity } from '@/lib/nest/entities';
 
 export default function UsersMe() {
   const { user } = useAuthentication();
   const router = useRouter();
   const [fetching, setFetching] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const useStating = router.query.useStating == 'yes' ?? false;
+  const useStaging = router.query.useStaging == 'yes' ?? false;
 
-  let { randomEntity, mutateEntity, error } = GetRandomEntity({
-    useStating: useStating,
+  let isApiOk = CheckApi({
+    useStaging: useStaging,
+  });
+
+  let { randomEntity, mutateEntity, errorEntity } = GetRandomEntity({
+    useStaging: useStaging,
   });
 
   useEffect(() => {
@@ -54,7 +67,7 @@ export default function UsersMe() {
   });
 
   return (
-    <Layout preview={false} title={'マイページ'} desc={'マイページ'}>
+    <Layout preview={false} meta={{ title: 'マイページ', desc: 'マイページ' }}>
       <Container>
         <BreakpointContainer>
           {user ? (
@@ -123,71 +136,115 @@ export default function UsersMe() {
                       <Box as="h4" fontSize="1.5rem">
                         新しいプロフィール画像
                       </Box>
-                      <Center flexDirection="column" p={6} bg="orange.100" rounded="xl" h="340px">
-                        {randomEntity.length > 0 ? (
-                          <>
-                            {randomEntity[0].pictureUrl ? (
-                              <Image
-                                width="256px"
-                                height="auto"
-                                src={randomEntity[0].pictureUrl ?? ''}
-                              />
-                            ) : (
-                              <img
-                                src={`/api/ogpgen?text=${randomEntity[0].name}の画像の設定忘れてるよごめんね! この状態で更新しても写真は変わらないよ`}
-                              />
-                            )}
-                            <Flex alignItems="center" textStyle="h3">
-                              <Box
-                                mr={2}
-                                w="16px"
-                                h="16px"
-                                backgroundImage={`url(${randomEntity[0].iconUrl ?? ``})`}
-                                backgroundPosition={randomEntity[0].iconBgPos ?? ''}
-                              />
-                              <Box fontSize="1.6rem">
-                                {randomEntity[0].name} (
-                                {randomEntity[0].nameJapanese ?? '日本語名未設定'})
-                              </Box>
-                            </Flex>
-                            <Box fontSize="1.6rem">
-                              {randomEntity[0].rarelity ?? 'レアリティ未設定'}
-                            </Box>
-                          </>
-                        ) : (
-                          <Box fontSize="1.6rem">
-                            {fetching ? (
-                              <Badge>APIに問い合わせ中...</Badge>
-                            ) : (
-                              <Badge>ガチャを回そう!</Badge>
-                            )}
-                          </Box>
-                        )}
-                      </Center>
+                      {isApiOk ? (
+                        <>
+                          {randomEntity.length > 0 && (
+                            <>
+                              <Modal isOpen={isOpen} onClose={onClose}>
+                                <ModalOverlay />
+                                <ModalContent minW="80vw">
+                                  <ModalHeader>ガチャ結果</ModalHeader>
+                                  <ModalCloseButton />
+                                  <ModalBody>
+                                    <Center
+                                      flexDirection="column"
+                                      p={6}
+                                      bg="orange.100"
+                                      rounded="xl"
+                                    >
+                                      {randomEntity[0].pictureUrl ? (
+                                        <Image
+                                          width={128}
+                                          height={128}
+                                          src={randomEntity[0].pictureUrl ?? ''}
+                                        />
+                                      ) : (
+                                        <img
+                                          src={`/api/ogpgen?text=${randomEntity[0].name}の画像の設定忘れてるよごめんね! この状態で更新しても写真は変わらないよ`}
+                                        />
+                                      )}
+                                      <Flex alignItems="center" textStyle="h3">
+                                        <Box
+                                          mr={2}
+                                          w="16px"
+                                          h="16px"
+                                          backgroundImage={`url(${randomEntity[0].iconUrl ?? ``})`}
+                                          backgroundPosition={randomEntity[0].iconBgPos ?? ''}
+                                        />
+                                        <Box fontSize="1.6rem">
+                                          {randomEntity[0].name} (
+                                          {randomEntity[0].nameJapanese ?? '日本語名未設定'})
+                                        </Box>
+                                      </Flex>
+                                      <Box fontSize="1.6rem">
+                                        {randomEntity[0].rarelity ?? 'レアリティ未設定'}
+                                      </Box>
+                                    </Center>
+                                  </ModalBody>
 
-                      <ButtonGroup>
-                        <Button
-                          w="full"
-                          colorScheme="orange"
-                          fontSize="1.7rem"
-                          py={6}
-                          isLoading={fetching}
-                          onClick={() => {
-                            randomEntity = [];
-                            setFetching(true);
-                            mutateEntity();
-                          }}
-                        >
-                          エンティティガチャを回す
-                        </Button>
-                      </ButtonGroup>
+                                  <ModalFooter>
+                                    <Button colorScheme="blue" onClick={onClose}>
+                                      閉じる
+                                    </Button>
+                                  </ModalFooter>
+                                </ModalContent>
+                              </Modal>
+                              {randomEntity[0].pictureUrl ? (
+                                <Image
+                                  width={128}
+                                  height={128}
+                                  src={randomEntity[0].pictureUrl ?? ''}
+                                />
+                              ) : (
+                                <img
+                                  src={`/api/ogpgen?text=${randomEntity[0].name}の画像の設定忘れてるよごめんね! この状態で更新しても写真は変わらないよ`}
+                                />
+                              )}
+                            </>
+                          )}
+
+                          <Stack>
+                            {errorEntity ? (
+                              <Badge colorScheme="red">
+                                {errorEntity} : リロードしてください。
+                              </Badge>
+                            ) : (
+                              <ButtonGroup>
+                                <Button
+                                  w="full"
+                                  colorScheme="orange"
+                                  fontSize="1.7rem"
+                                  py={6}
+                                  isLoading={fetching}
+                                  onClick={() => {
+                                    randomEntity = [];
+                                    setFetching(true);
+                                    mutateEntity().then((res: any) => {
+                                      if (res && res?.length > 0) {
+                                        onOpen();
+                                      }
+                                    });
+                                  }}
+                                >
+                                  エンティティガチャを回す
+                                </Button>
+                              </ButtonGroup>
+                            )}
+                            {fetching && <Badge>APIに問い合わせ中...</Badge>}
+                          </Stack>
+                        </>
+                      ) : (
+                        <Center>
+                          <Box>APIの応答待ち。。。</Box>
+                        </Center>
+                      )}
 
                       <Divider my={4} />
 
                       <CheckboxSingleControl mt={2} name="agreed">
                         利用規約に同意しました
                       </CheckboxSingleControl>
-                      {randomEntity.length > 0 ? (
+                      {randomEntity ? (
                         <>
                           <ButtonGroup>
                             {values.agreed && <SubmitButton>プロフィールを更新</SubmitButton>}
@@ -204,9 +261,13 @@ export default function UsersMe() {
                   <Box bg="gray.200" p={4}>
                     DEBUG
                     <br />
+                    {JSON.stringify(isApiOk)}
+                    <br />
                     {JSON.stringify(fetching)}
                     <br />
                     {JSON.stringify(randomEntity)}
+                    <br />
+                    {JSON.stringify(errorEntity)}
                   </Box>
                 )}
               </Box>
