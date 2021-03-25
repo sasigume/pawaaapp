@@ -1,11 +1,11 @@
 import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import firebaseApi from '@/lib/firebase';
 import Layout from '@/components/partials/layout';
 import { useAuthentication } from '../../hooks/authentication';
 import {
   Box,
-  Radio,
   Container,
   Divider,
   Heading,
@@ -13,8 +13,9 @@ import {
   Stack,
   SkeletonText,
   Button,
-  Badge,
   Flex,
+  Center,
+  Badge,
 } from '@chakra-ui/react';
 import { InputControl, ResetButton, SubmitButton, CheckboxSingleControl } from 'formik-chakra-ui';
 import { NGwords } from 'pages/api/ogpgen/NGwords';
@@ -30,20 +31,21 @@ import BreakpointContainer from '@/components/common/breakpoint-container';
 import Warning from '@/components/common/warning';
 
 import GetRandomEntity from '@/components/gacha/random-entity';
-import { useState } from 'react';
 
 export default function UsersMe() {
   const { user } = useAuthentication();
   const router = useRouter();
-  const useLocal = router.query.useLocal == 'yes' ?? false;
   const [fetching, setFetching] = useState(false);
 
-  const { randomEntity, mutateEntity, error } = GetRandomEntity({
-    useLocal: useLocal,
+  const useStating = router.query.useStating == 'yes' ?? false;
+
+  let { randomEntity, mutateEntity, error } = GetRandomEntity({
+    useStating: useStating,
   });
-  if (randomEntity[0].name == 'ERROR') {
-    mutateEntity({ ...randomEntity });
-  }
+
+  useEffect(() => {
+    setFetching(false);
+  }, [randomEntity]);
 
   const validationSchema = Yup.object({
     displayName: Yup.string().notOneOf(NGwords, '使用できない言葉が含まれています'),
@@ -102,15 +104,27 @@ export default function UsersMe() {
                 >
                   {({ handleSubmit, values }) => (
                     <Stack as="form" onSubmit={handleSubmit as any} spacing={6}>
-                      <Box fontSize="1.5rem">表示名</Box>
-                      <InputControl mb={6} name="displayName" />
+                      <Box as="h3" fontSize="1.5rem">
+                        表示名: {user.name}
+                      </Box>
+                      <InputControl area-label="表示名を入力" mb={6} name="displayName" />
 
                       <Divider my={4} />
 
-                      <Box fontSize="1.5rem">プロフィール画像</Box>
-                      <Box h="340px">
-                        {/* When too many request sended res become 'ERROR' */}
-                        {randomEntity[0].name !== 'ERROR' && (
+                      <Box as="h3" fontSize="1.5rem">
+                        プロフィール画像
+                      </Box>
+                      <Box as="h4" fontSize="1.5rem">
+                        現在のプロフィール画像
+                      </Box>
+                      <Box mb={8}>
+                        <Image src={user.photoURL} width="256px" height="256px" />
+                      </Box>
+                      <Box as="h4" fontSize="1.5rem">
+                        新しいプロフィール画像
+                      </Box>
+                      <Center flexDirection="column" p={6} bg="orange.100" rounded="xl" h="340px">
+                        {randomEntity.length > 0 ? (
                           <>
                             {randomEntity[0].pictureUrl ? (
                               <Image
@@ -123,34 +137,45 @@ export default function UsersMe() {
                                 src={`/api/ogpgen?text=${randomEntity[0].name}の画像の設定忘れてるよごめんね! この状態で更新しても写真は変わらないよ`}
                               />
                             )}
+                            <Flex alignItems="center" textStyle="h3">
+                              <Box
+                                mr={2}
+                                w="16px"
+                                h="16px"
+                                backgroundImage={`url(${randomEntity[0].iconUrl ?? ``})`}
+                                backgroundPosition={randomEntity[0].iconBgPos ?? ''}
+                              />
+                              <Box fontSize="1.6rem">
+                                {randomEntity[0].name} (
+                                {randomEntity[0].nameJapanese ?? '日本語名未設定'})
+                              </Box>
+                            </Flex>
+                            <Box fontSize="1.6rem">
+                              {randomEntity[0].rarelity ?? 'レアリティ未設定'}
+                            </Box>
                           </>
+                        ) : (
+                          <Box fontSize="1.6rem">
+                            {fetching ? (
+                              <Badge>APIに問い合わせ中...</Badge>
+                            ) : (
+                              <Badge>ガチャを回そう!</Badge>
+                            )}
+                          </Box>
                         )}
-                        <Flex alignItems="center" textStyle="h3">
-                          {randomEntity[0].iconUrl && (
-                            <Box
-                              mr={2}
-                              w="16px"
-                              h="16px"
-                              backgroundImage={`url(${randomEntity[0].iconUrl ?? ``})`}
-                              backgroundPosition={randomEntity[0].iconBgPos ?? ''}
-                            />
-                          )}
-                          {randomEntity[0].name !== 'ERROR'
-                            ? randomEntity[0].name
-                            : `しばらくお待ちください`}
-                        </Flex>
-                      </Box>
+                      </Center>
 
                       <ButtonGroup>
                         <Button
-                          w="fill"
+                          w="full"
                           colorScheme="orange"
                           fontSize="1.7rem"
                           py={6}
-                          isLoading={randomEntity[0].name == 'ERROR' || fetching}
+                          isLoading={fetching}
                           onClick={() => {
+                            randomEntity = [];
                             setFetching(true);
-                            mutateEntity().then(() => setFetching(false));
+                            mutateEntity();
                           }}
                         >
                           エンティティガチャを回す
@@ -162,7 +187,7 @@ export default function UsersMe() {
                       <CheckboxSingleControl mt={2} name="agreed">
                         利用規約に同意しました
                       </CheckboxSingleControl>
-                      {randomEntity[0].name !== 'ERROR' ? (
+                      {randomEntity.length > 0 ? (
                         <>
                           <ButtonGroup>
                             {values.agreed && <SubmitButton>プロフィールを更新</SubmitButton>}
@@ -175,6 +200,15 @@ export default function UsersMe() {
                     </Stack>
                   )}
                 </Formik>
+                {process.env.NODE_ENV == 'development' && (
+                  <Box bg="gray.200" p={4}>
+                    DEBUG
+                    <br />
+                    {JSON.stringify(fetching)}
+                    <br />
+                    {JSON.stringify(randomEntity)}
+                  </Box>
+                )}
               </Box>
             </>
           ) : (
