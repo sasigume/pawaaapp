@@ -65,7 +65,7 @@ export default function Layout({
             </Box>
           </LinkChakra>
         </Heading>
-        <Center pb={6}>
+        <Center bg="cyan.100" pb={6}>
           <Button as={LinkChakra} colorScheme="orange" href="/entityatsume/">
             エンティティあつめ
           </Button>

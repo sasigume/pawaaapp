@@ -1,5 +1,5 @@
-import dynamic from 'next/dynamic';
-import { useEffect, useRef, useState } from 'react';
+//import dynamic from 'next/dynamic';
+//import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import firebaseApi from '@/lib/firebase';
 import Layout from '@/components/partials/layout';
@@ -12,8 +12,7 @@ import {
   ButtonGroup,
   Stack,
   SkeletonText,
-  Button,
-  Flex,
+  /*Button,
   Center,
   Badge,
   Modal,
@@ -22,13 +21,13 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton,
+  ModalCloseButton,*/
   useDisclosure,
 } from '@chakra-ui/react';
 import { InputControl, ResetButton, SubmitButton, CheckboxSingleControl } from 'formik-chakra-ui';
 import { NGwords } from 'pages/api/ogpgen/NGwords';
 import { Formik } from 'formik';
-import Image from 'next/image';
+//import Image from 'next/image';
 import * as Yup from 'yup';
 import * as gtag from '@/lib/gtag';
 
@@ -39,16 +38,17 @@ import BreakpointContainer from '@/components/common/breakpoint-container';
 import Warning from '@/components/common/warning';
 
 import { CheckApi, GetRandomEntity } from '@/lib/nest/entities';
+//import { SingleEntityComponent } from '@/components/partials/entity/single-entity';
 
 export default function UsersMe() {
   const { user } = useAuthentication();
   const router = useRouter();
-  const [fetching, setFetching] = useState(false);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  //const [fetching, setFetching] = useState(false);
+  //const { isOpen, onOpen, onClose } = useDisclosure();
 
   const useStaging = router.query.useStaging == 'yes' ?? false;
 
-  let isApiOk = CheckApi({
+  /*let isApiOk = CheckApi({
     useStaging: useStaging,
   });
 
@@ -59,6 +59,7 @@ export default function UsersMe() {
   useEffect(() => {
     setFetching(false);
   }, [randomEntity]);
+  */
 
   const validationSchema = Yup.object({
     displayName: Yup.string().notOneOf(NGwords, '使用できない言葉が含まれています'),
@@ -107,7 +108,7 @@ export default function UsersMe() {
                         .auth()
                         .currentUser?.updateProfile({
                           displayName: values.displayName ?? user.name,
-                          photoURL: randomEntity[0].pictureUrl ?? user.photoURL,
+                          //photoURL: randomEntity[0].pictureUrl ?? user.photoURL,
                         })
                         .then(() => {
                           router.reload();
@@ -122,7 +123,8 @@ export default function UsersMe() {
                       </Box>
                       <InputControl area-label="表示名を入力" mb={6} name="displayName" />
 
-                      <Divider my={4} />
+                      {/* 2021-03-26 disabled
+                       <><Divider my={4} />
 
                       <Box as="h3" fontSize="1.5rem">
                         プロフィール画像
@@ -146,40 +148,7 @@ export default function UsersMe() {
                                   <ModalHeader>ガチャ結果</ModalHeader>
                                   <ModalCloseButton />
                                   <ModalBody>
-                                    <Center
-                                      flexDirection="column"
-                                      p={6}
-                                      bg="orange.100"
-                                      rounded="xl"
-                                    >
-                                      {randomEntity[0].pictureUrl ? (
-                                        <Image
-                                          width={128}
-                                          height={128}
-                                          src={randomEntity[0].pictureUrl ?? ''}
-                                        />
-                                      ) : (
-                                        <img
-                                          src={`/api/ogpgen?text=${randomEntity[0].name}の画像の設定忘れてるよごめんね! この状態で更新しても写真は変わらないよ`}
-                                        />
-                                      )}
-                                      <Flex alignItems="center" textStyle="h3">
-                                        <Box
-                                          mr={2}
-                                          w="16px"
-                                          h="16px"
-                                          backgroundImage={`url(${randomEntity[0].iconUrl ?? ``})`}
-                                          backgroundPosition={randomEntity[0].iconBgPos ?? ''}
-                                        />
-                                        <Box fontSize="1.6rem">
-                                          {randomEntity[0].name} (
-                                          {randomEntity[0].nameJapanese ?? '日本語名未設定'})
-                                        </Box>
-                                      </Flex>
-                                      <Box fontSize="1.6rem">
-                                        {randomEntity[0].rarelity ?? 'レアリティ未設定'}
-                                      </Box>
-                                    </Center>
+                                    <SingleEntityComponent entity={randomEntity[0]} />
                                   </ModalBody>
 
                                   <ModalFooter>
@@ -237,14 +206,18 @@ export default function UsersMe() {
                         <Center>
                           <Box>APIの応答待ち。。。</Box>
                         </Center>
-                      )}
+                      )}</> */}
 
                       <Divider my={4} />
 
                       <CheckboxSingleControl mt={2} name="agreed">
                         利用規約に同意しました
                       </CheckboxSingleControl>
-                      {randomEntity ? (
+                      <ButtonGroup>
+                        {values.agreed && <SubmitButton>プロフィールを更新</SubmitButton>}
+                        <ResetButton>リセット</ResetButton>
+                      </ButtonGroup>
+                      {/*randomEntity ? (
                         <>
                           <ButtonGroup>
                             {values.agreed && <SubmitButton>プロフィールを更新</SubmitButton>}
@@ -253,11 +226,11 @@ export default function UsersMe() {
                         </>
                       ) : (
                         <Box>ガチャ結果を待っているので更新できません。</Box>
-                      )}
+                      )*/}
                     </Stack>
                   )}
                 </Formik>
-                {process.env.NODE_ENV == 'development' && (
+                {/*process.env.NODE_ENV == 'development' && (
                   <Box bg="gray.200" p={4}>
                     DEBUG
                     <br />
@@ -269,7 +242,7 @@ export default function UsersMe() {
                     <br />
                     {JSON.stringify(errorEntity)}
                   </Box>
-                )}
+                )*/}
               </Box>
             </>
           ) : (

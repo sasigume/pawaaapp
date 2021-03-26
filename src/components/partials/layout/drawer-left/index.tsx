@@ -18,13 +18,14 @@ import {
   Divider,
 } from '@chakra-ui/react';
 
-const SignIn = dynamic(() => import('./signin'), { ssr: false });
+//const SignIn = dynamic(() => import('./signin'), { ssr: false });
 // issue#106
 /*const FaiconDiv = dynamic(() => import('@/components/common/faicon-div'));
 const Logo = dynamic(() => import('@/components/common/Logo'));*/
 //import SignIn from './signin';
 import FaiconDiv from '@/components/common/faicon-div';
 import Logo from '@/components/common/Logo';
+import LinkChakra from '@/components/common/link-chakra';
 
 interface Props {
   preview: boolean;
@@ -79,9 +80,12 @@ export default function DrawerLeft({ children }: Props) {
                 >
                   {colorMode === 'light' ? 'ダークモード' : 'ライトモード'}
                 </Button>
-              </Stack>
 
-              <SignIn />
+                <>{/* <SignIn /> */}</>
+                <Button as={LinkChakra} colorScheme="orange" href="/entityatsume/">
+                  エンティティあつめゲーム
+                </Button>
+              </Stack>
             </DrawerHeader>
             <DrawerBody overflow-y="scroll">{children}</DrawerBody>
             <DrawerFooter>
