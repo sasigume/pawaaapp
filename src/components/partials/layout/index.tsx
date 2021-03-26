@@ -65,11 +65,6 @@ export default function Layout({
             </Box>
           </LinkChakra>
         </Heading>
-        <Center pb={6}>
-          <Button as={LinkChakra} colorScheme="orange" href="/entityatsume/">
-            エンティティあつめ
-          </Button>
-        </Center>
         <main style={{ flexGrow: 1 }}>{children}</main>
         <LayoutFooter revalidate={revalEnv} />
         <DrawerLeft preview={preview}>{drawerLeftChildren}</DrawerLeft>

@@ -20,12 +20,12 @@ import HeroWithImage from '@/components/common/hero-with-image';
 import { useRouter } from 'next/router';
 import ReactMarkdownHeading from 'react-markdown-heading';
 import FukidashiShare from '@/components/common/fukidashi-share';
-import PostCommentList from '@/components/partials/post-comment/post-comment-list';
+//import PostCommentList from '@/components/partials/post-comment/post-comment-list';
 import tocStyles from '../../styles/markdown-toc-styles.module.css';
 
 interface PostPageProps {
   firstPost: Post;
-  postComments: PostComment[];
+  //postComments: PostComment[];
   morePosts: Post[];
   preview: boolean;
   tweetCount: number;
@@ -35,7 +35,7 @@ interface PostPageProps {
 
 export default function PostPage({
   firstPost,
-  postComments,
+  //postComments,
   morePosts,
   preview,
   tweetCount,
@@ -72,7 +72,7 @@ export default function PostPage({
               <FukidashiShare
                 tweetText={firstPost.title}
                 tweetCount={tweetCount}
-                commentCount={postComments.length}
+                //commentCount={postComments.length}
               />
               {Toc(firstPost)}
             </Box>
@@ -102,6 +102,9 @@ export default function PostPage({
                   </Box>
                 )}
 
+                {/* 2021-03-26 Disabled
+                
+                <>
                 <Divider my={8} borderColor="gray.400" />
 
                 <Box id="a_comment" textStyle="h2" mb={6}>
@@ -109,6 +112,10 @@ export default function PostPage({
                 </Box>
 
                 <PostCommentList postComments={postComments} post={firstPost} />
+                
+                </>
+                
+                */}
               </BreakpointContainer>
             </Container>
           </Box>
@@ -130,8 +137,8 @@ export async function getStaticProps({ params, preview }: GSProps) {
 
   const posts = await getPostAndMorePosts(params.slug, preview);
 
-  const commentsRes = await fetch(process.env.API_URL + `/api/postComments/${params.slug}`);
-  const postComments = await commentsRes.json();
+  //const commentsRes = await fetch(process.env.API_URL + `/api/postComments/${params.slug}`);
+  //const postComments = await commentsRes.json();
 
   const searchWord = SITE_URL + '/' + params.slug;
 
@@ -151,7 +158,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
     props: {
       preview: preview ?? false,
       firstPost: posts.post ?? null,
-      postComments: postComments ?? null,
+      //postComments: postComments ?? null,
       morePosts: posts.morePosts ?? null,
       tweetCount: tweetCount ?? null,
       revalEnv: revalEnv,
