@@ -137,9 +137,11 @@ export function SingleEntityComponent({ entity }: Props) {
             </Center>
           </>
 
-          <Flex pt="80px" h="388px" rounded="xl" flexDirection="column" bg="orange.100">
+          <Flex justifyContent="center" pt="80px" h="388px" rounded="xl" bg="orange.100">
             {entity.pictureUrl ? (
-              <Image width={128} height={128} src={entity.pictureUrl ?? ''} />
+              <Box position="relative" w="128px" h="128px">
+                <Image layout="fill" objectFit="contain" src={entity.pictureUrl ?? ''} />
+              </Box>
             ) : (
               <img src={`/api/ogpgen?text=${entity.name}の画像の設定忘れてるよごめんね!`} />
             )}
