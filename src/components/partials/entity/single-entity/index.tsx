@@ -14,6 +14,17 @@ export function SingleEntityComponent({ entity }: Props) {
     borderWidth: '2px',
     borderColor: 'black',
   };
+
+  let entityType = 'エンティティ';
+  if (entity.type == 'friendly') {
+    entityType = '友好モブ';
+  }
+  if (entity.type == 'hostile') {
+    entityType = '敵対モブ';
+  }
+  if (entity.type == 'passive') {
+    entityType = '中立モブ';
+  }
   return (
     <>
       <Box
@@ -76,7 +87,7 @@ export function SingleEntityComponent({ entity }: Props) {
               textAlign="center"
               as="h1"
             >
-              {entity.nameJapanese && entity.nameJapanese}
+              {entity.nameJapanese ? entity.nameJapanese : entity.name}
             </Box>
             <Box
               zIndex={2}
@@ -91,7 +102,7 @@ export function SingleEntityComponent({ entity }: Props) {
               rounded="lg"
               textAlign="center"
             >
-              スモール・キュート・アニマル
+              スモール・キュート・{entityType}
             </Box>
           </>
 
@@ -126,14 +137,12 @@ export function SingleEntityComponent({ entity }: Props) {
             </Center>
           </>
 
-          <Flex h="388px" rounded="xl" flexDirection="column" bg="orange.100">
-            <Center mt="90px" h="128px">
-              {entity.pictureUrl ? (
-                <Image width={128} height={128} src={entity.pictureUrl ?? ''} />
-              ) : (
-                <img src={`/api/ogpgen?text=${entity.name}の画像の設定忘れてるよごめんね!`} />
-              )}
-            </Center>
+          <Flex pt="80px" h="388px" rounded="xl" flexDirection="column" bg="orange.100">
+            {entity.pictureUrl ? (
+              <Image width={128} height={128} src={entity.pictureUrl ?? ''} />
+            ) : (
+              <img src={`/api/ogpgen?text=${entity.name}の画像の設定忘れてるよごめんね!`} />
+            )}
           </Flex>
         </Box>
         <Box
@@ -162,13 +171,14 @@ export function SingleEntityComponent({ entity }: Props) {
                 {...duemaBorder}
               >
                 <Box
-                  mr={2}
+                  ml="4px"
+                  mr="4px"
                   w="16px"
                   h="16px"
                   backgroundImage={`url(${entity.iconUrl ?? ``})`}
                   backgroundPosition={entity.iconBgPos ?? ''}
                 />
-                <Box>モブ</Box>
+                <Box>{entityType}</Box>
               </Box>
               <Box flexGrow={1}>{``}</Box>
             </Flex>
