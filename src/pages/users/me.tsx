@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import firebaseApi from '@/lib/firebase';
 import Layout from '@/components/partials/layout';
@@ -13,7 +13,6 @@ import {
   Stack,
   SkeletonText,
   Button,
-  Flex,
   Center,
   Badge,
   Modal,
@@ -39,6 +38,7 @@ import BreakpointContainer from '@/components/common/breakpoint-container';
 import Warning from '@/components/common/warning';
 
 import { CheckApi, GetRandomEntity } from '@/lib/nest/entities';
+import { SingleEntityComponent } from '@/components/partials/entity/single-entity';
 
 export default function UsersMe() {
   const { user } = useAuthentication();
@@ -146,40 +146,7 @@ export default function UsersMe() {
                                   <ModalHeader>ガチャ結果</ModalHeader>
                                   <ModalCloseButton />
                                   <ModalBody>
-                                    <Center
-                                      flexDirection="column"
-                                      p={6}
-                                      bg="orange.100"
-                                      rounded="xl"
-                                    >
-                                      {randomEntity[0].pictureUrl ? (
-                                        <Image
-                                          width={128}
-                                          height={128}
-                                          src={randomEntity[0].pictureUrl ?? ''}
-                                        />
-                                      ) : (
-                                        <img
-                                          src={`/api/ogpgen?text=${randomEntity[0].name}の画像の設定忘れてるよごめんね! この状態で更新しても写真は変わらないよ`}
-                                        />
-                                      )}
-                                      <Flex alignItems="center" textStyle="h3">
-                                        <Box
-                                          mr={2}
-                                          w="16px"
-                                          h="16px"
-                                          backgroundImage={`url(${randomEntity[0].iconUrl ?? ``})`}
-                                          backgroundPosition={randomEntity[0].iconBgPos ?? ''}
-                                        />
-                                        <Box fontSize="1.6rem">
-                                          {randomEntity[0].name} (
-                                          {randomEntity[0].nameJapanese ?? '日本語名未設定'})
-                                        </Box>
-                                      </Flex>
-                                      <Box fontSize="1.6rem">
-                                        {randomEntity[0].rarelity ?? 'レアリティ未設定'}
-                                      </Box>
-                                    </Center>
+                                    <SingleEntityComponent entity={randomEntity[0]} />
                                   </ModalBody>
 
                                   <ModalFooter>
