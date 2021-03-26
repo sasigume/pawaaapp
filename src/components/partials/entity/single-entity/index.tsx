@@ -1,4 +1,4 @@
-import { Box, Center, Flex } from '@chakra-ui/react';
+import { Box, Center, Flex, useColorMode } from '@chakra-ui/react';
 import LinkChakra from '@/components/common/link-chakra';
 import { Entity } from '@/models/nest/Entity';
 import Image from 'next/image';
@@ -15,6 +15,7 @@ export function SingleEntityComponent({ entity }: Props) {
     borderColor: 'black',
   };
 
+  const { colorMode } = useColorMode();
   let entityType = 'エンティティ';
   if (entity.type == 'friendly') {
     entityType = '友好モブ';
@@ -60,15 +61,7 @@ export function SingleEntityComponent({ entity }: Props) {
         <Box position="relative" m="16px" rounded="lg" fontWeight="bold">
           <>
             {/* HEADER */}
-            <Box
-              overflow="hidden"
-              w="full"
-              zIndex={1}
-              position="absolute"
-              top={0}
-              left={0}
-              roundedTopEnd="lg"
-            >
+            <Box overflow="hidden" w="full" zIndex={1} position="absolute" top={0} left={0}>
               <svg width="100%" height="100%" viewBox="0 0 300 100">
                 <polygon fill="black" points="10,0 300,0 300,70 40,70" />
                 <polygon fill="white" points="10,3 300,3 300,50 38,50" />
@@ -76,6 +69,7 @@ export function SingleEntityComponent({ entity }: Props) {
             </Box>
             <Box
               zIndex={2}
+              color="black"
               h="full"
               position="absolute"
               top="8px"
@@ -83,9 +77,8 @@ export function SingleEntityComponent({ entity }: Props) {
               ml="15px"
               w="full"
               fontSize="20px"
-              rounded="lg"
               textAlign="center"
-              as="h1"
+              as="h2"
             >
               {entity.nameJapanese ? entity.nameJapanese : entity.name}
             </Box>
@@ -99,7 +92,6 @@ export function SingleEntityComponent({ entity }: Props) {
               ml="16px"
               w="full"
               fontSize="11px"
-              rounded="lg"
               textAlign="center"
             >
               スモール・キュート・{entityType}
@@ -108,15 +100,7 @@ export function SingleEntityComponent({ entity }: Props) {
 
           <>
             {/* POWER */}
-            <Box
-              overflow="hidden"
-              w="full"
-              zIndex={1}
-              position="absolute"
-              bottom={0}
-              left={0}
-              roundedBottomLeft="lg"
-            >
+            <Box overflow="hidden" w="full" zIndex={1} position="absolute" bottom={0} left={0}>
               <svg width="100%" height="100%" viewBox="0 0 300 40">
                 <polygon fill="#black" points="0,0 95,0 115,35 300,35 300,50 0,50" />
                 <polygon fill="#b22" points="0,2 94,2 114,37 300,37 300,50 0,50" />
@@ -137,7 +121,7 @@ export function SingleEntityComponent({ entity }: Props) {
             </Center>
           </>
 
-          <Flex justifyContent="center" pt="80px" h="388px" rounded="xl" bg="orange.100">
+          <Flex justifyContent="center" pt="80px" h="388px" bg="orange.100">
             {entity.pictureUrl ? (
               <Box position="relative" w="128px" h="128px">
                 <Image layout="fill" objectFit="contain" src={entity.pictureUrl ?? ''} />
@@ -153,7 +137,12 @@ export function SingleEntityComponent({ entity }: Props) {
           bottom={0}
           h="145px"
           roundedBottom="lg"
-          bg="linear-gradient(#fff 80%,#ebb 100%)"
+          bg={
+            colorMode == 'light'
+              ? ' linear-gradient(#fff 80%,#ebb 100%)'
+              : 'linear-gradient(#000 70%,#822 100%)'
+          }
+          color={colorMode == 'light' ? ' black' : 'white'}
           w="268px"
           m="16px"
           fontSize="12px"
@@ -186,7 +175,11 @@ export function SingleEntityComponent({ entity }: Props) {
             </Flex>
           </Box>
           <Box mt="14px" pr="10px">
-            <ReactMarkdown className={duemaDescStyle['duema']}>
+            <ReactMarkdown
+              className={
+                colorMode == 'light' ? duemaDescStyle['duema'] : duemaDescStyle['duemadark']
+              }
+            >
               {entity.description ? entity.description.replace(/\\n/g, '\n') : ''}
             </ReactMarkdown>
           </Box>
