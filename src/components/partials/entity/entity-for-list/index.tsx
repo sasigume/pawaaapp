@@ -10,7 +10,14 @@ interface Props {
 export function EntityForList({ entity }: Props) {
   return (
     <LinkChakra href={`/entityatsume/zukan/${entity.bedrockId}`}>
-      <Flex rounded="xl" shadow="lg" p={3} alignItems="center" area-label={entity.name}>
+      <Flex
+        overflow="hidden"
+        rounded="xl"
+        shadow="lg"
+        p={3}
+        alignItems="center"
+        area-label={entity.name}
+      >
         <Box flexGrow={1}>
           {entity.pictureUrl && <Image width={128} height={128} src={entity.pictureUrl ?? ''} />}
           <Flex alignItems="center" textStyle="h3">
