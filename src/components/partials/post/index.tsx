@@ -17,7 +17,7 @@ const MultiPosts = ({ posts, mode }: MultiPostProps) => {
             <PostForList post={posts[0]} />
           </Container>
           <Divider my={8} borderColor="gray.400" />
-          <SimpleGrid spacing={4} columns={{ base: 1, lg: 2 }}>
+          <SimpleGrid maxW="100vw" spacing={4} columns={{ base: 1, lg: 2 }}>
             {morePosts.map((post: Post) => (
               <PostForList key={post.slug} post={post} />
             ))}

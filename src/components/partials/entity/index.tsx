@@ -11,7 +11,7 @@ const Multientities = ({ entities }: MultiEntityProps) => {
   return (
     <section>
       <Center flexDirection="column">
-        <SimpleGrid spacing={4} columns={{ base: 1, lg: 2 }}>
+        <SimpleGrid maxW="96vw" spacing={4} minChildWidth="200px" columns={{ base: 2, lg: 3 }}>
           {entities.map((entity: Entity) => (
             <EntityForList key={entity.bedrockId} entity={entity} />
           ))}
