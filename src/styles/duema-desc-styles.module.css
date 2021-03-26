@@ -1,0 +1,25 @@
+.duema ul,.duemadark ul{
+  list-style-type: none;
+  margin: 0em 0 1em 3em;
+}
+.duema ul li,.duemadark ul li{
+  margin-left: -0.5em;
+  line-height: 1.7em;
+  position: relative;
+}
+.duema ul li::before,.duemadark ul li::before{
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0.45em;
+  left: -1.3em;
+  width: 0.8em;
+  height: 0.8em;
+  background: #000;
+}
+.duemadark ul li::before{
+  background: #fff;
+}
+.duema p,.duemadark p {
+  text-align: right;
+}

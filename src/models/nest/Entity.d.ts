@@ -11,7 +11,7 @@ export interface Entity {
   description?: string;
   size?: string;
   firstAdded?: string;
-  rarelity:
+  rarelity?:
     | 'Common'
     | 'Uncommon'
     | 'Rare'
@@ -20,4 +20,5 @@ export interface Entity {
     | 'Victory'
     | 'Legend'
     | 'Master';
+  type?: 'passive' | 'friendly' | 'hostile';
 }

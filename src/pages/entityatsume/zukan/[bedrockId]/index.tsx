@@ -47,7 +47,7 @@ export default function EntityPage({ preview, firstEntity, revalEnv }: EntityPag
               }/`}
             />
           </Head>
-          <Box>
+          <Box py={20}>
             <Container px={0} maxW="container.lg">
               <BreakpointContainer breakpointName="md" actualWidth="650px">
                 {preview && <Box>デバッグ: プレビューON</Box>}

@@ -1,7 +1,7 @@
 import { SingleEntityComponent } from './single-entity';
 import { Entity } from '@/models/nest/Entity';
-import { Box, Center, Container, Divider, Flex, SimpleGrid, Stack } from '@chakra-ui/react';
-import { EntityForList } from './entity-for-list';
+import { Center, SimpleGrid } from '@chakra-ui/react';
+import LinkChakra from '@/components/common/link-chakra';
 
 interface MultiEntityProps {
   entities: Entity[];
@@ -11,9 +11,11 @@ const Multientities = ({ entities }: MultiEntityProps) => {
   return (
     <section>
       <Center flexDirection="column">
-        <SimpleGrid spacing={4} columns={{ base: 1, lg: 2 }}>
+        <SimpleGrid maxW="96vw" spacing={4} minChildWidth="300px" columns={{ base: 2, lg: 3 }}>
           {entities.map((entity: Entity) => (
-            <EntityForList key={entity.bedrockId} entity={entity} />
+            <LinkChakra key={entity.bedrockId} href={`/entityatsume/zukan/${entity.bedrockId}`}>
+              <SingleEntityComponent entity={entity} />
+            </LinkChakra>
           ))}
         </SimpleGrid>
       </Center>
