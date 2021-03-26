@@ -53,6 +53,7 @@ const FukidashiShare = ({ tweetCount, tweetText, commentCount }: TocProps) => {
           <FaiconDiv icon={['fab', 'twitter']} />
         </Button>
       </Box>
+
       <Box
         className="fukidashiBox"
         bg={colorMode == 'dark' ? 'black' : 'white'}
@@ -61,19 +62,24 @@ const FukidashiShare = ({ tweetCount, tweetText, commentCount }: TocProps) => {
       >
         {tweetCount ?? 0}
       </Box>
-      <Box mr={2}>
-        <Button aria-label="コメントする" as="a" href="#a_comment" colorScheme="orange">
-          <FaiconDiv icon={['fas', 'comment-alt']} />
-        </Button>
-      </Box>
-      <Box
-        className="fukidashiBox"
-        sx={fukidashiStyle}
-        bg={colorMode == 'dark' ? 'black' : 'white'}
-        fontSize="lg"
-      >
-        {commentCount ?? 0}
-      </Box>
+
+      {commentCount && (
+        <>
+          <Box mr={2}>
+            <Button aria-label="コメントする" as="a" href="#a_comment" colorScheme="orange">
+              <FaiconDiv icon={['fas', 'comment-alt']} />
+            </Button>
+          </Box>
+          <Box
+            className="fukidashiBox"
+            sx={fukidashiStyle}
+            bg={colorMode == 'dark' ? 'black' : 'white'}
+            fontSize="lg"
+          >
+            {commentCount ?? 0}
+          </Box>
+        </>
+      )}
     </Flex>
   );
 };
