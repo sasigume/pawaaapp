@@ -20,6 +20,6 @@
 .duemadark ul li::before{
   background: #fff;
 }
-.duema p em,.duemadark p em {
+.duema p,.duemadark p {
   text-align: right;
 }
