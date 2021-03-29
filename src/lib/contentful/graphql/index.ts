@@ -1,10 +1,17 @@
 import { Person } from '@/models/contentful/Person';
 import { Platform } from '@/models/contentful/Platform';
-import { Post, PostBase } from '@/models/contentful/Post';
-const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600');
+import { Post, PostBase, PostForRss, PostOnlySlug } from '@/models/contentful/Post';
+const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '800');
 
+/* -------------------------------------------
+
+ここに書いてあるフィールド以外は取得されません。
+つまり、モデルを定義していてもここにない場合は未定義になります。
+
+--------------------------------------------- */
 const PLATFORM_GRAPHQL_FIELDS = `
 sys {
+  id
   firstPublishedAt
   publishedAt
 }
@@ -20,6 +27,7 @@ icon {
 
 const PERSON_GRAPHQL_FIELDS = `
 sys {
+  id
   firstPublishedAt
   publishedAt
 }
@@ -30,46 +38,47 @@ picture {
   url
 }
 `;
-const POST_GRAPHQL_FIELDS = `
+
+/* -------------------------------------------
+
+bodyをたらい回ししたくなくてこうなってるんですが
+もはやPostBaseとPostの違いがbody/hideAdsenseだけなのは非効率なので
+近いうちに直します
+
+--------------------------------------------- */
+const POSTFORRSS_GRAPHQL_FIELDS = `
 sys {
+  id
   firstPublishedAt
   publishedAt
 }
 title
 slug
-body
-description
 publishDate
-heroImage {
-  url
-}
 person {
   ${PERSON_GRAPHQL_FIELDS}
+}
+description
+`;
+
+const POSTBASE_GRAPHQL_FIELDS =
+  POSTFORRSS_GRAPHQL_FIELDS +
+  `
+heroImage {
+  url
 }
 platformsCollection(limit: 5) {
   items {
     ${PLATFORM_GRAPHQL_FIELDS}
   }
 }
-hideAdsense
 `;
 
-const POSTBASE_GRAPHQL_FIELDS = `
-sys {
-  firstPublishedAt
-  publishedAt
-}
-title
-slug
-publishDate
-heroImage {
-  url
-}
-person {
-  ${PERSON_GRAPHQL_FIELDS}
-}
-description
-`;
+const POST_GRAPHQL_FIELDS =
+  POSTBASE_GRAPHQL_FIELDS +
+  `
+body
+hideAdsense`;
 
 async function fetchGraphQL(query: any, preview = false) {
   return fetch(
@@ -90,6 +99,12 @@ async function fetchGraphQL(query: any, preview = false) {
     .then((response) => response.json())
     .catch((e) => console.error(e));
 }
+
+/* -------------------------------------------
+
+返す型はここで決めています
+
+--------------------------------------------- */
 
 function extractPerson(fetchResponse: any) {
   return fetchResponse?.data?.personCollection?.items?.[0] as Person;
@@ -113,6 +128,12 @@ function extractPost(fetchResponse: any) {
   );
   return fetchedPost as Post;
 }
+function extractPostSlugs(fetchResponse: any) {
+  return fetchResponse?.data?.blogPostCollection?.items as PostOnlySlug[];
+}
+function extractPostsForRss(fetchResponse: any) {
+  return fetchResponse?.data?.blogPostCollection?.items as PostForRss[];
+}
 function extractPostBases(fetchResponse: any) {
   return fetchResponse?.data?.blogPostCollection?.items as PostBase[];
 }
@@ -123,9 +144,16 @@ function extractPostBasesFromPerson(fetchResponse: any) {
 }
 
 function extractPostBasesFromPlatform(fetchResponse: any) {
+  console.log(fetchResponse);
   return fetchResponse?.data.platformCollection?.items[0].linkedFrom.blogPostCollection
     ?.items as PostBase[];
 }
+
+/* -------------------------------------------
+
+以下が記事ページで使われます
+
+--------------------------------------------- */
 
 export async function getPostAndMorePosts(slug: string, preview: boolean) {
   const entry = await fetchGraphQL(
@@ -147,7 +175,7 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
 
   const entries = await fetchGraphQL(
     `query {
-      blogPostCollection(skip:${randomSkip} ,where: { slug_not_in: "${slug}" }, order: sys_firstPublishedAt_DESC, preview: ${
+      blogPostCollection(skip:${randomSkip} ,where: { slug_not_in: "${slug}" }, order: publishDate_DESC, preview: ${
       preview ? 'true' : 'false'
     }, limit: 2) {
         items {
@@ -177,12 +205,33 @@ export async function getPreviewPost(slug: string) {
   return extractPost(entry);
 }
 
+export async function getAllPostsForRss(preview: boolean, limit?: number) {
+  const entries = await fetchGraphQL(
+    /* ---------------------
+    この関数はRSS, sitemapで使います
+    --------------------------*/
+    `query {
+      blogPostCollection(limit:${
+        limit ?? TOTAL_LIMIT
+      },where: { slug_exists: true }, order: sys_firstPublishedAt_DESC, preview: ${
+      preview ? 'true' : 'false'
+    }) {
+        items {
+          ${POSTFORRSS_GRAPHQL_FIELDS}
+        }
+      }
+    }`,
+    preview,
+  );
+  return extractPostsForRss(entries);
+}
+
 export async function getAllPostsWithSlug(preview: boolean, limit?: number) {
   const entries = await fetchGraphQL(
     `query {
       blogPostCollection(limit:${
         limit ?? TOTAL_LIMIT
-      },where: { slug_exists: true }, order: sys_firstPublishedAt_DESC,preview: ${
+      },where: { slug_exists: true }, order: sys_firstPublishedAt_DESC, preview: ${
       preview ? 'true' : 'false'
     }) {
         items {
@@ -195,12 +244,33 @@ export async function getAllPostsWithSlug(preview: boolean, limit?: number) {
   return extractPostBases(entries);
 }
 
+export async function getAllPostsWithSlugOnlySlug(preview: boolean, limit?: number) {
+  const entries = await fetchGraphQL(
+    /* ---------------------
+    この関数は全記事の数の取得専用
+    --------------------------*/
+    `query {
+      blogPostCollection(limit:${
+        limit ?? TOTAL_LIMIT
+      },where: { slug_exists: true }, order: sys_firstPublishedAt_DESC, preview: ${
+      preview ? 'true' : 'false'
+    }) {
+        items {
+          slug
+        }
+      }
+    }`,
+    preview,
+  );
+  return extractPostSlugs(entries);
+}
+
 export async function getAllPostsByRange(preview: boolean, skip: number, limit?: number) {
   const entries = await fetchGraphQL(
     `query {
       blogPostCollection(skip:${skip ?? 0} ,limit:${
       limit ?? 10
-    },where: { slug_exists: true }, order: sys_firstPublishedAt_DESC,preview: ${
+    },where: { slug_exists: true }, order: publishDate_DESC,preview: ${
       preview ? 'true' : 'false'
     }) {
         items {
@@ -210,6 +280,7 @@ export async function getAllPostsByRange(preview: boolean, skip: number, limit?:
     }`,
     preview,
   );
+
   return extractPostBases(entries);
 }
 //----------------
@@ -255,7 +326,7 @@ export async function getAllPostsForPlatform(slug: string, preview: boolean, lim
           linkedFrom {
             blogPostCollection(limit:${limit ?? TOTAL_LIMIT}){
               items {
-                ${POST_GRAPHQL_FIELDS}
+                ${POSTBASE_GRAPHQL_FIELDS}
               }
             }
           }
@@ -277,7 +348,7 @@ export async function getAllPostsForPlatformByRange(
     `query {
       platformCollection(skip:${
         skip ?? 0
-      } ,limit: 1, where: {slug: "${slug}"}, order: sys_firstPublishedAt_DESC) {
+      } ,limit: 1, where: {slug: "${slug}"}, order:sys_firstPublishedAt_DESC) {
         items {
           displayName
           linkedFrom {
@@ -302,7 +373,7 @@ export async function getAllPersonsWithSlug(preview: boolean, limit?: number) {
     `query {
       personCollection(limit: ${
         limit ?? 5
-      }, where: { slug_exists: true }, order: sys_firstPublishedAt_DESC) {
+      }, where: { slug_exists: true }, order: sys_firstPublishedAt_DESC]) {
         items {
           ${PERSON_GRAPHQL_FIELDS}
         }
