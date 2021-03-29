@@ -80,7 +80,9 @@ export default function Layout({
             エンティティあつめ
           </Button>
         </Center>
-        <main style={{ flexGrow: 1 }}>{children}</main>
+        <Box flexGrow={1} as="main" py={8}>
+          {children}
+        </Box>
         <LayoutFooter revalidate={revalEnv} />
         <DrawerLeft preview={preview}>{drawerLeftChildren}</DrawerLeft>
         {leftFixedChuldren && <LeftFixed>{leftFixedChuldren}</LeftFixed>}

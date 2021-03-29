@@ -28,6 +28,10 @@ export function PostForList({ post }: Props) {
               最終更新: {dayjs(post.sys.publishedAt).format('YYYY/MM/DD')}
             </Badge>
           </Box>
+
+          {!post.publishDate && (
+            <Badge colorScheme="red">編集担当へ: 並び替え用の公開日を設定し忘れています!</Badge>
+          )}
         </Box>
       </Flex>
     </LinkChakra>
