@@ -3,7 +3,7 @@ import ErrorPage from 'next/error';
 
 import { Box, Container, Divider, VStack } from '@chakra-ui/react';
 import Layout from '@/components/partials/layout';
-import { getAllPostsByRange, getAllPostsWithSlug } from '@/lib/contentful/graphql';
+import { getAllPostsByRange, getAllPostsWithSlugOnlySlug } from '@/lib/contentful/graphql';
 
 import { SITE_DESC, SITE_NAME } from '@/lib/constants';
 import { Post } from '@/models/contentful/Post';
@@ -70,7 +70,7 @@ export async function getStaticProps({ preview = false, params }: GSProps) {
   const skipAmount = (params.page - 1) * PER_PAGE;
 
   const allPostsForIndex = (await getAllPostsByRange(false, skipAmount, PER_PAGE)) || [];
-  const allPostsPublished = (await getAllPostsWithSlug(false, TOTAL_LIMIT)) || [];
+  const allPostsPublished = (await getAllPostsWithSlugOnlySlug(false, TOTAL_LIMIT)) || [];
 
   const revalEnv = parseInt(process.env.REVALIDATE ?? '1800');
 
@@ -86,7 +86,7 @@ export async function getStaticProps({ preview = false, params }: GSProps) {
 }
 
 export const getStaticPaths = async () => {
-  const allPostJson = await getAllPostsWithSlug(false, 600);
+  const allPostJson = await getAllPostsWithSlugOnlySlug(false, 600);
 
   const range = (start: number, end: number) =>
     [...Array(end - start + 1)].map((_, i) => start + i);
