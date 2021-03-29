@@ -69,6 +69,11 @@ person {
   ${PERSON_GRAPHQL_FIELDS}
 }
 description
+platformsCollection(limit: 5) {
+  items {
+    ${PLATFORM_GRAPHQL_FIELDS}
+  }
+}
 `;
 
 async function fetchGraphQL(query: any, preview = false) {
@@ -123,6 +128,7 @@ function extractPostBasesFromPerson(fetchResponse: any) {
 }
 
 function extractPostBasesFromPlatform(fetchResponse: any) {
+  console.log(fetchResponse);
   return fetchResponse?.data.platformCollection?.items[0].linkedFrom.blogPostCollection
     ?.items as PostBase[];
 }
@@ -179,6 +185,7 @@ export async function getPreviewPost(slug: string) {
 
 export async function getAllPostsWithSlug(preview: boolean, limit?: number) {
   const entries = await fetchGraphQL(
+    // use sys_firstPublishedAt_DESC in case it not set
     `query {
       blogPostCollection(limit:${
         limit ?? TOTAL_LIMIT
@@ -250,13 +257,13 @@ export async function getPlatform(slug: string, preview: boolean) {
 export async function getAllPostsForPlatform(slug: string, preview: boolean, limit?: number) {
   const entries = await fetchGraphQL(
     `query {
-      platformCollection(limit: 1, where: {slug: "${slug}"}, order: [sys_firstPublishedAt_DESC,publishDate_DESC]) {
+      platformCollection(limit: 1, where: {slug: "${slug}"}, order: sys_firstPublishedAt_DESC) {
         items {
           displayName
           linkedFrom {
             blogPostCollection(limit:${limit ?? TOTAL_LIMIT}){
               items {
-                ${POST_GRAPHQL_FIELDS}
+                ${POSTBASE_GRAPHQL_FIELDS}
               }
             }
           }
@@ -278,7 +285,7 @@ export async function getAllPostsForPlatformByRange(
     `query {
       platformCollection(skip:${
         skip ?? 0
-      } ,limit: 1, where: {slug: "${slug}"}, order: [sys_firstPublishedAt_DESC,publishDate_DESC]) {
+      } ,limit: 1, where: {slug: "${slug}"}, order:sys_firstPublishedAt_DESC) {
         items {
           displayName
           linkedFrom {
@@ -303,7 +310,7 @@ export async function getAllPersonsWithSlug(preview: boolean, limit?: number) {
     `query {
       personCollection(limit: ${
         limit ?? 5
-      }, where: { slug_exists: true }, order: [sys_firstPublishedAt_DESC,publishDate_DESC]) {
+      }, where: { slug_exists: true }, order: sys_firstPublishedAt_DESC]) {
         items {
           ${PERSON_GRAPHQL_FIELDS}
         }
@@ -333,7 +340,7 @@ export async function getPerson(slug: string, preview: boolean) {
 export async function getAllPostsForPerson(slug: string, preview: boolean, limit?: number) {
   const entries = await fetchGraphQL(
     `query {
-      personCollection(limit: 1, where: {slug: "${slug}"}, order: [sys_firstPublishedAt_DESC,publishDate_DESC]) {
+      personCollection(limit: 1, where: {slug: "${slug}"}, order: sys_firstPublishedAt_DESC) {
         items {
           displayName
           linkedFrom {
