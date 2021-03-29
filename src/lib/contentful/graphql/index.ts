@@ -65,6 +65,10 @@ publishDate
 heroImage {
   url
 }
+person {
+  ${PERSON_GRAPHQL_FIELDS}
+}
+description
 `;
 
 async function fetchGraphQL(query: any, preview = false) {
