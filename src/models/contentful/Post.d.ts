@@ -5,7 +5,7 @@ export interface PostBase {
   sys: Sys;
   title: string;
   slug: string;
-  publishDate?: string;
+  publishDate: string;
   heroImage?: {
     url: string;
   };

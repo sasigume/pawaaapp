@@ -147,7 +147,7 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
 
   const entries = await fetchGraphQL(
     `query {
-      blogPostCollection(skip:${randomSkip} ,where: { slug_not_in: "${slug}" }, order: sys_firstPublishedAt_DESC, preview: ${
+      blogPostCollection(skip:${randomSkip} ,where: { slug_not_in: "${slug}" }, order: publishDate_DESC, preview: ${
       preview ? 'true' : 'false'
     }, limit: 2) {
         items {
@@ -182,7 +182,7 @@ export async function getAllPostsWithSlug(preview: boolean, limit?: number) {
     `query {
       blogPostCollection(limit:${
         limit ?? TOTAL_LIMIT
-      },where: { slug_exists: true }, order: sys_firstPublishedAt_DESC,preview: ${
+      },where: { slug_exists: true }, order: sys_firstPublishedAt_DESC, preview: ${
       preview ? 'true' : 'false'
     }) {
         items {
@@ -200,7 +200,7 @@ export async function getAllPostsByRange(preview: boolean, skip: number, limit?:
     `query {
       blogPostCollection(skip:${skip ?? 0} ,limit:${
       limit ?? 10
-    },where: { slug_exists: true }, order: sys_firstPublishedAt_DESC,preview: ${
+    },where: { slug_exists: true }, order: publishDate_DESC,preview: ${
       preview ? 'true' : 'false'
     }) {
         items {
@@ -210,6 +210,7 @@ export async function getAllPostsByRange(preview: boolean, skip: number, limit?:
     }`,
     preview,
   );
+
   return extractPostBases(entries);
 }
 //----------------
@@ -249,7 +250,7 @@ export async function getPlatform(slug: string, preview: boolean) {
 export async function getAllPostsForPlatform(slug: string, preview: boolean, limit?: number) {
   const entries = await fetchGraphQL(
     `query {
-      platformCollection(limit: 1, where: {slug: "${slug}"}, order: sys_firstPublishedAt_DESC) {
+      platformCollection(limit: 1, where: {slug: "${slug}"}, order: [sys_firstPublishedAt_DESC,publishDate_DESC]) {
         items {
           displayName
           linkedFrom {
@@ -277,7 +278,7 @@ export async function getAllPostsForPlatformByRange(
     `query {
       platformCollection(skip:${
         skip ?? 0
-      } ,limit: 1, where: {slug: "${slug}"}, order: sys_firstPublishedAt_DESC) {
+      } ,limit: 1, where: {slug: "${slug}"}, order: [sys_firstPublishedAt_DESC,publishDate_DESC]) {
         items {
           displayName
           linkedFrom {
@@ -302,7 +303,7 @@ export async function getAllPersonsWithSlug(preview: boolean, limit?: number) {
     `query {
       personCollection(limit: ${
         limit ?? 5
-      }, where: { slug_exists: true }, order: sys_firstPublishedAt_DESC) {
+      }, where: { slug_exists: true }, order: [sys_firstPublishedAt_DESC,publishDate_DESC]) {
         items {
           ${PERSON_GRAPHQL_FIELDS}
         }
@@ -332,7 +333,7 @@ export async function getPerson(slug: string, preview: boolean) {
 export async function getAllPostsForPerson(slug: string, preview: boolean, limit?: number) {
   const entries = await fetchGraphQL(
     `query {
-      personCollection(limit: 1, where: {slug: "${slug}"}, order: sys_firstPublishedAt_DESC) {
+      personCollection(limit: 1, where: {slug: "${slug}"}, order: [sys_firstPublishedAt_DESC,publishDate_DESC]) {
         items {
           displayName
           linkedFrom {
