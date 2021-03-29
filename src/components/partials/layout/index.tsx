@@ -72,7 +72,12 @@ export default function Layout({
               zIndex={5}
               shadow="lg"
             >
-              <Box w="full">{leftFixedChildren}</Box>
+              <Box w="full">
+                {leftFixedChildren}
+                <Button as={LinkChakra} colorScheme="blackAlpha" href="/contact/">
+                  お問い合わせ
+                </Button>
+              </Box>
             </Box>
             <Box ml={{ base: 0, lg: '288px' }} flexGrow={1} as="main" pt={8}>
               {children}
