@@ -9,12 +9,12 @@ export interface PostBase {
   heroImage?: {
     url: string;
   };
+  person?: Person;
+  description?: string;
 }
 
 export interface Post extends PostBase {
-  description?: string;
   body: string;
-  person?: Person;
   platformsCollection?: {
     items: Platform[];
   };

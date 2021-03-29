@@ -4,11 +4,11 @@ import {
   getPostAndMorePosts,
   getAllPostsWithSlug,
 } from '@/lib/contentful/graphql';
-import { Post } from '@/models/contentful/Post';
+import { Post, PostBase } from '@/models/contentful/Post';
 import Layout from '@/components/partials/layout';
 import { Box, Container, Divider } from '@chakra-ui/react';
 
-import { PostComment } from '@/models/firebase/PostComment';
+//import { PostComment } from '@/models/firebase/PostComment';
 import { SITE_URL } from '@/lib/constants';
 
 import { Platform } from '@/models/contentful/Platform';
@@ -22,11 +22,12 @@ import ReactMarkdownHeading from 'react-markdown-heading';
 import FukidashiShare from '@/components/common/fukidashi-share';
 //import PostCommentList from '@/components/partials/post-comment/post-comment-list';
 import tocStyles from '../../styles/markdown-toc-styles.module.css';
+import { SinglePostComponent } from '@/components/partials/post/single-post';
 
 interface PostPageProps {
   firstPost: Post;
   //postComments: PostComment[];
-  morePosts: Post[];
+  morePosts: PostBase[];
   preview: boolean;
   tweetCount: number;
   revalEnv: number;
@@ -91,9 +92,7 @@ export default function PostPage({
               <BreakpointContainer breakpointName="md" actualWidth="650px">
                 {preview && <Box>デバッグ: プレビューON</Box>}
 
-                {firstPost && (
-                  <PostList mode="single" posts={[firstPost]} expand={preview ?? false} />
-                )}
+                {firstPost && <SinglePostComponent post={firstPost} />}
 
                 <Divider my={8} borderColor="gray.400" />
                 {morePosts && morePosts.length > 0 && (
@@ -137,8 +136,8 @@ export async function getStaticProps({ params, preview }: GSProps) {
 
   const posts = await getPostAndMorePosts(params.slug, preview);
 
-  //const commentsRes = await fetch(process.env.API_URL + `/api/postComments/${params.slug}`);
-  //const postComments = await commentsRes.json();
+  const commentsRes = await fetch(process.env.API_URL + `/api/postComments/${params.slug}`);
+  const postComments = await commentsRes.json();
 
   const searchWord = SITE_URL + '/' + params.slug;
 
@@ -158,7 +157,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
     props: {
       preview: preview ?? false,
       firstPost: posts.post ?? null,
-      //postComments: postComments ?? null,
+      postComments: postComments ?? null,
       morePosts: posts.morePosts ?? null,
       tweetCount: tweetCount ?? null,
       revalEnv: revalEnv,
@@ -171,7 +170,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
 
 export async function getStaticPaths() {
   const allPosts = await getAllPostsWithSlug(false, TOTAL_LIMIT);
-  let paths = allPosts?.map((post: Post) => `/${post.slug}/`) ?? [];
+  let paths = allPosts?.map((post: PostBase) => `/${post.slug}/`) ?? [];
 
   return {
     paths: paths,
