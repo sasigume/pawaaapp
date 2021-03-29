@@ -1,6 +1,6 @@
 import { Person } from '@/models/contentful/Person';
 import { Platform } from '@/models/contentful/Platform';
-import { Post } from '@/models/contentful/Post';
+import { Post, PostBase } from '@/models/contentful/Post';
 const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600');
 
 const PLATFORM_GRAPHQL_FIELDS = `
@@ -54,6 +54,19 @@ platformsCollection(limit: 5) {
 hideAdsense
 `;
 
+const POSTBASE_GRAPHQL_FIELDS = `
+sys {
+  firstPublishedAt
+  publishedAt
+}
+title
+slug
+publishDate
+heroImage {
+  url
+}
+`;
+
 async function fetchGraphQL(query: any, preview = false) {
   return fetch(
     `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
@@ -96,18 +109,18 @@ function extractPost(fetchResponse: any) {
   );
   return fetchedPost as Post;
 }
-function extractPosts(fetchResponse: any) {
-  return fetchResponse?.data?.blogPostCollection?.items as Post[];
+function extractPostBases(fetchResponse: any) {
+  return fetchResponse?.data?.blogPostCollection?.items as PostBase[];
 }
 
-function extractPostsFromPerson(fetchResponse: any) {
+function extractPostBasesFromPerson(fetchResponse: any) {
   return fetchResponse?.data.personCollection?.items[0].linkedFrom.blogPostCollection
-    ?.items as Post[];
+    ?.items as PostBase[];
 }
 
-function extractPostsFromPlatform(fetchResponse: any) {
+function extractPostBasesFromPlatform(fetchResponse: any) {
   return fetchResponse?.data.platformCollection?.items[0].linkedFrom.blogPostCollection
-    ?.items as Post[];
+    ?.items as PostBase[];
 }
 
 export async function getPostAndMorePosts(slug: string, preview: boolean) {
@@ -134,7 +147,7 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
       preview ? 'true' : 'false'
     }, limit: 2) {
         items {
-          ${POST_GRAPHQL_FIELDS}
+          ${POSTBASE_GRAPHQL_FIELDS}
         }
       }
     }`,
@@ -142,7 +155,7 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
   );
   return {
     post: extractPost(entry),
-    morePosts: extractPosts(entries),
+    morePosts: extractPostBases(entries),
   };
 }
 
@@ -169,13 +182,13 @@ export async function getAllPostsWithSlug(preview: boolean, limit?: number) {
       preview ? 'true' : 'false'
     }) {
         items {
-          ${POST_GRAPHQL_FIELDS}
+          ${POSTBASE_GRAPHQL_FIELDS}
         }
       }
     }`,
     preview,
   );
-  return extractPosts(entries);
+  return extractPostBases(entries);
 }
 
 export async function getAllPostsByRange(preview: boolean, skip: number, limit?: number) {
@@ -187,13 +200,13 @@ export async function getAllPostsByRange(preview: boolean, skip: number, limit?:
       preview ? 'true' : 'false'
     }) {
         items {
-          ${POST_GRAPHQL_FIELDS}
+          ${POSTBASE_GRAPHQL_FIELDS}
         }
       }
     }`,
     preview,
   );
-  return extractPosts(entries);
+  return extractPostBases(entries);
 }
 //----------------
 
@@ -247,7 +260,7 @@ export async function getAllPostsForPlatform(slug: string, preview: boolean, lim
     }`,
     preview,
   );
-  return extractPostsFromPlatform(entries);
+  return extractPostBasesFromPlatform(entries);
 }
 
 export async function getAllPostsForPlatformByRange(
@@ -275,7 +288,7 @@ export async function getAllPostsForPlatformByRange(
     }`,
     preview,
   );
-  return extractPostsFromPlatform(entries);
+  return extractPostBasesFromPlatform(entries);
 }
 
 // ----------------------------------
@@ -330,5 +343,5 @@ export async function getAllPostsForPerson(slug: string, preview: boolean, limit
     }`,
     preview,
   );
-  return extractPostsFromPerson(entries);
+  return extractPostBasesFromPerson(entries);
 }
