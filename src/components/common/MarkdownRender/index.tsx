@@ -5,6 +5,7 @@ import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import React from 'react';
 import LinkChakra from '../link-chakra';
 import { SITE_URL } from '@/lib/constants';
+import LazyLoad from 'react-lazyload';
 const gfm = require('remark-gfm');
 
 interface RenderProps {
@@ -65,7 +66,14 @@ const MarkdownRender = (props: RenderProps) => {
         );
       },
       html: (props: any) => (
-        <div className="containHtml" dangerouslySetInnerHTML={{ __html: props.value }} />
+        <>
+          <div className="containHtml" dangerouslySetInnerHTML={{ __html: props.value }} />
+        </>
+      ),
+      image: (props: any) => (
+        <LazyLoad h={200}>
+          <img src={props.src} alt={props.alt} />
+        </LazyLoad>
       ),
     },
   };
