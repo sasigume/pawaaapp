@@ -1,7 +1,7 @@
 // https://zenn.dev/catnose99/articles/c7754ba6e4adac
 
 import { SITE_DESC, SITE_FULL_URL, SITE_NAME } from '@/lib/constants';
-import { getAllPostsWithSlug } from '@/lib/contentful/graphql';
+import { getAllPostsForRss } from '@/lib/contentful/graphql';
 import { GetServerSidePropsContext } from 'next';
 import RSS from 'rss';
 
@@ -16,13 +16,13 @@ async function generateFeedXml() {
     language: 'ja',
   });
 
-  const posts = (await getAllPostsWithSlug(false, TOTAL_LIMIT)) ?? [];
+  const posts = (await getAllPostsForRss(false, TOTAL_LIMIT)) ?? [];
   posts?.forEach((post) => {
     feed.item({
       title: post.title,
       description: post.description ?? '',
       author: post.person?.displayName ?? '',
-      date: new Date(post.sys.firstPublishedAt),
+      date: new Date(post.publishDate ?? post.sys.firstPublishedAt),
       url: `${process.env.HTTPS_URL}/${post.slug}/`,
     });
   });

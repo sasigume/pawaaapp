@@ -65,12 +65,24 @@ export default function Layout({
             </Box>
           </LinkChakra>
         </Heading>
-        <Center bg="cyan.100" pb={6}>
-          <Button as={LinkChakra} colorScheme="orange" href="/entityatsume/">
+        <Center bg="cyan.100" py={6}>
+          <Button
+            textAlign="center"
+            h="80px"
+            as={LinkChakra}
+            colorScheme="orange"
+            href="/entityatsume/"
+          >
+            エクストリーム
+            <br />
+            スペシャル企画
+            <br />
             エンティティあつめ
           </Button>
         </Center>
-        <main style={{ flexGrow: 1 }}>{children}</main>
+        <Box flexGrow={1} as="main" py={8}>
+          {children}
+        </Box>
         <LayoutFooter revalidate={revalEnv} />
         <DrawerLeft preview={preview}>{drawerLeftChildren}</DrawerLeft>
         {leftFixedChuldren && <LeftFixed>{leftFixedChuldren}</LeftFixed>}
