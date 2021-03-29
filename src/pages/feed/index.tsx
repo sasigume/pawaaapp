@@ -22,7 +22,7 @@ async function generateFeedXml() {
       title: post.title,
       description: post.description ?? '',
       author: post.person?.displayName ?? '',
-      date: new Date(post.sys.firstPublishedAt),
+      date: new Date(post.publishDate ?? post.sys.firstPublishedAt),
       url: `${process.env.HTTPS_URL}/${post.slug}/`,
     });
   });

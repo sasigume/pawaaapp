@@ -15,7 +15,7 @@ async function generateSitemapXml(): Promise<string> {
     xml += `
       <url>
         <loc>${SITE_FULL_URL}/${post.slug}/</loc>
-        <lastmod>${post.sys.publishedAt}</lastmod>
+        <lastmod>${post.publishDate ?? post.sys.publishedAt}</lastmod>
         <changefreq>weekly</changefreq>
       </url>
     `;
