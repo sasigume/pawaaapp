@@ -1,11 +1,11 @@
 import dayjs from 'dayjs';
 import { Badge, Box, Center, Flex, useColorMode } from '@chakra-ui/react';
-import { Post } from '@/models/contentful/Post';
+import { PostBase } from '@/models/contentful/Post';
 
 import LinkChakra from '@/components/common/link-chakra';
 
 interface Props {
-  post: Post;
+  post: PostBase;
 }
 export function PostForList({ post }: Props) {
   return (
