@@ -1,16 +1,16 @@
 // https://zenn.dev/catnose99/articles/c441954a987c24
 
 import { SITE_FULL_URL } from '@/lib/constants';
-import { getAllPostsWithSlug } from '@/lib/contentful/graphql';
+import { getAllPostsForRss } from '@/lib/contentful/graphql';
 import { GetServerSidePropsContext } from 'next';
 
-const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600');
+const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '700');
 
 async function generateSitemapXml(): Promise<string> {
   let xml = `<?xml version="1.0" encoding="UTF-8"?>`;
   xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
 
-  const posts = (await getAllPostsWithSlug(false, TOTAL_LIMIT)) ?? [];
+  const posts = (await getAllPostsForRss(false, TOTAL_LIMIT)) ?? [];
   posts.forEach((post) => {
     xml += `
       <url>

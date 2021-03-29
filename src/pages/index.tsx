@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import ErrorPage from 'next/error';
 import { Box, Container, Divider, useColorMode, VStack } from '@chakra-ui/react';
-import { getAllPostsByRange, getAllPostsWithSlug } from '../lib/contentful/graphql';
+import { getAllPostsByRange, getAllPostsWithSlugOnlySlug } from '../lib/contentful/graphql';
 import { SITE_DESC, SITE_NAME, SITE_URL } from '@/lib/constants';
 import { Post } from '@/models/contentful/Post';
 
@@ -74,7 +74,7 @@ export async function getStaticProps({ preview = false }) {
   tweetsJson.meta ? (tweetCount = tweetsJson.meta.result_count) : (tweetCount = null);
 
   const allPostsForIndex = (await getAllPostsByRange(false, 0, PER_PAGE)) || [];
-  const allPostsPublished = (await getAllPostsWithSlug(false, TOTAL_LIMIT)) || [];
+  const allPostsPublished = (await getAllPostsWithSlugOnlySlug(false, TOTAL_LIMIT)) || [];
 
   const revalEnv = parseInt(process.env.REVALIDATE ?? '1800');
 
