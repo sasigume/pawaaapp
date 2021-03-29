@@ -31,6 +31,10 @@ export function SinglePostComponent({ post }: Props) {
           </Box>
         )}
 
+        {!post.publishDate && (
+          <Badge colorScheme="red">編集担当へ: 並び替え用の公開日を設定し忘れています!</Badge>
+        )}
+
         <Box area-label="更新日時" mb={6}>
           <Badge colorScheme="blue">
             公開: {dayjs(post.publishDate ?? post.sys.firstPublishedAt).format('YYYY/MM/DD')}
@@ -42,16 +46,14 @@ export function SinglePostComponent({ post }: Props) {
       </Box>
 
       <Box px={0} direction="column">
-        <Box textStyle="h1" mb={8}>
+        <Box textStyle="h1" mb={4}>
           <LinkChakra href={`/${post.slug}`}>
             <h1>{post.title}</h1>
           </LinkChakra>
         </Box>
-        {post.platformsCollection && post.platformsCollection.items.length > 0 && (
-          <Box>
-            <PlatformList platforms={post.platformsCollection.items} />
-          </Box>
-        )}
+        <Badge colorScheme="cyan" mb={4}>
+          ID: {post.sys.id}
+        </Badge>
         <Box
           display={{ base: 'none', md: 'flex' }}
           area-label="記事の概要"

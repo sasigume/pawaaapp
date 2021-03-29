@@ -11,6 +11,7 @@ const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '800');
 --------------------------------------------- */
 const PLATFORM_GRAPHQL_FIELDS = `
 sys {
+  id
   firstPublishedAt
   publishedAt
 }
@@ -26,6 +27,7 @@ icon {
 
 const PERSON_GRAPHQL_FIELDS = `
 sys {
+  id
   firstPublishedAt
   publishedAt
 }
@@ -46,6 +48,7 @@ bodyをたらい回ししたくなくてこうなってるんですが
 --------------------------------------------- */
 const POSTFORRSS_GRAPHQL_FIELDS = `
 sys {
+  id
   firstPublishedAt
   publishedAt
 }
