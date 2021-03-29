@@ -7,7 +7,7 @@ import {
   getAllPlatformsWithSlug,
   getAllPostsForPlatform,
 } from '@/lib/contentful/graphql';
-import { Post } from '@/models/contentful/Post';
+import { Post, PostBase } from '@/models/contentful/Post';
 import { Platform } from '@/models/contentful/Platform';
 import { Box, Container } from '@chakra-ui/react';
 
@@ -62,8 +62,8 @@ const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600');
 
 export async function getStaticProps({ params, preview = false }: GSProps) {
   const slug = params.slug ?? '';
-  let posts: Post[];
-  let allPosts: Post[];
+  let posts: PostBase[];
+  let allPosts: PostBase[];
   const platformData = (await getPlatform(slug, preview)) ?? null;
   platformData
     ? (posts = await getAllPostsForPlatform(platformData.slug, preview, TOTAL_LIMIT))

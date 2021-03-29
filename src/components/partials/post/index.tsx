@@ -1,10 +1,10 @@
 import { SinglePostComponent } from './single-post';
-import { Post } from '@/models/contentful/Post';
+import { PostBase } from '@/models/contentful/Post';
 import { Box, Center, Container, Divider, Flex, SimpleGrid, Stack } from '@chakra-ui/react';
 import { PostForList } from './post-for-list';
 
 interface MultiPostProps {
-  posts: Post[];
+  posts: PostBase[];
   mode?: string;
 }
 const MultiPosts = ({ posts, mode }: MultiPostProps) => {
@@ -18,7 +18,7 @@ const MultiPosts = ({ posts, mode }: MultiPostProps) => {
           </Container>
           <Divider my={8} borderColor="gray.400" />
           <SimpleGrid maxW="100vw" spacing={4} columns={{ base: 1, lg: 2 }}>
-            {morePosts.map((post: Post) => (
+            {morePosts.map((post: PostBase) => (
               <PostForList key={post.slug} post={post} />
             ))}
           </SimpleGrid>
@@ -46,17 +46,12 @@ const MultiPosts = ({ posts, mode }: MultiPostProps) => {
 };
 
 interface PostListProps {
-  posts: Post[];
+  posts: PostBase[];
   mode?: string;
-  expand?: boolean;
 }
 
 export const PostList = ({ posts, mode }: PostListProps) => {
-  if (mode == 'single') {
-    return <SinglePostComponent post={posts[0]} />;
-  } else {
-    return <MultiPosts mode={mode} posts={posts} />;
-  }
+  return <MultiPosts mode={mode} posts={posts} />;
 };
 
 export default PostList;
