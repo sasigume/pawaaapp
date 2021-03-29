@@ -34,20 +34,18 @@ const Index = ({ posts, totalCount, environment, tweetCount }: IndexProps) => {
         </Layout>
       ) : (
         <Layout preview={environment} meta={{ title: SITE_NAME, desc: SITE_DESC }}>
-          <Container bg={colorMode == 'light' ? 'white' : 'dark'} maxW="container.lg">
-            <BreakpointContainer>
-              {posts && (
-                <Box mt={6} mb={10}>
-                  <VStack textStyle="h1" spacing={4} mb={8}>
-                    <h2>最近更新された記事</h2>
-                    <Divider />
-                  </VStack>
-                  {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
-                  <Pagination totalCount={totalCount} />
-                </Box>
-              )}
-            </BreakpointContainer>
-          </Container>
+          <BreakpointContainer>
+            {posts && (
+              <Box mt={6} mb={10}>
+                <VStack textStyle="h1" spacing={4} mb={8}>
+                  <h2>最近更新された記事</h2>
+                  <Divider />
+                </VStack>
+                {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
+                <Pagination totalCount={totalCount} />
+              </Box>
+            )}
+          </BreakpointContainer>
         </Layout>
       )}
     </>

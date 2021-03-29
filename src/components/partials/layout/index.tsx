@@ -1,13 +1,10 @@
 import dynamic from 'next/dynamic';
 
 import { ReactNode } from 'react';
-import { SITE_NAME } from '@/lib/constants';
-import { Box, Button, Center, Heading } from '@chakra-ui/react';
-// IMPORTANT: Drawer should not be imported dynamically
-import DrawerLeft from './drawer-left';
+import { Box, Button, Flex, useColorMode } from '@chakra-ui/react';
 import LinkChakra from '@/components/common/link-chakra';
 import Meta from './meta';
-import LeftFixed from './left-fixed';
+import Nav from './nav';
 const LayoutFooter = dynamic(() => import('./layout-footer'));
 
 interface LayoutProps {
@@ -20,7 +17,7 @@ interface LayoutProps {
     ogpUrl?: string;
   };
   revalEnv?: number;
-  leftFixedChuldren?: ReactNode;
+  leftFixedChildren?: ReactNode;
   hideAdsense?: boolean;
 }
 
@@ -30,12 +27,13 @@ export default function Layout({
   meta,
   revalEnv,
   drawerLeftChildren,
-  leftFixedChuldren,
+  leftFixedChildren,
   hideAdsense,
 }: LayoutProps) {
   if (hideAdsense) {
     console.info(`Layout: hiding adsense`);
   }
+  const { colorMode } = useColorMode();
   return (
     <>
       <Meta title={meta.title} desc={meta.desc} heroImageUrl={meta.ogpUrl} />
@@ -55,37 +53,38 @@ export default function Layout({
         maxW="100vw"
         overflow="hidden"
       >
-        <Heading textAlign="center" px={4} py={6}>
-          <LinkChakra href="/">
-            <Box as="h1" textStyle="h3">
-              {SITE_NAME}
+        <Nav preview={preview} drawerLeftChildren={drawerLeftChildren} />
+
+        <Box pt={16}>
+          <Flex>
+            <Box
+              display={{ base: 'none', lg: 'flex' }}
+              w="18rem"
+              h="100vh"
+              overflowY="scroll"
+              bg={colorMode == 'light' ? 'gray.100' : 'black'}
+              top={0}
+              bottom={0}
+              left={0}
+              p={3}
+              pt={24}
+              position="fixed"
+              zIndex={5}
+              shadow="lg"
+            >
+              <Box w="full">
+                {leftFixedChildren}
+                <Button as={LinkChakra} colorScheme="blackAlpha" href="/contact/">
+                  お問い合わせ
+                </Button>
+              </Box>
             </Box>
-            <Box color="gray.500" fontSize="1rem">
-              since 2014
+            <Box ml={{ base: 0, lg: '288px' }} flexGrow={1} as="main" pt={8}>
+              {children}
+              <LayoutFooter revalidate={revalEnv} />
             </Box>
-          </LinkChakra>
-        </Heading>
-        <Center bg="cyan.100" py={6}>
-          <Button
-            textAlign="center"
-            h="80px"
-            as={LinkChakra}
-            colorScheme="orange"
-            href="/entityatsume/"
-          >
-            エクストリーム
-            <br />
-            スペシャル企画
-            <br />
-            エンティティあつめ
-          </Button>
-        </Center>
-        <Box flexGrow={1} as="main" py={8}>
-          {children}
+          </Flex>
         </Box>
-        <LayoutFooter revalidate={revalEnv} />
-        <DrawerLeft preview={preview}>{drawerLeftChildren}</DrawerLeft>
-        {leftFixedChuldren && <LeftFixed>{leftFixedChuldren}</LeftFixed>}
 
         {preview && (
           <Box zIndex={15} position="fixed" bottom={0} left={0}>

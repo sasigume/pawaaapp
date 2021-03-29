@@ -10,6 +10,7 @@ import {
 import { Post, PostBase } from '@/models/contentful/Post';
 import { Platform } from '@/models/contentful/Platform';
 import { Box, Container } from '@chakra-ui/react';
+import BreakpointContainer from '@/components/common/breakpoint-container';
 
 interface IndexProps {
   platform: Platform;
@@ -32,7 +33,7 @@ const platformIndex = ({ platform, posts, preview }: IndexProps) => {
           preview={preview}
           meta={{ title: `${platform.displayName}の記事一覧`, desc: 'Pawaa.app' }}
         >
-          <Container maxW="container.lg">
+          <BreakpointContainer>
             <Box mb={16}>
               <Box textStyle="h1" mb={8}>
                 <h1>
@@ -44,7 +45,7 @@ const platformIndex = ({ platform, posts, preview }: IndexProps) => {
               {platform.description && <div className="my-4">{platform.description}</div>}
               {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
             </Box>
-          </Container>
+          </BreakpointContainer>
         </Layout>
       )}
     </>

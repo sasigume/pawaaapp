@@ -9,13 +9,11 @@ import {
   Drawer,
   DrawerBody,
   DrawerFooter,
-  DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
   Stack,
   Center,
-  Divider,
 } from '@chakra-ui/react';
 
 const SignIn = dynamic(() => import('./signin'), { ssr: false });
@@ -46,11 +44,8 @@ export default function DrawerLeft({ children }: Props) {
         colorScheme="blue"
         leftIcon={<FaiconDiv icon={['fas', 'bars']} />}
         onClick={onOpen}
-        position="fixed"
-        top={5}
-        left={5}
       >
-        <Box display={{ base: 'none', md: 'flex' }}>MENU</Box>
+        <Box display={{ base: 'none', sm: 'flex' }}>MENU</Box>
       </Button>
       <Drawer
         isOpen={isOpen}
@@ -62,33 +57,19 @@ export default function DrawerLeft({ children }: Props) {
         <DrawerOverlay>
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader>
-              <Divider mb={8} />
-
-              <Stack direction="column" spacing={6} mb={6}>
-                <Button
-                  aria-label="カラーモードを切り替える"
-                  colorScheme={colorMode === 'light' ? 'purple' : 'cyan'}
-                  onClick={toggleColorMode}
-                  leftIcon={
-                    colorMode === 'light' ? (
-                      <FaiconDiv icon={['fas', 'moon']} />
-                    ) : (
-                      <FaiconDiv icon={['fas', 'sun']} />
-                    )
-                  }
-                >
-                  {colorMode === 'light' ? 'ダークモード' : 'ライトモード'}
-                </Button>
-
-                <SignIn />
-
-                <Button as={LinkChakra} colorScheme="orange" href="/entityatsume/">
-                  エンティティあつめゲーム
-                </Button>
-              </Stack>
-            </DrawerHeader>
-            <DrawerBody overflow-y="scroll">{children}</DrawerBody>
+            <DrawerBody overflow-y="scroll" mt={16}>
+              <Button
+                mb={6}
+                textAlign="center"
+                display={{ base: 'none', md: 'flex' }}
+                as={LinkChakra}
+                colorScheme="orange"
+                href="/entityatsume/"
+              >
+                エンティティあつめ
+              </Button>
+              {children}
+            </DrawerBody>
             <DrawerFooter>
               <Stack w="full" direction="column" spacing={6} mb={6}>
                 <Button as={LinkChakra} colorScheme="blackAlpha" href="/contact/">
