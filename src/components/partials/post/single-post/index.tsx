@@ -30,6 +30,11 @@ export function SinglePostComponent({ post }: Props) {
             <PersonList persons={[post.person]} />
           </Box>
         )}
+        {post.platformsCollection?.items && post.platformsCollection.items.length > 0 && (
+          <Box>
+            <PlatformList platforms={post.platformsCollection.items} />
+          </Box>
+        )}
 
         {!post.publishDate && (
           <Badge colorScheme="red">編集担当へ: 並び替え用の公開日を設定し忘れています!</Badge>

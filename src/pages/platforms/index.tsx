@@ -10,6 +10,7 @@ import Layout from '@/components/partials/layout';
 const PlatformList = dynamic(() => import('@/components/partials/post/common/platform-list'));
 */
 import PlatformList from '@/components/partials/post/common/platform-list';
+import BreakpointContainer from '@/components/common/breakpoint-container';
 interface PlatformIndexProps {
   platforms: Platform[];
   preview: boolean;
@@ -37,7 +38,7 @@ export default function PlatformIndex({ platforms, preview }: PlatformIndexProps
           preview={preview}
           meta={{ title: 'プラットフォームの一覧', desc: 'プラットフォームの一覧' }}
         >
-          <Container>
+          <BreakpointContainer>
             <Box mb={10}>
               <VStack textStyle="h1" spacing={4} mb={8}>
                 <h1>プラットフォームの一覧</h1>
@@ -45,7 +46,7 @@ export default function PlatformIndex({ platforms, preview }: PlatformIndexProps
               </VStack>
               {platforms && platforms.length > 0 && <PlatformList platforms={platforms} />}
             </Box>
-          </Container>
+          </BreakpointContainer>
         </Layout>
       )}
     </>
