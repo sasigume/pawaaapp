@@ -68,7 +68,7 @@ export default function PostPage({
           revalEnv={revalEnv}
           preview={preview}
           drawerLeftChildren={Toc(firstPost)}
-          leftFixedChuldren={
+          leftFixedChildren={
             <Box>
               <FukidashiShare
                 tweetText={firstPost.title}
@@ -88,20 +88,19 @@ export default function PostPage({
           </Head>
           {firstPost.heroImage && <HeroWithImage src={firstPost.heroImage?.url} />}
           <Box>
-            <Container px={0} maxW="container.lg">
-              <BreakpointContainer breakpointName="md" actualWidth="650px">
-                {preview && <Box>デバッグ: プレビューON</Box>}
+            <BreakpointContainer breakpointName="md" actualWidth="650px">
+              {preview && <Box>デバッグ: プレビューON</Box>}
 
-                {firstPost && <SinglePostComponent post={firstPost} />}
+              {firstPost && <SinglePostComponent post={firstPost} />}
 
-                <Divider my={8} borderColor="gray.400" />
-                {morePosts && morePosts.length > 0 && (
-                  <Box my={10}>
-                    <PostList mode="more" posts={morePosts} />
-                  </Box>
-                )}
+              <Divider my={8} borderColor="gray.400" />
+              {morePosts && morePosts.length > 0 && (
+                <Box my={10}>
+                  <PostList mode="more" posts={morePosts} />
+                </Box>
+              )}
 
-                {/* 2021-03-26 Disabled
+              {/* 2021-03-26 Disabled
                 
                 <>
                 <Divider my={8} borderColor="gray.400" />
@@ -115,8 +114,7 @@ export default function PostPage({
                 </>
                 
                 */}
-              </BreakpointContainer>
-            </Container>
+            </BreakpointContainer>
           </Box>
         </Layout>
       )}

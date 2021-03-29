@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import ErrorPage from 'next/error';
 
-import { Box, Container, Divider, VStack } from '@chakra-ui/react';
+import { Box, Divider, VStack } from '@chakra-ui/react';
 import Layout from '@/components/partials/layout';
 import { getAllPostsByRange, getAllPostsWithSlugOnlySlug } from '@/lib/contentful/graphql';
 
@@ -36,20 +36,18 @@ const PostPage = ({ posts, totalCount, currentPage, environment, tweetCount }: I
           preview={environment}
           meta={{ title: `${currentPage}ページ目 | ${SITE_NAME}`, desc: SITE_DESC }}
         >
-          <Container maxW="container.lg">
-            <BreakpointContainer>
-              {posts && (
-                <Box mb={10}>
-                  <VStack textStyle="h1" spacing={4} mb={8}>
-                    <h1>{currentPage}ページ目</h1>
-                    <Divider />
-                  </VStack>
-                  {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
-                  <Pagination totalCount={totalCount} />
-                </Box>
-              )}
-            </BreakpointContainer>
-          </Container>
+          <BreakpointContainer>
+            {posts && (
+              <Box mb={10}>
+                <VStack textStyle="h1" spacing={4} mb={8}>
+                  <h1>{currentPage}ページ目</h1>
+                  <Divider />
+                </VStack>
+                {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
+                <Pagination totalCount={totalCount} />
+              </Box>
+            )}
+          </BreakpointContainer>
         </Layout>
       )}
     </>
