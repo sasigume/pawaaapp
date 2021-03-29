@@ -11,12 +11,12 @@ export interface PostBase {
   };
   person?: Person;
   description?: string;
+  platformsCollection?: {
+    items: Platform[];
+  };
 }
 
 export interface Post extends PostBase {
   body: string;
-  platformsCollection?: {
-    items: Platform[];
-  };
   hideAdsense?: boolean;
 }
