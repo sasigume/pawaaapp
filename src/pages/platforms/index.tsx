@@ -58,12 +58,12 @@ interface GSProps {
 }
 
 export async function getStaticProps({ preview }: GSProps) {
-  const allPlatforms = await getAllPlatformsWithSlug(preview, 10);
+  //const allPlatforms = await getAllPlatformsWithSlug(preview, 10);
 
   return {
     props: {
       preview: preview ?? false,
-      platforms: allPlatforms ?? null,
+      //platforms: allPlatforms ?? null,
     },
     revalidate: 300,
   };
