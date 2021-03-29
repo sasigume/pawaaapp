@@ -18,7 +18,7 @@ import {
   Divider,
 } from '@chakra-ui/react';
 
-//const SignIn = dynamic(() => import('./signin'), { ssr: false });
+const SignIn = dynamic(() => import('./signin'), { ssr: false });
 // issue#106
 /*const FaiconDiv = dynamic(() => import('@/components/common/faicon-div'));
 const Logo = dynamic(() => import('@/components/common/Logo'));*/
@@ -81,7 +81,8 @@ export default function DrawerLeft({ children }: Props) {
                   {colorMode === 'light' ? 'ダークモード' : 'ライトモード'}
                 </Button>
 
-                <>{/* <SignIn /> */}</>
+                <SignIn />
+
                 <Button as={LinkChakra} colorScheme="orange" href="/entityatsume/">
                   エンティティあつめゲーム
                 </Button>
@@ -89,14 +90,19 @@ export default function DrawerLeft({ children }: Props) {
             </DrawerHeader>
             <DrawerBody overflow-y="scroll">{children}</DrawerBody>
             <DrawerFooter>
-              <Box>
-                Powered by
-                <Box mb={8}>
-                  <Center>
-                    <Logo fill={colorMode === 'light' ? '#000' : '#fff'} />
-                  </Center>
+              <Stack w="full" direction="column" spacing={6} mb={6}>
+                <Button as={LinkChakra} colorScheme="blackAlpha" href="/contact/">
+                  お問い合わせ
+                </Button>
+                <Box>
+                  Powered by
+                  <Box mb={8}>
+                    <Center>
+                      <Logo fill={colorMode === 'light' ? '#000' : '#fff'} />
+                    </Center>
+                  </Box>
                 </Box>
-              </Box>
+              </Stack>
             </DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
