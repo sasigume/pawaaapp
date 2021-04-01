@@ -6,8 +6,9 @@ import LinkChakra from '@/components/common/link-chakra';
 
 interface Props {
   post: PostForList;
+  mode?: 'archive' | 'more' | 'drawer' | undefined;
 }
-export function CompactPost({ post }: Props) {
+export function CompactPost({ post, mode }: Props) {
   return (
     <LinkChakra href={`/${post.slug}`}>
       <Flex rounded="xl" shadow="lg" p={3} alignItems="center" area-label={post.title}>
@@ -26,28 +27,42 @@ export function CompactPost({ post }: Props) {
             )}
           </Center>
 
-          <Box position="relative" textStyle="h4" mb={2} h={24} overflow="hidden" w="full">
+          <Box
+            position="relative"
+            fontSize={mode == 'drawer' ? '18px' : '24px'}
+            fontWeight="bold"
+            mb={2}
+            h={mode == 'drawer' ? 20 : 24}
+            overflow="hidden"
+            w="full"
+          >
             {post.title}
-            <Box
-              position="absolute"
-              lett={9}
-              bottom={0}
-              h={10}
-              w="full"
-              bg="linear-gradient(transparent, #fff)"
-            ></Box>
+            {mode != 'drawer' && (
+              <Box
+                position="absolute"
+                lett={9}
+                bottom={0}
+                h={10}
+                w="full"
+                bg="linear-gradient(transparent, #fff)"
+              ></Box>
+            )}
           </Box>
-          <Box area-label="更新日時">
-            <Badge colorScheme="blue">
-              公開: {dayjs(post.publishDate ?? post.sys.firstPublishedAt).format('YYYY/MM/DD')}
-            </Badge>
-            <Badge colorScheme="green">
-              最終更新: {dayjs(post.sys.publishedAt).format('YYYY/MM/DD')}
-            </Badge>
-          </Box>
-
-          {!post.publishDate && (
-            <Badge colorScheme="red">編集担当へ: 並び替え用の公開日を設定し忘れています!</Badge>
+          {mode != 'drawer' && (
+            <>
+              {' '}
+              <Box area-label="更新日時">
+                <Badge colorScheme="blue">
+                  公開: {dayjs(post.publishDate ?? post.sys.firstPublishedAt).format('YYYY/MM/DD')}
+                </Badge>
+                <Badge colorScheme="green">
+                  最終更新: {dayjs(post.sys.publishedAt).format('YYYY/MM/DD')}
+                </Badge>
+              </Box>
+              {!post.publishDate && (
+                <Badge colorScheme="red">編集担当へ: 並び替え用の公開日を設定し忘れています!</Badge>
+              )}
+            </>
           )}
         </Box>
       </Flex>

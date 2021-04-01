@@ -58,7 +58,7 @@ export default function DrawerLeft({ children }: Props) {
             <DrawerHeader>
               <SiteLogo />
             </DrawerHeader>
-            <DrawerBody overflow-y="scroll" mt={16}>
+            <DrawerBody overflow-y="scroll">
               <Button
                 mb={6}
                 textAlign="center"

@@ -1,10 +1,10 @@
 import { PostForList } from '@/models/contentful/Post';
-import { Box, Center, Container, Divider, SimpleGrid } from '@chakra-ui/react';
+import { Box, Center, Container, Divider, SimpleGrid, Stack } from '@chakra-ui/react';
 import { CompactPost } from './compact-post';
 
 interface MultiPostProps {
   posts: PostForList[];
-  mode?: string;
+  mode?: 'archive' | 'more' | 'drawer' | undefined;
 }
 const MultiPosts = ({ posts, mode }: MultiPostProps) => {
   if (mode == 'archive') {
@@ -18,11 +18,23 @@ const MultiPosts = ({ posts, mode }: MultiPostProps) => {
           <Divider my={8} borderColor="gray.400" />
           <SimpleGrid maxW="100vw" spacing={4} columns={{ base: 1, lg: 2 }}>
             {morePosts.map((post: PostForList) => (
-              <CompactPost key={post.slug} post={post} />
+              <CompactPost mode={mode} key={post.slug} post={post} />
             ))}
           </SimpleGrid>
         </Center>
       </section>
+    );
+  }
+  if (mode == 'drawer') {
+    return (
+      <Stack>
+        <Box textStyle="h4" mb={4}>
+          <h2>おすすめ記事</h2>
+        </Box>
+        {posts.map((post) => (
+          <CompactPost mode={mode} key={post.slug} post={post} />
+        ))}
+      </Stack>
     );
   } else {
     return (
@@ -35,7 +47,7 @@ const MultiPosts = ({ posts, mode }: MultiPostProps) => {
         <Center>
           <SimpleGrid spacing={6} columns={{ base: 1, lg: 2 }}>
             {posts.map((post) => (
-              <CompactPost key={post.slug} post={post} />
+              <CompactPost mode={mode} key={post.slug} post={post} />
             ))}
           </SimpleGrid>
         </Center>
@@ -46,7 +58,7 @@ const MultiPosts = ({ posts, mode }: MultiPostProps) => {
 
 interface PostListProps {
   posts: PostForList[];
-  mode?: string;
+  mode?: 'archive' | 'more' | 'drawer' | undefined;
 }
 
 export const PostList = ({ posts, mode }: PostListProps) => {

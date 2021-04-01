@@ -4,13 +4,16 @@ import FaiconDiv from '@/components/common/faicon-div';
 import { ReactNode } from 'react';
 import DrawerLeft from './drawer-left';
 import SiteLogo from '@/components/common/SiteLogo';
+import PostList from '../../post';
+import { Post } from '@/models/contentful/Post';
 const SignIn = dynamic(() => import('./drawer-left/signin'), { ssr: false });
 
 interface NavProps {
   preview: boolean;
   drawerLeftChildren?: ReactNode;
+  posts?: Post[];
 }
-export default function Nav({ preview, drawerLeftChildren }: NavProps) {
+export default function Nav({ preview, drawerLeftChildren, posts }: NavProps) {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Box
@@ -26,7 +29,14 @@ export default function Nav({ preview, drawerLeftChildren }: NavProps) {
       <HStack>
         <Box w={{ base: 'auto', xl: 0 }} display={{ base: 'flex', lg: 'none' }}>
           <DrawerLeft preview={preview}>
-            <>{drawerLeftChildren}</>
+            <>
+              {drawerLeftChildren}
+              {posts && posts.length > 0 && (
+                <Box mt={8}>
+                  <PostList mode="drawer" posts={posts} />
+                </Box>
+              )}
+            </>
           </DrawerLeft>
         </Box>
         <SiteLogo mr={6} display={{ base: 'none', sm: 'inherit' }} />
