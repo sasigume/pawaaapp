@@ -88,7 +88,7 @@ export default function Layout({
 
         {preview && (
           <Box zIndex={15} position="fixed" bottom={0} left={0}>
-            <Button as={LinkChakra} href="/api/exit-preview">
+            <Button as={LinkChakra} href="/api/preview?exit=yes">
               プレビュー解除
             </Button>
           </Box>
