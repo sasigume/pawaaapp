@@ -1,6 +1,6 @@
 {
   "name": "napoancom",
-  "version": "3.1.6",
+  "version": "3.1.7",
   "author": "pawaaapp",
   "scripts": {
     "dev": "next",
@@ -32,6 +32,7 @@
     "nookies": "^2.5.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-gtm-module": "^2.0.11",
     "react-lazyload": "^3.2.0",
     "react-markdown": "^5.0.3",
     "react-markdown-heading": "^1.1.2",
