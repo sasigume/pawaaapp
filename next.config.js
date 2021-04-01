@@ -2,14 +2,14 @@ const path = require('path');
 module.exports = {
   // add slash for Twitter card
   trailingSlash: true,
-  webpack: (config, { isServer }) => {
+  /*webpack: (config, { isServer }) => {
     if (!isServer) {
       config.node = {
         fs: 'empty',
       };
     }
     return config;
-  },
+  },*/
   env: {
     STORYBLOK_PREVIEW_TOKEN: process.env.STORYBLOK_PREVIEW_TOKEN,
     STORYBLOK_PUBLIC_TOKEN: process.env.STORYBLOK_PUBLIC_TOKEN,
@@ -49,5 +49,8 @@ module.exports = {
   },
   images: {
     domains: ['localhost', 'static.wikia.nocookie.net', 'pbs.twimg.com', 'images.ctfassets.net'],
+  },
+  future: {
+    webpack5: true,
   },
 };
