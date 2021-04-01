@@ -1,13 +1,12 @@
+import dynamic from 'next/dynamic';
 import { SITE_NAME } from '@/lib/constants';
-import { Box, Button, Heading, HStack, Spacer, Switch, useColorMode } from '@chakra-ui/react';
-// IMPORTANT: Drawer should not be imported dynamically
-import DrawerLeft from '../drawer-left';
-import LinkChakra from '@/components/common/link-chakra';
-import SignIn from '../drawer-left/signin';
-
+import { Box, Button, HStack, Spacer, Switch, useColorMode } from '@chakra-ui/react';
 import Image from 'next/image';
 import FaiconDiv from '@/components/common/faicon-div';
 import { ReactNode } from 'react';
+import LinkChakra from '@/components/common/link-chakra';
+const DrawerLeft = dynamic(() => import('../drawer-left'));
+const SignIn = dynamic(() => import('../drawer-left/signin'), { ssr: false });
 
 interface NavProps {
   preview: boolean;
