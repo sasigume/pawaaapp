@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import firebaseApi from '@/lib/firebase';
 import Layout from '@/components/partials/layout';
 import { useAuthentication } from '../../hooks/authentication';
-import { Box, Divider, Heading, ButtonGroup, Stack, SkeletonText } from '@chakra-ui/react';
+import { Box, Divider, Heading, ButtonGroup, Stack, SkeletonText, Button } from '@chakra-ui/react';
 import { InputControl, ResetButton, SubmitButton, CheckboxSingleControl } from 'formik-chakra-ui';
 import { NGwords } from 'pages/api/ogpgen/NGwords';
 import { Formik } from 'formik';
@@ -10,6 +10,7 @@ import * as Yup from 'yup';
 import * as gtag from '@/lib/gtag';
 import BreakpointContainer from '@/components/common/breakpoint-container';
 import Warning from '@/components/common/warning';
+import LinkChakra from '@/components/common/link-chakra';
 
 export default function UsersMe() {
   const { user } = useAuthentication();
@@ -76,6 +77,15 @@ export default function UsersMe() {
 
                     <Divider my={4} />
 
+                    <Box as="h3" fontSize="1.5rem">
+                      プロフィール画像
+                    </Box>
+
+                    <Box>プロフィール画像を変えるには、エンティティガチャを引いてください</Box>
+                    <Button w="full" as={LinkChakra} colorScheme="orange" href="/entityatsume/">
+                      エンティティあつめ
+                    </Button>
+                    <Divider my={4} />
                     <CheckboxSingleControl mt={2} name="agreed">
                       利用規約に同意しました
                     </CheckboxSingleControl>
