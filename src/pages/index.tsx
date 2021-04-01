@@ -15,19 +15,15 @@ const PostList = dynamic(() => import('@/components/partials/post'));*/
 import Pagination from '@/components/common/pagenation';
 import BreakpointContainer from '@/components/common/breakpoint-container';
 import PostList from '@/components/partials/post';
-import { Platform } from '@/models/contentful/Platform';
-import storeAllPlatforms from '@/lib/store-platforms';
 
 interface IndexProps {
   posts: Post[];
   totalCount: number;
   tweetCount: number;
   environment: boolean;
-  allPlatforms: Platform[];
 }
 
-const Index = ({ posts, totalCount, environment, allPlatforms }: IndexProps) => {
-  const { colorMode } = useColorMode();
+const Index = ({ posts, totalCount, environment }: IndexProps) => {
   return (
     <>
       {!posts ? (
@@ -35,11 +31,7 @@ const Index = ({ posts, totalCount, environment, allPlatforms }: IndexProps) => 
           <ErrorPage title="ページのデータを取得できませんでした" statusCode={404} />
         </Layout>
       ) : (
-        <Layout
-          platforms={allPlatforms}
-          preview={environment}
-          meta={{ title: SITE_NAME, desc: SITE_DESC }}
-        >
+        <Layout preview={environment} meta={{ title: SITE_NAME, desc: SITE_DESC }}>
           <BreakpointContainer>
             {posts && (
               <Box mt={6} mb={10}>
@@ -80,7 +72,6 @@ export async function getStaticProps({ preview = false }) {
   const allPostsForIndex = (await getAllPostsByRange(false, 0, PER_PAGE)) || [];
   const allPostsPublished = (await getAllPostsWithSlugOnlySlug(false, TOTAL_LIMIT)) || [];
 
-  const allPlatforms = await storeAllPlatforms();
   const revalEnv = parseInt(process.env.REVALIDATE ?? '1800');
 
   publishAdsTxt();
@@ -92,7 +83,6 @@ export async function getStaticProps({ preview = false }) {
       totalCount: allPostsPublished.length ?? null,
       tweetCount: tweetCount ?? null,
       preview: preview ?? null,
-      allPlatforms: allPlatforms ?? [],
     },
     revalidate: revalEnv,
   };

@@ -1,6 +1,8 @@
 import * as extracter from './extracter';
 const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '800');
 
+console.warn(`TOTAL CONTENTFUL LIMIT is ${TOTAL_LIMIT}`);
+
 import {
   POST_GRAPHQL_FIELDS,
   POSTFORLIST_GRAPHQL_FIELDS,
