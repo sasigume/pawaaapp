@@ -16,6 +16,8 @@ import {
   faQuestion,
   faDiceTwo,
   faCommentAlt,
+  faChevronDown,
+  faChevronUp,
 } from '@fortawesome/free-solid-svg-icons';
 // faDiceTwo for Nintendo Switch
 export default function addIcon() {
@@ -34,5 +36,7 @@ export default function addIcon() {
     faJava,
     faDiceTwo,
     faCommentAlt,
+    faChevronDown,
+    faChevronUp,
   );
 }

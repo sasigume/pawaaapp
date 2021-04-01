@@ -5,8 +5,8 @@ import { Box, Button, Flex, useColorMode } from '@chakra-ui/react';
 import LinkChakra from '@/components/common/link-chakra';
 import Meta from './meta';
 import Nav from './nav';
-import { Platform } from '@/models/contentful/Platform';
-import PlatformList from '../post/common/platform-list';
+import { Post } from '@/models/contentful/Post';
+import PostList from '../post';
 const LayoutFooter = dynamic(() => import('./layout-footer'));
 
 interface LayoutProps {
@@ -21,7 +21,7 @@ interface LayoutProps {
   revalEnv?: number;
   leftFixedChildren?: ReactNode;
   hideAdsense?: boolean;
-  platforms?: Platform[];
+  drawerPosts?: Post[];
 }
 
 export default function Layout({
@@ -32,12 +32,13 @@ export default function Layout({
   drawerLeftChildren,
   leftFixedChildren,
   hideAdsense,
-  platforms,
+  drawerPosts,
 }: LayoutProps) {
   if (hideAdsense) {
     console.info(`Layout: hiding adsense`);
   }
   const { colorMode } = useColorMode();
+
   return (
     <>
       <Meta title={meta.title} desc={meta.desc} heroImageUrl={meta.ogpUrl} />
@@ -57,7 +58,7 @@ export default function Layout({
         maxW="100vw"
         overflow="hidden"
       >
-        <Nav preview={preview} drawerLeftChildren={drawerLeftChildren} platforms={platforms} />
+        <Nav posts={drawerPosts ?? []} preview={preview} drawerLeftChildren={drawerLeftChildren} />
 
         <Box pt={16}>
           <Flex>
@@ -78,10 +79,9 @@ export default function Layout({
             >
               <Box w="full">
                 {leftFixedChildren}
-
-                {platforms && platforms?.length > 0 && (
-                  <Box>
-                    <PlatformList heading platforms={platforms} />
+                {drawerPosts && drawerPosts.length > 0 && (
+                  <Box mt={8}>
+                    <PostList mode="drawer" posts={drawerPosts} />
                   </Box>
                 )}
 

@@ -1,6 +1,8 @@
 import * as extracter from './extracter';
 const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '800');
 
+console.warn(`TOTAL CONTENTFUL LIMIT is ${TOTAL_LIMIT}`);
+
 import {
   POST_GRAPHQL_FIELDS,
   POSTFORLIST_GRAPHQL_FIELDS,
@@ -10,6 +12,7 @@ import {
 import { PERSON_GRAPHQL_FIELDS } from '@/models/contentful/Person';
 
 import { PLATFORM_GRAPHQL_FIELDS } from '@/models/contentful/Platform';
+import { SERIES_GRAPHQL_FIELDS } from '@/models/contentful/Series';
 
 export async function fetchGraphQL(query: any, preview = false) {
   return fetch(
@@ -65,6 +68,20 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
     post: extracter.extractPost(entry),
     morePosts: extracter.extractPostForLists(entries),
   };
+}
+
+export async function getSeries(slug: string) {
+  const entry = await fetchGraphQL(
+    `query {
+      seriesCollection(where: { slug: "${slug}" }, preview: false, limit: 1) {
+        items {
+          ${SERIES_GRAPHQL_FIELDS}
+        }
+      }
+    }`,
+    false,
+  );
+  return extracter.extractSeries(entry);
 }
 
 export async function getPreviewPost(slug: string) {

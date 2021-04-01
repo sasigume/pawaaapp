@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import firebase from 'firebase/app';
 import firebaseApi from '@/lib/firebase';
 import Layout from '@/components/partials/layout';
 import { useAuthentication } from '../../hooks/authentication';
@@ -20,6 +21,16 @@ export default function UsersMe() {
     displayName: Yup.string().notOneOf(NGwords, '使用できない言葉が含まれています'),
     agreed: Yup.boolean().required(),
   });
+  const provider = new firebase.auth.TwitterAuthProvider();
+
+  const login = () => {
+    firebaseApi
+      .auth()
+      .signInWithPopup(provider)
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
 
   return (
     <Layout preview={false} meta={{ title: 'マイページ', desc: 'マイページ' }}>
@@ -100,7 +111,47 @@ export default function UsersMe() {
           </>
         ) : (
           <>
-            <SkeletonText my={8} spacing={4} noOfLines={16} />
+            <Box>
+              <Heading as="h1" mb={6} fontStyle="h1">
+                マイページ
+              </Heading>
+            </Box>
+            <Heading as="h2" fontStyle="h2" mb={4}>
+              Twitterでログイン
+            </Heading>
+            <Box mb={8}>
+              <Warning />
+              <Formik
+                initialValues={{
+                  agreed: false,
+                }}
+                validationSchema={validationSchema}
+                onSubmit={() => {
+                  if (typeof window !== 'undefined') {
+                    gtag.event({
+                      action: 'login',
+                      category: 'user',
+                      label: 'マイページでログイン',
+                    });
+                  }
+                  setTimeout(() => {
+                    login();
+                  }, 1000);
+                }}
+              >
+                {({ handleSubmit, values }) => (
+                  <Stack as="form" onSubmit={handleSubmit as any} spacing={6}>
+                    <CheckboxSingleControl mt={2} name="agreed">
+                      利用規約に同意しました
+                    </CheckboxSingleControl>
+                    <ButtonGroup>
+                      {values.agreed && <SubmitButton>ログイン</SubmitButton>}
+                      <ResetButton>リセット</ResetButton>
+                    </ButtonGroup>
+                  </Stack>
+                )}
+              </Formik>
+            </Box>
           </>
         )}
       </BreakpointContainer>

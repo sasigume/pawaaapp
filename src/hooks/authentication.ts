@@ -17,12 +17,13 @@ export function useAuthentication() {
       return;
     }
 
+    /* const provider = new firebase.auth.TwitterAuthProvider();
     firebase
       .auth()
-      .signInAnonymously()
+      .signInWithPopup(provider)
       .catch(function (error) {
         console.error(error);
-      });
+      }); */
 
     firebase.auth().onAuthStateChanged(function (firebaseUser) {
       if (firebaseUser) {
