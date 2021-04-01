@@ -2,7 +2,7 @@
 import Layout from '@/components/partials/layout';
 import { useAuthentication } from '../../hooks/authentication';
 import firebase from 'firebase/app';
-import { Box, Divider, Heading, ButtonGroup, Stack, SkeletonText } from '@chakra-ui/react';
+import { Box, Heading, ButtonGroup, Stack, SkeletonText } from '@chakra-ui/react';
 import {
   InputControl,
   ResetButton,
@@ -15,7 +15,6 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import * as gtag from '@/lib/gtag';
 import BreakpointContainer from '@/components/common/breakpoint-container';
-import Warning from '@/components/common/warning';
 import { useState } from 'react';
 
 export default function UsersMe() {
@@ -35,20 +34,15 @@ export default function UsersMe() {
           <>
             <Box>
               <Heading as="h1" mb={6} fontStyle="h1">
-                マイページ
+                お問い合わせ
               </Heading>
               <Box bg="gray.100" rounded="lg" p={6} m={3}>
                 <Box>{user.name}さん</Box>
                 <Box>(お問い合わせID: {user.uid})</Box>
               </Box>
             </Box>
-            <Divider my={8} />
-            <Heading as="h2" fontStyle="h2" mb={4}>
-              お問い合わせ
-            </Heading>
-            <Box mb={8}>
-              <Warning />
 
+            <Box mb={8}>
               <Formik
                 initialValues={{
                   content: '',
@@ -85,7 +79,7 @@ export default function UsersMe() {
                   <>
                     <Stack as="form" onSubmit={handleSubmit as any} spacing={6}>
                       {!didYouSend ? (
-                        <SubmitButton>
+                        <>
                           <Box>お問い合わせ用ユーザーID: {user.uid}</Box>
                           <InputControl
                             area-label="返信用メールアドレスを入力"
@@ -110,7 +104,7 @@ export default function UsersMe() {
                             {values.agreed && <SubmitButton>お問い合わせを送信</SubmitButton>}
                             <ResetButton>リセット</ResetButton>
                           </ButtonGroup>
-                        </SubmitButton>
+                        </>
                       ) : (
                         <>
                           <Box>お問い合わせありがとうございました。</Box>

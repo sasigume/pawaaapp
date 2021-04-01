@@ -127,7 +127,7 @@ export function SingleEntityComponent({ entity }: Props) {
                 <Image layout="fill" objectFit="contain" src={entity.pictureUrl ?? ''} />
               </Box>
             ) : (
-              <img src={`/api/ogpgen?text=${entity.name}の画像の設定忘れてるよごめんね!`} />
+              <img src={`/api/ogpgen/?text=${entity.name}の画像の設定忘れてるよごめんね!`} />
             )}
           </Flex>
         </Box>
