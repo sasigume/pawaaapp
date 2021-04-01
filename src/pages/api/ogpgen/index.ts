@@ -70,7 +70,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const canvas = createCanvas(width, height);
   const context = canvas.getContext('2d');
 
-  registerFont(path.resolve('public/fonts/NotoSansJP-Bold.otf'), {
+  registerFont(path.resolve('public/fonts/NotoSansJP-Bold-min.otf'), {
     family: 'Noto Sans JP',
   });
 
