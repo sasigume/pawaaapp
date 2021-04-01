@@ -7,7 +7,6 @@ import { Box, Divider } from '@chakra-ui/react';
 //import { PostComment } from '@/models/firebase/PostComment';
 import { SITE_URL } from '@/lib/constants';
 
-import { Platform } from '@/models/contentful/Platform';
 import Head from 'next/head';
 
 import BreakpointContainer from '@/components/common/breakpoint-container';
@@ -19,7 +18,6 @@ import FukidashiShare from '@/components/common/fukidashi-share';
 //import PostCommentList from '@/components/partials/post-comment/post-comment-list';
 import tocStyles from '../../styles/markdown-toc-styles.module.css';
 import { SinglePostComponent } from '@/components/partials/post/single-post';
-import storeAllPlatforms from '@/lib/store-platforms';
 
 interface PostPageProps {
   firstPost: Post;
@@ -28,7 +26,6 @@ interface PostPageProps {
   preview: boolean;
   tweetCount: number;
   revalEnv: number;
-  allPlatforms: Platform[];
 }
 
 export default function PostPage({
@@ -38,7 +35,6 @@ export default function PostPage({
   preview,
   tweetCount,
   revalEnv,
-  allPlatforms,
 }: PostPageProps) {
   const router = useRouter();
 
@@ -63,7 +59,6 @@ export default function PostPage({
             desc: firstPost.description ? firstPost.description : '',
             ogpUrl: firstPost.heroImage && firstPost.heroImage.url,
           }}
-          platforms={allPlatforms}
           revalEnv={revalEnv}
           preview={preview}
           drawerLeftChildren={Toc(firstPost)}
@@ -129,8 +124,6 @@ interface GSProps {
 const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600');
 
 export async function getStaticProps({ params, preview }: GSProps) {
-  const allPlatforms = await storeAllPlatforms();
-
   const posts = await getPostAndMorePosts(params.slug, preview);
 
   const commentsRes = await fetch(process.env.API_URL + `/api/postComments/${params.slug}`);
@@ -158,7 +151,6 @@ export async function getStaticProps({ params, preview }: GSProps) {
       morePosts: posts.morePosts ?? null,
       tweetCount: tweetCount ?? null,
       revalEnv: revalEnv,
-      allPlatforms: allPlatforms ?? null,
       hideAdsense: posts.post.hideAdsense ?? false,
     },
     revalidate: revalEnv,
