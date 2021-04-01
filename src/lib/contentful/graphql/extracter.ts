@@ -11,7 +11,6 @@ export function extractPersons(fetchResponse: any) {
   return fetchResponse?.data?.personCollection?.items as Person[];
 }
 export function extractSeries(fetchResponse: any) {
-  console.log(`Fetched series: ${fetchResponse?.data.seriesCollection?.items?.[0]}`);
   return fetchResponse?.data.seriesCollection?.items?.[0] as Series;
 }
 export function extractPlatform(fetchResponse: any) {
@@ -24,11 +23,6 @@ export function extractPlatforms(fetchResponse: any) {
 
 export function extractPost(fetchResponse: any) {
   const fetchedPost = fetchResponse?.data?.blogPostCollection?.items?.[0] as Post;
-  console.log(
-    `Fetching: ${fetchedPost.slug}, PublishDate for sorting: ${
-      fetchedPost.publishDate ?? 'not set'
-    }`,
-  );
   return fetchedPost;
 }
 export function extractPostSlugs(fetchResponse: any) {
