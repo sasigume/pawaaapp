@@ -1,25 +1,21 @@
-import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
 import PostList from '@/components/partials/post';
 import Layout from '@/components/partials/layout';
-import {
-  getPlatform,
-  getAllPlatformsWithSlug,
-  getAllPostsForPlatform,
-} from '@/lib/contentful/graphql';
+import { getPlatform, getAllPostsForPlatform } from '@/lib/contentful/graphql';
 import { Post, PostForList } from '@/models/contentful/Post';
 import { Platform } from '@/models/contentful/Platform';
 import { Box } from '@chakra-ui/react';
 import BreakpointContainer from '@/components/common/breakpoint-container';
+import storeAllPlatforms from '@/lib/store-platforms';
 
 interface IndexProps {
   platform: Platform;
   posts: Post[];
   preview: boolean;
+  allPlatforms: Platform[];
 }
 
-const platformIndex = ({ platform, posts, preview }: IndexProps) => {
-  const router = useRouter();
+const platformIndex = ({ platform, posts, preview, allPlatforms }: IndexProps) => {
   return (
     <>
       {!platform ? (
@@ -31,6 +27,7 @@ const platformIndex = ({ platform, posts, preview }: IndexProps) => {
       ) : (
         <Layout
           preview={preview}
+          platforms={allPlatforms}
           meta={{ title: `${platform.displayName}の記事一覧`, desc: 'Pawaa.app' }}
         >
           <BreakpointContainer>
@@ -64,7 +61,7 @@ const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600');
 export async function getStaticProps({ params, preview = false }: GSProps) {
   const slug = params.slug ?? '';
   let posts: PostForList[];
-  let allPosts: PostForList[];
+  const allPlatforms = await storeAllPlatforms();
   const platformData = (await getPlatform(slug, preview)) ?? null;
   platformData
     ? (posts = await getAllPostsForPlatform(platformData.slug, preview, TOTAL_LIMIT))
@@ -74,13 +71,14 @@ export async function getStaticProps({ params, preview = false }: GSProps) {
       platform: platformData ?? null,
       preview: preview,
       posts: posts ?? null,
+      allPlatforms: allPlatforms ?? [],
     },
     revalidate: 300,
   };
 }
 
 export async function getStaticPaths() {
-  const allplatforms = await getAllPlatformsWithSlug(false);
+  const allplatforms = await storeAllPlatforms();
   return {
     paths: allplatforms?.map((platform: Platform) => `/platforms/${platform.slug}`) || [],
     fallback: true,

@@ -30,7 +30,7 @@ export function SinglePostComponent({ post }: Props) {
           </Box>
         )}
         {post.platformsCollection?.items && post.platformsCollection.items.length > 0 && (
-          <Box>
+          <Box mb={4}>
             <PlatformList platforms={post.platformsCollection.items} />
           </Box>
         )}

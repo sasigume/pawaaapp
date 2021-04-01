@@ -1,6 +1,5 @@
-import dynamic from 'next/dynamic';
 import ErrorPage from 'next/error';
-import { Box, Container, Divider, useColorMode, VStack } from '@chakra-ui/react';
+import { Box, Divider, useColorMode, VStack } from '@chakra-ui/react';
 import { getAllPostsByRange, getAllPostsWithSlugOnlySlug } from '../lib/contentful/graphql';
 import { SITE_DESC, SITE_NAME, SITE_URL } from '@/lib/constants';
 import { Post } from '@/models/contentful/Post';
@@ -16,15 +15,18 @@ const PostList = dynamic(() => import('@/components/partials/post'));*/
 import Pagination from '@/components/common/pagenation';
 import BreakpointContainer from '@/components/common/breakpoint-container';
 import PostList from '@/components/partials/post';
+import { Platform } from '@/models/contentful/Platform';
+import storeAllPlatforms from '@/lib/store-platforms';
 
 interface IndexProps {
   posts: Post[];
   totalCount: number;
   tweetCount: number;
   environment: boolean;
+  allPlatforms: Platform[];
 }
 
-const Index = ({ posts, totalCount, environment, tweetCount }: IndexProps) => {
+const Index = ({ posts, totalCount, environment, allPlatforms }: IndexProps) => {
   const { colorMode } = useColorMode();
   return (
     <>
@@ -33,7 +35,11 @@ const Index = ({ posts, totalCount, environment, tweetCount }: IndexProps) => {
           <ErrorPage title="ページのデータを取得できませんでした" statusCode={404} />
         </Layout>
       ) : (
-        <Layout preview={environment} meta={{ title: SITE_NAME, desc: SITE_DESC }}>
+        <Layout
+          platforms={allPlatforms}
+          preview={environment}
+          meta={{ title: SITE_NAME, desc: SITE_DESC }}
+        >
           <BreakpointContainer>
             {posts && (
               <Box mt={6} mb={10}>
@@ -74,6 +80,7 @@ export async function getStaticProps({ preview = false }) {
   const allPostsForIndex = (await getAllPostsByRange(false, 0, PER_PAGE)) || [];
   const allPostsPublished = (await getAllPostsWithSlugOnlySlug(false, TOTAL_LIMIT)) || [];
 
+  const allPlatforms = await storeAllPlatforms();
   const revalEnv = parseInt(process.env.REVALIDATE ?? '1800');
 
   publishAdsTxt();
@@ -85,6 +92,7 @@ export async function getStaticProps({ preview = false }) {
       totalCount: allPostsPublished.length ?? null,
       tweetCount: tweetCount ?? null,
       preview: preview ?? null,
+      allPlatforms: allPlatforms ?? [],
     },
     revalidate: revalEnv,
   };

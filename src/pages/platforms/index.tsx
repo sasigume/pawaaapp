@@ -1,9 +1,7 @@
-import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
-import { getAllPlatformsWithSlug } from '@/lib/contentful/graphql';
 import { Platform } from '@/models/contentful/Platform';
-import { Box, VStack, Divider, Container } from '@chakra-ui/react';
+import { Box, VStack, Divider } from '@chakra-ui/react';
 import Layout from '@/components/partials/layout';
 // issue #106
 /*
@@ -59,8 +57,6 @@ interface GSProps {
 }
 
 export async function getStaticProps({ preview }: GSProps) {
-  //const allPlatforms = await getAllPlatformsWithSlug(preview, 10);
-
   return {
     props: {
       preview: preview ?? false,

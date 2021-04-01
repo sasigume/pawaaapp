@@ -5,6 +5,8 @@ import { Box, Button, Flex, useColorMode } from '@chakra-ui/react';
 import LinkChakra from '@/components/common/link-chakra';
 import Meta from './meta';
 import Nav from './nav';
+import { Platform } from '@/models/contentful/Platform';
+import PlatformList from '../post/common/platform-list';
 const LayoutFooter = dynamic(() => import('./layout-footer'));
 
 interface LayoutProps {
@@ -19,6 +21,7 @@ interface LayoutProps {
   revalEnv?: number;
   leftFixedChildren?: ReactNode;
   hideAdsense?: boolean;
+  platforms?: Platform[];
 }
 
 export default function Layout({
@@ -29,6 +32,7 @@ export default function Layout({
   drawerLeftChildren,
   leftFixedChildren,
   hideAdsense,
+  platforms,
 }: LayoutProps) {
   if (hideAdsense) {
     console.info(`Layout: hiding adsense`);
@@ -53,7 +57,7 @@ export default function Layout({
         maxW="100vw"
         overflow="hidden"
       >
-        <Nav preview={preview} drawerLeftChildren={drawerLeftChildren} />
+        <Nav preview={preview} drawerLeftChildren={drawerLeftChildren} platforms={platforms} />
 
         <Box pt={16}>
           <Flex>
@@ -74,7 +78,14 @@ export default function Layout({
             >
               <Box w="full">
                 {leftFixedChildren}
-                <Button as={LinkChakra} colorScheme="blackAlpha" href="/contact/">
+
+                {platforms && platforms?.length > 0 && (
+                  <Box>
+                    <PlatformList heading platforms={platforms} />
+                  </Box>
+                )}
+
+                <Button w="full" mt={8} as={LinkChakra} colorScheme="blackAlpha" href="/contact/">
                   お問い合わせ
                 </Button>
               </Box>
