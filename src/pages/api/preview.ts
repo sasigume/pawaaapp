@@ -4,6 +4,13 @@ import { NextApiRequest, NextApiResponse } from 'next';
 export default async function preview(req: NextApiRequest, res: NextApiResponse) {
   const secret = req.query.secret as string;
   const slug = req.query.slug as string;
+  const exit = req.query.exit as string;
+
+  if (exit == 'yes') {
+    res.clearPreviewData();
+    res.writeHead(307, { Location: '/' });
+    res.end();
+  }
 
   if (secret !== process.env.CONTENTFUL_PREVIEW_SECRET || !slug) {
     return res.status(401).json({ message: 'Invalid token' });
