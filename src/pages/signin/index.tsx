@@ -3,7 +3,7 @@ import Layout from '@/components/partials/layout';
 import { useState } from 'react';
 import { useAuthentication } from '@/hooks/authentication';
 import firebaseApi from '@/lib/firebase';
-import { Box, Container } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import * as gtag from '@/lib/gtag';
 import { Button, Checkbox, Stack } from '@chakra-ui/react';
@@ -42,31 +42,29 @@ export default function LoginPage() {
 
   return (
     <Layout preview={false} meta={{ title: 'サインイン', desc: 'サインイン' }}>
-      <Container>
-        <BreakpointContainer>
-          {!user ? (
+      <BreakpointContainer>
+        {!user ? (
+          <Box py={16}>
+            <Stack direction="column" mb={8}>
+              <Warning />
+              <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>
+                利用規約に同意しました
+              </Checkbox>
+              {agreed && (
+                <Button leftIcon={<FaiconDiv icon={['fas', 'user']} />} onClick={login}>
+                  サインイン
+                </Button>
+              )}
+            </Stack>
+          </Box>
+        ) : (
+          <Box>
             <Box py={16}>
-              <Stack direction="column" mb={8}>
-                <Warning />
-                <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>
-                  利用規約に同意しました
-                </Checkbox>
-                {agreed && (
-                  <Button leftIcon={<FaiconDiv icon={['fas', 'user']} />} onClick={login}>
-                    サインイン
-                  </Button>
-                )}
-              </Stack>
+              サインイン中: {user.name}さん (お問い合わせID: {user.uid})
             </Box>
-          ) : (
-            <Box>
-              <Box py={16}>
-                サインイン中: {user.name}さん (お問い合わせID: {user.uid})
-              </Box>
-            </Box>
-          )}
-        </BreakpointContainer>
-      </Container>
+          </Box>
+        )}
+      </BreakpointContainer>
     </Layout>
   );
 }
