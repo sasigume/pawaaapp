@@ -1,5 +1,9 @@
 import ErrorPage from 'next/error';
-import { getPostAndMorePosts, getAllPostsWithSlugOnlySlug } from '@/lib/contentful/graphql';
+import {
+  getPostAndMorePosts,
+  getAllPostsWithSlugOnlySlug,
+  getSeries,
+} from '@/lib/contentful/graphql';
 import { Post, PostForList, PostOnlySlug } from '@/models/contentful/Post';
 import Layout from '@/components/partials/layout';
 import { Box, Divider } from '@chakra-ui/react';
@@ -26,6 +30,7 @@ interface PostPageProps {
   preview: boolean;
   tweetCount: number;
   revalEnv: number;
+  drawerPosts: Post[];
 }
 
 export default function PostPage({
@@ -35,6 +40,7 @@ export default function PostPage({
   preview,
   tweetCount,
   revalEnv,
+  drawerPosts,
 }: PostPageProps) {
   const router = useRouter();
 
@@ -73,6 +79,7 @@ export default function PostPage({
             </Box>
           }
           hideAdsense={firstPost.hideAdsense}
+          drawerPosts={drawerPosts ?? []}
         >
           <Head>
             <link
@@ -142,6 +149,8 @@ export async function getStaticProps({ params, preview }: GSProps) {
   let tweetCount;
   tweetsJson.data ? (tweetCount = tweetsJson.meta.result_count) : (tweetCount = null);
 
+  const drawerPosts = (await getSeries('popular')) ?? null;
+
   const revalEnv = parseInt(process.env.REVALIDATE ?? '1800');
   return {
     props: {
@@ -152,6 +161,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
       tweetCount: tweetCount ?? null,
       revalEnv: revalEnv,
       hideAdsense: posts.post.hideAdsense ?? false,
+      drawerPosts: drawerPosts.postsCollection.items ?? null,
     },
     revalidate: revalEnv,
   };

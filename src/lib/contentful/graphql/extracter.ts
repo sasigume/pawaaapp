@@ -1,6 +1,7 @@
 import { Post, PostForList, PostForRss, PostOnlySlug } from '@/models/contentful/Post';
 import { Person } from '@/models/contentful/Person';
 import { Platform } from '@/models/contentful/Platform';
+import { Series } from '@/models/contentful/Series';
 
 export function extractPerson(fetchResponse: any) {
   return fetchResponse?.data?.personCollection?.items?.[0] as Person;
@@ -8,6 +9,10 @@ export function extractPerson(fetchResponse: any) {
 
 export function extractPersons(fetchResponse: any) {
   return fetchResponse?.data?.personCollection?.items as Person[];
+}
+export function extractSeries(fetchResponse: any) {
+  console.log(`Fetched series: ${fetchResponse?.data.seriesCollection?.items?.[0]}`);
+  return fetchResponse?.data.seriesCollection?.items?.[0] as Series;
 }
 export function extractPlatform(fetchResponse: any) {
   return fetchResponse?.data.platformCollection?.items?.[0] as Platform;

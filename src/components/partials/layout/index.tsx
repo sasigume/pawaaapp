@@ -5,6 +5,8 @@ import { Box, Button, Flex, useColorMode } from '@chakra-ui/react';
 import LinkChakra from '@/components/common/link-chakra';
 import Meta from './meta';
 import Nav from './nav';
+import { Post } from '@/models/contentful/Post';
+import PostList from '../post';
 const LayoutFooter = dynamic(() => import('./layout-footer'));
 
 interface LayoutProps {
@@ -19,6 +21,7 @@ interface LayoutProps {
   revalEnv?: number;
   leftFixedChildren?: ReactNode;
   hideAdsense?: boolean;
+  drawerPosts?: Post[];
 }
 
 export default function Layout({
@@ -29,11 +32,13 @@ export default function Layout({
   drawerLeftChildren,
   leftFixedChildren,
   hideAdsense,
+  drawerPosts,
 }: LayoutProps) {
   if (hideAdsense) {
     console.info(`Layout: hiding adsense`);
   }
   const { colorMode } = useColorMode();
+
   return (
     <>
       <Meta title={meta.title} desc={meta.desc} heroImageUrl={meta.ogpUrl} />
@@ -53,7 +58,7 @@ export default function Layout({
         maxW="100vw"
         overflow="hidden"
       >
-        <Nav preview={preview} drawerLeftChildren={drawerLeftChildren} />
+        <Nav posts={drawerPosts ?? []} preview={preview} drawerLeftChildren={drawerLeftChildren} />
 
         <Box pt={16}>
           <Flex>
@@ -74,6 +79,11 @@ export default function Layout({
             >
               <Box w="full">
                 {leftFixedChildren}
+                {drawerPosts && drawerPosts.length > 0 && (
+                  <Box mt={8}>
+                    <PostList mode="drawer" posts={drawerPosts} />
+                  </Box>
+                )}
 
                 <Button w="full" mt={8} as={LinkChakra} colorScheme="blackAlpha" href="/contact/">
                   お問い合わせ
