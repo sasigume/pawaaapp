@@ -2,11 +2,11 @@ import ErrorPage from 'next/error';
 import {
   getAllPlatformsWithSlug,
   getPostAndMorePosts,
-  getAllPostsWithSlug,
+  getAllPostsWithSlugOnlySlug,
 } from '@/lib/contentful/graphql';
-import { Post, PostBase } from '@/models/contentful/Post';
+import { Post, PostForList, PostOnlySlug } from '@/models/contentful/Post';
 import Layout from '@/components/partials/layout';
-import { Box, Container, Divider } from '@chakra-ui/react';
+import { Box, Divider } from '@chakra-ui/react';
 
 //import { PostComment } from '@/models/firebase/PostComment';
 import { SITE_URL } from '@/lib/constants';
@@ -27,7 +27,7 @@ import { SinglePostComponent } from '@/components/partials/post/single-post';
 interface PostPageProps {
   firstPost: Post;
   //postComments: PostComment[];
-  morePosts: PostBase[];
+  morePosts: PostForList[];
   preview: boolean;
   tweetCount: number;
   revalEnv: number;
@@ -167,8 +167,8 @@ export async function getStaticProps({ params, preview }: GSProps) {
 }
 
 export async function getStaticPaths() {
-  const allPosts = await getAllPostsWithSlug(false, TOTAL_LIMIT);
-  let paths = allPosts?.map((post: PostBase) => `/${post.slug}/`) ?? [];
+  const allPosts = await getAllPostsWithSlugOnlySlug(false, TOTAL_LIMIT);
+  let paths = allPosts?.map((post: PostOnlySlug) => `/${post.slug}/`) ?? [];
 
   return {
     paths: paths,

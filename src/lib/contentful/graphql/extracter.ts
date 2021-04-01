@@ -1,4 +1,4 @@
-import { Post, PostBase, PostForRss, PostOnlySlug } from '@/models/contentful/Post';
+import { Post, PostForList, PostForRss, PostOnlySlug } from '@/models/contentful/Post';
 import { Person } from '@/models/contentful/Person';
 import { Platform } from '@/models/contentful/Platform';
 
@@ -18,29 +18,30 @@ export function extractPlatforms(fetchResponse: any) {
 }
 
 export function extractPost(fetchResponse: any) {
-  const fetchedPost = fetchResponse?.data?.blogPostCollection?.items?.[0];
+  const fetchedPost = fetchResponse?.data?.blogPostCollection?.items?.[0] as Post;
   console.log(
-    `Fetching: ${fetchedPost.slug}, firstPublishedAt: ${fetchedPost.sys.firstPublishedAt}`,
+    `Fetching: ${fetchedPost.slug}, PublishDate for sorting: ${
+      fetchedPost.publishDate ?? 'not set'
+    }`,
   );
-  return fetchedPost as Post;
+  return fetchedPost;
 }
 export function extractPostSlugs(fetchResponse: any) {
   return fetchResponse?.data?.blogPostCollection?.items as PostOnlySlug[];
 }
+export function extractPostForLists(fetchResponse: any) {
+  return fetchResponse?.data?.blogPostCollection?.items as PostForList[];
+}
 export function extractPostsForRss(fetchResponse: any) {
   return fetchResponse?.data?.blogPostCollection?.items as PostForRss[];
 }
-export function extractPostBases(fetchResponse: any) {
-  return fetchResponse?.data?.blogPostCollection?.items as PostBase[];
-}
 
-export function extractPostBasesFromPerson(fetchResponse: any) {
+export function extractPostForListsFromPerson(fetchResponse: any) {
   return fetchResponse?.data.personCollection?.items[0].linkedFrom.blogPostCollection
-    ?.items as PostBase[];
+    ?.items as PostForList[];
 }
 
-export function extractPostBasesFromPlatform(fetchResponse: any) {
-  console.log(fetchResponse);
+export function extractPostForListsFromPlatform(fetchResponse: any) {
   return fetchResponse?.data.platformCollection?.items[0].linkedFrom.blogPostCollection
-    ?.items as PostBase[];
+    ?.items as PostForList[];
 }
