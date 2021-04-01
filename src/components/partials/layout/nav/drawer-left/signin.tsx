@@ -1,41 +1,69 @@
 import { useAuthentication } from '@/hooks/authentication';
-import { Box, Button, Stack } from '@chakra-ui/react';
-import LinkChakra from '@/components/common/link-chakra';
+import firebaseApi from '@/lib/firebase';
+import { Box, Button, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 import Image from 'next/image';
+import FaiconDiv from '@/components/common/faicon-div';
+import { useRouter } from 'next/router';
 
 const SignIn = () => {
   const { user } = useAuthentication();
+  const router = useRouter();
+
+  const logout = () => {
+    firebaseApi.auth().signOut();
+  };
+
+  const gotomypage = () => {
+    router.push('/users/me');
+  };
   return (
-    <Stack direction="column" spacing={6}>
-      {user && (
+    <Menu>
+      {({ isOpen }) => (
         <>
-          <Button
-            as={LinkChakra}
+          <MenuButton
+            as={Button}
             href="/users/me/"
             leftIcon={
               <Box w={6} rounded="full" overflow="hidden">
-                <Image src={user.photoURL} width={32} height={32} />
+                <Image src={user ? user.photoURL : '/icon-180x.png'} width={32} height={32} />
               </Box>
             }
+            rightIcon={
+              isOpen ? (
+                <FaiconDiv icon={['fas', 'chevron-up']} />
+              ) : (
+                <FaiconDiv icon={['fas', 'chevron-down']} />
+              )
+            }
           >
-            {user.name}
-          </Button>
-          {/*
-        // since anonymous login is enabled, no need to logout
-        <Button aria-label="ログアウトする" onClick={logout} leftIcon={<FaiconDiv icon={['fas', 'user']} />} colorScheme="red" variant="solid">
-          ログアウト
-      </Button></>
-      ) : (<>
-        <Button href="/users/me" as={LinkChakra} leftIcon={<Box w={6} rounded="full" overflow="hidden"><Image src={process.env.HTTPS_URL + '/favicon.png'} width={32} height={32} /></Box>}>
-          未サインイン
-        </Button>
-        <Button aria-label="サインインする" onClick={login} leftIcon={<FaiconDiv icon={['fas', 'user']} />} variant="solid">
-          サインイン
-          </Button>
-      </>*/}
+            {user ? user.name : 'ログイン'}
+          </MenuButton>
+          {isOpen && (
+            <MenuList p={3}>
+              {user && (
+                <MenuItem mb={2} as={Button} colorScheme="cyan" onClick={gotomypage}>
+                  マイページ
+                </MenuItem>
+              )}
+              {user ? (
+                <MenuItem as={Button} colorScheme="red" onClick={logout}>
+                  ログアウト
+                </MenuItem>
+              ) : (
+                <MenuItem
+                  as={Button}
+                  colorScheme="twitter"
+                  leftIcon={<FaiconDiv icon={['fab', 'twitter']} />}
+                  onClick={gotomypage}
+                >
+                  ログイン
+                </MenuItem>
+              )}
+            </MenuList>
+          )}
         </>
       )}
-    </Stack>
+    </Menu>
   );
 };
 
