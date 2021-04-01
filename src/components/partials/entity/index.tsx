@@ -9,17 +9,13 @@ interface MultiEntityProps {
 }
 const Multientities = ({ entities }: MultiEntityProps) => {
   return (
-    <section>
-      <Center flexDirection="column">
-        <SimpleGrid maxW="96vw" spacing={4} minChildWidth="300px" columns={{ base: 2, lg: 3 }}>
-          {entities.map((entity: Entity) => (
-            <LinkChakra key={entity.bedrockId} href={`/entityatsume/zukan/${entity.bedrockId}`}>
-              <SingleEntityComponent entity={entity} />
-            </LinkChakra>
-          ))}
-        </SimpleGrid>
-      </Center>
-    </section>
+    <SimpleGrid spacing={4} minChildWidth="300px" columns={{ base: 2, lg: 3 }}>
+      {entities.map((entity: Entity) => (
+        <LinkChakra key={entity.bedrockId} href={`/entityatsume/zukan/${entity.bedrockId}`}>
+          <SingleEntityComponent entity={entity} />
+        </LinkChakra>
+      ))}
+    </SimpleGrid>
   );
 };
 
