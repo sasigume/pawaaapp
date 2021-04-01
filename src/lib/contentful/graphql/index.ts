@@ -1,86 +1,20 @@
-import { Person } from '@/models/contentful/Person';
-import { Platform } from '@/models/contentful/Platform';
-import { Post, PostBase, PostForRss, PostOnlySlug } from '@/models/contentful/Post';
+import * as extracter from './extracter';
 const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '800');
 
-/* -------------------------------------------
+console.warn(`TOTAL CONTENTFUL LIMIT is ${TOTAL_LIMIT}`);
 
-ここに書いてあるフィールド以外は取得されません。
-つまり、モデルを定義していてもここにない場合は未定義になります。
+import {
+  POST_GRAPHQL_FIELDS,
+  POSTFORLIST_GRAPHQL_FIELDS,
+  POSTFORRSS_GRAPHQL_FIELDS,
+} from '../../../models/contentful/Post';
 
---------------------------------------------- */
-const PLATFORM_GRAPHQL_FIELDS = `
-sys {
-  id
-  firstPublishedAt
-  publishedAt
-}
-displayName
-description
-slug
-bgColor
-icon {
-  name
-  style
-}
-`;
+import { PERSON_GRAPHQL_FIELDS } from '@/models/contentful/Person';
 
-const PERSON_GRAPHQL_FIELDS = `
-sys {
-  id
-  firstPublishedAt
-  publishedAt
-}
-displayName
-description
-slug
-picture {
-  url
-}
-`;
+import { PLATFORM_GRAPHQL_FIELDS } from '@/models/contentful/Platform';
+import { SERIES_GRAPHQL_FIELDS } from '@/models/contentful/Series';
 
-/* -------------------------------------------
-
-bodyをたらい回ししたくなくてこうなってるんですが
-もはやPostBaseとPostの違いがbody/hideAdsenseだけなのは非効率なので
-近いうちに直します
-
---------------------------------------------- */
-const POSTFORRSS_GRAPHQL_FIELDS = `
-sys {
-  id
-  firstPublishedAt
-  publishedAt
-}
-title
-slug
-publishDate
-person {
-  ${PERSON_GRAPHQL_FIELDS}
-}
-description
-`;
-
-const POSTBASE_GRAPHQL_FIELDS =
-  POSTFORRSS_GRAPHQL_FIELDS +
-  `
-heroImage {
-  url
-}
-platformsCollection(limit: 5) {
-  items {
-    ${PLATFORM_GRAPHQL_FIELDS}
-  }
-}
-`;
-
-const POST_GRAPHQL_FIELDS =
-  POSTBASE_GRAPHQL_FIELDS +
-  `
-body
-hideAdsense`;
-
-async function fetchGraphQL(query: any, preview = false) {
+export async function fetchGraphQL(query: any, preview = false) {
   return fetch(
     `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
     {
@@ -99,61 +33,6 @@ async function fetchGraphQL(query: any, preview = false) {
     .then((response) => response.json())
     .catch((e) => console.error(e));
 }
-
-/* -------------------------------------------
-
-返す型はここで決めています
-
---------------------------------------------- */
-
-function extractPerson(fetchResponse: any) {
-  return fetchResponse?.data?.personCollection?.items?.[0] as Person;
-}
-
-function extractPersons(fetchResponse: any) {
-  return fetchResponse?.data?.personCollection?.items as Person[];
-}
-function extractPlatform(fetchResponse: any) {
-  return fetchResponse?.data.platformCollection?.items?.[0] as Platform;
-}
-
-function extractPlatforms(fetchResponse: any) {
-  return fetchResponse?.data.platformCollection?.items as Platform[];
-}
-
-function extractPost(fetchResponse: any) {
-  const fetchedPost = fetchResponse?.data?.blogPostCollection?.items?.[0];
-  console.log(
-    `Fetching: ${fetchedPost.slug}, firstPublishedAt: ${fetchedPost.sys.firstPublishedAt}`,
-  );
-  return fetchedPost as Post;
-}
-function extractPostSlugs(fetchResponse: any) {
-  return fetchResponse?.data?.blogPostCollection?.items as PostOnlySlug[];
-}
-function extractPostsForRss(fetchResponse: any) {
-  return fetchResponse?.data?.blogPostCollection?.items as PostForRss[];
-}
-function extractPostBases(fetchResponse: any) {
-  return fetchResponse?.data?.blogPostCollection?.items as PostBase[];
-}
-
-function extractPostBasesFromPerson(fetchResponse: any) {
-  return fetchResponse?.data.personCollection?.items[0].linkedFrom.blogPostCollection
-    ?.items as PostBase[];
-}
-
-function extractPostBasesFromPlatform(fetchResponse: any) {
-  console.log(fetchResponse);
-  return fetchResponse?.data.platformCollection?.items[0].linkedFrom.blogPostCollection
-    ?.items as PostBase[];
-}
-
-/* -------------------------------------------
-
-以下が記事ページで使われます
-
---------------------------------------------- */
 
 export async function getPostAndMorePosts(slug: string, preview: boolean) {
   const entry = await fetchGraphQL(
@@ -179,16 +58,30 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
       preview ? 'true' : 'false'
     }, limit: 2) {
         items {
-          ${POSTBASE_GRAPHQL_FIELDS}
+          ${POSTFORLIST_GRAPHQL_FIELDS}
         }
       }
     }`,
     preview,
   );
   return {
-    post: extractPost(entry),
-    morePosts: extractPostBases(entries),
+    post: extracter.extractPost(entry),
+    morePosts: extracter.extractPostForLists(entries),
   };
+}
+
+export async function getSeries(slug: string) {
+  const entry = await fetchGraphQL(
+    `query {
+      seriesCollection(where: { slug: "${slug}" }, preview: false, limit: 1) {
+        items {
+          ${SERIES_GRAPHQL_FIELDS}
+        }
+      }
+    }`,
+    false,
+  );
+  return extracter.extractSeries(entry);
 }
 
 export async function getPreviewPost(slug: string) {
@@ -202,7 +95,7 @@ export async function getPreviewPost(slug: string) {
     }`,
     true,
   );
-  return extractPost(entry);
+  return extracter.extractPost(entry);
 }
 
 export async function getAllPostsForRss(preview: boolean, limit?: number) {
@@ -223,7 +116,7 @@ export async function getAllPostsForRss(preview: boolean, limit?: number) {
     }`,
     preview,
   );
-  return extractPostsForRss(entries);
+  return extracter.extractPostsForRss(entries);
 }
 
 export async function getAllPostsWithSlug(preview: boolean, limit?: number) {
@@ -235,13 +128,13 @@ export async function getAllPostsWithSlug(preview: boolean, limit?: number) {
       preview ? 'true' : 'false'
     }) {
         items {
-          ${POSTBASE_GRAPHQL_FIELDS}
+          ${POSTFORLIST_GRAPHQL_FIELDS}
         }
       }
     }`,
     preview,
   );
-  return extractPostBases(entries);
+  return extracter.extractPostForLists(entries);
 }
 
 export async function getAllPostsWithSlugOnlySlug(preview: boolean, limit?: number) {
@@ -262,7 +155,7 @@ export async function getAllPostsWithSlugOnlySlug(preview: boolean, limit?: numb
     }`,
     preview,
   );
-  return extractPostSlugs(entries);
+  return extracter.extractPostSlugs(entries);
 }
 
 export async function getAllPostsByRange(preview: boolean, skip: number, limit?: number) {
@@ -274,14 +167,14 @@ export async function getAllPostsByRange(preview: boolean, skip: number, limit?:
       preview ? 'true' : 'false'
     }) {
         items {
-          ${POSTBASE_GRAPHQL_FIELDS}
+          ${POSTFORLIST_GRAPHQL_FIELDS}
         }
       }
     }`,
     preview,
   );
 
-  return extractPostBases(entries);
+  return extracter.extractPostForLists(entries);
 }
 //----------------
 
@@ -298,7 +191,7 @@ export async function getAllPlatformsWithSlug(preview: boolean, limit?: number) 
     }`,
     preview,
   );
-  return extractPlatforms(entries);
+  return extracter.extractPlatforms(entries);
 }
 
 export async function getPlatform(slug: string, preview: boolean) {
@@ -314,7 +207,7 @@ export async function getPlatform(slug: string, preview: boolean) {
     }`,
     preview,
   );
-  return extractPlatform(entry);
+  return extracter.extractPlatform(entry);
 }
 
 export async function getAllPostsForPlatform(slug: string, preview: boolean, limit?: number) {
@@ -326,7 +219,7 @@ export async function getAllPostsForPlatform(slug: string, preview: boolean, lim
           linkedFrom {
             blogPostCollection(limit:${limit ?? TOTAL_LIMIT}){
               items {
-                ${POSTBASE_GRAPHQL_FIELDS}
+                ${POSTFORLIST_GRAPHQL_FIELDS}
               }
             }
           }
@@ -335,7 +228,7 @@ export async function getAllPostsForPlatform(slug: string, preview: boolean, lim
     }`,
     preview,
   );
-  return extractPostBasesFromPlatform(entries);
+  return extracter.extractPostForListsFromPlatform(entries);
 }
 
 export async function getAllPostsForPlatformByRange(
@@ -363,7 +256,7 @@ export async function getAllPostsForPlatformByRange(
     }`,
     preview,
   );
-  return extractPostBasesFromPlatform(entries);
+  return extracter.extractPostForListsFromPlatform(entries);
 }
 
 // ----------------------------------
@@ -381,7 +274,7 @@ export async function getAllPersonsWithSlug(preview: boolean, limit?: number) {
     }`,
     preview,
   );
-  return extractPersons(entries);
+  return extracter.extractPersons(entries);
 }
 
 export async function getPerson(slug: string, preview: boolean) {
@@ -397,7 +290,7 @@ export async function getPerson(slug: string, preview: boolean) {
     }`,
     preview,
   );
-  return extractPerson(entry);
+  return extracter.extractPerson(entry);
 }
 
 export async function getAllPostsForPerson(slug: string, preview: boolean, limit?: number) {
@@ -418,5 +311,5 @@ export async function getAllPostsForPerson(slug: string, preview: boolean, limit
     }`,
     preview,
   );
-  return extractPostBasesFromPerson(entries);
+  return extracter.extractPostForListsFromPerson(entries);
 }

@@ -1,11 +1,10 @@
-import { SinglePostComponent } from './single-post';
-import { PostBase } from '@/models/contentful/Post';
-import { Box, Center, Container, Divider, Flex, SimpleGrid, Stack } from '@chakra-ui/react';
-import { PostForList } from './post-for-list';
+import { PostForList } from '@/models/contentful/Post';
+import { Box, Center, Container, Divider, SimpleGrid, Stack } from '@chakra-ui/react';
+import { CompactPost } from './compact-post';
 
 interface MultiPostProps {
-  posts: PostBase[];
-  mode?: string;
+  posts: PostForList[];
+  mode?: 'archive' | 'more' | 'drawer' | undefined;
 }
 const MultiPosts = ({ posts, mode }: MultiPostProps) => {
   if (mode == 'archive') {
@@ -14,16 +13,28 @@ const MultiPosts = ({ posts, mode }: MultiPostProps) => {
       <section>
         <Center flexDirection="column">
           <Container maxW="container.md">
-            <PostForList post={posts[0]} />
+            <CompactPost post={posts[0]} />
           </Container>
           <Divider my={8} borderColor="gray.400" />
           <SimpleGrid maxW="100vw" spacing={4} columns={{ base: 1, lg: 2 }}>
-            {morePosts.map((post: PostBase) => (
-              <PostForList key={post.slug} post={post} />
+            {morePosts.map((post: PostForList) => (
+              <CompactPost mode={mode} key={post.slug} post={post} />
             ))}
           </SimpleGrid>
         </Center>
       </section>
+    );
+  }
+  if (mode == 'drawer') {
+    return (
+      <Stack>
+        <Box textStyle="h4" mb={4}>
+          <h2>おすすめ記事</h2>
+        </Box>
+        {posts.map((post) => (
+          <CompactPost mode={mode} key={post.slug} post={post} />
+        ))}
+      </Stack>
     );
   } else {
     return (
@@ -36,7 +47,7 @@ const MultiPosts = ({ posts, mode }: MultiPostProps) => {
         <Center>
           <SimpleGrid spacing={6} columns={{ base: 1, lg: 2 }}>
             {posts.map((post) => (
-              <PostForList key={post.slug} post={post} />
+              <CompactPost mode={mode} key={post.slug} post={post} />
             ))}
           </SimpleGrid>
         </Center>
@@ -46,8 +57,8 @@ const MultiPosts = ({ posts, mode }: MultiPostProps) => {
 };
 
 interface PostListProps {
-  posts: PostBase[];
-  mode?: string;
+  posts: PostForList[];
+  mode?: 'archive' | 'more' | 'drawer' | undefined;
 }
 
 export const PostList = ({ posts, mode }: PostListProps) => {

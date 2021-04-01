@@ -29,7 +29,6 @@ const ReturnDataOrError = async ({ path, useStaging }: fetchProps): Promise<Enti
       },
     });
     if (response.ok) {
-      console.log('Fetch ok');
       return response.json();
     } else {
       console.error('Failed to fetch: ' + response.status);
@@ -130,7 +129,6 @@ export const getAllEntities = async ({ useStaging }: fetchProps): Promise<Entity
       },
     });
     if (response.ok) {
-      console.log('GetAllEntities ok');
       return response.json();
     } else {
       console.error('Failed to fetch: ' + response.status);
@@ -154,7 +152,6 @@ export const getEntity = async (bedrockId: string): Promise<Entity | null> => {
       },
     });
     if (response.ok) {
-      console.log('GetEntity ok');
       return response.json();
     } else {
       console.error('Failed to fetch: ' + response.status);

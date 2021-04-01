@@ -27,5 +27,5 @@
     }
   },
   "exclude": ["./node_modules"],
-  "include": ["**/*.ts", "**/*.tsx", "./src/lib/sitemapgen.js"]
+  "include": ["**/*.ts", "**/*.tsx"]
 }

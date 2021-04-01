@@ -1,19 +1,18 @@
 import dynamic from 'next/dynamic';
 import dayjs from 'dayjs';
-import { Badge, Box, Button, Divider } from '@chakra-ui/react';
+import { Badge, Box, Button, Divider, Flex } from '@chakra-ui/react';
 import { Post } from '@/models/contentful/Post';
 
 // issue #106
 /*const LinkChakra = dynamic(() => import('@/components/common/link-chakra'));
-const PlatformList = dynamic(() => import('../common/platform-list'));
-const PersonList = dynamic(() => import('../common/person-list'));
-const Adsense = dynamic(() => import('@/components/common/adsense'));
 const MarkdownRender = dynamic(() => import('@/components/common/MarkdownRender'));
 const FaiconDiv = dynamic(() => import('@/components/common/faicon-div'));*/
+const Adsense = dynamic(() => import('@/components/common/adsense'));
+const PlatformList = dynamic(() => import('../common/platform-list'));
+const PersonList = dynamic(() => import('../common/person-list'));
 import LinkChakra from '@/components/common/link-chakra';
-import PlatformList from '../common/platform-list';
-import PersonList from '../common/person-list';
-import Adsense from '@/components/common/adsense';
+/* import PlatformList from '../common/platform-list';
+import PersonList from '../common/person-list'; */
 import MarkdownRender from '@/components/common/MarkdownRender';
 import FaiconDiv from '@/components/common/faicon-div';
 
@@ -31,7 +30,7 @@ export function SinglePostComponent({ post }: Props) {
           </Box>
         )}
         {post.platformsCollection?.items && post.platformsCollection.items.length > 0 && (
-          <Box>
+          <Box mb={4}>
             <PlatformList platforms={post.platformsCollection.items} />
           </Box>
         )}
@@ -40,14 +39,20 @@ export function SinglePostComponent({ post }: Props) {
           <Badge colorScheme="red">編集担当へ: 並び替え用の公開日を設定し忘れています!</Badge>
         )}
 
-        <Box area-label="更新日時" mb={6}>
-          <Badge colorScheme="blue">
+        <Flex
+          spacing={0}
+          area-label="更新日時"
+          mb={6}
+          alignItems="start"
+          flexDirection={{ base: 'column', sm: 'row' }}
+        >
+          <Badge colorScheme="blue" fontSize="1.2rem">
             公開: {dayjs(post.publishDate ?? post.sys.firstPublishedAt).format('YYYY/MM/DD')}
           </Badge>
-          <Badge colorScheme="green">
+          <Badge colorScheme="green" fontSize="1.2rem">
             最終更新: {dayjs(post.sys.publishedAt).format('YYYY/MM/DD')}
           </Badge>
-        </Box>
+        </Flex>
       </Box>
 
       <Box px={0} direction="column">
@@ -56,9 +61,6 @@ export function SinglePostComponent({ post }: Props) {
             <h1>{post.title}</h1>
           </LinkChakra>
         </Box>
-        <Badge colorScheme="cyan" mb={4}>
-          ID: {post.sys.id}
-        </Badge>
         <Box
           display={{ base: 'none', md: 'flex' }}
           area-label="記事の概要"

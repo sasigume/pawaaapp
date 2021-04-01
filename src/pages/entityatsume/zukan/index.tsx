@@ -34,13 +34,11 @@ export default function EntityIndex({ entities, preview }: EntityIndexProps) {
           meta={{ title: 'エンティティの一覧', desc: 'エンティティの一覧' }}
         >
           <BreakpointContainer>
-            <Box mb={10}>
-              <VStack textStyle="h1" spacing={4} mb={8}>
-                <h1>エンティティの一覧</h1>
-                <Divider />
-              </VStack>
-              {entities && entities.length > 0 && <EntityList entities={entities} />}
-            </Box>
+            <VStack textStyle="h1" spacing={4} mb={8}>
+              <h1>エンティティの一覧</h1>
+              <Divider />
+            </VStack>
+            {entities && entities.length > 0 && <EntityList entities={entities} />}
           </BreakpointContainer>
         </Layout>
       )}

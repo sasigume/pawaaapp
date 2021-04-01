@@ -1,17 +1,16 @@
 import ErrorPage from 'next/error';
 import {
-  getAllPlatformsWithSlug,
   getPostAndMorePosts,
-  getAllPostsWithSlug,
+  getAllPostsWithSlugOnlySlug,
+  getSeries,
 } from '@/lib/contentful/graphql';
-import { Post, PostBase } from '@/models/contentful/Post';
+import { Post, PostForList, PostOnlySlug } from '@/models/contentful/Post';
 import Layout from '@/components/partials/layout';
-import { Box, Container, Divider } from '@chakra-ui/react';
+import { Box, Divider } from '@chakra-ui/react';
 
 //import { PostComment } from '@/models/firebase/PostComment';
 import { SITE_URL } from '@/lib/constants';
 
-import { Platform } from '@/models/contentful/Platform';
 import Head from 'next/head';
 
 import BreakpointContainer from '@/components/common/breakpoint-container';
@@ -27,11 +26,11 @@ import { SinglePostComponent } from '@/components/partials/post/single-post';
 interface PostPageProps {
   firstPost: Post;
   //postComments: PostComment[];
-  morePosts: PostBase[];
+  morePosts: PostForList[];
   preview: boolean;
   tweetCount: number;
   revalEnv: number;
-  allPlatforms: Platform[];
+  drawerPosts: Post[];
 }
 
 export default function PostPage({
@@ -41,6 +40,7 @@ export default function PostPage({
   preview,
   tweetCount,
   revalEnv,
+  drawerPosts,
 }: PostPageProps) {
   const router = useRouter();
 
@@ -79,6 +79,7 @@ export default function PostPage({
             </Box>
           }
           hideAdsense={firstPost.hideAdsense}
+          drawerPosts={drawerPosts ?? []}
         >
           <Head>
             <link
@@ -130,12 +131,10 @@ interface GSProps {
 const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600');
 
 export async function getStaticProps({ params, preview }: GSProps) {
-  const allPlatforms = await getAllPlatformsWithSlug(preview, 10);
-
   const posts = await getPostAndMorePosts(params.slug, preview);
 
-  const commentsRes = await fetch(process.env.API_URL + `/api/postComments/${params.slug}`);
-  const postComments = await commentsRes.json();
+  /*const commentsRes = await fetch(process.env.API_URL + `/api/postComments/${params.slug}`);
+  const postComments = await commentsRes.json();*/
 
   const searchWord = SITE_URL + '/' + params.slug;
 
@@ -150,25 +149,27 @@ export async function getStaticProps({ params, preview }: GSProps) {
   let tweetCount;
   tweetsJson.data ? (tweetCount = tweetsJson.meta.result_count) : (tweetCount = null);
 
+  const drawerPosts = (await getSeries('popular')) ?? null;
+
   const revalEnv = parseInt(process.env.REVALIDATE ?? '1800');
   return {
     props: {
       preview: preview ?? false,
       firstPost: posts.post ?? null,
-      postComments: postComments ?? null,
+      //postComments: postComments ?? null,
       morePosts: posts.morePosts ?? null,
       tweetCount: tweetCount ?? null,
       revalEnv: revalEnv,
-      allPlatforms: allPlatforms ?? null,
       hideAdsense: posts.post.hideAdsense ?? false,
+      drawerPosts: drawerPosts.postsCollection.items ?? null,
     },
     revalidate: revalEnv,
   };
 }
 
 export async function getStaticPaths() {
-  const allPosts = await getAllPostsWithSlug(false, TOTAL_LIMIT);
-  let paths = allPosts?.map((post: PostBase) => `/${post.slug}/`) ?? [];
+  const allPosts = await getAllPostsWithSlugOnlySlug(false, TOTAL_LIMIT);
+  let paths = allPosts?.map((post: PostOnlySlug) => `/${post.slug}/`) ?? [];
 
   return {
     paths: paths,

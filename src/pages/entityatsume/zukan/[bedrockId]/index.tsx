@@ -1,7 +1,7 @@
 import ErrorPage from 'next/error';
 import { Entity } from '@/models/nest/Entity';
 import Layout from '@/components/partials/layout';
-import { Box, Container } from '@chakra-ui/react';
+import { Box, Center, Container, Heading } from '@chakra-ui/react';
 
 import { Platform } from '@/models/contentful/Platform';
 import Head from 'next/head';
@@ -53,7 +53,12 @@ export default function EntityPage({ preview, firstEntity, revalEnv }: EntityPag
                 {preview && <Box>デバッグ: プレビューON</Box>}
 
                 {firstEntity && (
-                  <EntityList mode="single" entities={[firstEntity]} expand={preview ?? false} />
+                  <>
+                    <Center mb={6}>
+                      <Heading as="h1">{firstEntity.nameJapanese ?? firstEntity.name}</Heading>
+                    </Center>
+                    <EntityList mode="single" entities={[firstEntity]} expand={preview ?? false} />
+                  </>
                 )}
               </BreakpointContainer>
             </Container>
@@ -71,7 +76,6 @@ interface GSProps {
 
 export async function getStaticProps({ params, preview }: GSProps) {
   const entity = await getEntity(params.bedrockId);
-  entity && console.log(`Fetched ${entity.name}`);
 
   const revalEnv = parseInt(process.env.REVALIDATE ?? '1800');
   return {

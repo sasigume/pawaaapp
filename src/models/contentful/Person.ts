@@ -9,3 +9,17 @@ export interface Person {
     url: string;
   };
 }
+
+export const PERSON_GRAPHQL_FIELDS = `
+sys {
+  id
+  firstPublishedAt
+  publishedAt
+}
+displayName
+description
+slug
+picture {
+  url
+}
+`;
