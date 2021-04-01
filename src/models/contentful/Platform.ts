@@ -6,8 +6,8 @@ export interface Platform {
   displayName: string;
   slug: string;
   bgColor?: string; // for chakra UI
-  description?: string;
-  icon?: Icon;
+  description?: string | null;
+  icon?: Icon | null;
 }
 
 export const PLATFORM_GRAPHQL_FIELDS = `
