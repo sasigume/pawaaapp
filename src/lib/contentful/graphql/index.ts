@@ -1,14 +1,36 @@
 import * as extracter from './extracter';
-import { fetchGraphQL } from './fetcher';
 const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '800');
 
 import {
   POST_GRAPHQL_FIELDS,
   POSTBASE_GRAPHQL_FIELDS,
-  PERSON_GRAPHQL_FIELDS,
-  PLATFORM_GRAPHQL_FIELDS,
+  POSTFORLIST_GRAPHQL_FIELDS,
   POSTFORRSS_GRAPHQL_FIELDS,
-} from './queries';
+} from '../../../models/contentful/Post';
+
+import { PERSON_GRAPHQL_FIELDS } from '@/models/contentful/Person';
+
+import { PLATFORM_GRAPHQL_FIELDS } from '@/models/contentful/Platform';
+
+export async function fetchGraphQL(query: any, preview = false) {
+  return fetch(
+    `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${
+          preview
+            ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
+            : process.env.CONTENTFUL_ACCESS_TOKEN
+        }`,
+      },
+      body: JSON.stringify({ query }),
+    },
+  )
+    .then((response) => response.json())
+    .catch((e) => console.error(e));
+}
 
 export async function getPostAndMorePosts(slug: string, preview: boolean) {
   const entry = await fetchGraphQL(
