@@ -12,13 +12,30 @@ export function CompactPost({ post }: Props) {
     <LinkChakra href={`/${post.slug}`}>
       <Flex rounded="xl" shadow="lg" p={3} alignItems="center" area-label={post.title}>
         <Box flexGrow={1}>
-          {post.heroImage && (
-            <Center mb={2}>
+          <Center
+            rounded="lg"
+            bg="linear-gradient(#2687e8, #2655ff)"
+            mb={2}
+            h={32}
+            overflow="hidden"
+          >
+            {post.heroImage ? (
               <img src={post.heroImage.url} width="full" height="auto" />
-            </Center>
-          )}
-          <Box textStyle="h4" mb={2}>
+            ) : (
+              <Badge>No Image</Badge>
+            )}
+          </Center>
+
+          <Box position="relative" textStyle="h4" mb={2} h={24} overflow="hidden" w="full">
             {post.title}
+            <Box
+              position="absolute"
+              lett={9}
+              bottom={0}
+              h={10}
+              w="full"
+              bg="linear-gradient(transparent, #fff)"
+            ></Box>
           </Box>
           <Box area-label="更新日時">
             <Badge colorScheme="blue">
