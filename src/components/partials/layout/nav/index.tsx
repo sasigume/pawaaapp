@@ -46,7 +46,9 @@ export default function Nav({ preview, drawerLeftChildren }: NavProps) {
           />
         </HStack>
 
-        <SignIn />
+        <Box pl={4}>
+          <SignIn />
+        </Box>
       </HStack>
     </Box>
   );
