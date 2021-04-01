@@ -1,9 +1,5 @@
 import ErrorPage from 'next/error';
-import {
-  getAllPlatformsWithSlug,
-  getPostAndMorePosts,
-  getAllPostsWithSlugOnlySlug,
-} from '@/lib/contentful/graphql';
+import { getPostAndMorePosts, getAllPostsWithSlugOnlySlug } from '@/lib/contentful/graphql';
 import { Post, PostForList, PostOnlySlug } from '@/models/contentful/Post';
 import Layout from '@/components/partials/layout';
 import { Box, Divider } from '@chakra-ui/react';
@@ -23,6 +19,7 @@ import FukidashiShare from '@/components/common/fukidashi-share';
 //import PostCommentList from '@/components/partials/post-comment/post-comment-list';
 import tocStyles from '../../styles/markdown-toc-styles.module.css';
 import { SinglePostComponent } from '@/components/partials/post/single-post';
+import storeAllPlatforms from '@/lib/store-platforms';
 
 interface PostPageProps {
   firstPost: Post;
@@ -41,6 +38,7 @@ export default function PostPage({
   preview,
   tweetCount,
   revalEnv,
+  allPlatforms,
 }: PostPageProps) {
   const router = useRouter();
 
@@ -65,6 +63,7 @@ export default function PostPage({
             desc: firstPost.description ? firstPost.description : '',
             ogpUrl: firstPost.heroImage && firstPost.heroImage.url,
           }}
+          platforms={allPlatforms}
           revalEnv={revalEnv}
           preview={preview}
           drawerLeftChildren={Toc(firstPost)}
@@ -130,7 +129,7 @@ interface GSProps {
 const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600');
 
 export async function getStaticProps({ params, preview }: GSProps) {
-  const allPlatforms = await getAllPlatformsWithSlug(preview, 10);
+  const allPlatforms = await storeAllPlatforms();
 
   const posts = await getPostAndMorePosts(params.slug, preview);
 

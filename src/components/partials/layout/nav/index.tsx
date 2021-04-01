@@ -1,18 +1,19 @@
 import dynamic from 'next/dynamic';
-import { SITE_NAME } from '@/lib/constants';
-import { Box, Button, HStack, Spacer, Switch, useColorMode } from '@chakra-ui/react';
-import Image from 'next/image';
+import { Box, Center, HStack, Spacer, Switch, useColorMode } from '@chakra-ui/react';
 import FaiconDiv from '@/components/common/faicon-div';
 import { ReactNode } from 'react';
-import LinkChakra from '@/components/common/link-chakra';
-const DrawerLeft = dynamic(() => import('../drawer-left'));
-const SignIn = dynamic(() => import('../drawer-left/signin'), { ssr: false });
+import { Platform } from '@/models/contentful/Platform';
+import PlatformList from '../../post/common/platform-list';
+import DrawerLeft from './drawer-left';
+import SiteLogo from '@/components/common/SiteLogo';
+const SignIn = dynamic(() => import('./drawer-left/signin'), { ssr: false });
 
 interface NavProps {
   preview: boolean;
   drawerLeftChildren?: ReactNode;
+  platforms?: Platform[];
 }
-export default function Nav({ preview, drawerLeftChildren }: NavProps) {
+export default function Nav({ preview, drawerLeftChildren, platforms }: NavProps) {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Box
@@ -27,29 +28,24 @@ export default function Nav({ preview, drawerLeftChildren }: NavProps) {
     >
       <HStack>
         <Box w={{ base: 'auto', xl: 0 }} display={{ base: 'flex', lg: 'none' }}>
-          <DrawerLeft preview={preview}>{drawerLeftChildren}</DrawerLeft>
+          <DrawerLeft preview={preview}>
+            <>
+              {drawerLeftChildren}
+              {platforms && platforms?.length > 0 && (
+                <Box ml={-2}>
+                  <PlatformList heading platforms={platforms} />
+                </Box>
+              )}
+            </>
+          </DrawerLeft>
         </Box>
-        <LinkChakra mr={6} fontWeight="bold" href="/" display={{ base: 'none', sm: 'flex' }}>
-          <HStack>
-            <Box mt={-1} mr={2} w={10} h={10}>
-              <Image src="/icon-180x.png" width={80} height={80} />
-            </Box>
-
-            <Box textAlign="left" as="h1" fontSize={16} w={20}>
-              {SITE_NAME}
-            </Box>
-          </HStack>
-        </LinkChakra>
-        <Button
-          textAlign="center"
-          display={{ base: 'none', md: 'flex' }}
-          as={LinkChakra}
-          colorScheme="orange"
-          href="/entityatsume/"
-        >
-          エンティティあつめ
-        </Button>
+        <SiteLogo mr={6} display={{ base: 'none', sm: 'inherit' }} />
         <Spacer />
+        {platforms && platforms?.length > 0 && (
+          <Center pr={6} pl={32} h="40px" overflow="scroll" display={{ base: 'none', lg: 'flex' }}>
+            <PlatformList mode="top" platforms={platforms} />
+          </Center>
+        )}
         <HStack mx={4}>
           <Box>
             {colorMode === 'light' ? (

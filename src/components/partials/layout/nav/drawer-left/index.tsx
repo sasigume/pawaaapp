@@ -12,18 +12,16 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  Stack,
-  Center,
+  DrawerHeader,
 } from '@chakra-ui/react';
 
-const SignIn = dynamic(() => import('./signin'), { ssr: false });
 // issue#106
 /*const FaiconDiv = dynamic(() => import('@/components/common/faicon-div'));
 const Logo = dynamic(() => import('@/components/common/Logo'));*/
 //import SignIn from './signin';
 import FaiconDiv from '@/components/common/faicon-div';
-import Logo from '@/components/common/Logo';
 import LinkChakra from '@/components/common/link-chakra';
+import SiteLogo from '@/components/common/SiteLogo';
 
 interface Props {
   preview: boolean;
@@ -39,7 +37,7 @@ export default function DrawerLeft({ children }: Props) {
     <>
       <Button
         zIndex={10}
-        pr={{ base: 2, md: 4 }}
+        pr={{ base: 2, sm: 4 }}
         ref={btnRef}
         colorScheme="blue"
         leftIcon={<FaiconDiv icon={['fas', 'bars']} />}
@@ -57,6 +55,9 @@ export default function DrawerLeft({ children }: Props) {
         <DrawerOverlay>
           <DrawerContent>
             <DrawerCloseButton />
+            <DrawerHeader>
+              <SiteLogo />
+            </DrawerHeader>
             <DrawerBody overflow-y="scroll" mt={16}>
               <Button
                 mb={6}
@@ -70,20 +71,10 @@ export default function DrawerLeft({ children }: Props) {
               </Button>
               {children}
             </DrawerBody>
-            <DrawerFooter>
-              <Stack w="full" direction="column" spacing={6} mb={6}>
-                <Button as={LinkChakra} colorScheme="blackAlpha" href="/contact/">
-                  お問い合わせ
-                </Button>
-                <Box>
-                  Powered by
-                  <Box mb={8}>
-                    <Center>
-                      <Logo fill={colorMode === 'light' ? '#000' : '#fff'} />
-                    </Center>
-                  </Box>
-                </Box>
-              </Stack>
+            <DrawerFooter mt={6}>
+              <Button w="full" as={LinkChakra} colorScheme="blackAlpha" href="/contact/">
+                お問い合わせ
+              </Button>
             </DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
