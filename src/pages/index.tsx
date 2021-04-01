@@ -1,7 +1,10 @@
-import dynamic from 'next/dynamic';
 import ErrorPage from 'next/error';
-import { Box, Container, Divider, useColorMode, VStack } from '@chakra-ui/react';
-import { getAllPostsByRange, getAllPostsWithSlugOnlySlug } from '../lib/contentful/graphql';
+import { Box, Divider, useColorMode, VStack } from '@chakra-ui/react';
+import {
+  getAllPostsByRange,
+  getAllPostsWithSlugOnlySlug,
+  getSeries,
+} from '../lib/contentful/graphql';
 import { SITE_DESC, SITE_NAME, SITE_URL } from '@/lib/constants';
 import { Post } from '@/models/contentful/Post';
 
@@ -22,10 +25,10 @@ interface IndexProps {
   totalCount: number;
   tweetCount: number;
   environment: boolean;
+  drawerPosts: Post[];
 }
 
-const Index = ({ posts, totalCount, environment, tweetCount }: IndexProps) => {
-  const { colorMode } = useColorMode();
+const Index = ({ posts, totalCount, environment, drawerPosts }: IndexProps) => {
   return (
     <>
       {!posts ? (
@@ -33,7 +36,11 @@ const Index = ({ posts, totalCount, environment, tweetCount }: IndexProps) => {
           <ErrorPage title="ページのデータを取得できませんでした" statusCode={404} />
         </Layout>
       ) : (
-        <Layout preview={environment} meta={{ title: SITE_NAME, desc: SITE_DESC }}>
+        <Layout
+          drawerPosts={drawerPosts ?? []}
+          preview={environment}
+          meta={{ title: SITE_NAME, desc: SITE_DESC }}
+        >
           <BreakpointContainer>
             {posts && (
               <Box mt={6} mb={10}>
@@ -71,6 +78,8 @@ export async function getStaticProps({ preview = false }) {
   let tweetCount;
   tweetsJson.meta ? (tweetCount = tweetsJson.meta.result_count) : (tweetCount = null);
 
+  const drawerPosts = (await getSeries('popular')) ?? null;
+
   const allPostsForIndex = (await getAllPostsByRange(false, 0, PER_PAGE)) || [];
   const allPostsPublished = (await getAllPostsWithSlugOnlySlug(false, TOTAL_LIMIT)) || [];
 
@@ -85,6 +94,7 @@ export async function getStaticProps({ preview = false }) {
       totalCount: allPostsPublished.length ?? null,
       tweetCount: tweetCount ?? null,
       preview: preview ?? null,
+      drawerPosts: drawerPosts.postsCollection.items ?? null,
     },
     revalidate: revalEnv,
   };
