@@ -9,34 +9,12 @@ export interface PostOnlySlug {
   slug: string;
 }
 
-export interface PostForList extends PostOnlySlug {
+interface PostInfo extends PostOnlySlug {
   sys: Sys;
   title: string;
   publishDate: string;
 }
-
-export interface PostForRss extends PostOnlySlug {
-  sys: Sys;
-  title: string;
-  publishDate: string;
-  person?: Person;
-  description?: string;
-}
-export interface PostBase extends PostForRss {
-  heroImage?: {
-    url: string;
-  };
-  platformsCollection?: {
-    items: Platform[];
-  };
-}
-
-export interface Post extends PostBase {
-  body: string;
-  hideAdsense?: boolean;
-}
-
-export const POSTFORLIST_GRAPHQL_FIELDS = `
+const postInfoQuery = `
 sys {
   id
   firstPublishedAt
@@ -47,23 +25,44 @@ slug
 publishDate
 `;
 
-export const POSTFORRSS_GRAPHQL_FIELDS = `
-sys {
-  id
-  firstPublishedAt
-  publishedAt
+export interface PostForList extends PostInfo {
+  heroImage?: {
+    url: string;
+  };
 }
-title
-slug
-publishDate
+export const POSTFORLIST_GRAPHQL_FIELDS =
+  postInfoQuery +
+  `
+heroImage {
+  url
+}
+`;
+
+export interface PostForRss extends PostInfo {
+  person?: Person;
+  description?: string;
+}
+export const POSTFORRSS_GRAPHQL_FIELDS =
+  postInfoQuery +
+  `
 person {
   ${PERSON_GRAPHQL_FIELDS}
 }
 description
 `;
 
-export const POSTBASE_GRAPHQL_FIELDS =
-  POSTFORRSS_GRAPHQL_FIELDS +
+export interface Post extends PostForRss {
+  heroImage?: {
+    url: string;
+  };
+  platformsCollection?: {
+    items: Platform[];
+  };
+  body: string;
+  hideAdsense?: boolean;
+}
+export const POST_GRAPHQL_FIELDS =
+  postInfoQuery +
   `
 heroImage {
   url
@@ -73,10 +72,5 @@ platformsCollection(limit: 5) {
     ${PLATFORM_GRAPHQL_FIELDS}
   }
 }
-`;
-
-export const POST_GRAPHQL_FIELDS =
-  POSTBASE_GRAPHQL_FIELDS +
-  `
 body
 hideAdsense`;

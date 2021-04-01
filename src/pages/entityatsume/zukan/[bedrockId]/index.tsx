@@ -71,7 +71,6 @@ interface GSProps {
 
 export async function getStaticProps({ params, preview }: GSProps) {
   const entity = await getEntity(params.bedrockId);
-  entity && console.log(`Fetched ${entity.name}`);
 
   const revalEnv = parseInt(process.env.REVALIDATE ?? '1800');
   return {

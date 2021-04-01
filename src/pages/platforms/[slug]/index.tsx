@@ -7,9 +7,9 @@ import {
   getAllPlatformsWithSlug,
   getAllPostsForPlatform,
 } from '@/lib/contentful/graphql';
-import { Post, PostBase } from '@/models/contentful/Post';
+import { Post, PostForList } from '@/models/contentful/Post';
 import { Platform } from '@/models/contentful/Platform';
-import { Box, Container } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import BreakpointContainer from '@/components/common/breakpoint-container';
 
 interface IndexProps {
@@ -63,8 +63,8 @@ const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600');
 
 export async function getStaticProps({ params, preview = false }: GSProps) {
   const slug = params.slug ?? '';
-  let posts: PostBase[];
-  let allPosts: PostBase[];
+  let posts: PostForList[];
+  let allPosts: PostForList[];
   const platformData = (await getPlatform(slug, preview)) ?? null;
   platformData
     ? (posts = await getAllPostsForPlatform(platformData.slug, preview, TOTAL_LIMIT))
@@ -82,7 +82,7 @@ export async function getStaticProps({ params, preview = false }: GSProps) {
 export async function getStaticPaths() {
   const allplatforms = await getAllPlatformsWithSlug(false);
   return {
-    paths: allplatforms?.map((a: any) => `/platforms/${a.slug}`) || [],
+    paths: allplatforms?.map((platform: Platform) => `/platforms/${platform.slug}`) || [],
     fallback: true,
   };
 }

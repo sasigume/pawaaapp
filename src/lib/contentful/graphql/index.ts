@@ -3,7 +3,6 @@ const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '800');
 
 import {
   POST_GRAPHQL_FIELDS,
-  POSTBASE_GRAPHQL_FIELDS,
   POSTFORLIST_GRAPHQL_FIELDS,
   POSTFORRSS_GRAPHQL_FIELDS,
 } from '../../../models/contentful/Post';
@@ -56,7 +55,7 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
       preview ? 'true' : 'false'
     }, limit: 2) {
         items {
-          ${POSTBASE_GRAPHQL_FIELDS}
+          ${POSTFORLIST_GRAPHQL_FIELDS}
         }
       }
     }`,
@@ -64,7 +63,7 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
   );
   return {
     post: extracter.extractPost(entry),
-    morePosts: extracter.extractPostBases(entries),
+    morePosts: extracter.extractPostForLists(entries),
   };
 }
 
@@ -112,13 +111,13 @@ export async function getAllPostsWithSlug(preview: boolean, limit?: number) {
       preview ? 'true' : 'false'
     }) {
         items {
-          ${POSTBASE_GRAPHQL_FIELDS}
+          ${POSTFORLIST_GRAPHQL_FIELDS}
         }
       }
     }`,
     preview,
   );
-  return extracter.extractPostBases(entries);
+  return extracter.extractPostForLists(entries);
 }
 
 export async function getAllPostsWithSlugOnlySlug(preview: boolean, limit?: number) {
@@ -151,14 +150,14 @@ export async function getAllPostsByRange(preview: boolean, skip: number, limit?:
       preview ? 'true' : 'false'
     }) {
         items {
-          ${POSTBASE_GRAPHQL_FIELDS}
+          ${POSTFORLIST_GRAPHQL_FIELDS}
         }
       }
     }`,
     preview,
   );
 
-  return extracter.extractPostBases(entries);
+  return extracter.extractPostForLists(entries);
 }
 //----------------
 
@@ -203,7 +202,7 @@ export async function getAllPostsForPlatform(slug: string, preview: boolean, lim
           linkedFrom {
             blogPostCollection(limit:${limit ?? TOTAL_LIMIT}){
               items {
-                ${POSTBASE_GRAPHQL_FIELDS}
+                ${POSTFORLIST_GRAPHQL_FIELDS}
               }
             }
           }
@@ -212,7 +211,7 @@ export async function getAllPostsForPlatform(slug: string, preview: boolean, lim
     }`,
     preview,
   );
-  return extracter.extractPostBasesFromPlatform(entries);
+  return extracter.extractPostForListsFromPlatform(entries);
 }
 
 export async function getAllPostsForPlatformByRange(
@@ -240,7 +239,7 @@ export async function getAllPostsForPlatformByRange(
     }`,
     preview,
   );
-  return extracter.extractPostBasesFromPlatform(entries);
+  return extracter.extractPostForListsFromPlatform(entries);
 }
 
 // ----------------------------------
@@ -295,5 +294,5 @@ export async function getAllPostsForPerson(slug: string, preview: boolean, limit
     }`,
     preview,
   );
-  return extracter.extractPostBasesFromPerson(entries);
+  return extracter.extractPostForListsFromPerson(entries);
 }

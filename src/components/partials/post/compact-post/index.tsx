@@ -1,13 +1,13 @@
 import dayjs from 'dayjs';
-import { Badge, Box, Center, Flex, useColorMode } from '@chakra-ui/react';
-import { PostBase } from '@/models/contentful/Post';
+import { Badge, Box, Center, Flex } from '@chakra-ui/react';
+import { PostForList } from '@/models/contentful/Post';
 
 import LinkChakra from '@/components/common/link-chakra';
 
 interface Props {
-  post: PostBase;
+  post: PostForList;
 }
-export function PostForList({ post }: Props) {
+export function CompactPost({ post }: Props) {
   return (
     <LinkChakra href={`/${post.slug}`}>
       <Flex rounded="xl" shadow="lg" p={3} alignItems="center" area-label={post.title}>
