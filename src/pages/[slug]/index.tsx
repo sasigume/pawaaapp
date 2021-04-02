@@ -15,7 +15,6 @@ import Head from 'next/head';
 
 import BreakpointContainer from '@/components/common/breakpoint-container';
 import PostList from '@/components/partials/post';
-import HeroWithImage from '@/components/common/hero-with-image';
 import { useRouter } from 'next/router';
 import ReactMarkdownHeading from 'react-markdown-heading';
 import FukidashiShare from '@/components/common/fukidashi-share';
@@ -87,12 +86,11 @@ export default function PostPage({
               href={`${process.env.HTTPS_URL ?? ''}/${firstPost.slug ?? ''}/`}
             />
           </Head>
-          {firstPost.heroImage && <HeroWithImage src={firstPost.heroImage?.url} />}
           <Box>
             <BreakpointContainer breakpointName="md" actualWidth="650px">
               {preview && <Box>デバッグ: プレビューON</Box>}
 
-              {firstPost && <SinglePostComponent post={firstPost} />}
+              {firstPost && <SinglePostComponent post={firstPost} tweetCount={tweetCount ?? 0} />}
 
               <Divider my={8} borderColor="gray.400" />
               {morePosts && morePosts.length > 0 && (

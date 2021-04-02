@@ -6,13 +6,13 @@ import FaiconDiv from '@/components/common/faicon-div';
 
 interface Props {
   platform: Platform;
-  mode?: 'top';
+  mode?: 'wrap';
 }
 
 interface ListProps {
   platforms: Platform[];
   heading?: boolean;
-  mode?: 'top';
+  mode?: 'wrap';
 }
 
 const OnePlatform = ({ platform, mode }: Props) => {
@@ -30,7 +30,7 @@ const OnePlatform = ({ platform, mode }: Props) => {
     <Button
       mr={2}
       fontSize={{ base: '0.8rem', sm: '1rem' }}
-      mb={mode == 'top' ? 0 : 2}
+      mb={2}
       href={`/platforms/${platform.slug}`}
       colorScheme={platform.bgColor ?? 'green'}
       as={LinkChakra}
@@ -49,10 +49,7 @@ const PlatformList = ({ platforms, heading, mode }: ListProps) => {
           機種から記事を探す
         </Heading>
       )}
-      <Flex
-        flexWrap={mode == 'top' ? 'nowrap' : 'wrap'}
-        flexDirection={mode == 'top' ? 'row' : 'column'}
-      >
+      <Flex flexWrap="wrap" flexDirection={mode == 'wrap' ? 'row' : 'column'}>
         {platforms.reverse().map((s: Platform) => (
           <OnePlatform mode={mode} platform={s} key={s.slug} />
         ))}
