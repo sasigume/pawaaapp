@@ -29,24 +29,16 @@ export function CompactPost({ post, mode }: Props) {
 
           <Box
             position="relative"
-            fontSize={mode == 'drawer' ? '18px' : '24px'}
+            fontSize={{ base: '18px', md: '20px' }}
             fontWeight="bold"
             mb={2}
-            h={mode == 'drawer' ? 20 : 24}
+            h={mode == 'drawer' ? '90px' : '100px'}
             overflow="hidden"
             w="full"
+            isTruncated
+            whiteSpace="normal"
           >
             {post.title}
-            {mode != 'drawer' && (
-              <Box
-                position="absolute"
-                lett={9}
-                bottom={0}
-                h={10}
-                w="full"
-                bg="linear-gradient(transparent, #fff)"
-              ></Box>
-            )}
           </Box>
           {mode != 'drawer' && (
             <>

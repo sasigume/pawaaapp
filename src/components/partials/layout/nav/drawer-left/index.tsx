@@ -1,7 +1,6 @@
 import { ReactNode, useRef } from 'react';
 
 import {
-  useColorMode,
   useDisclosure,
   Box,
   Button,
@@ -12,8 +11,6 @@ import {
   DrawerContent,
   DrawerCloseButton,
   DrawerHeader,
-  Switch,
-  HStack,
 } from '@chakra-ui/react';
 
 // issue#106
@@ -23,6 +20,7 @@ const Logo = dynamic(() => import('@/components/common/Logo'));*/
 import FaiconDiv from '@/components/common/faicon-div';
 import LinkChakra from '@/components/common/link-chakra';
 import SiteLogo from '@/components/common/SiteLogo';
+import ColorSwitch from '../../color-switch';
 
 interface Props {
   preview: boolean;
@@ -30,7 +28,6 @@ interface Props {
 }
 
 export default function DrawerLeft({ children }: Props) {
-  const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef(null);
 
@@ -58,20 +55,7 @@ export default function DrawerLeft({ children }: Props) {
             <DrawerCloseButton />
             <DrawerHeader>
               <SiteLogo />
-              <HStack my={4}>
-                <Box>
-                  {colorMode === 'light' ? (
-                    <FaiconDiv icon={['fas', 'sun']} />
-                  ) : (
-                    <FaiconDiv icon={['fas', 'moon']} />
-                  )}
-                </Box>
-                <Switch
-                  aria-label="カラーモードを切り替える"
-                  isChecked={colorMode == 'dark'}
-                  onChange={toggleColorMode}
-                />
-              </HStack>
+              <ColorSwitch />
             </DrawerHeader>
             <DrawerBody overflow-y="scroll">
               <Button
@@ -87,7 +71,7 @@ export default function DrawerLeft({ children }: Props) {
               {children}
             </DrawerBody>
             <DrawerFooter mt={6}>
-              <Button w="full" as={LinkChakra} colorScheme="blackAlpha" href="/contact/">
+              <Button w="full" as={LinkChakra} my={8} colorScheme="blue" href="/contact/">
                 お問い合わせ
               </Button>
             </DrawerFooter>
