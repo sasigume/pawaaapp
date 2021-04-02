@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic';
 import { ReactNode, useRef } from 'react';
 
 import {
@@ -13,6 +12,8 @@ import {
   DrawerContent,
   DrawerCloseButton,
   DrawerHeader,
+  Switch,
+  HStack,
 } from '@chakra-ui/react';
 
 // issue#106
@@ -57,6 +58,20 @@ export default function DrawerLeft({ children }: Props) {
             <DrawerCloseButton />
             <DrawerHeader>
               <SiteLogo />
+              <HStack my={4}>
+                <Box>
+                  {colorMode === 'light' ? (
+                    <FaiconDiv icon={['fas', 'sun']} />
+                  ) : (
+                    <FaiconDiv icon={['fas', 'moon']} />
+                  )}
+                </Box>
+                <Switch
+                  aria-label="カラーモードを切り替える"
+                  isChecked={colorMode == 'dark'}
+                  onChange={toggleColorMode}
+                />
+              </HStack>
             </DrawerHeader>
             <DrawerBody overflow-y="scroll">
               <Button

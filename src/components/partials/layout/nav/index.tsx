@@ -39,22 +39,8 @@ export default function Nav({ preview, drawerLeftChildren, posts }: NavProps) {
             </>
           </DrawerLeft>
         </Box>
-        <SiteLogo mr={6} display={{ base: 'none', sm: 'inherit' }} />
+        <SiteLogo mr={6} display={{ base: 'none', sm: 'inline-block' }} />
         <Spacer />
-        <HStack mx={4}>
-          <Box>
-            {colorMode === 'light' ? (
-              <FaiconDiv icon={['fas', 'sun']} />
-            ) : (
-              <FaiconDiv icon={['fas', 'moon']} />
-            )}
-          </Box>
-          <Switch
-            aria-label="カラーモードを切り替える"
-            isChecked={colorMode == 'dark'}
-            onChange={toggleColorMode}
-          />
-        </HStack>
 
         <Box pl={4}>
           <SignIn />

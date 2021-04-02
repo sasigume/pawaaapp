@@ -4,7 +4,7 @@ import Image from 'next/image';
 import LinkChakra from './link-chakra';
 
 const SiteLogo: React.FC<BoxProps> = (props) => (
-  <Box {...props} display="inline-block">
+  <Box {...props}>
     <LinkChakra fontWeight="bold" href="/">
       <HStack>
         <Box mt={-1} mr={2} w={10} h={10}>
