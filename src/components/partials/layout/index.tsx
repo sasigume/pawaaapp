@@ -59,7 +59,12 @@ export default function Layout({
         maxW="100vw"
         overflow="hidden"
       >
-        <Nav posts={drawerPosts ?? []} preview={preview} drawerLeftChildren={drawerLeftChildren} />
+        <Nav
+          colorMode={colorMode}
+          posts={drawerPosts ?? []}
+          preview={preview}
+          drawerLeftChildren={drawerLeftChildren}
+        />
 
         <Box pt={16}>
           <Flex>
