@@ -79,6 +79,7 @@ export default function PostPage({
           }
           hideAdsense={firstPost.hideAdsense}
           drawerPosts={drawerPosts ?? []}
+          text={firstPost.title}
         >
           <Head>
             <link

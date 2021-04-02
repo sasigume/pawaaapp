@@ -23,6 +23,7 @@ interface LayoutProps {
   leftFixedChildren?: ReactNode;
   hideAdsense?: boolean;
   drawerPosts?: Post[];
+  text?: string;
 }
 
 export default function Layout({
@@ -34,6 +35,7 @@ export default function Layout({
   leftFixedChildren,
   hideAdsense,
   drawerPosts,
+  text,
 }: LayoutProps) {
   if (hideAdsense) {
     console.info(`Layout: hiding adsense`);
@@ -64,6 +66,7 @@ export default function Layout({
           posts={drawerPosts ?? []}
           preview={preview}
           drawerLeftChildren={drawerLeftChildren}
+          text={text}
         />
 
         <Box pt={16}>
