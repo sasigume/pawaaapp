@@ -7,6 +7,7 @@ import Meta from './meta';
 import Nav from './nav';
 import { Post } from '@/models/contentful/Post';
 import PostList from '../post';
+import ColorSwitch from './color-switch';
 const LayoutFooter = dynamic(() => import('./layout-footer'));
 
 interface LayoutProps {
@@ -78,6 +79,7 @@ export default function Layout({
               shadow="lg"
             >
               <Box w="full">
+                <ColorSwitch />
                 {leftFixedChildren}
                 {drawerPosts && drawerPosts.length > 0 && (
                   <Box mt={8}>
@@ -85,7 +87,7 @@ export default function Layout({
                   </Box>
                 )}
 
-                <Button w="full" mt={8} as={LinkChakra} colorScheme="blackAlpha" href="/contact/">
+                <Button w="full" my={8} colorScheme="blue" as={LinkChakra} href="/contact/">
                   お問い合わせ
                 </Button>
               </Box>
