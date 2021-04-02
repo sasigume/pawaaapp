@@ -42,11 +42,17 @@ const SignIn = () => {
           </MenuButton>
           {isOpen && (
             <MenuList p={3}>
-              <Flex>
-                <Box mb={3} maxW={40} isTruncated overflow="hidden">
-                  {user && user.name}
-                </Box>
-                {`さん`}
+              <Flex mb={3}>
+                {user ? (
+                  <>
+                    <Box maxW={40} isTruncated overflow="hidden">
+                      {user.name}
+                    </Box>
+                    {`さん`}
+                  </>
+                ) : (
+                  <>{`未ログイン`}</>
+                )}
               </Flex>
               {user && (
                 <MenuItem mb={2} as={Button} colorScheme="cyan" onClick={gotomypage}>

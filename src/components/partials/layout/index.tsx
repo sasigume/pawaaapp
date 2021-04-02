@@ -7,6 +7,7 @@ import Meta from './meta';
 import Nav from './nav';
 import { Post } from '@/models/contentful/Post';
 import PostList from '../post';
+import ColorSwitch from './color-switch';
 const LayoutFooter = dynamic(() => import('./layout-footer'));
 
 interface LayoutProps {
@@ -22,6 +23,7 @@ interface LayoutProps {
   leftFixedChildren?: ReactNode;
   hideAdsense?: boolean;
   drawerPosts?: Post[];
+  text?: string;
 }
 
 export default function Layout({
@@ -33,6 +35,7 @@ export default function Layout({
   leftFixedChildren,
   hideAdsense,
   drawerPosts,
+  text,
 }: LayoutProps) {
   if (hideAdsense) {
     console.info(`Layout: hiding adsense`);
@@ -58,7 +61,13 @@ export default function Layout({
         maxW="100vw"
         overflow="hidden"
       >
-        <Nav posts={drawerPosts ?? []} preview={preview} drawerLeftChildren={drawerLeftChildren} />
+        <Nav
+          colorMode={colorMode}
+          posts={drawerPosts ?? []}
+          preview={preview}
+          drawerLeftChildren={drawerLeftChildren}
+          text={text}
+        />
 
         <Box pt={16}>
           <Flex>
@@ -78,6 +87,7 @@ export default function Layout({
               shadow="lg"
             >
               <Box w="full">
+                <ColorSwitch />
                 {leftFixedChildren}
                 {drawerPosts && drawerPosts.length > 0 && (
                   <Box mt={8}>
@@ -85,7 +95,7 @@ export default function Layout({
                   </Box>
                 )}
 
-                <Button w="full" mt={8} as={LinkChakra} colorScheme="blackAlpha" href="/contact/">
+                <Button w="full" my={8} colorScheme="blue" as={LinkChakra} href="/contact/">
                   お問い合わせ
                 </Button>
               </Box>
