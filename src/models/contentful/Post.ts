@@ -62,7 +62,7 @@ export interface Post extends PostForRss {
   hideAdsense?: boolean;
 }
 export const POST_GRAPHQL_FIELDS =
-  postInfoQuery +
+  POSTFORRSS_GRAPHQL_FIELDS +
   `
 heroImage {
   url

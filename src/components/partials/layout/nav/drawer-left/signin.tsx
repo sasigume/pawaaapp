@@ -1,6 +1,6 @@
 import { useAuthentication } from '@/hooks/authentication';
 import firebaseApi from '@/lib/firebase';
-import { Box, Button, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
+import { Box, Button, Menu, MenuButton, MenuList, MenuItem, Flex } from '@chakra-ui/react';
 import Image from 'next/image';
 import FaiconDiv from '@/components/common/faicon-div';
 import { useRouter } from 'next/router';
@@ -36,10 +36,18 @@ const SignIn = () => {
               )
             }
           >
-            {user ? user.name : 'ログイン'}
+            <Box textAlign="left" pl={1} isTruncated minW={16} maxW={24} overflow="hidden">
+              {user ? user.name : 'ログイン'}
+            </Box>
           </MenuButton>
           {isOpen && (
             <MenuList p={3}>
+              <Flex>
+                <Box mb={3} maxW={40} isTruncated overflow="hidden">
+                  {user && user.name}
+                </Box>
+                {`さん`}
+              </Flex>
               {user && (
                 <MenuItem mb={2} as={Button} colorScheme="cyan" onClick={gotomypage}>
                   マイページ
