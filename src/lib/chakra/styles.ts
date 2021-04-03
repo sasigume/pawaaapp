@@ -16,8 +16,6 @@ const customBreakPoints = createBreakpoints({
   '2xl': '96em',
 });
 
-console.info(`Loaded custom breakpoints: ${JSON.stringify(customBreakPoints)}`);
-
 const EXTEND_CHAKRA = {
   breakPoints: customBreakPoints,
   textStyles: {
