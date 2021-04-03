@@ -13,6 +13,10 @@ export default function Custom500() {
         にご報告いただければ助かります。
       </p>
       <p>
+        もしかして: プレビュー用Cookieが消去されていないのかもしれません。
+        <a href="/api/preview?exit=yes">こちら</a>をクリックしてみてください。
+      </p>
+      <p>
         {' '}
         v{repoV} / Last commit: <a href={VERCEL_LAST_COMMIT}>{VERCEL_LAST_COMMIT_MESSAGE}</a>
       </p>

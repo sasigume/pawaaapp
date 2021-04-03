@@ -32,9 +32,10 @@ async function generateFeedXml() {
 
 export const getServerSideProps = async ({ res }: GetServerSidePropsContext) => {
   const xml = await generateFeedXml();
+  const revalidate = parseInt(process.env.REVALIDATE_RSSSITEMAP ?? '14400');
 
   res.statusCode = 200;
-  res.setHeader('Cache-Control', 's-maxage=14400, stale-while-revalidate');
+  res.setHeader('Cache-Control', `s-maxage=${revalidate}, stale-while-revalidate`);
   res.setHeader('Content-Type', 'text/xml');
   res.end(xml);
 
