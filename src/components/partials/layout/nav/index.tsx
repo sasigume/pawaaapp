@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import dynamic from 'next/dynamic';
-import { Box, ColorMode, Container, HStack, Spacer } from '@chakra-ui/react';
+import { Box, Button, ColorMode, Container, HStack, Spacer } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 import DrawerLeft from './drawer-left';
 import SiteLogo from '@/components/common/SiteLogo';
 import PostList from '../../post';
 import { Post } from '@/models/contentful/Post';
-import { SITE_DESC } from '@/lib/constants';
+import LinkChakra from '@/components/common/link-chakra';
+import FaiconDiv from '@/components/common/faicon-div';
+import { CREATOR_ID } from '@/lib/constants';
+import { NAV_HEIGHT } from '@/lib/chakra/styles';
 const SignIn = dynamic(() => import('./drawer-left/signin'), { ssr: false });
 
 interface NavProps {
@@ -14,8 +17,6 @@ interface NavProps {
   drawerLeftChildren?: ReactNode;
   posts?: Post[];
   colorMode: ColorMode;
-  text?: string;
-  h: number;
   maxW: number;
 }
 
@@ -82,7 +83,7 @@ export default class Nav extends Component<NavProps, { prevScrollpos: number; vi
           zIndex={30}
           bg={this.props.colorMode == 'light' ? 'white' : 'blackAlpha.800'}
           w="100vw"
-          h={`${this.props.h}px`}
+          h={`${NAV_HEIGHT}px`}
           as="nav"
           py={2}
           shadow="lg"
@@ -104,19 +105,26 @@ export default class Nav extends Component<NavProps, { prevScrollpos: number; vi
                 </DrawerLeft>
               </Box>
               <SiteLogo display={{ base: 'none', md: 'inline-block' }} />
-              <Box
-                overflow="hidden"
-                isTruncated
-                fontWeight="bold"
-                display={{ base: 'none', md: 'block' }}
-                borderLeftWidth={2}
-                borderLeftColor="gray.400"
-                style={{ transform: 'skew(-10deg)' }}
-                pl={4}
-              >
-                {this.props.text ?? SITE_DESC}
-              </Box>
+
               <Spacer />
+
+              <HStack display={{ base: 'none', md: 'inline-block' }}>
+                <Button
+                  isExternal
+                  leftIcon={<FaiconDiv icon={['fab', 'twitter']} />}
+                  as={LinkChakra}
+                  href={`https://twitter.com/${CREATOR_ID}`}
+                >
+                  Twitter
+                </Button>
+                <Button
+                  leftIcon={<FaiconDiv icon={['fas', 'book']} />}
+                  as={LinkChakra}
+                  href="/eula/"
+                >
+                  利用規約
+                </Button>
+              </HStack>
 
               <Box pl={4}>
                 <SignIn />
