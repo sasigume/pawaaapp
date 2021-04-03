@@ -56,6 +56,11 @@ export default function DrawerLeft({ children }: Props) {
               <ColorSwitch />
             </DrawerHeader>
             <DrawerBody>{children}</DrawerBody>
+            <DrawerFooter>
+              <Button leftIcon={<FaiconDiv icon={['fas', 'book']} />} as={LinkChakra} href="/eula/">
+                利用規約
+              </Button>
+            </DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>

@@ -4,6 +4,7 @@ import LinkChakra from '@/components/common/link-chakra';
 import PostList from '../../post';
 import ColorSwitch from '../color-switch';
 import { Post } from '@/models/contentful/Post';
+import { NAV_HEIGHT } from '@/lib/chakra/styles';
 
 interface LeftStickyProps {
   w: number;
@@ -14,7 +15,7 @@ interface LeftStickyProps {
 const Aside = ({ w, asideChildren, drawerPosts }: LeftStickyProps) => {
   return (
     <Box
-      top={0}
+      top={`${NAV_HEIGHT}px`}
       bottom={0}
       left={0}
       position="sticky"
@@ -28,7 +29,7 @@ const Aside = ({ w, asideChildren, drawerPosts }: LeftStickyProps) => {
       <Box w="full" h="full" overflowY="scroll" p={3} className="noScrollBar">
         <Box w="full">
           <ColorSwitch />
-          {asideChildren}
+          <Box mt={6}>{asideChildren}</Box>
           {drawerPosts && drawerPosts.length > 0 && (
             <Box mt={8}>
               <PostList mode="drawer" posts={drawerPosts} />

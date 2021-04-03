@@ -1,6 +1,7 @@
 import { extendTheme } from '@chakra-ui/react';
 import { createBreakpoints } from '@chakra-ui/theme-tools';
 
+export const NAV_HEIGHT = 56;
 export const ASIDE_WITDH = 300;
 export const MAIN_WIDTH = 650;
 export const LAYOUT_PADDING = 20;

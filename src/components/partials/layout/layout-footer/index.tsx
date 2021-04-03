@@ -57,7 +57,7 @@ const LayoutFooter = ({ revalidate, maxW }: FooterProps) => {
               </Button>
             </Flex>
           </Box>
-          <Box>
+          <Box textAlign="right">
             <Box>
               Articles/images: &copy; 2021{` `}
               <LinkChakra href={`https://twitter.com/${CREATOR_ID}`}>{CREATOR_ID}</LinkChakra>

@@ -1,13 +1,20 @@
 import dynamic from 'next/dynamic';
 
 import { ReactNode } from 'react';
-import { Flex, Box, Button, useColorMode } from '@chakra-ui/react';
+import { Flex, Box, Button, useColorMode, Center } from '@chakra-ui/react';
 import LinkChakra from '@/components/common/link-chakra';
 import Meta from './meta';
 import Nav from './nav';
 import { Post } from '@/models/contentful/Post';
 import Aside from './aside';
-import { ASIDE_WITDH, LAYOUT_MAXW, LAYOUT_PADDING, MAIN_WIDTH } from '@/lib/chakra/styles';
+import {
+  ASIDE_WITDH,
+  LAYOUT_MAXW,
+  LAYOUT_PADDING,
+  MAIN_WIDTH,
+  NAV_HEIGHT,
+} from '@/lib/chakra/styles';
+import { SITE_DESC } from '@/lib/constants';
 const LayoutFooter = dynamic(() => import('./layout-footer'));
 
 interface LayoutProps {
@@ -23,7 +30,6 @@ interface LayoutProps {
   asideChildren?: ReactNode;
   hideAdsense?: boolean;
   drawerPosts?: Post[];
-  text?: string;
 }
 
 export default function Layout({
@@ -35,14 +41,11 @@ export default function Layout({
   asideChildren,
   hideAdsense,
   drawerPosts,
-  text,
 }: LayoutProps) {
   if (hideAdsense) {
     console.info(`Layout: hiding adsense`);
   }
   const { colorMode } = useColorMode();
-
-  const navHeight = 56;
 
   return (
     <>
@@ -64,15 +67,13 @@ export default function Layout({
       >
         <Nav
           maxW={LAYOUT_MAXW}
-          h={navHeight}
           colorMode={colorMode}
           posts={drawerPosts ?? []}
           preview={preview}
           drawerLeftChildren={drawerLeftChildren}
-          text={text}
         />
 
-        <Box pt={`${navHeight}px`}>
+        <Box pt={`${NAV_HEIGHT}px`}>
           <Flex
             mx="auto"
             maxWidth={{
