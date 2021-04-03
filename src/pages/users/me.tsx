@@ -33,7 +33,7 @@ export default function UsersMe() {
   };
 
   return (
-    <Layout text="マイページ" preview={false} meta={{ title: 'マイページ', desc: 'マイページ' }}>
+    <Layout preview={false} meta={{ title: 'マイページ', desc: 'マイページ' }}>
       {user ? (
         <>
           <Box>

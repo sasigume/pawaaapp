@@ -6,7 +6,7 @@ import {
 } from '@/lib/contentful/graphql';
 import { Post, PostForList, PostOnlySlug } from '@/models/contentful/Post';
 import Layout from '@/components/partials/layout';
-import { Box, Divider } from '@chakra-ui/react';
+import { Box, Divider, Heading } from '@chakra-ui/react';
 
 //import { PostComment } from '@/models/firebase/PostComment';
 import { SITE_URL } from '@/lib/constants';
@@ -44,7 +44,7 @@ export default function PostPage({
   const router = useRouter();
 
   const Toc = (post: Post) => (
-    <Box className={tocStyles['toc']}>
+    <Box my={8} className={tocStyles['toc']}>
       <ReactMarkdownHeading markdown={post.body} hyperlink />
     </Box>
   );
@@ -80,7 +80,6 @@ export default function PostPage({
           }
           hideAdsense={firstPost.hideAdsense}
           drawerPosts={drawerPosts ?? []}
-          text={firstPost.title}
         >
           <Head>
             <link
