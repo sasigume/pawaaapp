@@ -1,12 +1,11 @@
 import ErrorPage from 'next/error';
 import { Entity } from '@/models/nest/Entity';
 import Layout from '@/components/partials/layout';
-import { Box, Center, Container, Heading } from '@chakra-ui/react';
+import { Box, Center, Heading } from '@chakra-ui/react';
 
 import { Platform } from '@/models/contentful/Platform';
 import Head from 'next/head';
 
-import BreakpointContainer from '@/components/common/breakpoint-container';
 import EntityList from '@/components/partials/entity';
 import { useRouter } from 'next/router';
 import { getAllEntities, getEntity } from '@/lib/nest/entities';
@@ -48,20 +47,16 @@ export default function EntityPage({ preview, firstEntity, revalEnv }: EntityPag
             />
           </Head>
           <Box py={20}>
-            <Container px={0} maxW="container.lg">
-              <BreakpointContainer breakpointName="md" actualWidth="650px">
-                {preview && <Box>デバッグ: プレビューON</Box>}
+            {preview && <Box>デバッグ: プレビューON</Box>}
 
-                {firstEntity && (
-                  <>
-                    <Center mb={6}>
-                      <Heading as="h1">{firstEntity.nameJapanese ?? firstEntity.name}</Heading>
-                    </Center>
-                    <EntityList mode="single" entities={[firstEntity]} expand={preview ?? false} />
-                  </>
-                )}
-              </BreakpointContainer>
-            </Container>
+            {firstEntity && (
+              <>
+                <Center mb={6}>
+                  <Heading as="h1">{firstEntity.nameJapanese ?? firstEntity.name}</Heading>
+                </Center>
+                <EntityList mode="single" entities={[firstEntity]} expand={preview ?? false} />
+              </>
+            )}
           </Box>
         </Layout>
       )}

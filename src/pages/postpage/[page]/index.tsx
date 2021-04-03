@@ -13,7 +13,7 @@ import { Post } from '@/models/contentful/Post';
 const BreakpointContainer = dynamic(() => import('@/components/common/breakpoint-container'));
 const Pagination = dynamic(() => import('@/components/common/pagenation'));*/
 import PostList from '@/components/partials/post';
-import BreakpointContainer from '@/components/common/breakpoint-container';
+
 import Pagination from '@/components/common/pagenation';
 
 interface IndexProps {
@@ -37,23 +37,21 @@ const PostPage = ({ posts, totalCount, currentPage, environment, revalEnv }: Ind
           preview={environment}
           meta={{ title: `記事一覧 ${currentPage}ページ目 | ${SITE_NAME}`, desc: SITE_DESC }}
         >
-          <BreakpointContainer>
-            {posts && (
-              <Box mb={10}>
-                <VStack spacing={4} mb={8}>
-                  <Heading as="h1" textStyle="h1">
-                    記事一覧 {currentPage}ページ目
-                  </Heading>
-                  <Box rounded="lg" my={4} p={3} bg="gray.200">
-                    注意: このページは{revalEnv / 60}分ごとにしか更新されません。
-                  </Box>
-                  <Divider />
-                </VStack>
-                {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
-                <Pagination totalCount={totalCount} />
-              </Box>
-            )}
-          </BreakpointContainer>
+          {posts && (
+            <Box mb={10}>
+              <VStack spacing={4} mb={8}>
+                <Heading as="h1" textStyle="h1">
+                  記事一覧 {currentPage}ページ目
+                </Heading>
+                <Box rounded="lg" my={4} p={3} bg="gray.200">
+                  注意: このページは{revalEnv / 60}分ごとにしか更新されません。
+                </Box>
+                <Divider />
+              </VStack>
+              {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
+              <Pagination totalCount={totalCount} />
+            </Box>
+          )}
         </Layout>
       )}
     </>

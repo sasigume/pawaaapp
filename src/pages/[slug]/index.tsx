@@ -13,7 +13,6 @@ import { SITE_URL } from '@/lib/constants';
 
 import Head from 'next/head';
 
-import BreakpointContainer from '@/components/common/breakpoint-container';
 import PostList from '@/components/partials/post';
 import { useRouter } from 'next/router';
 import ReactMarkdownHeading from 'react-markdown-heading';
@@ -21,6 +20,7 @@ import FukidashiShare from '@/components/common/fukidashi-share';
 //import PostCommentList from '@/components/partials/post-comment/post-comment-list';
 import tocStyles from '../../styles/markdown-toc-styles.module.css';
 import { SinglePostComponent } from '@/components/partials/post/single-post';
+import Adsense from '@/components/common/adsense';
 
 interface PostPageProps {
   firstPost: Post;
@@ -67,7 +67,7 @@ export default function PostPage({
           revalEnv={revalEnv}
           preview={preview}
           drawerLeftChildren={Toc(firstPost)}
-          leftFixedChildren={
+          asideChildren={
             <Box>
               <FukidashiShare
                 tweetText={firstPost.title}
@@ -75,6 +75,7 @@ export default function PostPage({
                 //commentCount={postComments.length}
               />
               {Toc(firstPost)}
+              {!firstPost.hideAdsense && <Adsense slot={'8321176059'} />}
             </Box>
           }
           hideAdsense={firstPost.hideAdsense}
@@ -88,19 +89,18 @@ export default function PostPage({
             />
           </Head>
           <Box>
-            <BreakpointContainer breakpointName="md" actualWidth="650px">
-              {preview && <Box>デバッグ: プレビューON</Box>}
+            {preview && <Box>デバッグ: プレビューON</Box>}
 
-              {firstPost && <SinglePostComponent post={firstPost} tweetCount={tweetCount ?? 0} />}
+            {firstPost && <SinglePostComponent post={firstPost} tweetCount={tweetCount ?? 0} />}
 
-              <Divider my={8} borderColor="gray.400" />
-              {morePosts && morePosts.length > 0 && (
-                <Box my={10}>
-                  <PostList mode="more" posts={morePosts} />
-                </Box>
-              )}
+            <Divider my={8} borderColor="gray.400" />
+            {morePosts && morePosts.length > 0 && (
+              <Box my={10}>
+                <PostList mode="more" posts={morePosts} />
+              </Box>
+            )}
 
-              {/* 2021-03-26 Disabled
+            {/* 2021-03-26 Disabled
                 
                 <>
                 <Divider my={8} borderColor="gray.400" />
@@ -114,7 +114,6 @@ export default function PostPage({
                 </>
                 
                 */}
-            </BreakpointContainer>
           </Box>
         </Layout>
       )}
@@ -148,7 +147,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
   let tweetCount;
   tweetsJson.data ? (tweetCount = tweetsJson.meta.result_count) : (tweetCount = null);
 
-  const drawerPosts = (await getSeries('popular')) ?? null;
+  //const drawerPosts = (await getSeries('popular')) ?? null;
 
   const revalEnv = parseInt(process.env.REVALIDATE_SINGLE ?? '3600');
   return {
@@ -160,7 +159,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
       tweetCount: tweetCount ?? null,
       revalEnv: revalEnv,
       hideAdsense: posts.post.hideAdsense ?? false,
-      drawerPosts: drawerPosts.postsCollection.items ?? null,
+      //drawerPosts: drawerPosts.postsCollection.items ?? null,
     },
     revalidate: revalEnv,
   };
