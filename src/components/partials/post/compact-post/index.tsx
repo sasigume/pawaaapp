@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { Badge, Box, Center, Flex } from '@chakra-ui/react';
+import { Badge, Box, Center, Flex, useColorMode } from '@chakra-ui/react';
 import { PostForList } from '@/models/contentful/Post';
 
 import LinkChakra from '@/components/common/link-chakra';
@@ -9,9 +9,17 @@ interface Props {
   mode?: 'archive' | 'more' | 'drawer' | undefined;
 }
 export function CompactPost({ post, mode }: Props) {
+  const { colorMode } = useColorMode();
   return (
     <LinkChakra href={`/${post.slug}`}>
-      <Flex rounded="xl" shadow="lg" p={3} alignItems="center" area-label={post.title}>
+      <Flex
+        bg={colorMode == 'light' ? 'white' : 'gray.900'}
+        rounded="xl"
+        shadow="lg"
+        p={3}
+        alignItems="center"
+        area-label={post.title}
+      >
         <Box flexGrow={1}>
           <Center
             rounded="lg"

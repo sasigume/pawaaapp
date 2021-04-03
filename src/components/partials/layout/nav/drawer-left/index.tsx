@@ -57,7 +57,7 @@ export default function DrawerLeft({ children }: Props) {
               <SiteLogo />
               <ColorSwitch />
             </DrawerHeader>
-            <DrawerBody overflow-y="scroll">
+            <DrawerBody>
               <Button
                 mb={6}
                 textAlign="center"
@@ -69,12 +69,10 @@ export default function DrawerLeft({ children }: Props) {
                 エンティティあつめ
               </Button>
               {children}
-            </DrawerBody>
-            <DrawerFooter mt={6}>
               <Button w="full" as={LinkChakra} my={8} colorScheme="blue" href="/contact/">
                 お問い合わせ
               </Button>
-            </DrawerFooter>
+            </DrawerBody>
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>
