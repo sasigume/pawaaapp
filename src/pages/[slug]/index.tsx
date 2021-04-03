@@ -1,26 +1,21 @@
+import { SinglePostComponent } from '@/components/partials/post/single-post';
+import dynamic from 'next/dynamic';
 import ErrorPage from 'next/error';
-import {
-  getPostAndMorePosts,
-  getAllPostsWithSlugOnlySlug,
-  getSeries,
-} from '@/lib/contentful/graphql';
+import { getPostAndMorePosts, getAllPostsWithSlugOnlySlug } from '@/lib/contentful/graphql';
 import { Post, PostForList, PostOnlySlug } from '@/models/contentful/Post';
 import Layout from '@/components/partials/layout';
-import { Box, Divider, Heading } from '@chakra-ui/react';
-
+import { Box, Divider } from '@chakra-ui/react';
 //import { PostComment } from '@/models/firebase/PostComment';
 import { SITE_URL } from '@/lib/constants';
-
 import Head from 'next/head';
-
-import PostList from '@/components/partials/post';
 import { useRouter } from 'next/router';
-import ReactMarkdownHeading from 'react-markdown-heading';
-import FukidashiShare from '@/components/common/fukidashi-share';
 //import PostCommentList from '@/components/partials/post-comment/post-comment-list';
+
+const PostList = dynamic(() => import('@/components/partials/post'));
+const ReactMarkdownHeading = dynamic(() => import('react-markdown-heading'));
+const FukidashiShare = dynamic(() => import('@/components/common/fukidashi-share'));
+const Adsense = dynamic(() => import('@/components/common/adsense'), { ssr: false });
 import tocStyles from '../../styles/markdown-toc-styles.module.css';
-import { SinglePostComponent } from '@/components/partials/post/single-post';
-import Adsense from '@/components/common/adsense';
 
 interface PostPageProps {
   firstPost: Post;
@@ -35,7 +30,7 @@ interface PostPageProps {
 export default function PostPage({
   firstPost,
   //postComments,
-  //morePosts,
+  morePosts,
   preview,
   tweetCount,
   revalEnv,
@@ -93,12 +88,11 @@ export default function PostPage({
             {firstPost && <SinglePostComponent post={firstPost} tweetCount={tweetCount ?? 0} />}
 
             <Divider my={8} borderColor="gray.400" />
-            {/* 2021-04-03 disabled
-            morePosts && morePosts.length > 0 && (
+            {morePosts && morePosts.length > 0 && (
               <Box my={10}>
                 <PostList mode="more" posts={morePosts} />
               </Box>
-            )*/}
+            )}
 
             {/* 2021-03-26 Disabled
                 
@@ -155,7 +149,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
       preview: preview ?? false,
       firstPost: posts.post ?? null,
       //postComments: postComments ?? null,
-      //morePosts: posts.morePosts ?? null,
+      morePosts: posts.morePosts ?? null,
       tweetCount: tweetCount ?? null,
       revalEnv: revalEnv,
       hideAdsense: posts.post.hideAdsense ?? false,
