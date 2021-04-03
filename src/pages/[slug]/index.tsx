@@ -150,7 +150,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
 
   const drawerPosts = (await getSeries('popular')) ?? null;
 
-  const revalEnv = parseInt(process.env.REVALIDATE ?? '1800');
+  const revalEnv = parseInt(process.env.REVALIDATE_SINGLE ?? '3600');
   return {
     props: {
       preview: preview ?? false,
