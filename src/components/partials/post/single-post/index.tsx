@@ -1,8 +1,7 @@
-import dynamic from 'next/dynamic';
-import { Badge, Box, Button, Divider } from '@chakra-ui/react';
+import { Box, Button, Divider } from '@chakra-ui/react';
 import { Post } from '@/models/contentful/Post';
 
-const Adsense = dynamic(() => import('@/components/common/adsense'));
+import Adsense from '@/components/common/adsense';
 import LinkChakra from '@/components/common/link-chakra';
 import MarkdownRender from '@/components/common/MarkdownRender';
 import FaiconDiv from '@/components/common/faicon-div';

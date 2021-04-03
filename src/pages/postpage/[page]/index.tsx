@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic';
 import ErrorPage from 'next/error';
 
 import { Box, Divider, Heading, VStack } from '@chakra-ui/react';

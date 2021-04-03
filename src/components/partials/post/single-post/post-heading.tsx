@@ -1,10 +1,9 @@
-import dynamic from 'next/dynamic';
 import dayjs from 'dayjs';
-import { Badge, Box, Flex, Spacer, Stack } from '@chakra-ui/react';
+import { Badge, Box, Flex, Spacer } from '@chakra-ui/react';
 import { Post } from '@/models/contentful/Post';
 
-const PlatformList = dynamic(() => import('../common/platform-list'));
-const PersonList = dynamic(() => import('../common/person-list'));
+import PlatformList from '../common/platform-list';
+import PersonList from '../common/person-list';
 import LinkChakra from '@/components/common/link-chakra';
 import Image from 'next/image';
 import FukidashiShare from '@/components/common/fukidashi-share';
