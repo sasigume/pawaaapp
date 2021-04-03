@@ -15,8 +15,8 @@ const Pagination = ({ totalCount }: Props) => {
     [...Array(end - start + 1)].map((_, i) => start + i);
 
   return (
-    <Box my={8} w="full" overflowX="scroll">
-      <Stack direction="row">
+    <Box sx={{ '.noScrollBar::-webkit-scrollbar': { display: 'none' } }}>
+      <Stack direction="row" className="noScrollBar" my={8} w="full" overflowX="scroll">
         {range(1, Math.ceil(totalCount / PER_PAGE)).map((number, index) => (
           <LinkChakra key={index} href={`/postpage/${number}`}>
             <Button colorScheme="blue">{number}</Button>
