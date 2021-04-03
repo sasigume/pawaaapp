@@ -35,7 +35,7 @@ interface PostPageProps {
 export default function PostPage({
   firstPost,
   //postComments,
-  morePosts,
+  //morePosts,
   preview,
   tweetCount,
   revalEnv,
@@ -93,11 +93,12 @@ export default function PostPage({
             {firstPost && <SinglePostComponent post={firstPost} tweetCount={tweetCount ?? 0} />}
 
             <Divider my={8} borderColor="gray.400" />
-            {morePosts && morePosts.length > 0 && (
+            {/* 2021-04-03 disabled
+            morePosts && morePosts.length > 0 && (
               <Box my={10}>
                 <PostList mode="more" posts={morePosts} />
               </Box>
-            )}
+            )*/}
 
             {/* 2021-03-26 Disabled
                 
@@ -154,7 +155,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
       preview: preview ?? false,
       firstPost: posts.post ?? null,
       //postComments: postComments ?? null,
-      morePosts: posts.morePosts ?? null,
+      //morePosts: posts.morePosts ?? null,
       tweetCount: tweetCount ?? null,
       revalEnv: revalEnv,
       hideAdsense: posts.post.hideAdsense ?? false,
