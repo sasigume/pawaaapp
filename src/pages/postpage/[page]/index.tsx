@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import ErrorPage from 'next/error';
 
-import { Box, Divider, VStack } from '@chakra-ui/react';
+import { Box, Divider, Heading, VStack } from '@chakra-ui/react';
 import Layout from '@/components/partials/layout';
 import { getAllPostsByRange, getAllPostsWithSlugOnlySlug } from '@/lib/contentful/graphql';
 
@@ -22,9 +22,10 @@ interface IndexProps {
   currentPage: number;
   tweetCount: number;
   environment: boolean;
+  revalEnv: number;
 }
 
-const PostPage = ({ posts, totalCount, currentPage, environment, tweetCount }: IndexProps) => {
+const PostPage = ({ posts, totalCount, currentPage, environment, revalEnv }: IndexProps) => {
   return (
     <>
       {!posts ? (
@@ -34,13 +35,18 @@ const PostPage = ({ posts, totalCount, currentPage, environment, tweetCount }: I
       ) : (
         <Layout
           preview={environment}
-          meta={{ title: `${currentPage}ページ目 | ${SITE_NAME}`, desc: SITE_DESC }}
+          meta={{ title: `記事一覧 ${currentPage}ページ目 | ${SITE_NAME}`, desc: SITE_DESC }}
         >
           <BreakpointContainer>
             {posts && (
               <Box mb={10}>
-                <VStack textStyle="h1" spacing={4} mb={8}>
-                  <h1>{currentPage}ページ目</h1>
+                <VStack spacing={4} mb={8}>
+                  <Heading as="h1" textStyle="h1">
+                    記事一覧 {currentPage}ページ目
+                  </Heading>
+                  <Box rounded="lg" my={4} p={3} bg="gray.200">
+                    注意: このページは{revalEnv / 60}分ごとにしか更新されません。
+                  </Box>
                   <Divider />
                 </VStack>
                 {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
@@ -70,7 +76,7 @@ export async function getStaticProps({ preview = false, params }: GSProps) {
   const allPostsForIndex = (await getAllPostsByRange(false, skipAmount, PER_PAGE)) || [];
   const allPostsPublished = (await getAllPostsWithSlugOnlySlug(false, TOTAL_LIMIT)) || [];
 
-  const revalEnv = parseInt(process.env.REVALIDATE ?? '1800');
+  const revalEnv = parseInt(process.env.REVALIDATE_ARCHIVE ?? '14400');
 
   return {
     props: {
@@ -78,6 +84,7 @@ export async function getStaticProps({ preview = false, params }: GSProps) {
       totalCount: allPostsPublished.length ?? null,
       currentPage: params.page ?? 1,
       preview: preview ?? null,
+      revalEnv: revalEnv,
     },
     revalidate: revalEnv,
   };

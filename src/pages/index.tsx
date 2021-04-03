@@ -1,5 +1,5 @@
 import ErrorPage from 'next/error';
-import { Box, Divider, useColorMode, VStack } from '@chakra-ui/react';
+import { Box, Button, Divider, VStack } from '@chakra-ui/react';
 import {
   getAllPostsByRange,
   getAllPostsWithSlugOnlySlug,
@@ -12,13 +12,9 @@ import publishAdsTxt from '@/lib/adstxt';
 import publishRobotsTxt from '@/lib/robotstxt';
 import Layout from '@/components/partials/layout';
 
-// issue #106
-/*const Pagination = dynamic(() => import('@/components/common/pagenation'));
-const BreakpointContainer = dynamic(() => import('@/components/common/breakpoint-container'));
-const PostList = dynamic(() => import('@/components/partials/post'));*/
-import Pagination from '@/components/common/pagenation';
 import BreakpointContainer from '@/components/common/breakpoint-container';
 import PostList from '@/components/partials/post';
+import LinkChakra from '@/components/common/link-chakra';
 
 interface IndexProps {
   posts: Post[];
@@ -49,7 +45,9 @@ const Index = ({ posts, totalCount, environment, drawerPosts }: IndexProps) => {
                   <Divider />
                 </VStack>
                 {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
-                <Pagination totalCount={totalCount} />
+                <Button mt={6} w="full" as={LinkChakra} href="/postpage/1/">
+                  記事一覧へ
+                </Button>
               </Box>
             )}
           </BreakpointContainer>
@@ -83,7 +81,7 @@ export async function getStaticProps({ preview = false }) {
   const allPostsForIndex = (await getAllPostsByRange(false, 0, PER_PAGE)) || [];
   const allPostsPublished = (await getAllPostsWithSlugOnlySlug(false, TOTAL_LIMIT)) || [];
 
-  const revalEnv = parseInt(process.env.REVALIDATE ?? '1800');
+  const revalEnv = parseInt(process.env.REVALIDATE_HOME ?? '1200');
 
   publishAdsTxt();
   publishRobotsTxt();
