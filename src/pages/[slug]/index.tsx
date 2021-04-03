@@ -1,26 +1,21 @@
+import { SinglePostComponent } from '@/components/partials/post/single-post';
+import dynamic from 'next/dynamic';
 import ErrorPage from 'next/error';
-import {
-  getPostAndMorePosts,
-  getAllPostsWithSlugOnlySlug,
-  getSeries,
-} from '@/lib/contentful/graphql';
+import { getPostAndMorePosts, getAllPostsWithSlugOnlySlug } from '@/lib/contentful/graphql';
 import { Post, PostForList, PostOnlySlug } from '@/models/contentful/Post';
 import Layout from '@/components/partials/layout';
 import { Box, Divider } from '@chakra-ui/react';
-
 //import { PostComment } from '@/models/firebase/PostComment';
 import { SITE_URL } from '@/lib/constants';
-
 import Head from 'next/head';
-
-import BreakpointContainer from '@/components/common/breakpoint-container';
-import PostList from '@/components/partials/post';
 import { useRouter } from 'next/router';
-import ReactMarkdownHeading from 'react-markdown-heading';
-import FukidashiShare from '@/components/common/fukidashi-share';
 //import PostCommentList from '@/components/partials/post-comment/post-comment-list';
+
+const PostList = dynamic(() => import('@/components/partials/post'));
+const ReactMarkdownHeading = dynamic(() => import('react-markdown-heading'));
+const FukidashiShare = dynamic(() => import('@/components/common/fukidashi-share'));
+const Adsense = dynamic(() => import('@/components/common/adsense'), { ssr: false });
 import tocStyles from '../../styles/markdown-toc-styles.module.css';
-import { SinglePostComponent } from '@/components/partials/post/single-post';
 
 interface PostPageProps {
   firstPost: Post;
@@ -44,7 +39,7 @@ export default function PostPage({
   const router = useRouter();
 
   const Toc = (post: Post) => (
-    <Box className={tocStyles['toc']}>
+    <Box my={8} className={tocStyles['toc']}>
       <ReactMarkdownHeading markdown={post.body} hyperlink />
     </Box>
   );
@@ -67,7 +62,7 @@ export default function PostPage({
           revalEnv={revalEnv}
           preview={preview}
           drawerLeftChildren={Toc(firstPost)}
-          leftFixedChildren={
+          asideChildren={
             <Box>
               <FukidashiShare
                 tweetText={firstPost.title}
@@ -75,11 +70,11 @@ export default function PostPage({
                 //commentCount={postComments.length}
               />
               {Toc(firstPost)}
+              {!firstPost.hideAdsense && <Adsense slot={'8321176059'} />}
             </Box>
           }
           hideAdsense={firstPost.hideAdsense}
           drawerPosts={drawerPosts ?? []}
-          text={firstPost.title}
         >
           <Head>
             <link
@@ -88,19 +83,18 @@ export default function PostPage({
             />
           </Head>
           <Box>
-            <BreakpointContainer breakpointName="md" actualWidth="650px">
-              {preview && <Box>デバッグ: プレビューON</Box>}
+            {preview && <Box>デバッグ: プレビューON</Box>}
 
-              {firstPost && <SinglePostComponent post={firstPost} tweetCount={tweetCount ?? 0} />}
+            {firstPost && <SinglePostComponent post={firstPost} tweetCount={tweetCount ?? 0} />}
 
-              <Divider my={8} borderColor="gray.400" />
-              {morePosts && morePosts.length > 0 && (
-                <Box my={10}>
-                  <PostList mode="more" posts={morePosts} />
-                </Box>
-              )}
+            <Divider my={8} borderColor="gray.400" />
+            {morePosts && morePosts.length > 0 && (
+              <Box my={10}>
+                <PostList mode="more" posts={morePosts} />
+              </Box>
+            )}
 
-              {/* 2021-03-26 Disabled
+            {/* 2021-03-26 Disabled
                 
                 <>
                 <Divider my={8} borderColor="gray.400" />
@@ -114,7 +108,6 @@ export default function PostPage({
                 </>
                 
                 */}
-            </BreakpointContainer>
           </Box>
         </Layout>
       )}
@@ -148,7 +141,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
   let tweetCount;
   tweetsJson.data ? (tweetCount = tweetsJson.meta.result_count) : (tweetCount = null);
 
-  const drawerPosts = (await getSeries('popular')) ?? null;
+  //const drawerPosts = (await getSeries('popular')) ?? null;
 
   const revalEnv = parseInt(process.env.REVALIDATE_SINGLE ?? '3600');
   return {
@@ -160,7 +153,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
       tweetCount: tweetCount ?? null,
       revalEnv: revalEnv,
       hideAdsense: posts.post.hideAdsense ?? false,
-      drawerPosts: drawerPosts.postsCollection.items ?? null,
+      //drawerPosts: drawerPosts.postsCollection.items ?? null,
     },
     revalidate: revalEnv,
   };

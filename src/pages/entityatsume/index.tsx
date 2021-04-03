@@ -25,8 +25,6 @@ import { NGwords } from 'pages/api/ogpgen/NGwords';
 import Image from 'next/image';
 import * as Yup from 'yup';
 
-import BreakpointContainer from '@/components/common/breakpoint-container';
-
 import { CheckApi, GetRandomEntity } from '@/lib/nest/entities';
 import LinkChakra from '@/components/common/link-chakra';
 import { SingleEntityComponent } from '@/components/partials/entity/single-entity';
@@ -60,129 +58,127 @@ export default function UsersMe() {
 
   return (
     <Layout preview={false} meta={{ title: 'エンティティあつめ', desc: 'マイページ' }}>
-      <BreakpointContainer>
-        {user ? (
-          <>
-            <Box mb={8}>
-              <Stack spacing={6}>
-                {isApiOk ? (
-                  <>
-                    {randomEntity.length > 0 && (
-                      <>
-                        <Modal isOpen={isOpen} onClose={onClose}>
-                          <ModalOverlay />
-                          <ModalContent minW="80vw">
-                            <ModalHeader>ガチャ結果</ModalHeader>
-                            <ModalCloseButton />
-                            <ModalBody>
-                              <SingleEntityComponent entity={randomEntity[0]} />
-                              {randomEntity[0].pictureUrl && (
-                                <Button
-                                  isLoading={updatingProfile}
-                                  onClick={() => {
-                                    setTimeout(() => {
-                                      setUpdatingProfile(true);
-                                      firebaseApi
-                                        .auth()
-                                        .currentUser?.updateProfile({
-                                          photoURL: randomEntity[0].pictureUrl,
-                                        })
-                                        .then(() => {
-                                          setUpdatingProfile(false);
-                                          router.reload();
-                                        });
-                                    }, 1000);
-                                  }}
-                                >
-                                  プロフィール画像に設定
-                                </Button>
-                              )}
-                            </ModalBody>
-
-                            <ModalFooter>
-                              <Button colorScheme="blue" onClick={onClose}>
-                                閉じる
+      {user ? (
+        <>
+          <Box mb={8}>
+            <Stack spacing={6}>
+              {isApiOk ? (
+                <>
+                  {randomEntity.length > 0 && (
+                    <>
+                      <Modal isOpen={isOpen} onClose={onClose}>
+                        <ModalOverlay />
+                        <ModalContent minW="80vw">
+                          <ModalHeader>ガチャ結果</ModalHeader>
+                          <ModalCloseButton />
+                          <ModalBody>
+                            <SingleEntityComponent entity={randomEntity[0]} />
+                            {randomEntity[0].pictureUrl && (
+                              <Button
+                                isLoading={updatingProfile}
+                                onClick={() => {
+                                  setTimeout(() => {
+                                    setUpdatingProfile(true);
+                                    firebaseApi
+                                      .auth()
+                                      .currentUser?.updateProfile({
+                                        photoURL: randomEntity[0].pictureUrl,
+                                      })
+                                      .then(() => {
+                                        setUpdatingProfile(false);
+                                        router.reload();
+                                      });
+                                  }, 1000);
+                                }}
+                              >
+                                プロフィール画像に設定
                               </Button>
-                            </ModalFooter>
-                          </ModalContent>
-                        </Modal>
-                        {randomEntity[0].pictureUrl ? (
-                          <Image width={128} height={128} src={randomEntity[0].pictureUrl ?? ''} />
-                        ) : (
-                          <img
-                            src={`/api/ogpgen/?text=${randomEntity[0].name}の画像の設定忘れてるよごめんね!`}
-                          />
-                        )}
-                      </>
-                    )}
+                            )}
+                          </ModalBody>
 
-                    <Center flexDirection="column">
-                      {errorEntity ? (
-                        <Badge colorScheme="red">{errorEntity} : リロードしてください。</Badge>
+                          <ModalFooter>
+                            <Button colorScheme="blue" onClick={onClose}>
+                              閉じる
+                            </Button>
+                          </ModalFooter>
+                        </ModalContent>
+                      </Modal>
+                      {randomEntity[0].pictureUrl ? (
+                        <Image width={128} height={128} src={randomEntity[0].pictureUrl ?? ''} />
                       ) : (
-                        <ButtonGroup>
-                          <Stack>
-                            <Button
-                              w="full"
-                              colorScheme="orange"
-                              fontSize="1.4rem"
-                              py={6}
-                              isLoading={fetching}
-                              onClick={() => {
-                                if (typeof window !== 'undefined') {
-                                  gtag.event({
-                                    action: 'play',
-                                    category: 'entitygacha',
-                                    label: 'トップページのガチャ',
-                                  });
-                                }
-                                randomEntity = [];
-                                setFetching(true);
-                                mutateEntity().then((res: any) => {
-                                  if (res && res?.length > 0) {
-                                    onOpen();
-                                  }
-                                });
-                              }}
-                            >
-                              エンティティガチャを回す
-                            </Button>
-                            <Button colorScheme="blue" as={LinkChakra} href="/entityatsume/zukan">
-                              排出エンティティ一蘭
-                            </Button>
-                          </Stack>
-                        </ButtonGroup>
+                        <img
+                          src={`/api/ogpgen/?text=${randomEntity[0].name}の画像の設定忘れてるよごめんね!`}
+                        />
                       )}
-                      {fetching && <Badge>APIに問い合わせ中...</Badge>}
-                    </Center>
-                  </>
-                ) : (
-                  <Center>
-                    <Box>APIの応答待ち。。。</Box>
+                    </>
+                  )}
+
+                  <Center flexDirection="column">
+                    {errorEntity ? (
+                      <Badge colorScheme="red">{errorEntity} : リロードしてください。</Badge>
+                    ) : (
+                      <ButtonGroup>
+                        <Stack>
+                          <Button
+                            w="full"
+                            colorScheme="orange"
+                            fontSize="1.4rem"
+                            py={6}
+                            isLoading={fetching}
+                            onClick={() => {
+                              if (typeof window !== 'undefined') {
+                                gtag.event({
+                                  action: 'play',
+                                  category: 'entitygacha',
+                                  label: 'トップページのガチャ',
+                                });
+                              }
+                              randomEntity = [];
+                              setFetching(true);
+                              mutateEntity().then((res: any) => {
+                                if (res && res?.length > 0) {
+                                  onOpen();
+                                }
+                              });
+                            }}
+                          >
+                            エンティティガチャを回す
+                          </Button>
+                          <Button colorScheme="blue" as={LinkChakra} href="/entityatsume/zukan">
+                            排出エンティティ一蘭
+                          </Button>
+                        </Stack>
+                      </ButtonGroup>
+                    )}
+                    {fetching && <Badge>APIに問い合わせ中...</Badge>}
                   </Center>
-                )}
-              </Stack>
-              {process.env.NODE_ENV == 'development' && (
-                <Box bg="gray.200" p={4}>
-                  DEBUG
-                  <br />
-                  {JSON.stringify(isApiOk)}
-                  <br />
-                  {JSON.stringify(fetching)}
-                  <br />
-                  {JSON.stringify(randomEntity)}
-                  <br />
-                  {JSON.stringify(errorEntity)}
-                </Box>
+                </>
+              ) : (
+                <Center>
+                  <Box>APIの応答待ち。。。</Box>
+                </Center>
               )}
-            </Box>
-          </>
-        ) : (
-          <>
-            <SkeletonText my={8} spacing={4} noOfLines={16} />
-          </>
-        )}
-      </BreakpointContainer>
+            </Stack>
+            {process.env.NODE_ENV == 'development' && (
+              <Box bg="gray.200" p={4}>
+                DEBUG
+                <br />
+                {JSON.stringify(isApiOk)}
+                <br />
+                {JSON.stringify(fetching)}
+                <br />
+                {JSON.stringify(randomEntity)}
+                <br />
+                {JSON.stringify(errorEntity)}
+              </Box>
+            )}
+          </Box>
+        </>
+      ) : (
+        <>
+          <SkeletonText my={8} spacing={4} noOfLines={16} />
+        </>
+      )}
     </Layout>
   );
 }

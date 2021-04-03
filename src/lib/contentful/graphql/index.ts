@@ -49,7 +49,7 @@ export async function getPostAndMorePosts(slug: string, preview: boolean) {
   );
 
   // CRAZY RANDOMIZE(slash 5 means only show newer content and minimize build time)
-  const randomSkipMax = parseInt(process.env.TOTAL_PAGINATION ?? '600') / 10;
+  const randomSkipMax = parseInt(process.env.TOTAL_PAGINATION ?? '600') / 5;
   const randomSkip = Math.round(Math.random() * randomSkipMax);
 
   const entries = await fetchGraphQL(
