@@ -1,12 +1,12 @@
 import dynamic from 'next/dynamic';
 
 import { ReactNode } from 'react';
-import { Flex, Box, Button, useColorMode, Center } from '@chakra-ui/react';
+import { Flex, Box, Button, useColorMode } from '@chakra-ui/react';
 import LinkChakra from '@/components/common/link-chakra';
 import Meta from './meta';
-import Nav from './nav';
+
 import { Post } from '@/models/contentful/Post';
-import Aside from './aside';
+
 import {
   ASIDE_WITDH,
   LAYOUT_MAXW,
@@ -14,7 +14,8 @@ import {
   MAIN_WIDTH,
   NAV_HEIGHT,
 } from '@/lib/chakra/styles';
-import { SITE_DESC } from '@/lib/constants';
+const Nav = dynamic(() => import('./nav'));
+const Aside = dynamic(() => import('./aside'));
 const LayoutFooter = dynamic(() => import('./layout-footer'));
 
 interface LayoutProps {

@@ -6,11 +6,12 @@ const repoV = pkg.version;
 export default function Custom404() {
   return (
     <div>
-      <h1>URLが見つかりませんでした...</h1>
+      <h1>どうやってここに来た！？！？！？？？？？？</h1>
 
       <p>
+        (本来見れるはずなのにこうなった場合、
         <a href={`https://twitter.com/${CREATOR_ID}`}>https://twitter.com/{CREATOR_ID}</a>
-        にご報告いただければ助かります。
+        にご報告いただければ助かります。)
       </p>
       <p>
         {' '}
