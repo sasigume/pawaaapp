@@ -48,17 +48,6 @@ const PostHeading = ({ post, tweetCount }: Props) => {
         <Spacer />
         <FukidashiShare tweetCount={tweetCount} />
       </Flex>
-
-      <Box px={0} direction="column">
-        <Box
-          display={{ base: 'none', md: 'flex' }}
-          area-label="記事の概要"
-          my={4}
-          fontSize="1.4rem"
-        >
-          {post.description}
-        </Box>
-      </Box>
     </Box>
   );
 };
