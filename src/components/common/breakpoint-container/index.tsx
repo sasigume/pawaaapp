@@ -11,7 +11,6 @@ export default function BreakpointContainer({ children, breakpointName, actualWi
   return (
     <Box
       mx="auto"
-      as="article"
       px={{ base: 3, [breakpointName ?? 'md']: 0 }}
       maxWidth={{ base: '100vw', [breakpointName ?? 'md']: actualWidth ?? '650px' }}
       overflowX="hidden"

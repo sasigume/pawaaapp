@@ -1,12 +1,21 @@
 import dynamic from 'next/dynamic';
 
 import { ReactNode } from 'react';
-import { Box, Button, Flex, useColorMode } from '@chakra-ui/react';
+import { Flex, Box, Button, useColorMode } from '@chakra-ui/react';
 import LinkChakra from '@/components/common/link-chakra';
 import Meta from './meta';
-import Nav from './nav';
+
 import { Post } from '@/models/contentful/Post';
-import LeftFixed from './left-fixed';
+
+import {
+  ASIDE_WITDH,
+  LAYOUT_MAXW,
+  LAYOUT_PADDING,
+  MAIN_WIDTH,
+  NAV_HEIGHT,
+} from '@/lib/chakra/styles';
+const Nav = dynamic(() => import('./nav'));
+const Aside = dynamic(() => import('./aside'));
 const LayoutFooter = dynamic(() => import('./layout-footer'));
 
 interface LayoutProps {
@@ -19,10 +28,9 @@ interface LayoutProps {
     ogpUrl?: string;
   };
   revalEnv?: number;
-  leftFixedChildren?: ReactNode;
+  asideChildren?: ReactNode;
   hideAdsense?: boolean;
   drawerPosts?: Post[];
-  text?: string;
 }
 
 export default function Layout({
@@ -31,10 +39,9 @@ export default function Layout({
   meta,
   revalEnv,
   drawerLeftChildren,
-  leftFixedChildren,
+  asideChildren,
   hideAdsense,
   drawerPosts,
-  text,
 }: LayoutProps) {
   if (hideAdsense) {
     console.info(`Layout: hiding adsense`);
@@ -58,24 +65,37 @@ export default function Layout({
             : {}
         }
         maxW="100vw"
-        overflow="hidden"
       >
         <Nav
+          maxW={LAYOUT_MAXW}
           colorMode={colorMode}
           posts={drawerPosts ?? []}
           preview={preview}
           drawerLeftChildren={drawerLeftChildren}
-          text={text}
         />
 
-        <Box pt={16}>
-          <Flex>
-            <LeftFixed leftFixedChildren={leftFixedChildren} drawerPosts={drawerPosts} />
-            <Box ml={{ base: 0, lg: '288px' }} flexGrow={1} as="main" pt={8}>
+        <Box pt={`${NAV_HEIGHT}px`}>
+          <Flex
+            mx="auto"
+            maxWidth={{
+              base: '100vw',
+              lg: `${LAYOUT_MAXW}px`,
+            }}
+            px={{ base: 3, md: 0 }}
+          >
+            <Aside w={ASIDE_WITDH} asideChildren={asideChildren} drawerPosts={drawerPosts} />
+            <Box
+              as="main"
+              mx="auto"
+              pt={8}
+              maxW={`${MAIN_WIDTH}px`}
+              minW={{ base: '100%', md: `${MAIN_WIDTH}px` }}
+              pl={{ base: 0, lg: `${LAYOUT_PADDING}px` }}
+            >
               {children}
-              <LayoutFooter revalidate={revalEnv} />
             </Box>
           </Flex>
+          <LayoutFooter maxW={LAYOUT_MAXW} revalidate={revalEnv} />
         </Box>
 
         {preview && (

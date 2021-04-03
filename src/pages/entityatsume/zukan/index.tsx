@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
 import { Entity } from '@/models/nest/Entity';
-import { Box, VStack, Divider } from '@chakra-ui/react';
+import { VStack, Divider } from '@chakra-ui/react';
 import Layout from '@/components/partials/layout';
 import EntityList from '@/components/partials/entity/';
 import { getAllEntities } from '@/lib/nest/entities';
-import BreakpointContainer from '@/components/common/breakpoint-container';
+
 interface EntityIndexProps {
   entities: Entity[];
   preview: boolean;
@@ -33,13 +33,11 @@ export default function EntityIndex({ entities, preview }: EntityIndexProps) {
           preview={preview}
           meta={{ title: 'エンティティの一覧', desc: 'エンティティの一覧' }}
         >
-          <BreakpointContainer>
-            <VStack textStyle="h1" spacing={4} mb={8}>
-              <h1>エンティティの一覧</h1>
-              <Divider />
-            </VStack>
-            {entities && entities.length > 0 && <EntityList entities={entities} />}
-          </BreakpointContainer>
+          <VStack textStyle="h1" spacing={4} mb={8}>
+            <h1>エンティティの一覧</h1>
+            <Divider />
+          </VStack>
+          {entities && entities.length > 0 && <EntityList entities={entities} />}
         </Layout>
       )}
     </>

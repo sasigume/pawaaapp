@@ -42,29 +42,27 @@ export default function LoginPage() {
 
   return (
     <Layout preview={false} meta={{ title: 'サインイン', desc: 'サインイン' }}>
-      <BreakpointContainer>
-        {!user ? (
+      {!user ? (
+        <Box py={16}>
+          <Stack direction="column" mb={8}>
+            <Warning />
+            <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>
+              利用規約に同意しました
+            </Checkbox>
+            {agreed && (
+              <Button leftIcon={<FaiconDiv icon={['fas', 'user']} />} onClick={login}>
+                サインイン
+              </Button>
+            )}
+          </Stack>
+        </Box>
+      ) : (
+        <Box>
           <Box py={16}>
-            <Stack direction="column" mb={8}>
-              <Warning />
-              <Checkbox onChange={(e) => setAgreed(agreed ? false : true)} checked>
-                利用規約に同意しました
-              </Checkbox>
-              {agreed && (
-                <Button leftIcon={<FaiconDiv icon={['fas', 'user']} />} onClick={login}>
-                  サインイン
-                </Button>
-              )}
-            </Stack>
+            サインイン中: {user.name}さん (お問い合わせID: {user.uid})
           </Box>
-        ) : (
-          <Box>
-            <Box py={16}>
-              サインイン中: {user.name}さん (お問い合わせID: {user.uid})
-            </Box>
-          </Box>
-        )}
-      </BreakpointContainer>
+        </Box>
+      )}
     </Layout>
   );
 }
