@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic';
 import Layout from '@/components/partials/layout';
 import { useState } from 'react';
 import { useAuthentication } from '@/hooks/authentication';
@@ -8,9 +7,9 @@ import { useRouter } from 'next/router';
 import * as gtag from '@/lib/gtag';
 import { Button, Checkbox, Stack } from '@chakra-ui/react';
 
-const Warning = dynamic(() => import('@/components/common/warning'));
-const FaiconDiv = dynamic(() => import('@/components/common/faicon-div'));
-const BreakpointContainer = dynamic(() => import('@/components/common/breakpoint-container'));
+import Warning from '@/components/common/warning';
+import FaiconDiv from '@/components/common/faicon-div';
+import BreakpointContainer from '@/components/common/breakpoint-container';
 
 export default function LoginPage() {
   const router = useRouter();

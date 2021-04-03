@@ -1,5 +1,4 @@
 import { SinglePostComponent } from '@/components/partials/post/single-post';
-import dynamic from 'next/dynamic';
 import ErrorPage from 'next/error';
 import { getPostAndMorePosts, getAllPostsWithSlugOnlySlug } from '@/lib/contentful/graphql';
 import { Post, PostForList, PostOnlySlug } from '@/models/contentful/Post';
@@ -11,10 +10,10 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 //import PostCommentList from '@/components/partials/post-comment/post-comment-list';
 
-const PostList = dynamic(() => import('@/components/partials/post'));
-const ReactMarkdownHeading = dynamic(() => import('react-markdown-heading'));
-const FukidashiShare = dynamic(() => import('@/components/common/fukidashi-share'));
-const Adsense = dynamic(() => import('@/components/common/adsense'), { ssr: false });
+import PostList from '@/components/partials/post';
+import ReactMarkdownHeading from 'react-markdown-heading';
+import FukidashiShare from '@/components/common/fukidashi-share';
+import Adsense from '@/components/common/adsense';
 import tocStyles from '../../styles/markdown-toc-styles.module.css';
 
 interface PostPageProps {
