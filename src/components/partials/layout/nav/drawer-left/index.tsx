@@ -35,14 +35,12 @@ export default function DrawerLeft({ children }: Props) {
     <>
       <Button
         zIndex={10}
-        pr={{ base: 2, sm: 4 }}
+        pr={2}
         ref={btnRef}
         colorScheme="blue"
         leftIcon={<FaiconDiv icon={['fas', 'bars']} />}
         onClick={onOpen}
-      >
-        <Box display={{ base: 'none', sm: 'flex' }}>MENU</Box>
-      </Button>
+      />
       <Drawer
         isOpen={isOpen}
         placement="left"
@@ -57,22 +55,7 @@ export default function DrawerLeft({ children }: Props) {
               <SiteLogo />
               <ColorSwitch />
             </DrawerHeader>
-            <DrawerBody>
-              <Button
-                mb={6}
-                textAlign="center"
-                display={{ base: 'none', md: 'flex' }}
-                as={LinkChakra}
-                colorScheme="orange"
-                href="/entityatsume/"
-              >
-                エンティティあつめ
-              </Button>
-              {children}
-              <Button w="full" as={LinkChakra} my={8} colorScheme="blue" href="/contact/">
-                お問い合わせ
-              </Button>
-            </DrawerBody>
+            <DrawerBody>{children}</DrawerBody>
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>
