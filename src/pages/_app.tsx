@@ -1,6 +1,6 @@
 import { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import TagManager from 'react-gtm-module';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
@@ -14,6 +14,7 @@ import { Chakra } from '@/components/providers/chakra';
 
 function App({ Component, pageProps }: AppProps) {
   addIcon();
+
   let hideAdsense: boolean = pageProps.hideAdsense ?? false;
 
   if (hideAdsense) {
