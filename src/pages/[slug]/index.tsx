@@ -13,8 +13,8 @@ import { useRouter } from 'next/router';
 import PostList from '@/components/partials/post';
 import ReactMarkdownHeading from 'react-markdown-heading';
 import FukidashiShare from '@/components/common/fukidashi-share';
-import Adsense from '@/components/common/adsense';
 import tocStyles from '../../styles/markdown-toc-styles.module.css';
+import AdsenseBox from '@/components/common/adsense';
 
 interface PostPageProps {
   firstPost: Post;
@@ -42,7 +42,6 @@ export default function PostPage({
       <ReactMarkdownHeading markdown={post.body} hyperlink />
     </Box>
   );
-
   return (
     <>
       {!firstPost && router.isFallback ? (
@@ -69,7 +68,8 @@ export default function PostPage({
                 //commentCount={postComments.length}
               />
               {Toc(firstPost)}
-              {!firstPost.hideAdsense && <Adsense slot={'8321176059'} />}
+              {/* 2021-04-04 issue #131 may have been caused by this adsense */}
+              {!firstPost.hideAdsense && <AdsenseBox slot={'8321176059'} />}
             </Box>
           }
           hideAdsense={firstPost.hideAdsense}
