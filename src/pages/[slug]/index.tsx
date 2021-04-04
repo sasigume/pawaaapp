@@ -69,7 +69,7 @@ export default function PostPage({
                 //commentCount={postComments.length}
               />
               {Toc(firstPost)}
-              {/* 2021-04-04 issue #131 may have been caused by this adsense */}
+              {/* 2021-04-04 issue #131 may have been caused by adsense */}
               {!firstPost.hideAdsense && <AdsenseBox slot={'8321176059'} />}
             </Box>
           }
