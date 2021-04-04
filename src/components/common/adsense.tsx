@@ -1,37 +1,61 @@
 import { Box } from '@chakra-ui/layout';
-import React, { useEffect, useState } from 'react';
+import { Component } from 'react';
 
 interface AdsenseProps {
   slot: string;
 }
 
-// https://qiita.com/qrusadorz/items/14972b6e069feaf777a9
-export default function Adsense(props: AdsenseProps) {
-  // https://mao-tss.medium.com/fix-google-adsense-loading-issues-with-react-f338cbd61ac4
+export default class AdsenseBox extends Component<AdsenseProps, { enableAd: string }> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      enableAd: process.env.ENABLE_AD ?? 'false',
+    };
+  }
+  componentDidMount() {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('load', this.loadAd);
+    }
+  }
 
-  const enableAd = process.env.ENABLE_AD ?? false;
+  componentDidUpdate() {
+    this.loadAd();
+  }
 
-  useEffect(() => {
-    window.adsbygoogle = window.adsbygoogle || [];
-    window.adsbygoogle.push({});
-  });
+  componentWillUnmount() {
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('load', this.loadAd);
+    }
+  }
 
-  return (
-    <Box key={Math.random()} mx="auto" my={4}>
-      {enableAd ? (
-        <>
-          <ins
-            className="adsbygoogle"
-            style={{ display: 'block' }}
-            data-ad-client={process.env.GOOGLE_AD_CLIENT}
-            data-ad-slot={props.slot}
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          ></ins>
-        </>
-      ) : (
-        <span>Adsense無効化中</span>
-      )}
-    </Box>
-  );
+  loadAd = () => {
+    if (this.state.enableAd !== 'false') {
+      window.adsbygoogle = window.adsbygoogle || [];
+      window.adsbygoogle.push({});
+      console.log(`Ad component pushed`);
+    }
+  };
+
+  render() {
+    return (
+      <>
+        <Box key={Math.random()} my={4}>
+          {this.state.enableAd !== 'false' ? (
+            <>
+              <ins
+                className="adsbygoogle"
+                style={{ display: 'block' }}
+                data-ad-client={process.env.GOOGLE_AD_CLIENT}
+                data-ad-slot={this.props.slot}
+                data-ad-format="auto"
+                data-full-width-responsive="true"
+              ></ins>
+            </>
+          ) : (
+            <span>Adsense無効化中</span>
+          )}
+        </Box>
+      </>
+    );
+  }
 }

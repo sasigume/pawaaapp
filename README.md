@@ -48,6 +48,8 @@ https://qiita.com/qrusadorz/items/14972b6e069feaf777a9
 
 https://mao-tss.medium.com/fix-google-adsense-loading-issues-with-react-f338cbd61ac4
 
+https://wp-kyoto.net/next-jsgoogle-adsense/
+
 ### RSS and Sitemap
 
 https://zenn.dev/catnose99/articles/c7754ba6e4adac
