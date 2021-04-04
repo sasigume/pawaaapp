@@ -4,7 +4,6 @@ import { getAllPostsByRange, getSeries } from '../lib/contentful/graphql';
 import { SITE_DESC, SITE_NAME, SITE_URL } from '@/lib/constants';
 import { Post } from '@/models/contentful/Post';
 
-import publishAdsTxt from '@/lib/adstxt';
 import publishRobotsTxt from '@/lib/robotstxt';
 import Layout from '@/components/partials/layout';
 
@@ -73,7 +72,6 @@ export async function getStaticProps({ preview = false }) {
 
   const revalEnv = parseInt(process.env.REVALIDATE_HOME ?? '1200');
 
-  publishAdsTxt();
   publishRobotsTxt();
 
   return {
