@@ -5,6 +5,7 @@ declare module 'react-gtm-module';
 declare module 'react-syntax-highlighter';
 declare module 'react-syntax-highlighter/dist/cjs/styles/prism';
 declare module 'react-lazyload';
+declare module 'react-adsense';
 
 // https://sunday-morning.app/posts/2020-12-09-nextjs-google-analytics
 interface Window {
