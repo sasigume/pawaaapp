@@ -56,7 +56,10 @@ export default class Nav extends Component<NavProps, { prevScrollpos: number; vi
       const { prevScrollpos } = this.state;
 
       const currentScrollPos = window.pageYOffset;
-      const visible = prevScrollpos > currentScrollPos;
+      let visible = prevScrollpos > currentScrollPos;
+      if (currentScrollPos == 0) {
+        visible = true;
+      }
 
       this.setState({
         prevScrollpos: currentScrollPos,
