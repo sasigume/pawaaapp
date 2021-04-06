@@ -22,7 +22,7 @@ export default function AdsenseBox(props: AdsenseProps) {
 
   return (
     <Box mx="auto" my={3} minH="250px">
-      {enableAd ? (
+      {enableAd && typeof window !== 'undefined' ? (
         <>
           <Skeleton isLoaded={window.adsbygoogle !== undefined}>
             <Box mb={2} color="gray.800">
