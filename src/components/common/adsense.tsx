@@ -1,7 +1,7 @@
 import { MAIN_WIDTH } from '@/lib/chakra/styles';
 import { Center } from '@chakra-ui/layout';
 import { SkeletonText } from '@chakra-ui/skeleton';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface AdsenseProps {
   slot: string;
@@ -10,36 +10,30 @@ interface AdsenseProps {
 export default function AdsenseBox({ slot }: AdsenseProps) {
   const enableAd = process.env.ENABLE_AD ?? 'false';
   const [loading, setLoading] = useState(true);
+  const wrapper = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (enableAd !== 'false') {
-      setTimeout(() => {
-        pushAd().catch((e) => console.error(e));
-      }, 1000);
-    }
-  }, []);
-
-  const pushAd = async () => {
     if (typeof window !== 'undefined') {
-      setLoading(false);
-      window.adsbygoogle = window.adsbygoogle || [];
-      window.adsbygoogle.push({
-        google_ad_client: process.env.GOOGLE_AD_CLIENT,
-      });
+      if (enableAd !== 'false' && wrapper.current && wrapper.current.clientWidth > 0) {
+        setTimeout(() => {
+          pushAd();
+        }, 500);
+      }
     }
+  }, [wrapper.current]);
+
+  const pushAd = () => {
+    setLoading(false);
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.push({
+      google_ad_client: process.env.GOOGLE_AD_CLIENT,
+    });
   };
 
   return (
     <>
-      <Center
-        key={Math.random()}
-        mx="auto"
-        my={4}
-        minH="250px"
-        w={{ base: '320px', md: `${MAIN_WIDTH}px` }}
-        textAlign="center"
-      >
-        <div style={{ minHeight: '250px', minWidth: '320px' }}>
+      <Center key={Math.random()} mx="auto" my={4} textAlign="center">
+        <div ref={wrapper} style={{ minHeight: '250px', minWidth: '320px' }}>
           {enableAd !== 'false' ? (
             <>
               {loading == true ? (
