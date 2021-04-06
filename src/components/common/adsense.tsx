@@ -24,7 +24,6 @@ export default function AdsenseBox({ slot }: AdsenseProps) {
       window.adsbygoogle = window.adsbygoogle || [];
       window.adsbygoogle.push({
         google_ad_client: process.env.GOOGLE_AD_CLIENT,
-        enable_page_level_ads: true,
       });
     }
   };
