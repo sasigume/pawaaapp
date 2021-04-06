@@ -17,7 +17,7 @@ export function SinglePostComponent({ post, tweetCount }: Props) {
     <>
       <Box>
         <PostHeading post={post} tweetCount={tweetCount ?? 0} />
-        {post.hideAdsense !== true && <AdsenseBox slot={'1773582608'} />}
+        {post.hideAdsense !== true && <AdsenseBox slot={'1773582608'} path={post.slug} />}
         <Divider my={4} />
         <Box>
           <MarkdownRender source={post.body} />
@@ -40,7 +40,7 @@ export function SinglePostComponent({ post, tweetCount }: Props) {
           </Button>
         </Box>
         <Divider my={3} />
-        {post.hideAdsense !== true && <AdsenseBox slot={'1529491287'} />}
+        {post.hideAdsense !== true && <AdsenseBox path={post.slug} slot={'1529491287'} />}
       </Box>
     </>
   );

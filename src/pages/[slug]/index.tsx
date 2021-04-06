@@ -70,7 +70,7 @@ export default function PostPage({
               />
               {Toc(firstPost)}
               {/* 2021-04-04 issue #131 may have been caused by adsense */}
-              {!firstPost.hideAdsense && <AdsenseBox slot={'8321176059'} />}
+              {!firstPost.hideAdsense && <AdsenseBox slot={'8321176059'} path={firstPost.slug} />}
             </Box>
           }
           hideAdsense={firstPost.hideAdsense}

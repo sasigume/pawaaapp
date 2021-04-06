@@ -5,12 +5,14 @@ import { useEffect, useRef, useState } from 'react';
 
 interface AdsenseProps {
   slot: string;
+  path: string;
 }
 
-export default function AdsenseBox({ slot }: AdsenseProps) {
+export default function AdsenseBox({ slot, path }: AdsenseProps) {
   const enableAd = process.env.ENABLE_AD ?? 'false';
   const [loading, setLoading] = useState(true);
   const wrapper = useRef<HTMLDivElement>(null);
+  const ins = useRef<HTMLModElement>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -20,7 +22,7 @@ export default function AdsenseBox({ slot }: AdsenseProps) {
         }, 500);
       }
     }
-  }, [wrapper.current]);
+  }, [path]);
 
   const pushAd = () => {
     setLoading(false);
@@ -32,7 +34,7 @@ export default function AdsenseBox({ slot }: AdsenseProps) {
 
   return (
     <>
-      <Center key={Math.random()} mx="auto" my={4} textAlign="center">
+      <Center key={Math.random().toString() + path} mx="auto" my={4} textAlign="center">
         <div ref={wrapper} style={{ minHeight: '250px', minWidth: '320px' }}>
           {enableAd !== 'false' ? (
             <>
@@ -40,6 +42,7 @@ export default function AdsenseBox({ slot }: AdsenseProps) {
                 <SkeletonText spacing={4} noOfLines={12} w="full" h="full" />
               ) : (
                 <ins
+                  ref={ins}
                   className="adsbygoogle"
                   style={{ display: 'block' }}
                   data-ad-client={process.env.GOOGLE_AD_CLIENT}
