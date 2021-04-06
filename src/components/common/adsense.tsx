@@ -39,24 +39,26 @@ export default function AdsenseBox({ slot }: AdsenseProps) {
         w={{ base: '320px', md: `${MAIN_WIDTH}px` }}
         textAlign="center"
       >
-        {enableAd !== 'false' ? (
-          <>
-            {loading == true ? (
-              <SkeletonText spacing={4} noOfLines={12} w="full" h="full" />
-            ) : (
-              <ins
-                className="adsbygoogle"
-                style={{ display: 'block' }}
-                data-ad-client={process.env.GOOGLE_AD_CLIENT}
-                data-ad-slot={slot}
-                data-ad-format="auto"
-                data-full-width-responsive="true"
-              ></ins>
-            )}
-          </>
-        ) : (
-          <span>Adsense無効化中</span>
-        )}
+        <div style={{ minHeight: '250px', minWidth: '320px' }}>
+          {enableAd !== 'false' ? (
+            <>
+              {loading == true ? (
+                <SkeletonText spacing={4} noOfLines={12} w="full" h="full" />
+              ) : (
+                <ins
+                  className="adsbygoogle"
+                  style={{ display: 'block' }}
+                  data-ad-client={process.env.GOOGLE_AD_CLIENT}
+                  data-ad-slot={slot}
+                  data-ad-format="auto"
+                  data-full-width-responsive="true"
+                ></ins>
+              )}
+            </>
+          ) : (
+            <span>Adsense無効化中</span>
+          )}
+        </div>
       </Center>
     </>
   );
