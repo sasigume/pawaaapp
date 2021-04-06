@@ -1,53 +1,46 @@
 import { Box } from '@chakra-ui/layout';
-import { SkeletonText } from '@chakra-ui/skeleton';
-import { useEffect, useState } from 'react';
+import { Skeleton } from '@chakra-ui/skeleton';
+import React, { useEffect } from 'react';
 
 interface AdsenseProps {
   slot: string;
+  path?: string;
 }
 
-export default function AdsenseBox({ slot }: AdsenseProps) {
-  const enableAd = process.env.ENABLE_AD ?? 'false';
-  const [loading, setLoading] = useState(true);
+// https://qiita.com/qrusadorz/items/14972b6e069feaf777a9
+export default function AdsenseBox(props: AdsenseProps) {
+  const enableAd = process.env.ENABLE_AD == 'true' ?? false;
 
   useEffect(() => {
-    if (enableAd !== 'false') {
-      setTimeout(() => {
-        pushAd().catch((e) => console.error(e));
-      }, 1000);
+    if (window.adsbygoogle && process.env.NODE_ENV !== 'development') {
+      window.adsbygoogle.push({
+        google_ad_client: process.env.GOOGLE_AD_CLIENT,
+        enable_page_level_ads: true,
+      });
     }
   }, []);
 
-  const pushAd = async () => {
-    if (typeof window !== 'undefined') {
-      setLoading(false);
-      window.adsbygoogle = window.adsbygoogle || [];
-      window.adsbygoogle.push({});
-    }
-  };
-
   return (
-    <>
-      <Box key={Math.random()} my={4} minH="250px" w="full">
-        {enableAd !== 'false' ? (
-          <>
-            {loading == true ? (
-              <SkeletonText spacing={4} noOfLines={12} w="full" h="full" />
-            ) : (
-              <ins
-                className="adsbygoogle"
-                style={{ display: 'block' }}
-                data-ad-client={process.env.GOOGLE_AD_CLIENT}
-                data-ad-slot={slot}
-                data-ad-format="auto"
-                data-full-width-responsive="true"
-              ></ins>
-            )}
-          </>
-        ) : (
-          <span>Adsense無効化中</span>
-        )}
-      </Box>
-    </>
+    <Box mx="auto" my={3} minH="250px">
+      {enableAd ? (
+        <>
+          <Skeleton isLoaded={window.adsbygoogle !== undefined}>
+            <Box mb={2} color="gray.800">
+              スポンサーリンク
+            </Box>
+            <ins
+              className="adsbygoogle"
+              style={{ display: 'block' }}
+              data-ad-client={process.env.GOOGLE_AD_CLIENT}
+              data-ad-slot={props.slot}
+              data-ad-format="auto"
+              data-full-width-responsive="true"
+            ></ins>
+          </Skeleton>
+        </>
+      ) : (
+        <span>Adsense無効化中</span>
+      )}
+    </Box>
   );
 }
