@@ -15,7 +15,7 @@ interface Props {
 export function SinglePostComponent({ post, tweetCount }: Props) {
   return (
     <>
-      <Box>
+      <Box as="article">
         <PostHeading post={post} tweetCount={tweetCount ?? 0} />
         {post.hideAdsense !== true && <AdsenseBox slot={'1773582608'} path={post.slug} />}
         <Divider my={4} />
