@@ -14,8 +14,7 @@ import PostList from '@/components/partials/post';
 import ReactMarkdownHeading from 'react-markdown-heading';
 import FukidashiShare from '@/components/common/fukidashi-share';
 import tocStyles from '../../styles/markdown-toc-styles.module.css';
-import dynamic from 'next/dynamic';
-const AdsenseBox = dynamic(() => import('@/components/common/adsense'), { ssr: false });
+import AdsenseBox from '@/components/common/adsense';
 
 interface PostPageProps {
   firstPost: Post;
