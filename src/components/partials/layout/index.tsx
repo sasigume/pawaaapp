@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Flex, Box, Button, useColorMode } from '@chakra-ui/react';
+import { Flex, Box, Button, useColorMode, Center } from '@chakra-ui/react';
 import LinkChakra from '@/components/common/link-chakra';
 import Meta from './meta';
 
@@ -15,6 +15,7 @@ import {
 import Nav from './nav';
 import Aside from './aside';
 import LayoutFooter from './layout-footer';
+import SiteLogo from '@/components/common/SiteLogo';
 
 interface LayoutProps {
   preview: boolean;
@@ -64,15 +65,18 @@ export default function Layout({
         }
         maxW="100vw"
       >
-        <Nav
+        {/* <Nav
           maxW={LAYOUT_MAXW}
           colorMode={colorMode}
           posts={drawerPosts ?? []}
           preview={preview}
           drawerLeftChildren={drawerLeftChildren}
-        />
+        /> */}
 
-        <Box pt={`${NAV_HEIGHT}px`}>
+        <Box /* pt={`${NAV_HEIGHT}px`} */>
+          <Center my={6}>
+            <SiteLogo />
+          </Center>
           <Flex
             mx="auto"
             maxWidth={{
