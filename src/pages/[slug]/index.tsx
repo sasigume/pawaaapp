@@ -14,7 +14,7 @@ import PostList from '@/components/partials/post';
 import ReactMarkdownHeading from 'react-markdown-heading';
 import FukidashiShare from '@/components/common/fukidashi-share';
 import tocStyles from '../../styles/markdown-toc-styles.module.css';
-import AdsenseBox from '@/components/common/adsense';
+import AdsenseBox from '@/components/common/adsense-box';
 
 interface PostPageProps {
   firstPost: Post;
@@ -89,7 +89,7 @@ export default function PostPage({
             <Divider my={8} borderColor="gray.400" />
             {morePosts && morePosts.length > 0 && (
               <Box my={10}>
-                <PostList mode="more" posts={morePosts} />
+                <PostList mode="more" posts={morePosts} enableAd={!firstPost.hideAdsense} />
               </Box>
             )}
 

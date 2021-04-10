@@ -8,7 +8,7 @@ interface AdsenseProps {
 }
 
 // https://qiita.com/qrusadorz/items/14972b6e069feaf777a9
-export default function Adsense({ slot, path }: AdsenseProps) {
+export default function AdsenseBox({ slot, path }: AdsenseProps) {
   const { asPath } = useRouter();
 
   const enableAd = process.env.ENABLE_AD ?? false;
@@ -27,11 +27,11 @@ export default function Adsense({ slot, path }: AdsenseProps) {
         <>
           <ins
             className="adsbygoogle"
-            style={{ display: 'block', textAlign: 'center' }}
+            style={{ display: 'block', textAlign: 'center', width: '300px', height: '250px' }}
             data-ad-client={process.env.GOOGLE_AD_CLIENT}
             data-ad-slot={slot}
-            data-ad-format="auto"
-            data-full-width-responsive="true"
+            /* data-ad-format="auto" */
+            /* data-full-width-responsive="true" */
           ></ins>
         </>
       ) : (
