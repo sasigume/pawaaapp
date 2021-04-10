@@ -1,6 +1,6 @@
 {
   "name": "napoancom",
-  "version": "3.5.8",
+  "version": "3.5.9",
   "author": "pawaaapp",
   "scripts": {
     "dev": "next",
@@ -30,6 +30,7 @@
     "framer-motion": "^3.7.0",
     "graphql": "^15.5.0",
     "next": "latest",
+    "nextjs-progressbar": "^0.0.8",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-gtm-module": "^2.0.11",
