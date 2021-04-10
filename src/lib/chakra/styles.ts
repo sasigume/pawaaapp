@@ -5,7 +5,7 @@ import { mode } from '@chakra-ui/theme-tools';
 export const NAV_HEIGHT = 56;
 export const ASIDE_WITDH = 300;
 export const MAIN_WIDTH = 650;
-export const LAYOUT_PADDING = 20;
+export const LAYOUT_PADDING = 30;
 export const LAYOUT_MAXW = ASIDE_WITDH + MAIN_WIDTH + LAYOUT_PADDING;
 
 const customBreakPoints = createBreakpoints({

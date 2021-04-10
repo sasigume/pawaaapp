@@ -27,7 +27,7 @@ const Aside = ({ w, asideChildren, drawerPosts, enableAd }: LeftStickyProps) => 
       h="100vh"
       zIndex={5}
     >
-      <Box w="full" h="full" overflowY="scroll" p={3} className="noScrollBar">
+      <Box w="full" h="full" overflowY="scroll" className="noScrollBar">
         <Box w="full">
           <ColorSwitch />
           <Box mt={6}>{asideChildren}</Box>
