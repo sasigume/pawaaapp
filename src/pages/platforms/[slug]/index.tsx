@@ -16,6 +16,9 @@ interface IndexProps {
   preview: boolean;
 }
 
+//const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600');
+const TOTAL_LIMIT = 11;
+
 const platformIndex = ({ platform, posts, preview }: IndexProps) => {
   return (
     <>
@@ -28,17 +31,22 @@ const platformIndex = ({ platform, posts, preview }: IndexProps) => {
       ) : (
         <Layout
           preview={preview}
-          meta={{ title: `${platform.displayName}の記事一覧`, desc: 'Pawaa.app' }}
+          meta={{
+            title: `${platform.displayName}の記事一覧 最新${posts.length}件`,
+            desc: platform.description ?? '説明文がありません。',
+          }}
         >
           <Box mb={16}>
             <Box textStyle="h1" mb={8}>
               <h1>
                 {posts[0]
-                  ? `${platform.displayName}の記事一覧`
+                  ? `${platform.displayName}の記事一覧 最新${posts.length}件`
                   : `${platform.displayName}の記事はありません`}
               </h1>
             </Box>
-            {platform.description && <div className="my-4">{platform.description}</div>}
+            {platform.description && (
+              <Box my={4}>{platform.description ?? '説明文がありません'}</Box>
+            )}
             {posts && posts.length > 0 && <PostList mode="archive" posts={posts} />}
           </Box>
         </Layout>
@@ -53,8 +61,6 @@ interface GSProps {
   params: any;
   preview: boolean;
 }
-
-const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600');
 
 export async function getStaticProps({ params, preview = false }: GSProps) {
   const slug = params.slug ?? '';
