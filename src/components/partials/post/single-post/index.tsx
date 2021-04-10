@@ -40,7 +40,21 @@ export function SinglePostComponent({ post, tweetCount }: Props) {
             フォローをお願いします
           </Button>
         </Box>
+        <Box mt={6}>
+          <Button
+            w="full"
+            aria-label="コメント一覧"
+            as={LinkChakra}
+            href={`/${post.slug}/comments`}
+            colorScheme="orange"
+            leftIcon={<FaiconDiv icon={['fas', 'comment-alt']} />}
+          >
+            コメントを見る
+          </Button>
+        </Box>
+
         <Divider my={3} />
+
         {/* 記事下 */}
         {post.hideAdsense !== true && <AdsenseBox path={post.slug} slot={'1529491287'} />}
       </Box>

@@ -5,4 +5,5 @@ export interface PostComment {
   body: string;
   postSlug: string;
   createdAt: any;
+  photoURL?: string;
 }

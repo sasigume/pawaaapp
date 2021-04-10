@@ -29,6 +29,7 @@ import { Post } from '@/models/contentful/Post';
 import LinkChakra from '@/components/common/link-chakra';
 import { NGwords } from 'pages/api/ogpgen/NGwords';
 import { useAuthentication } from '@/hooks/authentication';
+import FaiconDiv from '@/components/common/faicon-div';
 
 interface Props {
   postComments: PostComment[];
@@ -47,86 +48,101 @@ export default function PostCommentList({ postComments, post }: Props) {
     agreed: Yup.boolean().required(),
   });
   return (
-    <Flex direction={{ base: 'column', md: 'row' }}>
-      <Box minW={{ base: '', md: '15rem' }} mb={{ base: 8, md: 0 }} mr={{ base: 0, md: 16 }}>
-        {postComments && postComments.length > 0 ? (
-          postComments.map((c: PostComment) => <PostCommentSingle c={c} key={c.id} />)
-        ) : (
-          <div>コメントはありません。</div>
-        )}
-      </Box>
+    <>
+      {' '}
+      <Button
+        w="full"
+        mb={8}
+        aria-label="戻る"
+        as={LinkChakra}
+        href={`/${post.slug}/`}
+        colorScheme="orange"
+        leftIcon={<FaiconDiv icon={['fas', 'book']} />}
+      >
+        記事に戻る
+      </Button>
+      <Flex direction={{ base: 'column', md: 'row' }}>
+        <Box minW={{ base: '', md: '15rem' }} mb={{ base: 8, md: 0 }} mr={{ base: 0, md: 16 }}>
+          {postComments && postComments.length > 0 ? (
+            postComments.map((c: PostComment) => <PostCommentSingle c={c} key={c.id} />)
+          ) : (
+            <div>コメントはありません。</div>
+          )}
+        </Box>
 
-      <Box mb={6}>
-        {user ? (
-          <Box>
-            <Warning />
-            <Modal isOpen={isOpen} onClose={onClose} isCentered>
-              <ModalOverlay />
-              <ModalContent py={6}>
-                <ModalBody>送信できました！連投はやめてね</ModalBody>
-                <ModalFooter>
-                  <Button colorScheme="blue" mr={3} onClick={onClose}>
-                    閉じる
-                  </Button>
-                </ModalFooter>
-              </ModalContent>
-            </Modal>
-            {!didYouSend ? (
-              <Formik
-                initialValues={{
-                  body: '',
-                  agreed: false,
-                }}
-                validationSchema={validationSchema}
-                onSubmit={(values) => {
-                  setTimeout(() => {
-                    firebase
-                      .firestore()
-                      .collection('postComments')
-                      .add({
-                        senderUid: firebase.auth().currentUser?.uid,
-                        senderName: firebase.auth().currentUser?.displayName,
-                        postSlug: post.slug,
-                        body: values.body,
-                        createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
-                      })
-                      .then(() => {
-                        setSended(true);
-                      });
-                  }, 1000);
-                }}
-              >
-                {({ handleSubmit, values }) => (
-                  <Stack as="form" onSubmit={handleSubmit as any} spacing={6}>
-                    <TextareaControl name="body" placeholder="コメントを入力" label="コメント" />
-                    <CheckboxSingleControl name="agreed">
-                      利用規約に同意しました
-                    </CheckboxSingleControl>
-                    <Button as={LinkChakra} href="/users/me">
-                      名前: {user.name}
+        <Box mb={6}>
+          {user ? (
+            <Box>
+              <Warning />
+              <Modal isOpen={isOpen} onClose={onClose} isCentered>
+                <ModalOverlay />
+                <ModalContent py={6}>
+                  <ModalBody>送信できました！連投はやめてね</ModalBody>
+                  <ModalFooter>
+                    <Button colorScheme="blue" mr={3} onClick={onClose}>
+                      閉じる
                     </Button>
-                    <ButtonGroup>
-                      {values.agreed && (
-                        <SubmitButton flexGrow={1}>コメントを投稿する</SubmitButton>
-                      )}
-                      <ResetButton>リセット</ResetButton>
-                    </ButtonGroup>
-                  </Stack>
-                )}
-              </Formik>
-            ) : (
-              <>
-                <Center my={16}>送信できました。一覧はしばらく経ってから更新されます。</Center>
-              </>
-            )}
-          </Box>
-        ) : (
-          <div className="my-6">
-            <LinkChakra href="/signin">サインイン</LinkChakra>
-            してコメントしてみよう!
-          </div>
-        )}
-      </Box>
-    </Flex>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
+              {!didYouSend ? (
+                <Formik
+                  initialValues={{
+                    body: '',
+                    agreed: false,
+                  }}
+                  validationSchema={validationSchema}
+                  onSubmit={(values) => {
+                    setTimeout(() => {
+                      firebase
+                        .firestore()
+                        .collection('postComments')
+                        .add({
+                          senderUid: firebase.auth().currentUser?.uid,
+                          senderName: firebase.auth().currentUser?.displayName,
+                          photoURL: firebase.auth().currentUser?.photoURL,
+                          postSlug: post.slug,
+                          body: values.body,
+                          createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
+                        })
+                        .then(() => {
+                          setSended(true);
+                        });
+                    }, 1000);
+                  }}
+                >
+                  {({ handleSubmit, values }) => (
+                    <Stack as="form" onSubmit={handleSubmit as any} spacing={6}>
+                      <TextareaControl name="body" placeholder="コメントを入力" label="コメント" />
+                      <CheckboxSingleControl name="agreed">
+                        利用規約に同意しました
+                      </CheckboxSingleControl>
+                      <Button as={LinkChakra} href="/users/me">
+                        名前: {user.name}
+                      </Button>
+                      <ButtonGroup>
+                        {values.agreed && (
+                          <SubmitButton flexGrow={1}>コメントを投稿する</SubmitButton>
+                        )}
+                        <ResetButton>リセット</ResetButton>
+                      </ButtonGroup>
+                    </Stack>
+                  )}
+                </Formik>
+              ) : (
+                <>
+                  <Center my={16}>送信できました。一覧はしばらく経ってから更新されます。</Center>
+                </>
+              )}
+            </Box>
+          ) : (
+            <div className="my-6">
+              <LinkChakra href="/signin">サインイン</LinkChakra>
+              してコメントしてみよう!
+            </div>
+          )}
+        </Box>
+      </Flex>
+    </>
   );
 }

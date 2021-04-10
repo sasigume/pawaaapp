@@ -19,12 +19,12 @@ import { useRef, useState } from 'react';
 interface TocProps {
   tweetCount?: number;
   tweetText?: string;
-  commentCount?: number;
   likeCount?: number;
   slug?: string;
+  onlyTwitter?: boolean;
 }
 
-const FukidashiShare = ({ tweetCount, tweetText, commentCount, likeCount, slug }: TocProps) => {
+const FukidashiShare = ({ tweetCount, tweetText, likeCount, slug, onlyTwitter }: TocProps) => {
   const { colorMode } = useColorMode();
   const { asPath } = useRouter();
   const shareUrl = (process.env.HTTPS_URL + asPath) as string;
@@ -104,33 +104,13 @@ const FukidashiShare = ({ tweetCount, tweetText, commentCount, likeCount, slug }
           className="fukidashiBox"
           bg={colorMode == 'dark' ? 'black' : 'white'}
           fontSize="lg"
-          mr={6}
         >
           {tweetCount ?? 0}
         </Box>
 
-        {commentCount && (
+        {!onlyTwitter && (
           <>
-            <Box>
-              <Button aria-label="コメントする" as="a" href="#a_comment" colorScheme="orange">
-                <FaiconDiv icon={['fas', 'comment-alt']} />
-              </Button>
-            </Box>
-            <Box
-              ml={2}
-              className="fukidashiBox"
-              sx={fukidashiStyle}
-              bg={colorMode == 'dark' ? 'black' : 'white'}
-              fontSize="lg"
-            >
-              {commentCount ?? 0}
-            </Box>
-          </>
-        )}
-
-        {likeCount && (
-          <>
-            <Box>
+            <Box ml={3}>
               <Button
                 ref={alertRef}
                 cursor="pointer"
@@ -143,6 +123,7 @@ const FukidashiShare = ({ tweetCount, tweetText, commentCount, likeCount, slug }
                 <FaiconDiv icon={['fas', 'heart']} />
               </Button>
             </Box>
+
             <Box
               ml={2}
               className="fukidashiBox"

@@ -1,6 +1,7 @@
 import { PostComment } from '@/models/firebase/PostComment';
-import { Box, Stack } from '@chakra-ui/react';
+import { Box, Flex, Stack } from '@chakra-ui/react';
 import dayjs from 'dayjs';
+import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 
 interface Props {
@@ -19,7 +20,12 @@ export default function PostCommentSingle({ c }: Props) {
       rounded="xl"
     >
       <Stack spacing={2}>
-        <div>{c.senderName}さん:</div>
+        <Flex>
+          <Box w={8} mr={3} overflow="hidden">
+            <Image src={c.photoURL ? c.photoURL : '/icon-180x.png'} width={32} height={32} />
+          </Box>
+          <Box>{c.senderName}さん</Box>
+        </Flex>
         <ReactMarkdown source={c.body} />
         <div className="text-sm text-right">
           <small>{dayjs(c.createdAt._seconds * 1000).format('YYYY/MM/DD HH:mm:ss')}</small>
