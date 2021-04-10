@@ -17,6 +17,7 @@ export function SinglePostComponent({ post, tweetCount }: Props) {
     <>
       <Box as="article">
         <PostHeading post={post} tweetCount={tweetCount ?? 0} />
+        {/* タイトル下 */}
         {post.hideAdsense !== true && <AdsenseBox slot={'1773582608'} path={post.slug} />}
         <Divider my={4} />
         <Box>
@@ -40,6 +41,7 @@ export function SinglePostComponent({ post, tweetCount }: Props) {
           </Button>
         </Box>
         <Divider my={3} />
+        {/* 記事下 */}
         {post.hideAdsense !== true && <AdsenseBox path={post.slug} slot={'1529491287'} />}
       </Box>
     </>

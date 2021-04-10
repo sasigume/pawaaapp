@@ -10,9 +10,10 @@ interface LeftStickyProps {
   w: number;
   asideChildren?: ReactNode;
   drawerPosts?: Post[];
+  enableAd?: boolean;
 }
 
-const Aside = ({ w, asideChildren, drawerPosts }: LeftStickyProps) => {
+const Aside = ({ w, asideChildren, drawerPosts, enableAd }: LeftStickyProps) => {
   return (
     <Box
       top={0}
@@ -33,7 +34,7 @@ const Aside = ({ w, asideChildren, drawerPosts }: LeftStickyProps) => {
           <Box mt={6}>{asideChildren}</Box>
           {drawerPosts && drawerPosts.length > 0 && (
             <Box mt={8}>
-              <PostList mode="drawer" posts={drawerPosts} />
+              <PostList mode="drawer" posts={drawerPosts} enableAd={enableAd} />
             </Box>
           )}
 

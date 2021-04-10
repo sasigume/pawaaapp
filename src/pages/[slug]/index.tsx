@@ -89,7 +89,7 @@ export default function PostPage({
             <Divider my={8} borderColor="gray.400" />
             {morePosts && morePosts.length > 0 && (
               <Box my={10}>
-                <PostList mode="more" posts={morePosts} />
+                <PostList mode="more" posts={morePosts} enableAd={!firstPost.hideAdsense} />
               </Box>
             )}
 

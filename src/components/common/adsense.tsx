@@ -27,11 +27,11 @@ export default function Adsense({ slot, path }: AdsenseProps) {
         <>
           <ins
             className="adsbygoogle"
-            style={{ display: 'block', textAlign: 'center' }}
+            style={{ display: 'block', textAlign: 'center', width: '300px', height: '250px' }}
             data-ad-client={process.env.GOOGLE_AD_CLIENT}
             data-ad-slot={slot}
-            data-ad-format="auto"
-            data-full-width-responsive="true"
+            /* data-ad-format="auto" */
+            /* data-full-width-responsive="true" */
           ></ins>
         </>
       ) : (
