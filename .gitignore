@@ -41,3 +41,6 @@ yarn-error.log*
 serviceAccountKey*
 pawaaapp-firebase-adminsdk*
 encoded.txt
+
+# 2021.4.10
+.eslintcache
