@@ -1,4 +1,5 @@
 import { Box } from '@chakra-ui/layout';
+import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
 interface AdsenseProps {
@@ -8,22 +9,25 @@ interface AdsenseProps {
 
 // https://qiita.com/qrusadorz/items/14972b6e069feaf777a9
 export default function Adsense({ slot, path }: AdsenseProps) {
-  // https://mao-tss.medium.com/fix-google-adsense-loading-issues-with-react-f338cbd61ac4
+  const { asPath } = useRouter();
 
   const enableAd = process.env.ENABLE_AD ?? false;
 
   useEffect(() => {
-    window.adsbygoogle = window.adsbygoogle || [];
-    window.adsbygoogle.push({});
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (err) {
+      console.log(err);
+    }
   });
 
   return (
-    <Box key={path + Math.random().toString()} mx="auto" my={4}>
+    <Box key={asPath} mx="auto" my={4}>
       {enableAd ? (
         <>
           <ins
             className="adsbygoogle"
-            style={{ display: 'block' }}
+            style={{ display: 'block', textAlign: 'center' }}
             data-ad-client={process.env.GOOGLE_AD_CLIENT}
             data-ad-slot={slot}
             data-ad-format="auto"
