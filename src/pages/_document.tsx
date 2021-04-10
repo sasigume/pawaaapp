@@ -45,17 +45,15 @@ export default class MyDocument extends Document<DocumentProps> {
         `,
             }}
           />
+
+          {/* 2021.4.10 */}
+          <script
+            data-ad-client={process.env.GOOGLE_AD_CLIENT}
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+          ></script>
         </Head>
         <body>
-          {/* for Adsense */}
-          <noscript
-            dangerouslySetInnerHTML={{
-              __html: `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${
-                process.env.GTM_ID ?? ''
-              }" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>`,
-            }}
-          />
-
           {/* dark mode */}
           <ColorModeScript initialColorMode={colorMode.config.initialColorMode} />
           <Main />
