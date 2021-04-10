@@ -1,6 +1,6 @@
 {
   "name": "napoancom",
-  "version": "3.5.7",
+  "version": "3.5.8",
   "author": "pawaaapp",
   "scripts": {
     "dev": "next",
@@ -68,7 +68,7 @@
     "typescript": "4.0"
   },
   "repository": {
-    "url": "https://github.com/pawaaapp/napoancom"
+    "url": "https://github.com/boronuno/napoancom"
   },
   "license": "MIT",
   "lint-staged": {
