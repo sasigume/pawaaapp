@@ -19,7 +19,7 @@ export default function Adsense({ slot, path }: AdsenseProps) {
     } catch (err) {
       console.log(err);
     }
-  });
+  }, [asPath]);
 
   return (
     <Box key={asPath} mx="auto" my={4}>
