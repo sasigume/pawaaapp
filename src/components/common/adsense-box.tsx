@@ -37,6 +37,6 @@ export default function AdsenseBox({ slot, path }: AdsenseProps) {
       ) : (
         <span>Adsense無効化中</span>
       )}
-    </え>
+    </Center>
   );
 }
