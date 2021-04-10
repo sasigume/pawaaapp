@@ -1,6 +1,6 @@
 import { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import TagManager from 'react-gtm-module';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
