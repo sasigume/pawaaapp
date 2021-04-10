@@ -1,18 +1,45 @@
-import { Box, Flex, Button, useColorMode } from '@chakra-ui/react';
+import { Box, Flex, Button, useColorMode, Badge } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import FaiconDiv from '../faicon-div';
 import LinkChakra from '../link-chakra';
+import firebase from 'firebase/app';
+import { useEffect, useState } from 'react';
 
 interface TocProps {
   tweetCount?: number;
   tweetText?: string;
   commentCount?: number;
+  likeCount?: number;
+  slug?: string;
 }
 
-const FukidashiShare = ({ tweetCount, tweetText, commentCount }: TocProps) => {
+const FukidashiShare = ({ tweetCount, tweetText, commentCount, likeCount, slug }: TocProps) => {
   const { colorMode } = useColorMode();
   const { asPath } = useRouter();
   const shareUrl = (process.env.HTTPS_URL + asPath) as string;
+  const [liked, setLiked] = useState(false);
+  let [likeValue, setLikeValue] = useState(likeCount ?? 0);
+
+  const Like = async () => {
+    await firebase
+      .firestore()
+      .collection('blogPosts')
+      .doc(slug)
+      .set(
+        {
+          like: firebase.firestore.FieldValue.increment(1),
+        },
+        { merge: true },
+      )
+      .then(() => {
+        setLikeValue(likeValue + 1);
+        console.info(`Added like`);
+        setLiked(true);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
 
   const fukidashiStyle = {
     '.fukidashiBox': {
@@ -41,33 +68,58 @@ const FukidashiShare = ({ tweetCount, tweetText, commentCount }: TocProps) => {
   )}&text=${encodeURIComponent(tweetText ?? '')}`;
 
   return (
-    <Flex sx={fukidashiStyle} mb={4} alignItems="center">
-      <Box mr={2}>
-        <Button
-          aria-label="ツイートする"
-          target="_blank"
-          as={LinkChakra}
-          href={tweetUrl}
-          colorScheme="twitter"
+    <>
+      <Flex sx={fukidashiStyle} mb={4} alignItems="center">
+        <Box mr={2}>
+          <Button
+            aria-label="ツイートする"
+            target="_blank"
+            as={LinkChakra}
+            href={tweetUrl}
+            colorScheme="twitter"
+          >
+            <FaiconDiv icon={['fab', 'twitter']} />
+          </Button>
+        </Box>
+
+        <Box
+          className="fukidashiBox"
+          bg={colorMode == 'dark' ? 'black' : 'white'}
+          fontSize="lg"
+          mr={6}
         >
-          <FaiconDiv icon={['fab', 'twitter']} />
-        </Button>
-      </Box>
+          {tweetCount ?? 0}
+        </Box>
 
-      <Box
-        className="fukidashiBox"
-        bg={colorMode == 'dark' ? 'black' : 'white'}
-        fontSize="lg"
-        mr={6}
-      >
-        {tweetCount ?? 0}
-      </Box>
+        {commentCount && (
+          <>
+            <Box mr={2}>
+              <Button aria-label="コメントする" as="a" href="#a_comment" colorScheme="orange">
+                <FaiconDiv icon={['fas', 'comment-alt']} />
+              </Button>
+            </Box>
+            <Box
+              className="fukidashiBox"
+              sx={fukidashiStyle}
+              bg={colorMode == 'dark' ? 'black' : 'white'}
+              fontSize="lg"
+            >
+              {commentCount ?? 0}
+            </Box>
+          </>
+        )}
 
-      {commentCount && (
         <>
           <Box mr={2}>
-            <Button aria-label="コメントする" as="a" href="#a_comment" colorScheme="orange">
-              <FaiconDiv icon={['fas', 'comment-alt']} />
+            <Button
+              cursor="pointer"
+              disabled={liked}
+              aria-label="いいねする"
+              as="a"
+              onClick={Like}
+              colorScheme="pink"
+            >
+              <FaiconDiv icon={['fas', 'heart']} />
             </Button>
           </Box>
           <Box
@@ -76,11 +128,12 @@ const FukidashiShare = ({ tweetCount, tweetText, commentCount }: TocProps) => {
             bg={colorMode == 'dark' ? 'black' : 'white'}
             fontSize="lg"
           >
-            {commentCount ?? 0}
+            {likeValue}
           </Box>
         </>
-      )}
-    </Flex>
+      </Flex>
+      {liked && <Badge>いいねしてくれてありがとう！</Badge>}
+    </>
   );
 };
 
