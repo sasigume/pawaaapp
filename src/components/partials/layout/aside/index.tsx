@@ -16,8 +16,7 @@ interface LeftStickyProps {
 const Aside = ({ w, asideChildren, drawerPosts, enableAd }: LeftStickyProps) => {
   return (
     <Box
-      top={0}
-      //top={`${NAV_HEIGHT}px`}
+      top={`${NAV_HEIGHT}px`}
       bottom={0}
       left={0}
       position="sticky"
