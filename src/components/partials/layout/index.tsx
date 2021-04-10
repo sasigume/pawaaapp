@@ -65,18 +65,15 @@ export default function Layout({
         }
         maxW="100vw"
       >
-        {/* <Nav
+        <Nav
           maxW={LAYOUT_MAXW}
           colorMode={colorMode}
           posts={drawerPosts ?? []}
           preview={preview}
           drawerLeftChildren={drawerLeftChildren}
-        /> */}
+        />
 
-        <Box /* pt={`${NAV_HEIGHT}px`} */>
-          <Center my={6}>
-            <SiteLogo />
-          </Center>
+        <Box pt={`${NAV_HEIGHT}px`}>
           <Flex
             mx="auto"
             maxWidth={{
