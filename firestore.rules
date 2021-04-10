@@ -19,6 +19,13 @@ service cloud.firestore {
       allow update: if request.auth.uid == resource.data.receiverUid;
       allow delete: if request.auth.uid == resource.data.senderUid;
     }
+    match /blogPosts/{blogPostId} {
+      allow get, read, create, write: if true
+        //request.auth.uid == resource.data.senderUid ||
+        //request.auth.uid == resource.data.receiverUid;
+      allow update: if request.auth.uid == resource.data.receiverUid;
+      allow delete: if request.auth.uid == resource.data.senderUid;
+    }
     match /contacts/{contactId} {
       allow get, read, create, write: if true
         //request.auth.uid == resource.data.senderUid ||
