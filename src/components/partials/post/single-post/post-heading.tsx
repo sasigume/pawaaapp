@@ -45,7 +45,7 @@ const PostHeading = ({ post, tweetCount }: Props) => {
       <Flex justifyContent="space-between" flexDirection={{ base: 'column', sm: 'row' }}>
         {post.person && <PersonList persons={[post.person]} />}
         <Spacer />
-        <FukidashiShare tweetCount={tweetCount} />
+        <FukidashiShare tweetCount={tweetCount} slug={post.slug} />
       </Flex>
     </Box>
   );

@@ -15,6 +15,7 @@ import ReactMarkdownHeading from 'react-markdown-heading';
 import FukidashiShare from '@/components/common/fukidashi-share';
 import tocStyles from '../../styles/markdown-toc-styles.module.css';
 import AdsenseBox from '@/components/common/adsense-box';
+import { BlogPostData } from '@/models/firebase/BlogPostData';
 
 interface PostPageProps {
   firstPost: Post;
@@ -24,6 +25,7 @@ interface PostPageProps {
   tweetCount: number;
   revalEnv: number;
   drawerPosts: Post[];
+  blogPostData: BlogPostData;
 }
 
 export default function PostPage({
@@ -34,6 +36,7 @@ export default function PostPage({
   tweetCount,
   revalEnv,
   drawerPosts,
+  blogPostData,
 }: PostPageProps) {
   const router = useRouter();
 
@@ -65,6 +68,8 @@ export default function PostPage({
               <FukidashiShare
                 tweetText={firstPost.title}
                 tweetCount={tweetCount}
+                slug={firstPost.slug}
+                likeCount={blogPostData.like}
                 //commentCount={postComments.length}
               />
               {Toc(firstPost)}
@@ -127,6 +132,9 @@ export async function getStaticProps({ params, preview }: GSProps) {
   /*const commentsRes = await fetch(process.env.API_URL + `/api/postComments/${params.slug}`);
   const postComments = await commentsRes.json();*/
 
+  const blogPostDataRes = await fetch(process.env.API_URL + `/api/blogPosts/${params.slug}`);
+  const blogPostData = (await blogPostDataRes.json()) as BlogPostData;
+
   const searchWord = SITE_URL + '/' + params.slug;
 
   const tweets = await fetch(
@@ -153,6 +161,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
       revalEnv: revalEnv,
       hideAdsense: posts.post.hideAdsense ?? false,
       //drawerPosts: drawerPosts.postsCollection.items ?? null,
+      blogPostData: blogPostData ?? null,
     },
     revalidate: revalEnv,
   };
