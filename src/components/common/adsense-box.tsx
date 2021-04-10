@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/layout';
+import { Center } from '@chakra-ui/layout';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
@@ -22,7 +22,7 @@ export default function AdsenseBox({ slot, path }: AdsenseProps) {
   }, [asPath]);
 
   return (
-    <Box key={asPath} mx="auto" my={4}>
+    <Center key={asPath} mx="auto" my={4}>
       {enableAd ? (
         <>
           <ins
@@ -37,6 +37,6 @@ export default function AdsenseBox({ slot, path }: AdsenseProps) {
       ) : (
         <span>Adsense無効化中</span>
       )}
-    </Box>
+    </え>
   );
 }
