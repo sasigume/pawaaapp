@@ -4,11 +4,9 @@ import { getPostAndMorePosts, getAllPostsWithSlugOnlySlug } from '@/lib/contentf
 import { Post, PostForList, PostOnlySlug } from '@/models/contentful/Post';
 import Layout from '@/components/partials/layout';
 import { Box, Divider } from '@chakra-ui/react';
-//import { PostComment } from '@/models/firebase/PostComment';
 import { SITE_URL } from '@/lib/constants';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-//import PostCommentList from '@/components/partials/post-comment/post-comment-list';
 
 import PostList from '@/components/partials/post';
 import ReactMarkdownHeading from 'react-markdown-heading';
@@ -19,7 +17,6 @@ import { BlogPostData } from '@/models/firebase/BlogPostData';
 
 interface PostPageProps {
   firstPost: Post;
-  //postComments: PostComment[];
   morePosts: PostForList[];
   preview: boolean;
   tweetCount: number;
@@ -30,7 +27,6 @@ interface PostPageProps {
 
 export default function PostPage({
   firstPost,
-  //postComments,
   morePosts,
   preview,
   tweetCount,
@@ -69,7 +65,6 @@ export default function PostPage({
                 tweetCount={tweetCount}
                 slug={firstPost.slug}
                 likeCount={blogPostData.like ?? 0}
-                //commentCount={postComments.length}
               />
               {Toc(firstPost)}
             </>
@@ -81,7 +76,6 @@ export default function PostPage({
                 tweetCount={tweetCount}
                 slug={firstPost.slug}
                 likeCount={blogPostData.like ?? 0}
-                //commentCount={postComments.length}
               />
               {Toc(firstPost)}
               {/* 2021-04-04 issue #131 may have been caused by adsense */}
@@ -108,21 +102,6 @@ export default function PostPage({
                 <PostList mode="more" posts={morePosts} enableAd={!firstPost.hideAdsense} />
               </Box>
             )}
-
-            {/* 2021-03-26 Disabled
-                
-                <>
-                <Divider my={8} borderColor="gray.400" />
-
-                <Box id="a_comment" textStyle="h2" mb={6}>
-                  <h2>コメント</h2>
-                </Box>
-
-                <PostCommentList postComments={postComments} post={firstPost} />
-                
-                </>
-                
-                */}
           </Box>
         </Layout>
       )}
@@ -139,9 +118,6 @@ const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600');
 
 export async function getStaticProps({ params, preview }: GSProps) {
   const posts = await getPostAndMorePosts(params.slug, preview);
-
-  /*const commentsRes = await fetch(process.env.API_URL + `/api/postComments/${params.slug}`);
-  const postComments = await commentsRes.json();*/
 
   const blogPostDataRes = await fetch(process.env.API_URL + `/api/blogPosts/${params.slug}`);
   const blogPostData = (await blogPostDataRes.json()) as BlogPostData;
@@ -166,7 +142,6 @@ export async function getStaticProps({ params, preview }: GSProps) {
     props: {
       preview: preview ?? false,
       firstPost: posts.post ?? null,
-      //postComments: postComments ?? null,
       morePosts: posts.morePosts ?? null,
       tweetCount: tweetCount ?? null,
       revalEnv: revalEnv,
