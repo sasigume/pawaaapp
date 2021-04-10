@@ -1,8 +1,7 @@
 import { ReactNode } from 'react';
-import { Box, Button, useColorMode } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 import LinkChakra from '@/components/common/link-chakra';
 import PostList from '../../post';
-import ColorSwitch from '../color-switch';
 import { Post } from '@/models/contentful/Post';
 import { NAV_HEIGHT } from '@/lib/chakra/styles';
 
@@ -29,7 +28,6 @@ const Aside = ({ w, asideChildren, drawerPosts, enableAd }: LeftStickyProps) => 
     >
       <Box w="full" h="full" overflowY="scroll" className="noScrollBar">
         <Box w="full">
-          <ColorSwitch />
           <Box mt={6}>{asideChildren}</Box>
           {drawerPosts && drawerPosts.length > 0 && (
             <Box mt={8}>
@@ -37,7 +35,7 @@ const Aside = ({ w, asideChildren, drawerPosts, enableAd }: LeftStickyProps) => 
             </Box>
           )}
 
-          <Button w="full" my={8} colorScheme="blue" as={LinkChakra} href="/contact/">
+          <Button w="full" mt={8} mb={10} colorScheme="blue" as={LinkChakra} href="/contact/">
             お問い合わせ
           </Button>
         </Box>
