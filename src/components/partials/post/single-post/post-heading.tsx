@@ -10,9 +10,8 @@ import FukidashiShare from '@/components/common/fukidashi-share';
 interface Props {
   post: Post;
   tweetCount?: number;
-  likeCount?: number;
 }
-const PostHeading = ({ post, tweetCount, likeCount }: Props) => {
+const PostHeading = ({ post, tweetCount }: Props) => {
   return (
     <Box>
       {post.heroImage && (
@@ -46,7 +45,7 @@ const PostHeading = ({ post, tweetCount, likeCount }: Props) => {
       <Flex justifyContent="space-between" flexDirection={{ base: 'column', sm: 'row' }}>
         {post.person && <PersonList persons={[post.person]} />}
         <Spacer />
-        <FukidashiShare likeCount={likeCount ?? 0} tweetCount={tweetCount} slug={post.slug} />
+        <FukidashiShare tweetCount={tweetCount} slug={post.slug} />
       </Flex>
     </Box>
   );
