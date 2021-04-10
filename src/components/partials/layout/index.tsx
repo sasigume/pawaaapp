@@ -15,7 +15,6 @@ import {
 import Nav from './nav';
 import Aside from './aside';
 import LayoutFooter from './layout-footer';
-import SiteLogo from '@/components/common/SiteLogo';
 
 interface LayoutProps {
   preview: boolean;
@@ -81,18 +80,20 @@ export default function Layout({
               lg: `${LAYOUT_MAXW}px`,
             }}
             px={{ base: 3, md: 0 }}
+            flexDirection="row-reverse"
           >
-            <Aside w={ASIDE_WITDH} asideChildren={asideChildren} drawerPosts={drawerPosts} />
             <Box
               as="main"
               mx="auto"
               pt={8}
+              overflowX="hidden"
               maxW={`${MAIN_WIDTH}px`}
               minW={{ base: '100%', md: `${MAIN_WIDTH}px` }}
               pl={{ base: 0, lg: `${LAYOUT_PADDING}px` }}
             >
               {children}
             </Box>
+            <Aside w={ASIDE_WITDH} asideChildren={asideChildren} drawerPosts={drawerPosts} />
           </Flex>
           <LayoutFooter maxW={LAYOUT_MAXW} revalidate={revalEnv} />
         </Box>

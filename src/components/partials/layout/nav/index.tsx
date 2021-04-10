@@ -93,7 +93,7 @@ export default class Nav extends Component<NavProps, { prevScrollpos: number; vi
           position="fixed"
           className={this.state.visible ? 'translateY' : 'translateY hidden'}
         >
-          <Container maxW={`${this.props.maxW}px`}>
+          <Container maxW={`${this.props.maxW}px`} px={0}>
             <HStack>
               <Box mr={4} w={{ base: 'auto', xl: 0 }} display={{ base: 'flex', lg: 'none' }}>
                 <DrawerLeft preview={this.props.preview}>
