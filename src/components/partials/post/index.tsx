@@ -1,4 +1,4 @@
-import Adsense from '@/components/common/adsense';
+import AdsenseBox from '@/components/common/adsense-box';
 import { PostForList } from '@/models/contentful/Post';
 import { Box, Center, Container, Divider, SimpleGrid, Stack } from '@chakra-ui/react';
 import { CompactPost } from './compact-post';
@@ -67,7 +67,7 @@ export const PostList = ({ posts, mode, enableAd }: PostListProps) => {
   return (
     <>
       <MultiPosts mode={mode} posts={posts} />
-      {enableAd !== false && <Adsense slot={'9194360322'} />}
+      {enableAd !== false && <AdsenseBox slot={'9194360322'} />}
     </>
   );
 };
