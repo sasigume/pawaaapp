@@ -26,17 +26,19 @@ const OnePerson = ({ person }: OneProps) => {
       }
     >
       {person.displayName ? person.displayName : '(名前なし)'}
-      <Button
-        ml={6}
-        aria-label="フォロー"
-        target="_blank"
-        as={LinkChakra}
-        href="https://twitter.com/sasigume"
-        colorScheme="twitter"
-        leftIcon={<FaiconDiv icon={['fab', 'twitter']} />}
-      >
-        フォロー
-      </Button>
+      {person.twitterId && (
+        <Button
+          ml={6}
+          aria-label="フォロー"
+          target="_blank"
+          as={LinkChakra}
+          href={`https://twitter.com/${person.twitterId}`}
+          colorScheme="twitter"
+          leftIcon={<FaiconDiv icon={['fab', 'twitter']} />}
+        >
+          フォロー
+        </Button>
+      )}
     </Button>
   );
 };
