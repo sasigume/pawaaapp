@@ -1,7 +1,7 @@
 import FaiconDiv from '@/components/common/faicon-div';
 import LinkChakra from '@/components/common/link-chakra';
 import { Person } from '@/models/contentful/Person';
-import { Avatar, Button, Stack } from '@chakra-ui/react';
+import { Avatar, Box, Button, Center, Stack } from '@chakra-ui/react';
 
 interface OneProps {
   person: Person;
@@ -12,32 +12,31 @@ interface ListProps {
 
 const OnePerson = ({ person }: OneProps) => {
   return (
-    <Button
-      cursor="default"
-      _hover={{ transition: 'none' }}
-      h="60px"
-      leftIcon={
-        <Avatar
-          w={6}
-          h={6}
-          src={person.picture ? person.picture.url : process.env.HTTPS_URL + '/favicon.png'}
-          name={person.displayName ? person.displayName : '(名前なし)'}
-        />
-      }
-    >
-      {person.displayName ? person.displayName : '(名前なし)'}
-      <Button
-        ml={6}
-        aria-label="フォロー"
-        target="_blank"
-        as={LinkChakra}
-        href="https://twitter.com/sasigume"
-        colorScheme="twitter"
-        leftIcon={<FaiconDiv icon={['fab', 'twitter']} />}
-      >
-        フォロー
-      </Button>
-    </Button>
+    <Center pl={4} pr={3} rounded="lg" h="60px" bg="gray.100">
+      <Avatar
+        w={6}
+        h={6}
+        src={person.picture ? person.picture.url : process.env.HTTPS_URL + '/favicon.png'}
+        name={person.displayName ? person.displayName : '(名前なし)'}
+        mr={3}
+      />
+      <LinkChakra href={`/persons/${person.slug}`} zIndex={5}>
+        {person.displayName ? person.displayName : '(名前なし)'}
+      </LinkChakra>
+      {person.twitterId && (
+        <Button
+          ml={6}
+          aria-label="フォロー"
+          target="_blank"
+          as={LinkChakra}
+          href={`https://twitter.com/${person.twitterId}`}
+          colorScheme="twitter"
+          leftIcon={<FaiconDiv icon={['fab', 'twitter']} />}
+        >
+          フォロー
+        </Button>
+      )}
+    </Center>
   );
 };
 
