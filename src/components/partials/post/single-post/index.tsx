@@ -5,7 +5,7 @@ import LinkChakra from '@/components/common/link-chakra';
 import MarkdownRender from '@/components/common/MarkdownRender';
 import FaiconDiv from '@/components/common/faicon-div';
 import PostHeading from './post-heading';
-import AdsenseBox from '@/components/common/adsense';
+import AdsenseBox from '@/components/common/adsense-box';
 
 interface Props {
   post: Post;
