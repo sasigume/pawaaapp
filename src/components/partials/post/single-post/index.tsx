@@ -10,13 +10,14 @@ import AdsenseBox from '@/components/common/adsense-box';
 interface Props {
   post: Post;
   tweetCount?: number;
+  likeCount?: number;
 }
 
-export function SinglePostComponent({ post, tweetCount }: Props) {
+export function SinglePostComponent({ post, tweetCount, likeCount }: Props) {
   return (
     <>
       <Box as="article">
-        <PostHeading post={post} tweetCount={tweetCount ?? 0} />
+        <PostHeading likeCount={likeCount} post={post} tweetCount={tweetCount ?? 0} />
         {/* タイトル下 */}
         {post.hideAdsense !== true && <AdsenseBox slot={'1773582608'} path={post.slug} />}
         <Divider my={4} />
