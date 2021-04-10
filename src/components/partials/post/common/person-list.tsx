@@ -1,7 +1,7 @@
 import FaiconDiv from '@/components/common/faicon-div';
 import LinkChakra from '@/components/common/link-chakra';
 import { Person } from '@/models/contentful/Person';
-import { Avatar, Box, Button, Center, Stack } from '@chakra-ui/react';
+import { Avatar, Box, Button, Center, Stack, useColorMode } from '@chakra-ui/react';
 
 interface OneProps {
   person: Person;
@@ -11,8 +11,9 @@ interface ListProps {
 }
 
 const OnePerson = ({ person }: OneProps) => {
+  const { colorMode } = useColorMode();
   return (
-    <Center pl={4} pr={3} rounded="lg" h="60px" bg="gray.100">
+    <Center pl={4} pr={3} rounded="lg" h="60px" bg={colorMode == 'light' ? 'gray.100' : 'gray.900'}>
       <Avatar
         w={6}
         h={6}

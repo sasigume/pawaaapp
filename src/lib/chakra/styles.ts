@@ -1,5 +1,6 @@
 import { extendTheme } from '@chakra-ui/react';
 import { createBreakpoints } from '@chakra-ui/theme-tools';
+import { mode } from '@chakra-ui/theme-tools';
 
 export const NAV_HEIGHT = 56;
 export const ASIDE_WITDH = 300;
@@ -57,7 +58,7 @@ const EXTEND_CHAKRA = {
     },
   },
   styles: {
-    global: {
+    global: (props: any) => ({
       '.mdrenderWrapper': {
         h1: {
           fontSize: ['28px', '36px'],
@@ -120,9 +121,16 @@ const EXTEND_CHAKRA = {
         'a:hover': {
           color: 'purple',
         },
+        b: {
+          // 昔の記事のインラインスタイルは、全部白にする。読みづらいから！！！
+          color: mode('black', 'white!important')(props),
+        },
         strong: {
           fontWeight: 'bold',
-          background: 'linear-gradient(rgba(0, 0, 0, 0) 80%, #ffff66 75%)',
+          background: mode(
+            'linear-gradient(rgba(0, 0, 0, 0) 80%, #ffff66 75%)',
+            'linear-gradient(rgba(0, 0, 0, 0) 80%, #a58900 75%)',
+          )(props),
         },
         'img,video': {
           maxWidth: '100%',
@@ -148,7 +156,7 @@ const EXTEND_CHAKRA = {
         dt: {
           position: 'relative',
           display: 'inline-block',
-          background: 'white',
+          background: mode('white', 'black')(props),
           top: '-0.8rem',
           left: '0.5rem',
           padding: '0 0.4rem',
@@ -231,14 +239,15 @@ const EXTEND_CHAKRA = {
           padding: '3px',
           borderRadius: '3px',
           fontWeight: 'bold',
-          background: '#dbdbdb',
+          background: mode('#dbdbdb', '#333')(props),
           wordBreak: 'break-word',
+          color: mode('black', 'white')(props),
         },
         '.command-highlight': {
           display: 'inline-block',
           padding: '2px 5px',
           margin: '0px 2px',
-          background: '#ececec',
+          background: mode('#ececec', '#333')(props),
           borderRadius: '3px',
           border: 'solid 1px #ccc',
           wordBreak: 'break-all',
@@ -258,7 +267,7 @@ const EXTEND_CHAKRA = {
           margin: '10px 6px',
           padding: '10px',
           border: 'solid 2px red',
-          backgroundColor: '#fdd',
+          background: mode('#fdd', '#f22')(props),
           boxShadow: '0px 3px 0px rgba(250, 100, 100, 0.3)',
         },
         '.mode': {
@@ -421,7 +430,7 @@ const EXTEND_CHAKRA = {
           color: '#fff !important',
         },
       },
-    },
+    }),
   },
 };
 
