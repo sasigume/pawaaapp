@@ -1,6 +1,7 @@
 import { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
 import { useEffect } from 'react';
+import NextNprogress from 'nextjs-progressbar';
 import TagManager from 'react-gtm-module';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
@@ -36,6 +37,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <Chakra cookies={pageProps.cookies}>
+        <NextNprogress color="#2687e8" startPosition={0.3} stopDelayMs={200} height={6} />
         <Component {...pageProps} />
       </Chakra>
     </RecoilRoot>

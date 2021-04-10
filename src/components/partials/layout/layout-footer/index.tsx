@@ -76,7 +76,7 @@ const LayoutFooter = ({ revalidate, maxW }: FooterProps) => {
               {revalidate && (
                 <Box>
                   <Badge colorScheme="purple" textTransform="none">
-                    速度向上のため、このページは{revalidate / 60}分間隔で更新されます
+                    速度向上のため、記事の内容は{revalidate / 60}分間変わりません
                   </Badge>
                 </Box>
               )}
