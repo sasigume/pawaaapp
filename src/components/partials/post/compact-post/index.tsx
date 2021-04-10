@@ -11,7 +11,7 @@ interface Props {
 export function CompactPost({ post, mode }: Props) {
   const { colorMode } = useColorMode();
   return (
-    <a href={`/${post.slug}`}>
+    <LinkChakra href={`/${post.slug}`}>
       {/*<LinkChakra href={`/${post.slug}`}>*/}
       <Flex
         bg={colorMode == 'light' ? 'white' : 'gray.900'}
@@ -68,6 +68,6 @@ export function CompactPost({ post, mode }: Props) {
         </Box>
       </Flex>
       {/*</LinkChakra>*/}
-    </a>
+    </LinkChakra>
   );
 }

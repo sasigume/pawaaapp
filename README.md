@@ -24,6 +24,10 @@ QraphQL なので指定したフィールドしか返ってきません。ご注
 
 ## Thanks
 
+### Adsense
+
+https://b.0218.jp/202104021830.html
+
 ### Google Analytics
 
 https://sunday-morning.app/posts/2020-12-09-nextjs-google-analytics
