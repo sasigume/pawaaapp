@@ -20,8 +20,9 @@ const LayoutFooter = ({ revalidate, maxW }: FooterProps) => {
       <Container maxW={`${maxW}px`}>
         <Flex
           flexDirection={{ base: 'column', md: 'row' }}
-          justifyContent="space-around"
+          justifyContent="space-between"
           alignItems="center"
+          px={{ base: 3, lg: 0 }}
         >
           <Box pr={6}>
             <Box mb={4}>Powered by</Box>

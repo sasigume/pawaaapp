@@ -10,6 +10,7 @@ import LinkChakra from '@/components/common/link-chakra';
 import FaiconDiv from '@/components/common/faicon-div';
 import { CREATOR_ID } from '@/lib/constants';
 import { NAV_HEIGHT } from '@/lib/chakra/styles';
+import ColorSwitch from '../color-switch';
 const SignIn = dynamic(() => import('./drawer-left/signin'), { ssr: false });
 
 interface NavProps {
@@ -109,6 +110,8 @@ export default class Nav extends Component<NavProps, { prevScrollpos: number; vi
               </Box>
               <SiteLogo display={{ base: 'none', md: 'inline-block' }} />
 
+              <ColorSwitch />
+
               <Spacer />
 
               <HStack display={{ base: 'none', md: 'inline-block' }}>
@@ -129,7 +132,7 @@ export default class Nav extends Component<NavProps, { prevScrollpos: number; vi
                 </Button>
               </HStack>
 
-              <Box pl={4}>
+              <Box pl={4} pr={{ base: 3, md: 0 }}>
                 <SignIn />
               </Box>
             </HStack>
