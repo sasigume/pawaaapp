@@ -1,9 +1,20 @@
-import { Box, Flex, Button, useColorMode, Badge } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Button,
+  useColorMode,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+} from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import FaiconDiv from '../faicon-div';
 import LinkChakra from '../link-chakra';
 import firebase from 'firebase/app';
-import { useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 
 interface TocProps {
   tweetCount?: number;
@@ -17,10 +28,16 @@ const FukidashiShare = ({ tweetCount, tweetText, commentCount, likeCount, slug }
   const { colorMode } = useColorMode();
   const { asPath } = useRouter();
   const shareUrl = (process.env.HTTPS_URL + asPath) as string;
+
+  const alertRef = useRef(null);
   const [liked, setLiked] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false);
+  const onCloseAlert = () => setAlertOpen(false);
+
   let [likeValue, setLikeValue] = useState(likeCount ?? 0);
 
   const Like = async () => {
+    setAlertOpen(true);
     await firebase
       .firestore()
       .collection('blogPosts')
@@ -70,7 +87,7 @@ const FukidashiShare = ({ tweetCount, tweetText, commentCount, likeCount, slug }
   return (
     <>
       <Flex sx={fukidashiStyle} mb={4} alignItems="center">
-        <Box mr={2}>
+        <Box>
           <Button
             aria-label="ツイートする"
             target="_blank"
@@ -83,6 +100,7 @@ const FukidashiShare = ({ tweetCount, tweetText, commentCount, likeCount, slug }
         </Box>
 
         <Box
+          ml={2}
           className="fukidashiBox"
           bg={colorMode == 'dark' ? 'black' : 'white'}
           fontSize="lg"
@@ -93,12 +111,13 @@ const FukidashiShare = ({ tweetCount, tweetText, commentCount, likeCount, slug }
 
         {commentCount && (
           <>
-            <Box mr={2}>
+            <Box>
               <Button aria-label="コメントする" as="a" href="#a_comment" colorScheme="orange">
                 <FaiconDiv icon={['fas', 'comment-alt']} />
               </Button>
             </Box>
             <Box
+              ml={2}
               className="fukidashiBox"
               sx={fukidashiStyle}
               bg={colorMode == 'dark' ? 'black' : 'white'}
@@ -109,30 +128,52 @@ const FukidashiShare = ({ tweetCount, tweetText, commentCount, likeCount, slug }
           </>
         )}
 
-        <>
-          <Box mr={2}>
-            <Button
-              cursor="pointer"
-              disabled={liked}
-              aria-label="いいねする"
-              as="a"
-              onClick={Like}
-              colorScheme="pink"
+        {likeCount && (
+          <>
+            <Box>
+              <Button
+                ref={alertRef}
+                cursor="pointer"
+                disabled={liked}
+                aria-label="いいねする"
+                as="a"
+                onClick={Like}
+                colorScheme="pink"
+              >
+                <FaiconDiv icon={['fas', 'heart']} />
+              </Button>
+            </Box>
+            <Box
+              ml={2}
+              className="fukidashiBox"
+              sx={fukidashiStyle}
+              bg={colorMode == 'dark' ? 'black' : 'white'}
+              fontSize="lg"
             >
-              <FaiconDiv icon={['fas', 'heart']} />
-            </Button>
-          </Box>
-          <Box
-            className="fukidashiBox"
-            sx={fukidashiStyle}
-            bg={colorMode == 'dark' ? 'black' : 'white'}
-            fontSize="lg"
-          >
-            {likeValue}
-          </Box>
-        </>
+              {likeValue}
+            </Box>
+          </>
+        )}
       </Flex>
-      {liked && <Badge>いいねしてくれてありがとう！</Badge>}
+      <AlertDialog leastDestructiveRef={alertRef} isOpen={alertOpen} onClose={onCloseAlert}>
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              いいねしてくれてありがとう！
+            </AlertDialogHeader>
+
+            <AlertDialogBody>
+              リロードすると数字が元に戻りますが、数十分後に集計されるのでご安心ください。
+            </AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button colorScheme="red" onClick={onCloseAlert} ml={3}>
+                閉じる
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
     </>
   );
 };

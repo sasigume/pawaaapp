@@ -62,14 +62,25 @@ export default function PostPage({
           }}
           revalEnv={revalEnv}
           preview={preview}
-          drawerLeftChildren={Toc(firstPost)}
+          drawerLeftChildren={
+            <>
+              <FukidashiShare
+                tweetText={firstPost.title}
+                tweetCount={tweetCount}
+                slug={firstPost.slug}
+                likeCount={blogPostData.like ?? 0}
+                //commentCount={postComments.length}
+              />
+              {Toc(firstPost)}
+            </>
+          }
           asideChildren={
             <Box>
               <FukidashiShare
                 tweetText={firstPost.title}
                 tweetCount={tweetCount}
                 slug={firstPost.slug}
-                likeCount={blogPostData.like}
+                likeCount={blogPostData.like ?? 0}
                 //commentCount={postComments.length}
               />
               {Toc(firstPost)}
