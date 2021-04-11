@@ -68,7 +68,11 @@ const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600');
 export async function getStaticProps({ params, preview }: GSProps) {
   const posts = await getPostAndMorePosts(params.slug, preview);
 
-  const commentsRes = await fetch(process.env.API_URL + `/api/postComments/${params.slug}`);
+  const commentsRes = await fetch(process.env.API_URL + `/postComments?slug=${params.slug}`, {
+    headers: {
+      authorization: process.env.FUNCTION_AUTH ?? '',
+    },
+  });
   const postComments = await commentsRes.json();
 
   const revalEnv = parseInt(process.env.REVALIDATE_SINGLE ?? '3600');
