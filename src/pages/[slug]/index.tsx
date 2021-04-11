@@ -119,14 +119,14 @@ const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600');
 export async function getStaticProps({ params, preview }: GSProps) {
   const posts = await getPostAndMorePosts(params.slug, preview);
 
-  const blogPostDataRes = await fetch(process.env.API_URL + `/api/blogPosts/${params.slug}`);
+  const blogPostDataRes = await fetch(process.env.API_URL + `/blogPosts?slug=${params.slug}`);
   const blogPostData = (await blogPostDataRes.json()) as BlogPostData;
 
   const searchWord = SITE_URL + '/' + params.slug;
 
   const tweets = await fetch(
     process.env.API_URL +
-      '/api/twitter?word=' +
+      '/twitter?word=' +
       encodeURIComponent(searchWord) +
       '&secret=' +
       process.env.TWITTER_SECRET,
