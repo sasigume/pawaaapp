@@ -45,8 +45,8 @@ export default function PostPage({
     <>
       {!firstPost && router.isFallback ? (
         <>
-          <Layout preview={preview} meta={{ title: '404 Not found', desc: '' }}>
-            <ErrorPage title="記事が見つかりませんでした" statusCode={404} />
+          <Layout preview={preview} meta={{ title: 'ロード中', desc: '' }}>
+            <ErrorPage title="ロード中" statusCode={404} />
           </Layout>
         </>
       ) : (
@@ -82,7 +82,7 @@ export default function PostPage({
               {!firstPost.hideAdsense && <AdsenseBox slot={'8321176059'} path={firstPost.slug} />}
             </Box>
           }
-          hideAdsense={firstPost.hideAdsense}
+          hideAdsense={firstPost.hideAdsense ?? false}
           drawerPosts={drawerPosts ?? []}
         >
           <Head>
@@ -99,7 +99,7 @@ export default function PostPage({
             <Divider my={8} borderColor="gray.400" />
             {morePosts && morePosts.length > 0 && (
               <Box my={10}>
-                <PostList mode="more" posts={morePosts} enableAd={!firstPost.hideAdsense} />
+                <PostList mode="more" posts={morePosts} enableAd={!firstPost.hideAdsense ?? true} />
               </Box>
             )}
           </Box>
@@ -150,7 +150,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
       morePosts: posts.morePosts ?? null,
       tweetCount: tweetCount ?? null,
       revalEnv: revalEnv,
-      hideAdsense: posts.post.hideAdsense ?? false,
+      hideAdsense: (posts.post && posts.post.hideAdsense == true) ?? false,
       //drawerPosts: drawerPosts.postsCollection.items ?? null,
       blogPostData: blogPostData ?? null,
     },
