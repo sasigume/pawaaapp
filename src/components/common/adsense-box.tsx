@@ -27,7 +27,7 @@ export default function AdsenseBox({ slot, path }: AdsenseProps) {
         <>
           <ins
             className="adsbygoogle"
-            style={{ display: 'block', textAlign: 'center', width: '300px', height: '250px' }}
+            style={{ display: 'block', textAlign: 'center', minWidth: '300px', minHeight: '250px' }}
             data-ad-client={process.env.GOOGLE_AD_CLIENT}
             data-ad-slot={slot}
             /* data-ad-format="auto" */
