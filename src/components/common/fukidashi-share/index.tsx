@@ -49,7 +49,7 @@ const FukidashiShare = ({ tweetCount, tweetText, likeCount, slug, onlyTwitter }:
         { merge: true },
       )
       .then(() => {
-        setLikeValue(likeValue + 1);
+        setLikeValue((prevValue) => prevValue + 1);
         console.info(`Added like`);
         setLiked(true);
       })
