@@ -62,7 +62,7 @@ export async function getStaticProps({ preview = false }) {
       process.env.TWITTER_SECRET,
     {
       headers: {
-        authorization: '',
+        authorization: process.env.FUNCTION_AUTH ?? '',
       },
     },
   );

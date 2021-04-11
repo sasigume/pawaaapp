@@ -46,6 +46,7 @@ module.exports = {
     NAPOANCOM_NEST_URL_STATING: process.env.NAPOANCOM_NEST_URL_STATING,
     NAPOANCOM_NEST_SECRET: process.env.NAPOANCOM_NEST_SECRET,
     NAPOANCOM_NEST_LIMIT: process.env.NAPOANCOM_NEST_LIMIT,
+    FUNCTION_AUTH: process.env.FUNCTION_AUTH,
   },
   images: {
     domains: ['localhost', 'static.wikia.nocookie.net', 'pbs.twimg.com', 'images.ctfassets.net'],
