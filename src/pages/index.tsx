@@ -56,10 +56,15 @@ export async function getStaticProps({ preview = false }) {
 
   const tweets = await fetch(
     process.env.API_URL +
-      '/api/twitter?word=' +
+      '/twitter?word=' +
       encodeURIComponent(searchWord) +
       '&secret=' +
       process.env.TWITTER_SECRET,
+    {
+      headers: {
+        authorization: '',
+      },
+    },
   );
   const tweetsJson = await tweets.json();
   let tweetCount;
