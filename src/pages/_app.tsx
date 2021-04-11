@@ -16,12 +16,6 @@ import { Chakra } from '@/components/providers/chakra';
 function App({ Component, pageProps }: AppProps) {
   addIcon();
 
-  let hideAdsense: boolean = pageProps.hideAdsense ?? false;
-
-  if (hideAdsense) {
-    console.info(`%c Adsense is disabled for this page`, `color:purple`);
-  }
-
   useEffect(() => {
     if (typeof localStorage === null) {
       console.error('Cannot use Local Storage!');
@@ -29,7 +23,7 @@ function App({ Component, pageProps }: AppProps) {
     TagManager.initialize({
       gtmId: process.env.GTM_ID,
       dataLayer: {
-        hideAdsense: hideAdsense,
+        hideAdsense: false,
       },
     });
   });

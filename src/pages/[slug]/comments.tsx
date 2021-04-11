@@ -34,7 +34,7 @@ export default function PostPage({ firstPost, postComments, preview, revalEnv }:
           }}
           revalEnv={revalEnv}
           preview={preview}
-          hideAdsense={firstPost.hideAdsense}
+          hideAdsense={firstPost.hideAdsense ?? false}
         >
           <Head>
             <link
