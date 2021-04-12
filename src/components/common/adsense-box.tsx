@@ -14,12 +14,16 @@ export default function AdsenseBox({ slot }: AdsenseProps) {
   //const enableAd = process.env.ENABLE_AD ?? false;
 
   useEffect(() => {
-    try {
-      if (window.adsbygoogle && process.env.NODE_ENV !== 'development') {
-        window.adsbygoogle.push({});
+    if (typeof window !== 'undefined') {
+      try {
+        setTimeout(() => {
+          if (window.adsbygoogle && process.env.NODE_ENV !== 'development') {
+            window.adsbygoogle.push({});
+          }
+        }, 500);
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      console.log(err);
     }
   }, [asPath]);
 
