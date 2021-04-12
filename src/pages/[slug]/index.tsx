@@ -41,72 +41,84 @@ export default function PostPage({
       <ReactMarkdownHeading markdown={post.body} hyperlink />
     </Box>
   );
-  return (
-    <>
-      {!firstPost && router.isFallback ? (
-        <>
-          <Layout preview={preview} meta={{ title: 'ロード中', desc: '' }}>
-            <ErrorPage title="ロード中" statusCode={404} />
-          </Layout>
-        </>
-      ) : (
-        <Layout
-          meta={{
-            title: firstPost.title,
-            desc: firstPost.description ? firstPost.description : '',
-            ogpUrl: firstPost.heroImage && firstPost.heroImage.url,
-          }}
-          revalEnv={revalEnv}
-          preview={preview}
-          drawerLeftChildren={
-            <>
-              <FukidashiShare
-                tweetText={firstPost.title}
-                tweetCount={tweetCount}
-                slug={firstPost.slug}
-                likeCount={blogPostData.like ?? 0}
-              />
-              {Toc(firstPost)}
-            </>
-          }
-          asideChildren={
-            <Box>
-              <FukidashiShare
-                tweetText={firstPost.title}
-                tweetCount={tweetCount}
-                slug={firstPost.slug}
-                likeCount={blogPostData.like ?? 0}
-              />
-              {Toc(firstPost)}
-              {/* 2021-04-04 issue #131 may have been caused by adsense */}
-              {!firstPost.hideAdsense && <AdsenseBox slot={'8321176059'} path={firstPost.slug} />}
-            </Box>
-          }
-          hideAdsense={firstPost.hideAdsense ?? false}
-          drawerPosts={drawerPosts ?? []}
-        >
-          <Head>
-            <link
-              rel="canonical"
-              href={`${process.env.HTTPS_URL ?? ''}/${firstPost.slug ?? ''}/`}
-            />
-          </Head>
-          <Box>
-            {preview && <Box>デバッグ: プレビューON</Box>}
-
-            {firstPost && <SinglePostComponent post={firstPost} tweetCount={tweetCount ?? 0} />}
-
-            <Divider my={8} borderColor="gray.400" />
-            {morePosts && morePosts.length > 0 && (
-              <Box my={10}>
-                <PostList mode="more" posts={morePosts} enableAd={!firstPost.hideAdsense ?? true} />
+  if (router.isFallback) {
+    return (
+      <Layout preview={preview} meta={{ title: 'ロード中', desc: '' }}>
+        記事を探しています...
+      </Layout>
+    );
+  } else {
+    return (
+      <>
+        {!firstPost ? (
+          <>
+            <Layout preview={preview} meta={{ title: '記事が見つかりませんでした', desc: '' }}>
+              <ErrorPage title="記事が見つかりませんでした" statusCode={404} />
+            </Layout>
+          </>
+        ) : (
+          <Layout
+            meta={{
+              title: firstPost.title,
+              desc: firstPost.description ? firstPost.description : '',
+              ogpUrl: firstPost.heroImage && firstPost.heroImage.url,
+            }}
+            revalEnv={revalEnv}
+            preview={preview}
+            drawerLeftChildren={
+              <>
+                <FukidashiShare
+                  tweetText={firstPost.title}
+                  tweetCount={tweetCount}
+                  slug={firstPost.slug}
+                  likeCount={blogPostData.like ?? 0}
+                />
+                {Toc(firstPost)}
+              </>
+            }
+            asideChildren={
+              <Box>
+                <FukidashiShare
+                  tweetText={firstPost.title}
+                  tweetCount={tweetCount}
+                  slug={firstPost.slug}
+                  likeCount={blogPostData.like ?? 0}
+                />
+                {Toc(firstPost)}
+                {/* 2021-04-04 issue #131 may have been caused by adsense */}
+                {!firstPost.hideAdsense && <AdsenseBox slot={'8321176059'} path={firstPost.slug} />}
               </Box>
-            )}
-          </Box>
-        </Layout>
-      )}
-    </>
-  );
+            }
+            hideAdsense={firstPost.hideAdsense ?? false}
+            drawerPosts={drawerPosts ?? []}
+          >
+            <Head>
+              <link
+                rel="canonical"
+                href={`${process.env.HTTPS_URL ?? ''}/${firstPost.slug ?? ''}/`}
+              />
+            </Head>
+            <Box>
+              {preview && <Box>デバッグ: プレビューON</Box>}
+
+              {firstPost && <SinglePostComponent post={firstPost} tweetCount={tweetCount ?? 0} />}
+
+              <Divider my={8} borderColor="gray.400" />
+              {morePosts && morePosts.length > 0 && (
+                <Box my={10}>
+                  <PostList
+                    mode="more"
+                    posts={morePosts}
+                    enableAd={!firstPost.hideAdsense ?? true}
+                  />
+                </Box>
+              )}
+            </Box>
+          </Layout>
+        )}
+      </>
+    );
+  }
 }
 
 interface GSProps {
@@ -143,6 +155,12 @@ export async function getStaticProps({ params, preview }: GSProps) {
   //const drawerPosts = (await getSeries('popular')) ?? null;
 
   const revalEnv = parseInt(process.env.REVALIDATE_SINGLE ?? '3600');
+
+  if (!posts.post) {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: {
       preview: preview ?? false,

@@ -21,47 +21,55 @@ interface EntityPageProps {
 export default function EntityPage({ preview, firstEntity, revalEnv }: EntityPageProps) {
   const router = useRouter();
 
-  return (
-    <>
-      {!firstEntity && router.isFallback ? (
-        <>
-          <Layout preview={preview} meta={{ title: '404 Not found', desc: '' }}>
-            <ErrorPage title="記事が見つかりませんでした" statusCode={404} />
-          </Layout>
-        </>
-      ) : (
-        <Layout
-          meta={{
-            title: firstEntity.name,
-            desc: firstEntity.description ? firstEntity.description : '',
-          }}
-          revalEnv={revalEnv}
-          preview={preview}
-        >
-          <Head>
-            <link
-              rel="canonical"
-              href={`${process.env.HTTPS_URL ?? ''}/entityatsume/zukan/${
-                firstEntity.bedrockId ?? ''
-              }/`}
-            />
-          </Head>
-          <Box py={20}>
-            {preview && <Box>デバッグ: プレビューON</Box>}
+  if (router.isFallback) {
+    return (
+      <Layout preview={preview} meta={{ title: 'Loading', desc: '' }}>
+        ロード中
+      </Layout>
+    );
+  } else {
+    return (
+      <>
+        {!firstEntity ? (
+          <>
+            <Layout preview={preview} meta={{ title: '404 Not found', desc: '' }}>
+              <ErrorPage title="記事が見つかりませんでした" statusCode={404} />
+            </Layout>
+          </>
+        ) : (
+          <Layout
+            meta={{
+              title: firstEntity.name,
+              desc: firstEntity.description ? firstEntity.description : '',
+            }}
+            revalEnv={revalEnv}
+            preview={preview}
+          >
+            <Head>
+              <link
+                rel="canonical"
+                href={`${process.env.HTTPS_URL ?? ''}/entityatsume/zukan/${
+                  firstEntity.bedrockId ?? ''
+                }/`}
+              />
+            </Head>
+            <Box py={20}>
+              {preview && <Box>デバッグ: プレビューON</Box>}
 
-            {firstEntity && (
-              <>
-                <Center mb={6}>
-                  <Heading as="h1">{firstEntity.nameJapanese ?? firstEntity.name}</Heading>
-                </Center>
-                <EntityList mode="single" entities={[firstEntity]} expand={preview ?? false} />
-              </>
-            )}
-          </Box>
-        </Layout>
-      )}
-    </>
-  );
+              {firstEntity && (
+                <>
+                  <Center mb={6}>
+                    <Heading as="h1">{firstEntity.nameJapanese ?? firstEntity.name}</Heading>
+                  </Center>
+                  <EntityList mode="single" entities={[firstEntity]} expand={preview ?? false} />
+                </>
+              )}
+            </Box>
+          </Layout>
+        )}
+      </>
+    );
+  }
 }
 
 interface GSProps {
@@ -73,6 +81,12 @@ export async function getStaticProps({ params, preview }: GSProps) {
   const entity = await getEntity(params.bedrockId);
 
   const revalEnv = parseInt(process.env.REVALIDATE ?? '1800');
+
+  if (!entity) {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: {
       preview: preview ?? false,

@@ -132,7 +132,7 @@ export default class Nav extends Component<NavProps, { prevScrollpos: number; vi
                 </Button>
               </HStack>
 
-              <Box pl={4} pr={{ base: 3, md: 0 }}>
+              <Box pl={4} pr={3}>
                 <SignIn />
               </Box>
             </HStack>
