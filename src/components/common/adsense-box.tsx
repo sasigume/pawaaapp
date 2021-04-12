@@ -15,14 +15,16 @@ export default function AdsenseBox({ slot, path }: AdsenseProps) {
 
   useEffect(() => {
     try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      if (window.adsbygoogle && process.env.NODE_ENV !== 'development') {
+        window.adsbygoogle.push({});
+      }
     } catch (err) {
       console.log(err);
     }
   }, [asPath]);
 
   return (
-    <Center key={asPath} mx="auto" my={4}>
+    <Center key={asPath} minW="320px" minH="250px" mx="auto" my={4}>
       {enableAd ? (
         <>
           <ins
@@ -30,8 +32,8 @@ export default function AdsenseBox({ slot, path }: AdsenseProps) {
             style={{ display: 'block', textAlign: 'center', minWidth: '300px', minHeight: '250px' }}
             data-ad-client={process.env.GOOGLE_AD_CLIENT}
             data-ad-slot={slot}
-            /* data-ad-format="auto" */
-            /* data-full-width-responsive="true" */
+            data-ad-format="auto"
+            data-full-width-responsive="true"
           ></ins>
         </>
       ) : (
