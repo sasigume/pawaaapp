@@ -17,45 +17,52 @@ interface CommentPageProps {
 
 export default function PostPage({ firstPost, postComments, preview, revalEnv }: CommentPageProps) {
   const router = useRouter();
+  if (router.isFallback) {
+    return (
+      <Layout preview={preview} meta={{ title: 'ロード中', desc: '' }}>
+        記事を探しています...
+      </Layout>
+    );
+  } else {
+    return (
+      <>
+        {!firstPost ? (
+          <>
+            <Layout preview={preview} meta={{ title: '404 Not found', desc: '' }}>
+              <ErrorPage title="記事が見つかりませんでした" statusCode={404} />
+            </Layout>
+          </>
+        ) : (
+          <Layout
+            meta={{
+              title: firstPost.title + 'のコメント',
+              desc: firstPost.title + 'のコメント',
+            }}
+            revalEnv={revalEnv}
+            preview={preview}
+            hideAdsense={firstPost.hideAdsense ?? false}
+          >
+            <Head>
+              <link
+                rel="canonical"
+                href={`${process.env.HTTPS_URL ?? ''}/${firstPost.slug ?? ''}/`}
+              />
+            </Head>
+            <Box>
+              {preview && <Box>デバッグ: プレビューON</Box>}
+              <>
+                <Box id="a_comment" textStyle="h2" mb={6}>
+                  <h2>{firstPost.title}のコメント</h2>
+                </Box>
 
-  return (
-    <>
-      {!firstPost && router.isFallback ? (
-        <>
-          <Layout preview={preview} meta={{ title: '404 Not found', desc: '' }}>
-            <ErrorPage title="記事が見つかりませんでした" statusCode={404} />
+                <PostCommentList postComments={postComments} post={firstPost} />
+              </>
+            </Box>
           </Layout>
-        </>
-      ) : (
-        <Layout
-          meta={{
-            title: firstPost.title + 'のコメント',
-            desc: firstPost.title + 'のコメント',
-          }}
-          revalEnv={revalEnv}
-          preview={preview}
-          hideAdsense={firstPost.hideAdsense ?? false}
-        >
-          <Head>
-            <link
-              rel="canonical"
-              href={`${process.env.HTTPS_URL ?? ''}/${firstPost.slug ?? ''}/`}
-            />
-          </Head>
-          <Box>
-            {preview && <Box>デバッグ: プレビューON</Box>}
-            <>
-              <Box id="a_comment" textStyle="h2" mb={6}>
-                <h2>{firstPost.title}のコメント</h2>
-              </Box>
-
-              <PostCommentList postComments={postComments} post={firstPost} />
-            </>
-          </Box>
-        </Layout>
-      )}
-    </>
-  );
+        )}
+      </>
+    );
+  }
 }
 
 interface GSProps {
@@ -76,6 +83,11 @@ export async function getStaticProps({ params, preview }: GSProps) {
   const postComments = await commentsRes.json();
 
   const revalEnv = parseInt(process.env.REVALIDATE_SINGLE ?? '3600');
+  if (!posts.post) {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: {
       preview: preview ?? false,
