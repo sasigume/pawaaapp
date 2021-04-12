@@ -45,13 +45,6 @@ export default class MyDocument extends Document<DocumentProps> {
         `,
             }}
           />
-
-          {/* 2021.4.10 */}
-          <script
-            data-ad-client={process.env.GOOGLE_AD_CLIENT}
-            async={true}
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-          ></script>
         </Head>
         <body>
           {/* dark mode */}
