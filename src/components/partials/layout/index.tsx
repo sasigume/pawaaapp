@@ -59,10 +59,13 @@ export default function Layout({
                 '.google-auto-placed': {
                   display: 'none',
                 },
+                '.adWrapper': {
+                  display: 'none',
+                },
               }
             : {}
         }
-        maxW="100vw"
+        w="100vw"
       >
         <Nav
           maxW={LAYOUT_MAXW}
@@ -76,6 +79,10 @@ export default function Layout({
           <Flex
             mx="auto"
             maxWidth={{
+              base: '100vw',
+              lg: `${LAYOUT_MAXW}px`,
+            }}
+            minW={{
               base: '100vw',
               lg: `${LAYOUT_MAXW}px`,
             }}
