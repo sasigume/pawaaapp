@@ -61,7 +61,7 @@ const LayoutFooter = ({ revalidate, maxW }: FooterProps) => {
           <Box textAlign="right">
             <Box>
               Articles/images: &copy; 2021{` `}
-              <LinkChakra href={`https://twitter.com/${CREATOR_ID}`}>{CREATOR_ID}</LinkChakra>
+              <LinkChakra href={`https://twitter.com/boron_uno`}>Boronuno</LinkChakra>
             </Box>
             <Box mb={3}>
               Code of web app: {` `}
