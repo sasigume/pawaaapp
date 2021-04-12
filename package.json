@@ -1,7 +1,7 @@
 {
   "name": "napoancom",
-  "version": "3.6.7",
-  "author": "pawaaapp",
+  "version": "3.7.0",
+  "author": "boronuno",
   "scripts": {
     "dev": "next",
     "build": "next build",
