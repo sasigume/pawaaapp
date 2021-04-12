@@ -25,20 +25,22 @@ export function SinglePostComponent({ post, tweetCount }: Props) {
         </Box>
         <Divider my={3} />
         <Box>
-          <Button
-            h="60px"
-            w="full"
-            aria-label="フォロー"
-            target="_blank"
-            as={LinkChakra}
-            href="https://twitter.com/sasigume"
-            colorScheme="twitter"
-            leftIcon={<FaiconDiv icon={['fab', 'twitter']} />}
-          >
-            記事がお役にたったら...
-            <br />
-            フォローをお願いします
-          </Button>
+          {post.person && (
+            <Button
+              h="60px"
+              w="full"
+              aria-label="フォロー"
+              target="_blank"
+              as={LinkChakra}
+              href={`https://twitter.com/${post.person?.twitterId ?? 'sasigume'}`}
+              colorScheme="twitter"
+              leftIcon={<FaiconDiv icon={['fab', 'twitter']} />}
+            >
+              記事がお役にたったら...
+              <br />
+              フォローをお願いします
+            </Button>
+          )}
         </Box>
         <Box mt={6}>
           <Button
