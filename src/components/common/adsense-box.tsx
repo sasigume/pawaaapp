@@ -1,4 +1,4 @@
-import { Center } from '@chakra-ui/layout';
+import { Box } from '@chakra-ui/layout';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
@@ -24,7 +24,15 @@ export default function AdsenseBox({ slot }: AdsenseProps) {
   }, [asPath]);
 
   return (
-    <Center className="adWrapper" key={asPath} minW="320px" minH="250px" mx="auto" my={4}>
+    <Box
+      textAlign="center"
+      className="adWrapper"
+      key={asPath}
+      minW="320px"
+      minH="250px"
+      mx="auto"
+      my={4}
+    >
       <ins
         className="adsbygoogle"
         style={{ display: 'block', textAlign: 'center' }}
@@ -33,6 +41,6 @@ export default function AdsenseBox({ slot }: AdsenseProps) {
         data-ad-format="auto"
         data-full-width-responsive="true"
       ></ins>
-    </Center>
+    </Box>
   );
 }
