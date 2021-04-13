@@ -19,6 +19,7 @@ interface NavProps {
   posts?: Post[];
   colorMode: ColorMode;
   maxW: number;
+  hideAdsense?: boolean;
 }
 
 // https://dev.to/guimg/hide-menu-when-scrolling-in-reactjs-47bj
@@ -97,7 +98,10 @@ export default class Nav extends Component<NavProps, { prevScrollpos: number; vi
           <Container maxW={`${this.props.maxW}px`} px={0}>
             <HStack>
               <Box mr={4} w={{ base: 'auto', xl: 0 }} display={{ base: 'flex', lg: 'none' }}>
-                <DrawerLeft preview={this.props.preview}>
+                <DrawerLeft
+                  hideAdsense={this.props.hideAdsense ?? false}
+                  preview={this.props.preview}
+                >
                   <>
                     {this.props.drawerLeftChildren}
                     {this.props.posts && this.props.posts.length > 0 && (

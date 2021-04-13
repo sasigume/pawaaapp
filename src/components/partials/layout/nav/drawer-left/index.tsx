@@ -18,13 +18,16 @@ const Logo = dynamic(() => import('@/components/common/Logo'));*/
 import FaiconDiv from '@/components/common/faicon-div';
 import LinkChakra from '@/components/common/link-chakra';
 import SiteLogo from '@/components/common/SiteLogo';
+import AdsenseBox from '@/components/common/adsense-box';
+import { ASIDE_WITDH } from '@/lib/chakra/styles';
 
 interface Props {
   preview: boolean;
   children: ReactNode;
+  hideAdsense?: boolean;
 }
 
-export default function DrawerLeft({ children }: Props) {
+export default function DrawerLeft({ children, hideAdsense }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef(null);
 
@@ -53,6 +56,7 @@ export default function DrawerLeft({ children }: Props) {
             <DrawerBody pt={8} pb={6}>
               <SiteLogo />
               <Box my={6}>{children}</Box>
+              {hideAdsense != true && <AdsenseBox minWidth={ASIDE_WITDH} slot={'8321176059'} />}
               <Button leftIcon={<FaiconDiv icon={['fas', 'book']} />} as={LinkChakra} href="/eula/">
                 利用規約
               </Button>

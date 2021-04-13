@@ -12,7 +12,6 @@ import PostList from '@/components/partials/post';
 import ReactMarkdownHeading from 'react-markdown-heading';
 import FukidashiShare from '@/components/common/fukidashi-share';
 import tocStyles from '../../styles/markdown-toc-styles.module.css';
-import AdsenseBox from '@/components/common/adsense-box';
 import { BlogPostData } from '@/models/firebase/BlogPostData';
 
 interface PostPageProps {
@@ -85,8 +84,6 @@ export default function PostPage({
                   likeCount={blogPostData.like ?? 0}
                 />
                 {Toc(firstPost)}
-                {/* 2021-04-04 issue #131 may have been caused by adsense */}
-                {!firstPost.hideAdsense && <AdsenseBox slot={'8321176059'} path={firstPost.slug} />}
               </Box>
             }
             hideAdsense={firstPost.hideAdsense ?? false}

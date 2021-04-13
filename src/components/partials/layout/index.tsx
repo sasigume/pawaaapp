@@ -73,6 +73,7 @@ export default function Layout({
           posts={drawerPosts ?? []}
           preview={preview}
           drawerLeftChildren={drawerLeftChildren}
+          hideAdsense={hideAdsense ?? false}
         />
 
         <Box pt={`${NAV_HEIGHT}px`}>
