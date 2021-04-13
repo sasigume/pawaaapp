@@ -6,10 +6,11 @@ import React, { useEffect } from 'react';
 interface AdsenseProps {
   slot: string;
   path?: string;
+  minWidth?: number;
 }
 
 // https://qiita.com/qrusadorz/items/14972b6e069feaf777a9
-export default function AdsenseBox({ slot }: AdsenseProps) {
+export default function AdsenseBox({ slot, minWidth }: AdsenseProps) {
   const { asPath } = useRouter();
 
   //const enableAd = process.env.ENABLE_AD ?? false;
@@ -31,13 +32,19 @@ export default function AdsenseBox({ slot }: AdsenseProps) {
       textAlign="center"
       className="adWrapper"
       key={asPath}
-      minW="320px"
+      minWidth={`${minWidth ?? 320}px`}
       minH="250px"
       maxWidth={`${MAIN_WIDTH}px`}
       mx="auto"
       my={4}
     >
-      <div style={{ minWidth: '320px', minHeight: '250px', maxWidth: `${MAIN_WIDTH}px` }}>
+      <div
+        style={{
+          minWidth: `${minWidth ?? 320}px`,
+          minHeight: '250px',
+          maxWidth: `${MAIN_WIDTH}px`,
+        }}
+      >
         <ins
           className="adsbygoogle"
           style={{ display: 'block', textAlign: 'center' }}
