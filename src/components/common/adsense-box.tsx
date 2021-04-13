@@ -16,11 +16,9 @@ export default function AdsenseBox({ slot }: AdsenseProps) {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       try {
-        setTimeout(() => {
-          if (window.adsbygoogle && process.env.NODE_ENV !== 'development') {
-            window.adsbygoogle.push({});
-          }
-        }, 500);
+        if (window.adsbygoogle && process.env.NODE_ENV !== 'development') {
+          window.adsbygoogle.push({});
+        }
       } catch (err) {
         console.log(err);
       }
@@ -37,14 +35,16 @@ export default function AdsenseBox({ slot }: AdsenseProps) {
       mx="auto"
       my={4}
     >
-      <ins
-        className="adsbygoogle"
-        style={{ display: 'block', textAlign: 'center' }}
-        data-ad-client={process.env.GOOGLE_AD_CLIENT}
-        data-ad-slot={slot}
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
+      <div style={{ minWidth: '320px', minHeight: '250px' }}>
+        <ins
+          className="adsbygoogle"
+          style={{ display: 'block', textAlign: 'center' }}
+          data-ad-client={process.env.GOOGLE_AD_CLIENT}
+          data-ad-slot={slot}
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        ></ins>
+      </div>
     </Box>
   );
 }
