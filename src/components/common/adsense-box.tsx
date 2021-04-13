@@ -1,7 +1,7 @@
 import { MAIN_WIDTH } from '@/lib/chakra/styles';
 import { Box } from '@chakra-ui/layout';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 interface AdsenseProps {
   slot: string;
   path?: string;
@@ -12,8 +12,18 @@ interface AdsenseProps {
 export default function AdsenseBox({ slot, minWidth }: AdsenseProps) {
   const { asPath } = useRouter();
 
-  //const enableAd = process.env.ENABLE_AD ?? false;
+  const insRef = useRef<HTMLModElement>(null);
+  let adFormat = '';
+  let adFull = '';
 
+  //const enableAd = process.env.ENABLE_AD ?? false;
+  if (insRef.current?.style.display != 'none') {
+    adFormat = 'auto';
+    adFull = 'true';
+  } else {
+    adFormat = '';
+    adFull = '';
+  }
   useEffect(() => {
     if (typeof window !== 'undefined') {
       try {
@@ -45,6 +55,7 @@ export default function AdsenseBox({ slot, minWidth }: AdsenseProps) {
         }}
       >
         <ins
+          ref={insRef}
           className="adsbygoogle"
           style={{
             minWidth: `${minWidth ?? 320}px`,
@@ -55,8 +66,8 @@ export default function AdsenseBox({ slot, minWidth }: AdsenseProps) {
           }}
           data-ad-client={process.env.GOOGLE_AD_CLIENT}
           data-ad-slot={slot}
-          data-ad-format="auto"
-          data-full-width-responsive="true"
+          data-ad-format={adFormat}
+          data-full-width-responsive={adFull}
         ></ins>
       </div>
     </Box>
