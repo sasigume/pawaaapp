@@ -17,7 +17,7 @@ export default function AdsenseBox({ slot, minWidth }: AdsenseProps) {
   let adFull = '';
 
   //const enableAd = process.env.ENABLE_AD ?? false;
-  if (insRef.current?.style.display != 'none') {
+  if (insRef.current?.style.display == 'block') {
     adFormat = 'auto';
     adFull = 'true';
   } else {
@@ -25,7 +25,7 @@ export default function AdsenseBox({ slot, minWidth }: AdsenseProps) {
     adFull = '';
   }
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && insRef.current?.style.display == 'block') {
       try {
         if (window.adsbygoogle && process.env.NODE_ENV !== 'development') {
           window.adsbygoogle.push({});
