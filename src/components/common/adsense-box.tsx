@@ -13,26 +13,19 @@ export default function AdsenseBox({ slot, minWidth }: AdsenseProps) {
   const { asPath } = useRouter();
 
   const insRef = useRef<HTMLModElement>(null);
-  let adFormat = '';
-  let adFull = '';
 
-  //const enableAd = process.env.ENABLE_AD ?? false;
-  if (insRef.current?.style.display == 'block') {
-    adFormat = 'auto';
-    adFull = 'true';
-  } else {
-    adFormat = '';
-    adFull = '';
-  }
   useEffect(() => {
     if (typeof window !== 'undefined' && insRef.current?.style.display == 'block') {
-      try {
-        if (window.adsbygoogle && process.env.NODE_ENV !== 'development') {
-          window.adsbygoogle.push({});
+      setTimeout(() => {
+        try {
+          if (window.adsbygoogle && process.env.NODE_ENV !== 'development') {
+            window.adsbygoogle.push({});
+          }
+          console.info(`Ad pushed in component`);
+        } catch (err) {
+          console.error(err);
         }
-      } catch (err) {
-        console.log(err);
-      }
+      }, 1000);
     }
   }, [asPath]);
 
@@ -66,8 +59,8 @@ export default function AdsenseBox({ slot, minWidth }: AdsenseProps) {
           }}
           data-ad-client={process.env.GOOGLE_AD_CLIENT}
           data-ad-slot={slot}
-          data-ad-format={adFormat}
-          data-full-width-responsive={adFull}
+          data-ad-format="auto"
+          data-full-width-responsive="true"
         ></ins>
       </div>
     </Box>
