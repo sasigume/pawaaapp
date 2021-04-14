@@ -1,5 +1,5 @@
 import { MAIN_WIDTH } from '@/lib/chakra/styles';
-import { Box } from '@chakra-ui/layout';
+import { Badge, Box } from '@chakra-ui/layout';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef } from 'react';
 interface AdsenseProps {
@@ -25,7 +25,7 @@ export default function AdsenseBox({ slot, minWidth }: AdsenseProps) {
         } catch (err) {
           console.error(err);
         }
-      }, 1000);
+      }, parseInt(process.env.AD_DELAY ?? '500'));
     }
   }, [asPath]);
 
@@ -40,6 +40,9 @@ export default function AdsenseBox({ slot, minWidth }: AdsenseProps) {
       mx="auto"
       my={4}
     >
+      <Badge mt={2} mb={3}>
+        スポンサーリンク
+      </Badge>
       <div
         style={{
           minWidth: `${minWidth ?? 320}px`,

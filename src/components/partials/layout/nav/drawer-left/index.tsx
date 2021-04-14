@@ -55,8 +55,8 @@ export default function DrawerLeft({ children, hideAdsense }: Props) {
 
             <DrawerBody pt={8} pb={6}>
               <SiteLogo />
-              <Box my={6}>{children}</Box>
               {hideAdsense != true && <AdsenseBox minWidth={ASIDE_WITDH} slot={'8321176059'} />}
+              <Box my={6}>{children}</Box>
               <Button leftIcon={<FaiconDiv icon={['fas', 'book']} />} as={LinkChakra} href="/eula/">
                 利用規約
               </Button>
