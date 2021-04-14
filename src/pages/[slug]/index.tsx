@@ -3,7 +3,7 @@ import ErrorPage from 'next/error';
 import { getPostAndMorePosts, getAllPostsWithSlugOnlySlug } from '@/lib/contentful/graphql';
 import { Post, PostForList, PostOnlySlug } from '@/models/contentful/Post';
 import Layout from '@/components/partials/layout';
-import { Box, Divider } from '@chakra-ui/react';
+import { Box, Center, Divider, SkeletonText } from '@chakra-ui/react';
 import { SITE_URL } from '@/lib/constants';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -43,76 +43,68 @@ export default function PostPage({
   if (router.isFallback) {
     return (
       <Layout preview={preview} meta={{ title: 'ロード中', desc: '' }}>
-        記事を探しています...
+        <Center py={8}>
+          記事を探しています... (初回アクセスの場合はまさに今ページを生成しています！
+          <br />
+          ...404の場合が多いけどね。)
+        </Center>
       </Layout>
     );
   } else {
     return (
       <>
-        {!firstPost ? (
-          <>
-            <Layout preview={preview} meta={{ title: '記事が見つかりませんでした', desc: '' }}>
-              <ErrorPage title="記事が見つかりませんでした" statusCode={404} />
-            </Layout>
-          </>
-        ) : (
-          <Layout
-            meta={{
-              title: firstPost.title,
-              desc: firstPost.description ? firstPost.description : '',
-              ogpUrl: firstPost.heroImage && firstPost.heroImage.url,
-            }}
-            revalEnv={revalEnv}
-            preview={preview}
-            drawerLeftChildren={
-              <>
-                <FukidashiShare
-                  tweetText={firstPost.title}
-                  tweetCount={tweetCount}
-                  slug={firstPost.slug}
-                  likeCount={blogPostData.like ?? 0}
-                />
-                {Toc(firstPost)}
-              </>
-            }
-            asideChildren={
-              <Box>
-                <FukidashiShare
-                  tweetText={firstPost.title}
-                  tweetCount={tweetCount}
-                  slug={firstPost.slug}
-                  likeCount={blogPostData.like ?? 0}
-                />
-                {Toc(firstPost)}
-              </Box>
-            }
-            hideAdsense={firstPost.hideAdsense ?? false}
-            drawerPosts={drawerPosts ?? []}
-          >
-            <Head>
-              <link
-                rel="canonical"
-                href={`${process.env.HTTPS_URL ?? ''}/${firstPost.slug ?? ''}/`}
+        <Layout
+          meta={{
+            title: firstPost.title,
+            desc: firstPost.description ? firstPost.description : '',
+            ogpUrl: firstPost.heroImage && firstPost.heroImage.url,
+          }}
+          revalEnv={revalEnv}
+          preview={preview}
+          drawerLeftChildren={
+            <>
+              <FukidashiShare
+                tweetText={firstPost.title}
+                tweetCount={tweetCount}
+                slug={firstPost.slug}
+                likeCount={blogPostData.like ?? 0}
               />
-            </Head>
+              {Toc(firstPost)}
+            </>
+          }
+          asideChildren={
             <Box>
-              {preview && <Box>デバッグ: プレビューON</Box>}
-
-              {firstPost && <SinglePostComponent post={firstPost} tweetCount={tweetCount ?? 0} />}
-
-              <Divider my={8} borderColor="gray.400" />
-              {morePosts && morePosts.length > 0 && (
-                <Box my={10}>
-                  <PostList
-                    mode="more"
-                    posts={morePosts}
-                    enableAd={!firstPost.hideAdsense ?? true}
-                  />
-                </Box>
-              )}
+              <FukidashiShare
+                tweetText={firstPost.title}
+                tweetCount={tweetCount}
+                slug={firstPost.slug}
+                likeCount={blogPostData.like ?? 0}
+              />
+              {Toc(firstPost)}
             </Box>
-          </Layout>
-        )}
+          }
+          hideAdsense={firstPost.hideAdsense ?? false}
+          drawerPosts={drawerPosts ?? []}
+        >
+          <Head>
+            <link
+              rel="canonical"
+              href={`${process.env.HTTPS_URL ?? ''}/${firstPost.slug ?? ''}/`}
+            />
+          </Head>
+          <Box>
+            {preview && <Box>デバッグ: プレビューON</Box>}
+
+            {firstPost && <SinglePostComponent post={firstPost} tweetCount={tweetCount ?? 0} />}
+
+            <Divider my={8} borderColor="gray.400" />
+            {morePosts && morePosts.length > 0 && (
+              <Box my={10}>
+                <PostList mode="more" posts={morePosts} enableAd={!firstPost.hideAdsense ?? true} />
+              </Box>
+            )}
+          </Box>
+        </Layout>
       </>
     );
   }
