@@ -16,7 +16,7 @@ export default function EntityIndex({ entities, preview }: EntityIndexProps) {
 
   if (!router.isFallback && !entities) {
     return (
-      <Layout preview={preview} meta={{ title: '404 Not found', desc: '' }}>
+      <Layout preview={preview} meta={{ title: '404 Not found', desc: '' }} hideAdsense={true}>
         <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
       </Layout>
     );
@@ -25,7 +25,7 @@ export default function EntityIndex({ entities, preview }: EntityIndexProps) {
   return (
     <>
       {!entities ? (
-        <Layout preview={preview} meta={{ title: '404 Not found', desc: '' }}>
+        <Layout preview={preview} meta={{ title: '404 Not found', desc: '' }} hideAdsense={true}>
           <ErrorPage title="教科が見つかりませんでした" statusCode={404} />
         </Layout>
       ) : (

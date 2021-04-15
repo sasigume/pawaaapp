@@ -57,7 +57,11 @@ export default function UsersMe() {
   });
 
   return (
-    <Layout preview={false} meta={{ title: 'エンティティあつめ', desc: 'マイページ' }}>
+    <Layout
+      preview={false}
+      meta={{ title: 'エンティティあつめ', desc: 'マイページ' }}
+      hideAdsense={true}
+    >
       {user ? (
         <>
           <Box mb={8}>
