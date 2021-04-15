@@ -40,7 +40,7 @@ export default function LoginPage() {
   const [agreed, setAgreed] = useState(false);
 
   return (
-    <Layout preview={false} meta={{ title: 'サインイン', desc: 'サインイン' }}>
+    <Layout preview={false} meta={{ title: 'サインイン', desc: 'サインイン' }} hideAdsense={true}>
       {!user ? (
         <Box py={16}>
           <Stack direction="column" mb={8}>

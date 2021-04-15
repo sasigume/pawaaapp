@@ -20,7 +20,7 @@ const personIndex = ({ person, preview, posts }: IndexProps) => {
     <>
       {!person ? (
         <>
-          <Layout preview={preview} meta={{ title: '404 Not found', desc: '' }}>
+          <Layout preview={preview} meta={{ title: '404 Not found', desc: '' }} hideAdsense={true}>
             <ErrorPage title="ページが見つかりませんでした" statusCode={404} />
           </Layout>
         </>
@@ -31,6 +31,7 @@ const personIndex = ({ person, preview, posts }: IndexProps) => {
             title: `${person.displayName}の紹介`,
             desc: person.description ?? '説明文がありません。',
           }}
+          hideAdsense={true}
         >
           <Box mb={16}>
             <Box textStyle="h1" mb={8}>

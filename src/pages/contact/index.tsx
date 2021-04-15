@@ -27,7 +27,11 @@ export default function UsersMe() {
   });
 
   return (
-    <Layout preview={false} meta={{ title: 'お問い合わせ', desc: 'お問い合わせページ' }}>
+    <Layout
+      preview={false}
+      meta={{ title: 'お問い合わせ', desc: 'お問い合わせページ' }}
+      hideAdsense={true}
+    >
       <Box>
         <Heading as="h1" mb={6} fontStyle="h1">
           お問い合わせ

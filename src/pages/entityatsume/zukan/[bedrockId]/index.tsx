@@ -23,7 +23,7 @@ export default function EntityPage({ preview, firstEntity, revalEnv }: EntityPag
 
   if (router.isFallback) {
     return (
-      <Layout preview={preview} meta={{ title: 'Loading', desc: '' }}>
+      <Layout preview={preview} meta={{ title: 'Loading', desc: '' }} hideAdsense={true}>
         ロード中
       </Layout>
     );
@@ -32,12 +32,17 @@ export default function EntityPage({ preview, firstEntity, revalEnv }: EntityPag
       <>
         {!firstEntity ? (
           <>
-            <Layout preview={preview} meta={{ title: '404 Not found', desc: '' }}>
+            <Layout
+              preview={preview}
+              meta={{ title: '404 Not found', desc: '' }}
+              hideAdsense={true}
+            >
               <ErrorPage title="記事が見つかりませんでした" statusCode={404} />
             </Layout>
           </>
         ) : (
           <Layout
+            hideAdsense={true}
             meta={{
               title: firstEntity.name,
               desc: firstEntity.description ? firstEntity.description : '',

@@ -40,7 +40,7 @@ export default function PostPage({ firstPost, postComments, preview, revalEnv }:
             }}
             revalEnv={revalEnv}
             preview={preview}
-            hideAdsense={firstPost.hideAdsense ?? false}
+            hideAdsense={true}
           >
             <Head>
               <link
@@ -106,6 +106,6 @@ export async function getStaticPaths() {
 
   return {
     paths: paths,
-    fallback: true,
+    fallback: false,
   };
 }
