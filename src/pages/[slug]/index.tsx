@@ -68,6 +68,7 @@ export default function PostPage({
                 tweetCount={tweetCount}
                 slug={firstPost.slug}
                 likeCount={blogPostData.like ?? 0}
+                dislikeCount={blogPostData.dislike ?? 0}
               />
               {Toc(firstPost)}
             </>
@@ -79,6 +80,7 @@ export default function PostPage({
                 tweetCount={tweetCount}
                 slug={firstPost.slug}
                 likeCount={blogPostData.like ?? 0}
+                dislikeCount={blogPostData.dislike ?? 0}
               />
               {Toc(firstPost)}
             </Box>
