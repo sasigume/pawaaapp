@@ -1,21 +1,29 @@
 import { MAIN_WIDTH } from '@/lib/chakra/styles';
 import { Badge, Box } from '@chakra-ui/layout';
 import { useRouter } from 'next/router';
-import React, { useEffect, useRef } from 'react';
-interface AdsenseProps {
-  slot: string;
-  path?: string;
-  minWidth?: number;
-}
+import React, { useEffect } from 'react';
+
+type LayoutValue = 'responsive' | 'fixed';
+type AdsenseProps =
+  | {
+      slot: string;
+      width?: never;
+      height?: never;
+      layout: 'responsive';
+    }
+  | {
+      slot: string;
+      width: number;
+      height: number;
+      layout?: Exclude<LayoutValue, 'responsive'>;
+    };
 
 // https://qiita.com/qrusadorz/items/14972b6e069feaf777a9
-export default function AdsenseBox({ slot, minWidth }: AdsenseProps) {
+export default function AdsenseBox({ slot, width, height, layout }: AdsenseProps) {
   const { asPath } = useRouter();
 
-  const insRef = useRef<HTMLModElement>(null);
-
   useEffect(() => {
-    if (typeof window !== 'undefined' && insRef.current?.style.display == 'block') {
+    if (typeof window !== 'undefined') {
       setTimeout(() => {
         try {
           if (window.adsbygoogle && process.env.NODE_ENV !== 'development') {
@@ -25,7 +33,7 @@ export default function AdsenseBox({ slot, minWidth }: AdsenseProps) {
         } catch (err) {
           console.error(err);
         }
-      }, parseInt(process.env.AD_DELAY ?? '500'));
+      }, parseInt(process.env.AD_DELAY ?? '100'));
     }
   }, [asPath]);
 
@@ -34,8 +42,8 @@ export default function AdsenseBox({ slot, minWidth }: AdsenseProps) {
       textAlign="center"
       className="adWrapper"
       key={asPath}
-      minWidth={`${minWidth ?? 320}px`}
-      minH="250px"
+      width={`${width ?? 320}px`}
+      height={`${height ?? 250}px`}
       maxWidth={`${MAIN_WIDTH}px`}
       mx="auto"
       my={4}
@@ -43,29 +51,30 @@ export default function AdsenseBox({ slot, minWidth }: AdsenseProps) {
       <Badge mt={2} mb={3}>
         スポンサーリンク
       </Badge>
-      <div
-        style={{
-          minWidth: `${minWidth ?? 320}px`,
-          minHeight: '250px',
-          maxWidth: `${MAIN_WIDTH}px`,
-        }}
-      >
+
+      {layout == 'responsive' ? (
         <ins
-          ref={insRef}
           className="adsbygoogle"
           style={{
-            minWidth: `${minWidth ?? 320}px`,
-            minHeight: '250px',
-            maxWidth: `${MAIN_WIDTH}px`,
             display: 'block',
-            textAlign: 'center',
           }}
           data-ad-client={process.env.GOOGLE_AD_CLIENT}
           data-ad-slot={slot}
           data-ad-format="auto"
           data-full-width-responsive="true"
         ></ins>
-      </div>
+      ) : (
+        <ins
+          className="adsbygoogle"
+          style={{
+            display: 'inline-block',
+            width: `${width ?? 320}px`,
+            height: `${height ?? 250}px`,
+          }}
+          data-ad-client={process.env.GOOGLE_AD_CLIENT}
+          data-ad-slot={slot}
+        ></ins>
+      )}
     </Box>
   );
 }

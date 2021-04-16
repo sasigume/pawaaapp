@@ -101,7 +101,12 @@ export default function Layout({
             >
               {children}
             </Box>
-            <Aside w={ASIDE_WITDH} asideChildren={asideChildren} drawerPosts={drawerPosts} />
+            <Aside
+              hideAdsense={hideAdsense ?? false}
+              w={ASIDE_WITDH}
+              asideChildren={asideChildren}
+              drawerPosts={drawerPosts}
+            />
           </Flex>
           <LayoutFooter maxW={LAYOUT_MAXW} revalidate={revalEnv} />
         </Box>
