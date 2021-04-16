@@ -4,16 +4,16 @@ import LinkChakra from '@/components/common/link-chakra';
 import PostList from '../../post';
 import { Post } from '@/models/contentful/Post';
 import { NAV_HEIGHT } from '@/lib/chakra/styles';
+import AdsenseBox from '@/components/common/adsense-box';
 
 interface LeftStickyProps {
   w: number;
   asideChildren?: ReactNode;
   drawerPosts?: Post[];
-  enableAd?: boolean;
   hideAdsense?: boolean;
 }
 
-const Aside = ({ w, asideChildren, drawerPosts, enableAd }: LeftStickyProps) => {
+const Aside = ({ w, asideChildren, drawerPosts, hideAdsense }: LeftStickyProps) => {
   return (
     <Box
       top={`${NAV_HEIGHT}px`}
@@ -29,11 +29,14 @@ const Aside = ({ w, asideChildren, drawerPosts, enableAd }: LeftStickyProps) => 
     >
       <Box w="full" h="full" overflowY="scroll" className="noScrollBar">
         <Box w="full">
+          {hideAdsense != true && (
+            <AdsenseBox width={300} height={250} layout="fixed" slot={'8321176059'} />
+          )}
           <Box mt={6}>{asideChildren}</Box>
 
           {drawerPosts && drawerPosts.length > 0 && (
             <Box mt={8}>
-              <PostList mode="drawer" posts={drawerPosts} enableAd={enableAd} />
+              <PostList mode="drawer" posts={drawerPosts} enableAd={false} />
             </Box>
           )}
 

@@ -27,7 +27,7 @@ interface Props {
   hideAdsense?: boolean;
 }
 
-export default function DrawerLeft({ children }: Props) {
+export default function DrawerLeft({ children, hideAdsense }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef(null);
 
@@ -55,7 +55,9 @@ export default function DrawerLeft({ children }: Props) {
 
             <DrawerBody pt={8} pb={6}>
               <SiteLogo />
-
+              {hideAdsense != true && (
+                <AdsenseBox width={300} height={250} layout="fixed" slot={'8321176059'} />
+              )}
               <Box my={6}>{children}</Box>
               <Button leftIcon={<FaiconDiv icon={['fas', 'book']} />} as={LinkChakra} href="/eula/">
                 利用規約
