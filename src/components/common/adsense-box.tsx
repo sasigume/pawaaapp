@@ -42,10 +42,11 @@ export default function AdsenseBox({ slot, width, height, layout }: AdsenseProps
       textAlign="center"
       className="adWrapper"
       key={asPath}
-      width={`${width ?? 320}px`}
-      height={`${height ?? 250}px`}
+      minWidth={`${width ?? 320}px`}
+      minHeight={`${height ?? 250}px`}
       maxWidth={`${MAIN_WIDTH}px`}
       mx="auto"
+      py={4}
       my={4}
     >
       <Badge mt={2} mb={3}>
@@ -70,6 +71,7 @@ export default function AdsenseBox({ slot, width, height, layout }: AdsenseProps
             display: 'inline-block',
             width: `${width ?? 320}px`,
             height: `${height ?? 250}px`,
+            marginBottom: '10px',
           }}
           data-ad-client={process.env.GOOGLE_AD_CLIENT}
           data-ad-slot={slot}
