@@ -67,7 +67,7 @@ export const PostList = ({ posts, mode, enableAd }: PostListProps) => {
   return (
     <>
       <MultiPosts mode={mode} posts={posts} />
-      {enableAd !== false && <AdsenseBox slot={'9194360322'} />}
+      {enableAd !== false && <AdsenseBox layout="responsive" slot={'9194360322'} />}
     </>
   );
 };
