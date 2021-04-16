@@ -41,9 +41,6 @@ export default function Layout({
   hideAdsense,
   drawerPosts,
 }: LayoutProps) {
-  if (hideAdsense) {
-    console.info(`Layout: hiding adsense`);
-  }
   const { colorMode } = useColorMode();
 
   return (

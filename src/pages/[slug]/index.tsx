@@ -40,6 +40,19 @@ export default function PostPage({
       <ReactMarkdownHeading markdown={post.body} hyperlink />
     </Box>
   );
+
+  const AsideChildren = (post: Post) => (
+    <Box>
+      <FukidashiShare
+        tweetText={post.title}
+        tweetCount={tweetCount}
+        slug={post.slug}
+        likeCount={blogPostData.like ?? 0}
+        dislikeCount={blogPostData.dislike ?? 0}
+      />
+      {Toc(post)}
+    </Box>
+  );
   if (router.isFallback) {
     return (
       <Layout preview={preview} meta={{ title: 'ロード中', desc: '' }} hideAdsense={true}>
@@ -61,30 +74,8 @@ export default function PostPage({
           }}
           revalEnv={revalEnv}
           preview={preview}
-          drawerLeftChildren={
-            <>
-              <FukidashiShare
-                tweetText={firstPost.title}
-                tweetCount={tweetCount}
-                slug={firstPost.slug}
-                likeCount={blogPostData.like ?? 0}
-                dislikeCount={blogPostData.dislike ?? 0}
-              />
-              {Toc(firstPost)}
-            </>
-          }
-          asideChildren={
-            <Box>
-              <FukidashiShare
-                tweetText={firstPost.title}
-                tweetCount={tweetCount}
-                slug={firstPost.slug}
-                likeCount={blogPostData.like ?? 0}
-                dislikeCount={blogPostData.dislike ?? 0}
-              />
-              {Toc(firstPost)}
-            </Box>
-          }
+          drawerLeftChildren={AsideChildren(firstPost)}
+          asideChildren={AsideChildren(firstPost)}
           hideAdsense={firstPost.hideAdsense ?? false}
           drawerPosts={drawerPosts ?? []}
         >
@@ -132,7 +123,7 @@ export async function getStaticProps({ params, preview }: GSProps) {
   const searchWord = SITE_URL + '/' + params.slug;
 
   const tweets = await fetch(
-    process.env.API_URL + '/twitter?word=' + encodeURIComponent(searchWord),
+    process.env.API_URL + '/twitter?word=NYC' + encodeURIComponent(searchWord),
     {
       headers: {
         authorization: process.env.FUNCTION_AUTH ?? '',
@@ -152,19 +143,27 @@ export async function getStaticProps({ params, preview }: GSProps) {
       notFound: true,
     };
   }
-  return {
-    props: {
-      preview: preview ?? false,
-      firstPost: posts.post ?? null,
-      morePosts: posts.morePosts ?? null,
-      tweetCount: tweetCount ?? null,
-      revalEnv: revalEnv,
-      hideAdsense: (posts.post && posts.post.hideAdsense == true) ?? false,
-      //drawerPosts: drawerPosts.postsCollection.items ?? null,
-      blogPostData: blogPostData ?? null,
+  const pageProps = {
+    preview: preview ?? false,
+    firstPost: posts.post ?? null,
+    morePosts: posts.morePosts ?? [],
+    tweetCount: tweetCount ?? 0,
+    revalEnv: revalEnv,
+    hideAdsense: (posts.post && posts.post.hideAdsense == true) ?? false,
+    //drawerPosts: drawerPosts.postsCollection.items ?? null,
+    blogPostData: blogPostData ?? {
+      like: 0,
+      dislike: 0,
     },
-    revalidate: revalEnv,
   };
+  if (pageProps.firstPost) {
+    console.info(
+      `ISR ready for: ${pageProps.firstPost.title} ${
+        pageProps.hideAdsense ? '(Ad disabled)' : ''
+      } / ${pageProps.tweetCount} tweets / ${pageProps.blogPostData.like} likes`,
+    );
+  }
+  return { props: pageProps, revalidate: revalEnv };
 }
 
 export async function getStaticPaths() {
