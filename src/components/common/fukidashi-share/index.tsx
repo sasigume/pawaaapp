@@ -1,61 +1,77 @@
-import {
-  Box,
-  Flex,
-  Button,
-  useColorMode,
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogOverlay,
-} from '@chakra-ui/react';
+import { Box, Flex, Button, useColorMode } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import FaiconDiv from '../faicon-div';
 import LinkChakra from '../link-chakra';
-import firebase from 'firebase/app';
 import { useRef, useState } from 'react';
 
 interface TocProps {
   tweetCount?: number;
   tweetText?: string;
   likeCount?: number;
+  dislikeCount?: number;
   slug?: string;
   onlyTwitter?: boolean;
 }
 
-const FukidashiShare = ({ tweetCount, tweetText, likeCount, slug, onlyTwitter }: TocProps) => {
+const FukidashiShare = ({
+  tweetCount,
+  tweetText,
+  likeCount,
+  dislikeCount,
+  slug,
+  onlyTwitter,
+}: TocProps) => {
   const { colorMode } = useColorMode();
   const { asPath } = useRouter();
   const shareUrl = (process.env.HTTPS_URL + asPath) as string;
 
   const alertRef = useRef(null);
   const [liked, setLiked] = useState(false);
-  const [alertOpen, setAlertOpen] = useState(false);
-  const onCloseAlert = () => setAlertOpen(false);
+  const [disliked, setDisliked] = useState(false);
+
+  const pressed = liked || disliked;
+
+  // カウントは最初の値で、バリューが表示用の変化する値
 
   let [likeValue, setLikeValue] = useState(likeCount ?? 0);
+  let [dislikeValue, setDislikeValue] = useState(dislikeCount ?? 0);
+
+  const ratio = (likeValue / (likeValue + dislikeValue)) * 100;
+  let noRatio = false;
+  if (likeValue + dislikeValue == 0) {
+    noRatio = true;
+  }
 
   const Like = async () => {
-    setAlertOpen(true);
-    await firebase
-      .firestore()
-      .collection('blogPosts')
-      .doc(slug)
-      .set(
-        {
-          like: firebase.firestore.FieldValue.increment(1),
-        },
-        { merge: true },
-      )
-      .then(() => {
-        setLikeValue((prevValue) => prevValue + 1);
-        console.info(`Added like`);
-        setLiked(true);
-      })
-      .catch((e) => {
-        console.error(e);
-      });
+    if (!liked) {
+      await fetch(process.env.HTTPS_URL + '/api/editBlogPosts/like?slug=' + slug)
+        .then((res) => {
+          if (res.status == 200) {
+            setLikeValue((prevValue) => prevValue + 1);
+            console.info(`Added like: ${JSON.stringify(res)}`);
+            setLiked(true);
+          }
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    }
+  };
+
+  const Dislike = async () => {
+    if (!disliked) {
+      await fetch(process.env.HTTPS_URL + '/api/editBlogPosts/dislike?slug=' + slug)
+        .then((res) => {
+          if (res.status == 200) {
+            setDislikeValue((prevValue) => prevValue + 1);
+            console.info(`Added dislike: ${JSON.stringify(res)}`);
+            setDisliked(true);
+          }
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    }
   };
 
   const fukidashiStyle = {
@@ -107,54 +123,58 @@ const FukidashiShare = ({ tweetCount, tweetText, likeCount, slug, onlyTwitter }:
         >
           {tweetCount ?? 0}
         </Box>
-
-        {!onlyTwitter && (
-          <>
-            <Box ml={3}>
+      </Flex>
+      {!onlyTwitter && (
+        <>
+          <Flex justifyContent="space-between" fontWeight="bold" w="full" position="relative">
+            <Box>
               <Button
                 ref={alertRef}
                 cursor="pointer"
-                disabled={liked}
-                aria-label="いいねする"
+                isActive={!pressed}
+                disabled={pressed}
+                aria-label="高評価する"
                 as="a"
                 onClick={Like}
-                colorScheme="pink"
+                color={liked ? 'blue' : 'gray.500'}
+                colorScheme="whiteAlpha"
               >
-                <FaiconDiv icon={['fas', 'heart']} />
+                <FaiconDiv w={'22px'} icon={['fas', 'thumbs-up']} />
+              </Button>
+              高評価 {likeValue}
+            </Box>
+            <Box>
+              低評価 {dislikeValue}
+              <Button
+                ref={alertRef}
+                cursor="pointer"
+                isActive={!pressed}
+                disabled={pressed}
+                aria-label="低評価する"
+                as="a"
+                onClick={Dislike}
+                color={disliked ? 'red' : 'gray.500'}
+                colorScheme="whiteAlpha"
+              >
+                <FaiconDiv w={'22px'} icon={['fas', 'thumbs-down']} />
               </Button>
             </Box>
-
-            <Box
-              ml={2}
-              className="fukidashiBox"
-              sx={fukidashiStyle}
-              bg={colorMode == 'dark' ? 'black' : 'white'}
-              fontSize="lg"
-            >
-              {likeValue}
-            </Box>
-          </>
-        )}
-      </Flex>
-      <AlertDialog leastDestructiveRef={alertRef} isOpen={alertOpen} onClose={onCloseAlert}>
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              いいねしてくれてありがとう！
-            </AlertDialogHeader>
-
-            <AlertDialogBody>
-              リロードすると数字が元に戻りますが、数十分後に集計されるのでご安心ください。
-            </AlertDialogBody>
-
-            <AlertDialogFooter>
-              <Button colorScheme="red" onClick={onCloseAlert} ml={3}>
-                閉じる
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </AlertDialog>
+          </Flex>
+          <Flex w="full" h={3}>
+            {noRatio ? (
+              <>
+                <Box w="50%" h="full" bg="gray.300"></Box>
+                <Box w="50%" h="full" bg="gray.300"></Box>
+              </>
+            ) : (
+              <>
+                <Box w={noRatio ? 50 : `${ratio}%`} h="full" bg="blue.500"></Box>
+                <Box w={`${100 - ratio}%`} h="full" bg="red.500"></Box>
+              </>
+            )}
+          </Flex>
+        </>
+      )}
     </>
   );
 };

@@ -1,3 +1,4 @@
 export interface BlogPostData {
-  like: number;
+  like?: number;
+  dislike?: number;
 }
