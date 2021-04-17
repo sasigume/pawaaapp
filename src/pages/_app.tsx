@@ -3,6 +3,7 @@ import { RecoilRoot } from 'recoil';
 import { useEffect } from 'react';
 import NextNprogress from 'nextjs-progressbar';
 import TagManager from 'react-gtm-module';
+import * as gtag from '@/lib/gtag';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
 
@@ -12,6 +13,10 @@ import '@/lib/firebase';
 import 'hooks/authentication';
 import addIcon from '@/lib/fontawesome';
 import { Chakra } from '@/components/providers/chakra';
+import { useRouter } from 'next/router';
+interface Props {
+  shallow: boolean;
+}
 
 function App({ Component, pageProps }: AppProps) {
   addIcon();
@@ -27,6 +32,20 @@ function App({ Component, pageProps }: AppProps) {
       },
     });
   });
+
+  /* Analytics https://zenn.dev/okumura_daiki/articles/839685a90c06db */
+  const router = useRouter();
+  useEffect(() => {
+    const handleRouteChange = (url: string, { shallow }: Props) => {
+      if (!shallow) {
+        gtag.pageview(url);
+      }
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
 
   return (
     <RecoilRoot>
