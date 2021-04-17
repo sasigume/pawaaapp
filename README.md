@@ -1,6 +1,8 @@
 # napoancom
 
-A web app for interactive gaming media.
+## 2021年4月18日追記
+
+Adsenseがコピー判定？かなんかで表示されなくなり、収支が大赤字なのでNext.js版の運用は停止します。
 
 ## フォルダ構成
 
