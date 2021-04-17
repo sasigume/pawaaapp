@@ -29,6 +29,8 @@ export default class MyDocument extends Document<DocumentProps> {
               __html: `dataLayer = [];`,
             }}
           />
+
+          {/* this is for analytics */}
           <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
           <script
             dangerouslySetInnerHTML={{
@@ -46,7 +48,7 @@ export default class MyDocument extends Document<DocumentProps> {
             }}
           />
 
-          {/* 2021.4.10 */}
+          {/* Adsense */}
           <script
             data-ad-client={process.env.GOOGLE_AD_CLIENT}
             async

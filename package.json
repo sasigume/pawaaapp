@@ -1,6 +1,6 @@
 {
   "name": "napoancom-next",
-  "version": "3.9.0",
+  "version": "3.9.1",
   "author": "boronuno",
   "scripts": {
     "dev": "next",
