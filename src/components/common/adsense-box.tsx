@@ -22,20 +22,25 @@ type AdsenseProps =
 export default function AdsenseBox({ slot, width, height, layout }: AdsenseProps) {
   const { asPath } = useRouter();
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setTimeout(() => {
-        try {
-          if (window.adsbygoogle && process.env.NODE_ENV !== 'development') {
-            window.adsbygoogle.push({});
+  useEffect(
+    () => {
+      if (typeof window !== 'undefined') {
+        setTimeout(() => {
+          try {
+            if (window.adsbygoogle && process.env.NODE_ENV !== 'development') {
+              window.adsbygoogle.push({});
+            }
+            console.info(`Ad pushed in component`);
+          } catch (err) {
+            console.error(err);
           }
-          console.info(`Ad pushed in component`);
-        } catch (err) {
-          console.error(err);
-        }
-      }, parseInt(process.env.AD_DELAY ?? '100'));
-    }
-  }, [asPath]);
+        }, parseInt(process.env.AD_DELAY ?? '100'));
+      }
+    },
+    [
+      /*asPath*/
+    ],
+  );
 
   return (
     <Box
@@ -43,7 +48,6 @@ export default function AdsenseBox({ slot, width, height, layout }: AdsenseProps
       className="adWrapper"
       key={asPath}
       minWidth={`${width ?? 320}px`}
-      minHeight={`${height ?? 250}px`}
       maxWidth={`${MAIN_WIDTH}px`}
       mx="auto"
       py={4}
