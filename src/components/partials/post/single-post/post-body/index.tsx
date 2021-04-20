@@ -36,7 +36,7 @@ const LinkConverter = (props: LinkProps) => {
   );
 };
 
-const postBody = (props: RenderProps) => {
+const PostBody = (props: RenderProps) => {
   // match id space to automatic generated anchor link hyphene
   const headingId = (props: any) => props.node.children[0].value.replace(` `, `-`);
   //const headingId = (props: any) => <Box>{JSON.stringify(props)}</Box>;
@@ -90,4 +90,4 @@ const postBody = (props: RenderProps) => {
   );
 };
 
-export default postBody;
+export default PostBody;
