@@ -2,7 +2,7 @@ import { Box, Button, Divider } from '@chakra-ui/react';
 import { Post } from '@/models/contentful/Post';
 
 import LinkChakra from '@/components/common/link-chakra';
-import MarkdownRender from '@/components/partials/post/single-post/post-body';
+import PostBody from './post-body';
 import FaiconDiv from '@/components/common/faicon-div';
 import PostHeading from './post-heading';
 import AdsenseBox from '@/components/common/adsense-box';
@@ -21,7 +21,7 @@ export function SinglePostComponent({ post, tweetCount }: Props) {
         {post.hideAdsense !== true && <AdsenseBox layout="responsive" slot={'1773582608'} />}
         <Divider my={4} />
         <Box>
-          <MarkdownRender source={post.body} />
+          <PostBody source={post.body} />
         </Box>
         <Divider my={3} />
         <Box>
