@@ -11,7 +11,7 @@ import {
   LAYOUT_PADDING,
   MAIN_WIDTH,
   NAV_HEIGHT,
-} from '@/lib/chakra/styles';
+} from '@/lib/chakra/theme';
 import Nav from './nav';
 import Aside from './aside';
 import LayoutFooter from './layout-footer';

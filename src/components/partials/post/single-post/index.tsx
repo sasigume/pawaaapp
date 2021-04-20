@@ -2,7 +2,7 @@ import { Box, Button, Divider } from '@chakra-ui/react';
 import { Post } from '@/models/contentful/Post';
 
 import LinkChakra from '@/components/common/link-chakra';
-import MarkdownRender from '@/components/common/MarkdownRender';
+import MarkdownRender from '@/components/partials/post/single-post/post-body';
 import FaiconDiv from '@/components/common/faicon-div';
 import PostHeading from './post-heading';
 import AdsenseBox from '@/components/common/adsense-box';

@@ -9,7 +9,7 @@ import { Post } from '@/models/contentful/Post';
 import LinkChakra from '@/components/common/link-chakra';
 import FaiconDiv from '@/components/common/faicon-div';
 import { CREATOR_ID } from '@/lib/constants';
-import { NAV_HEIGHT } from '@/lib/chakra/styles';
+import { NAV_HEIGHT } from '@/lib/chakra/theme';
 import ColorSwitch from '../color-switch';
 const SignIn = dynamic(() => import('./drawer-left/signin'), { ssr: false });
 
