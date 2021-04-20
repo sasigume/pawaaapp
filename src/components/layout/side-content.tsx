@@ -1,3 +1,4 @@
+import { SITE_FULL_URL } from '@/lib/constants';
 import { Post } from '@/models/contentful/Post';
 import tocStyles from '@/styles/markdown-toc-styles.module.css';
 import { Button } from '@chakra-ui/button';
@@ -5,6 +6,8 @@ import { Box, VStack } from '@chakra-ui/layout';
 import ReactMarkdownHeading from 'react-markdown-heading';
 import AdsenseBox from '../common/adsense-box';
 import FaiconDiv from '../common/faicon-div';
+import FukidashiShare from '../common/fukidashi-share';
+import LikeDislike from '../common/like-dislike';
 import LinkChakra from '../common/link-chakra';
 
 interface SideContentProps {
@@ -21,9 +24,16 @@ const SideContent = ({ post, hideAdsense }: SideContentProps) => {
         </>
       )}
       {post && (
-        <Box my={8} className={tocStyles['toc']}>
-          <ReactMarkdownHeading markdown={post.body} hyperlink />
-        </Box>
+        <>
+          <FukidashiShare
+            tweetCount={post.tweetCount ?? 0}
+            tweetText={`${post.title}\n${SITE_FULL_URL}/${post.slug}`}
+          />
+          <LikeDislike likeCount={post.like ?? 0} dislikeCount={post.dislike ?? 0} />
+          <Box my={8} className={tocStyles['toc']}>
+            <ReactMarkdownHeading markdown={post.body} hyperlink />
+          </Box>
+        </>
       )}
 
       <Button leftIcon={<FaiconDiv icon={['fas', 'book']} />} as={LinkChakra} href="/eula/">

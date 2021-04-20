@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, StyleProps } from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
@@ -12,6 +12,7 @@ interface RenderProps {
   source: string;
   plugins?: any[];
   renderers?: any;
+  style?: StyleProps;
 }
 
 interface CodeProps {
@@ -84,7 +85,7 @@ const PostBody = (props: RenderProps) => {
 
   // wrap with class for chakra theme
   return (
-    <Box w="full" className="mdrenderWrapper">
+    <Box sx={props.style ?? {}} w="full" className="mdrenderWrapper">
       <MdRenderer />
     </Box>
   );
