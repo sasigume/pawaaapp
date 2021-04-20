@@ -28,7 +28,7 @@ export function SinglePostComponent({ post, tweetCount, likeCount, dislikeCount 
         {post.hideAdsense !== true && <AdsenseBox layout="responsive" slot={'1773582608'} />}
         <Divider my={4} />
         <Box>
-          <PostBody source={post.body} />
+          <PostBody style={post.style} source={post.body} />
         </Box>
         <Divider my={3} />
         <Box>
