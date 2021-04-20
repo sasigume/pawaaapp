@@ -1,6 +1,6 @@
 import ErrorPage from 'next/error';
 import PostList from '@/components/partials/post';
-import Layout from '@/components/partials/layout';
+import Layout from '@/components/layout';
 import {
   getPlatform,
   getAllPostsForPlatform,

@@ -1,6 +1,6 @@
 import ErrorPage from 'next/error';
 import { Entity } from '@/models/nest/Entity';
-import Layout from '@/components/partials/layout';
+import Layout from '@/components/layout';
 import { Box, Center, Heading } from '@chakra-ui/react';
 
 import { Platform } from '@/models/contentful/Platform';

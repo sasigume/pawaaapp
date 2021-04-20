@@ -3,7 +3,7 @@ import { Button, Box, Container, Flex, Stack, useColorMode, Badge } from '@chakr
 import LinkChakra from '@/components/common/link-chakra';
 import Logo from '@/components/common/Logo';
 
-const pkg = require('../../../../../package.json');
+const pkg = require('../../../../package.json');
 const repoUrl = pkg.repository.url;
 const repoV = pkg.version;
 

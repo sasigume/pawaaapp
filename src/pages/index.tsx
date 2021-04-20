@@ -4,7 +4,7 @@ import { getAllPostsByRange, getSeries } from '../lib/contentful/graphql';
 import { SITE_DESC, SITE_NAME, SITE_URL } from '@/lib/constants';
 import { Post } from '@/models/contentful/Post';
 
-import Layout from '@/components/partials/layout';
+import Layout from '@/components/layout';
 
 import PostList from '@/components/partials/post';
 import LinkChakra from '@/components/common/link-chakra';
@@ -13,10 +13,9 @@ interface IndexProps {
   posts: Post[];
   tweetCount: number;
   environment: boolean;
-  drawerPosts: Post[];
 }
 
-const Index = ({ posts, environment, drawerPosts }: IndexProps) => {
+const Index = ({ posts, environment }: IndexProps) => {
   return (
     <>
       {!posts ? (
@@ -24,11 +23,7 @@ const Index = ({ posts, environment, drawerPosts }: IndexProps) => {
           <ErrorPage title="ページのデータを取得できませんでした" statusCode={404} />
         </Layout>
       ) : (
-        <Layout
-          drawerPosts={drawerPosts ?? []}
-          preview={environment}
-          meta={{ title: SITE_NAME, desc: SITE_DESC }}
-        >
+        <Layout preview={environment} meta={{ title: SITE_NAME, desc: SITE_DESC }}>
           {posts && (
             <Box mt={6} mb={10}>
               <VStack textStyle="h1" spacing={4} mb={8}>
@@ -81,7 +76,6 @@ export async function getStaticProps({ preview = false }) {
       posts: allPostsForIndex ?? null,
       tweetCount: tweetCount ?? null,
       preview: preview ?? null,
-      drawerPosts: drawerPosts.postsCollection.items ?? null,
     },
     revalidate: revalEnv,
   };

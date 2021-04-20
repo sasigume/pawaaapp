@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { Badge, Box, Flex, Spacer } from '@chakra-ui/react';
+import { Badge, Box, Flex, Spacer, VStack } from '@chakra-ui/react';
 import { Post } from '@/models/contentful/Post';
 
 import PlatformList from '../common/platform-list';
@@ -7,11 +7,15 @@ import PersonList from '../common/person-list';
 import LinkChakra from '@/components/common/link-chakra';
 import Image from 'next/image';
 import FukidashiShare from '@/components/common/fukidashi-share';
+import LikeDislike from '@/components/common/like-dislike';
+import { SITE_FULL_URL } from '@/lib/constants';
 interface Props {
   post: Post;
   tweetCount?: number;
+  likeCount?: number;
+  dislikeCount?: number;
 }
-const PostHeading = ({ post, tweetCount }: Props) => {
+const PostHeading = ({ post, tweetCount, likeCount, dislikeCount }: Props) => {
   return (
     <Box>
       {post.heroImage && (
@@ -42,11 +46,15 @@ const PostHeading = ({ post, tweetCount }: Props) => {
       {!post.publishDate && (
         <Badge colorScheme="red">編集担当へ: 並び替え用の公開日を設定し忘れています!</Badge>
       )}
-      <Flex justifyContent="space-between" flexDirection={{ base: 'column', sm: 'row' }}>
+      <VStack>
         {post.person && <PersonList persons={[post.person]} />}
         <Spacer />
-        <FukidashiShare onlyTwitter tweetCount={tweetCount} slug={post.slug} />
-      </Flex>
+        <FukidashiShare
+          tweetCount={tweetCount}
+          tweetText={`${post.title}\n${SITE_FULL_URL}/${post.slug}`}
+        />
+        <LikeDislike likeCount={likeCount ?? 0} dislikeCount={dislikeCount ?? 0} />
+      </VStack>
     </Box>
   );
 };

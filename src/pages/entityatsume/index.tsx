@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import firebaseApi from '@/lib/firebase';
-import Layout from '@/components/partials/layout';
+import Layout from '@/components/layout';
 import { useAuthentication } from '../../hooks/authentication';
 import * as gtag from '@/lib/gtag';
 import {

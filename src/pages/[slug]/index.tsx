@@ -1,17 +1,13 @@
 import { SinglePostComponent } from '@/components/partials/post/single-post';
-import ErrorPage from 'next/error';
 import { getPostAndMorePosts, getAllPostsWithSlugOnlySlug } from '@/lib/contentful/graphql';
 import { Post, PostForList, PostOnlySlug } from '@/models/contentful/Post';
-import Layout from '@/components/partials/layout';
-import { Box, Center, Divider, SkeletonText } from '@chakra-ui/react';
+import Layout from '@/components/layout';
+import { Box, Center, Divider } from '@chakra-ui/react';
 import { SITE_URL } from '@/lib/constants';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import PostList from '@/components/partials/post';
-import ReactMarkdownHeading from 'react-markdown-heading';
-import FukidashiShare from '@/components/common/fukidashi-share';
-import tocStyles from '../../styles/markdown-toc-styles.module.css';
 import { BlogPostData } from '@/models/firebase/BlogPostData';
 
 interface PostPageProps {
@@ -20,7 +16,6 @@ interface PostPageProps {
   preview: boolean;
   tweetCount: number;
   revalEnv: number;
-  drawerPosts: Post[];
   blogPostData: BlogPostData;
 }
 
@@ -30,29 +25,10 @@ export default function PostPage({
   preview,
   tweetCount,
   revalEnv,
-  drawerPosts,
   blogPostData,
 }: PostPageProps) {
   const router = useRouter();
 
-  const Toc = (post: Post) => (
-    <Box my={8} className={tocStyles['toc']}>
-      <ReactMarkdownHeading markdown={post.body} hyperlink />
-    </Box>
-  );
-
-  const AsideChildren = (post: Post) => (
-    <Box>
-      <FukidashiShare
-        tweetText={post.title}
-        tweetCount={tweetCount}
-        slug={post.slug}
-        likeCount={blogPostData.like ?? 0}
-        dislikeCount={blogPostData.dislike ?? 0}
-      />
-      {Toc(post)}
-    </Box>
-  );
   if (router.isFallback) {
     return (
       <Layout preview={preview} meta={{ title: 'ロード中', desc: '' }} hideAdsense={true}>
@@ -74,10 +50,8 @@ export default function PostPage({
           }}
           revalEnv={revalEnv}
           preview={preview}
-          drawerLeftChildren={AsideChildren(firstPost)}
-          asideChildren={AsideChildren(firstPost)}
           hideAdsense={firstPost.hideAdsense ?? false}
-          drawerPosts={drawerPosts ?? []}
+          post={firstPost}
         >
           <Head>
             <link
@@ -88,7 +62,14 @@ export default function PostPage({
           <Box>
             {preview && <Box>デバッグ: プレビューON</Box>}
 
-            {firstPost && <SinglePostComponent post={firstPost} tweetCount={tweetCount ?? 0} />}
+            {firstPost && (
+              <SinglePostComponent
+                post={firstPost}
+                tweetCount={tweetCount ?? 0}
+                likeCount={blogPostData.like ?? 0}
+                dislikeCount={blogPostData.dislike ?? 0}
+              />
+            )}
 
             <Divider my={8} borderColor="gray.400" />
             {morePosts && morePosts.length > 0 && (
@@ -134,8 +115,6 @@ export async function getStaticProps({ params, preview }: GSProps) {
   let tweetCount;
   tweetsJson.data ? (tweetCount = tweetsJson.meta.result_count) : (tweetCount = null);
 
-  //const drawerPosts = (await getSeries('popular')) ?? null;
-
   const revalEnv = parseInt(process.env.REVALIDATE_SINGLE ?? '3600');
 
   if (!posts.post) {
@@ -150,7 +129,6 @@ export async function getStaticProps({ params, preview }: GSProps) {
     tweetCount: tweetCount ?? 0,
     revalEnv: revalEnv,
     hideAdsense: (posts.post && posts.post.hideAdsense == true) ?? false,
-    //drawerPosts: drawerPosts.postsCollection.items ?? null,
     blogPostData: blogPostData ?? {
       like: 0,
       dislike: 0,

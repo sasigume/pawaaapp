@@ -1,8 +1,8 @@
 import ErrorPage from 'next/error';
 import { getPostAndMorePosts, getAllPostsWithSlugOnlySlug } from '@/lib/contentful/graphql';
 import { Post, PostOnlySlug } from '@/models/contentful/Post';
-import Layout from '@/components/partials/layout';
-import { Box, Divider } from '@chakra-ui/react';
+import Layout from '@/components/layout';
+import { Box } from '@chakra-ui/react';
 import { PostComment } from '@/models/firebase/PostComment';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
