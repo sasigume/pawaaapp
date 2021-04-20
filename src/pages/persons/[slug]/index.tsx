@@ -1,5 +1,5 @@
 import ErrorPage from 'next/error';
-import Layout from '@/components/partials/layout';
+import Layout from '@/components/layout';
 import { getPerson, getAllPersonsWithSlug, getAllPostsForPerson } from '@/lib/contentful/graphql';
 import { Person } from '@/models/contentful/Person';
 import { Box } from '@chakra-ui/react';

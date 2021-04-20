@@ -1,4 +1,4 @@
-import Layout from '@/components/partials/layout';
+import Layout from '@/components/layout';
 import ErrorPage from 'next/error';
 export default function Custom404() {
   return (

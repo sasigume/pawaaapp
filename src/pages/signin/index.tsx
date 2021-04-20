@@ -1,4 +1,4 @@
-import Layout from '@/components/partials/layout';
+import Layout from '@/components/layout';
 import { useState } from 'react';
 import { useAuthentication } from '@/hooks/authentication';
 import firebaseApi from '@/lib/firebase';

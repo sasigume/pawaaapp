@@ -1,7 +1,7 @@
 import ErrorPage from 'next/error';
 
 import { Box, Divider, Heading, VStack } from '@chakra-ui/react';
-import Layout from '@/components/partials/layout';
+import Layout from '@/components/layout';
 import { getAllPostsByRange, getAllPostsWithSlugOnlySlug } from '@/lib/contentful/graphql';
 
 import { SITE_DESC, SITE_NAME } from '@/lib/constants';
