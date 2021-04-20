@@ -1,0 +1,35 @@
+export const modInst = {
+  '.mod-inst': {
+    margin: '20px 10px',
+    padding: '12px 14px',
+    boxShadow: '0px 5px 0px #bbb',
+    border: 'solid 1px #ccc',
+  },
+  '.mod-inst span.title': { fontSize: '1.2em', fontWeight: 'bold' },
+  '.mod-inst p.note': {
+    margin: '10px',
+    padding: '10px',
+    borderRadius: '5px',
+    background: '#ddd',
+  },
+  '.mod-inst ol, .mod-inst ul': { marginLeft: '20px' },
+  '.mod-inst ol li, .mod-inst ul li': { margin: '5px' },
+  '.mod-inst .stopmodreposts': {
+    display: 'block',
+    background: ['blue', '#2687e8'],
+    color: '#fff',
+    margin: '1.2em 0',
+    padding: '1.5em 1em 1.5em',
+    textAlign: 'center',
+    overflow: 'hidden',
+    textDecoration: 'none',
+  },
+  '.mod-inst .stopmodreposts b': {
+    fontSize: '3em',
+    fontWeight: 'normal',
+    textShadow: '0px 5px 0px #000',
+    lineHeight: 1.2,
+    display: 'block',
+    animation: 'textshadowmoco 5s ease 0s infinite normal',
+  },
+};

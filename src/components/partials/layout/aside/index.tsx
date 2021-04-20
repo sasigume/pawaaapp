@@ -3,7 +3,7 @@ import { Box, Button } from '@chakra-ui/react';
 import LinkChakra from '@/components/common/link-chakra';
 import PostList from '../../post';
 import { Post } from '@/models/contentful/Post';
-import { NAV_HEIGHT } from '@/lib/chakra/styles';
+import { NAV_HEIGHT } from '@/lib/chakra/theme';
 import AdsenseBox from '@/components/common/adsense-box';
 
 interface LeftStickyProps {

@@ -19,7 +19,7 @@ import FaiconDiv from '@/components/common/faicon-div';
 import LinkChakra from '@/components/common/link-chakra';
 import SiteLogo from '@/components/common/SiteLogo';
 import AdsenseBox from '@/components/common/adsense-box';
-import { ASIDE_WITDH } from '@/lib/chakra/styles';
+import { ASIDE_WITDH } from '@/lib/chakra/theme';
 
 interface Props {
   preview: boolean;

@@ -3,7 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import React from 'react';
-import LinkChakra from '../link-chakra';
+import LinkChakra from '../../../../common/link-chakra';
 import { SITE_URL } from '@/lib/constants';
 import LazyLoad from 'react-lazyload';
 const gfm = require('remark-gfm');
@@ -36,7 +36,7 @@ const LinkConverter = (props: LinkProps) => {
   );
 };
 
-const MarkdownRender = (props: RenderProps) => {
+const postBody = (props: RenderProps) => {
   // match id space to automatic generated anchor link hyphene
   const headingId = (props: any) => props.node.children[0].value.replace(` `, `-`);
   //const headingId = (props: any) => <Box>{JSON.stringify(props)}</Box>;
@@ -90,4 +90,4 @@ const MarkdownRender = (props: RenderProps) => {
   );
 };
 
-export default MarkdownRender;
+export default postBody;
