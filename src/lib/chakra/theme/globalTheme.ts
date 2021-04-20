@@ -187,17 +187,6 @@ const globalTheme = {
         'ul li, ol li': {
           margin: '0.3em 0',
         },
-        'pre.hljs': {
-          borderRadius: '6px',
-          background: '#222',
-          fontFamily: "Consolas, 'Courier New', Courier, Monaco, monospace, Noto Sans",
-          margin: '0px 0px 8px',
-        },
-        'pre.hljs .highlightline': {
-          background: '#7b4000',
-          display: 'inline-block',
-          width: '100%',
-        },
         'b.command': {
           fontSize: '1.1em',
           display: 'inline-block',
