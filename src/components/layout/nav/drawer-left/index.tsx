@@ -14,6 +14,7 @@ import FaiconDiv from '@/components/common/faicon-div';
 import SideContent from '../../side-content';
 import { Post } from '@/models/contentful/Post';
 import SiteLogo from '@/components/common/SiteLogo';
+import { ASIDE_WITDH } from '@/lib/chakra/theme';
 
 interface Props {
   post?: Post;
@@ -43,7 +44,7 @@ export default function DrawerLeft({ post, hideAdsense }: Props) {
         aria-label="ドロワーメニュー(左)"
       >
         <DrawerOverlay>
-          <DrawerContent>
+          <DrawerContent minW={`${ASIDE_WITDH + 30}px`}>
             <DrawerCloseButton />
             <DrawerBody pt={8} pb={6}>
               <SiteLogo />
