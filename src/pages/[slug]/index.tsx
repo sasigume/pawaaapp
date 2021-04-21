@@ -1,58 +1,23 @@
 import { SinglePostComponent } from '@/components/partials/post/single-post';
-import ErrorPage from 'next/error';
-import { getPostAndMorePosts, getAllPostsWithSlugOnlySlug } from '@/lib/contentful/graphql';
 import { Post, PostForList, PostOnlySlug } from '@/models/contentful/Post';
-import Layout from '@/components/partials/layout';
-import { Box, Center, Divider, SkeletonText } from '@chakra-ui/react';
-import { SITE_URL } from '@/lib/constants';
+import Layout from '@/components/layout';
+import { Box, Center, Divider } from '@chakra-ui/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import PostList from '@/components/partials/post';
-import ReactMarkdownHeading from 'react-markdown-heading';
-import FukidashiShare from '@/components/common/fukidashi-share';
-import tocStyles from '../../styles/markdown-toc-styles.module.css';
-import { BlogPostData } from '@/models/firebase/BlogPostData';
 
 interface PostPageProps {
   firstPost: Post;
   morePosts: PostForList[];
   preview: boolean;
-  tweetCount: number;
+
   revalEnv: number;
-  drawerPosts: Post[];
-  blogPostData: BlogPostData;
 }
 
-export default function PostPage({
-  firstPost,
-  morePosts,
-  preview,
-  tweetCount,
-  revalEnv,
-  drawerPosts,
-  blogPostData,
-}: PostPageProps) {
+export default function PostPage({ firstPost, morePosts, preview, revalEnv }: PostPageProps) {
   const router = useRouter();
 
-  const Toc = (post: Post) => (
-    <Box my={8} className={tocStyles['toc']}>
-      <ReactMarkdownHeading markdown={post.body} hyperlink />
-    </Box>
-  );
-
-  const AsideChildren = (post: Post) => (
-    <Box>
-      <FukidashiShare
-        tweetText={post.title}
-        tweetCount={tweetCount}
-        slug={post.slug}
-        likeCount={blogPostData.like ?? 0}
-        dislikeCount={blogPostData.dislike ?? 0}
-      />
-      {Toc(post)}
-    </Box>
-  );
   if (router.isFallback) {
     return (
       <Layout preview={preview} meta={{ title: 'ロード中', desc: '' }} hideAdsense={true}>
@@ -74,10 +39,8 @@ export default function PostPage({
           }}
           revalEnv={revalEnv}
           preview={preview}
-          drawerLeftChildren={AsideChildren(firstPost)}
-          asideChildren={AsideChildren(firstPost)}
           hideAdsense={firstPost.hideAdsense ?? false}
-          drawerPosts={drawerPosts ?? []}
+          post={firstPost}
         >
           <Head>
             <link
@@ -88,7 +51,7 @@ export default function PostPage({
           <Box>
             {preview && <Box>デバッグ: プレビューON</Box>}
 
-            {firstPost && <SinglePostComponent post={firstPost} tweetCount={tweetCount ?? 0} />}
+            {firstPost && <SinglePostComponent post={firstPost} />}
 
             <Divider my={8} borderColor="gray.400" />
             {morePosts && morePosts.length > 0 && (
@@ -111,30 +74,30 @@ interface GSProps {
 const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600');
 
 export async function getStaticProps({ params, preview }: GSProps) {
-  const posts = await getPostAndMorePosts(params.slug, preview);
-
-  const blogPostDataRes = await fetch(process.env.API_URL + `/blogPosts?slug=${params.slug}`, {
-    headers: {
-      authorization: process.env.FUNCTION_AUTH ?? '',
-    },
-  });
-  const blogPostData = (await blogPostDataRes.json()) as BlogPostData;
-
-  const searchWord = SITE_URL + '/' + params.slug;
-
-  const tweets = await fetch(
-    process.env.API_URL + '/twitter?word=NYC' + encodeURIComponent(searchWord),
+  if (process.env.API_URL == undefined) {
+    // 33m means yellow collor
+    console.warn(
+      '\x1b[33m',
+      `FATAL: API URL environment variable is not set. Data fetching will fail!`,
+      '\x1b[0m',
+    );
+  }
+  const postsRes = await fetch(
+    `${process.env.API_URL}/contentful-getPostAndMorePosts?preview=${
+      preview ? 'true' : 'false'
+    }&slug=${params.slug}`,
     {
       headers: {
         authorization: process.env.FUNCTION_AUTH ?? '',
       },
     },
   );
-  const tweetsJson = await tweets.json();
-  let tweetCount;
-  tweetsJson.data ? (tweetCount = tweetsJson.meta.result_count) : (tweetCount = null);
-
-  //const drawerPosts = (await getSeries('popular')) ?? null;
+  let posts = [];
+  if (postsRes.ok) {
+    posts = await postsRes.json();
+  } else {
+    console.error('Fetch error: ' + postsRes.status + (await JSON.stringify(postsRes.json())));
+  }
 
   const revalEnv = parseInt(process.env.REVALIDATE_SINGLE ?? '3600');
 
@@ -147,28 +110,33 @@ export async function getStaticProps({ params, preview }: GSProps) {
     preview: preview ?? false,
     firstPost: posts.post ?? null,
     morePosts: posts.morePosts ?? [],
-    tweetCount: tweetCount ?? 0,
     revalEnv: revalEnv,
     hideAdsense: (posts.post && posts.post.hideAdsense == true) ?? false,
-    //drawerPosts: drawerPosts.postsCollection.items ?? null,
-    blogPostData: blogPostData ?? {
-      like: 0,
-      dislike: 0,
-    },
   };
   if (pageProps.firstPost) {
     console.info(
       `ISR ready for: ${pageProps.firstPost.title} ${
         pageProps.hideAdsense ? '(Ad disabled)' : ''
-      } / ${pageProps.tweetCount} tweets / ${pageProps.blogPostData.like} likes`,
+      } / ${pageProps.firstPost.tweetCount} tweets / ${pageProps.firstPost.like} likes`,
     );
   }
   return { props: pageProps, revalidate: revalEnv };
 }
 
 export async function getStaticPaths() {
-  const allPosts = await getAllPostsWithSlugOnlySlug(false, TOTAL_LIMIT);
-  let paths = allPosts?.map((post: PostOnlySlug) => `/${post.slug}/`) ?? [];
+  const allPostsRes = await fetch(
+    `${process.env.API_URL}/contentful-getAllPostsWithSlugOnlySlug?preview=false&limit=${TOTAL_LIMIT}`,
+    {
+      headers: {
+        authorization: process.env.FUNCTION_AUTH ?? '',
+      },
+    },
+  );
+  let paths = [];
+  if (allPostsRes.ok) {
+    const allPosts = await allPostsRes.json();
+    paths = allPosts?.map((post: PostOnlySlug) => `/${post.slug}/`) ?? [];
+  }
 
   return {
     paths: paths,

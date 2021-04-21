@@ -1,7 +1,7 @@
 // https://zenn.dev/catnose99/articles/c7754ba6e4adac
 
 import { SITE_DESC, SITE_FULL_URL, SITE_NAME } from '@/lib/constants';
-import { getAllPostsForRss } from '@/lib/contentful/graphql';
+import { PostForRss } from '@/models/contentful/Post';
 import { GetServerSidePropsContext } from 'next';
 import RSS from 'rss';
 
@@ -16,8 +16,19 @@ async function generateFeedXml() {
     language: 'ja',
   });
 
-  const posts = (await getAllPostsForRss(false, TOTAL_LIMIT)) ?? [];
-  posts?.forEach((post) => {
+  let allPostsForRSS = [];
+  const allPostsForRSSRes = await fetch(
+    `${process.env.API_URL}/contentful-getAllPostsForRss?preview=false&limit=${TOTAL_LIMIT}`,
+    {
+      headers: {
+        authorization: process.env.FUNCTION_AUTH ?? '',
+      },
+    },
+  );
+  if (allPostsForRSSRes.ok) {
+    allPostsForRSS = await allPostsForRSSRes.json();
+  }
+  allPostsForRSS?.forEach((post: PostForRss) => {
     feed.item({
       title: post.title,
       description: post.description ?? '',

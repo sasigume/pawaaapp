@@ -1,4 +1,4 @@
-import { MAIN_WIDTH } from '@/lib/chakra/styles';
+import { MAIN_WIDTH } from '@/lib/chakra/theme';
 import { Badge, Box } from '@chakra-ui/layout';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';

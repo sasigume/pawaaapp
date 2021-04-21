@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import firebaseApi from '@/lib/firebase';
-import Layout from '@/components/partials/layout';
+import Layout from '@/components/layout';
 import { useAuthentication } from '../../hooks/authentication';
 import * as gtag from '@/lib/gtag';
 import {
@@ -49,12 +49,6 @@ export default function UsersMe() {
   useEffect(() => {
     setFetching(false);
   }, [randomEntity]);
-
-  const validationSchema = Yup.object({
-    displayName: Yup.string().notOneOf(NGwords, '使用できない言葉が含まれています'),
-    photoURL: Yup.string(),
-    agreed: Yup.boolean().required(),
-  });
 
   return (
     <Layout

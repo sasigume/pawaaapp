@@ -3,7 +3,7 @@ import { Button, Box, Container, Flex, Stack, useColorMode, Badge } from '@chakr
 import LinkChakra from '@/components/common/link-chakra';
 import Logo from '@/components/common/Logo';
 
-const pkg = require('../../../../../package.json');
+const pkg = require('../../../../package.json');
 const repoUrl = pkg.repository.url;
 const repoV = pkg.version;
 
@@ -61,7 +61,7 @@ const LayoutFooter = ({ revalidate, maxW }: FooterProps) => {
           <Box textAlign="right">
             <Box>
               Articles/images: &copy; 2021{` `}
-              <LinkChakra href={`https://twitter.com/boron_uno`}>Boronuno</LinkChakra>
+              <LinkChakra href={`https://twitter.com/aelyone`}>Aelyone</LinkChakra>
             </Box>
             <Box mb={3}>
               Code of web app: {` `}

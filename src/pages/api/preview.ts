@@ -1,4 +1,3 @@
-import { getPreviewPost } from '@/lib/contentful/graphql';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function preview(req: NextApiRequest, res: NextApiResponse) {
@@ -16,7 +15,16 @@ export default async function preview(req: NextApiRequest, res: NextApiResponse)
     return res.status(401).json({ message: 'Invalid token' });
   }
 
-  const post = await getPreviewPost(slug);
+  let post = undefined;
+
+  const postRes = await fetch(`${process.env.API_URL}/contentful-getPreviewPost?slug=${slug}`, {
+    headers: {
+      authorization: process.env.FUNCTION_AUTH ?? '',
+    },
+  });
+  if (postRes.ok) {
+    post = await postRes.json();
+  }
 
   if (!post) {
     return res.status(401).json({ message: 'Invalid slug' });

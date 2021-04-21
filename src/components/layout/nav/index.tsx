@@ -4,19 +4,18 @@ import { Box, Button, ColorMode, Container, HStack, Spacer } from '@chakra-ui/re
 import { ReactNode } from 'react';
 import DrawerLeft from './drawer-left';
 import SiteLogo from '@/components/common/SiteLogo';
-import PostList from '../../post';
+import PostList from '../../partials/post';
 import { Post } from '@/models/contentful/Post';
 import LinkChakra from '@/components/common/link-chakra';
 import FaiconDiv from '@/components/common/faicon-div';
 import { CREATOR_ID } from '@/lib/constants';
-import { NAV_HEIGHT } from '@/lib/chakra/styles';
+import { NAV_HEIGHT } from '@/lib/chakra/theme';
 import ColorSwitch from '../color-switch';
 const SignIn = dynamic(() => import('./drawer-left/signin'), { ssr: false });
 
 interface NavProps {
   preview: boolean;
-  drawerLeftChildren?: ReactNode;
-  posts?: Post[];
+  post?: Post;
   colorMode: ColorMode;
   maxW: number;
   hideAdsense?: boolean;
@@ -98,19 +97,7 @@ export default class Nav extends Component<NavProps, { prevScrollpos: number; vi
           <Container maxW={`${this.props.maxW}px`} px={0}>
             <HStack>
               <Box mr={4} w={{ base: 'auto', xl: 0 }} display={{ base: 'flex', lg: 'none' }}>
-                <DrawerLeft
-                  hideAdsense={this.props.hideAdsense ?? false}
-                  preview={this.props.preview}
-                >
-                  <>
-                    {this.props.drawerLeftChildren}
-                    {this.props.posts && this.props.posts.length > 0 && (
-                      <Box mt={8}>
-                        <PostList mode="drawer" posts={this.props.posts} />
-                      </Box>
-                    )}
-                  </>
-                </DrawerLeft>
+                <DrawerLeft post={this.props.post} hideAdsense={this.props.hideAdsense ?? false} />
               </Box>
               <SiteLogo display={{ base: 'none', md: 'inline-block' }} />
 
