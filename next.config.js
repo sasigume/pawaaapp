@@ -1,6 +1,8 @@
-const path = require('path');
-
-module.exports = {
+//const path = require('path');
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+module.exports = withBundleAnalyzer({
   // add slash for Twitter card
   trailingSlash: true,
   /*webpack: (config, { isServer }) => {
@@ -12,9 +14,6 @@ module.exports = {
     return config;
   },*/
   env: {
-    CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,
-    CONTENTFUL_ACCESS_TOKEN: process.env.CONTENTFUL_ACCESS_TOKEN,
-    CONTENTFUL_PREVIEW_ACCESS_TOKEN: process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
     CONTENTFUL_PREVIEW_SECRET: process.env.CONTENTFUL_PREVIEW_SECRET,
     FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
     FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
@@ -55,4 +54,4 @@ module.exports = {
   future: {
     webpack5: true,
   },
-};
+});

@@ -1,12 +1,7 @@
 import ErrorPage from 'next/error';
 import PostList from '@/components/partials/post';
-import Layout from '@/components/partials/layout';
-import {
-  getPlatform,
-  getAllPostsForPlatform,
-  getAllPlatformsWithSlug,
-} from '@/lib/contentful/graphql';
-import { Post, PostForList } from '@/models/contentful/Post';
+import Layout from '@/components/layout';
+import { Post } from '@/models/contentful/Post';
 import { Platform } from '@/models/contentful/Platform';
 import { Box } from '@chakra-ui/react';
 
@@ -64,26 +59,66 @@ interface GSProps {
 
 export async function getStaticProps({ params, preview = false }: GSProps) {
   const slug = params.slug ?? '';
-  let posts: PostForList[];
+  let platformData = undefined;
+  let posts = [];
 
-  const platformData = (await getPlatform(slug, preview)) ?? null;
-  platformData
-    ? (posts = await getAllPostsForPlatform(platformData.slug, preview, TOTAL_LIMIT))
-    : (posts = []);
+  const platformDataRes = await fetch(
+    `${process.env.API_URL}/contentful-getPlatform?slug=${slug}&preview=${
+      preview ? 'true' : 'false'
+    }`,
+    {
+      headers: {
+        authorization: process.env.FUNCTION_AUTH ?? '',
+      },
+    },
+  );
+  if (platformDataRes.ok) {
+    platformData = await platformDataRes.json();
+  }
+  if (platformData) {
+    const postsRes = await fetch(
+      `${process.env.API_URL}/contentful-getAllPostsForPlatform?slug=${platformData.slug}&preview=${
+        preview ? 'true' : 'false'
+      }&limit=${TOTAL_LIMIT}`,
+      {
+        headers: {
+          authorization: process.env.FUNCTION_AUTH ?? '',
+        },
+      },
+    );
+    if (postsRes.ok) {
+      posts = await postsRes.json();
+    }
+  }
   return {
     props: {
       platform: platformData ?? null,
-      preview: preview,
       posts: posts ?? null,
+      preview: preview,
     },
     revalidate: 300,
   };
 }
 
 export async function getStaticPaths() {
-  const allplatforms = (await getAllPlatformsWithSlug(false)) ?? [];
+  let allPlatforms = [];
+  const allPlatformsRes = await fetch(
+    `${process.env.API_URL}/contentful-getAllPlatformsWithSlug?preview=false&limit=${TOTAL_LIMIT}`,
+    {
+      headers: {
+        authorization: process.env.FUNCTION_AUTH ?? '',
+      },
+    },
+  );
+  if (allPlatformsRes.ok) {
+    allPlatforms = await allPlatformsRes.json();
+  } else {
+    return {
+      notFound: true,
+    };
+  }
   return {
-    paths: allplatforms?.map((platform: Platform) => `/platforms/${platform.slug}`) || [],
+    paths: allPlatforms?.map((platform: Platform) => `/platforms/${platform.slug}`) || [],
     fallback: true,
   };
 }

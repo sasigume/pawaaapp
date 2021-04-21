@@ -11,7 +11,7 @@ import {
   LAYOUT_PADDING,
   MAIN_WIDTH,
   NAV_HEIGHT,
-} from '@/lib/chakra/styles';
+} from '@/lib/chakra/theme';
 import Nav from './nav';
 import Aside from './aside';
 import LayoutFooter from './layout-footer';
@@ -19,16 +19,14 @@ import LayoutFooter from './layout-footer';
 interface LayoutProps {
   preview: boolean;
   children: ReactNode;
-  drawerLeftChildren?: ReactNode;
   meta: {
     title: string;
     desc: string;
     ogpUrl?: string;
   };
   revalEnv?: number;
-  asideChildren?: ReactNode;
   hideAdsense?: boolean;
-  drawerPosts?: Post[];
+  post?: Post;
 }
 
 export default function Layout({
@@ -36,10 +34,8 @@ export default function Layout({
   children,
   meta,
   revalEnv,
-  drawerLeftChildren,
-  asideChildren,
   hideAdsense,
-  drawerPosts,
+  post,
 }: LayoutProps) {
   const { colorMode } = useColorMode();
 
@@ -65,11 +61,10 @@ export default function Layout({
         w="100vw"
       >
         <Nav
+          post={post}
           maxW={LAYOUT_MAXW}
           colorMode={colorMode}
-          posts={drawerPosts ?? []}
           preview={preview}
-          drawerLeftChildren={drawerLeftChildren}
           hideAdsense={hideAdsense ?? false}
         />
 
@@ -98,12 +93,7 @@ export default function Layout({
             >
               {children}
             </Box>
-            <Aside
-              hideAdsense={hideAdsense ?? false}
-              w={ASIDE_WITDH}
-              asideChildren={asideChildren}
-              drawerPosts={drawerPosts}
-            />
+            <Aside post={post} hideAdsense={hideAdsense ?? false} w={ASIDE_WITDH} />
           </Flex>
           <LayoutFooter maxW={LAYOUT_MAXW} revalidate={revalEnv} />
         </Box>

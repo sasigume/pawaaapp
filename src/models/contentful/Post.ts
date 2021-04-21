@@ -60,6 +60,9 @@ export interface Post extends PostForRss {
   };
   body: string;
   hideAdsense?: boolean;
+  like?: number;
+  dislike?: number;
+  tweetCount?: number;
 }
 export const POST_GRAPHQL_FIELDS =
   POSTFORRSS_GRAPHQL_FIELDS +

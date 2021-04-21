@@ -1,6 +1,6 @@
 import { ChakraProvider, cookieStorageManager, localStorageManager } from '@chakra-ui/react';
 import { ReactNode } from 'react';
-import { theme } from '@/lib/chakra/styles';
+import { theme } from '@/lib/chakra/theme';
 interface Props {
   cookies: any;
   children: ReactNode;

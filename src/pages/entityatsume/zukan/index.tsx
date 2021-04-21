@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
 import { Entity } from '@/models/nest/Entity';
 import { VStack, Divider } from '@chakra-ui/react';
-import Layout from '@/components/partials/layout';
+import Layout from '@/components/layout';
 import EntityList from '@/components/partials/entity/';
 import { getAllEntities } from '@/lib/nest/entities';
 

@@ -1,17 +1,21 @@
-import { Box } from '@chakra-ui/react';
+import { Box, StyleProps } from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import React from 'react';
-import LinkChakra from '../link-chakra';
+import LinkChakra from '../../../../common/link-chakra';
 import { SITE_URL } from '@/lib/constants';
 import LazyLoad from 'react-lazyload';
 const gfm = require('remark-gfm');
+
+// oldStyleModuleCss is temporaly fix while replacing terrible classes in old articles
+import oldStyleModuleCss from './style-for-old-articles.module.css';
+import dynamic from 'next/dynamic';
+const Highlighter = dynamic(() => import('@/components/common/highlighter'));
 
 interface RenderProps {
   source: string;
   plugins?: any[];
   renderers?: any;
+  style?: StyleProps;
 }
 
 interface CodeProps {
@@ -36,7 +40,7 @@ const LinkConverter = (props: LinkProps) => {
   );
 };
 
-const MarkdownRender = (props: RenderProps) => {
+const PostBody = (props: RenderProps) => {
   // match id space to automatic generated anchor link hyphene
   const headingId = (props: any) => props.node.children[0].value.replace(` `, `-`);
   //const headingId = (props: any) => <Box>{JSON.stringify(props)}</Box>;
@@ -59,11 +63,7 @@ const MarkdownRender = (props: RenderProps) => {
         </Box>
       ),
       code: ({ language, value }: CodeProps) => {
-        return (
-          <SyntaxHighlighter style={atomDark} language={language}>
-            {value}
-          </SyntaxHighlighter>
-        );
+        return <Highlighter language={language} code={value} />;
       },
       html: (props: any) => (
         <>
@@ -84,10 +84,10 @@ const MarkdownRender = (props: RenderProps) => {
 
   // wrap with class for chakra theme
   return (
-    <Box w="full" className="mdrenderWrapper">
+    <Box sx={props.style ?? {}} w="full" className={'mdrenderWrapper ' + oldStyleModuleCss['sfoa']}>
       <MdRenderer />
     </Box>
   );
 };
 
-export default MarkdownRender;
+export default PostBody;

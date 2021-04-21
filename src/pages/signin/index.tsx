@@ -1,4 +1,4 @@
-import Layout from '@/components/partials/layout';
+import Layout from '@/components/layout';
 import { useState } from 'react';
 import { useAuthentication } from '@/hooks/authentication';
 import firebaseApi from '@/lib/firebase';
@@ -9,7 +9,6 @@ import { Button, Checkbox, Stack } from '@chakra-ui/react';
 
 import Warning from '@/components/common/warning';
 import FaiconDiv from '@/components/common/faicon-div';
-import BreakpointContainer from '@/components/common/breakpoint-container';
 
 export default function LoginPage() {
   const router = useRouter();

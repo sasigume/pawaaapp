@@ -1,8 +1,7 @@
 import ErrorPage from 'next/error';
 
 import { Box, Divider, Heading, VStack } from '@chakra-ui/react';
-import Layout from '@/components/partials/layout';
-import { getAllPostsByRange, getAllPostsWithSlugOnlySlug } from '@/lib/contentful/graphql';
+import Layout from '@/components/layout';
 
 import { SITE_DESC, SITE_NAME } from '@/lib/constants';
 import { Post } from '@/models/contentful/Post';
@@ -69,9 +68,32 @@ const PER_PAGE = parseInt(process.env.PAGINATION ?? '10');
 
 export async function getStaticProps({ preview = false, params }: GSProps) {
   const skipAmount = (params.page - 1) * PER_PAGE;
+  let allPostsForIndex = [];
+  let allPostsPublished = [];
+  const allPostsForIndexRes = await fetch(
+    `${process.env.API_URL}/contentful-getAllPostsByRange?preview=false&skip=${skipAmount}&limit=${PER_PAGE}`,
+    {
+      headers: {
+        authorization: process.env.FUNCTION_AUTH ?? '',
+      },
+    },
+  );
 
-  const allPostsForIndex = (await getAllPostsByRange(false, skipAmount, PER_PAGE)) || [];
-  const allPostsPublished = (await getAllPostsWithSlugOnlySlug(false, TOTAL_LIMIT)) || [];
+  if (allPostsForIndexRes.ok) {
+    allPostsForIndex = await allPostsForIndexRes.json();
+  }
+  allPostsPublished = [];
+  const allPostsPublishedRes = await fetch(
+    `${process.env.API_URL}/contentful-getAllPostsWithSlugOnlySlug?preview=false&limit=${TOTAL_LIMIT}`,
+    {
+      headers: {
+        authorization: process.env.FUNCTION_AUTH ?? '',
+      },
+    },
+  );
+  if (allPostsForIndexRes.ok) {
+    allPostsPublished = await allPostsPublishedRes.json();
+  }
 
   const revalEnv = parseInt(process.env.REVALIDATE_ARCHIVE ?? '14400');
 
@@ -88,13 +110,24 @@ export async function getStaticProps({ preview = false, params }: GSProps) {
 }
 
 export const getStaticPaths = async () => {
-  const allPostJson = await getAllPostsWithSlugOnlySlug(false, 600);
+  let allPostsPublished = [];
+  const allPostsPublishedRes = await fetch(
+    `${process.env.API_URL}/contentful-getAllPostsWithSlugOnlySlug?preview=false&limit=${TOTAL_LIMIT}`,
+    {
+      headers: {
+        authorization: process.env.FUNCTION_AUTH ?? '',
+      },
+    },
+  );
+  if (allPostsPublishedRes.ok) {
+    allPostsPublished = await allPostsPublishedRes.json();
+  }
 
   const range = (start: number, end: number) =>
     [...Array(end - start + 1)].map((_, i) => start + i);
 
-  const paths = range(1, Math.ceil(allPostJson.length / PER_PAGE)).map(
-    (repo) => `/postpage/${repo}`,
+  const paths = range(1, Math.ceil(allPostsPublished.length / PER_PAGE)).map(
+    (page) => `/postpage/${page}`,
   );
 
   return {
