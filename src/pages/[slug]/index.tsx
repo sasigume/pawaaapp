@@ -95,6 +95,8 @@ export async function getStaticProps({ params, preview }: GSProps) {
   let posts = [];
   if (postsRes.ok) {
     posts = await postsRes.json();
+  } else {
+    console.error('Fetch error: ' + postsRes.status + (await JSON.stringify(postsRes.json())));
   }
 
   const revalEnv = parseInt(process.env.REVALIDATE_SINGLE ?? '3600');

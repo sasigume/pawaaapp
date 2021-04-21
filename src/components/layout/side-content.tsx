@@ -25,12 +25,16 @@ const SideContent = ({ post, hideAdsense }: SideContentProps) => {
       )}
       {post && (
         <>
-          <FukidashiShare
-            tweetCount={post.tweetCount ?? 0}
-            tweetText={`${post.title}\n${SITE_FULL_URL}/${post.slug}`}
-          />
-          <LikeDislike likeCount={post.like ?? 0} dislikeCount={post.dislike ?? 0} />
-          <Box my={8} className={tocStyles['toc']}>
+          <Box py={4}>
+            <FukidashiShare
+              tweetCount={post.tweetCount ?? 0}
+              tweetText={`${post.title}\n${SITE_FULL_URL}/${post.slug}`}
+            />
+          </Box>
+          <Box py={2}>
+            <LikeDislike likeCount={post.like ?? 0} dislikeCount={post.dislike ?? 0} />
+          </Box>
+          <Box py={8} className={tocStyles['toc']}>
             <ReactMarkdownHeading markdown={post.body} hyperlink />
           </Box>
         </>
