@@ -12,7 +12,7 @@ async function generateSitemapXml(): Promise<string> {
 
   let allPostsForRSS = [];
   const allPostsForRSSRes = await fetch(
-    `${process.env.API_URL}/contentful-getAllPostsForRSS?preview=false&limit=${TOTAL_LIMIT}`,
+    `${process.env.API_URL}/contentful-getAllPostsForRss?preview=false&limit=${TOTAL_LIMIT}`,
     {
       headers: {
         authorization: process.env.FUNCTION_AUTH ?? '',
