@@ -8,6 +8,9 @@ import { SITE_URL } from '@/lib/constants';
 import LazyLoad from 'react-lazyload';
 const gfm = require('remark-gfm');
 
+// oldStyleModuleCss is temporaly fix while replacing terrible classes in old articles
+import oldStyleModuleCss from './style-for-old-articles.module.css';
+
 interface RenderProps {
   source: string;
   plugins?: any[];
@@ -85,7 +88,7 @@ const PostBody = (props: RenderProps) => {
 
   // wrap with class for chakra theme
   return (
-    <Box sx={props.style ?? {}} w="full" className="mdrenderWrapper">
+    <Box sx={props.style ?? {}} w="full" className={'mdrenderWrapper ' + oldStyleModuleCss['sfoa']}>
       <MdRenderer />
     </Box>
   );

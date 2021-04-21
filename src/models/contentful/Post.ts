@@ -4,7 +4,6 @@ import { Sys } from './Sys';
 
 import { PERSON_GRAPHQL_FIELDS } from './Person';
 import { PLATFORM_GRAPHQL_FIELDS } from './Platform';
-import { StyleProps } from '@chakra-ui/styled-system';
 
 export interface PostOnlySlug {
   slug: string;
@@ -64,7 +63,6 @@ export interface Post extends PostForRss {
   like?: number;
   dislike?: number;
   tweetCount?: number;
-  style?: StyleProps;
 }
 export const POST_GRAPHQL_FIELDS =
   POSTFORRSS_GRAPHQL_FIELDS +
