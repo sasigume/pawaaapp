@@ -44,9 +44,9 @@ export default function DrawerLeft({ post, hideAdsense }: Props) {
         aria-label="ドロワーメニュー(左)"
       >
         <DrawerOverlay>
-          <DrawerContent minW={`${ASIDE_WITDH + 30}px`}>
+          <DrawerContent>
             <DrawerCloseButton />
-            <DrawerBody pt={8} pb={6}>
+            <DrawerBody minW="320px" px={3} pt={8} pb={6}>
               <SiteLogo />
               <SideContent hideAdsense={hideAdsense ?? false} post={post} />
             </DrawerBody>
