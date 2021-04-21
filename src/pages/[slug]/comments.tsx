@@ -1,5 +1,4 @@
 import ErrorPage from 'next/error';
-import { getPostAndMorePosts, getAllPostsWithSlugOnlySlug } from '@/lib/contentful/graphql';
 import { Post, PostOnlySlug } from '@/models/contentful/Post';
 import Layout from '@/components/layout';
 import { Box } from '@chakra-ui/react';
@@ -73,14 +72,29 @@ interface GSProps {
 const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '600');
 
 export async function getStaticProps({ params, preview }: GSProps) {
-  const posts = await getPostAndMorePosts(params.slug, preview);
-
+  const postsRes = await fetch(
+    `${process.env.API_URL}/contentful-getPostAndMorePosts?preview=${
+      preview ? 'true' : 'false'
+    }&slug=${params.slug}`,
+    {
+      headers: {
+        authorization: process.env.FUNCTION_AUTH ?? '',
+      },
+    },
+  );
+  let posts = [];
+  if (postsRes.ok) {
+    posts = await postsRes.json();
+  }
+  let postComments = [];
   const commentsRes = await fetch(process.env.API_URL + `/postComments?slug=${params.slug}`, {
     headers: {
       authorization: process.env.FUNCTION_AUTH ?? '',
     },
   });
-  const postComments = await commentsRes.json();
+  if (commentsRes.ok) {
+    postComments = await commentsRes.json();
+  }
 
   const revalEnv = parseInt(process.env.REVALIDATE_SINGLE ?? '3600');
   if (!posts.post) {
@@ -101,8 +115,19 @@ export async function getStaticProps({ params, preview }: GSProps) {
 }
 
 export async function getStaticPaths() {
-  const allPosts = await getAllPostsWithSlugOnlySlug(false, TOTAL_LIMIT);
-  let paths = allPosts?.map((post: PostOnlySlug) => `/${post.slug}/comments/`) ?? [];
+  const allPostsRes = await fetch(
+    `${process.env.API_URL}/contentful-getAllPostsWithSlugOnlySlug?preview=false&limit=${TOTAL_LIMIT}`,
+    {
+      headers: {
+        authorization: process.env.FUNCTION_AUTH ?? '',
+      },
+    },
+  );
+  let paths = [];
+  if (allPostsRes.ok) {
+    const allPosts = await allPostsRes.json();
+    paths = allPosts?.map((post: PostOnlySlug) => `/${post.slug}/comments`) ?? [];
+  }
 
   return {
     paths: paths,

@@ -11,11 +11,8 @@ import LikeDislike from '@/components/common/like-dislike';
 import { SITE_FULL_URL } from '@/lib/constants';
 interface Props {
   post: Post;
-  tweetCount?: number;
-  likeCount?: number;
-  dislikeCount?: number;
 }
-const PostHeading = ({ post, tweetCount, likeCount, dislikeCount }: Props) => {
+const PostHeading = ({ post }: Props) => {
   return (
     <Box>
       {post.heroImage && (
@@ -50,10 +47,10 @@ const PostHeading = ({ post, tweetCount, likeCount, dislikeCount }: Props) => {
         {post.person && <PersonList persons={[post.person]} />}
         <Spacer />
         <FukidashiShare
-          tweetCount={tweetCount}
+          tweetCount={post.tweetCount ?? 0}
           tweetText={`${post.title}\n${SITE_FULL_URL}/${post.slug}`}
         />
-        <LikeDislike likeCount={likeCount ?? 0} dislikeCount={dislikeCount ?? 0} />
+        <LikeDislike likeCount={post.like ?? 0} dislikeCount={post.dislike ?? 0} />
       </VStack>
     </Box>
   );
