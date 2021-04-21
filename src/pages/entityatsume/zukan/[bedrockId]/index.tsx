@@ -13,9 +13,7 @@ import { getAllEntities, getEntity } from '@/lib/nest/entities';
 interface EntityPageProps {
   firstEntity: Entity;
   preview: boolean;
-  tweetCount: number;
   revalEnv: number;
-  allPlatforms: Platform[];
 }
 
 export default function EntityPage({ preview, firstEntity, revalEnv }: EntityPageProps) {

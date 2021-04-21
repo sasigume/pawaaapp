@@ -1,6 +1,5 @@
 import ErrorPage from 'next/error';
 import Layout from '@/components/layout';
-import { getPerson, getAllPersonsWithSlug, getAllPostsForPerson } from '@/lib/contentful/graphql';
 import { Person } from '@/models/contentful/Person';
 import { Box } from '@chakra-ui/react';
 import PersonList from '@/components/partials/post/common/person-list';
@@ -63,14 +62,37 @@ interface GSProps {
 
 export async function getStaticProps({ params, preview = false }: GSProps) {
   const slug = params.slug ?? '';
+  let personData = undefined;
+  let posts = [];
 
-  let posts: PostForList[];
-
-  const personData = (await getPerson(slug, preview)) ?? null;
-
-  personData
-    ? (posts = await getAllPostsForPerson(personData.slug, preview, TOTAL_LIMIT))
-    : (posts = []);
+  const personDataRes = await fetch(
+    `${process.env.API_URL}/contentful-getPerson?slug=${slug}&preview=${
+      preview ? 'true' : 'false'
+    }`,
+    {
+      headers: {
+        authorization: process.env.FUNCTION_AUTH ?? '',
+      },
+    },
+  );
+  if (personDataRes.ok) {
+    personData = await personDataRes.json();
+  }
+  if (personData) {
+    const postsRes = await fetch(
+      `${process.env.API_URL}/contentful-getAllPostsForPerson?slug=${personData.slug}&preview=${
+        preview ? 'true' : 'false'
+      }&limit=${TOTAL_LIMIT}`,
+      {
+        headers: {
+          authorization: process.env.FUNCTION_AUTH ?? '',
+        },
+      },
+    );
+    if (postsRes.ok) {
+      posts = await postsRes.json();
+    }
+  }
   return {
     props: {
       person: personData ?? null,
@@ -82,9 +104,24 @@ export async function getStaticProps({ params, preview = false }: GSProps) {
 }
 
 export async function getStaticPaths() {
-  const allpersons = (await getAllPersonsWithSlug(false)) ?? [];
+  let allPersons = [];
+  const allPersonsRes = await fetch(
+    `${process.env.API_URL}/contentful-getAllPersonsWithSlug?preview=false&limit=${TOTAL_LIMIT}`,
+    {
+      headers: {
+        authorization: process.env.FUNCTION_AUTH ?? '',
+      },
+    },
+  );
+  if (allPersonsRes.ok) {
+    allPersons = await allPersonsRes.json();
+  } else {
+    return {
+      notFound: true,
+    };
+  }
   return {
-    paths: allpersons?.map((person: Person) => `/persons/${person.slug}`) || [],
+    paths: allPersons?.map((person: Person) => `/persons/${person.slug}`) || [],
     fallback: true,
   };
 }

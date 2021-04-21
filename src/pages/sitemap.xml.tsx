@@ -1,7 +1,7 @@
 // https://zenn.dev/catnose99/articles/c441954a987c24
 
 import { SITE_FULL_URL } from '@/lib/constants';
-import { getAllPostsForRss } from '@/lib/contentful/graphql';
+import { PostForRss } from '@/models/contentful/Post';
 import { GetServerSidePropsContext } from 'next';
 
 const TOTAL_LIMIT = parseInt(process.env.TOTAL_PAGINATION ?? '700');
@@ -10,8 +10,19 @@ async function generateSitemapXml(): Promise<string> {
   let xml = `<?xml version="1.0" encoding="UTF-8"?>`;
   xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
 
-  const posts = (await getAllPostsForRss(false, TOTAL_LIMIT)) ?? [];
-  posts.forEach((post) => {
+  let allPostsForRSS = [];
+  const allPostsForRSSRes = await fetch(
+    `${process.env.API_URL}/contentful-getAllPostsForRSS?preview=false&limit=${TOTAL_LIMIT}`,
+    {
+      headers: {
+        authorization: process.env.FUNCTION_AUTH ?? '',
+      },
+    },
+  );
+  if (allPostsForRSSRes.ok) {
+    allPostsForRSS = await allPostsForRSSRes.json();
+  }
+  allPostsForRSS.forEach((post: PostForRss) => {
     xml += `
       <url>
         <loc>${SITE_FULL_URL}/${post.slug}/</loc>
