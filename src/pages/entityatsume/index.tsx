@@ -50,12 +50,6 @@ export default function UsersMe() {
     setFetching(false);
   }, [randomEntity]);
 
-  const validationSchema = Yup.object({
-    displayName: Yup.string().notOneOf(NGwords, '使用できない言葉が含まれています'),
-    photoURL: Yup.string(),
-    agreed: Yup.boolean().required(),
-  });
-
   return (
     <Layout
       preview={false}

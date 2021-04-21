@@ -6,7 +6,7 @@ interface Props {
   language?: string;
 }
 //https://github.com/highlightjs/highlight.js/issues/925#issuecomment-744078627
-export function Highlighter({ code, language }: Props): JSX.Element {
+const Highlighter = ({ code, language }: Props) => {
   const highlighted = language
     ? hljs.highlight(code, { language: language })
     : hljs.highlightAuto(code);
@@ -16,4 +16,5 @@ export function Highlighter({ code, language }: Props): JSX.Element {
       <code className="hljs" dangerouslySetInnerHTML={{ __html: highlighted.value }} />
     </pre>
   );
-}
+};
+export default Highlighter;
