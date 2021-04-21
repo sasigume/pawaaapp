@@ -4,6 +4,7 @@
 declare module 'react-gtm-module';
 declare module 'react-syntax-highlighter';
 declare module 'react-syntax-highlighter/dist/cjs/styles/prism';
+declare module 'react-syntax-highlighter/dist/cjs/prism';
 declare module 'react-lazyload';
 declare module 'react-adsense';
 

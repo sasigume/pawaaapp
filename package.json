@@ -1,7 +1,7 @@
 {
   "name": "napoancom-next",
-  "version": "4.0.0",
-  "author": "boronuno",
+  "version": "4.0.1",
+  "author": "aelyone",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -29,6 +29,7 @@
     "formik-chakra-ui": "^1.4.6",
     "framer-motion": "^3.7.0",
     "graphql": "^15.5.0",
+    "highlight.js": "^10.7.2",
     "next": "latest",
     "nextjs-progressbar": "^0.0.8",
     "react": "^17.0.1",
@@ -37,7 +38,6 @@
     "react-lazyload": "^3.2.0",
     "react-markdown": "^5.0.3",
     "react-markdown-heading": "^1.1.2",
-    "react-syntax-highlighter": "^15.4.3",
     "recoil": "^0.1.2",
     "remark-gfm": "^1.0.0",
     "rss": "^1.2.2",
