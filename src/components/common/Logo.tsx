@@ -8,8 +8,8 @@ interface Props {
 const Logo = ({ fill = 'black' }: Props) => {
   return (
     <Box area-label="ロゴ" fontWeight="bold">
-      <LinkChakra isExternal href="https://boron.uno">
-        BORONUNO
+      <LinkChakra isExternal href="https://aely.one">
+        Aelyone
       </LinkChakra>
     </Box>
   );

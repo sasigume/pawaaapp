@@ -9,7 +9,6 @@ import { Button, Checkbox, Stack } from '@chakra-ui/react';
 
 import Warning from '@/components/common/warning';
 import FaiconDiv from '@/components/common/faicon-div';
-import BreakpointContainer from '@/components/common/breakpoint-container';
 
 export default function LoginPage() {
   const router = useRouter();

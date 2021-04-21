@@ -1,6 +1,8 @@
-const path = require('path');
-
-module.exports = {
+//const path = require('path');
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+module.exports = withBundleAnalyzer({
   // add slash for Twitter card
   trailingSlash: true,
   /*webpack: (config, { isServer }) => {
@@ -52,4 +54,4 @@ module.exports = {
   future: {
     webpack5: true,
   },
-};
+});

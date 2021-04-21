@@ -3,7 +3,6 @@ import { Entity } from '@/models/nest/Entity';
 import Layout from '@/components/layout';
 import { Box, Center, Heading } from '@chakra-ui/react';
 
-import { Platform } from '@/models/contentful/Platform';
 import Head from 'next/head';
 
 import EntityList from '@/components/partials/entity';
