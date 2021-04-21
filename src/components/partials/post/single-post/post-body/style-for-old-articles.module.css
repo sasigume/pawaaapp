@@ -1,0 +1,313 @@
+.sfoa .mode {
+  display: inline-block;
+  margin: 3px;
+  padding: 1px 5px 1px;
+  border-radius: 3px;
+  color: #fff;
+  font-weight: var(--chakra-fontWeights-bold);
+  font-size: 1.1em;
+}
+
+.sfoa .imp {
+  background: #f33;
+  border: solid 2px #f33;
+}
+
+.sfoa .chain {
+  background: #48d1cc;
+  color: #000!important;
+  border: solid 2px #48d1cc;
+}
+
+.sfoa .repeat {
+  background: #68228b;
+  border: solid 2px #68228b;
+}
+
+.sfoa .con {
+  background: #fff;
+  border: solid 2px #000!important;
+  padding: 1px 3px 1px!important;
+  color: #000!important;
+}
+
+.sfoa .unc {
+  background: #000;
+  border: solid 2px #000!important;
+}
+
+.sfoa .nee {
+  background: #ddd;
+  color: #000!important;
+  border: solid 2px #ddd;
+}
+
+.sfoa .alw {
+  background: #cd0000;
+  border: solid 2px #cd0000;
+}
+
+.sfoa pre.hljs {
+  border-radius: 6px;
+  background: #222;
+  font-family: Consolas, 'Courier New', Courier, Monaco, monospace, Noto Sans;
+  margin: 0px 0px 8px;
+}
+
+.sfoa pre.hljs .highlightline {
+  background: #7b4000;
+  display: inline-block;
+  width: 100%;
+}
+
+.sfoa span.v8,
+.sfoa span.v7,
+.sfoa span.v9,
+.sfoa span.v10 {
+  display: inline-block;
+  margin: 2px;
+  padding: 3px 6px!important;
+  color: #fff;
+  font-weight: var(--chakra-fontWeights-bold);
+}
+
+.sfoa span.v8 {
+  background: #c71585;
+}
+
+.sfoa span.v7 {
+  background: #006400;
+}
+
+.sfoa span.v9 {
+  background: #8b008b;
+}
+
+.sfoa span.v10 {
+  background: #191970;
+}
+
+.sfoa .mod-inst {
+  margin: 20px 10px;
+  padding: 12px 14px;
+  box-shadow: 0px 5px 0px #bbb;
+  border: solid 1px #ccc;
+}
+
+.sfoa .mod-inst span.title {
+  font-size: 1.2em;
+  font-weight: var(--chakra-fontWeights-bold);
+}
+
+.sfoa .mod-inst p.note {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background: #ddd;
+}
+
+.sfoa .mod-inst ol,
+.sfoa .mod-inst ul {
+  margin-left: 20px;
+}
+
+.sfoa .mod-inst ol li,
+.sfoa .mod-inst ul li {
+  margin: 5px;
+}
+
+.sfoa .mod-inst .stopmodreposts {
+  display: block;
+  background: blue;
+  color: #fff;
+  margin: 1.2em 0;
+  padding: 1.5em 1em 1.5em;
+  text-align: center;
+  overflow: hidden;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+@media screen and (min-width: 30em) {
+  .sfoa .mod-inst .stopmodreposts {
+    background: #2687e8;
+  }
+}
+
+.sfoa .mod-inst .stopmodreposts b {
+  font-size: 3em;
+  font-weight: var(--chakra-fontWeights-normal);
+  text-shadow: 0px 5px 0px #000;
+  line-height: 1.2;
+  display: block;
+  -webkit-animation: textshadowmoco 5s ease 0s infinite normal;
+  animation: textshadowmoco 5s ease 0s infinite normal;
+}
+
+.sfoa ul#mokuzi {
+  list-style-type: none;
+  border: solid 2px #444;
+  border-top: solid 0px #fff;
+  padding: 0px;
+  margin: 10px;
+  box-shadow: 0px 3px 0px rgba(1, 1, 1, 0.3);
+}
+
+.sfoa ul#mokuzi>li {
+  display: block;
+  margin-left: 0px;
+}
+
+.sfoa ul#mokuzi>li>a {
+  margin-left: -3px;
+  margin-top: -1px;
+  display: block;
+  padding: 10px;
+  width: 98%;
+  font-size: 19px;
+  font-weight: var(--chakra-fontWeights-bold);
+  background: #b5e8ff;
+  line-height: 1.2rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  box-shadow: 1px 3px 5px rgba(1, 1, 1, 0.4);
+  z-index: 2;
+}
+
+@media screen and (min-width: 30em) {
+  .sfoa ul#mokuzi>li>a {
+    font-size: 1.2rem;
+  }
+}
+
+.sfoa ul#mokuzi>li>ul {
+  list-style-type: none;
+  padding-left: 0px;
+  margin-left: 0px;
+}
+
+.sfoa ul#mokuzi>li>ul>li {
+  position: relative;
+  padding-right: 15px;
+  border-bottom: solid 1px #333;
+  list-style-type: none;
+  margin-left: 0px;
+}
+
+.sfoa ul#mokuzi>li>ul>li:last-child {
+  border-bottom: solid 0px #fff;
+}
+
+.sfoa ul#mokuzi>li>ul>li a {
+  font-size: 17px;
+  display: block;
+  line-height: 20px;
+  padding: 8px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+@media screen and (min-width: 30em) {
+  .sfoa ul#mokuzi>li>ul>li a {
+    font-size: 1rem;
+    line-height: 1.4rem;
+  }
+}
+
+.sfoa ul#mokuzi>li>ul>li a.big {
+  font-size: 19px;
+  line-height: 20px;
+}
+
+@media screen and (min-width: 30em) {
+  .sfoa ul#mokuzi>li>ul>li a.big {
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+  }
+}
+
+.sfoa ul#mokuzi>li>ul>li a:before,
+.sfoa ul#mokuzi>li>ul>li a:after {
+  content: "";
+  position: absolute;
+  border-top: solid 10px transparent;
+  border-right: solid 10px transparent;
+  border-bottom: solid 10px transparent;
+  width: 0px;
+  height: 0px;
+  bottom: 8px;
+}
+
+.sfoa ul#mokuzi>li>ul>li a:before {
+  right: 0px;
+  border-left: solid 10px #000;
+}
+
+.sfoa ul#mokuzi>li>ul>li a:after {
+  right: 2px;
+  border-left: solid 10px #fff;
+}
+
+.sfoa .quote-image {
+  display: inline-block;
+  margin: 8px 4px;
+  padding: 5px;
+  background: #2687e8;
+  color: #fff;
+}
+
+.sfoa .quote-image a,
+.sfoa .quote-image a:visited,
+.sfoa .quote-image a:hover {
+  color: #fff!important;
+}
+
+.sfoa ul.update-content,
+.sfoa ol.update-content {
+  padding-left: 1.5em;
+  list-style-type: none;
+  margin: 0px;
+  margin-bottom: 1.6em;
+}
+
+.sfoa ul.update-content li,
+.sfoa ol.update-content li {
+  position: relative;
+  margin: 15px 0;
+}
+
+.sfoa ul.update-content li:after,
+.sfoa ol.update-content li:after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0.5em;
+  left: -1em;
+  width: 7px;
+  height: 7px;
+  background: #2687e8;
+  border-radius: 100%;
+}
+
+.sfoa ul.update-content li>ul,
+.sfoa ol.update-content li>ul,
+.sfoa ul.update-content li>ol,
+.sfoa ol.update-content li>ol {
+  list-style-type: none;
+  font-size: 0.9em;
+  margin-left: 1em;
+  margin-bottom: 1em;
+}
+
+.sfoa .youtube-box {
+  padding-top: 56.25%;
+  position: relative;
+}
+
+.sfoa .youtube-box iframe {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 100%;
+  height: 100%;
+}
