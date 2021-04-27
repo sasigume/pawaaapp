@@ -1,51 +1,31 @@
-# このフォルダについて
+# PROJECTNAPOANCOM
 
-Next.js 版クライアントです。Vercel にデプロイすることを前提にしています
+ALL ASSETS ARE DISTRIBUTED UNDER MIT LISENCE!
 
-## フォルダ構成
+![logo](https://raw.githubusercontent.com/sasigume/projectnapoancom/main/readme-assets/logo.png)
+![logo](https://raw.githubusercontent.com/sasigume/projectnapoancom/main/readme-assets/maikura.png)
+![logo](https://raw.githubusercontent.com/sasigume/projectnapoancom/main/readme-assets/longneck.png)
 
-`src`以下にまとめています
+## ナポアンのマイクラ
 
-- components
-  - common: ページ関係なく使い回すもの
-  - partials: レイアウトのためのパーツ
-  - providers: Chakra UI のカラーテーマ切り替え用
-- hooks: 認証用
-- lib: 後ろの処理(API サーバーに分離できなかったもの)
-- models: 型の定義
-- pages: ページ
-- styles: CSS モジュール
+**日本最大の個人運営マインクラフトブログ、その全てがここに。**
 
-## Contentful について
+2013 年にはてなブログで「アンディールー！ブログ。」として開設して以来作ってきた、色々なファイルをまとめました。
 
-`lib/contentful/graphql/`に全てまとめています。
+## フォルダー構成
 
-QraphQL なので指定したフィールドしか返ってきません。ご注意ください。
+### `backend`
 
-## Thanks
+記事配信用 Cloud Function と、ガチャ用 API です。
 
-### Adsense
+### `client`
 
-https://b.0218.jp/202104021830.html
+Next.js/WordPress 用のコード一式が入っています。
 
-### Google Analytics
+### `article-backup`
 
-https://sunday-morning.app/posts/2020-12-09-nextjs-google-analytics
+記事のバックアップです。
 
-### GraphQL + Contentful
+### `design`
 
-https://github.com/vercel/next.js/tree/canary/examples/cms-contentful
-
-### Firebase auth
-
-https://qiita.com/y-shida1997/items/f5e52c7288813a8184ff
-
-### OGP
-
-https://qiita.com/cheez921/items/39ae1ad2c38e5829b89c
-
-### RSS and Sitemap
-
-https://zenn.dev/catnose99/articles/c7754ba6e4adac
-
-https://zenn.dev/catnose99/articles/c441954a987c24
+ロゴとかです。
