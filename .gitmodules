@@ -1,12 +1,12 @@
-[submodule "client/wordpress/napcom2021"]
-	path = client/wordpress/napcom2021
-	url = https://github.com/sasigume/napcom2021.git
-[submodule "backend/napoancom-functions"]
-	path = backend/napoancom-functions
-	url = https://github.com/sasigume/napoancom-functions.git
-[submodule "backend/napoancom-nest"]
-	path = backend/napoancom-nest
-	url = https://github.com/sasigume/napoancom-nest.git
+[submodule "client/wordpress/2021"]
+	path = client/wordpress/2021
+	url = https://github.com/sasigume/projectnapoancom-client-wordpress-2021.git
+[submodule "backend/functions/2021"]
+	path = backend/functions/2021
+	url = https://github.com/sasigume/projectnapoancom-backend-functions-2021.git
+[submodule "backend/nest/2021"]
+	path = backend/nest/2021
+	url = https://github.com/sasigume/projectnapoancom-backend-nest-2021.git
 [submodule "client/next/2021"]
 	path = client/next/2021
 	url = https://github.com/sasigume/projectnapoancom-client-next-2021.git
