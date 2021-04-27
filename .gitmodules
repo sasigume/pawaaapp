@@ -7,3 +7,6 @@
 [submodule "backend/napoancom-nest"]
 	path = backend/napoancom-nest
 	url = https://github.com/sasigume/napoancom-nest.git
+[submodule "client/next/2021"]
+	path = client/next/2021
+	url = https://github.com/sasigume/projectnapoancom-client-next-2021.git
