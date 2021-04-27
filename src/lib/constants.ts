@@ -1,9 +1,9 @@
-export const SITE_NAME = 'ナポアンのマイクラ NEXT';
+export const SITE_NAME = 'ナポアンのマイクラ';
 export const SITE_URL = 'napoan.com';
 export const CREATOR_ID = 'sasigume';
 export const SITE_DESC = '日本最速のマインクラフト情報サイト';
 export const SITE_FULL_URL =
-  process.env.HTTPS_URL ?? 'https://' + process.env.VERCEL_URL ?? 'https://example.com';
+  process.env.HTTPS_URL ?? 'https://' + process.env.VERCEL_URL ?? 'https://next.napoan.com';
 
 export const VERCEL_LAST_COMMIT =
   'https://github.com/' +
