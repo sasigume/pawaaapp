@@ -1,6 +1,6 @@
 {
   "name": "napoancom-next",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "author": "aelyone",
   "scripts": {
     "dev": "next",
