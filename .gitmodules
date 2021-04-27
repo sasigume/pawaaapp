@@ -1,0 +1,3 @@
+[submodule "client/wordpress/napcom2021"]
+	path = client/wordpress/napcom2021
+	url = https://github.com/sasigume/napcom2021.git
