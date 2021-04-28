@@ -23,10 +23,6 @@ ALL ASSETS ARE DISTRIBUTED UNDER MIT LISENCE!
 
 Next.js/WordPress 用のコード一式が入っています。
 
-### `article-backup`
-
-記事のバックアップです。
-
 ### `design`
 
 ロゴとかです。
