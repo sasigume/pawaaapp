@@ -10,3 +10,6 @@
 [submodule "client/next-2021"]
 	path = client/next-2021
 	url = https://github.com/sasigume/projectnapoancom-client-next-2021.git
+[submodule "docs/saurus-2021"]
+	path = docs/saurus-2021
+	url = https://github.com/sasigume/projectnapoancom-docs-saurus2021.git

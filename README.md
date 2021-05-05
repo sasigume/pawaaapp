@@ -26,3 +26,7 @@ Next.js/WordPress 用のコード一式が入っています。
 ### `design`
 
 ロゴとかです。
+
+### `docs` (New! ✨)
+
+Docusaurus で作ったドキュメントが置いてあります。
