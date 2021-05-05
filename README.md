@@ -11,7 +11,7 @@
 
 ## ドキュメント
 
-[https://docs.napoan.com]
+[https://md.napoan.com]
 
 ## フォルダー構成
 
