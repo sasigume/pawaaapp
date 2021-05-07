@@ -7,9 +7,9 @@
 [submodule "backend/nest-2021"]
 	path = backend/nest-2021
 	url = https://github.com/sasigume/projectnapoancom-backend-nest-2021.git
-[submodule "client/next-2021"]
-	path = client/next-2021
-	url = https://github.com/sasigume/projectnapoancom-client-next-2021.git
 [submodule "docs/saurus-2021"]
 	path = docs/saurus-2021
 	url = https://github.com/sasigume/napoancom-md.git
+[submodule "client/next"]
+	path = client/next
+	url = https://github.com/sasigume/napoancom-next.git
