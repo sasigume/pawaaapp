@@ -1,12 +1,9 @@
 # projectnapoancom
 
-## Docusaurus版 (New!)
-
-https://github.com/sasigume/napoancom-md
 ## Next.js版
 
-https://github.com/sasigume/napoancom-next
+https://github.com/imaicu/napoancom-next
 
 ## WordPress版
 
-https://github.com/sasigume/napoancom-wp
+https://github.com/imaicu/napoancom-wp
