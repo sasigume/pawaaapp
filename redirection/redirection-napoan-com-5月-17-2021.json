@@ -1,0 +1,4098 @@
+{
+    "plugin": {
+        "version": "5.1.1",
+        "date": "Mon, 17 May 2021 13:58:33 +0000"
+    },
+    "groups": [
+        {
+            "id": 1,
+            "name": "\u8ee2\u9001\u30eb\u30fc\u30eb",
+            "redirects": 1,
+            "module_id": 1,
+            "moduleName": "WordPress",
+            "enabled": true
+        },
+        {
+            "id": 2,
+            "name": "\u7de8\u96c6\u6e08\u307f\u306e\u6295\u7a3f",
+            "redirects": 0,
+            "module_id": 1,
+            "moduleName": "WordPress",
+            "enabled": true
+        },
+        {
+            "id": 3,
+            "name": "Next\u7248\u306b\u79fb\u884c",
+            "redirects": 148,
+            "module_id": 3,
+            "moduleName": "Nginx",
+            "enabled": true
+        },
+        {
+            "id": 4,
+            "name": "MD\u7248\u306b\u79fb\u884c",
+            "redirects": 7,
+            "module_id": 3,
+            "moduleName": "Nginx",
+            "enabled": true
+        }
+    ],
+    "redirects": [
+        {
+            "id": 221,
+            "url": "/bedrock-command-list-command-gamemode/",
+            "match_url": "/bedrock-command-list-command-gamemode",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-gamemode/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 40,
+            "regex": false,
+            "group_id": 3,
+            "position": 0,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 222,
+            "url": "/bedrock-command-list-command-say/",
+            "match_url": "/bedrock-command-list-command-say",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-say/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 16,
+            "regex": false,
+            "group_id": 3,
+            "position": 1,
+            "last_access": "5\u6708 14, 2021",
+            "enabled": true
+        },
+        {
+            "id": 223,
+            "url": "/bedrock-command-list-command-replaceitem/",
+            "match_url": "/bedrock-command-list-command-replaceitem",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-replaceitem/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 81,
+            "regex": false,
+            "group_id": 3,
+            "position": 2,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 224,
+            "url": "/bedrock-command-list-command-op/",
+            "match_url": "/bedrock-command-list-command-op",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-op/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 15,
+            "regex": false,
+            "group_id": 3,
+            "position": 3,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 225,
+            "url": "/bedrock-command-list-command-setmaxplayers/",
+            "match_url": "/bedrock-command-list-command-setmaxplayers",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-setmaxplayers/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 40,
+            "regex": false,
+            "group_id": 3,
+            "position": 4,
+            "last_access": "5\u6708 13, 2021",
+            "enabled": true
+        },
+        {
+            "id": 226,
+            "url": "/bedrock-command-list-command-give/",
+            "match_url": "/bedrock-command-list-command-give",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-give/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 15,
+            "regex": false,
+            "group_id": 3,
+            "position": 5,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 227,
+            "url": "/bedrock-command-list-command-list/",
+            "match_url": "/bedrock-command-list-command-list",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-list/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 11,
+            "regex": false,
+            "group_id": 3,
+            "position": 6,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 228,
+            "url": "/bedrock-command-list-command-kill/",
+            "match_url": "/bedrock-command-list-command-kill",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-kill/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 167,
+            "regex": false,
+            "group_id": 3,
+            "position": 7,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 229,
+            "url": "/bedrock-command-list-command-help/",
+            "match_url": "/bedrock-command-list-command-help",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-help/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 7,
+            "regex": false,
+            "group_id": 3,
+            "position": 8,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 230,
+            "url": "/bedrock-command-list-command-me/",
+            "match_url": "/bedrock-command-list-command-me",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-me/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 8,
+            "regex": false,
+            "group_id": 3,
+            "position": 9,
+            "last_access": "5\u6708 15, 2021",
+            "enabled": true
+        },
+        {
+            "id": 231,
+            "url": "/bedrock-command-list-command-execute/",
+            "match_url": "/bedrock-command-list-command-execute",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-execute/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 170,
+            "regex": false,
+            "group_id": 3,
+            "position": 10,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 232,
+            "url": "/bedrock-command-list-command-gamerule/",
+            "match_url": "/bedrock-command-list-command-gamerule",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-gamerule/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 70,
+            "regex": false,
+            "group_id": 3,
+            "position": 11,
+            "last_access": "5\u6708 14, 2021",
+            "enabled": true
+        },
+        {
+            "id": 233,
+            "url": "/bedrock-command-list-command-enchant/",
+            "match_url": "/bedrock-command-list-command-enchant",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-enchant/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 6,
+            "regex": false,
+            "group_id": 3,
+            "position": 12,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 234,
+            "url": "/bedrock-command-list-command-effect/",
+            "match_url": "/bedrock-command-list-command-effect",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-effect/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 31,
+            "regex": false,
+            "group_id": 3,
+            "position": 13,
+            "last_access": "5\u6708 15, 2021",
+            "enabled": true
+        },
+        {
+            "id": 235,
+            "url": "/bedrock-command-list-command-difficulty/",
+            "match_url": "/bedrock-command-list-command-difficulty",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-difficulty/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 13,
+            "regex": false,
+            "group_id": 3,
+            "position": 14,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 236,
+            "url": "/bedrock-command-list-command-clone/",
+            "match_url": "/bedrock-command-list-command-clone",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-clone/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 41,
+            "regex": false,
+            "group_id": 3,
+            "position": 15,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 237,
+            "url": "/bedrock-command-list-command-locate/",
+            "match_url": "/bedrock-command-list-command-locate",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-locate/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 46,
+            "regex": false,
+            "group_id": 3,
+            "position": 16,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 238,
+            "url": "/bedrock-command-list-command-deop/",
+            "match_url": "/bedrock-command-list-command-deop",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-deop/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 15,
+            "regex": false,
+            "group_id": 3,
+            "position": 17,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 239,
+            "url": "/bedrock-command-list-command-clear/",
+            "match_url": "/bedrock-command-list-command-clear",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-clear/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 31,
+            "regex": false,
+            "group_id": 3,
+            "position": 18,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 240,
+            "url": "/bedrock-command-list-command-playsound/",
+            "match_url": "/bedrock-command-list-command-playsound",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-playsound/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 83,
+            "regex": false,
+            "group_id": 3,
+            "position": 19,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 241,
+            "url": "/bedrock-command-list-command-testfor/",
+            "match_url": "/bedrock-command-list-command-testfor",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-testfor/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 49,
+            "regex": false,
+            "group_id": 3,
+            "position": 20,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 242,
+            "url": "/bedrock-command-list-command-tell/",
+            "match_url": "/bedrock-command-list-command-tell",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-tell/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 23,
+            "regex": false,
+            "group_id": 3,
+            "position": 21,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 243,
+            "url": "/bedrock-command-list-command-setblock/",
+            "match_url": "/bedrock-command-list-command-setblock",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-setblock/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 22,
+            "regex": false,
+            "group_id": 3,
+            "position": 22,
+            "last_access": "5\u6708 14, 2021",
+            "enabled": true
+        },
+        {
+            "id": 244,
+            "url": "/bedrock-command-list-command-teleport/",
+            "match_url": "/bedrock-command-list-command-teleport",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-teleport/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 11,
+            "regex": false,
+            "group_id": 3,
+            "position": 23,
+            "last_access": "5\u6708 15, 2021",
+            "enabled": true
+        },
+        {
+            "id": 245,
+            "url": "/bedrock-command-list-command-spreadplayers/",
+            "match_url": "/bedrock-command-list-command-spreadplayers",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-spreadplayers/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 41,
+            "regex": false,
+            "group_id": 3,
+            "position": 24,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 246,
+            "url": "/bedrock-command-list-command-spawnpoint/",
+            "match_url": "/bedrock-command-list-command-spawnpoint",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-spawnpoint/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 19,
+            "regex": false,
+            "group_id": 3,
+            "position": 25,
+            "last_access": "5\u6708 15, 2021",
+            "enabled": true
+        },
+        {
+            "id": 247,
+            "url": "/bedrock-command-list-command-stopsound/",
+            "match_url": "/bedrock-command-list-command-stopsound",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-stopsound/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 22,
+            "regex": false,
+            "group_id": 3,
+            "position": 26,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 248,
+            "url": "/bedrock-command-list-command-setworldspawn/",
+            "match_url": "/bedrock-command-list-command-setworldspawn",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-setworldspawn/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 22,
+            "regex": false,
+            "group_id": 3,
+            "position": 27,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 249,
+            "url": "/bedrock-friend-multiplayer-guide-part2/",
+            "match_url": "/bedrock-friend-multiplayer-guide-part2",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://md.napoan.com/docs/minecraft/howto/bedrock-friend-multiplayer-guide/intro"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 74,
+            "regex": false,
+            "group_id": 4,
+            "position": 28,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 250,
+            "url": "/bedrock-friend-multiplayer-guide-part3/",
+            "match_url": "/bedrock-friend-multiplayer-guide-part3",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://md.napoan.com/docs/minecraft/howto/bedrock-friend-multiplayer-guide/intro"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 75,
+            "regex": false,
+            "group_id": 4,
+            "position": 29,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 251,
+            "url": "/bedrock-command-list-command-alwaysday/",
+            "match_url": "/bedrock-command-list-command-alwaysday",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-alwaysday/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 21,
+            "regex": false,
+            "group_id": 3,
+            "position": 30,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 252,
+            "url": "/bedrock-command-list-command-testforblock/",
+            "match_url": "/bedrock-command-list-command-testforblock",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-testforblock/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 27,
+            "regex": false,
+            "group_id": 3,
+            "position": 31,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 253,
+            "url": "/bedrock-command-list-command-testforblocks/",
+            "match_url": "/bedrock-command-list-command-testforblocks",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-testforblocks/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 70,
+            "regex": false,
+            "group_id": 3,
+            "position": 32,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 254,
+            "url": "/bedrock-command-list-command-tickingarea/",
+            "match_url": "/bedrock-command-list-command-tickingarea",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-tickingarea/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 38,
+            "regex": false,
+            "group_id": 3,
+            "position": 33,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 255,
+            "url": "/bedrock-command-list-command-time/",
+            "match_url": "/bedrock-command-list-command-time",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-time/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 11,
+            "regex": false,
+            "group_id": 3,
+            "position": 34,
+            "last_access": "5\u6708 12, 2021",
+            "enabled": true
+        },
+        {
+            "id": 256,
+            "url": "/bedrock-command-list-command-title/",
+            "match_url": "/bedrock-command-list-command-title",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-title/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 97,
+            "regex": false,
+            "group_id": 3,
+            "position": 35,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 257,
+            "url": "/bedrock-command-list-command-toggledownfall/",
+            "match_url": "/bedrock-command-list-command-toggledownfall",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-toggledownfall/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 6,
+            "regex": false,
+            "group_id": 3,
+            "position": 36,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 258,
+            "url": "/bedrock-command-list-command-transfersserver/",
+            "match_url": "/bedrock-command-list-command-transfersserver",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-transfersserver/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 6,
+            "regex": false,
+            "group_id": 3,
+            "position": 37,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 259,
+            "url": "/bedrock-command-list-command-wesserver/",
+            "match_url": "/bedrock-command-list-command-wesserver",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-wesserver/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 22,
+            "regex": false,
+            "group_id": 3,
+            "position": 38,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 260,
+            "url": "/bedrock-command-list-command-xp/",
+            "match_url": "/bedrock-command-list-command-xp",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-list-command-xp/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 116,
+            "regex": false,
+            "group_id": 3,
+            "position": 39,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 261,
+            "url": "/version111-entity-id-changes/",
+            "match_url": "/version111-entity-id-changes",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/version111-entity-id-changes/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 108,
+            "regex": false,
+            "group_id": 3,
+            "position": 40,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 262,
+            "url": "/title-command-tool-usage/",
+            "match_url": "/title-command-tool-usage",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/title-command-tool-usage/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 414,
+            "regex": false,
+            "group_id": 3,
+            "position": 41,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 263,
+            "url": "/summon-command-converter/",
+            "match_url": "/summon-command-converter",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/summon-command-converter/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 50,
+            "regex": false,
+            "group_id": 3,
+            "position": 42,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 264,
+            "url": "/splatoon-trap-command-part2/",
+            "match_url": "/splatoon-trap-command-part2",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/splatoon-trap-command-part2/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 53,
+            "regex": false,
+            "group_id": 3,
+            "position": 43,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 265,
+            "url": "/right-click-item/",
+            "match_url": "/right-click-item",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/right-click-item/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 326,
+            "regex": false,
+            "group_id": 3,
+            "position": 44,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 266,
+            "url": "/pe-summon-command-guide/",
+            "match_url": "/pe-summon-command-guide",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/pe-summon-command-guide/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 670,
+            "regex": false,
+            "group_id": 3,
+            "position": 45,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 267,
+            "url": "/pe-time-weather-command-guide/",
+            "match_url": "/pe-time-weather-command-guide",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/pe-time-weather-command-guide/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 236,
+            "regex": false,
+            "group_id": 3,
+            "position": 46,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 268,
+            "url": "/pe-command-testfor-message/",
+            "match_url": "/pe-command-testfor-message",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/pe-command-testfor-message/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 294,
+            "regex": false,
+            "group_id": 3,
+            "position": 47,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 269,
+            "url": "/pe-candestroy-canplaceon-command/",
+            "match_url": "/pe-candestroy-canplaceon-command",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/pe-candestroy-canplaceon-command/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 290,
+            "regex": false,
+            "group_id": 3,
+            "position": 48,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 270,
+            "url": "/pc-113-gamemode-command/",
+            "match_url": "/pc-113-gamemode-command",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/pc-113-gamemode-command/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 96,
+            "regex": false,
+            "group_id": 3,
+            "position": 49,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 271,
+            "url": "/optifine-setup-guide/",
+            "match_url": "/optifine-setup-guide",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://md.napoan.com/docs/minecraft/howto/install-optifine/intro"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 543,
+            "regex": false,
+            "group_id": 4,
+            "position": 50,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 272,
+            "url": "/one-command-build-and-share/",
+            "match_url": "/one-command-build-and-share",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/one-command-build-and-share/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 212,
+            "regex": false,
+            "group_id": 3,
+            "position": 51,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 273,
+            "url": "/new-way-to-install-mod/",
+            "match_url": "/new-way-to-install-mod",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://md.napoan.com/docs/minecraft/howto/install-forge/intro"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 841,
+            "regex": false,
+            "group_id": 4,
+            "position": 52,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 274,
+            "url": "/bedrock-command-list/",
+            "match_url": "/bedrock-command-list",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://md.napoan.com/docs/minecraft/reference/command-bedrock/intro"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 756,
+            "regex": false,
+            "group_id": 4,
+            "position": 53,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 275,
+            "url": "/bedrock-multiplayer-permission/",
+            "match_url": "/bedrock-multiplayer-permission",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-multiplayer-permission/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 144,
+            "regex": false,
+            "group_id": 3,
+            "position": 54,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 276,
+            "url": "/bedrock-friend-multiplayer-guide/",
+            "match_url": "/bedrock-friend-multiplayer-guide",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://md.napoan.com/docs/minecraft/howto/bedrock-friend-multiplayer-guide/intro"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 1724,
+            "regex": false,
+            "group_id": 4,
+            "position": 55,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 277,
+            "url": "/bedrock-command-words-pickup/",
+            "match_url": "/bedrock-command-words-pickup",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/bedrock-command-words-pickup/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 290,
+            "regex": false,
+            "group_id": 3,
+            "position": 56,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 278,
+            "url": "/2016-april-netabarashi/",
+            "match_url": "/2016-april-netabarashi",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/2016-april-netabarashi/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 37,
+            "regex": false,
+            "group_id": 3,
+            "position": 57,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 279,
+            "url": "/41103839-2/",
+            "match_url": "/41103839-2",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/41103839-2/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 99,
+            "regex": false,
+            "group_id": 3,
+            "position": 58,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 280,
+            "url": "/41249070-2/",
+            "match_url": "/41249070-2",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/41249070-2/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 192,
+            "regex": false,
+            "group_id": 3,
+            "position": 59,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 281,
+            "url": "/41881338-2/",
+            "match_url": "/41881338-2",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/41881338-2/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 123,
+            "regex": false,
+            "group_id": 3,
+            "position": 60,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 282,
+            "url": "/43515281-2/",
+            "match_url": "/43515281-2",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/43515281-2/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 169,
+            "regex": false,
+            "group_id": 3,
+            "position": 61,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 284,
+            "url": "/43943060-2/",
+            "match_url": "/43943060-2",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/43943060-2/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 84,
+            "regex": false,
+            "group_id": 3,
+            "position": 63,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 285,
+            "url": "/43851879-2/",
+            "match_url": "/43851879-2",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/43851879-2/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 173,
+            "regex": false,
+            "group_id": 3,
+            "position": 64,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 286,
+            "url": "/44939137-2/",
+            "match_url": "/44939137-2",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/44939137-2/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 54,
+            "regex": false,
+            "group_id": 3,
+            "position": 65,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 288,
+            "url": "/area-effect-cloud-command/",
+            "match_url": "/area-effect-cloud-command",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/area-effect-cloud-command/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 147,
+            "regex": false,
+            "group_id": 3,
+            "position": 67,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 289,
+            "url": "/cannot-sprint-command/",
+            "match_url": "/cannot-sprint-command",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/cannot-sprint-command/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 118,
+            "regex": false,
+            "group_id": 3,
+            "position": 68,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 290,
+            "url": "/collision-setting-command/",
+            "match_url": "/collision-setting-command",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/collision-setting-command/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 119,
+            "regex": false,
+            "group_id": 3,
+            "position": 69,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 291,
+            "url": "/command-block-spawner-coming-to-xboxone-and-switch/",
+            "match_url": "/command-block-spawner-coming-to-xboxone-and-switch",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/command-block-spawner-coming-to-xboxone-and-switch/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 54,
+            "regex": false,
+            "group_id": 3,
+            "position": 70,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 292,
+            "url": "/command-convert-filter-for-v111/",
+            "match_url": "/command-convert-filter-for-v111",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/command-convert-filter-for-v111/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 60,
+            "regex": false,
+            "group_id": 3,
+            "position": 71,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 293,
+            "url": "/custom-potion-command/",
+            "match_url": "/custom-potion-command",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/custom-potion-command/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 81,
+            "regex": false,
+            "group_id": 3,
+            "position": 72,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 294,
+            "url": "/end-gateway-command-guide/",
+            "match_url": "/end-gateway-command-guide",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/end-gateway-command-guide/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 124,
+            "regex": false,
+            "group_id": 3,
+            "position": 73,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 295,
+            "url": "/exp-item-shop-commands/",
+            "match_url": "/exp-item-shop-commands",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/exp-item-shop-commands/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 46,
+            "regex": false,
+            "group_id": 3,
+            "position": 74,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 296,
+            "url": "/forever-baby-animal-command/",
+            "match_url": "/forever-baby-animal-command",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/forever-baby-animal-command/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 101,
+            "regex": false,
+            "group_id": 3,
+            "position": 75,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 297,
+            "url": "/je-113-marge-update-aquatic/",
+            "match_url": "/je-113-marge-update-aquatic",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/je-113-marge-update-aquatic/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 25,
+            "regex": false,
+            "group_id": 3,
+            "position": 76,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 298,
+            "url": "/je-bossbar-command-guide/",
+            "match_url": "/je-bossbar-command-guide",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/je-bossbar-command-guide/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 175,
+            "regex": false,
+            "group_id": 3,
+            "position": 77,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 299,
+            "url": "/mcbe-command-selector/",
+            "match_url": "/mcbe-command-selector",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/mcbe-command-selector/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 88,
+            "regex": false,
+            "group_id": 3,
+            "position": 78,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 300,
+            "url": "/mcbe-howtouse-fill-command/",
+            "match_url": "/mcbe-howtouse-fill-command",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://md.napoan.com/docs/minecraft/reference/command-bedrock/fill"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 385,
+            "regex": false,
+            "group_id": 4,
+            "position": 79,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 301,
+            "url": "/mcbe-time-weather-fire-command/",
+            "match_url": "/mcbe-time-weather-fire-command",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/mcbe-time-weather-fire-command/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 54,
+            "regex": false,
+            "group_id": 3,
+            "position": 80,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 302,
+            "url": "/mcbe-update-17/",
+            "match_url": "/mcbe-update-17",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/mcbe-update-17/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 61,
+            "regex": false,
+            "group_id": 3,
+            "position": 81,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 303,
+            "url": "/mgs-fulton-command-by-dragnoz/",
+            "match_url": "/mgs-fulton-command-by-dragnoz",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/mgs-fulton-command-by-dragnoz/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 50,
+            "regex": false,
+            "group_id": 3,
+            "position": 82,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 304,
+            "url": "/mobspawner-command-customize/",
+            "match_url": "/mobspawner-command-customize",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/mobspawner-command-customize/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 75,
+            "regex": false,
+            "group_id": 3,
+            "position": 83,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 305,
+            "url": "/offhand-item-detect-command/",
+            "match_url": "/offhand-item-detect-command",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/offhand-item-detect-command/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 112,
+            "regex": false,
+            "group_id": 3,
+            "position": 84,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 306,
+            "url": "/pcversion19-command-guide/",
+            "match_url": "/pcversion19-command-guide",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/pcversion19-command-guide/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 79,
+            "regex": false,
+            "group_id": 3,
+            "position": 85,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 307,
+            "url": "/pe-105-update/",
+            "match_url": "/pe-105-update",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/pe-105-update/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 117,
+            "regex": false,
+            "group_id": 3,
+            "position": 86,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 308,
+            "url": "/pe-update-12/",
+            "match_url": "/pe-update-12",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/pe-update-12/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 68,
+            "regex": false,
+            "group_id": 3,
+            "position": 87,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 309,
+            "url": "/pvp-basic-command/",
+            "match_url": "/pvp-basic-command",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/pvp-basic-command/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 136,
+            "regex": false,
+            "group_id": 3,
+            "position": 88,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 310,
+            "url": "/shoot-fireball-everywhere-command/",
+            "match_url": "/shoot-fireball-everywhere-command",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/shoot-fireball-everywhere-command/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 135,
+            "regex": false,
+            "group_id": 3,
+            "position": 89,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 311,
+            "url": "/sign-command-generator/",
+            "match_url": "/sign-command-generator",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/sign-command-generator/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 156,
+            "regex": false,
+            "group_id": 3,
+            "position": 90,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 312,
+            "url": "/tellraw-command-generator/",
+            "match_url": "/tellraw-command-generator",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/tellraw-command-generator/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 209,
+            "regex": false,
+            "group_id": 3,
+            "position": 91,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 313,
+            "url": "/eula/",
+            "match_url": "/eula",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/eula/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 22,
+            "regex": false,
+            "group_id": 1,
+            "position": 0,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 315,
+            "url": "/please-translate-minecraft-wiki/",
+            "match_url": "/please-translate-minecraft-wiki",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/please-translate-minecraft-wiki"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 56,
+            "regex": false,
+            "group_id": 3,
+            "position": 90,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 316,
+            "url": "/continuum-shaders-vs-seus/",
+            "match_url": "/continuum-shaders-vs-seus",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/continuum-shaders-vs-seus"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 259,
+            "regex": false,
+            "group_id": 3,
+            "position": 91,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 317,
+            "url": "/advancements-custom-guide-1/",
+            "match_url": "/advancements-custom-guide-1",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/advancements-custom-guide-1"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 127,
+            "regex": false,
+            "group_id": 3,
+            "position": 92,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 318,
+            "url": "/advancements-custom-guide-2/",
+            "match_url": "/advancements-custom-guide-2",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/advancements-custom-guide-2"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 85,
+            "regex": false,
+            "group_id": 3,
+            "position": 93,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 319,
+            "url": "/advancements-custom-guide-prolog/",
+            "match_url": "/advancements-custom-guide-prolog",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/advancements-custom-guide-prolog"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 59,
+            "regex": false,
+            "group_id": 3,
+            "position": 94,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 320,
+            "url": "/pc-112-functions-guide/",
+            "match_url": "/pc-112-functions-guide",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/pc-112-functions-guide"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 175,
+            "regex": false,
+            "group_id": 3,
+            "position": 95,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 321,
+            "url": "/41693721-2/",
+            "match_url": "/41693721-2",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/41693721-2/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 200,
+            "regex": false,
+            "group_id": 3,
+            "position": 96,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 322,
+            "url": "/45110202-2/",
+            "match_url": "/45110202-2",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/45110202-2/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 279,
+            "regex": false,
+            "group_id": 3,
+            "position": 97,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 323,
+            "url": "/mcbe-player-name-change/",
+            "match_url": "/mcbe-player-name-change",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/mcbe-player-name-change"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 113,
+            "regex": false,
+            "group_id": 3,
+            "position": 98,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 324,
+            "url": "/mc-console-history/",
+            "match_url": "/mc-console-history",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/mc-console-history"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 367,
+            "regex": false,
+            "group_id": 3,
+            "position": 99,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 325,
+            "url": "/loot-table-perfect-guide-part2/",
+            "match_url": "/loot-table-perfect-guide-part2",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/loot-table-perfect-guide-part2"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 159,
+            "regex": false,
+            "group_id": 3,
+            "position": 100,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 326,
+            "url": "/loot-table-perfect-guide-part3/",
+            "match_url": "/loot-table-perfect-guide-part3",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/loot-table-perfect-guide-part3"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 82,
+            "regex": false,
+            "group_id": 3,
+            "position": 101,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 327,
+            "url": "/44870887-2/",
+            "match_url": "/44870887-2",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/44870887-2"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 94,
+            "regex": false,
+            "group_id": 3,
+            "position": 102,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 328,
+            "url": "/44652899-2/",
+            "match_url": "/44652899-2",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/44652899-2"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 40,
+            "regex": false,
+            "group_id": 3,
+            "position": 103,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 329,
+            "url": "/43985121-2/",
+            "match_url": "/43985121-2",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/43985121-2"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 112,
+            "regex": false,
+            "group_id": 3,
+            "position": 104,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 330,
+            "url": "/optifine-recommended-settings/",
+            "match_url": "/optifine-recommended-settings",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/optifine-recommended-settings"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 491,
+            "regex": false,
+            "group_id": 3,
+            "position": 105,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 331,
+            "url": "/why-switch-is-still-only-digital/",
+            "match_url": "/why-switch-is-still-only-digital",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/why-switch-is-still-only-digital"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 63,
+            "regex": false,
+            "group_id": 3,
+            "position": 106,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 332,
+            "url": "/hello-world-MC_AruBlog/",
+            "match_url": "/hello-world-mc_arublog",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/hello-world-MC_AruBlog"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 8,
+            "regex": false,
+            "group_id": 3,
+            "position": 107,
+            "last_access": "5\u6708 13, 2021",
+            "enabled": true
+        },
+        {
+            "id": 333,
+            "url": "/replaymod-with-shaders/",
+            "match_url": "/replaymod-with-shaders",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/replaymod-with-shaders"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 80,
+            "regex": false,
+            "group_id": 3,
+            "position": 108,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 334,
+            "url": "/replay-mod-part1/",
+            "match_url": "/replay-mod-part1",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/replay-mod-part1"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 217,
+            "regex": false,
+            "group_id": 3,
+            "position": 109,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 335,
+            "url": "/replaymod-360-ss/",
+            "match_url": "/replaymod-360-ss",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/replaymod-360-ss"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 53,
+            "regex": false,
+            "group_id": 3,
+            "position": 110,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 336,
+            "url": "/replaymod-add-image/",
+            "match_url": "/replaymod-add-image",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/replaymod-add-image"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 54,
+            "regex": false,
+            "group_id": 3,
+            "position": 111,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 337,
+            "url": "/camera-mod-pixelcam-guide/",
+            "match_url": "/camera-mod-pixelcam-guide",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/camera-mod-pixelcam-guide"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 87,
+            "regex": false,
+            "group_id": 3,
+            "position": 112,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 338,
+            "url": "/speedbuildgen-by-crushedpixel/",
+            "match_url": "/speedbuildgen-by-crushedpixel",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/speedbuildgen-by-crushedpixel"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 46,
+            "regex": false,
+            "group_id": 3,
+            "position": 113,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 339,
+            "url": "/version110-mods-matome/",
+            "match_url": "/version110-mods-matome",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/version110-mods-matome"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 109,
+            "regex": false,
+            "group_id": 3,
+            "position": 114,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 340,
+            "url": "/new-nbt-locname-usage/",
+            "match_url": "/new-nbt-locname-usage",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/new-nbt-locname-usage"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 102,
+            "regex": false,
+            "group_id": 3,
+            "position": 115,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 341,
+            "url": "/best-shaders-for-onboard/",
+            "match_url": "/best-shaders-for-onboard",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/best-shaders-for-onboard"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 366,
+            "regex": false,
+            "group_id": 3,
+            "position": 116,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 342,
+            "url": "/cannot-kill-entity/",
+            "match_url": "/cannot-kill-entity",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/howto-summon-invulnerable-entity"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 146,
+            "regex": false,
+            "group_id": 3,
+            "position": 117,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 343,
+            "url": "/do-not-buy-win10-edition/",
+            "match_url": "/do-not-buy-win10-edition",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/do-not-buy-win10-edition"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 177,
+            "regex": false,
+            "group_id": 3,
+            "position": 118,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 344,
+            "url": "/back-to-hatena-blog/",
+            "match_url": "/back-to-hatena-blog",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/we-are-back-2021"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 477,
+            "regex": false,
+            "group_id": 3,
+            "position": 119,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 345,
+            "url": "/dont-buy-switch-cartridge/",
+            "match_url": "/dont-buy-switch-cartridge",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/dont-buy-switch-cartridge/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 117,
+            "regex": false,
+            "group_id": 3,
+            "position": 120,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 346,
+            "url": "/things-you-should-know-about-n3ds-edition/",
+            "match_url": "/things-you-should-know-about-n3ds-edition",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/things-you-should-know-about-n3ds-edition"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 116,
+            "regex": false,
+            "group_id": 3,
+            "position": 121,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 347,
+            "url": "/windows10-texture-launcher/",
+            "match_url": "/windows10-texture-launcher",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/windows10-texture-launcher/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 164,
+            "regex": false,
+            "group_id": 3,
+            "position": 122,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 348,
+            "url": "/steam-overlay-on-bethesda-launcher/",
+            "match_url": "/steam-overlay-on-bethesda-launcher",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/steam-overlay-on-bethesda-launcher/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 63,
+            "regex": false,
+            "group_id": 3,
+            "position": 123,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 349,
+            "url": "/ps4-switch-edition-160-patch8/",
+            "match_url": "/ps4-switch-edition-160-patch8",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/ps4-switch-edition-160-patch8/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 49,
+            "regex": false,
+            "group_id": 3,
+            "position": 124,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 350,
+            "url": "/pe-alpha-015/",
+            "match_url": "/pe-alpha-015",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/pe-alpha-015/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 59,
+            "regex": false,
+            "group_id": 3,
+            "position": 125,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 351,
+            "url": "/pe-alpha-014/",
+            "match_url": "/pe-alpha-014",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/pe-alpha-014/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 57,
+            "regex": false,
+            "group_id": 3,
+            "position": 126,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 352,
+            "url": "/new3ds-update-13/",
+            "match_url": "/new3ds-update-13",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/new3ds-update-13/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 48,
+            "regex": false,
+            "group_id": 3,
+            "position": 127,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 353,
+            "url": "/pe-alpha-013/",
+            "match_url": "/pe-alpha-013",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/pe-alpha-013/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 70,
+            "regex": false,
+            "group_id": 3,
+            "position": 128,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 354,
+            "url": "/only-dof-shaderpack/",
+            "match_url": "/only-dof-shaderpack",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/only-dof-shaderpack/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 74,
+            "regex": false,
+            "group_id": 3,
+            "position": 129,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 355,
+            "url": "/java-stat-time-since-sleep/",
+            "match_url": "/java-stat-time-since-sleep",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/java-stat-time-since-sleep/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 40,
+            "regex": false,
+            "group_id": 3,
+            "position": 130,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 356,
+            "url": "/je113-nbt-json-text/",
+            "match_url": "/je113-nbt-json-text",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/je113-nbt-json-text/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 95,
+            "regex": false,
+            "group_id": 3,
+            "position": 131,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 357,
+            "url": "/java-113-id-bs-changes/",
+            "match_url": "/java-113-id-bs-changes",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/java-113-id-bs-changes/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 85,
+            "regex": false,
+            "group_id": 3,
+            "position": 132,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 358,
+            "url": "/inventory-item-click/",
+            "match_url": "/inventory-item-click",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/inventory-item-click/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 182,
+            "regex": false,
+            "group_id": 3,
+            "position": 133,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 359,
+            "url": "/data-pack-perfect-guide/",
+            "match_url": "/data-pack-perfect-guide",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/data-pack-perfect-guide/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 172,
+            "regex": false,
+            "group_id": 3,
+            "position": 134,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 360,
+            "url": "/hytale-progress-jan292020/",
+            "match_url": "/hytale-progress-jan292020",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/hytale-progress-jan292020/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 41,
+            "regex": false,
+            "group_id": 3,
+            "position": 135,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 361,
+            "url": "/hytale-faq-matome/",
+            "match_url": "/hytale-faq-matome",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/hytale-faq-matome/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 62,
+            "regex": false,
+            "group_id": 3,
+            "position": 136,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 362,
+            "url": "/hytale-just-revealed/",
+            "match_url": "/hytale-just-revealed",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/hytale-just-revealed/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 41,
+            "regex": false,
+            "group_id": 3,
+            "position": 137,
+            "last_access": "5\u6708 16, 2021",
+            "enabled": true
+        },
+        {
+            "id": 363,
+            "url": "/hytale-201812-ui/",
+            "match_url": "/hytale-201812-ui",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/hytale-201812-ui/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 19,
+            "regex": false,
+            "group_id": 3,
+            "position": 138,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 364,
+            "url": "/hytale-201812-npcs/",
+            "match_url": "/hytale-201812-npcs",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/hytale-201812-npcs/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 26,
+            "regex": false,
+            "group_id": 3,
+            "position": 139,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 365,
+            "url": "/hytale-201812-simon-and-rezzus/",
+            "match_url": "/hytale-201812-simon-and-rezzus",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/hytale-201812-simon-and-rezzus/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 43,
+            "regex": false,
+            "group_id": 3,
+            "position": 140,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 366,
+            "url": "/je-mods-matome-for-112/",
+            "match_url": "/je-mods-matome-for-112",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/je-mods-matome-for-112/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 143,
+            "regex": false,
+            "group_id": 3,
+            "position": 137,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 367,
+            "url": "/minimap-battle/",
+            "match_url": "/minimap-battle",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/minimap-battle/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 153,
+            "regex": false,
+            "group_id": 3,
+            "position": 138,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 368,
+            "url": "/mobile-switch-world-transfer/",
+            "match_url": "/mobile-switch-world-transfer",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/mobile-switch-world-transfer/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 62,
+            "regex": false,
+            "group_id": 3,
+            "position": 139,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 369,
+            "url": "/mcbe-scoreboard-guide/",
+            "match_url": "/mcbe-scoreboard-guide",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/mcbe-scoreboard-guide/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 102,
+            "regex": false,
+            "group_id": 3,
+            "position": 140,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 370,
+            "url": "/howtouse-extra-addon-switch/",
+            "match_url": "/howtouse-extra-addon-switch",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/howtouse-extra-addon-switch/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 87,
+            "regex": false,
+            "group_id": 3,
+            "position": 141,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 371,
+            "url": "/difference-of-switch-bedrock/",
+            "match_url": "/difference-of-switch-bedrock",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/difference-of-switch-bedrock/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 57,
+            "regex": false,
+            "group_id": 3,
+            "position": 142,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 372,
+            "url": "/howto-claim-win10-edition/",
+            "match_url": "/howto-claim-win10-edition",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/howto-claim-win10-edition/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 100,
+            "regex": false,
+            "group_id": 3,
+            "position": 143,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 373,
+            "url": "/howtomake-skins-pe/",
+            "match_url": "/howtomake-skins-pe",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/howtomake-skins-pe/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 55,
+            "regex": false,
+            "group_id": 3,
+            "position": 144,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 374,
+            "url": "/shincolle-beta/",
+            "match_url": "/shincolle-beta",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/shincolle-beta/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 83,
+            "regex": false,
+            "group_id": 3,
+            "position": 145,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 375,
+            "url": "/structure-block-usage-guide/",
+            "match_url": "/structure-block-usage-guide",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/structure-block-usage-guide/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 92,
+            "regex": false,
+            "group_id": 3,
+            "position": 146,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 376,
+            "url": "/scoreboard-stat-count/",
+            "match_url": "/scoreboard-stat-count",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/scoreboard-stat-count/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 61,
+            "regex": false,
+            "group_id": 3,
+            "position": 147,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 377,
+            "url": "/howtouse-tag-system/",
+            "match_url": "/howtouse-tag-system",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/howtouse-tag-system/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 73,
+            "regex": false,
+            "group_id": 3,
+            "position": 148,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 378,
+            "url": "/43561606-2/",
+            "match_url": "/43561606-2",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/43561606-2/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 69,
+            "regex": false,
+            "group_id": 3,
+            "position": 149,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        },
+        {
+            "id": 379,
+            "url": "/pe-howtomake-redstone-circuits/",
+            "match_url": "/pe-howtomake-redstone-circuits",
+            "match_data": {
+                "source": {
+                    "flag_query": "exact",
+                    "flag_case": false,
+                    "flag_trailing": false,
+                    "flag_regex": false
+                }
+            },
+            "action_code": 301,
+            "action_type": "url",
+            "action_data": {
+                "url": "https://next.napoan.com/pe-howtomake-redstone-circuits/"
+            },
+            "match_type": "url",
+            "title": "",
+            "hits": 71,
+            "regex": false,
+            "group_id": 3,
+            "position": 150,
+            "last_access": "5\u6708 17, 2021",
+            "enabled": true
+        }
+    ]
+}
